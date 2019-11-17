@@ -19,30 +19,42 @@ const function1272 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(7),
-        s = i(0),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_req_map/anchorage_repair", e
+    var o = i(2),
+        r = i(19),
+        s = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._wait = function () {
+                    o._layer.removeChild(o._plane), createjs.Tween.get(null).wait(200).call(function () {
+                        o._endTask()
+                    })
+                }, o.run = function () {
+                    o._timer <= 0 && o._isTurn || (o._movePlane(), o._timer -= 1e3 / 60, o._timer <= 0 && !o._isTurn && (o._timer = o._baseTime, o._isTurn = !o._isTurn))
+                }, o._layer = e, o._from = i, o._to = n, o._baseTime = 1500, o._timer = o._baseTime, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "used_ship", {
-                get: function () {
-                    return this._used_ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._used_ship = r.ObjUtil.getNumber(this._raw_data, "api_used_ship");
-                for (var e = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    s.default.model.ship.updateData(o)
-                }
-                t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._plane = new PIXI.Sprite;
+                var e = this._to.x > this._from.x ? 1 : -1,
+                    i = this._to.x > this._from.x ? -.1 : .1;
+                this._plane.texture = r.MAP_COMMON.getTexture(108), this._plane.anchor.set(.5, 1), this._plane.scale.set(e, 1), this._layer.addChild(this._plane), createjs.Tween.get(this._plane.scale).wait(1200).to({
+                    x: -1 * this._plane.scale.x,
+                    y: 1
+                }, 600).wait(3e3 - 3e3 * (.4 + .2)).to({
+                    x: i,
+                    y: .1
+                }, 200).call(function () {
+                    t._wait()
+                }), this._bezierTween = createjs.Tween.get(null).wait(3e3).addEventListener("change", function () {
+                    t.run()
+                })
+            }, e.prototype._movePlane = function () {
+                var t = (this._baseTime - this._timer) / this._baseTime,
+                    e = this._isTurn ? 1 * t : 1 * t - 1;
+                this._plane.position.x = this._from.x + .9 * this._to.x - .9 * this._to.x * e * e, this._plane.position.y = this._from.y + .9 * this._to.y - .9 * this._to.y * e * e, 0 != e && (this._plane.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
+            }, e.prototype._endTask = function () {
+                this._bezierTween = null, this._plane = null, this._layer = null, this._from = null, this._to = null, this._baseTime = null, this._timer = null, this._isTurn = null, t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.APIAnchorageRepair = a
+        }(o.TaskBase);
+    e.AnimPlane = s
 }

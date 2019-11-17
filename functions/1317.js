@@ -19,47 +19,34 @@ const function1317 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(62),
-        s = i(1318),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
+    var o = i(19),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._stopTween()
+                }, i._onMouseOut = function () {
+                    i._startTween()
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i._img.position.set(11, 11), i.addChild(i._img), i._over = new PIXI.Sprite, i.addChild(i._over), i.visible = !1, i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "extraLayer", {
-                get: function () {
-                    return this._extraLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "mapAnime", {
-                get: function () {
-                    return this._mapAnime
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._mapAnime && this._mapAnime.dispose()
-            }, e.prototype.addBGLayer = function (t, e) {
-                var i = new PIXI.Sprite(t);
-                if (null != e && e.length > 0) {
-                    if (1 == this._bgDic.hasOwnProperty(e)) {
-                        var n = this._bgDic[e];
-                        null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
-                    }
-                    this._bgDic[e] = i
-                }
-                i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
-            }, e.prototype.getBGLayer = function (t) {
-                return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
-            }, e.prototype.addLabel = function (t, e, i) {
-                null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
-                var n = new r.CenteringSprite(t);
-                n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
-            }, e.prototype.setMapAnime = function () {
-                this._mapAnime = new s.MapAnime, this._mapAnime.position.set(899, 370), this._bgLayer.addChildAt(this._mapAnime, 2), this._mapAnime.startAnimation()
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = o.MAP_COMMON.getTexture(1), this._over.texture = o.MAP_COMMON.getTexture(2), this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._startTween()
+            }, e.prototype.dispose = function () {
+                this._stopTween(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._over.alpha = 1, this._t = createjs.Tween.get(this._over, {
+                    loop: !0
+                }).to({
+                    alpha: .1
+                }, 1e3).to({
+                    alpha: 1
+                }, 400))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._over.alpha = 1)
             }, e
         }(PIXI.Container);
-    e.MapBackGround = a
+    e.PanelCancelBtn = s
 }

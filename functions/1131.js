@@ -19,31 +19,38 @@ const function1131 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(1132),
-        s = i(1133),
-        a = i(1134),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._count = 0, i._onSelectFromTop = function (t) {
-                    if (-1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else null != i._confirm_view && (null != i._confirm_view.parent && i._confirm_view.parent.removeChild(i._confirm_view), i._confirm_view.dispose(), i._confirm_view = null), 1 == t ? (i._confirm_view = new a.ConfirmRemodelPlanView(1, i._onSelectFromConfirm), i._confirm_view.position.set(220, 171)) : 0 == t ? (i._confirm_view = new s.ConfirmView(0, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)) : 2 == t && (i._confirm_view = new s.ConfirmView(2, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)), i._confirm_view.initialize(i._count), i.addChild(i._confirm_view), i._top_view.visible = !1
-                }, i._onSelectFromConfirm = function (t) {
-                    null != i._confirm_view && i._confirm_view.dispose(), null != i._cb_onResult && i._cb_onResult(t)
-                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(225, 208), i.addChild(i._top_view), i
+    var o = i(1),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._activated = !1, n._enabled = !0, n._onClick = function () {
+                    null != n._cb_onClick && n._cb_onClick(n._target)
+                }, n._target = e, n._cb_onClick = i, n.interactive = !0, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._count = t, this._top_view.initialize(t)
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                set: function (t) {
+                    this._enabled != t && (this._enabled = t, 1 == this._enabled ? 1 == this._activated && this._activate() : 1 == this._activated && this._deactivate(), this._update())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                void 0 === e && (e = null), this._t = t, this._t_off = null == e ? t : e, this._update()
             }, e.prototype.activate = function () {
-                this._top_view.activate()
+                1 != this._activated && (this._activated = !0, 0 != this._enabled && this._activate())
             }, e.prototype.deactivate = function () {
-                this._top_view.deactivate()
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this._top_view.dispose()
+                this.deactivate(), this._cb_onClick = null, this._t = null, this._t_off = null
+            }, e.prototype._update = function () {
+                0 == this._enabled ? this.texture = this._t_off : this.texture = this._t
+            }, e.prototype._activate = function () {
+                this.buttonMode = !0, this.once(o.EventType.CLICK, this._onClick)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
             }, e
-        }(o.DialogBase);
-    e.MedalUseDialog = _
+        }(PIXI.Sprite);
+    e.BtnBase = r
 }

@@ -19,21 +19,26 @@ const function1062 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(0),
+        r = i(11),
+        s = i(15),
+        a = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = !1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o._expiredFlag = !1, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("record");
-                e.add("record_parts.json").add("record_mini.json").add("record_menu.json"), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "expiredFlag", {
+                get: function () {
+                    return this._expiredFlag
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._expiredFlag = s.ObjUtil.getBoolean(this._raw_data, "api_expired_flag"), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = s
+        }(r.APIBase);
+    e.ExpeditionStartAPI = a
 }

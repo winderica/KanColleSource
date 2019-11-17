@@ -19,29 +19,41 @@ const function1290 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(249),
+    var o = i(1291),
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._imgs = [], e
+                return e._count = 0, e._boxes = [], e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                if (this._imgs = [], t <= 0) {
-                    var e = new o.NumericalDisplay(0);
-                    this.addChild(e), this._imgs.push(e)
-                } else
-                    for (; t > 0;) {
-                        var i = t % 10,
-                            e = new o.NumericalDisplay(i);
-                        this.addChild(e), this._imgs.push(e), t = Math.floor(t / 10)
-                    }
-                var n = new o.NumericalDisplay(-1);
-                this.addChild(n), this._imgs.push(n), this._imgs = this._imgs.reverse();
-                for (var r = 0, s = 0, a = this._imgs; s < a.length; s++) {
-                    var _ = a[s];
-                    _.x = r, r += _.width
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._count = 0;
+                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
+                    var s = new o.FormationBoxCombined,
+                        a = [626, 873, 626, 873][r],
+                        _ = [96, 96, 302, 302][r];
+                    s.position.set(a, _);
+                    var l = n[r];
+                    s.initialize(t, l, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
                 }
             }, e
         }(PIXI.Container);
-    e.NumericalDisplaySet = r
+    e.FormationBoxContainerCombined = r
 }

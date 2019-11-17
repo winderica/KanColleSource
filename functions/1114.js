@@ -19,47 +19,64 @@ const function1114 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(11),
-        a = i(8),
-        _ = i(3),
-        l = i(1),
-        u = i(241),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClose = function () {
-                    i._dialog.btn.buttonMode = !1, createjs.Tween.get(i._chara).to({
-                        x: o.default.width
-                    }, 300), createjs.Tween.get(i._dialog).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        i._layer.removeChild(i._bg), i._layer.removeChild(i._chara), i._layer.removeChild(i._dialog), i._endTask()
-                    })
-                }, i._layer = e, i
+    var o = i(7),
+        r = function () {
+            function t() {
+                this._dic = {}
             }
-            return n(e, t), e.prototype._start = function () {
-                this._bg = new a.AreaBox(0), this._layer.addChild(this._bg);
-                var t = PIXI.Sprite.fromFrame(u.POSTER_KEY_2),
-                    e = u.getPosterOffsetPurchased();
-                null != e && (t.x = e.x, t.y = e.y), this._chara = new PIXI.Sprite, this._chara.addChild(t), this._chara.position.set(681, 3), this._layer.addChild(this._chara), this._dialog = new h, this._dialog.initialize(), this._dialog.position.set(219, 207), this._layer.addChild(this._dialog), r.default.sound.voice.playAtRandom("9999", [316, 317], [60, 40]), this._dialog.btn.buttonMode = !0, this._dialog.btn.once(l.EventType.CLICK, this._onClose)
-            }, e
-        }(s.TaskBase);
-    e.TaskPurchased = c;
-    var h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._btn = new PIXI.Sprite, e._btn.position.set(291, 201), e._btn.interactive = !0, e.addChild(e._btn), e
+            return t.prototype.getCount = function (t) {
+                var e = this.getData(t);
+                return null == e ? 0 : e.count
+            }, t.prototype.getData = function (t) {
+                return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
+            }, t.prototype.setData = function (t) {
+                if (this._dic = {}, null != t)
+                    for (var e = 0, i = t; e < i.length; e++) {
+                        var n = i[e],
+                            o = new a(n);
+                        this._dic[o.id] = o
+                    }
+            }, t
+        }();
+    e.PurchasedItemModelHolder = r;
+    var s = function () {
+        function t(t) {
+            this._o = t
         }
-        return n(e, t), Object.defineProperty(e.prototype, "btn", {
+        return Object.defineProperty(t.prototype, "id", {
             get: function () {
-                return this._btn
+                return parseInt(o.ObjUtil.getString(this._o, "api_payitem_id"))
             },
             enumerable: !0,
             configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = _.ITEM_COMMON.getTexture(4), this._btn.texture = _.ITEM_COMMON.getTexture(3)
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_name")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "description", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_description")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "count", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_count")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t
+    }();
+    e.PurchasedItemModel = s;
+    var a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.setCount = function (t) {
+            this._o.api_count = t
         }, e
-    }(PIXI.Sprite)
+    }(s);
+    e.PurchasedItemModelEdit = a
 }

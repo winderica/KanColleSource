@@ -1,62 +1,157 @@
 const function1260 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(19),
-        s = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = null);
-                var r = t.call(this) || this;
-                return r._ship = e, r._type = i, r._directionType = n, r._offset = o, r
+    var n = i(7),
+        o = i(1261),
+        r = function () {
+            function t(t) {
+                this._offsetDic = null, this._line = null, this._route = null, this._branch = null, this._o = t
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new a(this._offset);
-                e.initialize(this._type, this._directionType), e.alpha = 0, this._ship.addChild(e), createjs.Tween.get(e).to({
-                    y: -23,
-                    alpha: 1
-                }, 100).wait(2e3).to({
-                    y: 0,
-                    alpha: 0
-                }, 100).call(function () {
-                    t._ship.removeChild(e), t._endTask()
-                })
-            }, e
-        }(o.TaskBase);
-    e.AnimBalloon = s;
-    var a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._offset = e, i._img = new PIXI.Sprite, i.addChild(i._img), i
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            1 == t ? this._initializeFoundEnemy(e) : 2 == t && this._initializeFoundTarget(e), 3 == t && this._initializePatrol(e), this._addOffset(e)
-        }, e.prototype._initializeFoundEnemy = function (t) {
-            0 == t ? (this._img.texture = r.MAP_COMMON.getTexture(46), this._img.position.set(-66, -77)) : 1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(27), this._img.position.set(-15, -68)) : 2 == t ? (this._img.texture = r.MAP_COMMON.getTexture(26), this._img.position.set(0, -36)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(28), this._img.position.set(-114, -68))
-        }, e.prototype._initializeFoundTarget = function (t) {
-            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(29), this._img.position.set(-15, -68)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(30), this._img.position.set(-140, -66))
-        }, e.prototype._initializePatrol = function (t) {
-            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(31), this._img.position.set(-14, -66)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(32), this._img.position.set(-114, -66))
-        }, e.prototype._addOffset = function (t) {
-            0 == t ? (this._img.x += -3, this._img.y += -9) : 1 == t ? (this._img.x += 21, this._img.y += -6) : 2 == t ? (this._img.x += 39, this._img.y += 9) : 3 == t || 4 == t || 5 == t || 6 == t || 7 == t && (this._img.x += -21, this._img.y += -6), this._offset && (this._img.x += this._offset.x, this._img.y += this._offset.y)
-        }, e
-    }(PIXI.Container)
+            return Object.defineProperty(t.prototype, "no", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "no")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "x", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "x")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "y", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "y")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "color", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "color")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offsetDic", {
+                get: function () {
+                    return 0 == this._o.hasOwnProperty("offsets") ? {} : this._o.offsets
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "line", {
+                get: function () {
+                    if (null == this._line && 1 == this._o.hasOwnProperty("line")) {
+                        var t = this._o.line;
+                        this._line = {
+                            x: n.ObjUtil.getNumber(t, "x"),
+                            y: n.ObjUtil.getNumber(t, "y"),
+                            r: n.ObjUtil.getNumber(t, "r"),
+                            img: n.ObjUtil.getString(t, "img")
+                        }
+                    }
+                    return this._line
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "route", {
+                get: function () {
+                    if (null == this._route && 1 == this._o.hasOwnProperty("route")) {
+                        var t = this._o.route;
+                        this._route = {
+                            x: t.hasOwnProperty("x") ? t.x : null == this.line ? 0 : this.line.x,
+                            y: t.hasOwnProperty("y") ? t.y : null == this.line ? 0 : this.line.y,
+                            r: t.hasOwnProperty("r") ? t.r : null == this.line ? 0 : this.line.r,
+                            img: n.ObjUtil.getString(t, "img")
+                        }
+                    }
+                    return this._route
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "landing", {
+                get: function () {
+                    if (0 == this._o.hasOwnProperty("landing")) return null;
+                    var t = this._o.landing;
+                    return {
+                        x: n.ObjUtil.getNumber(t, "x"),
+                        y: n.ObjUtil.getNumber(t, "y"),
+                        type: n.ObjUtil.getNumber(t, "type")
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "branch", {
+                get: function () {
+                    if (null == this._branch) {
+                        if (0 == this._o.hasOwnProperty("branch")) return null;
+                        var t = this._o.branch;
+                        this._branch = new o.BranchBalloonData(t)
+                    }
+                    return this._branch
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "direction", {
+                get: function () {
+                    if (0 == this._o.hasOwnProperty("direction")) return 0;
+                    var t = n.ObjUtil.getString(this._o, "direction");
+                    return "R" == t ? 2 : "L" == t ? 1 : 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "controll_point", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "cpoint");
+                    return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "repair_confirm_offsets", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "repair");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "button");
+                    return {
+                        box: i,
+                        btn: new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "replenish_confirm_offsets", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "replenish");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "button"),
+                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
+                        s = n.ObjUtil.getObject(t, "balloon");
+                    return {
+                        box: i,
+                        btn: r,
+                        bln: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ration_confirm_offset", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "ration");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getNumber(t, "box"),
+                        i = new PIXI.Point;
+                    i.x = n.ObjUtil.getNumber(e, "x"), i.y = n.ObjUtil.getNumber(e, "y");
+                    var o = n.ObjUtil.getNumber(t, "button"),
+                        r = new PIXI.Point;
+                    return r.x = n.ObjUtil.getNumber(o, "x"), r.y = n.ObjUtil.getNumber(o, "y"), [i, r]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.SpotData = r
 }

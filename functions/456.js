@@ -19,91 +19,55 @@ const function456 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(66),
-        r = i(6),
-        s = i(122),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._planes = [], i
+    var o = i(28),
+        r = i(30),
+        s = i(72),
+        a = i(20),
+        _ = i(39),
+        l = i(6),
+        u = i(145),
+        c = i(183),
+        h = i(452),
+        p = i(184),
+        d = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
+            return n(e, t), Object.defineProperty(e.prototype, "data_", {
                 get: function () {
-                    return this._friend
+                    return this._data
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.addPlane = function (t, e) {
-                if (void 0 === e && (e = null), !(this._planes.length >= 3)) {
-                    var i = new s.Plane;
-                    null == e && (e = new PIXI.Point, 0 == this._planes.length ? (e.x = 45, e.y = 18) : 1 == this._planes.length ? (e.x = 18, e.y = -27) : 2 == this._planes.length && (e.x = -36, e.y = 38)), i.initialize(t, this._friend, new PIXI.Point, e), this._planes.push(i);
-                    for (var n = 0; n < this._planes.length; n++) {
-                        var o = this._planes[n];
-                        if (i.y < o.y) {
-                            var r = this.getChildIndex(o);
-                            this.addChildAt(i, r);
-                            break
-                        }
-                        n == this._planes.length - 1 && this.addChild(i)
-                    }
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype.startFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].startFluctuations()
-                }
-            }, e.prototype.stopFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].stopFluctuations()
-                }
-            }, e.prototype.fire = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].fire()
-                }
-            }, e.prototype.play = function (t, e, i, n, s) {
-                var a = this;
-                void 0 === e && (e = NaN), void 0 === s && (s = null);
-                var _, l = new PIXI.Point(this.x, this.y),
-                    u = this._createControllPoints(l, t),
-                    c = u.c1,
-                    h = u.c2;
-                if (0 == isNaN(e)) {
-                    var p = .99,
-                        d = 1 - p,
-                        f = Math.pow(d, 3) * l.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
-                        y = Math.pow(d, 3) * l.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
-                        m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
-                        g = t.x - f,
-                        v = (e - t.x) / g,
-                        b = i / (100 + v) * 100,
-                        w = i / (100 + v) * v;
-                    this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
-                        x: e,
-                        y: m
-                    }, w), _ = new PIXI.Point(e, m)
-                } else this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
-                return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
-                    r.SE.play("116"), a.fire()
-                }), {
-                    s: l,
-                    c1: c,
-                    c2: h,
-                    e: t,
-                    ex: _
-                }
-            }, e.prototype.debugLine = function (t) {
-                var e = new PIXI.Graphics;
-                return e.lineStyle(1, 16711680), e.moveTo(t.s.x, t.s.y), e.bezierCurveTo(t.c1.x, t.c1.y, t.c2.x, t.c2.y, t.e.x, t.e.y), e.lineStyle(1, 65280), e.lineTo(t.ex.x, t.ex.y), e
-            }, e.prototype._createControllPoints = function (t, e) {
-                var i, n, o = t.x <= e.x;
-                return 1 == o ? (i = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)) : (i = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)), {
-                    c1: i,
-                    c2: n
-                }
+            }), e.prototype._start = function () {
+                this._log();
+                var t = this._scene.data.model.map_info.isAirRaid();
+                this._canvas = new u.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
+                var t = this,
+                    e = new o.ParallelTask,
+                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
+                e.add((new a.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
+                    t._fireDogFight()
+                }, 750)), e.add(new s.FuncTask(function () {
+                    t._showTaikuCutin()
+                }, 900)), e.add(new s.FuncTask(function () {
+                    t._damageAtStage1()
+                }, 1050)), e.add(new s.FuncTask(function () {
+                    t._antiAircraft()
+                }, 1200)), e.add(new s.FuncTask(function () {
+                    t._damageAtStage2()
+                }, 1350)), e.add((new r.SerialTask).add(new _.WaitTask(1700)).add((new o.ParallelTask).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
+                    t._showBakuExplosion()
+                }, 2950)), e.add(new s.FuncTask(function () {
+                    t._showDamage()
+                }, 3300)), e.add(new s.FuncTask(function () {
+                    t._showDamageNumber()
+                }, 3600)), this._main_task = e, this._main_task.start(function () {})
+            }, e.prototype._showSeikuResult = function () {
+                var t = this._scene.view.layer_content;
+                new h.TaskAirWarShowSeiku(t, this.data_.seiku).start()
             }, e
-        }(PIXI.Container);
-    e.PlaneTrio = a
+        }(c.TaskAircraftFlightBase);
+    e.TaskAirWar = d
 }

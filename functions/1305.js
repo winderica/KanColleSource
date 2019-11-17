@@ -19,34 +19,36 @@ const function1305 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    i._stopTween()
-                }, i._onMouseOut = function () {
-                    i._startTween()
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i._img.position.set(11, 11), i.addChild(i._img), i._over = new PIXI.Sprite, i.addChild(i._over), i.visible = !1, i.interactive = !0, i
+    var o = i(5),
+        r = i(64),
+        s = i(19),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._container = new PIXI.Container, e.addChild(e._container), e._bg = new r.CenteringSprite, e._bg.scale.x = 1.2, e._container.addChild(e._bg), e._txt = new r.CenteringSprite, e._container.addChild(e._txt), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = o.MAP_COMMON.getTexture(1), this._over.texture = o.MAP_COMMON.getTexture(2), this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._startTween()
-            }, e.prototype.dispose = function () {
-                this._stopTween(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._over.alpha = 1, this._t = createjs.Tween.get(this._over, {
-                    loop: !0
-                }).to({
-                    alpha: .1
-                }, 1e3).to({
-                    alpha: 1
-                }, 400))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._over.alpha = 1)
+            return n(e, t), e.prototype.initialize = function (t) {
+                switch (t) {
+                    case 1:
+                        this._bg.texture = s.MAP_COMMON.getTexture(111), this._txt.texture = s.MAP_COMMON.getTexture(122);
+                        break;
+                    case 2:
+                        this._bg.texture = s.MAP_COMMON.getTexture(114), this._txt.texture = s.MAP_COMMON.getTexture(124);
+                        break;
+                    case 3:
+                        this._bg.texture = s.MAP_COMMON.getTexture(111), this._txt.texture = s.MAP_COMMON.getTexture(123);
+                        break;
+                    case 4:
+                        this._bg.texture = s.MAP_COMMON.getTexture(112), this._txt.texture = s.MAP_COMMON.getTexture(125)
+                }
+                this._container.y = -o.default.height / 2 - this._container.height
+            }, e.prototype.playAnimation = function (t, e) {
+                createjs.Tween.get(this._container).call(t).to({
+                    y: 0
+                }, 600, createjs.Ease.sineOut).wait(1e3).to({
+                    y: o.default.height / 2 + this.height
+                }, 600, createjs.Ease.sineIn).call(e)
             }, e
         }(PIXI.Container);
-    e.PanelCancelBtn = s
+    e.AirRaidResultTelop = a
 }

@@ -19,16 +19,34 @@ const function1212 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(14),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene_dispose_delegate = e, i
+    var o = i(0),
+        r = i(2),
+        s = i(34),
+        a = i(69),
+        _ = i(418),
+        l = i(419),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._data = e, n._scene_initialize_delegate = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), r.UIImageLoader.clearMemoryCache("revamp"), this._endTask()
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this;
+                (new l.TaskLoadResources).start(function () {
+                    t._connectAPI()
+                })
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = new s.APIConnector;
+                20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
+                e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
+                    null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskItemSceneFinalize = s
+        }(r.TaskBase);
+    e.TaskDutyScenePreInitialize = u
 }

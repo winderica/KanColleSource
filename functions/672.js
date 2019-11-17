@@ -5,8 +5,8 @@ const function672 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_common_" + t)
+            return PIXI.Texture.fromFrame("organize_rengo_" + t)
         }
         t.getTexture = e
-    }(e.ITEM_COMMON || (e.ITEM_COMMON = {}))
+    }(e.ORGANIZE_RENGO || (e.ORGANIZE_RENGO = {}))
 }

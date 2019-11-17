@@ -19,34 +19,58 @@ const function1107 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._switchOrder = [1, 2], n._switch_btn = e, n._tab_container = i;
-                var o = n._switchOrder.indexOf(n._switch_btn.mode);
-                return n._switchMode = o + 1 >= n._switchOrder.length ? n._switchOrder[0] : n._switchOrder[o + 1], n
+    var o = i(0),
+        r = i(42),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onPrev = function (t) {
+                    if (t.stopPropagation(), null != e._current) {
+                        var i = e._data_list.indexOf(e._current);
+                        if (!(i < 0)) {
+                            var n = i - 1;
+                            n < 0 && (n = e._data_list.length - 1), e._current = e._data_list[n], e._update()
+                        }
+                    }
+                }, e._onNext = function (t) {
+                    if (t.stopPropagation(), null != e._current) {
+                        var i = e._data_list.indexOf(e._current);
+                        if (!(i < 0)) {
+                            var n = i + 1;
+                            n >= e._data_list.length && (n = 0), e._current = e._data_list[n], e._update()
+                        }
+                    }
+                }, e._canvas = new PIXI.Sprite, e.addChild(e._canvas), e._prevBtn = new r.PrevBtn(e._onPrev), e._prevBtn.position.set(10, 582), e.addChild(e._prevBtn), e._nextBtn = new r.NextBtn(e._onNext), e._nextBtn.position.set(55, 582), e.addChild(e._nextBtn), e._canvas.interactive = !0, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._switch_btn.mode = this._switchMode, this._tab_container.switchViewAlbumMode(this._switchMode), this._animate()
-            }, e.prototype._animate = function () {
-                var t = this;
-                createjs.Tween.get(this._switch_btn).to({
-                    alpha: 0
-                }, 0).to({
-                    x: -137
-                }, 0).wait(300).call(function () {
-                    t._switch_btn.update(!1), createjs.Tween.get(t._switch_btn).to({
-                        alpha: 1
-                    }, 0).wait(100).to({
-                        x: 0
-                    }, 450, createjs.Ease.quintOut).call(function () {
-                        t._endTask()
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                this._switch_btn.addOnceClickEvent(), t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._data_list = [];
+                for (var e = 0, i = t.mst_ids; e < i.length; e++) {
+                    var n = i[e],
+                        r = o.default.resources.getSlotitem(n, "card");
+                    this._addImageData(n, r, new PIXI.Point(20, 142)), r = o.default.resources.getSlotitem(n, "item_up"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_on"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_character"), this._addImageData(n, r)
+                }
+                this._data_list.length > 0 && (this._current = this._data_list[0], this._update()), this._prevBtn.initialize(), this._nextBtn.initialize()
+            }, e.prototype.activate = function () {
+                1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(s.EventType.CLICK, this._onNext), this._prevBtn.activate(), this._nextBtn.activate())
+            }, e.prototype.deactivate = function () {
+                this._canvas.buttonMode = !1, this._canvas.off(s.EventType.CLICK, this._onNext), this._prevBtn.deactivate(), this._nextBtn.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._prevBtn.dispose(), this._nextBtn.dispose();
+                for (var t = 0; t < this._data_list.length; t++) this._data_list[t] = null;
+                this._data_list = null, this._current = null, this._canvas = null, this._prevBtn = null, this._nextBtn = null
+            }, e.prototype._addImageData = function (t, e, i) {
+                if (void 0 === i && (i = null), e != PIXI.Texture.EMPTY) {
+                    var n = new _;
+                    n.mst_id = t, n.texture = e, n.offset = i, this._data_list.push(n)
+                }
+            }, e.prototype._update = function () {
+                null != this._current && (this._canvas.texture = this._current.texture, null != this._current.offset ? (this._canvas.x = this._current.offset.x, this._canvas.y = this._current.offset.y) : this._canvas.position.set(0, 0))
             }, e
-        }(o.TaskBase);
-    e.TaskSwitchAlbumMode = r
+        }(PIXI.Container);
+    e.SlotDetailContent = a;
+    var _ = function () {
+        function t() {}
+        return t
+    }()
 }

@@ -19,35 +19,17 @@ const function1073 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(383),
+    var o = i(11),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._eye_open_flag = !0, e._disposed = !1, e._onUpdate = function () {}, e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_get_member/record", i._recordInfoModel = e, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._update()
-            }, e.prototype.activate = function () {
-                this._startWaiting()
-            }, e.prototype.deactivate = function () {
-                this._stopWaiting()
-            }, e.prototype.dispose = function () {
-                this._disposed = !0, this._t.setPaused(!0), this._t = null, this.deactivate()
-            }, e.prototype._update = function () {
-                1 == this._eye_open_flag ? this.texture = o.RECORD_MINI.getTexture(0) : this.texture = o.RECORD_MINI.getTexture(1)
-            }, e.prototype._startWaiting = function () {
-                var t = this;
-                if (null == this._t && !this._disposed) {
-                    var e = 0;
-                    e = 1 == this._eye_open_flag ? 3e3 * Math.random() + 1e4 : 200 * Math.random() + 100, this._t = createjs.Tween.get(null, {
-                        onChange: this._onUpdate
-                    }).wait(e).call(function () {
-                        t._eye_open_flag = !t._eye_open_flag, t._update(), t._t = null, t._startWaiting()
-                    })
-                }
-            }, e.prototype._stopWaiting = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._recordInfoModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.RecordMiniChara = r
+        }(o.APIBase);
+    e.RecordInfoAPI = r
 }

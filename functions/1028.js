@@ -19,45 +19,80 @@ const function1028 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(17),
-        a = i(1029),
-        _ = i(1030),
-        l = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._hideDetailInfo = function () {
-                    r._detail.deactivate(), createjs.Tween.get(r._detail).to({
-                        alpha: 0
-                    }, 300), createjs.Tween.get(r._fade).wait(100).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        r._detail.dispose(), o.default.view.overLayer.removeChild(r._fade)
-                    })
-                }, r._rival_id = e, r._flag_type = i, r._medal_num = n, r
+    var o = i(37),
+        r = i(1029),
+        s = i(1030),
+        a = i(1032),
+        _ = i(1046),
+        l = i(1047),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e, i) || this;
+                n._timer_id = 0, n._onChangeMatching = function (t) {
+                    new l.TaskChangeMatching(t, n).start()
+                }, n._sub_title = new _.CompSubTitle, n._sub_title.position.set(202, 204), n._rivals = new Array;
+                for (var o = 0; o < 5; o++) {
+                    var r = new a.CompRivalDeck;
+                    r.position.set(211, 267 + 82 * o), n._rivals.push(r)
+                }
+                return n._matching_btns = new s.CompMatchingSelectBtns(n._onChangeMatching), n._matching_btns.position.set(460, 669), n
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                this._fade = new s.FadeBox(1), this._fade.hide(0), o.default.view.overLayer.addChild(this._fade), this._fade.show(300), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = new a.RivalDetailAPI(this._rival_id, this._flag_type, this._medal_num);
-                e.start(function () {
-                    t._showDetailInfo(e.res_model)
-                })
-            }, e.prototype._showDetailInfo = function (t) {
+            return n(e, t), Object.defineProperty(e.prototype, "rivals", {
+                get: function () {
+                    return this._rivals
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "matching_btns", {
+                get: function () {
+                    return this._matching_btns
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                t.prototype.initialize.call(this), this._sub_title.initialize(), this.addChild(this._sub_title);
+                for (var e = 0, i = this._rivals; e < i.length; e++) {
+                    var n = i[e];
+                    n.initialize(), this.addChild(n)
+                }
+                this._matching_btns.initialize(), this.addChild(this._matching_btns)
+            }, e.prototype.update = function (t) {
+                o.TaskLoadShipResource.abortBy(this), this._sub_title.update(t.matching_type);
+                for (var e = t.rivals, i = 0; i < this._rivals.length; i++) {
+                    var n = this._rivals[i];
+                    e.length <= i ? n.visible = !1 : (n.update(e[i]), n.visible = !0)
+                }
+                this._selected_matching_type = t.matching_type_next;
+                var r = t.remain_time;
+                this._startTimer(1e3 * r), this._matching_btns.update(r > 0, t.matching_type_next)
+            }, e.prototype.updateMatchingState = function (t, e) {
+                this._selected_matching_type = e, this._matching_btns.update(t, e), this._matching_btns.activate()
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this);
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].activate()
+                }
+                this._matching_btns.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this);
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].deactivate()
+                }
+                this._matching_btns.deactivate(), o.TaskLoadShipResource.abortBy(this)
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._sub_title.dispose();
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].dispose()
+                }
+                this._matching_btns.dispose(), this._stopTimer()
+            }, e.prototype._startTimer = function (t) {
                 var e = this;
-                this._detail = new _.ContainerOverlay;
-                var i = o.default.model.deck.getIDs(),
-                    n = o.default.model.deck.isCombined();
-                this._detail.initialize(i, n), this._detail.update(t), this._detail.alpha = 0, this._fade.addChild(this._detail), createjs.Tween.get(this._detail).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    e._detail.once("close", e._hideDetailInfo), e._detail.activate()
-                })
+                this._stopTimer(), t > 0 && (this._timer_id = setTimeout(function () {
+                    e.updateMatchingState(!1, e._selected_matching_type), e._timer_id = 0
+                }, t))
+            }, e.prototype._stopTimer = function () {
+                this._timer_id > 0 && clearTimeout(this._timer_id), this._timer_id = 0
             }, e
-        }(r.TaskBase);
-    e.TaskDetailInfo = l
+        }(r.ViewMainBase);
+    e.ViewMain = u
 }

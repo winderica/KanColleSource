@@ -19,73 +19,26 @@ const function1414 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(6),
-        a = i(1415),
-        _ = i(125),
-        l = i(39),
-        u = function (t) {
-            function e(e, i, n, r, s, a, _, l, u) {
-                var c = t.call(this, e, n, s, _, l, u) || this;
-                return c._slot2 = o.default.model.slot.getMst(a), c._defender = r, c
+    var o = i(22),
+        r = i(2),
+        s = i(1415),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._banner = e, n._large = i, n
             }
-            return n(e, t), e.prototype.preload = function (t) {
-                this._cutin = new a.CutinSpRR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
-            }, e.prototype._start = function () {
-                var t, e, i = this._attacker.friend,
-                    n = this._attacker.index,
-                    o = this._defender.index;
-                1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
-            }, e.prototype._playPicket = function (t, e) {
-                var i = this;
-                if (this._attacker.hasSlot(129, !0)) {
-                    var n = new PIXI.Point;
-                    n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                    var o = new _.Picket;
-                    o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
-                        i._playCutin(t, e)
-                    })
-                } else this._playCutin(t, e)
-            }, e.prototype._playCutin = function (t, e) {
-                var i = this;
-                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                    i._shoot(t, e)
-                }), this._cutin.view.once("attack", function () {
-                    i._playVoice()
+            return n(e, t), e.prototype._start = function () {
+                if (null == this._banner) return void this._endTask();
+                this._effect()
+            }, e.prototype._effect = function () {
+                var t = this,
+                    e = new s.SearchLight;
+                e.initialize(this._large), 1 == this._banner.friend ? e.x = o.BannerSize.W + 15 : (e.x = -15, e.scale.x = -1), e.y = o.BannerSize.H / 2, this._banner.addChild(e), e.getAnimationTask().start(function () {
+                    t._banner.removeChild(e), t._endTask()
                 })
-            }, e.prototype._shoot = function (t, e) {
-                var i = this;
-                t.moveShoot(function () {
-                    i._torpedo(t, e)
-                })
-            }, e.prototype._torpedo = function (t, e) {
-                var i = this,
-                    n = t.friend ? 1 : -1,
-                    o = t.getGlobalPos(!0);
-                o.x += r.BannerSize.W / 3 * n;
-                var a = e.getGlobalPos(!0);
-                a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
-                var _ = this._scene.view.layer_torpedo;
-                _.playTorpedoAtNight(o, a, 800, function () {
-                    _.playTorpedoWaterColumn(e), i._explosion(t, e)
-                })
-            }, e.prototype._explosion = function (t, e) {
-                var i = this,
-                    n = e.getGlobalPos(!0);
-                createjs.Tween.get(this).wait(300).call(function () {
-                    i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
-                }).wait(350).call(function () {
-                    var n = i._getDamage(i._defender);
-                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
-                })
-            }, e.prototype._playVoice = function () {
-                if (this._attacker.friend) {
-                    var t = this._attacker.mst_id,
-                        e = 17;
-                    432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
-                }
-            }, e.prototype._log = function (t) {}, e
-        }(l.PhaseAttackBase);
-    e.PhaseAttackSpRR = u
+            }, e.prototype._endTask = function () {
+                this._banner = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.TaskSearchLightAnimation = a
 }

@@ -19,57 +19,65 @@ const function1526 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1527),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._banners = [], e
+    var o = i(0),
+        r = i(11),
+        s = i(68),
+        a = i(8),
+        _ = i(32),
+        l = i(1527),
+        u = i(1),
+        c = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._resetBanners();
-                var e = 0;
-                e = 7 == t.length ? 0 : 68;
-                for (var i = 0; i < t.length; i++) {
-                    var n = t[i];
-                    if (null == n) return;
-                    var r = new o.ShipBannerClone(n.isTaihi());
-                    r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
-                    var s = n.mst_id,
-                        a = n.hp_now,
-                        _ = n.hp_max;
-                    r.updateTexture(s, a, _), r.updateIcon(n.damageType, n.isGround()), this.addChild(r)
-                }
-            }, e.prototype.dispose = function () {
-                this._resetBanners(), this._banners = null, this.removeChildren()
-            }, e.prototype.createShowTweens = function (t) {
-                for (var e = [], i = 0; i < this._banners.length; i++) {
-                    var n = this._banners[i];
-                    n.y += 30;
-                    var o = createjs.Tween.get(n).wait(t + 50 * i).to({
-                        y: n.y - 30,
-                        alpha: 1
-                    }, 150);
-                    e.push(o)
-                }
-                return e
-            }, e.prototype.createHideTweens = function (t) {
-                for (var e = [], i = 0; i < this._banners.length; i++) {
-                    var n = this._banners[i],
-                        o = createjs.Tween.get(n).wait(t + 100 * (this._banners.length - 1 - i)).to({
-                            y: n.y + 30,
-                            alpha: 0
-                        }, 200);
-                    e.push(o)
-                }
-                return e
-            }, e.prototype.getBanner = function (t) {
-                return t >= 0 && null != this._banners && t < this._banners.length ? this._banners[t] : null
-            }, e.prototype._resetBanners = function () {
-                for (null == this._banners && (this._banners = []); this._banners.length > 0;) {
-                    var t = this._banners.pop();
-                    null != t.parent && t.parent.removeChild(t), t.dispose()
-                }
+            return n(e, t), e.prototype._start = function () {
+                var t = this._scene.data.getLandingData();
+                t.isLandingMap() ? this._loadResources(t) : this._endTask()
+            }, e.prototype._loadResources = function (t) {
+                var e = this,
+                    i = o.default.resources.gauge.createLoaderHorizontal(),
+                    n = this._scene.data.battle_model.map_info.area_id,
+                    r = this._scene.data.battle_model.map_info.map_no,
+                    a = this._scene.data.battle_model.stage,
+                    _ = s.GaugeSetModel.createKey(n, r, a);
+                i.add(_);
+                i.load(function () {
+                    var i = o.default.resources.gauge.getGaugeInfo(_),
+                        n = null;
+                    e._showDialog(t, i, n)
+                })
+            }, e.prototype._showDialog = function (t, e, i) {
+                var n = this,
+                    o = new l.ResultDialog(t, e, i);
+                o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({
+                    alpha: 1
+                }, 300).wait(500).call(function () {
+                    o.startAnimation(function () {
+                        n._hideDialog(o)
+                    })
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._scene.view.removeChild(t), t.dispose(), e._wait()
+                })
+            }, e.prototype._wait = function () {
+                var t = this;
+                createjs.Tween.get(null).wait(500).call(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                var e = this,
+                    i = new _.GearBtnNext;
+                i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
+                var n = new a.AreaBox(0);
+                n.buttonMode = !0, this._scene.view.addChild(n), n.once(u.EventType.CLICK, function () {
+                    i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
+                })
             }, e
-        }(PIXI.Container);
-    e.BannerSet = r
+        }(r.TaskBase);
+    e.PhaseTransportResult = c
 }

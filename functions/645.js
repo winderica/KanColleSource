@@ -19,50 +19,36 @@ const function645 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(10),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onChange = function () {
-                    for (var t = 0, i = e.children; t < i.length; t++) {
-                        i[t].update()
-                    }
-                };
-                for (var i = 0; i < 30; i++) {
-                    var n = new a;
-                    e.addChild(n)
-                }
-                return e.visible = !1, e
+    var o = i(0),
+        r = i(4),
+        s = i(48),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e, null) || this;
+                return n._models = i, n
             }
-            return n(e, t), e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(null, {
-                    loop: !0,
-                    onChange: this._onChange
-                }), this.visible = !0)
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren()
+            return n(e, t), e.prototype._createContent = function () {
+                this._icons = [], this._text = new r.TextBox(25, 16774898), this._dialog.container.addChild(this._text);
+                for (var t = "", e = 0, i = this._models.rewards; e < i.length; e++) {
+                    var n = i[e],
+                        s = o.default.resources.getUseitem(n.mst_id, 0),
+                        a = new PIXI.Sprite(s);
+                    a.y = -121, this._dialog.container.addChild(a), this._icons.push(a), t += n.name + "\xd7" + n.count + "\n"
+                }
+                this._text.text = t, this._text.x = -Math.round(this._text.width / 2), this._models.rewards.length >= 6 ? this._text.y = -30 : 5 == this._models.rewards.length ? this._text.y = -15 : this._text.y = 0;
+                for (var _ = this._icons.length, l = [0, 0, 96, 75, 45, 30, 15][_], u = 75 * _ + l * (_ - 1), c = 0; c < _; c++) {
+                    var a = this._icons[c];
+                    a.x = -u / 2 + (75 + l) * c
+                }
+                this._showDialog()
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._text), this._text.destroy(), this._text = null;
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    var i = e[t];
+                    this._dialog.container.removeChild(i)
+                }
+                this._icons = null
             }, e
-        }(PIXI.Container);
-    e.BonusInsertParticle = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._vx = 0, e._vy = 0, e._vr = 0, e._vscale = 0;
-            return e.texture = r.COMMON_MISC.getTexture(114), e._init(), e
-        }
-        return n(e, t), e.prototype.update = function () {
-            if (--this._life < 0 && (this.alpha -= .1 * Math.random() + .1, this.alpha <= 0)) return void this._init();
-            this.x += this._vx, this.y += this._vy, this.rotation += this._vr, this.scale.x += this._vscale, this.scale.y += this._vscale;
-            var t = 60 / createjs.Ticker.framerate;
-            this._vx *= 1 + .01 * t, this._vy += .01 * t
-        }, e.prototype._init = function () {
-            var t = 60 / createjs.Ticker.framerate;
-            this.x = o.default.width / 2, this.y = o.default.height / 2 - 45, this.alpha = 1, this.scale.set(0), this._life = 100 * t, this._life += 100 * Math.random() * t, this._vx = 6 * Math.random() * t, Math.random() < .5 && (this._vx *= -1), this._vy = (12 * Math.random() - 9) * t;
-            var e = 50 / 180 * Math.PI * t;
-            this._vr = (Math.random() * e + 1) / 100, this._vscale = (.0025 * Math.random() + .005) * t
-        }, e
-    }(PIXI.Sprite)
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogMultiUseitem = a
 }

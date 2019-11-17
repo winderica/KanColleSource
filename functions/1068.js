@@ -20,16 +20,26 @@ const function1068 = function (t, e, i) {
         value: !0
     });
     var o = i(11),
-        r = function (t) {
+        r = i(15),
+        s = i(14),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_get_member/record", i._recordInfoModel = e, i
+                return i._view = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._recordInfoModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._view = null, r.EditTextBoxUtil.setVisibility(!1), this._endTask()
             }, e
-        }(o.APIBase);
-    e.RecordInfoAPI = r
+        }(o.TaskBase);
+    e.PreFinalizeTask = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene_dispose_delegate = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._view = null, s.UIImageLoader.clearMemoryCache("record"), this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = _
 }

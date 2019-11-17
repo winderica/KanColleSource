@@ -19,60 +19,38 @@ const function1369 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(54),
+    var o = i(5),
+        r = i(451),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n._damage_cutin = new r.PhaseDamageCutin(e), n
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype._createAttackData_f = function () {
-                return this._createAttackData(this._scene.data.model.deck_f.ships, this._scene.data.model.deck_e.ships)
-            }, e.prototype._createAttackData_e = function () {
-                return this._createAttackData(this._scene.data.model.deck_e.ships, this._scene.data.model.deck_f.ships)
-            }, e.prototype._createAttackData = function (t, e) {
-                for (var i = new Array, n = 0; n < t.length; n++) {
-                    var o = t[n];
-                    if (null != o) {
-                        var r = o.friend ? this._data.getAttackTo_f(n) : this._data.getAttackTo_e(n);
-                        if (!(r < 0)) {
-                            var s = {
-                                attacker: o,
-                                defender: e[r],
-                                damage: o.friend ? this._data.getDamage_f(n) : this._data.getDamage_e(n),
-                                hit: o.friend ? this._data.getHitType_f(n) : this._data.getHitType_e(n),
-                                shield: o.friend ? this._data.isShield_f(n) : this._data.isShield_e(n)
-                            };
-                            i.push(s)
-                        }
+            return n(e, t), e.prototype._initialize = function (t, e) {
+                if (0 == e) this._img.texture = r.BATTLE_AIRUNIT.getTexture(3);
+                else {
+                    var i = e / t;
+                    if (i < .25) this._img.texture = r.BATTLE_AIRUNIT.getTexture(2);
+                    else {
+                        if (!(i < .4)) return this._img.texture = PIXI.Texture.EMPTY, !1;
+                        this._img.texture = r.BATTLE_AIRUNIT.getTexture(1)
                     }
                 }
-                return i
-            }, e.prototype._shootBase = function (t, e, i) {
-                var n = this._scene.view.bannerGroupLayer.getBanner(t.attacker),
-                    o = this._scene.view.bannerGroupLayer.getBanner(t.defender),
-                    r = n.getGlobalPos(!0),
-                    s = o.getGlobalPos(!0);
-                this._scene.view.layer_torpedo.playTorpedo(r, s, e, function () {
-                    null != i && i()
-                })
-            }, e.prototype._damageBase = function (t, e) {
-                1 == this._scene.data.model.isPractice() && (e.damage = Math.min(e.damage, t.hp_now - 1));
-                var i = this._scene.view.bannerGroupLayer.getBanner(t),
-                    n = i.getGlobalPos(!0);
-                this._scene.view.layer_torpedo.playTorpedoWaterColumn(i), this._scene.view.layer_explosion.playDamageExplosion(n.x, n.y, e.damage), i.moveAtDamage(e.shield)
-            }, e.prototype._showDamageBase = function (t, e) {
-                for (var i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = e[o.index];
-                        if (null != r) {
-                            var s = this._scene.view.bannerGroupLayer.getBanner(o);
-                            this._scene.view.layer_damage.showAtBanner(s, r.damage, r.hit), this._damage_cutin.causeDamage(o, r.damage), s.updateHp(o.hp_now)
-                        }
-                    }
-                }
+                return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
+            }, e.prototype.play = function (t, e, i, n) {
+                var r = this;
+                return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
+                    x: o.default.width / 2 + 12,
+                    alpha: 1
+                }, 300).to({
+                    x: o.default.width / 2 - 12
+                }, 1500).to({
+                    x: o.default.width / 2 - 24,
+                    alpha: 0
+                }, 300).call(function () {
+                    t.removeChild(r), null != n && n()
+                })))
             }, e
-        }(o.TaskBase);
-    e.PhaseRaigekiBase = s
+        }(PIXI.Container);
+    e.AirUnitAttackResultTelop = s
 }

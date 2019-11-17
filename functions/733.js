@@ -19,19 +19,16 @@ const function733 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(218),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(10),
+        r = i(734),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/preset_deck", e
             }
-            return n(e, t), e.prototype._start = function () {
-                s.OrganizeSceneMemory.pageIndex = 0, s.OrganizeSceneMemory.filterStatus = o.default.model.basic.getFilterStatusOrganizeList(), s.OrganizeSceneMemory.japanese = o.default.model.basic.isJapaneseOrganizeList(), this._scene.initialize(), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._completedEnd = function () {
+                this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.InitializeTask = a
+        }(o.APIBase);
+    e.PresetDeckAPI = s
 }

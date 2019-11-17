@@ -19,34 +19,38 @@ const function1465 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(16),
-        r = function (t) {
+    var o = i(12),
+        r = i(16),
+        s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.56, .95), e._splash1.position.set(129, 26), e._splash2.anchor.set(.77, .79), e._splash2.position.set(131, 26), e._splash3.anchor.set(.59, .9), e._splash3.position.set(137, 21), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
             }
-            return n(e, t), e.prototype.showSanshiki = function (t, e) {
-                var i = this,
-                    n = o.BATTLE_MAIN.getTexture(137),
-                    r = new PIXI.Sprite(n);
-                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
-                    alpha: 1
-                }, 300).wait(600).to({
+            return n(e, t), e.prototype.initialize = function () {
+                this._splash1.texture = r.BATTLE_MAIN.getTexture(115), this._splash2.texture = r.BATTLE_MAIN.getTexture(114), this._splash3.texture = r.BATTLE_MAIN.getTexture(116)
+            }, e.prototype.play = function () {
+                var t = this;
+                createjs.Tween.get(this._splash1).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 233).to({
                     alpha: 0
-                }, 300).call(function () {
-                    i.removeChild(r)
-                })
-            }, e.prototype.showDanmaku = function (t, e) {
-                var i = this,
-                    n = o.BATTLE_MAIN.getTexture(134),
-                    r = new PIXI.Sprite(n);
-                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
-                    alpha: 1
-                }, 300).wait(600).to({
+                }, 333), createjs.Tween.get(this._splash2).wait(166).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
                     alpha: 0
-                }, 300).call(function () {
-                    i.removeChild(r)
+                }, 200), createjs.Tween.get(this._splash3).wait(300).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 133).to({
+                    alpha: 0
+                }, 133).call(function () {
+                    t._init(), t.emit("complete")
                 })
-            }, e.prototype.dispose = function () {}, e
+            }, e.prototype._init = function () {
+                this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
+            }, e
         }(PIXI.Container);
-    e.BannerInfoLayer = r
+    e.WaterColumn = s
 }

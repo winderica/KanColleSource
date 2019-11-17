@@ -1,16 +1,33 @@
 const function265 = function (t, e, i) {
     "use strict";
-
-    function n(t, e, i) {
-        var n = (new Date).getTime(),
-            r = Math.floor(n / 1e3);
-        e = Math.round(e) % 1e3 + 1e3, i = Math.round(i) % 1e3 + 1e3;
-        var s = 1e4 * e + i;
-        return s *= o.PORT_API_SEED[t % 10], r.toString() + s.toString()
-    }
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18);
-    e.__create_serial_id__ = n
+    ! function (t) {
+        function e(e) {
+            return e && t.hasItem(e) ? decodeURI(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + encodeURI(e).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1")) : null
+        }
+
+        function i(t, e, i, n, o, r) {
+            if (t && !/^(?:expires|max\-age|path|domain|secure)$/i.test(t)) {
+                var s = "";
+                if (i) switch (i.constructor) {
+                    case Number:
+                        s = i === 1 / 0 ? "; expires=Tue, 19 Jan 2038 03:14:07 GMT" : "; max-age=" + i;
+                        break;
+                    case String:
+                        s = "; expires=" + i;
+                        break;
+                    case Date:
+                        s = "; expires=" + i.toUTCString()
+                }
+                document.cookie = encodeURI(t) + "=" + encodeURI(e) + s + (o ? "; domain=" + o : "") + (n ? "; path=" + n : "") + (r ? "; secure" : "")
+            }
+        }
+
+        function n(t) {
+            return new RegExp("(?:^|;\\s*)" + encodeURI(t).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=").test(document.cookie)
+        }
+        t.getItem = e, t.setItem = i, t.hasItem = n
+    }(e.CookieUtil || (e.CookieUtil = {}))
 }

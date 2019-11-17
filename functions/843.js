@@ -19,24 +19,20 @@ const function843 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(8),
-        s = i(32),
-        a = i(71),
-        _ = function (t) {
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick(e.index, e.memId)
-                }, e.shipBanner = new s.ShipBanner, e.emptyShipBanner = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(18)), e.clickArea = new r.AreaBox(0, 0, 240, 60), e.clickArea.buttonMode = !0, e.clickArea.on(o.EventType.CLICK, e._onClick), e
+                e._onClickBack = function () {
+                    e.onClickBack()
+                };
+                var i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(48));
+                return e.buttonBack = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(0)), e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonBack.on(r.EventType.CLICK, e._onClickBack), e.buttonBack.position.set(221, 206), e.addChild(i, e.buttonBack), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.shipBanner.dispose(), this.clickArea.off(o.EventType.CLICK, this._onClick), this.onClick = null, this.shipBanner = null, this.emptyShipBanner = null, this.index = null, this.memId = null, this.clickArea = null
-            }, e.prototype.update = function (t, e, i) {
-                this.removeChildren(), this.shipBanner.update(e, i), this.memId = e.memID, this.index = t, this.addChild(this.shipBanner, this.clickArea)
-            }, e.prototype.empty = function () {
-                this.removeChildren(), this.addChild(this.emptyShipBanner)
+                this.buttonBack.off(r.EventType.CLICK), this.onClickBack = null, this.buttonBack = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.ShipSlot = _
+    e.MarriageAlert = s
 }

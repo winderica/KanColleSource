@@ -19,16 +19,25 @@ const function1040 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(53),
-        r = function (t) {
+    var o = i(4),
+        r = i(83),
+        s = i(33),
+        a = i(15),
+        _ = i(53),
+        l = function (t) {
             function e() {
                 return t.call(this) || this
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._result = new PIXI.Sprite, this._rank = new PIXI.Sprite, this._rank.position.set(66, 7), this.addChild(this._result), this.addChild(this._rank)
+                var t = new PIXI.Sprite(_.SALLY_PRACTICE.getTexture(34));
+                this._banner = new s.ShipBanner, this._name = new o.TextBox(21, 4999235), this._level = new o.TextBox(20, 4999235), this._star = new r.StarRateView, this._container = new PIXI.Container, t.position.set(330, 12);
+                var e = a.CreateRect.gradientLeftToRight(95, this._name.height, .85, .9);
+                this._container.position.set(243, 0), this._level.position.set(392, 11), this._level.anchor.set(1, 0), this._star.position.set(295, 40), this.addChild(t), this.addChild(this._banner), this.addChild(this._container), this._container.addChild(this._name, e), this._container.mask = e, this.addChild(this._level), this.addChild(this._star)
             }, e.prototype.update = function (t) {
-                this.visible = !0, 6 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(25)) : 5 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(20)) : 4 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(21)) : 3 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(22)) : 2 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(23)) : 1 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(24)) : this.visible = !1
-            }, e.prototype.dispose = function () {}, e
+                null == t ? this.visible = !1 : (this._container.cacheAsBitmap = !1, this._name.text = t.name, this._level.text = t.level.toString(), this._star.update(t.star + 1), this._banner.updateImage(t.id, !1), this.visible = !0, this._container.cacheAsBitmap = !0)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._container.cacheAsBitmap = !1, this._container.removeChildren(), this._banner.dispose(), this._star.dispose(), this._name.destroy(), this._level.destroy(), this._container.mask = null, this._name = null, this._level = null, this._star = null, this._container = null
+            }, e
         }(PIXI.Container);
-    e.CompRank = r
+    e.CompRivalShip = l
 }

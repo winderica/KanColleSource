@@ -19,76 +19,79 @@ const function658 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(82),
-        r = i(5),
-        s = i(109),
-        a = i(1),
-        _ = function (t) {
+    var o = i(273),
+        r = i(274),
+        s = i(34),
+        a = i(162),
+        _ = i(212),
+        l = i(129),
+        u = i(108),
+        c = i(659),
+        h = i(660),
+        p = i(661),
+        d = i(662),
+        f = i(663),
+        y = i(664),
+        m = i(665),
+        g = i(667),
+        v = i(669),
+        b = function (t) {
             function e(e) {
+                void 0 === e && (e = 0);
                 var i = t.call(this) || this;
-                return i._ev = e, i._onNextClick = function () {
-                    i._btnNext.interactive = !1, i._btnSubmit = new PIXI.Sprite(i._btnSumbitImage.def), i._btnSubmit.anchor.set(.5, 0), i._btnSubmit.position.set(r.default.width / 2, r.default.height - i._btnSubmit.height - 30), i._btnSubmit.interactive = !1, i._btnSubmit.buttonMode = !0, i._btnSubmit.on(a.EventType.MOUSEOVER, i._onToggleSubmitBtn).on(a.EventType.MOUSEOUT, i._onToggleSubmitBtn).on(a.EventType.CLICK, i._onSubmitClick), i._btnSubmit.alpha = 0, i.addChild(i._btnSubmit), i._nextScene()
-                }, i._onSubmitClick = function () {
-                    i._btnSubmit.interactive = !1, i._ev.emit("tutorial-next-scene")
-                }, i._onToggleNextBtn = function (t) {
-                    var e = i._getEventTextureKey(t.type);
-                    i._btnNext.texture = i._btnNextImage[e]
-                }, i._onToggleSubmitBtn = function (t) {
-                    var e = i._getEventTextureKey(t.type);
-                    i._btnSubmit.texture = i._btnSumbitImage[e]
-                }, i._getEventTextureKey = function (t) {
-                    return t == a.EventType.MOUSEOVER ? "hover" : "def"
-                }, i.alpha = 0, i._miniImage = [o.TUTORIAL_MAIN.getTexture(15), o.TUTORIAL_MAIN.getTexture(16)], i._btnNextImage = {
-                    def: o.TUTORIAL_MAIN.getTexture(1),
-                    hover: o.TUTORIAL_MAIN.getTexture(2)
-                }, i._btnSumbitImage = {
-                    def: o.TUTORIAL_MAIN.getTexture(5),
-                    hover: o.TUTORIAL_MAIN.getTexture(6)
-                }, i
+                return i._sceneId = e, i._isStart = !0, i._isGoNextPath = !0, i._shipId = null, i._onSceneStart = function () {
+                    switch (i._isStart) {
+                        case !0:
+                            return i._isStart = !1, i._ViewMain.start(), i._CurrentScene.start(), i;
+                        case !1:
+                            return i._loader.hide(), i._NextScene.start(), i._isGoNextPath && i._ev.emit("tutorial-next"), i
+                    }
+                }, i._onNextScene = function () {
+                    if (i._loader.show(), i._sceneId++, i._NextScene = i._createNextScene(), i._SoundManager.voice.stopAll(), null == i._NextScene) return i.dispose(), !1;
+                    i._NextScene.initialize(), i._ViewScene.addChild(i._NextScene), i._CurrentScene.dispose(), i._CurrentScene = i._NextScene
+                }, i._onRemoveScene = function () {
+                    i._ViewScene.removeChildAt(0), i._CurrentScene = i._NextScene
+                }, i._onPlayVoice = function (t, e, n) {
+                    void 0 === n && (n = null), i._SoundManager.voice.play(t, e, n)
+                }, i._saveShipId = function (t) {
+                    i._shipId = t
+                }, i._ImageManager = new c.ImageManager(i._create.bind(i)), i._SoundManager = new o.SoundManager, i._ev = new PIXI.utils.EventEmitter, i._ev.on("tutorial-scene-start", i._onSceneStart).on("tutorial-next-scene", i._onNextScene).on("tutorial-remove-scene", i._onRemoveScene).on("tutorial-play-voice", i._onPlayVoice).on("tutorial-save-ship", i._saveShipId), i.emitter = new PIXI.utils.EventEmitter, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(25));
-                t.position.set(175, 116), this._mini = new PIXI.Sprite(this._miniImage[0]), this._mini.position.set(980, 432), this._btnNext = new PIXI.Sprite(this._btnNextImage.def), this._btnNext.name = "next", this._btnNext.anchor.set(.5, 0), this._btnNext.position.set(r.default.width / 2, r.default.height - this._btnNext.height - 20), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(a.EventType.MOUSEOVER, this._onToggleNextBtn).on(a.EventType.MOUSEOUT, this._onToggleNextBtn).on(a.EventType.CLICK, this._onNextClick), this.addChild(t, this._mini, this._btnNext), this._ev.emit("tutorial-scene-start")
-            }, e.prototype.start = function () {
+            return n(e, t), e.prototype.start = function () {
+                this._ViewMain.start(), this._CurrentScene.start()
+            }, e.prototype._create = function () {
+                var t = new PIXI.Sprite(this._ImageManager.use(u.IMAGE_FILE.BG));
+                this._ViewMain = new h.ViewMain(this._ImageManager, this._ev), this._ViewScene = new PIXI.Container, this._CurrentScene = this._createNextScene(), this._CurrentScene.initialize(), this._ViewScene.addChild(this._CurrentScene), this._loader = new r.LoadingBox, this._loader.hide(), this.addChild(t, this._ViewScene, this._ViewMain, this._loader)
+            }, e.prototype._createNextScene = function () {
+                switch (this._sceneId) {
+                    case 0:
+                        return this._isGoNextPath = !0, new m.SceneInputName(this._ev);
+                    case 1:
+                        return this._isGoNextPath = !0, new g.SceneSelectShip(this._ImageManager, this._ev);
+                    case 2:
+                        return this._isGoNextPath = !0, new p.SceneExplain1(this._ev);
+                    case 3:
+                        return this._isGoNextPath = !0, new d.SceneExplain2(this._ev);
+                    case 4:
+                        return this._isGoNextPath = !0, new f.SceneExplain3(this._ev);
+                    case 5:
+                        return this._isGoNextPath = !1, new y.SceneFinal(this._ImageManager, this._ev, this._shipId);
+                    default:
+                        return null
+                }
+            }, e.prototype.dispose = function () {
                 var t = this;
-                this.alpha = 1, this._miniEyes(), this._ev.emit("tutorial-play-voice", "tutorial", "029", function () {
-                    t._ev.emit("tutorial-play-voice", "tutorial", "030")
-                })
-            }, e.prototype._miniEyes = function () {
-                var t = this,
-                    e = !0,
-                    i = function () {
-                        var i = 1 == e ? 0 : 1;
-                        t._mini.texture = t._miniImage[i]
-                    },
-                    n = function () {
-                        var o = 1 == e ? 1e3 : 300;
-                        t._miniImageTween = createjs.Tween.get(null).wait(o).call(function () {
-                            e = !e, i(), t._miniImageTween = null, n()
-                        })
-                    };
-                n()
-            }, e.prototype._nextScene = function () {
-                var t = this,
-                    e = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(19));
-                e.position.set(435, 400), e.alpha = 0, this.addChild(e), createjs.Tween.get(e).to({
-                    alpha: 1
-                }, 400, createjs.Ease.linear), createjs.Tween.get(this._btnNext).to({
-                    alpha: 0
-                }, 400, createjs.Ease.linear).call(function () {
-                    t._btnNext.visible = !1
-                }), createjs.Tween.get(this._btnSubmit).to({
-                    alpha: 1
-                }, 300, createjs.Ease.linear).call(function () {
-                    t._btnSubmit.interactive = !0
-                }), this._ev.emit("tutorial-play-voice", "tutorial", "031", function () {
-                    t._ev.emit("tutorial-play-voice", "tutorial", "032_a", function () {
-                        t._ev.emit("tutorial-play-voice", "tutorial", "033")
+                this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
+                var e = new s.APIConnector,
+                    i = parseInt(this._shipId, 10);
+                e.add(new v.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new l.UserSlotItemAPI), e.start(function () {
+                    t._loader.hide(), createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 400, createjs.Ease.linear).call(function () {
+                        t._ViewMain.dispose(), t._CurrentScene.dispose(), t._CurrentScene = null, t._NextScene = null, t.removeChildren(), t.emitter.emit("tutorial-event-end")
                     })
                 })
-            }, e.prototype.dispose = function () {
-                this.alpha = 0, this._btnNext.off(a.EventType.MOUSEOVER, this._onToggleNextBtn).off(a.EventType.MOUSEOUT, this._onToggleNextBtn).off(a.EventType.CLICK, this._onNextClick), this._btnSubmit.off(a.EventType.MOUSEOVER, this._onToggleSubmitBtn).off(a.EventType.MOUSEOUT, this._onToggleSubmitBtn).off(a.EventType.CLICK, this._onSubmitClick), createjs.Tween.removeTweens(this._miniImageTween), this._ev.emit("tutorial-remove-scene")
             }, e
-        }(s.SceneBase);
-    e.SceneExplain3 = _
+        }(PIXI.Container);
+    e.TutorialScene = b
 }

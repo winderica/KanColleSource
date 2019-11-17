@@ -19,49 +19,16 @@ const function1333 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(278),
-        r = i(1334),
-        s = i(1343),
-        a = i(1437),
-        _ = i(1450),
-        l = function (t) {
+    var o = i(24),
+        r = i(19),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (e) {
-                t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
-            }, e.prototype.dispose = function () {
-                this._view.dispose(), t.prototype.dispose.call(this)
-            }, e.prototype.start = function () {
-                var t = this;
-                new r.TaskInit(this).start(function () {
-                    t._main()
-                })
-            }, e.prototype._main = function () {
-                var t = this;
-                new s.TaskMain(this).start(function () {
-                    t._end()
-                })
-            }, e.prototype._end = function () {
-                var t = this.data.model.deck_f.ships,
-                    e = this.data.model.deck_e.ships;
-                this.data.model.ship_info.add(t, e);
-                var i = (new Date).getTime();
-                this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = r.MAP_COMMON.getTexture(101), this._img.y = -39
             }, e
-        }(o.BattleSceneBase);
-    e.BattleScene = l
+        }(o.Container);
+    e.LandingFlag = s
 }

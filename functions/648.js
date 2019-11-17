@@ -19,15 +19,30 @@ const function648 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_member/set_flagship_position", i._posId = e, i
+    var o = i(0),
+        r = i(60),
+        s = i(48),
+        a = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_position_id = this._posId, t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                var t = this,
+                    e = this.model.mst_id,
+                    i = new r.UseitemLoader;
+                i.add(e, 1), i.load(function () {
+                    var i = o.default.resources.getUseitem(e, 1);
+                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
+                })
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._card), this._card = null
             }, e
-        }(o.APIBase);
-    e.setFlagshipPositionAPI = r
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogUseitem = a
 }

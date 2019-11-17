@@ -1,134 +1,58 @@
 const function1478 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(1479),
-        o = i(7),
-        r = i(1480),
-        s = i(1481),
-        a = i(1482),
-        _ = i(1483),
-        l = i(1484),
-        u = function () {
-            function t(t) {
-                this._battle_model = t
+    var o = i(22),
+        r = i(1479),
+        s = i(1480),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return Object.defineProperty(t.prototype, "battle_model", {
-                get: function () {
-                    return this._battle_model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "map_name", {
-                get: function () {
-                    return null != this._battle_model && 1 == this._battle_model.isPractice() ? "\u6f14\u7fd2" : o.ObjUtil.getString(this._o, "api_quest_name")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "user_name_f", {
-                get: function () {
-                    return null != this._battle_model && null != this._battle_model.deck_f ? this._battle_model.deck_f.user_name : ""
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "user_level_f", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_member_lv")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "deck_name_f", {
-                get: function () {
-                    return null != this._battle_model && null != this._battle_model.deck_f ? this._battle_model.deck_f.name : ""
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "deck_name_e", {
-                get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_enemy_info");
-                    return null != t ? o.ObjUtil.getString(t, "api_deck_name") : ""
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "deck_name_f2", {
-                get: function () {
-                    return null != this._battle_model && null != this._battle_model.deck_f ? this._battle_model.deck_f.name_second : ""
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "battle_result_rank", {
-                get: function () {
-                    return o.ObjUtil.getString(this._o, "api_win_rank", "E")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "base_exp", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_get_base_exp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "extra_war_results", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_get_exmap_rate")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "extra_useitem_mst_id", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_get_exmap_useitem_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "extra_result", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_mapcell_incentive")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.setData = function (t) {
-                this._o = t, this._battle_model.m1 = o.ObjUtil.getNumber(this._o, "api_m1"), this._battle_model.escape = this.getEscapeData()
-            }, t.prototype.getMvpIndex = function (t) {
-                return 0 == t ? o.ObjUtil.getNumber(this._o, "api_mvp") - 1 : o.ObjUtil.getNumber(this._o, "api_mvp_combined") - 1
-            }, t.prototype.getLevelupInfoList = function (t) {
-                return 0 == t ? o.ObjUtil.getObjectArray(this._o, "api_get_exp_lvup") : o.ObjUtil.getObjectArray(this._o, "api_get_exp_lvup_combined")
-            }, t.prototype.getShipExp = function (t) {
-                var e;
-                return null == (e = 0 == t ? o.ObjUtil.getNumArray(this._o, "api_get_ship_exp") : o.ObjUtil.getNumArray(this._o, "api_get_ship_exp_combined")) ? [] : 1 == e.length && -1 == e[0] ? [] : (e = e.concat(), e.shift(), e)
-            }, t.prototype.getBonusShip = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_get_ship");
-                return null != t ? new r.BonusShipModel(t) : null
-            }, t.prototype.getBonusSlot = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_get_slotitem");
-                return null != t ? new s.BonusSlotModel(t) : null
-            }, t.prototype.getBonusUseitem = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_get_useitem");
-                return null != t ? new a.BonusUseitemModel(t) : null
-            }, t.prototype.getMapBonus = function () {
-                var t = o.ObjUtil.getObjectArray(this._o, "api_get_eventitem");
-                if (null == t) return [];
-                for (var e = [], i = 0, n = t; i < n.length; i++) {
-                    var r = n[i];
-                    e.push(new l.MapBonusModel(r))
-                }
-                return e
-            }, t.prototype.isFirstClear = function () {
-                return 1 == o.ObjUtil.getNumber(this._o, "api_first_clear")
-            }, t.prototype.getOpenedMapIDs = function () {
-                return o.ObjUtil.getNumArray(this._o, "api_next_map_ids", [])
-            }, t.prototype.getLandingData = function () {
-                return new _.LandingModel(o.ObjUtil.getObject(this._o, "api_landing_hp"))
-            }, t.prototype.getEscapeData = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_escape");
-                return new n.EscapeCandidateModel(t)
-            }, t.prototype.getClearMapSuffix = function () {
-                return o.ObjUtil.getString(this._o, "api_m_suffix")
-            }, t.prototype.getClearOperationSuffix = function () {
-                return o.ObjUtil.getString(this._o, "api_ope_suffix")
-            }, t.prototype.getM2 = function () {
-                return o.ObjUtil.getNumber(this._o, "api_m2")
-            }, t
-        }();
-    e.BattleResultData = u
+            return n(e, t), e.prototype.showAtBanner = function (t, e, i, n) {
+                void 0 === n && (n = null);
+                var o = t.getGlobalPos(!0),
+                    r = 1 == t.friend ? o.x + 23 : o.x - 74,
+                    s = o.y + 7;
+                this.show(r, s, e, i, n)
+            }, e.prototype.show = function (t, e, i, n, o) {
+                var s = this;
+                void 0 === o && (o = null), i <= 0 ? n = 0 : i >= 40 ? n = 2 : i < 15 && 2 == n && (n = 1);
+                var a = new r.DamageNumber;
+                a.position.set(t, e), a.initialize(i, n), this.addChild(a), a.play(function () {
+                    createjs.Tween.get(a).to({
+                        alpha: 0
+                    }, 230).call(function () {
+                        s.removeChild(a), null != o && o()
+                    })
+                })
+            }, e.prototype.showShieldAtBanner = function (t) {
+                var e = t.getGlobalPos(!0),
+                    i = e.x,
+                    n = e.y,
+                    r = t.friend;
+                1 == r ? i += o.BannerSize.W / 2 + 30 : i -= o.BannerSize.W / 2 + 30, this.showShield(i, n, r)
+            }, e.prototype.showShield = function (t, e, i) {
+                var n = new s.Shield;
+                n.position.set(t, e), n.scale.x = i ? 1 : -1, n.initialize(), this.addChild(n), n.play()
+            }, e
+        }(PIXI.Container);
+    e.LayerDamage = a
 }

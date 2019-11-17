@@ -20,29 +20,31 @@ const function879 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(49),
-        s = i(8),
-        a = i(880),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this, .9) || this;
-                return e.alpha = 0, e
+        r = i(2),
+        s = i(880),
+        a = i(3),
+        _ = i(3),
+        l = i(3),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._uploadTexture = function () {
+                    o.default.settings.renderer.plugins.prepare.upload(l.ARSENAL_ANIMATION.getTexture(0).baseTexture, function () {
+                        o.default.settings.renderer.plugins.prepare.upload(_.ARSENAL_MAIN.getTexture(0).baseTexture, function () {
+                            o.default.settings.renderer.plugins.prepare.upload(a.COMMON_SORT.getTexture(0).baseTexture, function () {
+                                i.arsenalScene.start(), i.arsenalScene = null, i._endTask()
+                            })
+                        })
+                    })
+                }, i.arsenalScene = e, i
             }
-            return n(e, t), e.prototype.show = function (t, e, i) {
-                this.removeChildren(), this.highSpeedConfirmView = new a.HighSpeedConfirmView(i), this.highSpeedConfirmView.update(t, e), this.highSpeedConfirmView.position.set(91, 70), this.addChild(this.highSpeedConfirmView), o.default.view.clickGuard = !0, createjs.Tween.get(this).to({
-                    alpha: 1
-                }, r.UISettings.DIALOG_FADETIME).call(function () {
-                    o.default.view.clickGuard = !1
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = o.default.model.basic.getUISkinID();
+                new s.TaskLoadResourcesArsenal(e).start(function () {
+                    t._uploadTexture()
                 })
-            }, e.prototype.hide = function (t) {
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, r.UISettings.DIALOG_FADETIME).call(function () {
-                    t()
-                })
-            }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this), this.removeChildren(), this.highSpeedConfirmView.dispose(), this.highSpeedConfirmView = null
             }, e
-        }(s.AreaBox);
-    e.HighSpeedConfirmContainer = _
+        }(r.TaskBase);
+    e.PreInitializeTask = u
 }

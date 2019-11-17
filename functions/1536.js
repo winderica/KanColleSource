@@ -19,49 +19,36 @@ const function1536 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(36),
-        s = function (t) {
+    var o = i(20),
+        r = i(1537),
+        s = i(1538),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._extra_war_result = new a, e._extra_war_result.position.set(227, 177), e._extra_war_result.visible = !1, e.addChild(e._extra_war_result), e._useitem_icon = new PIXI.Sprite, e._useitem_icon.position.set(324, 290), e._useitem_icon.visible = !1, e.addChild(e._useitem_icon), e._map_incentive = new PIXI.Sprite, e._map_incentive.position.set(270, 525), e._map_incentive.visible = !1, e.addChild(e._map_incentive), e
+                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "extra_war_result", {
+            return n(e, t), Object.defineProperty(e.prototype, "friend", {
                 get: function () {
-                    return this._extra_war_result
+                    return this._friend
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "useitem_icon", {
+            }), Object.defineProperty(e.prototype, "enemy", {
                 get: function () {
-                    return this._useitem_icon
+                    return this._enemy
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "map_incentive", {
-                get: function () {
-                    return this._map_incentive
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._extra_war_result.initialize(), this._map_incentive.texture = r.BATTLE_RESULT_MAIN.getTexture(77)
+            }), e.prototype.initialize = function (t, e, i, n, o) {
+                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
+            }, e.prototype.show = function (t) {
+                var e = new o.TweenTask;
+                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
+                    null != t && t()
+                })
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._extra_war_result.dispose()
+                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
             }, e
         }(PIXI.Container);
-    e.ExtraResultPanel = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._title = new PIXI.Sprite, e.addChild(e._title), e._plus = new PIXI.Sprite, e._plus.position.set(153, 47), e.addChild(e._plus), e._label = new o.TextBox(28, 16777215), e._label.anchor.x = 1, e._label.position.set(267, 36), e.addChild(e._label), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._title.texture = r.BATTLE_RESULT_MAIN.getTexture(87), this._plus.texture = r.BATTLE_RESULT_MAIN.getTexture(86)
-        }, e.prototype.update = function (t) {
-            this._label.text = t.toString()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._label.destroy()
-        }, e
-    }(PIXI.Container)
+    e.LayerDeckInfo = a
 }

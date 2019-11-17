@@ -20,95 +20,78 @@ const function1203 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(34),
-        a = i(379),
-        _ = i(167),
-        l = i(130),
-        u = i(106),
-        c = i(158),
-        h = i(1204),
-        p = i(211),
-        d = i(129),
-        f = i(8),
-        y = i(200),
-        m = i(6),
-        g = i(417),
-        v = i(418),
-        b = i(175),
-        w = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._layer = e, o._model = i, o._holder = n, o
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._model.getRewardCandidates();
-                if (null != e && e.length > 0) {
-                    this._click_guard = new f.AreaBox(.2), this._layer.addChild(this._click_guard);
-                    var i = new v.TaskRewardSelectMulti(this._layer, e);
-                    i.start(function () {
-                        var e = i.result;
-                        t._receiveReward(e)
-                    })
-                } else this._click_guard = new f.AreaBox(0), this._layer.addChild(this._click_guard), this._receiveReward(null)
-            }, e.prototype._receiveReward = function (t) {
-                var e, i = this;
-                m.SE.play("215"), this._model.hasVoiceID && o.default.sound.voice.play("9999", this._model.voiceID, null, "duty");
-                var n = this._model.id,
-                    r = [];
-                if (null != t)
-                    for (var s = 0, a = t; s < a.length; s++) {
-                        var e = a[s];
-                        null != e && r.push(e.no)
+        r = i(11),
+        s = i(8),
+        a = i(9),
+        _ = i(119),
+        l = i(415),
+        u = i(120),
+        c = i(75),
+        h = i(75),
+        p = i(75),
+        d = i(75),
+        f = i(75),
+        y = i(75),
+        m = i(75),
+        g = i(75),
+        v = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onInitialize = function () {
+                    var t = _.DUTY_COMMON.getTexture(46),
+                        i = new PIXI.Sprite(t);
+                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
+                    var n = o.default.model.basic.getDutyExecutableCount();
+                    e._view.initialize(n, e._onBack), e._view.update(e._data)
+                }, e._onActivate = function () {
+                    if (null != e._girl_layer) {
+                        new d.TaskPosterGirl(e._girl_layer).start(function () {
+                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
+                        })
                     }
-                var _ = new g.DutyEndAPI(n, r),
-                    l = _.result;
-                _.start(function () {
-                    i._showRewardDialog(l)
-                })
-            }, e.prototype._showRewardDialog = function (t) {
-                var e = this,
-                    i = o.default.view.overLayer,
-                    n = t.getRewardList();
-                new y.TaskReward(i, n, this._model.id).start(function () {
-                    e._updateInternalData(t)
-                })
-            }, e.prototype._updateInternalData = function (t) {
-                var e = this,
-                    i = new s.APIConnector;
-                if (i.add(new _.MaterialAPI), 653 == this._model.id) {
-                    var n = o.default.model.useItem.get(44);
-                    n.__setCount__(n.count - 6e3)
-                }
-                1 == t.isNeedUpdateUserBasic() && i.add(new c.UserDataAPI), 1 != t.isNeedUpdateSlotitem() && 318 != this._model.id && 513 != this._model.id || i.add(new d.UserSlotItemAPI), 1 == t.isNeedUpdateSlotitem() && i.add(new l.UnsetSlotAPI);
-                var r = [511, 513, 620, 621, 688, 689, 690, 695, 696];
-                if ((1 == t.isNeedUpdateUseitem() || r.indexOf(this._model.id) >= 0) && i.add(new u.UseItemAPI), t.getRewards(2).length > 0 && i.add(new a.DeckAPI), t.getRewards(11).length > 0) i.add(new p.UserShipAPI);
-                else if (318 == this._model.id || 513 == this._model.id) {
-                    var f = o.default.model.deck.get(1).getShipList()[0].memID;
-                    i.add(new p.UserShipAPI(f))
-                }
-                t.getRewards(14).length > 0 && i.add(new h.UserFurnitureAPI), i.start(function () {
-                    var i = t.getRewards(6);
-                    if (i.length > 0)
-                        for (var n = 0; n < i.length; n++) {
-                            var r = i[n],
-                                s = r.flag,
-                                a = [o.default.model.basic.getExtraSupplySortie() ? 1 : 0, o.default.model.basic.getExtraSupplyExpedition() ? 1 : 0];
-                            1 == s ? a[0] = 1 : 2 == s && (a[1] = 1), o.default.model.basic.setExtraSupplyFlag(a)
+                    e._view.activate()
+                }, e._onDispose = function () {
+                    e._view.dispose()
+                }, e._onChangeType = function (t) {
+                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onChangePage = function (t) {
+                    var i = e._data.selected_type;
+                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onSelectDuty = function (t) {
+                    if (3 == t.status) {
+                        if (0 == t.alert) {
+                            var i = o.default.view.overLayer,
+                                n = new g.TaskTasseiDutySelect(i, t, e._data);
+                            n.start(function () {
+                                e._view.update(e._data)
+                            })
                         }
-                    e._updateDutyList(t)
-                })
-            }, e.prototype._updateDutyList = function (t) {
-                var e = this;
-                new b.TaskUpdateDutyListData(this._holder.selected_page_no, this._holder.selected_type, this._holder).start(function () {
-                    t.getRewards(2).length > 0 && o.default.view.portMain.updateUserInfo({
-                        fleetNum: o.default.model.deck.num
-                    }), o.default.view.portMain.updateInfo(), null != e._click_guard && e._layer.removeChild(e._click_guard), e._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._holder = null, this._click_guard = null, t.prototype._endTask.call(this)
+                    } else if (2 == t.status) {
+                        var n = new m.TaskExecutedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    } else {
+                        var n = new y.TaskWaitedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    }
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._data = new l.DutyDataHolder, e._view = new u.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
+            }
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new p.TaskDutySceneFinalize(this._onDispose)
             }, e
-        }(r.TaskBase);
-    e.TaskTasseiDutySelect = w
+        }(r.SceneBase);
+    e.DutyScene = v
 }

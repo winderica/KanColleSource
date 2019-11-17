@@ -19,123 +19,34 @@ const function826 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(1),
-        a = i(20),
-        _ = i(8),
-        l = i(40),
-        u = i(60),
-        c = i(13),
-        h = i(3),
-        p = i(827),
-        d = function (t) {
+    var o = i(4),
+        r = i(3),
+        s = i(15),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._white = new _.AreaBox(1, 16777215), e._holoBG = new u.RarityBG, e._holoBG.visible = !1, e._textKaiso = new PIXI.Sprite(h.REMODEL_ANIMATION.getTexture(10)), e._textKaiso.visible = !1, e._cutinBar = new p.CutinBar, e._shipFull = new PIXI.Sprite, e._shipFull.visible = !1, e._shipCard = new PIXI.Sprite, e._shipCard.visible = !1, e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(13)),
+                    n = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(24));
+                n.position.set(204, 23);
+                var a = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(15));
+                a.position.set(164, 143);
+                var _ = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(16));
+                _.position.set(21, 101);
+                var l = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(17));
+                l.position.set(21, 143);
+                var u = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(18));
+                u.position.set(162, 101), e.addChild(i, n, a, _, l, u), e._unknown = new PIXI.Sprite, e._unknown.position.set(27, 18), e.addChild(e._unknown), e._containerName = new PIXI.Container, e._textName = new o.TextBox(36, 4999235), e._textName.position.set(11, 8);
+                var c = s.CreateRect.gradientLeftToRight(200, 55, .9, .97);
+                e._textName.mask = c, e._containerName.addChild(e._textName, c), e.addChild(e._containerName), e._textShipType = new o.TextBox(22, 4999235), e._textShipType.position.set(14, 60), e.addChild(e._textShipType), e._textLevel = new o.TextBox(29, 4999235), e._textLevel.position.set(231, 16), e.addChild(e._textLevel);
+                return e._textKaryoku = new o.TextBox(24, 4999235), e._textKaryoku.position.set(141, 99), e._textKaryoku.anchor.x = 1, e.addChild(e._textKaryoku), e._textRaiso = new o.TextBox(24, 4999235), e._textRaiso.position.set(141, 142), e._textRaiso.anchor.x = 1, e.addChild(e._textRaiso), e._textTaiku = new o.TextBox(24, 4999235), e._textTaiku.position.set(284, 99), e._textTaiku.anchor.x = 1, e.addChild(e._textTaiku), e._textSouko = new o.TextBox(24, 4999235), e._textSouko.position.set(284, 142), e._textSouko.anchor.x = 1, e.addChild(e._textSouko), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._cb_onComplete = null, this._offset = null, this._white = null, this._commonBG.dispose(), this._commonBG = null, this._holoBG.dispose(), this._holoBG = null, this._textKaiso = null, this._cutinBar = null, this._shipFull = null, this._shipCard = null, this.removeChildren()
-            }, e.prototype.preload = function (t, e, i, n) {
-                var o = this;
-                this._ship_mstid = t, this._offset = i;
-                var s = new c.ShipLoader;
-                s.add(t, e, "full"), s.add(t, e, "card"), s.load(function () {
-                    o._shipFull.texture = r.default.resources.getShip(t, e, "full"), o._shipCard.texture = r.default.resources.getShip(t, e, "card"), o._commonBG = new u.RarityBG, o._commonBG.initiailzeForShip(3, function () {
-                        o._holoBG.initiailzeForShip(6, function () {
-                            null != n && n()
-                        })
-                    })
-                })
-            }, e.prototype.play = function (t) {
-                var e = this;
-                this._cb_onComplete = t, this.removeChildren(), this.addChild(this._commonBG, this._textKaiso, this._cutinBar, this._white), r.default.settings.renderer.plugins.prepare.upload(this._shipFull, function () {
-                    r.default.settings.renderer.plugins.prepare.upload(e._shipCard, function () {
-                        createjs.Tween.get(null).wait(200).call(function () {
-                            e._00_intro()
-                        })
-                    })
-                })
-            }, e.prototype._00_intro = function () {
-                var t, e = this,
-                    i = new a.TweenTask;
-                this._textKaiso.x = -288, this._textKaiso.y = 395, t = createjs.Tween.get(this._textKaiso).set({
-                    visible: !0
-                }).to({
-                    x: 756
-                }, 700, createjs.Ease.cubicOut).wait(100).to({
-                    x: 1122
-                }, 700, createjs.Ease.cubicIn).set({
-                    visible: !1
-                }), i.addTween(t), this._cutinBar.x = 0, this._cutinBar.y = 270, this._cutinBar.mask.scale.y = 0, t = createjs.Tween.get(this._cutinBar.mask.scale).to({
-                    y: 1
-                }, 700, createjs.Ease.cubicOut).wait(100).to({
-                    y: 0
-                }, 700, createjs.Ease.cubicIn).set({
-                    visible: !1
-                }), i.addTween(t), t = createjs.Tween.get(this._white).to({
-                    alpha: 0
-                }, 700, createjs.Ease.cubicOut).set({
-                    visible: !1
-                }), i.addTween(t), i.start(function () {
-                    e.removeChild(e._textKaiso), e.removeChild(e._cutinBar), e._cutinBar.dispose(), e.removeChild(e._white), e._01_showShip()
-                })
-            }, e.prototype._01_showShip = function () {
-                var t, e = this,
-                    i = new a.TweenTask,
-                    n = new PIXI.Container;
-                n.addChild(this._holoBG), n.addChild(this._shipFull), this.addChild(n);
-                var r = new PIXI.Graphics;
-                r.beginFill(0, 0), r.drawRect(-o.default.width / 2, -o.default.height / 2, o.default.width, o.default.height), r.endFill(), r.x = o.default.width / 2, r.y = o.default.height / 2, r.scale.y = 0, this.addChild(r), n.mask = r, this._holoBG.visible = !0, this._shipFull.x = 201 + this._offset.x, this._shipFull.y = 342 + this._offset.y, t = createjs.Tween.get(this._shipFull).set({
-                    visible: !0
-                }).to({
-                    y: -66 + this._offset.y
-                }, 2400), i.addTween(t), t = createjs.Tween.get(r.scale).to({
-                    y: 1
-                }, 500).call(function () {
-                    e._commonBG.visible = !1, n.mask.visible = !1
-                }), i.addTween(t), i.start(function () {
-                    e.removeChild(e._commonBG), e.removeChild(e.mask), n.mask = null, e._02_changeToCard(n)
-                })
-            }, e.prototype._02_changeToCard = function (t) {
-                var e = this;
-                r.default.sound.voice.play(this._ship_mstid.toString(), 10);
-                var i, n = new a.TweenTask;
-                i = createjs.Tween.get(this._shipFull).wait(600).to({
-                    x: -147 + this._offset.x,
-                    alpha: .5
-                }, 900, createjs.Ease.sineOut).to({
-                    x: 201 + this._offset.x,
-                    alpha: 0
-                }, 900, createjs.Ease.sineIn).set({
-                    visible: !1
-                }), n.addTween(i), this._shipCard.x = 443, this._shipCard.y = 135, this._shipCard.alpha = 0, t.addChild(this._shipCard), i = createjs.Tween.get(this._shipCard).wait(600).set({
-                    visible: !0
-                }).to({
-                    x: 770,
-                    alpha: .5
-                }, 900, createjs.Ease.sineOut).to({
-                    x: 443,
-                    alpha: 1
-                }, 900, createjs.Ease.sineIn), n.addTween(i), n.start(function () {
-                    t.removeChild(e._shipFull), e._03_waitClick()
-                })
-            }, e.prototype._03_waitClick = function () {
-                var t = this,
-                    e = new l.GearBtnHome;
-                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
-                var i = new _.AreaBox(0);
-                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
-                    t.removeChild(i), t._04_fadeOut(e)
-                })
-            }, e.prototype._04_fadeOut = function (t) {
-                var e = this;
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 100).call(function () {
-                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
-                })
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                void 0 === e && (e = null), void 0 === i && (i = null), this._textLevel.text = t.toString(), null == e || "" == e ? (this._unknown.texture = r.REMODEL_GRADEUP.getTexture(32), this._unknown.visible = !0, this._textName.visible = !1, this._textShipType.visible = !1) : (this._unknown.visible = !1, this._containerName.cacheAsBitmap = !1, this._textName.text = e, this._containerName.cacheAsBitmap = !0, this._textName.visible = !0, this._textShipType.text = i, this._textShipType.visible = !0)
+            }, e.prototype.updateStatus = function (t, e, i, n) {
+                void 0 === t && (t = -1), void 0 === e && (e = -1), void 0 === i && (i = -1), void 0 === n && (n = -1), this._textKaryoku.text = t >= 0 ? t.toString() : "??", this._textRaiso.text = e >= 0 ? e.toString() : "??", this._textTaiku.text = i >= 0 ? i.toString() : "??", this._textSouko.text = n >= 0 ? n.toString() : "??"
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._containerName.cacheAsBitmap = !1, this._containerName.removeChildren(), this._textName.destroy(), this._textShipType.destroy(), this._textLevel.destroy(), this._textKaryoku.destroy(), this._textRaiso.destroy(), this._textTaiku.destroy(), this._textSouko.destroy(), this._unknown = null, this._containerName = null, this._textName = null, this._textShipType = null, this._textLevel = null, this._textKaryoku = null, this._textRaiso = null, this._textTaiku = null, this._textSouko = null
             }, e
         }(PIXI.Container);
-    e.KaizoAnimationMain = d
+    e.KaizoDetailShipPanel = a
 }

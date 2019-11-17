@@ -20,30 +20,31 @@ const function1286 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(8),
-        s = i(60),
-        a = i(81),
-        _ = i(209),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
+        r = i(5),
+        s = i(19),
+        a = i(12),
+        _ = i(2),
+        l = i(13),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._EFFECT_MAX = 24, i._ship_mst_id = e, i._ship_sprite = new a.Sprite, i._get_flash = new a.Sprite, i._txt_repair = new a.Sprite, i._ship_layer = new PIXI.Container, i._kiraPos = [new PIXI.Point(550, 66), new PIXI.Point(504, 82), new PIXI.Point(615, 127), new PIXI.Point(453, 226), new PIXI.Point(570, 261), new PIXI.Point(669, 207), new PIXI.Point(498, 348), new PIXI.Point(693, 375), new PIXI.Point(492, 463), new PIXI.Point(583, 556), new PIXI.Point(499, 589), new PIXI.Point(415, 693)], i._poreload_task = new c(e), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "EFFECT_MAX", {
                 get: function () {
-                    return this._bg
+                    return this._EFFECT_MAX
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "particle", {
+            }), Object.defineProperty(e.prototype, "ship_layer", {
                 get: function () {
-                    return this._particle
+                    return this._ship_layer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "message_box", {
+            }), Object.defineProperty(e.prototype, "get_flash", {
                 get: function () {
-                    return this._message_box
+                    return this._get_flash
                 },
                 enumerable: !0,
                 configurable: !0
@@ -53,11 +54,54 @@ const function1286 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
+            }), Object.defineProperty(e.prototype, "txt_repair", {
+                get: function () {
+                    return this._txt_repair
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kirakira", {
+                get: function () {
+                    return this._kirakira
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kiraPos", {
+                get: function () {
+                    return this._kiraPos
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPreLoadTask = function () {
+                return this._poreload_task
+            }, e.prototype.initilize = function () {
+                this._get_flash = new PIXI.Sprite(s.MAP_COMMON.getTexture(45)), this._get_flash.visible = !1, this._get_flash.anchor.set(.5), this._get_flash.position.set(r.default.width / 2, r.default.height / 2), this._get_flash.alpha = 0, this._get_flash.scale.set(.3), this._white = new PIXI.Graphics, this._white.visible = !1, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, r.default.width, r.default.height), this._white.endFill(), this._white.alpha = 0, this._txt_repair = new PIXI.Sprite(s.MAP_COMMON.getTexture(189)), this._txt_repair.visible = !1, this._txt_repair.anchor.set(0, .5), this._txt_repair.position.set(1200, 487), this._kirakira = [];
+                for (var t = 0; t < this._EFFECT_MAX; t++) {
+                    var e = new PIXI.Sprite(s.MAP_COMMON.getTexture(102));
+                    e.anchor.set(.5), this._kirakira.push(e)
+                }
+                var i = o.default.resources.getShip(this._ship_mst_id, !1, "full");
+                this._ship_sprite = new PIXI.Sprite(i);
+                var n = o.default.model.ship_graph.get(this._ship_mst_id).getFaceRect(!1);
+                this._ship_sprite.position.set(-(n.x + n.width / 2), -(n.y + n.height / 2)), this._ship_layer.visible = !0, this._ship_layer.position.set(600, 200), this._ship_layer.scale.set(2), this._ship_layer.alpha = 0, this._ship_layer.addChild(this._ship_sprite), this.addChild(this._get_flash, this._white, this._ship_layer, this._txt_repair);
+                for (var t = 0; t < this._EFFECT_MAX; t++) this._kirakira[t].visible = !1, this._kirakira[t].scale.set(0), this.addChild(this._kirakira[t])
             }, e
         }(PIXI.Container);
-    e.BonusUseItem = l
+    e.AnchorageRepairLayer = u;
+    var c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._ship_mst_id = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipImage()
+        }, e.prototype._loadShipImage = function () {
+            var t = this,
+                e = new l.ShipLoader;
+            e.add(this._ship_mst_id, !1, "full"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(_.TaskBase);
+    e.PreLoadShipImage = c
 }

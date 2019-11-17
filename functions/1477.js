@@ -19,51 +19,34 @@ const function1477 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(279),
-        r = i(1478),
-        s = i(1485),
-        a = i(1489),
-        _ = i(1519),
-        l = i(1520),
-        u = function (t) {
+    var o = i(16),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._view = new l.ViewMain, e.addChild(e._view), e._layer_bonus = new PIXI.Container, e.addChild(e._layer_bonus), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bonus", {
-                get: function () {
-                    return this._layer_bonus
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.start = function (e) {
-                var i = this;
-                t.prototype.start.call(this, e), this._data = new r.BattleResultData(e), new s.TaskInit(this).start(function () {
-                    i._main()
+            return n(e, t), e.prototype.showSanshiki = function (t, e) {
+                var i = this,
+                    n = o.BATTLE_MAIN.getTexture(137),
+                    r = new PIXI.Sprite(n);
+                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
+                    alpha: 1
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    i.removeChild(r)
                 })
-            }, e.prototype._main = function () {
-                var t = this;
-                new a.TaskMain(this).start(function () {
-                    t._end()
+            }, e.prototype.showDanmaku = function (t, e) {
+                var i = this,
+                    n = o.BATTLE_MAIN.getTexture(134),
+                    r = new PIXI.Sprite(n);
+                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
+                    alpha: 1
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    i.removeChild(r)
                 })
-            }, e.prototype._end = function () {
-                var t = this;
-                new _.TaskEnd(this).start(function () {
-                    t.emit("complete")
-                })
-            }, e
-        }(o.BattleResultSceneBase);
-    e.BattleResultScene = u
+            }, e.prototype.dispose = function () {}, e
+        }(PIXI.Container);
+    e.BannerInfoLayer = r
 }

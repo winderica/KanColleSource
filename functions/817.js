@@ -20,19 +20,41 @@ const function817 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(9),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._ship_mem_id = e, i._url = "api_req_kaisou/remodeling", i
+        r = i(10),
+        s = i(153),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_kaisou/powerup", n.api_id = e, n.api_id_items = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_id = this._ship_mem_id, t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "api_powerup_flag", {
+                get: function () {
+                    return 1 == this._raw_data.api_powerup_flag
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "api_ship", {
+                get: function () {
+                    return this._raw_data.api_ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "api_deck", {
+                get: function () {
+                    return this._raw_data.api_deck
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, this._post_data.api_id_items = this.api_id_items.toString(), t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                var e, i = o.default.model.ship.get(this._ship_mem_id).mstID,
-                    n = o.default.model.ship_upgrade.getRequires(i);
-                e = o.default.model.useItem.get(32), e.__setCount__(e.count - n.ammo), e = o.default.model.useItem.get(33), e.__setCount__(e.count - n.steel), e = o.default.model.useItem.get(3), e.__setCount__(e.count - n.devkit), e = o.default.model.useItem.get(2), e.__setCount__(e.count - n.buildkit), e = o.default.model.useItem.get(58), e.__setCount__(e.count - n.blueprint), e = o.default.model.useItem.get(65), e.__setCount__(e.count - n.catapult), e = o.default.model.useItem.get(78), e.__setCount__(e.count - n.battlereport), e = o.default.model.useItem.get(75), e.__setCount__(e.count - n.newhokohesosizai), e = o.default.model.useItem.get(77), e.__setCount__(e.count - n.newkokuhesosizai), t.prototype._completedEnd.call(this)
+                for (var e = 0; e < this.api_id_items.length; e++) {
+                    var i = this.api_id_items[e];
+                    o.default.model.ship.delete(i, !1)
+                }
+                var n = new s.ShipModelEdit(this.api_ship);
+                o.default.model.ship.get(n.memID).__update__(this.api_ship), o.default.model.deck.setData(this.api_deck), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.RemodelingAPI = s
+    e.PowerUpAPI = a
 }

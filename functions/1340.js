@@ -19,20 +19,46 @@ const function1340 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(141),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = 0 != n.type;
-                return i._url = 0 == o ? "api_req_sortie/ld_shooting" : "api_req_combined_battle/ld_shooting", i._data = e, i
+    var o = i(2),
+        r = i(1341),
+        s = i(1343),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
+                var e = this._model.escape,
+                    i = e.getTargetShipIndexes(),
+                    n = e.getTowingShipIndexes(),
+                    o = null;
+                if (i.length > 0) {
+                    var a = i[0];
+                    o = this._model.deck_f.ships[a]
+                }
+                var _ = null;
+                if (n.length > 0) {
+                    var l = n[0];
+                    _ = this._model.deck_f.ships[l]
+                }
+                if (null != o)
+                    if (null != _) {
+                        var u = new s.EscapeGoeiTask(this._scene, this._model, o, _);
+                        u.start(function () {
+                            t._endTask()
+                        })
+                    } else {
+                        var u = new r.EscapeTankanTask(this._scene, this._model, o);
+                        u.start(function () {
+                            t._endTask()
+                        })
+                    }
+                else this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._model = null, t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.APIBattleStartLongRangeFires = s
+        }(o.TaskBase);
+    e.EscapeTask = a
 }

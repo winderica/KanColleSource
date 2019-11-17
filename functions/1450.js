@@ -1,120 +1,70 @@
 const function1450 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(50),
-        r = i(1451),
-        s = i(1455),
-        a = i(480),
-        _ = i(1465),
-        l = i(1466),
-        u = i(1469),
-        c = i(1474),
-        h = i(1475),
-        p = i(1476),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new l.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new u.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
+    var n = i(0),
+        o = function () {
+            function t(t, e, i, n) {
+                void 0 === i && (i = null), void 0 === n && (n = null), this._offset_x = 0, this._offset_y = 0, this._type = t, this._mst_id = e, this._name = n, this._stype = i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
+            return Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    return this._layer_torpedo
+                    return this._type
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
+            }), Object.defineProperty(t.prototype, "mst_id", {
                 get: function () {
-                    return this._bannerGroupLayer
+                    return this._mst_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_explosion", {
+            }), Object.defineProperty(t.prototype, "voice_id", {
                 get: function () {
-                    return this._layer_explosion
+                    return this._voice_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_damage", {
+            }), Object.defineProperty(t.prototype, "message", {
                 get: function () {
-                    return this._layer_damage
+                    return this._message
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
+            }), Object.defineProperty(t.prototype, "name", {
                 get: function () {
-                    return this._bannerInfoLayer
+                    if (null != this._name) return this._name;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.name
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_content", {
+            }), Object.defineProperty(t.prototype, "stype", {
                 get: function () {
-                    return this._layer_content
+                    if (null != this._stype) return this._stype;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.shipTypeName
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "raderLayer", {
+            }), Object.defineProperty(t.prototype, "offset_x", {
                 get: function () {
-                    return this._raderLayer
+                    return this._offset_x
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_gauge", {
+            }), Object.defineProperty(t.prototype, "offset_y", {
                 get: function () {
-                    return this._layer_gauge
+                    return this._offset_y
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_info", {
-                get: function () {
-                    return this._layer_info
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_title", {
-                get: function () {
-                    return this._layer_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_info2", {
-                get: function () {
-                    return this._layer_info2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_cutin", {
-                get: function () {
-                    return this._layer_cutin
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
-            }, e
-        }(PIXI.Container);
-    e.ViewMain = d
+            }), t.prototype.setMessage = function (t, e) {
+                return this._voice_id = t, this._message = e, this
+            }, t.prototype.setOffset = function (t, e) {
+                return this._offset_x = t, this._offset_y = e, this
+            }, t
+        }();
+    e.BossModel = o
 }

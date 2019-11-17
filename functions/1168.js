@@ -20,33 +20,37 @@ const function1168 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(8),
-        a = i(1),
-        _ = i(241),
-        l = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._onClose = function () {
-                    o._bg.buttonMode = !1, o._bg.off(a.EventType.CLICK, o._onClose), null != o._t && (o._t.setPaused(!0), o._t = null), createjs.Tween.get(o._chara).to({
-                        y: 450,
-                        alpha: 0
-                    }, 300).call(function () {
-                        o._layer.removeChild(o._bg), o._layer.removeChild(o._chara), o._endTask()
-                    })
-                }, o._layer = e, o._page_no = i, o._count = n, o
+        r = i(4),
+        s = i(411),
+        a = i(25),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._message1 = new r.TextBox(22, 1381651), n._message1.position.set(177, 48), n.addChild(n._message1), n._message2 = new r.TextBox(22, 5407509), n._message2.position.set(177, 48), n.addChild(n._message2), n._message3 = new r.TextBox(22, 1381651), n._message3.position.set(177, 48), n.addChild(n._message3), n._icon = new PIXI.Sprite, n._icon.position.set(198, 116), n.addChild(n._icon), n._err_message = new r.TextBox(16, 16711680), n._err_message.y = 200, n.addChild(n._err_message), n._btn_yes = new a.BtnBase(e, i), n._btn_yes.position.set(174, 231), n.addChild(n._btn_yes), n._btn_back = new a.BtnBase(-1, i), n._btn_back.position.set(366, 231), n.addChild(n._btn_back), n._header_img = new l, n.addChild(n._header_img), n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._bg = new s.AreaBox(0, 0, 1200, 720), this._layer.addChild(this._bg);
-                var e = PIXI.Sprite.fromFrame(_.POSTER_KEY_1),
-                    i = _.getPosterOffsetWelcome();
-                null != i && (e.x = i.x, e.y = i.y), this._chara = new PIXI.Sprite, this._chara.addChild(e), this._chara.position.set(1200, 0), this._layer.addChild(this._chara), 0 == this._page_no ? this._count <= 1 && o.default.sound.voice.playAtRandom("9999", [311, 312], [60, 40]) : o.default.sound.voice.play("9999", 315), this._bg.interactive = !0, this._bg.buttonMode = !0, this._bg.once(a.EventType.CLICK, this._onClose), this._t = createjs.Tween.get(this._chara).to({
-                    x: 660
-                }, 300).call(function () {
-                    t._t = null
-                })
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this.texture = s.ITEM_ILIST_IWASHI.getTexture(14), this._message1.text = "\u300c\u9c2f\u300d\u3092", this._message3.text = "\u306b\u3057\u307e\u3059\u304b\uff1f";
+                var i = 0;
+                91 == t ? (this._message2.text = "\u523a\u8eab", this._icon.texture = s.ITEM_ILIST_IWASHI.getTexture(7), i = 3) : 92 == t ? (this._message2.text = "\u3064\u307f\u308c", this._icon.texture = s.ITEM_ILIST_IWASHI.getTexture(8), i = 7) : 93 == t && (this._message2.text = "\u5bff\u53f8", this._icon.texture = s.ITEM_ILIST_IWASHI.getTexture(9), i = 30), this._message2.x = this._message1.x + this._message1.width, this._message3.x = this._message2.x + this._message2.width;
+                var n = s.ITEM_ILIST_IWASHI.getTexture(2),
+                    r = s.ITEM_ILIST_IWASHI.getTexture(3);
+                this._btn_yes.initialize(n, r), e < i ? (this._btn_yes.enabled = !1, this._err_message.text = "\u3053\u306e\u8abf\u7406\u306b\u306f\u300c\u9c2f\u300d\u304c" + i + "\u5c3e\u5fc5\u8981\u3067\u3059\u3002") : 93 == t && o.default.model.basic.slotMax - o.default.model.slot.num < 1 ? (this._btn_yes.enabled = !1, this._err_message.text = "\u4fdd\u6709\u88c5\u5099\u67a0\u306b\u4f59\u88d5\u304c\u3042\u308a\u307e\u305b\u3093\u3002") : (this._btn_yes.enabled = !0, this._err_message.text = ""), this._err_message.x = 338 - this._err_message.width / 2, n = s.ITEM_ILIST_IWASHI.getTexture(1), this._btn_back.initialize(n), this._header_img.initialize(t)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_back.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_back.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._message3.destroy(), this._err_message.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
             }, e
-        }(r.TaskBase);
-    e.TaskWelcomeCutin = l
+        }(PIXI.Sprite);
+    e.ConfirmView = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            91 == t ? (this._img.texture = s.ITEM_ILIST_IWASHI.getTexture(10), this._img.position.set(520, -31)) : 92 == t ? (this._img.texture = s.ITEM_ILIST_IWASHI.getTexture(12), this._img.position.set(551, -42)) : 93 == t && (this._img.texture = s.ITEM_ILIST_IWASHI.getTexture(11), this._img.position.set(518, -10))
+        }, e
+    }(PIXI.Container)
 }

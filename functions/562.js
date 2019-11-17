@@ -19,25 +19,28 @@ const function562 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(25),
-        r = i(2),
-        s = i(14),
-        a = function (t) {
-            function e(e) {
-                void 0 === e && (e = -1);
-                var i = t.call(this) || this;
-                i.rnd = 0, i._onComplete = function () {
-                    i._endTask()
-                };
-                return i.rnd = e >= 0 && e < 6 ? e : Math.floor(6 * Math.random()), i
+    var o = i(563),
+        r = i(564),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = o.MathUtil.zeroPadding(this.rnd + 1, 2) + ".png";
-                new s.UIImageLoader("title").add(e, "title_bg1").add("title2.png", "title_bg2").add("title_main.json").load(function () {
-                    t._onComplete()
+            return n(e, t), e.prototype.initialize = function () {
+                this._view1 = new o.TitleView1, this._view1.initialize(), this.addChild(this._view1)
+            }, e.prototype.dispose = function () {
+                this._view2.dispose()
+            }, e.prototype.setProgress = function (t) {
+                this._view1.setProgress(t)
+            }, e.prototype.showSecondPageTween = function (t) {
+                var e = this;
+                this._view2 = new r.TitleView2, this._view2.initialize(), this.addChildAt(this._view2, 0), this._view1.hideTween(function () {
+                    e.removeChild(e._view1), e._view1.dispose(), e._view1 = null, e._view2.showTween(function () {
+                        t()
+                    })
                 })
+            }, e.prototype.waitClickTween = function (t) {
+                this._view2.waitClickTween(t)
             }, e
-        }(r.TaskBase);
-    e.TaskLoadResourcesTitle = a
+        }(PIXI.Container);
+    e.TitleViewMain = s
 }

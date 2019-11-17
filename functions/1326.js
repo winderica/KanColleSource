@@ -19,59 +19,52 @@ const function1326 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(31),
-        s = i(1327),
-        a = function (t) {
+    var o = i(19),
+        r = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-                void 0 === n && (n = 1), null != this._gauge && (this._gauge.dispose(), null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new s.GaugeVertical, this._gauge.initialize(t), this._gauge.update(e, i), this._gauge.position.set(t.x, t.y), this._gauge.alpha = n, this.addChild(this._gauge)
-            }, e.prototype.dispose = function () {
-                this._stopTween(), null != this._gauge && this._gauge.dispose()
-            }, e.prototype.update = function (t, e, i, n) {
-                var o = this;
-                if (void 0 === i && (i = 0), void 0 === n && (n = null), this._stopTween(), i <= 0) this._gauge.update(t, e);
-                else {
-                    var r = {
-                            now: this._gauge.now,
-                            max: this._gauge.max
-                        },
-                        s = function (t) {
-                            o._gauge.update(r.now, r.max)
-                        };
-                    this._t = createjs.Tween.get(r, {
-                        onChange: s
-                    }).to({
-                        now: t,
-                        max: e
-                    }, i).call(function () {
-                        o._t = null, null != n && n()
-                    })
-                }
-            }, e.prototype.vanish = function (t) {
-                void 0 === t && (t = null), this._stopTween();
-                var e = new r.Container;
-                e.x = this._gauge.x + Math.round(this._gauge.width / 2), e.y = this._gauge.y + Math.round(this._gauge.height / 2), this.addChild(e), this._gauge.x = -Math.round(this._gauge.width / 2), this._gauge.y = -Math.round(this._gauge.height / 2), e.addChild(this._gauge), this._t = createjs.Tween.get(e).wait(800).wait(200).to({
-                    scaleX: 1.1,
-                    scaleY: .9
-                }, 35).to({
-                    scaleX: 0,
-                    scaleY: 1.4
-                }, 200).call(function () {
-                    null != t && t()
-                })
-            }, e.prototype.createShowTween = function (t) {
-                if (null == this._gauge) return null;
-                var e = this._gauge.x;
-                return this._gauge.x = t ? -this._gauge.width : o.default.width + this._gauge.width, this._gauge.alpha = 0, createjs.Tween.get(this._gauge).to({
-                    x: e,
+            return n(e, t), e.prototype.update = function (t) {
+                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
+            }, e.prototype.activate = function () {
+                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
+                    loop: !0
+                }).to({
                     alpha: 1
-                }, 500, createjs.Ease.quadOut)
+                }, 900).to({
+                    alpha: 0
+                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
+                    loop: !0
+                }).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
+                    loop: !0
+                }).wait(500).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
+                    loop: !0
+                }).wait(500).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400))
+            }, e.prototype.deactivate = function () {
+                this._stopTween()
+            }, e.prototype.dispose = function () {
+                this._stopTween()
             }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
+                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
             }, e
         }(PIXI.Container);
-    e.GaugeLayer = a
+    e.CompShipWave = r
 }

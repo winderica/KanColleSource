@@ -19,38 +19,16 @@ const function1357 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(447),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(10),
+        r = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/midnight_battle", n._data = e, n._debug = i, n
             }
-            return n(e, t), e.prototype._initialize = function (t, e) {
-                if (0 == e) this._img.texture = r.BATTLE_AIRUNIT.getTexture(3);
-                else {
-                    var i = e / t;
-                    if (i < .25) this._img.texture = r.BATTLE_AIRUNIT.getTexture(2);
-                    else {
-                        if (!(i < .4)) return this._img.texture = PIXI.Texture.EMPTY, !1;
-                        this._img.texture = r.BATTLE_AIRUNIT.getTexture(1)
-                    }
-                }
-                return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
-            }, e.prototype.play = function (t, e, i, n) {
-                var r = this;
-                return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
-                    x: o.default.width / 2 + 12,
-                    alpha: 1
-                }, 300).to({
-                    x: o.default.width / 2 - 12
-                }, 1500).to({
-                    x: o.default.width / 2 - 24,
-                    alpha: 0
-                }, 300).call(function () {
-                    t.removeChild(r), null != n && n()
-                })))
+            return n(e, t), e.prototype._completedEnd = function () {
+                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitAttackResultTelop = s
+        }(o.APIBase);
+    e.APIPracticeDayToNight = r
 }

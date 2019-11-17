@@ -5,8 +5,8 @@ const function164 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return t < 50 ? 4999235 : t < 80 ? 1949146 : t < 100 ? 1015126 : t >= 100 ? 10775819 : void 0
+            return PIXI.Texture.fromFrame("supply_main_" + t)
         }
-        t.getLevelColor = e
-    }(e.ColorUtil || (e.ColorUtil = {}))
+        t.getTexture = e
+    }(e.SUPPLY_MAIN || (e.SUPPLY_MAIN = {}))
 }

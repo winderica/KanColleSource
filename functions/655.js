@@ -19,62 +19,40 @@ const function655 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(82),
-        r = i(5),
-        s = i(108),
+    var o = i(0),
+        r = i(2),
+        s = i(656),
         a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._ev = i, n._titleChange = function (t, e) {
-                    void 0 === e && (e = null);
-                    var i = createjs.Ease.linear;
-                    if (0 == t) return createjs.Tween.get(n.getChildByName("titleBar")).to({
-                        alpha: 0
-                    }, 200, i), !1;
-                    var r = o.TUTORIAL_MAIN.getTexture(e);
-                    0 == n.getChildByName("titleBar").alpha ? (n._titleMessage.texture = r, createjs.Tween.get(n.getChildByName("titleBar")).to({
-                        alpha: 1
-                    }, 200, i)) : createjs.Tween.get(n._titleMessage).to({
-                        alpha: 0
-                    }, 200, i).call(function () {
-                        n._titleMessage.texture = r
-                    }).to({
-                        alpha: 1
-                    }, 200, i)
-                }, n._onNext = function () {
-                    createjs.Tween.get(n._currentTutorialIcon, {
-                        loop: !1
-                    }).to({
-                        x: n._currentTutorialIcon.x + 60
-                    }, 400, createjs.Ease.linear)
-                }, n._ev.on("tutorial-title", n._titleChange).on("tutorial-next", n._onNext);
-                var a = new PIXI.Container;
-                a.position.set(0, 50), a.alpha = 0, a.name = "titleBar";
-                var _ = new PIXI.Sprite(e.use(s.IMAGE_FILE.TITLE_BG)),
-                    l = Math.floor(_.height / 2);
-                n._titleIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(10)), n._titleIcon.anchor.set(.5, .5), n._titleIcon.position.set(20 + Math.floor(n._titleIcon.width / 2), l), n._titleMessage = new PIXI.Sprite, n._titleMessage.anchor.set(0, .5), n._titleMessage.position.set(80, l), a.addChild(_, n._titleIcon, n._titleMessage);
-                var u = new PIXI.Container,
-                    c = new PIXI.Sprite(e.use(s.IMAGE_FILE.CRUMB));
-                return n._currentTutorialIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(9)), n._currentTutorialIcon.anchor.set(.5, .5), n._currentTutorialIcon.position.set(345, Math.floor(c.height / 2) - 3), u.position.set(r.default.width - c.width - 12, 0), u.addChild(c, n._currentTutorialIcon), n.addChild(a, u), n
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e._view.deactivate(), e._hideDialog()
+                }, e
             }
-            return n(e, t), e.prototype.start = function () {
-                var t = {
-                    angle: 2 * Math.PI,
-                    duration: 8e3,
-                    ease: createjs.Ease.linear
-                };
-                createjs.Tween.get(this._titleIcon, {
-                    loop: !0
-                }).to({
-                    rotation: t.angle
-                }, t.duration, t.ease), createjs.Tween.get(this._currentTutorialIcon, {
-                    loop: !0
-                }).to({
-                    rotation: t.angle
-                }, t.duration, t.ease)
-            }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this._titleIcon), createjs.Tween.removeTweens(this._currentTutorialIcon), this._ev.off("tutorial-title", this._titleChange).off("tutorial-next", this._onNext)
+            return n(e, t), e.prototype._start = function () {
+                o.default.model.deck.combined.type >= 0 ? this._endTask() : this._breakCombined()
+            }, e.prototype._breakCombined = function () {
+                o.default.model.deck.combined.__update__(0), this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this,
+                    e = o.default.view.overLayer;
+                this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({
+                    alpha: 1
+                }, 300), createjs.Tween.get(this._view.btn).wait(100).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    t._view.activate()
+                })
+            }, e.prototype._hideDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._view.btn).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._view.bg).wait(100).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._view.parent.removeChild(t._view), t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.ViewMain = a
+        }(r.TaskBase);
+    e.TaskCombinedAlert = a
 }

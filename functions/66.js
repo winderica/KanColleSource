@@ -1,52 +1,98 @@
 const function66 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    ! function (t) {
-        function e(t) {
-            return 1 * Math.sin(t / 1 * (Math.PI / 2)) + 0
-        }
-
-        function i(t, e, i, n, o) {
-            void 0 === o && (o = null);
-            for (var r = new Array, s = n / 100, a = n / s, _ = 0; _ < s; _++) {
-                var l = a * (_ + 1) / n;
-                null != o && (l = o(l)), r.push({
-                    x: (1 - l) * (1 - l) * t.x + 2 * (1 - l) * l * e.x + l * l * i.x,
-                    y: (1 - l) * (1 - l) * t.y + 2 * (1 - l) * l * e.y + l * l * i.y,
-                    t: a
+    var o = i(253),
+        r = i(254),
+        s = i(454),
+        a = i(185),
+        _ = i(456),
+        l = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._data = this._record.raw.air_war, 0 == this._hasPhase() ? this._endTask() : this._preload()
+            }, e.prototype._preload = function () {
+                var t = this,
+                    e = this._data.getTaikuShipIndex(),
+                    i = this._scene.data.model.deck_f.ships[e];
+                if (null != i) {
+                    var n = i.mst_id,
+                        o = i.isDamaged(),
+                        s = this._data.getTaikuSlotMstIDs();
+                    this._aaCutin = new r.CutinAntiAircraft(n, o, s), this._aaCutin.preload(function () {
+                        t._selectCaptain()
+                    })
+                } else this._selectCaptain()
+            }, e.prototype._selectCaptain = function () {
+                var t;
+                if (this._data.plane_from_f.length > 0) {
+                    var e = this._data.plane_from_f[0];
+                    t = this._scene.data.model.deck_f.ships[e]
+                }
+                var i;
+                if (this._data.plane_from_e.length > 0 && 0 == this._scene.data.model.map_info.isAirRaid()) {
+                    var e = this._data.plane_from_e[0];
+                    i = this._scene.data.model.deck_e.ships[e]
+                }
+                null != t || null != i ? this._cutin(t, i) : this._showTouchPlane()
+            }, e.prototype._cutin = function (t, e) {
+                var i = this,
+                    n = new s.CutinFunnel;
+                n.addCutinFromModel(t, !1), n.addCutinFromModel(e, !1);
+                var o = n.view;
+                n.preload_task.start(function () {
+                    i._scene.view.layer_title.show(4), i._scene.view.layer_cutin.addChild(o), n.start(function () {
+                        i._scene.view.layer_cutin.removeChild(o), i._showTouchPlane()
+                    })
                 })
-            }
-            return r
-        }
-
-        function n(t, e, i, n, o) {
-            for (var r = new Array, s = o / 100, a = o / s, _ = 0; _ < s; _++) {
-                var l = a * (_ + 1) / o;
-                r.push({
-                    x: (1 - l) * (1 - l) * (1 - l) * t.x + 3 * (1 - l) * (1 - l) * l * e.x + 3 * (1 - l) * l * l * i.x + l * l * l * n.x,
-                    y: (1 - l) * (1 - l) * (1 - l) * t.y + 3 * (1 - l) * (1 - l) * l * e.y + 3 * (1 - l) * l * l * i.y + l * l * l * n.y,
-                    t: a
+            }, e.prototype._showTouchPlane = function () {
+                var t = this,
+                    e = this._data.getTouchPlaneFriend(),
+                    i = this._data.getTouchPlaneEnemy();
+                new a.TaskShowTouchPlane(this._scene, e, i).start(function () {
+                    t._main()
                 })
-            }
-            return r
-        }
-
-        function o(e, i, n, o, r, s, a) {
-            for (var _ = t.create3BezierPoints(i, n, o, r, s), l = createjs.Tween.get(e, a), u = 0, c = _; u < c.length; u++) {
-                var h = c[u];
-                l.to({
-                    x: h.x,
-                    y: h.y
-                }, h.t)
-            }
-            return l
-        }
-
-        function r(t, e, i, n, o, r, s, a) {
-            void 0 === r && (r = 16711680), void 0 === s && (s = 65280), void 0 === a && (a = 255), t.lineStyle(1, r, .3), t.moveTo(e.x, e.y), t.bezierCurveTo(i.x, i.y, n.x, n.y, o.x, o.y), t.lineStyle(1, s, .3), t.moveTo(e.x, e.y), t.lineTo(i.x, i.y), t.lineStyle(1, a, .3), t.moveTo(o.x, o.y), t.lineTo(n.x, n.y), t.lineStyle(), t.beginFill(s, .3), t.drawCircle(i.x, i.y, 10), t.endFill(), t.beginFill(a, .3), t.drawCircle(n.x, n.y, 10), t.endFill()
-        }
-        t.signOut = e, t.create2BezierPoints = i, t.create3BezierPoints = n, t.create3BezierTween = o, t.draw3BezierLine = r
-    }(e.TweenUtil || (e.TweenUtil = {}))
+            }, e.prototype._main = function () {
+                var t = this,
+                    e = this._scene.data.model.deck_f.ships,
+                    i = this._scene.data.model.deck_e.ships;
+                new _.TaskAirWar(this._scene, this._data, e, i, this._damage_cutin, this._aaCutin).start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                var e = this,
+                    i = this._scene.view.raderLayer;
+                i.rader_e.touch_plane.hide(), i.rader_f.touch_plane.hide(), this._scene.view.layer_title.hide(function () {
+                    t.prototype._endTask.call(e)
+                })
+            }, e.prototype._hasPhase = function () {
+                if (null == this._data) return !1;
+                if (1 == this._data.stage3_f.hasDamage()) return !0;
+                if (1 == this._data.stage3_e.hasDamage()) return !0;
+                var t = !1;
+                0 == this._record.raw.sakuteki.isSuccess_f() ? t = !0 : 0 == this._data.plane_from_f.length ? t = !0 : 1 == this._scene.data.model.deck_e.isSubmarineAll() && (t = !0);
+                var e = !1;
+                return 0 == this._record.raw.sakuteki.isSuccess_e() ? e = !0 : 0 == this._data.plane_from_e.length ? e = !0 : 1 == this._scene.data.model.deck_f.isSubmarineAll() && (e = !0), 1 != t || 1 != e
+            }, e
+        }(o.PhaseAirBase);
+    e.PhaseAirWar = l
 }

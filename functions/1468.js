@@ -19,44 +19,115 @@ const function1468 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(16),
+    var o = i(1469),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e.alpha = 0, e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._entered = !1, n._friend = e, n._combined = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.BATTLE_MAIN.getTexture(110)
-            }, e.prototype.play = function () {
-                var t = this,
-                    e = {
-                        a: 0,
-                        r: 255,
-                        g: 255,
-                        b: 255
-                    },
-                    i = function (e) {
-                        var i = e.target.target;
-                        t.alpha = i.a;
-                        var n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                        t.tint = n
-                    };
-                createjs.Tween.get(e, {
-                    onChange: i
-                }).to({
-                    a: 1
-                }, 100).to({
-                    r: 128
-                }, 100).to({
-                    r: 255,
-                    g: 192,
-                    b: 192
-                }, 100).to({
-                    a: 0
-                }, 100).call(function () {
-                    null != t.parent && t.parent.removeChild(t)
-                })
+            return n(e, t), e.prototype.isEntered = function () {
+                return this._entered
+            }, e.prototype.getBannerNum = function () {
+                return null == this._banners ? 0 : this._banners.length
+            }, e.prototype.hasBanner = function () {
+                return this.getBannerNum() > 0
+            }, e.prototype.initialize = function (t) {
+                if (this._banners = [], null != t)
+                    for (var e = 0; e < t.length; e++) {
+                        var i = t[e];
+                        if (null != i) {
+                            var n = i.mst_id,
+                                r = i.hp_now,
+                                s = i.hp_max,
+                                a = i.isTaihi(),
+                                _ = 0 == i.speed,
+                                l = new o.Banner(e, this._friend, this._combined);
+                            l.initialize(n, r, s, a, _), this._banners.push(l), this.addChild(l)
+                        }
+                    }
+            }, e.prototype.dispose = function () {
+                if (null != this._banners)
+                    for (var t = 0, e = this._banners; t < e.length; t++) {
+                        var i = e[t];
+                        i.dispose()
+                    }
+            }, e.prototype.getBanner = function (t) {
+                return null == this._banners ? null : t >= this._banners.length ? null : this._banners[t]
+            }, e.prototype.isContains = function (t) {
+                return null != this._banners && this._banners.indexOf(t) >= 0
+            }, e.prototype.enter = function () {
+                if (1 != this._entered && 0 != this.hasBanner()) {
+                    this._entered = !0;
+                    for (var t = 0, e = this._banners; t < e.length; t++) {
+                        var i = e[t];
+                        null != i && (0 == this._combined ? i.enter() : i.enterCombined())
+                    }
+                }
+            }, e.prototype.createEnterTweens = function () {
+                var t = [];
+                if (1 == this._entered) return t;
+                if (0 == this.hasBanner()) return t;
+                this._entered = !0;
+                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = 0 == this._combined ? o.createEnterTween(e) : o.createEnterTweenCombined(e);
+                        null != r && (t.push(r), e += 100)
+                    }
+                }
+                return t
+            }, e.prototype.createSakutekiTweens = function () {
+                var t = [];
+                if (1 == this._entered) return t;
+                if (0 == this.hasBanner()) return t;
+                this._entered = !0;
+                for (var e = 0, i = this._banners; e < i.length; e++) {
+                    var n = i[e];
+                    if (null != n) {
+                        var o = n.createEnterTweenBySakuteki();
+                        null != o && t.push(o)
+                    }
+                }
+                return t
+            }, e.prototype.createExitTweens = function () {
+                var t = [];
+                if (0 == this._entered) return t;
+                if (this._entered = !1, 0 == this.hasBanner()) return t;
+                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = o.createMainDeckExitTween(e);
+                        t.push(r), e += 100
+                    }
+                }
+                return t
+            }, e.prototype.createExitTweensUpward = function () {
+                var t = [];
+                if (0 == this._entered) return t;
+                if (this._entered = !1, 0 == this.hasBanner()) return t;
+                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = o.createSubDeckExitTween(e, !1);
+                        t.push(r), e += 100
+                    }
+                }
+                return t
+            }, e.prototype.createExitTweensUpDown = function () {
+                var t = [];
+                if (0 == this._entered) return t;
+                if (this._entered = !1, 0 == this.hasBanner()) return t;
+                for (var e = [], i = 0; i < this._banners.length; i++) {
+                    var n = this._banners[i];
+                    null != n && 0 != n.entered && e.push(n)
+                }
+                for (var o = 0; e.length > 0;) {
+                    var r = e.shift(),
+                        s = r.createSubDeckExitTween(o, !1);
+                    t.push(s), 0 != e.length && (r = e.pop(), s = r.createSubDeckExitTween(o, !0), t.push(s), o += 100)
+                }
+                return t
             }, e
-        }(PIXI.Sprite);
-    e.Shield = r
+        }(PIXI.Container);
+    e.BannerGroup = r
 }

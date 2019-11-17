@@ -21,17 +21,21 @@ const function1420 = function (t, e, i) {
     });
     var o = i(0),
         r = i(22),
-        s = i(1421),
+        s = i(6),
         a = i(125),
-        _ = i(39),
-        l = function (t) {
-            function e(e, i, n, r, s, a, _, l, u, c) {
-                var h = t.call(this, e, n, s, l, u, c) || this;
-                return h._slot2 = o.default.model.slot.getMst(a), h._slot3 = o.default.model.slot.getMst(_), h._defender = r, h
+        _ = i(40),
+        l = i(1421),
+        u = function (t) {
+            function e(e, i, n, r, s, a, _, u, c) {
+                var h = t.call(this, e, i, r, _, u, c) || this;
+                return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new l.CutinSpSRD(i, h._slot, h._slot2, h._slot3), h
             }
-            return n(e, t), e.prototype.preload = function (t) {
-                this._cutin = new s.CutinSpSSS, this._cutin.preload(this._attacker, this._slot, this._slot2, this._slot3, t)
-            }, e.prototype._start = function () {
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.preload(function () {
+                    t._completePreload()
+                })
+            }, e.prototype._completePreload = function () {
                 var t, e, i = this._attacker.friend,
                     n = this._attacker.index,
                     o = this._defender.index;
@@ -49,14 +53,35 @@ const function1420 = function (t, e, i) {
             }, e.prototype._playCutin = function (t, e) {
                 var i = this;
                 this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                    t.moveFront(), e.moveFront(), i._damageEffect(t, e)
+                    i._shoot(t, e)
                 }), this._cutin.view.once("attack", function () {
                     i._playVoice()
                 })
-            }, e.prototype._damageEffect = function (t, e) {
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var i = this._getDamage(this._defender);
-                this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
+            }, e.prototype._shoot = function (t, e) {
+                var i = this;
+                t.moveShoot(function () {
+                    i._torpedo(t, e)
+                })
+            }, e.prototype._torpedo = function (t, e) {
+                var i = this,
+                    n = t.friend ? 1 : -1,
+                    o = t.getGlobalPos(!0);
+                o.x += r.BannerSize.W / 3 * n;
+                var a = e.getGlobalPos(!0);
+                a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
+                var _ = this._scene.view.layer_torpedo;
+                _.playTorpedoAtNight(o, a, 800, function () {
+                    _.playTorpedoWaterColumn(e), i._explosion(t, e)
+                })
+            }, e.prototype._explosion = function (t, e) {
+                var i = this,
+                    n = e.getGlobalPos(!0);
+                createjs.Tween.get(this).wait(300).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
+                }).wait(350).call(function () {
+                    var n = i._getDamage(i._defender);
+                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+                })
             }, e.prototype._playVoice = function () {
                 if (this._attacker.friend) {
                     var t = this._attacker.mst_id,
@@ -65,5 +90,5 @@ const function1420 = function (t, e, i) {
                 }
             }, e.prototype._log = function (t) {}, e
         }(_.PhaseAttackBase);
-    e.PhaseAttackSpSSS = l
+    e.PhaseAttackSpSRD = u
 }

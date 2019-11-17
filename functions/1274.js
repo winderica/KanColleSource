@@ -19,58 +19,40 @@ const function1274 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
+    var o = i(55),
         r = i(2),
         s = i(1275),
-        a = i(1276),
-        _ = i(13),
-        l = i(23),
-        u = i(122),
-        c = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._selectFormation = function () {
-                    if (0 == r._model.deck_f.type) {
-                        var t = new s.TaskFormationSelect(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
-                        t.start(function () {
-                            r._fadeoutBGM(t.selected_formation)
-                        })
-                    } else {
-                        var e = new a.TaskFormationSelectCombined(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
-                        e.start(function () {
-                            r._fadeoutBGM(e.selected_formation)
-                        })
-                    }
-                }, r._scene = e, r._model = i, r._battle_cls = n, r._battle_result_cls = o, r
+        a = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = 0);
+                var o = t.call(this) || this;
+                return o._scene = e, o._model = i, o._delay = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._scene.view.map.ship_icon.startWaveRed(this._selectFormation)
-            }, e.prototype._fadeoutBGM = function (t) {
-                var e = this;
-                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
-                    e._startBattle(t)
-                })) : this._startBattle(t)
-            }, e.prototype._startBattle = function (t) {
-                var e = this;
-                this._model.deck_f.formation = t;
-                var i = new this._battle_cls;
-                i.initialize(this._model), this._scene.addChild(i), i.once("complete", function () {
-                    e._startBattleResult(i, e._model)
-                }), i.start()
-            }, e.prototype._startBattleResult = function (t, e) {
-                var i = this,
-                    n = new this._battle_result_cls;
-                n.initialize(), n.shutter.close(0), this._scene.addChild(n), this._scene.removeChild(t), t.dispose(), n.once("complete", function () {
-                    _.ShipLoader.clearMemoryCache(), l.SlotLoader.clearMemoryCache(), u.Plane.clearMemoryCache(), i._completeBattleResult(n)
-                }), n.start(e)
-            }, e.prototype._completeBattleResult = function (t) {
-                var e = this;
-                createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e._scene.removeChild(t), t.dispose(), e._endTask()
+                var t = this,
+                    e = this._model.sortie.getNextCell().no,
+                    i = this._scene.resInfo.getEnemyOption(e);
+                null == i ? this._endTask() : this._delay <= 0 ? this._showEnemy(i.img, i.x, i.y) : createjs.Tween.get(null).wait(this._delay).call(function () {
+                    t._showEnemy(i.img, i.x, i.y)
                 })
+            }, e.prototype._showEnemy = function (t, e, i) {
+                var n, r = this,
+                    a = this._model.sortie.area_id,
+                    _ = this._model.sortie.map_no,
+                    l = this._model.sortie.getNextCell().no,
+                    u = this._model.sortie.map.getGaugeNum();
+                if (42 == a && 3 == _ && 25 == l && 3 == u) n = new s.MapEnemy(PIXI.Texture.fromFrame("map04203_icon_E3boss_2"), 5), n.x = 130, n.y = 230;
+                else {
+                    var c = this._model.sortie.map_id,
+                        h = o.MapUtil.toResKey(c);
+                    n = new s.MapEnemy(PIXI.Texture.fromFrame("map" + h + "_" + t), 5), n.x = e, n.y = i
+                }
+                this._scene.view.map.enemy_layer.show(n, function () {
+                    r._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._model = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.CellTaskBattle = c
+    e.AnimShowMapEnemy = a
 }

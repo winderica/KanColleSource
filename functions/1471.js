@@ -19,66 +19,70 @@ const function1471 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(247),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._points = [], i
+    var o = i(22),
+        r = i(24),
+        s = i(12),
+        a = i(16),
+        _ = i(1472),
+        l = i(1473),
+        u = i(1476),
+        c = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new _.BannerImage, e._flagship_mark = new PIXI.Sprite, e._flagship_mark.position.set(210, 6), e._frame = new l.BannerFrame, e._frame.alpha = 0, e._layer_color = new u.BannerOverlay, e._layer_over = new PIXI.Sprite, e.addChild(e._img), e.addChild(e._flagship_mark), e.addChild(e._frame), e.addChild(e._layer_color), e.addChild(e._layer_over), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                if (this._clearPoints(), e <= 0) return !1;
-                var n;
-                switch (t) {
-                    case 11:
-                        n = this._get11Points(e);
-                        break;
-                    case 12:
-                        n = this._get12Points(e);
-                        break;
-                    case 13:
-                        n = this._get13Points(e);
-                        break;
-                    case 14:
-                        n = this._get14Points(e)
+            return n(e, t), Object.defineProperty(e.prototype, "img", {
+                get: function () {
+                    return this._img
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "flagship_mark", {
+                get: function () {
+                    return this._flagship_mark
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "frame", {
+                get: function () {
+                    return this._frame
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_color", {
+                get: function () {
+                    return this._layer_color
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_over", {
+                get: function () {
+                    return this._layer_over
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n, r, s, _, l) {
+                if (this._img.initialize(t, e, i, _, l, s, r), 1 == s && (1 == r ? this._img.x += 7 : this._img.x -= 78), 0 == n && (this._flagship_mark.texture = a.BATTLE_MAIN.getTexture(48), 0 == r && 1 == s && (this._flagship_mark.alpha = .5, this._flagship_mark.x = 135)), this._frame.initialize(e, i, n, r, s), s) {
+                    var u = new PIXI.Graphics;
+                    u.beginFill(0), u.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), u.endFill(), this._img.mask = u, this.addChild(u)
                 }
-                if (null == n) return !1;
-                for (var r = 0; r < n.length; r++) {
-                    var s = new o.FormationPoint,
-                        a = n[r];
-                    s.position.set(a.x, a.y), s.initializeForCombinedMain(this._friend, i), s.visible = !1, this.addChild(s), this._points.push(s)
-                }
-                return !0
-            }, e.prototype.show = function (t) {
-                void 0 === t && (t = 100);
-                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        e.wait(t), e.call(function () {
-                            i.visible = !0
-                        })
-                    }(o)
-                }
-            }, e.prototype.dispose = function () {
-                this._clearPoints()
-            }, e.prototype._clearPoints = function () {
-                for (var t = 0, e = this._points; t < e.length; t++) {
-                    var i = e[t];
-                    this.removeChild(i)
-                }
-                this._points = []
-            }, e.prototype._get11Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(-24, -20)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -20)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-24, -44)), t > 5 && e.push(new PIXI.Point(-24, 26)), e
-            }, e.prototype._get12Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(-24, -21)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -21)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-63, -21)), t > 5 && e.push(new PIXI.Point(-63, 0)), e
-            }, e.prototype._get13Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(-12, -21)), t > 1 && e.push(new PIXI.Point(-12, 0)), t > 2 && e.push(new PIXI.Point(-32, -21)), t > 3 && e.push(new PIXI.Point(-32, 0)), t > 4 && e.push(new PIXI.Point(11, -21)), t > 5 && e.push(new PIXI.Point(11, 0)), e
-            }, e.prototype._get14Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(-45, -21)), t > 1 && e.push(new PIXI.Point(-45, 0)), t > 2 && e.push(new PIXI.Point(-63, -21)), t > 3 && e.push(new PIXI.Point(-63, 0)), t > 4 && e.push(new PIXI.Point(-9, -12)), t > 5 && e.push(new PIXI.Point(-27, -12)), e
+                this.layer_color.initialize(r, s)
+            }, e.prototype.updateHp = function (t, e) {
+                this._img.update(t, e), this._frame.updateHp(t, e)
+            }, e.prototype.waveOver = function (t) {
+                var e = this,
+                    i = new s.Sprite(a.BATTLE_MAIN.getTexture(84));
+                i.position.set(o.BannerSize.W / 2, o.BannerSize.H / 2), i.scale.set(0), i.anchor.set(.5), this._layer_over.addChild(i), createjs.Tween.get(i).wait(t).to({
+                    scaleX: .75,
+                    scaleY: .75
+                }, 400).to({
+                    alpha: 0,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).call(function () {
+                    e._layer_over.removeChild(i)
+                })
             }, e
-        }(PIXI.Container);
-    e.FormationPointsCombinedMain = r
+        }(r.Container);
+    e.BannerContent = c
 }

@@ -19,50 +19,68 @@ const function471 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(2),
-        s = i(1398),
-        a = i(1402),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = i(0),
+        r = i(72),
+        s = i(28),
+        a = i(20),
+        _ = i(30),
+        l = i(39),
+        u = i(6),
+        c = i(145),
+        h = i(183),
+        p = i(122),
+        d = i(472),
+        f = i(184),
+        y = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showLight()
-            }, e.prototype._showLight = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "data_", {
+                get: function () {
+                    return this._data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._log();
+                this._canvas = new c.AirWarCanvas(!1), this._scene.view.layer_content.addChild(this._canvas), this._createFriendPlanes(), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
                 var t = this,
-                    e = this._scene.view.layer_cutin,
-                    i = this._getFlareBanner_f(),
-                    n = this._getFlareBanner_e(),
-                    o = this._createSearchLightTask();
-                new s.TaskFlareEffect(e, i, n, o).start(function () {
-                    t._endTask()
+                    e = new s.ParallelTask,
+                    i = createjs.Tween.get(null).call(u.SE.play, ["114"]).wait(3450);
+                e.add((new a.TweenTask).addTween(i)), e.add(new r.FuncTask(function () {
+                    t._fireDogFight()
+                }, 750)), e.add(new r.FuncTask(function () {
+                    t._showTaikuCutin()
+                }, 900)), e.add(new r.FuncTask(function () {
+                    t._damageAtStage1()
+                }, 1050)), e.add(new r.FuncTask(function () {
+                    t._antiAircraft()
+                }, 1200)), e.add(new r.FuncTask(function () {
+                    t._damageAtStage2()
+                }, 1350)), e.add((new _.SerialTask).add(new l.WaitTask(1700)).add((new s.ParallelTask).add(new d.TaskAirSupportTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new f.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new r.FuncTask(function () {
+                    t._showBakuExplosion()
+                }, 2950)), e.add(new r.FuncTask(function () {
+                    t._showDamage()
+                }, 3300)), this._main_task = e, this._main_task.start(function () {
+                    t._showDamageNumber()
                 })
-            }, e.prototype._createSearchLightTask = function () {
-                var t = this._getShips_f(),
-                    e = this._getSearchLightAnimationTask(t),
-                    i = this._getShips_e(),
-                    n = this._getSearchLightAnimationTask(i),
-                    r = new o.ParallelTask;
-                return r.add(e), r.add(n), r
-            }, e.prototype._getSearchLightAnimationTask = function (t) {
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e];
-                    if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(42))) {
-                        var o = this._scene.view.bannerGroupLayer.getBanner(n);
-                        return new a.TaskSearchLightAnimation(o, !0)
-                    }
+            }, e.prototype._createFriendPlanes = function () {
+                for (var t = 0, e = this.data_.getShipList(), i = 0, n = e; i < n.length; i++) {
+                    var r = n[i],
+                        s = r.mem_id,
+                        a = o.default.model.ship.get(s);
+                    null != a && (6 == a.shipTypeID ? t++ : 7 == a.shipTypeID ? t++ : 10 == a.shipTypeID ? t++ : 11 == a.shipTypeID ? t++ : 15 == a.shipTypeID ? t++ : 16 == a.shipTypeID ? t++ : 17 == a.shipTypeID ? t++ : 18 == a.shipTypeID ? t++ : 22 == a.shipTypeID && t++)
                 }
-                for (var r = 0, s = t; r < s.length; r++) {
-                    var n = s[r];
-                    if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(29))) {
-                        var o = this._scene.view.bannerGroupLayer.getBanner(n);
-                        return new a.TaskSearchLightAnimation(o, !1)
-                    }
+                t = Math.min(6, t);
+                for (var _ = [], l = 0; l < t; l++) {
+                    var u = new p.Plane,
+                        c = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * l + 150 + (45 * Math.random() - 23)),
+                        h = new PIXI.Point;
+                    u.initialize(16, !0, c, h), _.push(u)
                 }
-                return null
+                this._canvas.addPlanes_f(_)
             }, e
-        }(r.TaskBase);
-    e.PhaseLightingBase = _
+        }(h.TaskAircraftFlightBase);
+    e.TaskSupportAir = y
 }

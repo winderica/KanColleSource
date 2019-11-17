@@ -19,275 +19,83 @@ const function437 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(247),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._POSITIONS_TANJUU = [null, [
-                        [-11, -11]
-                    ],
-                    [
-                        [-29, -11],
-                        [8, -11]
-                    ],
-                    [
-                        [-47, -11],
-                        [-11, -11],
-                        [26, -11]
-                    ],
-                    [
-                        [-63, -11],
-                        [-29, -11],
-                        [8, -11],
-                        [42, -11]
-                    ],
-                    [
-                        [-80, -11],
-                        [-47, -11],
-                        [-11, -11],
-                        [26, -11],
-                        [59, -11]
-                    ],
-                    [
-                        [-98, -11],
-                        [-63, -11],
-                        [-29, -11],
-                        [8, -11],
-                        [42, -11],
-                        [77, -11]
-                    ],
-                    [
-                        [-101, -11],
-                        [-71, -11],
-                        [-41, -11],
-                        [-11, -11],
-                        [20, -11],
-                        [50, -11],
-                        [80, -11]
-                    ]
-                ], i._POSITIONS_FUKUJUU = [null, [
-                        [-11, -11]
-                    ], null, [
-                        [-29, -27],
-                        [8, -27],
-                        [-29, 6]
-                    ],
-                    [
-                        [-29, -27],
-                        [8, -27],
-                        [-29, 6],
-                        [8, 6]
-                    ],
-                    [
-                        [-47, -27],
-                        [-11, -27],
-                        [26, -27],
-                        [-47, 6],
-                        [-11, 6]
-                    ],
-                    [
-                        [-47, -27],
-                        [-11, -27],
-                        [26, -27],
-                        [-47, 6],
-                        [-11, 6],
-                        [26, 6]
-                    ],
-                    [
-                        [-65, -27],
-                        [-29, -27],
-                        [8, -27],
-                        [-65, 6],
-                        [-29, 6],
-                        [8, 6],
-                        [44, -11]
-                    ]
-                ], i._POSITIONS_RINKEI = [null, [
-                        [-11, -11]
-                    ], null, null, [
-                        [-11, -11],
-                        [-46, -11],
-                        [8, -44],
-                        [8, 23]
-                    ],
-                    [
-                        [-11, -11],
-                        [26, -11],
-                        [-47, -11],
-                        [-11, -44],
-                        [-11, 23]
-                    ],
-                    [
-                        [-29, -11],
-                        [8, -11],
-                        [42, -11],
-                        [-63, -11],
-                        [-11, -60],
-                        [-11, 39]
-                    ],
-                    [
-                        [-11, -11],
-                        [51, -11],
-                        [-72, -11],
-                        [-42, -65],
-                        [-42, 44],
-                        [21, -65],
-                        [21, 44]
-                    ]
-                ], i._POSITIONS_TEIKEI = [null, [
-                        [-11, -11]
-                    ],
-                    [
-                        [-23, -23],
-                        [0, 0]
-                    ],
-                    [
-                        [-33, -33],
-                        [-11, -11],
-                        [12, 12]
-                    ],
-                    [
-                        [-44, -44],
-                        [-21, -21],
-                        [0, 0],
-                        [24, 24]
-                    ],
-                    [
-                        [-56, -56],
-                        [-33, -33],
-                        [-11, -11],
-                        [12, 12],
-                        [35, 35]
-                    ],
-                    [
-                        [-66, -66],
-                        [-44, -44],
-                        [-21, -21],
-                        [0, 0],
-                        [24, 24],
-                        [47, 47]
-                    ],
-                    [
-                        [-69, -69],
-                        [-50, -50],
-                        [-30, -30],
-                        [-11, -11],
-                        [9, 9],
-                        [29, 29],
-                        [48, 48]
-                    ]
-                ], i._POSITIONS_TANOU = [null, [
-                        [-11, -11]
-                    ],
-                    [
-                        [-11, -27],
-                        [-11, 6]
-                    ],
-                    [
-                        [-11, -43],
-                        [-11, -11],
-                        [-11, 23]
-                    ],
-                    [
-                        [-11, -60],
-                        [-11, -27],
-                        [-11, 6],
-                        [-11, 39]
-                    ],
-                    [
-                        [-11, -77],
-                        [-11, -44],
-                        [-11, -11],
-                        [-11, 23],
-                        [-11, 56]
-                    ],
-                    [
-                        [-11, -93],
-                        [-11, -60],
-                        [-11, -27],
-                        [-11, 6],
-                        [-11, 39],
-                        [-11, 72]
-                    ],
-                    [
-                        [-11, -101],
-                        [-11, -71],
-                        [-11, -41],
-                        [-11, -11],
-                        [-11, 20],
-                        [-11, 50],
-                        [-11, 80]
-                    ]
-                ], i._POSITIONS_KEIKAI = [null, [
-                        [-11, -11]
-                    ], null, null, [
-                        [-11, -11],
-                        [26, -11],
-                        [-47, -41],
-                        [-47, 20]
-                    ],
-                    [
-                        [-11, -11],
-                        [26, -11],
-                        [-60, -11],
-                        [-41, -41],
-                        [-41, 20]
-                    ],
-                    [
-                        [-11, -11],
-                        [26, -11],
-                        [62, -11],
-                        [-60, -11],
-                        [-41, -41],
-                        [-41, 20]
-                    ],
-                    [
-                        [-3, -11],
-                        [33, -11],
-                        [69, -11],
-                        [-89, -11],
-                        [-53, -11],
-                        [-33, -41],
-                        [-33, 20]
-                    ]
-                ], i._friend = e, i._points = [], i
+    var o = i(4),
+        r = i(142),
+        s = i(1247),
+        a = i(438),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new l, e._bg.position.set(0, 633), e._bg.alpha = 0, e._compass = new s.CompCompass, e._compass.position.set(54, 766), e._compass.alpha = 0, e.addChild(e._bg), e.addChild(e._compass), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                void 0 === i && (i = -1), this._clearPoints(), i <= 0 && (i = e);
-                var n = this._getPositionsList(t);
-                if (null != n) {
-                    var r = n[e];
-                    if (null != r) {
-                        r = n[i];
-                        for (var s = 0; s < r.length; s++) {
-                            var a = new o.FormationPoint,
-                                _ = r[s][0],
-                                l = r[s][1];
-                            a.position.set(_, l), a.initialize(this._friend), a.visible = !1, this.addChild(a), this._points.push(a)
-                        }
-                    }
-                }
-            }, e.prototype.show = function (t) {
-                void 0 === t && (t = 100);
-                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        e.wait(t), e.call(function () {
-                            i.visible = !0
-                        })
-                    }(o)
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "text", {
+                get: function () {
+                    return this._bg.text
+                },
+                set: function (t) {
+                    this._bg.text = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.initialize(), this._compass.initialize()
+            }, e.prototype.activate = function (t) {
+                var e = this;
+                this._stopTweens(), this._t_bg = createjs.Tween.get(this._bg).to({
+                    alpha: 1,
+                    y: 580
+                }, 400), this._compass.activate(), this._t_compass = createjs.Tween.get(this._compass).to({
+                    alpha: 1,
+                    y: 668,
+                    rotation: Math.PI / 4
+                }, 400).call(function () {
+                    e._t_bg = null, e._t_compass = null, null != t && t()
+                })
+            }, e.prototype.deactivate = function (t) {
+                var e = this;
+                void 0 === t && (t = null), this._stopTweens(), this._t_bg = createjs.Tween.get(this._bg).to({
+                    alpha: 0,
+                    y: 633
+                }, 400), this._compass.activate(), this._t_compass = createjs.Tween.get(this._compass).to({
+                    alpha: 0,
+                    y: 766,
+                    rotation: 0
+                }, 400).call(function () {
+                    e._t_bg = null, e._t_compass = null, null != t && t()
+                })
             }, e.prototype.dispose = function () {
-                this._clearPoints()
-            }, e.prototype._getPositionsList = function (t) {
-                return 1 == t ? this._POSITIONS_TANJUU : 2 == t ? this._POSITIONS_FUKUJUU : 3 == t ? this._POSITIONS_RINKEI : 4 == t ? this._POSITIONS_TEIKEI : 5 == t ? this._POSITIONS_TANOU : 6 == t ? this._POSITIONS_KEIKAI : null
-            }, e.prototype._clearPoints = function () {
-                for (var t = 0, e = this._points; t < e.length; t++) {
-                    var i = e[t];
-                    this.removeChild(i)
-                }
-                this._points = []
+                this.removeChildren(), this._stopTweens(), this._bg.dispose(), this._bg = null, this._compass.dispose(), this._compass = null
+            }, e.prototype.showItemGetText = function (t, e) {
+                this._bg.showItemGetText(t, e)
+            }, e.prototype.showUzushioText = function (t, e, i) {
+                this._bg.showUzushioText(t, e, i)
+            }, e.prototype._stopTweens = function () {
+                null != this._t_bg && (this._t_bg.setPaused(!0), this._t_bg = null), null != this._t_compass && (this._t_compass.setPaused(!0), this._t_compass = null)
             }, e
         }(PIXI.Container);
-    e.FormationPoints = r
+    e.CompMessageBox = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e._icon = new a.CompDropItemIcon, e._icon.position.set(416, 23), e._icon.visible = !1, e._text = new o.TextBox(30, 16777215), e._text.position.set(414, 23), e._text.style.wordWrap = !1, e._text.style.breakWords = !1, e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text.text
+            },
+            set: function (t) {
+                this._text.text = t, this._icon.visible = !1
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this._bg.texture = r.SALLY_MAP_PARTS.getTexture(18)
+        }, e.prototype.showItemGetText = function (t, e) {
+            this._icon.update(t), this._icon.visible = !0, this._text.text = "\u3000\xd7" + e + "\n\u3092\u5165\u624b\u3057\u307e\u3057\u305f\uff01"
+        }, e.prototype.showUzushioText = function (t, e, i) {
+            this._icon.update(t), this._icon.visible = !0, this._text.text = "\u3000\xd7" + e + "\n\u3092\u843d\u3068\u3057\u3066\u3057\u307e\u3044\u307e\u3057\u305f\u2026\u3002", 1 == i && (this._text.text += "\n(\u96fb\u63a2\u304c\u5f79\u7acb\u3063\u3066\u3001\u88ab\u5bb3\u3092\u6291\u3048\u3089\u308c\u305f\uff01)")
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text.destroy()
+        }, e
+    }(PIXI.Container)
 }

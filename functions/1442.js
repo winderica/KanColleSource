@@ -1,78 +1,127 @@
 const function1442 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t, e, i) {
-                this._friend = t, this._o = {};
-                for (var n in e) {
-                    var o = e[n];
-                    this._o[n] = [];
-                    for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
-                    for (; this._o[n].length < 6;) this._o[n].push(0)
-                }
-                if (null != i)
-                    for (var n in i) {
-                        var o = i[n];
-                        if (null != o) {
-                            0 == this._o.hasOwnProperty(n) && (this._o = [0, 0, 0, 0, 0, 0]);
-                            for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
-                            for (; this._o[n].length < 12;) this._o[n].push(0)
-                        }
-                    }
+    var o = i(76),
+        r = i(94),
+        s = i(123),
+        a = i(95),
+        _ = i(96),
+        l = i(97),
+        u = i(66),
+        c = i(98),
+        h = i(99),
+        p = i(77),
+        d = i(100),
+        f = i(104),
+        y = i(101),
+        m = i(102),
+        g = i(103),
+        v = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
             }
-            return Object.defineProperty(t.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.hasDamage = function () {
-                var t = this._friend ? "api_fdam" : "api_edam";
-                return this._hasDamage(this._o, t)
-            }, t.prototype._hasDamage = function (t, e) {
-                var i = n.ObjUtil.getNumArray(t, e);
-                if (null != i)
-                    for (var o = 0, r = i; o < r.length; o++) {
-                        var s = r[o];
-                        if (s > 0) return !0
-                    }
-                return !1
-            }, t.prototype.beBombed = function () {
-                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    e = n.ObjUtil.getNumArray(this._o, t);
-                if (null == e) return !1;
-                for (var i = Math.min(e.length, 6), o = 0; o < i; o++)
-                    if (e[o] > 0) return !0;
-                return !1
-            }, t.prototype.beBombedCombined = function () {
-                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    e = n.ObjUtil.getNumArray(this._o, t);
-                if (null == e) return !1;
-                for (var i = 6; i < e.length; i++)
-                    if (e[i] > 0) return !0;
-                return !1
-            }, t.prototype.getDamage = function (t) {
-                var e = this._friend ? "api_fdam" : "api_edam",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length <= t ? 0 : Math.floor(i[t])
-            }, t.prototype.getBak = function (t) {
-                var e = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return !(null == i || i.length <= t) && 1 == i[t]
-            }, t.prototype.getRai = function (t) {
-                var e = this._friend ? "api_frai_flag" : "api_erai_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return !(null == i || i.length <= t) && 1 == i[t]
-            }, t.prototype.getHitType = function (t) {
-                var e = this._friend ? "api_fcl_flag" : "api_ecl_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length <= t ? 0 : i[t] + 1
-            }, t.prototype.isShield = function (t) {
-                return this.getDamage(t) % 1 != 0
-            }, t
-        }();
-    e.AirWarStage3Model = o
+            return n(e, t), e.prototype._start = function () {
+                this._sakuteki()
+            }, e.prototype._sakuteki = function () {
+                var t = this;
+                new s.PhaseSakuteki(this.scene, this._record).start(function () {
+                    t._ration()
+                })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new r.PhaseRation(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new _.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new l.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new u.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new f.PhaseSupport(this.scene, this._record).start(function () {
+                    t._openingAttack()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new d.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new y.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new c.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new m.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new p.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new m.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new m.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new g.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(o.PhaseCombatBase);
+    e.PhaseDay_06vs12 = v
 }

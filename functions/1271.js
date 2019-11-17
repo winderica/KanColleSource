@@ -20,83 +20,93 @@ const function1271 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(6),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+        r = i(59),
+        s = i(28),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n.TIME = 2e3, n._scene = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._preLoad()
-            }, e.prototype._preLoad = function () {
-                this._layer.initilize(), this._anim()
-            }, e.prototype._anim = function () {
+                this._initialize()
+            }, e.prototype._initialize = function () {
                 var t = this,
-                    e = function () {
-                        for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) {
-                            var i = t._layer.kiraPos[e];
-                            t._layer.kirakira[e].position.set(i.x + 10, i.y + 25), t._layer.kirakira[e].visible = !0, createjs.Tween.get(t._layer.kirakira[e].scale).wait(70 * e).to({
-                                x: 1,
-                                y: 1
-                            }, 140).to({
-                                x: 0,
-                                y: 0
-                            }, 140)
-                        }
-                    };
-                createjs.Tween.get(null).call(function () {
-                    t._layer.get_flash.visible = !0, createjs.Tween.get(t._layer.get_flash.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 500), createjs.Tween.get(t._layer.get_flash).to({
-                        alpha: 1
-                    }, 500).to({
-                        alpha: 0
-                    }, 150), createjs.Tween.get(t._layer.white).wait(400).set({
-                        visible: !0
-                    }).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        createjs.Tween.get(t._layer.txt_repair).wait(100).set({
-                            visible: !0
-                        }).to({
-                            x: 77
-                        }, 600, createjs.Ease.sineOut).to({
-                            x: 47
-                        }, 733)
-                    })
-                }).wait(133).call(function () {
-                    r.SE.play("230")
-                }).wait(2e3).call(function () {
-                    createjs.Tween.get(t._layer.txt_repair).to({
-                        x: -1107
-                    }, 300, createjs.Ease.sineIn).set({
-                        visible: !1
-                    }), t._layer.ship_layer.visible = !0, createjs.Tween.get(t._layer.ship_layer).wait(180).to({
-                        alpha: 1
-                    }, 500), createjs.Tween.get(t._layer.ship_layer.scale).wait(180).to({
-                        x: 1,
-                        y: 1
-                    }, 500, createjs.Ease.cubicOut)
-                }).wait(680).call(function () {
-                    e()
-                }).wait(100 * (this._layer.EFFECT_MAX / 2 - 1) + 540).call(function () {
-                    t._layer.white.alpha = 1;
-                    for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) t._layer.kirakira[e].visible = !1;
-                    createjs.Tween.get(t._layer.ship_layer.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 633), createjs.Tween.get(t._layer.ship_layer).to({
-                        alpha: 0
-                    }, 633), createjs.Tween.get(t._layer.white).to({
-                        alpha: 0
-                    }, 633).set({
-                        visible: !1
-                    })
-                }).wait(1e3).call(function () {
-                    t._endTask()
+                    e = new s.ParallelTask,
+                    i = new _(this._scene, this._model, this.TIME);
+                e.add(i);
+                var n = new l(this._scene, this._model, this.TIME);
+                e.add(n), e.start(function () {
+                    t._setCellColor()
                 })
+            }, e.prototype._setCellColor = function () {
+                var t = this._model.sortie.getNextCell().no,
+                    e = this._scene.view.map.spotLayer.getSpot(t);
+                if (null != e) {
+                    e.showLine();
+                    for (var i = this._scene.resInfo.getSameSpotData(t), n = 0; n < i.length; n++) {
+                        var o = i[n].no;
+                        if (0 == n) {
+                            var r = this._model.sortie.getCellInfo(o);
+                            this._scene.view.map.spotLayer.getSpot(o).setColor(r.color)
+                        } else {
+                            this._scene.view.map.spotLayer.getSpot(o).setColor(0)
+                        }
+                    }
+                }
+                this._endTask()
             }, e
         }(o.TaskBase);
-    e.TaskAnchorageRepairEffect = s
+    e.AnimShipMove = a;
+    var _ = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._model = i, o._time = n, o
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t, e = this,
+                    i = this._scene.view.map,
+                    n = i.ship_icon,
+                    o = this._model.sortie.now_cell_no,
+                    s = (i.spotLayer.getSpot(o), this._model.sortie.getNextCell().no),
+                    a = i.spotLayer.getSpot(s),
+                    _ = this._scene.resInfo.getControlPoint(s);
+                if (null == _) t = createjs.Tween.get(n), t.to({
+                    x: a.x,
+                    y: a.y
+                }, this._time);
+                else {
+                    var l = new PIXI.Point(n.x, n.y),
+                        u = new PIXI.Point(a.x, a.y),
+                        c = r.TweenUtil.create2BezierPoints(l, _, u, this._time);
+                    t = createjs.Tween.get(n);
+                    for (var h = 0, p = c; h < p.length; h++) {
+                        var d = p[h];
+                        t.to({
+                            x: d.x,
+                            y: d.y
+                        }, d.t)
+                    }
+                }
+                t.call(function () {
+                    e._endTask()
+                })
+            }, e
+        }(o.TaskBase),
+        l = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._model = i, o._time = n, o
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._model.sortie.getNextCell().no,
+                    i = this._scene.resInfo.getAirRaidOption(e);
+                if (null == i) this._endTask();
+                else {
+                    this._scene.view.map.plane_layer.show(e, i, 2e3, this._model.sortie.map_no, this._model.sortie.area_id, function () {
+                        t._endTask()
+                    })
+                }
+            }, e
+        }(o.TaskBase)
 }

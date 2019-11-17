@@ -8,23 +8,37 @@ const function948 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "lost_mstid", {
+            return Object.defineProperty(t.prototype, "id", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_mst_id", 0)
+                    return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "lost_count", {
+            }), Object.defineProperty(t.prototype, "no", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_count", 0)
+                    return n.ObjUtil.getNumber(this._o, "api_no")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.isDentan = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_dentan", 0)
-            }, t.prototype.getUseitemMstID = function () {
-                return [-1, 31, 32, 33, 34, 2, 1, 3, 4][this.lost_mstid]
-            }, t
+            }), Object.defineProperty(t.prototype, "color", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_color_no")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "passed", {
+                get: function () {
+                    return 1 == n.ObjUtil.getNumber(this._o, "api_passed")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "distance", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_distance")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
         }();
-    e.HappeningModel = o
+    e.CellModel = o
 }

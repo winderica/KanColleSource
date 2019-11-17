@@ -19,30 +19,45 @@ const function1208 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(6),
-        s = i(244),
-        a = i(175),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._model = e, n._holder = i, n
+    var o = i(119),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._star1 = new PIXI.Sprite, e._star1.position.set(73, 42), e._star1.visible = !1, e.addChild(e._star1), e._star2 = new PIXI.Sprite, e._star2.position.set(93, 27), e._star2.visible = !1, e.addChild(e._star2), e
             }
-            return n(e, t), e.prototype._start = function () {
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.DUTY_COMMON.getTexture(42), this._star1.texture = o.DUTY_COMMON.getTexture(45), this._star2.texture = o.DUTY_COMMON.getTexture(44)
+            }, e.prototype.activate = function () {
+                null == this._t && this._wait()
+            }, e.prototype.deactivate = function () {
+                this._stopTween()
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e.prototype._wait = function () {
                 var t = this;
-                r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
-                    t._update()
+                this._stopTween(), this._t = createjs.Tween.get(null).wait(3e3 * Math.random() + 1e3).call(function () {
+                    t._wink()
                 })
-            }, e.prototype._update = function () {
-                var t = this,
-                    e = this._holder.selected_page_no,
-                    i = this._holder.selected_type;
-                new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                    t._endTask()
+            }, e.prototype._wink = function () {
+                0 == Math.floor(4 * Math.random()) ? this._anim() : this._wait()
+            }, e.prototype._anim = function () {
+                var t = this;
+                this._stopTween(), this.texture = o.DUTY_COMMON.getTexture(43), this._t = createjs.Tween.get(null).wait(150).call(function () {
+                    t.texture = o.DUTY_COMMON.getTexture(42)
+                }).wait(150).call(function () {
+                    t.texture = o.DUTY_COMMON.getTexture(43)
+                }).wait(150).call(function () {
+                    t._star1.visible = !0, t.texture = o.DUTY_COMMON.getTexture(42)
+                }).wait(100).call(function () {
+                    t._star2.visible = !0
+                }).wait(600).call(function () {
+                    t._star1.visible = !1
+                }).wait(30).call(function () {
+                    t._star2.visible = !1, t._wait()
                 })
-            }, e.prototype._endTask = function () {
-                this._model = null, this._holder = null, t.prototype._endTask.call(this)
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.texture = o.DUTY_COMMON.getTexture(42), this._star1.visible = !1, this._star2.visible = !1)
             }, e
-        }(o.TaskBase);
-    e.TaskExecutedDutySelect = _
+        }(PIXI.Sprite);
+    e.MiniChara = r
 }

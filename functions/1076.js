@@ -19,73 +19,74 @@ const function1076 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(17),
-        a = i(84),
-        _ = i(171),
-        l = i(73),
-        u = i(73),
-        c = i(73),
-        h = i(73),
-        p = i(384),
-        d = i(117),
-        f = i(117),
-        y = i(117),
-        m = i(117),
-        g = i(117),
-        v = i(117),
-        b = i(42),
-        w = function (t) {
+    var o = i(381),
+        r = i(32),
+        s = i(1077),
+        a = i(1078),
+        _ = i(1),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._selected_mode = 1, e._selected_tab_no = 0, e._onChangeTab = function (t, i) {
-                    if (1 == t) {
-                        var n = _.AlbumConst.BGM_ID_FOR_SHIP;
-                        o.default.sound.bgm.play(n)
-                    } else {
-                        var n = _.AlbumConst.BGM_ID_FOR_SLOT;
-                        o.default.sound.bgm.play(n)
-                    }
-                    e._selected_mode = t;
-                    var r = i * _.AlbumConst.COUNT_INTAB * _.AlbumConst.COUNT_INPAGE;
-                    if (e._selected_tab_no = r, e._view.tab_container.update(t, i), 0 == e._model.hasData(t, i)) {
-                        new p.AlbumAPI(t, i, e._model).start(function () {
-                            e._update(t, r)
-                        })
-                    } else e._update(t, r)
-                }, e._onChangePage = function (t) {
-                    var i = e._selected_mode;
-                    e._update(i, t)
-                }, e._onSelect = function (t) {
-                    if (t instanceof c.AlbumShipModel) {
-                        var i = new m.TaskShowShipDetail(e._over, t, e._option, e._view);
-                        i.start()
-                    } else if (t instanceof h.AlbumSlotModel) {
-                        var i = new g.TaskShowSlotDetail(e._over, t, e._view);
-                        i.start()
-                    }
-                }, e._onSwitchAlbum = function () {
-                    new v.TaskSwitchAlbumMode(e._view.album_switch_btn, e._view.tab_container).start()
-                }, e._onBack = function () {
-                    o.default.scene.change(0)
-                }, e._option = new l.AlbumSceneOptionModel, e._model = new u.AlbumModelManager, e._view = new b.MainView(e._onChangeTab, e._onChangePage, e._onSelect, e._onSwitchAlbum), e.addChild(e._view), e._over = new s.FadeBox(1, 0, 1200, 720), e._over.hide(0), e._over.visible = !1, e.addChild(e._over), e
+                return e._btn_back = new r.BackBtn, e._btn_back.position.set(0, 653), e._btn_modeInfo = new u, e._btn_modeInfo.position.set(0, 205), e._btn_modeRanking = new u, e._btn_modeRanking.position.set(0, 261), e._isModeChanging = !1, e._disposed = !1, e
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new d.TaskScenePreInitialize(t, this._model, this._view, this._onBack)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new f.TaskSceneInitialize(t, this._view)
-            }, e.prototype.getFinalizeTask = function () {
-                return a.TaskLoadBase.abortAll(), new y.TaskSceneFinalize(this._view)
-            }, e.prototype._update = function (t, e) {
-                a.TaskLoadBase.abortAll();
-                var i = _.AlbumConst.COUNT_INPAGE,
-                    n = this._model.getData(t, e, i),
-                    o = this._selected_tab_no;
-                this._view.pager.update(o, e);
-                var r = this._view.content;
-                r.deactivate(), r.update(t, e, n), r.activate()
+            return n(e, t), Object.defineProperty(e.prototype, "btn_back", {
+                get: function () {
+                    return this._btn_back
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_modeInfo", {
+                get: function () {
+                    return this._btn_modeInfo
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_modeRanking", {
+                get: function () {
+                    return this._btn_modeRanking
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "sideMenu_light1", {
+                get: function () {
+                    return this._sideMenu_light1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(o.RECORD_MENU.getTexture(0));
+                this.addChild(t), this._btn_back.initialize(), this._btn_back.activate(), this._btn_modeInfo.initialize(4, 6), this._btn_modeRanking.initialize(1, 3), this._sideMenu_light1 = new PIXI.Sprite(o.RECORD_MENU.getTexture(5)), this._sideMenu_light1.position.set(this._btn_modeInfo.position.x, this._btn_modeInfo.position.y), this.sideMenu_light_blink(), this._kira = new s.RecordKiraLayer, this._kira.scale.set(1, 1), this._kira.position.set(132, 528), this._kira.initialize(), this._medalist = new a.RecordMiniChara, this._medalist.scale.set(1, 1), this._medalist.position.set(-21, 433), this._medalist.initialize(), this._medalist.activate(), this.addChild(this._btn_back), this.addChild(this._btn_modeInfo), this.addChild(this._btn_modeRanking), this.addChild(this._sideMenu_light1), this.addChild(this._medalist), this.addChild(this._kira)
+            }, e.prototype.sideMenu_light_blink = function () {
+                var t = this;
+                this._t = createjs.Tween.get(this._sideMenu_light1).to({
+                    alpha: 0
+                }, 1).to({
+                    alpha: 1
+                }, 2500, createjs.Ease.quadOut).to({
+                    alpha: 0
+                }, 2499, createjs.Ease.quadIn).call(function () {
+                    t._t = null, t._disposed || t.sideMenu_light_blink()
+                })
+            }, e.prototype.dispose = function () {
+                this._disposed = !0, this._medalist.dispose(), this._medalist = null, this._kira.dispose(), this._kira = null, this._btn_back.dispose(), this._btn_modeInfo.dispose(), this._btn_modeRanking.dispose(), this.removeChildren()
             }, e
-        }(r.SceneBase);
-    e.AlbumScene = w
+        }(PIXI.Container);
+    e.ViewTop = l;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._setTexture(e._texture_no_on)
+            }, e._onMouseOut = function () {
+                e._setTexture(e._texture_no)
+            }, e
+        }
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._texture_no = t, this._texture_no_on = e, this._setTexture(this._texture_no), null != this._texture_no_on && (this.interactive = this.buttonMode = !0, this.on(_.EventType.MOUSEOVER, this._onMouseOver), this.on(_.EventType.MOUSEOUT, this._onMouseOut))
+        }, e.prototype.dispose = function () {
+            this.interactive = this.buttonMode = !1, this.off(_.EventType.MOUSEOVER, this._onMouseOver), this.off(_.EventType.MOUSEOUT, this._onMouseOut)
+        }, e.prototype._setTexture = function (t) {
+            this.texture = o.RECORD_MENU.getTexture(t)
+        }, e
+    }(PIXI.Sprite)
 }

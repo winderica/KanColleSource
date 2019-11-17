@@ -19,22 +19,31 @@ const function563 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(8),
-        r = i(564),
-        s = function (t) {
+    var o = i(0),
+        r = i(276),
+        s = i(277),
+        a = function (t) {
             function e() {
-                var e = t.call(this, 1, 0) || this;
-                return e._pukapuka = new r.Pukapuka, e._pukapuka.position.set(600, 360), e.addChild(e._pukapuka), e
+                return t.call(this) || this
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._pukapuka.initialize()
-            }, e.prototype.activate = function () {
-                this._pukapuka.activate()
-            }, e.prototype.deactivate = function () {
-                this._pukapuka.deactivate()
+                var t = o.default.resources.getUIImage("title_bg1");
+                this._bg = new PIXI.Sprite(t), this._parts_layer = new PIXI.Container, this._logo = new PIXI.Sprite(r.TITLE_MAIN.getTexture(3)), this._logo.scale.set(.6, .6), this._logo.anchor.set(.5, .5), this._logo.position.set(234, 264), this._kira = new s.KiraLayer, this._kira.scale.set(.6, .6), this._kira.position.set(144, 183), this._kira.initialize(), this._bar = new PIXI.Graphics, this._bar.beginFill(2466210), this._bar.drawRect(0, 0, 960, 30), this._bar.endFill(), this._bar.position.set(120, 663), this._bar.scale.x = 0, this._bar_frame = new PIXI.Graphics, this._bar_frame.lineStyle(3, 16777215), this._bar_frame.drawRect(0, 0, 960, 30), this._bar_frame.endFill(), this._bar_frame.position.set(120, 663), this.addChild(this._bg), this._parts_layer.addChild(this._logo), this._parts_layer.addChild(this._kira), this._parts_layer.addChild(this._bar), this._parts_layer.addChild(this._bar_frame), this.addChild(this._parts_layer)
             }, e.prototype.dispose = function () {
-                this._pukapuka.dispose()
+                this._kira.dispose()
+            }, e.prototype.setProgress = function (t) {
+                this._bar.scale.x = t / 100
+            }, e.prototype.hideTween = function (t) {
+                var e = createjs.Tween.get(this._bg).to({
+                        alpha: 0
+                    }, 300),
+                    i = createjs.Tween.get(this._parts_layer).to({
+                        alpha: 0
+                    }, 100);
+                (e.duration >= i.duration ? e : i).call(function () {
+                    t()
+                })
             }, e
-        }(o.AreaBox);
-    e.PukapukaLayer = s
+        }(PIXI.Container);
+    e.TitleView1 = a
 }

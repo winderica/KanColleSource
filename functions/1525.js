@@ -19,54 +19,44 @@ const function1525 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(1526),
-        s = i(1529),
-        a = i(1531),
+    var o = i(18),
+        r = i(24),
+        s = i(31),
+        a = i(41),
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._banners_f = new r.BannerSet, e._banners_f.position.set(348, 216), e._info_f = new s.BannerInfoFriendCanvas, e._info_f.position.set(141, 216), e._banners_e = new r.BannerSet, e._banners_e.position.set(614, 216), e._info_e = new a.BannerInfoEnemyCanvas, e._info_e.position.set(867, 216), e.addChild(e._banners_f), e.addChild(e._banners_e), e.addChild(e._info_f), e.addChild(e._info_e), e
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "banners_f", {
-                get: function () {
-                    return this._banners_f
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "info_f", {
-                get: function () {
-                    return this._info_f
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "banners_e", {
-                get: function () {
-                    return this._banners_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "info_e", {
-                get: function () {
-                    return this._info_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._banners_f.dispose(), this._banners_f = null, this._info_f.dispose(), this._info_f = null, this._banners_e.dispose(), this._banners_e = null, this._info_e.dispose(), this._info_e = null
-            }, e.prototype.createSlideOutEnemyTweens = function (t, e) {
-                var i = this,
-                    n = o.default.width - this._banners_e.x;
-                return [createjs.Tween.get(this._banners_e).wait(e).to({
-                    x: this._banners_e.x + n
-                }, t).call(function () {
-                    i._banners_e.dispose()
-                }), createjs.Tween.get(this._info_e).wait(e).to({
-                    x: this._info_e.x + n
-                }, t).call(function () {
-                    i._info_e.dispose()
-                })]
+            return n(e, t), e.prototype.initialize = function (t) {
+                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
+                else switch (t) {
+                    case 1:
+                        this._img.texture = s.SALLY_COMMON.getTexture(1);
+                        break;
+                    case 2:
+                        this._img.texture = s.SALLY_COMMON.getTexture(3);
+                        break;
+                    case 3:
+                        this._img.texture = s.SALLY_COMMON.getTexture(5);
+                        break;
+                    case 4:
+                        this._img.texture = s.SALLY_COMMON.getTexture(9);
+                        break;
+                    case 5:
+                        this._img.texture = s.SALLY_COMMON.getTexture(11);
+                        break;
+                    case 6:
+                        this._img.texture = s.SALLY_COMMON.getTexture(13);
+                        break;
+                    case 7:
+                        this._img.texture = s.SALLY_COMMON.getTexture(7);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
+                }
+                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e
-        }(PIXI.Container);
-    e.LayerBanner = _
+        }(r.Container);
+    e.AreaIcon = _
 }

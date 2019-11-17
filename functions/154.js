@@ -19,37 +19,57 @@ const function154 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
+    var o = i(2),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._ground = !1, e
+            function e(i) {
+                var n = t.call(this) || this;
+                return n._aborted = !1, n._sprite = i, null == e._queue && (e._queue = []), n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._ground = t
-            }, e.prototype.setDamagedIcon = function (t) {
-                if (25 == t) {
-                    var e = this._ground ? 107 : 109;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else if (50 == t) {
-                    var e = this._ground ? 106 : 99;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else if (75 == t) {
-                    var e = this._ground ? 104 : 105;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else if (0 == t) {
-                    var e = this._ground ? 103 : 102;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else this.clear()
-            }, e.prototype.setExpeditionIcon = function () {
-                this.texture = o.COMMON_MISC.getTexture(100), this.visible = !0
-            }, e.prototype.setRepairIcon = function () {
-                this.texture = o.COMMON_MISC.getTexture(108), this.visible = !0
-            }, e.prototype.setTaihiIcon = function () {
-                this.texture = o.COMMON_MISC.getTexture(110), this.visible = !0
-            }, e.prototype.clear = function () {
-                this.texture = PIXI.Texture.EMPTY, this.visible = !1
-            }, e
-        }(PIXI.Sprite);
-    e.BannerIcon = r
+            return n(e, t), e.abortAll = function () {
+                e._queue = [], null != e._current && (e._current._abort(), e._current = null)
+            }, e.abortBy = function (t) {
+                if (null != t) {
+                    if (null != e._queue) {
+                        for (var i = [], n = 0, o = e._queue; n < o.length; n++) {
+                            var r = o[n];
+                            0 == r._isChildElement(t) ? i.push(r) : r._log("discard")
+                        }
+                        e._queue = i
+                    }
+                    if (null != e._current) {
+                        var s = e._current;
+                        1 == s._isChildElement(t) && (s._log("stop(current)"), s._abort(), e._current = null)
+                    }
+                }
+            }, e.prototype.start = function () {
+                if (null == e._current) e._current = this, this._start();
+                else {
+                    for (var t = [], i = 0, n = e._queue; i < n.length; i++) {
+                        var o = n[i];
+                        o._sprite != this._sprite ? t.push(o) : o._log("discard(same sprite)")
+                    }
+                    e._queue = t, e._queue.push(this);
+                    var r = e._current;
+                    r._sprite == this._sprite && (r._sprite = null)
+                }
+            }, e.prototype._abort = function () {
+                this._aborted = !0, this._endTask()
+            }, e.prototype._endTask = function () {
+                this._sprite = null, t.prototype._endTask.call(this)
+            }, e.prototype._completedEnd = function () {
+                t.prototype._completedEnd.call(this), 0 == this._aborted && this._next()
+            }, e.prototype._failedEnd = function () {
+                t.prototype._failedEnd.call(this), 0 == this._aborted && this._next()
+            }, e.prototype._next = function () {
+                if (e._current = null, 0 != e._queue.length) {
+                    var t = e._queue.shift();
+                    e._current = t, t._start()
+                }
+            }, e.prototype._isChildElement = function (t) {
+                if (null == this._sprite) return !1;
+                for (var e = this._sprite; null != e && e != t;) e = e.parent;
+                return null != e
+            }, e._current = null, e._queue = null, e
+        }(o.TaskBase);
+    e.TaskLoadBase = r
 }

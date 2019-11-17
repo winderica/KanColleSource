@@ -20,38 +20,55 @@ const function1363 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(62),
-        s = i(16),
+        r = i(12),
+        s = i(182),
         a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
+                return i._ready2 = function () {
+                    i._gray = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(7)), i._gray.anchor.set(.5), i._gray.position.set(600, 300), i._gray.alpha = 0, i._gray_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(5)), i._gray_lost.anchor.set(.5), i._gray_lost.position.set(600, 420), i._gray_lost.alpha = 0, i._hideText()
+                }, i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
+                this._ready()
+            }, e.prototype._ready = function () {
+                this._blue = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(6)), this._blue.anchor.set(.5), this._blue.scale.set(.58), this._blue.position.set(600, 330), this._blue.alpha = 0, this._blue_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(4)), this._blue_lost.anchor.set(.5), this._blue_lost.scale.set(.58), this._blue_lost.position.set(600, 390), this._blue_lost.alpha = 0, this._showText()
+            }, e.prototype._showText = function () {
+                this._layer.addChild(this._blue), this._layer.addChild(this._blue_lost), createjs.Tween.get(this._blue).to({
+                    y: 300,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 300), createjs.Tween.get(this._blue_lost).to({
+                    y: 420,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 300).wait(500).call(this._ready2)
+            }, e.prototype._hideText = function () {
                 var t = this;
-                this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
+                this._layer.addChild(this._gray), this._layer.addChild(this._gray_lost), createjs.Tween.get(this._gray).to({
                     alpha: 1
-                }, 100).to({
-                    x: this._smoke1.x - 4,
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({
+                }, 500).call(function () {
+                    t._layer.removeChild(t._blue)
+                }).wait(500).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._gray)
+                }), createjs.Tween.get(this._gray_lost).to({
                     alpha: 1
-                }, 100).to({
-                    x: this._smoke2.x - 4,
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 700);
-                var e = [s.BATTLE_MAIN.getTexture(86), s.BATTLE_MAIN.getTexture(87), s.BATTLE_MAIN.getTexture(88), s.BATTLE_MAIN.getTexture(89), s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107)],
-                    i = new PIXI.extras.AnimatedSprite(e);
-                i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
-                    i.play(), i.onComplete = function () {
-                        i.onComplete = null, t._layer.removeChild(i), t._endTask()
-                    }
+                }, 500).call(function () {
+                    t._layer.removeChild(t._blue_lost)
+                }).wait(500).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._gray_lost)
+                }).wait(500).call(function () {
+                    t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._blue = null, this._blue_lost = null, this._gray = null, this._gray_lost = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.AnimAntiAircraftSanshikidan2 = a
+    e.TaskGouchinCutinText = a
 }

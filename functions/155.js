@@ -19,16 +19,32 @@ const function155 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
+    var o = i(0),
+        r = i(14),
+        s = function (t) {
             function e() {
                 return t.call(this) || this
             }
-            return n(e, t), e.prototype.update = function (t) {
-                25 == t ? (this.texture = o.COMMON_MISC.getTexture(98), this.visible = !0) : 50 == t ? (this.texture = o.COMMON_MISC.getTexture(96), this.visible = !0) : 75 == t ? (this.texture = o.COMMON_MISC.getTexture(97), this.visible = !0) : this.clear()
-            }, e.prototype.clear = function () {
-                this.texture = PIXI.Texture.EMPTY, this.visible = !1
+            return n(e, t), e.prototype.setDay = function (t) {
+                this._load("bg_h", t)
+            }, e.prototype.setNight = function (t) {
+                this._load("bg_y", t)
+            }, e.prototype.dispose = function () {
+                this._loader = null
+            }, e.prototype._load = function (t, e) {
+                var i = this,
+                    n = r.UIImageLoader.getVersion("map");
+                n = n ? "?version=" + n : "";
+                var s = o.default.settings.path_root + "img/common/bg_map/" + t + ".png" + n;
+                if (null != PIXI.utils.TextureCache[s] && (this.texture = PIXI.utils.TextureCache[s], null != e)) return void e();
+                this._loader = new PIXI.loaders.Loader, this._loader.add(s), this._loader.load(function (t) {
+                    if (i._loader == t) {
+                        i._loader = null;
+                        var n = t.resources[s];
+                        i.texture = n.texture, null != e && e()
+                    }
+                })
             }, e
         }(PIXI.Sprite);
-    e.BannerSoot = r
+    e.MapBG = s
 }

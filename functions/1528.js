@@ -19,49 +19,45 @@ const function1528 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(36),
-        r = function (t) {
+    var o = i(235),
+        r = i(24),
+        s = i(28),
+        a = i(1529),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._coin = new PIXI.Sprite, e._coin.anchor.set(.5), e._coin_white = new PIXI.Sprite, e._coin_white.anchor.set(.5), e._coin_white.alpha = 0, e._p1 = new s, e._p1.position.set(-14, -14), e._p2 = new s, e._p2.position.set(14, 14), e.addChild(e._coin), e.addChild(e._coin_white), e.addChild(e._p1), e.addChild(e._p2), e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._coin.texture = o.BATTLE_RESULT_MAIN.getTexture(13), this._coin_white.texture = o.BATTLE_RESULT_MAIN.getTexture(14), this._p1.initialize(), this._p2.initialize()
-            }, e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._coin_white).wait(166).to({
-                    alpha: 1
-                }, 166).to({
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(e, i), this.addChild(this._gauge)
+            }, e.prototype.update = function (t, e) {
+                if (null == this._gauge) return null;
+                this._gauge.update(t, e)
+            }, e.prototype.explode = function (t) {
+                var e = this,
+                    i = new s.ParallelTask,
+                    n = new a.TaskExplosion(this, 107, 20);
+                i.add(n);
+                var o = new a.TaskExplosion(this, 209, 57, 250);
+                i.add(o);
+                var r = new a.TaskExplosion(this, 309, 24, 450);
+                i.add(r), i.start(function () {
+                    null != t && t()
+                }), createjs.Tween.get(this._gauge).wait(200).to({
                     alpha: 0
-                }, 333), this._t.loop = !0, this._p1.activate(), this._p2.activate())
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._p1.deactivate(), this._p2.deactivate())
-            }, e.prototype.dispose = function () {
-                this.deactivate()
+                }, 400).call(function () {
+                    e.removeChild(e._gauge), e._gauge = null
+                })
+            }, e.prototype.changeNextGauge = function (t, e) {
+                null != this._gauge && (null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(100, 100), this._gauge.x = -this._gauge.width / 2, this._gauge.y = -this._gauge.height / 2;
+                var i = new r.Container;
+                i.x = this._gauge.width / 2, i.y = this._gauge.height / 2, i.scale.set(1.6), i.alpha = 0, this.addChild(i), i.addChild(this._gauge), createjs.Tween.get(i).wait(1e3).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 750, createjs.Ease.quartInOut).wait(1500).call(function () {
+                    null != e && e()
+                })
             }, e
         }(PIXI.Container);
-    e.MVPCoin = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._activated = !1, e.scale.y = 0, e._content = new PIXI.Sprite, e._content.anchor.set(.5), e._content.scale.set(.1), e._content.rotation = Math.PI / 4, e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._content.texture = o.BATTLE_RESULT_MAIN.getTexture(10)
-        }, e.prototype.activate = function () {
-            1 != this._activated && (this._activated = !0, this._anim())
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype._anim = function () {
-            var t = this;
-            null == this._t && (this._t = createjs.Tween.get(this.scale).call(function () {
-                t.rotation = (Math.random() < .5 ? 1 : -1) * Math.PI / 4
-            }).wait(200 + 800 * Math.random()).to({
-                y: 1
-            }, 300, createjs.Ease.cubicOut).to({
-                y: 0
-            }, 300, createjs.Ease.cubicIn).call(function () {
-                t._t = null, t._anim()
-            }))
-        }, e
-    }(PIXI.Container)
+    e.ResultDialogGauge = _
 }

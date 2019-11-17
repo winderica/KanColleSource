@@ -20,59 +20,93 @@ const function1128 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(92),
-        s = i(33),
-        a = i(93),
-        _ = i(1129),
-        l = function (t) {
+        r = i(2),
+        s = i(17),
+        a = i(34),
+        _ = i(171),
+        l = i(130),
+        u = i(106),
+        c = i(162),
+        h = i(202),
+        p = i(6),
+        d = i(404),
+        f = i(1132),
+        y = i(1134),
+        m = i(1139),
+        g = i(1143),
+        v = i(1147),
+        b = i(1151),
+        w = i(1155),
+        x = i(1165),
+        I = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._selected_exchange_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI(t)
-                }, n._layer = e, n._target = i, n
+                return n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                this._dialog = new _.FBoxUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
-                })
-            }, e.prototype._connectAPI = function (t) {
-                var e = this,
-                    i = this._target.mstID,
-                    n = (o.default.view.overLayer, new r.UseItemUseAPI(i, !1, t)),
-                    s = n.result;
-                n.start(function () {
-                    1 == s.hasCaution() ? e._hideDialog(!0) : (e._result = s, e._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return null != this._api_result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                if (null == this._target) return void this._endTask();
+                this._fade = new s.FadeBox(.6), this._fade.hide(0), this._startTask()
+            }, e.prototype._startTask = function () {
+                var t, e = this._target.mstID;
+                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target);
+                else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target);
+                else if (60 == e) t = new m.TaskUsePresentBox(this._fade, this._target);
+                else if (61 == e) t = new g.TaskUseKouMedal(this._fade, this._target);
+                else if (62 == e) t = new v.TaskUseHishimochi(this._fade, this._target);
+                else if (63 == e) {
+                    var i = o.default.model.const.quest_max,
+                        n = o.default.model.basic.getDutyExecutableCount();
+                    n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
+                } else 68 == e ? t = new b.TaskUseSanma(this._fade, this._target) : 72 == e || (80 == e ? t = new w.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || 90 == e || (t = 93 == e ? new x.TaskUseIwashi(this._fade, this._target) : new d.TaskUseNormalItem(this._fade, this._target)));
+                null != t ? this._showFade(t) : this._endTask()
+            }, e.prototype._showFade = function (t) {
                 var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                this._layer.addChild(this._fade), this._fade.show(200, function () {
+                    t.start(function () {
+                        e._api_result = t.result, e._updateData()
+                    })
                 })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._selected_exchange_type,
-                    n = this._layer,
-                    o = new a.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new r.UseItemUseAPI(e, !0, i),
-                            s = n.result;
-                        n.start(function () {
-                            t._result = s, t._endTask()
-                        })
-                    } else t._endTask()
+            }, e.prototype._updateData = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                if (63 == this._target.mstID) {
+                    var e = o.default.model.basic.getDutyExecutableCount();
+                    o.default.model.basic.setDutyExcutableCount(e + 1)
+                } else if (68 == this._target.mstID || 93 == this._target.mstID) {
+                    var i = o.default.model.deck.get(1).getShipModel(0);
+                    o.default.sound.voice.play(i.mstID.toString(), 26)
+                }
+                var n = new a.APIConnector;
+                if (n.add(new u.UseItemAPI), this._api_result.hasMaterialReward() && n.add(new _.MaterialAPI), this._api_result.hasCoinReward() && n.add(new c.UserDataAPI), this._api_result.hasSlotitemReward()) {
+                    var r = this._api_result.getSlotitemObjects();
+                    o.default.model.slot.addMemData(r), n.add(new l.UnsetSlotAPI)
+                }
+                n.start(function () {
+                    o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo(), t._showReward()
+                })
+            }, e.prototype._showReward = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                var e = this._api_result.rewards;
+                if (null == e || 0 == e.length) return void this._hideFade();
+                var i = o.default.view.overLayer;
+                new h.TaskReward(i, e).start(function () {
+                    t._hideFade()
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._fade.hide(150, function () {
+                    t._layer.removeChild(t._fade), t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+                this._layer = null, this._target = null, this._fade = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseFurnitureBox = l
+        }(r.TaskBase);
+    e.TaskUseItem = I
 }

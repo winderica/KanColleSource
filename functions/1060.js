@@ -19,56 +19,35 @@ const function1060 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(1061),
-        a = i(1063),
-        _ = i(1064),
-        l = i(1071),
-        u = i(1074),
-        c = i(1075),
-        h = function (t) {
+    var o = i(153),
+        r = i(58),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._dispose = function () {
-                    null != e._viewTop && (e.removeChild(e._viewTop), e._viewTop.dispose(), e._viewTop = null, e._viewInfo.dispose(), e._viewInfo = null, e._viewRanking.dispose(), e._viewRanking = null), null != e._topTask && e._topTask.cancel(), null != e._viewSub && (e.removeChild(e._viewSub), e._viewSub.dispose(), e._viewSub = null)
-                }, e
+                e._drums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
-                get: function () {
-                    return this._viewTop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "viewInfo", {
-                get: function () {
-                    return this._viewInfo
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "viewRanking", {
-                get: function () {
-                    return this._viewRanking
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPreInitializeTask = function (t) {
-                return new s.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new s.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return new a.PreFinalizeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new a.FinalizeTask(this._dispose)
-            }, e.prototype.initialize = function () {
-                this._viewTop = new l.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewInfo = new u.ViewInfo, this._viewInfo.initialize(), this.addChild(this._viewInfo), this._viewRanking = new c.ViewRanking, this._viewRanking.initialize(), this._viewRanking.visible = !1, this.addChild(this._viewRanking)
-            }, e.prototype.startTopTask = function () {
-                var t = this,
-                    e = o.default.model.deck.get(1).getShipList()[0].mstID;
-                o.default.sound.voice.play(e.toString(), 8), this._topTask = new _.TaskTop(this), this._topTask.start(function () {
-                    t._topTask = null
-                })
+            return n(e, t), e.prototype.initialize = function () {
+                this.update(0);
+                for (var t = 0, e = this._drums; t < e.length; t++) {
+                    e[t].texture = r.SALLY_EXPEDITION.getTexture(68)
+                }
+            }, e.prototype.update = function (t) {
+                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+            }, e.prototype._updateFromShipModel = function (t) {
+                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    null != r && (75 == r.mstID && e++)
+                }
+                var s = t.getSlotitemEx();
+                null != s && 75 == s.mstID && e++, this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
             }, e
-        }(r.SceneBase);
-    e.RecordScene = h
+        }(PIXI.Container);
+    e.CompDrumCount = s
 }

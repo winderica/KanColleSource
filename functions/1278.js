@@ -19,121 +19,100 @@ const function1278 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(126),
-        r = i(176),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enabled = !1, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._btn = new _, e._btn.position.set(17, 143), e.addChild(e._btn), e
+    var o = i(2),
+        r = i(6),
+        s = i(19),
+        a = i(1),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onSelect = function (t) {
+                    n._scene.user_select.ration = 1 == t ? 1 : 0, n._hideConfirmDialog()
+                }, n._scene = e, n._model = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+            return n(e, t), e.prototype._start = function () {
+                1 == this._model.sortie.getNextCell().isUsableRation() ? this._showConfirmDialog() : (this._scene.user_select.ration = -1, this._endTask())
+            }, e.prototype._showConfirmDialog = function () {
+                var t = this,
+                    e = this._model.sortie.now_cell_no,
+                    i = this._scene.resInfo.getRationConfirmOffset(e),
+                    n = this._scene.view.map.ship_icon;
+                this._confirm = new l(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
+                    y: n.y,
+                    alpha: 1
+                }, 300).call(function () {
+                    t._confirm.activate()
+                })
+            }, e.prototype._hideConfirmDialog = function () {
+                var t = this;
+                this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._confirm.btn_no).to({
+                    alpha: 0
+                }, 200);
+                var e = this._confirm.y;
+                createjs.Tween.get(this._confirm).wait(200).to({
+                    y: e,
+                    alpha: 0
+                }, 300).call(function () {
+                    t._scene.view.universal_layer.removeChild(t._confirm), t._confirm.dispose(), t._endTask()
+                })
+            }, e
+        }(o.TaskBase);
+    e.TaskConfirmRation = _;
+    var l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClickYes = function () {
+                    null != n._cb_onSelect && n._cb_onSelect(!0)
+                }, n._onClickNo = function () {
+                    null != n._cb_onSelect && n._cb_onSelect(!1)
+                }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new u(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new u(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e && (n._box.x += e[0].x, n._box.y += e[0].y, n._beak.x += e[0].x, n._beak.y += e[0].y, n._btn_yes.x += e[1].x, n._btn_yes.y += e[1].y, n._btn_no.x += e[1].x, n._btn_no.y += e[1].y), n
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
                 get: function () {
-                    return this._enabled
+                    return this._btn_yes
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._bg.texture = this._getTexture(t, e), this._enabled = !(13 == e && i < 5) && !(14 == e && i < 4), 1 == this._enabled ? this._btn.initialize(e, n) : this.visible = !1
+            }), Object.defineProperty(e.prototype, "btn_no", {
+                get: function () {
+                    return this._btn_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._box.texture = s.MAP_COMMON.getTexture(76), this._beak.texture = s.MAP_COMMON.getTexture(77);
+                var t = s.MAP_COMMON.getTexture(104),
+                    e = s.MAP_COMMON.getTexture(106);
+                this._btn_yes.initialize(t, e), t = s.MAP_COMMON.getTexture(85), e = s.MAP_COMMON.getTexture(86), this._btn_no.initialize(t, e)
             }, e.prototype.activate = function () {
-                1 == this._enabled && this._btn.activate()
+                this._btn_yes.activate(), this._btn_no.activate()
             }, e.prototype.deactivate = function () {
-                this._btn.deactivate()
+                this._btn_yes.deactivate(), this._btn_no.deactivate()
             }, e.prototype.dispose = function () {
-                this._btn.dispose()
-            }, e.prototype._getTexture = function (t, e) {
-                switch (t) {
-                    case 1:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(14);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(15);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(16);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(17)
-                        }
-                        break;
-                    case 2:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(34);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(35);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(36);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(37)
-                        }
-                        break;
-                    case 3:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(39);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(40);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(41);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(42)
-                        }
-                }
-                return PIXI.Texture.EMPTY
+                this._btn_yes.dispose(), this._btn_no.dispose()
             }, e
-        }(PIXI.Container);
-    e.FormationBoxCombined = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e._update(!0)
-            }, e._onMouseOut = function () {
-                e._update(!1)
-            }, e._onClick = function () {
-                null != e._cb_onClick && e._cb_onClick(e._type)
-            }, e.interactive = !0, e
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._type = t, this._cb_onClick = e, this._update(!1)
-        }, e.prototype.activate = function () {
-            if (1 != this.buttonMode) {
-                this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick);
-                var t = o.InteractiveUtil.isOnMouse(this);
-                this._update(t)
+        }(PIXI.Container),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    r.SE.play("225"), i._over.alpha = 1
+                }, i._onMouseOut = function () {
+                    i._over.alpha = 0
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
             }
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            1 == this.buttonMode && this.deactivate(), this._cb_onClick = null
-        }, e.prototype._update = function (t) {
-            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
-        }, e.prototype._getTexture = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(19);
-                case 12:
-                    return r.SALLY_JIN.getTexture(21);
-                case 13:
-                    return r.SALLY_JIN.getTexture(23);
-                case 14:
-                    return r.SALLY_JIN.getTexture(25);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-        }, e.prototype._getTextureOn = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(20);
-                case 12:
-                    return r.SALLY_JIN.getTexture(22);
-                case 13:
-                    return r.SALLY_JIN.getTexture(24);
-                case 14:
-                    return r.SALLY_JIN.getTexture(26);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-        }, e
-    }(PIXI.Sprite)
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e
+        }(PIXI.Container)
 }

@@ -5,8 +5,8 @@ const function178 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("battle_night_" + t)
+            return PIXI.Texture.fromFrame("sally_jin_" + t)
         }
         t.getTexture = e
-    }(e.BATTLE_NIGHT || (e.BATTLE_NIGHT = {}))
+    }(e.SALLY_JIN || (e.SALLY_JIN = {}))
 }

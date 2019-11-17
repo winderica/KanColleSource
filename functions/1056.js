@@ -19,47 +19,28 @@ const function1056 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(58),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._icons = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new PIXI.Sprite;
-                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
-                }
-                return e
+    var o = i(362),
+        r = i(1057),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this, e) || this;
+                return i._panel = new r.PanelDeckSelect(i._onGo), i._panel.position.set(1200, 102), i.addChild(i._panel), i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0; t < this._icons.length; t++) {
-                    this._icons[t].visible = !1
-                }
-            }, e.prototype.update = function (t) {
-                var e = [];
-                if (null != t) {
-                    var i = t.getSlotitems();
-                    i = i.concat(t.getSlotitemEx());
-                    for (var n = 0, o = i; n < o.length; n++) {
-                        var r = o[n];
-                        if (null != r) {
-                            var s = r.equipType;
-                            if (24 == s) {
-                                355 != r.mstID && e.push(r)
-                            } else 46 == s && e.push(r)
-                        }
-                    }
-                }
-                this._update(e)
-            }, e.prototype._update = function (t) {
-                for (var e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e];
-                    if (e >= t.length) i.visible = !1;
-                    else {
-                        var n = t[e].equipType;
-                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(64) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
-                    }
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "panel", {
+                get: function () {
+                    return this._panel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._panel.initialize(t, e, i)
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this), this._panel.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this), this._panel.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._panel.dispose()
             }, e
-        }(PIXI.Container);
-    e.CompSupportBoatCount = r
+        }(o.ContainerDeckSelectBase);
+    e.ContainerDeckSelect = s
 }

@@ -3,48 +3,67 @@ const function535 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(7),
-        r = function () {
+    var n = i(7),
+        o = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mstID", {
+            return Object.defineProperty(t.prototype, "required_level", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_id")
+                    return n.ObjUtil.getNumber(this._o, "api_upgrade_level")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
+            }), Object.defineProperty(t.prototype, "mst_id_before", {
                 get: function () {
-                    return o.ObjUtil.getString(this._o, "api_name")
+                    return n.ObjUtil.getNumber(this._o, "api_current_ship_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "description", {
+            }), Object.defineProperty(t.prototype, "mst_id_after", {
                 get: function () {
-                    var t = o.ObjUtil.getStrArray(this._o, "api_description");
-                    return null != t && t.length > 0 ? t[0] : ""
+                    return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
+            }), Object.defineProperty(t.prototype, "blueprint", {
                 get: function () {
-                    return 44 == this.mstID ? n.default.model.basic.getCoinCount() : o.ObjUtil.getNumber(this._o, "api_count")
+                    return n.ObjUtil.getNumber(this._o, "api_drawing_count")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.isUsable = function () {
-                return 4 == this._use_type
-            }, t.prototype.__setCount__ = function (t) {
-                44 == this.mstID ? n.default.model.basic.setCoinCount(t) : this._o.api_count = t
-            }, Object.defineProperty(t.prototype, "_use_type", {
+            }), Object.defineProperty(t.prototype, "catapult", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_usetype")
+                    return n.ObjUtil.getNumber(this._o, "api_catapult_count")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "battlereport", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_report_count")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "newhokohesosizai", {
+                get: function () {
+                    switch (this.mst_id_after) {
+                        case 546:
+                            return 3;
+                        case 591:
+                            return 2;
+                        default:
+                            return 0
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "newkokuhesosizai", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_aviation_mat_count")
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.UseItemModel = r
+    e.ShipUpgradeModel = o
 }

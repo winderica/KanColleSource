@@ -19,45 +19,53 @@ const function765 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(766),
-        a = i(310),
-        _ = i(212),
-        l = i(313),
-        u = i(312),
-        c = i(71),
-        h = i(131),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.phasePreInitialize = function () {
-                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
-                }, i._scene = e, i
+    var o = i(9),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.DURATION = 1 / 30 * 1e3, e.MOVE_ROTATION = Math.PI / 180 * 20.4, e.MOVE_X = 36;
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(19)),
+                    n = new PIXI.Sprite(o.COMMON_MISC.getTexture(19)),
+                    r = new PIXI.Sprite(o.COMMON_MISC.getTexture(12));
+                i.pivot.set(i.width, i.height), i.rotation = Math.PI / 180 * 180, n.x = i.width, r.y = 3, e._shutterWidth = i.width;
+                var s = new PIXI.Graphics;
+                s.beginFill(10798649, .5), s.drawRect(0, 0, 201.45, 180), s.pivot.set(s.width, 0), s.position.set(i.width + 3, -77);
+                var a = new PIXI.Graphics;
+                return a.beginFill(5978566, .5), a.drawRect(0, 0, 201.45, 180), a.pivot.set(0, 0), a.position.set(n.width, -77), i.mask = s, n.mask = a, e.addChild(i, n, s, a, r), e._leftFloor = i, e._rightFloor = n, e._leftFloorMask = s, e._rightFloorMask = a, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this;
-                (new s.TaskLoadResourcesRemodel).start(function () {
-                    t._uploadToGPU()
-                })
-            }, e.prototype._uploadToGPU = function () {
-                var t, e = this;
-                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                        t = u.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                            t = l.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                        e.phasePreInitialize()
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
+            return n(e, t), e.prototype.__stop__ = function () {
+                createjs.Tween.removeTweens(this._leftFloorMask), createjs.Tween.removeTweens(this._rightFloorMask)
+            }, e.prototype.open = function (t) {
+                this.__stop__();
+                var e = 9 * this.DURATION,
+                    i = 0,
+                    n = function () {
+                        2 === ++i && t()
+                    };
+                createjs.Tween.get(this._leftFloorMask).to({
+                    rotation: this.MOVE_ROTATION,
+                    x: this._shutterWidth - this.MOVE_X
+                }, e).call(n), createjs.Tween.get(this._rightFloorMask).to({
+                    rotation: -this.MOVE_ROTATION,
+                    x: this._shutterWidth + this.MOVE_X
+                }, e).call(n)
+            }, e.prototype.close = function (t) {
+                this.__stop__();
+                var e = 9 * this.DURATION,
+                    i = 0,
+                    n = function () {
+                        2 === ++i && t()
+                    };
+                createjs.Tween.get(this._leftFloorMask).to({
+                    rotation: 0,
+                    x: this._shutterWidth
+                }, e).call(n), createjs.Tween.get(this._rightFloorMask).to({
+                    rotation: 0,
+                    x: this._shutterWidth
+                }, e).call(n)
+            }, e.prototype.dispose = function () {
+                this.__stop__(), this._leftFloor.texture = PIXI.Texture.EMPTY, this._rightFloor.texture = PIXI.Texture.EMPTY, this._leftFloor.mask = null, this._rightFloor.mask = null, this._leftFloorMask.clear(), this._rightFloorMask.clear(), this._leftFloor = null, this._rightFloor = null, this.removeChildren()
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = p
+        }(PIXI.Container);
+    e.SupplyFloor = r
 }

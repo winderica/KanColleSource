@@ -1,39 +1,40 @@
 const function67 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(25),
-        r = function () {
-            function t() {
-                null == t._queue && (t._queue = []), this._url_list = []
+    var o = i(16),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._setPosition = function (t, i) {
+                    e._content.position.set(t, i)
+                }, e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return t.getPath = function (t, e) {
-                var i = o.MathUtil.zeroPadding(t, 3);
-                return 0 == e ? null : 1 == e ? n.default.settings.path_root + "resources/useitem/card/" + i + ".png" : 2 == e ? n.default.settings.path_root + "resources/useitem/card_/" + i + ".png" : ""
-            }, t.prototype.add = function (e, i) {
-                if (0 == i) return this;
-                var n = t.getPath(e, i);
-                return this._url_list.push(n), this
-            }, t.prototype.load = function (e) {
-                void 0 === e && (e = null), this._cb_onComplete = e, t._queue.indexOf(this) >= 0 || (t._queue.push(this), 1 == t._queue.length && this._load())
-            }, t.prototype._load = function () {
-                var t = this;
-                if (this._url_list = this._url_list.filter(function (t, e, i) {
-                        return !PIXI.utils.TextureCache[t] && i.indexOf(t) === e
-                    }), 0 == this._url_list.length) return void this._onLoadComplete();
-                for (var e = new PIXI.loaders.Loader, i = 0, n = this._url_list; i < n.length; i++) {
-                    var o = n[i];
-                    e.add(o)
-                }
-                e.load(function () {
-                    t._onLoadComplete()
-                })
-            }, t.prototype._onLoadComplete = function () {
-                if (this._cb_onComplete(), this._cb_onComplete = null, t._queue.shift() != this) throw new Error("UseitemLoader Error");
-                t._queue.length > 0 && t._queue[0]._load()
-            }, t
-        }();
-    e.UseitemLoader = r
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121));
+                this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.x = -1, t.x = 2 * t.width, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.y = -1, t.y = 2 * t.height, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.x = -1, t.scale.y = -1, t.x = 2 * t.width, t.y = 2 * t.height, this._content.addChild(t)
+            }, e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._content), this._t.loop = !0, this._t.call(this._setPosition, [0, 0]).wait(33), this._t.call(this._setPosition, [2, 5]).wait(33), this._t.call(this._setPosition, [-5, 0]).wait(33), this._t.call(this._setPosition, [3, 8]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, -2]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, 5]).wait(33), this._t.call(this._setPosition, [-5, 9]).wait(33), this._t.call(this._setPosition, [5, 0]).wait(33), this._t.call(this._setPosition, [2, 6]).wait(33), this._t.call(this._setPosition, [0, -5]).wait(33), this._t.call(this._setPosition, [5, 3]).wait(33), this._t.call(this._setPosition, [5, -3]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e
+        }(PIXI.Container);
+    e.IntensiveLines = r
 }

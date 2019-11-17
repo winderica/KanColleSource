@@ -19,155 +19,188 @@ const function1270 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(248),
-        s = i(6),
-        a = i(19),
-        _ = i(1271),
-        l = i(1),
+    var o = i(0),
+        r = i(2),
+        s = i(247),
+        a = i(28),
+        _ = i(15),
+        l = i(1271),
         u = i(1272),
-        c = i(0),
-        h = i(1273),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onSelect = function (t) {
-                    n._hideConfirmDialog(t)
-                }, n._effect = function (t) {
-                    n._layer = new h.AnchorageRepairLayer(t), n._scene.view.anchorage_repair_leyer.addChild(n._layer), n._layer.getPreLoadTask().start(function () {
-                        new _.TaskAnchorageRepairEffect(n._layer).start(function () {
-                            n._scene.view.anchorage_repair_leyer.removeChildren(), n._endTask()
-                        })
+        c = i(1273),
+        h = i(1274),
+        p = i(1276),
+        d = i(1278),
+        f = i(1279),
+        y = i(1283),
+        m = i(1287),
+        g = i(1293),
+        v = i(1294),
+        b = i(1295),
+        w = i(1296),
+        x = i(1298),
+        I = i(1299),
+        T = i(1303),
+        O = i(445),
+        C = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._scene = e, s._model = i, s._repair_item = n, s._battle_cls = o, s._battle_result_cls = r, s._cell_open = !1, s
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "battle_model", {
+                get: function () {
+                    return this._battle_model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "cell_open", {
+                get: function () {
+                    return this._cell_open
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._next = this._model.sortie.getNextCell(), this._init()
+            }, e.prototype._init = function () {
+                this._scene.view.message_box.text = "", this._compass()
+            }, e.prototype._compass = function () {
+                var t = this,
+                    e = this._scene.view.map.ship_icon,
+                    i = new PIXI.Point(e.x, e.y),
+                    n = this._scene.view.map.spotLayer.getSpot(this._next.no),
+                    o = new PIXI.Point(n.x, n.y);
+                if (1 == this._next.hasCompass()) {
+                    this._scene.view.message_box.text = "\u3069\u3053\u306b\u9032\u3080\uff1f";
+                    var r = new p.AnimCompass;
+                    this._scene.view.addChild(r), r.initialize(this._next.rashin_id), r.Play(i, o, function () {
+                        r.Dispose(), t._scene.view.removeChild(r), t._scene.view.message_box.text = "", t._turn(o)
                     })
-                }, n._scene = e, n._model = i, n
-            }
-            return n(e, t), e.prototype._start = function () {
-                1 == this._model.sortie.getNextCell().getAnchorageRepair() ? this._startConfirmRepairDialog("") : this._startNoRepair("\u6ce2\u9759\u304b\u306a\u3001\u6cca\u5730\u306b\u9069\u3057\u305f\u6d77\u57df\u3067\u3059\u3002")
-            }, e.prototype._startConfirmRepairDialog = function (t) {
-                var e = this;
-                this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
-                    e._showMessage(t)
-                }).wait(3e3).call(function () {
-                    e._showMessage("")
-                }).wait(600).call(function () {
-                    e._showConfirmDialog()
+                } else this._turn(o)
+            }, e.prototype._turn = function (t) {
+                var e, i = this,
+                    n = this._scene.view.map.ship_icon,
+                    o = this._scene.resInfo.getShipDirection(this._next.no);
+                e = 1 == o ? 1 : 2 == o ? 2 : n.x > t.x ? 1 : n.x < t.x ? 2 : n.direction, n.turn(e, function () {
+                    i._jake()
                 })
-            }, e.prototype._showConfirmDialog = function () {
-                var t = this,
-                    e = this._model.sortie.now_cell_no,
-                    i = this._scene.resInfo.getAnchorageRepairConfirmOffsets(e),
-                    n = this._scene.view.map.ship_icon;
-                this._confirm = new d(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), s.SE.play("212"), createjs.Tween.get(this._confirm).to({
-                    y: n.y,
-                    alpha: 1
-                }, 300).call(function () {
-                    t._confirm.activate()
-                })
-            }, e.prototype._hideConfirmDialog = function (t) {
-                var e = this;
-                this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._confirm.btn_no).to({
-                    alpha: 0
-                }, 200);
-                var i = this._confirm.y;
-                createjs.Tween.get(this._confirm).wait(200).to({
-                    y: i,
-                    alpha: 0
-                }, 300).call(function () {
-                    e._scene.view.universal_layer.removeChild(e._confirm), e._confirm.dispose(), 1 == t ? e._startAnchorageRepair() : e._endTask()
-                })
-            }, e.prototype._startAnchorageRepair = function () {
-                var t = this,
-                    e = new u.APIAnchorageRepair;
-                e.start(function () {
-                    var i = t._model.deck_f.id,
-                        n = c.default.model.deck.get(i);
-                    t._model.deck_f.updateShipList(n), t._effect(e.used_ship)
-                })
-            }, e.prototype._startNoRepair = function (t) {
-                var e = this;
-                this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
-                    e._showMessage(t)
-                }).wait(3e3).call(function () {
-                    e._showMessage("")
-                }).wait(1e3).call(function () {
-                    e._endTask()
-                })
-            }, e.prototype._showWave = function () {
-                var t = this._model.sortie.getNextCell().no,
-                    e = this._scene.view.map.spotLayer.getSpot(t);
-                this._wave = new r.CellWave, this._wave.x = e.x, this._wave.y = e.y, this._scene.view.map.spotLayer.addChild(this._wave), this._wave.activate()
-            }, e.prototype._showMessage = function (t) {
-                this._scene.view.message_box.text = t
-            }, e.prototype._endTask = function () {
-                null != this._wave && (null != this._wave.parent && this._wave.parent.removeChild(this._wave), this._wave.dispose(), this._wave = null), t.prototype._endTask.call(this)
-            }, e
-        }(o.TaskBase);
-    e.CellTaskAnchorageRepair = p;
-    var d = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                if (n._onClickYes = function () {
-                        null != n._cb_onSelect && n._cb_onSelect(!0)
-                    }, n._onClickNo = function () {
-                        null != n._cb_onSelect && n._cb_onSelect(!1)
-                    }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new f(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new f(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e) {
-                    if (null != e.box) {
-                        var o = e.box;
-                        n._box.x += o.x, n._box.y += o.y, n._beak.x += o.x, n._beak.y += o.y
-                    }
-                    if (null != e.btn) {
-                        var o = e.btn;
-                        n._btn_yes.x += o.x, n._btn_yes.y += o.y, n._btn_no.x += o.x, n._btn_no.y += o.y
-                    }
+            }, e.prototype._jake = function () {
+                var t = this;
+                if (this._next.jakeID > 0) {
+                    var e = this._scene.view.map.ship_icon,
+                        i = new PIXI.Point(0, 0),
+                        n = this._scene.view.map.spotLayer.getSpot(this._next.no),
+                        o = new PIXI.Point(n.x - e.x, n.y - e.y);
+                    new u.AnimPlane(e, i, o).start(function () {
+                        t._balloon()
+                    })
+                } else this._balloon()
+            }, e.prototype._balloon = function () {
+                var t = this;
+                if (0 == this._next.balloonID) this._underwayReplenishment();
+                else {
+                    var e = this._model.deck_f.ships[0],
+                        i = e.mst_id;
+                    o.default.sound.voice.play(i.toString(), 26);
+                    var n = this._scene.view.map.ship_icon,
+                        r = this._next.balloonID,
+                        s = 1;
+                    1 == n.direction && (s = 7);
+                    var _ = this._model.sortie.map_id,
+                        l = this._next.no,
+                        u = null;
+                    if (423 == _) {
+                        if (11 == l) s = 1;
+                        else if (13 == l || 21 == l) s = 7;
+                        else if (25 == l) {
+                            var p = this._scene.model.sortie.map.getGaugeNum();
+                            2 == p ? s = 1 : 3 == p && (u = new PIXI.Point(21, 0))
+                        }
+                    } else 425 == _ && (35 != l && 40 != l || (s = 2));
+                    var d = new a.ParallelTask;
+                    d.add(new h.AnimShowMapEnemy(this._scene, this._model, 500)), d.add(new c.AnimBalloon(n, r, s, u)), d.start(function () {
+                        t._underwayReplenishment()
+                    })
                 }
-                return n
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
-                get: function () {
-                    return this._btn_yes
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_no", {
-                get: function () {
-                    return this._btn_no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._box.texture = a.MAP_COMMON.getTexture(51), this._beak.texture = a.MAP_COMMON.getTexture(77);
-                var t = a.MAP_COMMON.getTexture(105),
-                    e = a.MAP_COMMON.getTexture(107);
-                this._btn_yes.initialize(t, e), t = a.MAP_COMMON.getTexture(85), e = a.MAP_COMMON.getTexture(86), this._btn_no.initialize(t, e)
-            }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_no.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_no.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn_yes.dispose(), this._btn_no.dispose()
+            }, e.prototype._underwayReplenishment = function () {
+                var t = this;
+                new f.TaskConfirmReplenishment(this._scene, this._model).start(function () {
+                    t._ration()
+                })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new d.TaskConfirmRation(this._scene, this._model).start(function () {
+                    t._move()
+                })
+            }, e.prototype._move = function () {
+                var t = this;
+                new l.AnimShipMove(this._scene, this._model).start(function () {
+                    t._showEnemy()
+                })
+            }, e.prototype._showEnemy = function () {
+                var t = this;
+                if (1 == this._scene.view.map.enemy_layer.isDisplaying()) this._gimmick();
+                else {
+                    new h.AnimShowMapEnemy(this._scene, this._model).start(function () {
+                        t._gimmick()
+                    })
+                }
+            }, e.prototype._gimmick = function () {
+                this._AirRaidBattle()
+            }, e.prototype._AirRaidBattle = function () {
+                var t = this,
+                    e = this._scene.model.sortie.area_id,
+                    i = this._scene.model.sortie.map_no,
+                    n = this._scene.model.sortie.getNextCell(),
+                    r = n.getAirraidDataObject(),
+                    s = n.hasBokuAirUnit(),
+                    a = this._scene.resInfo,
+                    l = this._scene.view.map.plane_layer,
+                    u = o.default.view.overLayer,
+                    c = this._scene,
+                    h = this._scene.view.map.airbaseLayer;
+                new T.AirRaidTask(e, i, r, s, a, l, u, c, h, this._battle_cls).start(function () {
+                    var n = _.ObjUtil.getNumber(r, "api_m1");
+                    return 45 == e && 3 == i && 2 == n ? (new O.EventTaskCellOpen(t._model.sortie.map_id, a, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !0, !1, !1).start(function () {
+                        t._endTask()
+                    }), void(t._cell_open = !0)) : 45 == e && 3 == i && 3 == n ? (new O.EventTaskCellOpen(t._model.sortie.map_id, a, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !0, !1, !1, !0).start(function () {
+                        t._endTask()
+                    }), void(t._cell_open = !0)) : 45 == e && 3 == i && 4 == n ? (new O.EventTaskCellOpen(t._model.sortie.map_id, a, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !0, !1, !1, !1).start(function () {
+                        t._endTask()
+                    }), void(t._cell_open = !0)) : void t._cellEvent()
+                })
+            }, e.prototype._cellEvent = function () {
+                var t, e = this,
+                    i = this._model.sortie.area_id,
+                    n = this._model.sortie.map_no,
+                    o = this._next.no,
+                    r = this._next.event_id;
+                39 != i || 1 != n || 13 != o && 18 != o ? 2 == r ? t = new v.CellTaskItem(this._scene, this._model) : 3 == r ? t = new g.CellTaskHappening(this._scene, this._model) : 4 == r ? t = this._createCellTaskBattle(!1) : 5 == r ? t = this._createCellTaskBattle(!0) : 6 == r ? t = new b.CellTaskFancy(this._scene, this._model) : 7 == r ? t = new w.CellTaskAirReconnaissance(this._scene, this._model) : 8 == r ? t = new x.CellTaskAnchor(this._scene, this._model) : 9 == r ? t = new I.CellTaskLanding(this._scene, this._model) : 10 == r && (t = new y.CellTaskAnchorageRepair(this._scene, this._model)) : t = new v.CellTaskItem(this._scene, this._model), null != t ? t.start(function () {
+                    e._endTask()
+                }) : this._endTask()
+            }, e.prototype._createCellTaskBattle = function (t) {
+                var e = this._model.sortie.getNextCell();
+                this._battle_model = new s.BattleSceneModel(!1), this._battle_model.updateDeckData(this._model.deck_f, null);
+                var i = this._scene.user_select.supply_on_the_sea,
+                    n = this._scene.user_select.ration;
+                this._battle_model.setMapData(this._repair_item, i, n);
+                var o = this._model.sortie.area_id,
+                    r = this._model.sortie.map_no,
+                    a = e.no,
+                    _ = this._next.event_detail_id;
+                if (this._battle_model.map_info.init(o, r, a, t, _), 1 == e.hasEventMapData()) {
+                    var l = this._model.sortie.getNextCell().gauge_max,
+                        u = this._model.sortie.getNextCell().gauge_now,
+                        c = (this._model.sortie.getGaugeKey(), this._model.sortie.map.gauge_type),
+                        h = this._model.sortie.map.getGaugeNum();
+                    this._battle_model.setMapGaugeInfo(u, l, c, h)
+                } else {
+                    var l = this._model.sortie.map.defeat_required,
+                        u = l - this._model.sortie.map.defeat_count,
+                        c = (this._model.sortie.getGaugeKey(), 1),
+                        h = this._model.sortie.map.getGaugeNum();
+                    this._battle_model.setMapGaugeInfo(u, l, c, h)
+                }
+                return new m.CellTaskBattle(this._scene, this._battle_model, this._battle_cls, this._battle_result_cls)
             }, e
-        }(PIXI.Container),
-        f = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    s.SE.play("225"), i._over.alpha = 1
-                }, i._onMouseOut = function () {
-                    i._over.alpha = 0
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
-            }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(l.EventType.MOUSEOVER, this._onMouseOver), this.on(l.EventType.MOUSEOUT, this._onMouseOut), this.on(l.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(l.EventType.MOUSEOVER, this._onMouseOver), this.off(l.EventType.MOUSEOUT, this._onMouseOut), this.off(l.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e
-        }(PIXI.Container)
+        }(r.TaskBase);
+    e.TaskNextSpot = C
 }

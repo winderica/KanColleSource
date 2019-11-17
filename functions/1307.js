@@ -19,62 +19,171 @@ const function1307 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(147),
-        s = i(26),
-        a = i(355),
-        _ = i(352),
-        l = i(356),
-        u = i(353),
-        c = i(354),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._selected_airunit_id = 0, e._onChangeTab = function (t) {
-                    e.update(t)
-                }, e._area = new PIXI.Graphics, e.addChild(e._area), e._tabs = new a.AirUnitPanelTabContainer(e._onChangeTab), e._tabs.x = 30, e.addChild(e._tabs), e._base = new PIXI.Sprite, e._base.position.set(0, 21), e.addChild(e._base), e._banner = new _.AirUnitPanelBanner, e._banner.position.set(26, 45), e.addChild(e._banner), e._name = new o.TextBox(21, 0), e._name.position.set(33, 119), e.addChild(e._name), e._tag = new l.AirUnitPanelWoodenTag, e._tag.position.set(314, 47), e.addChild(e._tag), e._items = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new u.AirUnitPanelItem(null, null);
-                    n.position.set(17, 164 + 90 * i), e.addChild(n), e._items.push(n)
-                }
-                return e._supply_btn = new c.AirUnitPanelSupplyAllBtn(null), e._supply_btn.position.set(287, 146), e.addChild(e._supply_btn), e.interactive = !0, e
+    var o = i(5),
+        r = i(2),
+        s = i(12),
+        a = i(6),
+        _ = i(19),
+        l = i(1),
+        u = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._result = 0, o._onSelect = function (t) {
+                    a.SE.play("106"), o._result = t, o._hide()
+                }, o._parent_layer = e, o._enabled_youin = i, o._enabled_megami = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
                 get: function () {
-                    return this._selected_airunit_id
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._layer = new c(this._onSelect), this._layer.position.set(o.default.width / 2, o.default.height / 2), this._layer.alpha = 0, this._parent_layer.addChild(this._layer), this._showBtns()
+            }, e.prototype._showBtns = function () {
+                var t = this;
+                this._layer.initialize(this._enabled_youin, this._enabled_megami), createjs.Tween.get(this._layer).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    t._layer.activate()
+                })
+            }, e.prototype._hide = function () {
+                var t = this;
+                this._layer.deactivate(), createjs.Tween.get(this._layer.btn_youin).to({
+                    x: -o.default.width / 2
+                }, 500), createjs.Tween.get(this._layer.btn_megami).to({
+                    x: -o.default.width / 2
+                }, 500), createjs.Tween.get(this._layer.btn_tettai).to({
+                    x: o.default.width / 2
+                }, 500).call(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._parent_layer.removeChild(this._layer), this._layer.dispose(), this._parent_layer = null, this._layer = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.TaskTaihaShingunSelect = u;
+    var c = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._btn_youin = new p(e), i._btn_youin.position.set(-185, -105), i.addChild(i._btn_youin), i._btn_megami = new d(e), i._btn_megami.position.set(-185, 174), i.addChild(i._btn_megami), i._btn_tettai = new f(e), i._btn_tettai.position.set(261, -9), i.addChild(i._btn_tettai), i
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "btn_youin", {
+                get: function () {
+                    return this._btn_youin
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_megami", {
+                get: function () {
+                    return this._btn_megami
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_tettai", {
+                get: function () {
+                    return this._btn_tettai
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t, e) {
-                this._models = e, this._tabs.initialize(this._models.length), this._base.texture = s.SALLY_AIRUNIT.getTexture(8), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
-                for (var i = 0; i < this._items.length; i++) {
-                    this._items[i].initialize(i)
-                }
-                this._supply_btn.initialize()
-            }, e.prototype.update = function (t, e) {
-                if (void 0 === e && (e = !1), (0 != e || this._selected_airunit_id != t) && !(t <= 0 || t > this._models.length)) {
-                    this._selected_airunit_id = t;
-                    for (var i = null, n = 0, o = this._models; n < o.length; n++) {
-                        var s = o[n];
-                        if (s.id == t) {
-                            i = s;
-                            break
-                        }
-                    }
-                    this._tabs.update(t), this._name.text = i.name, r.EditTextBoxUtil.text = i.name, this._tag.update(i.airUnitState, !1);
-                    for (var a = i.squadrons, _ = 0, l = !1, u = 0; u < this._items.length; u++) {
-                        var c = u < a.length ? a[u] : null;
-                        this._items[u].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), l = l || c.count < c.countMax
-                    }
-                    this._banner.update(t, _, i.distance_base, i.distance_bonus), this._supply_btn.update(l)
-                }
+                this._btn_youin.initialize(t), this._btn_megami.initialize(e), this._btn_tettai.initialize()
+            }, e.prototype.activate = function () {
+                this._btn_youin.activate(), this._btn_megami.activate(), this._btn_tettai.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_youin.deactivate(), this._btn_megami.deactivate(), this._btn_tettai.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._tabs.dispose(), this._banner.dispose(), this._name.destroy(), this._tag.dispose();
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._supply_btn.dispose()
+                this._btn_youin.dispose(), this._btn_megami.dispose(), this._btn_tettai.dispose()
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanel = h
+        }(PIXI.Container),
+        h = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._enabled = !0, i._onMouseOver = function () {
+                    i._update(!0), i._startWave()
+                }, i._onMouseOut = function () {
+                    i._update(!1), i._stopWave()
+                }, i._onClick = function () {
+                    0 != i.buttonMode && null != i._cb_onClick && i._cb_onClick(i._value)
+                }, i._cb_onClick = e, i._wave1 = new s.Sprite, i._wave1.anchor.set(.5), i._initWave(i._wave1), i.addChild(i._wave1), i._wave2 = new s.Sprite, i._wave2.anchor.set(.5), i._initWave(i._wave2), i.addChild(i._wave2), i._off = new PIXI.Sprite, i.addChild(i._off), i._on = new PIXI.Sprite, i.addChild(i._on), i._wave_tweens = [], i.interactive = !0, i
+            }
+            return n(e, t), e.prototype.activate = function () {
+                0 != this._enabled && 1 != this.buttonMode && (this.buttonMode = !0, this.on(l.EventType.MOUSEOVER, this._onMouseOver), this.on(l.EventType.MOUSEOUT, this._onMouseOut), this.on(l.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(l.EventType.MOUSEOVER, this._onMouseOver), this.off(l.EventType.MOUSEOUT, this._onMouseOut), this.off(l.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                0 == this._enabled ? (this._off.visible = !0, this._on.visible = !1) : 0 == t ? (this._off.visible = !0, this._on.visible = !1) : (this._off.visible = !1, this._on.visible = !0)
+            }, e.prototype._initWave = function (t) {
+                t.scale.set(0), t.alpha = 0
+            }, e.prototype._startWave = function () {
+                this._stopWave(), this._wave_tweens[0] = createjs.Tween.get(this._wave1, {
+                    loop: !0
+                }).to({
+                    alpha: 1,
+                    scaleX: .4,
+                    scaleY: .4
+                }, 400).to({
+                    alpha: 0,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 400).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 0).wait(200), this._wave_tweens[1] = createjs.Tween.get(this._wave2, {
+                    loop: !0
+                }).wait(200).to({
+                    alpha: 1,
+                    scaleX: .4,
+                    scaleY: .4
+                }, 400).to({
+                    alpha: 0,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 400).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 0)
+            }, e.prototype._stopWave = function () {
+                for (var t = 0; t < this._wave_tweens.length; t++) null != this._wave_tweens[t] && (this._wave_tweens[t].setPaused(!0), this._wave_tweens[t] = null);
+                this._initWave(this._wave1), this._initWave(this._wave2)
+            }, e
+        }(PIXI.Container),
+        p = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                if (this._enabled = t, this._value = 1, this._off.position.set(-188, -134), this._on.position.set(-227, -170), 1 == t) {
+                    this._off.texture = _.MAP_COMMON.getTexture(4), this._on.texture = _.MAP_COMMON.getTexture(6);
+                    var e = [new PIXI.Point(0, -20), new PIXI.Point(156, -11), new PIXI.Point(185, 65), new PIXI.Point(65, 126), new PIXI.Point(-83, 116), new PIXI.Point(-110, 45)];
+                    this.hitArea = new PIXI.Polygon(e)
+                } else this._off.texture = _.MAP_COMMON.getTexture(5), this._on.texture = PIXI.Texture.EMPTY, this.hitArea = null;
+                this._wave1.texture = _.MAP_COMMON.getTexture(0), this._wave2.texture = _.MAP_COMMON.getTexture(0), this._update(!1)
+            }, e
+        }(h),
+        d = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                if (this._enabled = t, this._value = 2, this._off.position.set(-189, -128), this._on.position.set(-228, -164), 1 == t) {
+                    this._off.texture = _.MAP_COMMON.getTexture(7), this._on.texture = _.MAP_COMMON.getTexture(9);
+                    var e = [new PIXI.Point(0, -14), new PIXI.Point(156, -5), new PIXI.Point(185, 71), new PIXI.Point(65, 132), new PIXI.Point(-83, 122), new PIXI.Point(-110, 51)];
+                    this.hitArea = new PIXI.Polygon(e)
+                } else this._off.texture = _.MAP_COMMON.getTexture(8), this._on.texture = PIXI.Texture.EMPTY, this.hitArea = null;
+                this._wave1.texture = _.MAP_COMMON.getTexture(0), this._wave2.texture = _.MAP_COMMON.getTexture(0), this._update(!1)
+            }, e
+        }(h),
+        f = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._enabled = !0, this._value = 0, this._off.position.set(-144, -119), this._on.position.set(-144, -119), this._off.texture = _.MAP_COMMON.getTexture(15), this._on.texture = _.MAP_COMMON.getTexture(16);
+                var t = [new PIXI.Point(-21, -71), new PIXI.Point(78, -60), new PIXI.Point(96, 14), new PIXI.Point(17, 77), new PIXI.Point(-81, 65), new PIXI.Point(-99, -8)];
+                this.hitArea = new PIXI.Polygon(t), this._wave1.texture = _.MAP_COMMON.getTexture(0), this._wave2.texture = _.MAP_COMMON.getTexture(0), this._update(!1)
+            }, e
+        }(h)
 }

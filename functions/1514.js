@@ -19,45 +19,52 @@ const function1514 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(234),
-        r = i(24),
-        s = i(27),
-        a = i(1515),
+    var o = i(2),
+        r = i(1515),
+        s = i(1519),
+        a = i(1524),
         _ = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(e, i), this.addChild(this._gauge)
-            }, e.prototype.update = function (t, e) {
-                if (null == this._gauge) return null;
-                this._gauge.update(t, e)
-            }, e.prototype.explode = function (t) {
-                var e = this,
-                    i = new s.ParallelTask,
-                    n = new a.TaskExplosion(this, 107, 20);
-                i.add(n);
-                var o = new a.TaskExplosion(this, 209, 57, 250);
-                i.add(o);
-                var r = new a.TaskExplosion(this, 309, 24, 450);
-                i.add(r), i.start(function () {
-                    null != t && t()
-                }), createjs.Tween.get(this._gauge).wait(200).to({
-                    alpha: 0
-                }, 400).call(function () {
-                    e.removeChild(e._gauge), e._gauge = null
-                })
-            }, e.prototype.changeNextGauge = function (t, e) {
-                null != this._gauge && (null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(100, 100), this._gauge.x = -this._gauge.width / 2, this._gauge.y = -this._gauge.height / 2;
-                var i = new r.Container;
-                i.x = this._gauge.width / 2, i.y = this._gauge.height / 2, i.scale.set(1.6), i.alpha = 0, this.addChild(i), i.addChild(this._gauge), createjs.Tween.get(i).wait(1e3).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 750, createjs.Ease.quartInOut).wait(1500).call(function () {
-                    null != e && e()
-                })
+            return n(e, t), e.prototype._start = function () {
+                this._mapClear()
+            }, e.prototype._mapClear = function () {
+                var t = this;
+                if (1 == this._scene.data.isFirstClear()) {
+                    var e = this._scene.shutter,
+                        i = this._scene.data.battle_model.map_info.area_id,
+                        n = this._scene.data.battle_model.map_info.map_no,
+                        o = this._scene.data.battle_model.deck_f.ships[0],
+                        s = o.mst_id,
+                        a = o.isDamaged(),
+                        _ = this._scene.data.getClearMapSuffix();
+                    new r.TaskEventClear(e, i, n, s, a, _).start(function () {
+                        t._ending()
+                    })
+                } else this._ending()
+            }, e.prototype._ending = function () {
+                var t = this;
+                if (1 == this._scene.data.isFirstClear()) {
+                    var e = this._scene.layer_bonus,
+                        i = this._scene.data.battle_model.map_info.area_id,
+                        n = this._scene.data.battle_model.map_info.map_no,
+                        o = this._scene.data.getClearOperationSuffix();
+                    new s.TaskEventEnding(e, i, n, o).start(function () {
+                        t._mapOpen()
+                    })
+                } else this._mapOpen()
+            }, e.prototype._mapOpen = function () {
+                var t = this,
+                    e = this._scene.data.getOpenedMapIDs();
+                if (e.length > 0) {
+                    var i = this._scene.layer_bonus;
+                    new a.TaskMapOpen(i, e).start(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
             }, e
-        }(PIXI.Container);
-    e.ResultDialogGauge = _
+        }(o.TaskBase);
+    e.PhaseClear = _
 }

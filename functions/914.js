@@ -19,22 +19,19 @@ const function914 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(23),
-        a = i(226),
-        _ = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                e.bg_0 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_1 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_0.position.set(0, 102), e.bg_1.position.set(529, 102);
+                var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(8));
+                i.anchor.set(0, .5), i.position.set(198, e.bg_0.height / 2 - 4);
+                var n = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(4));
+                return n.anchor.set(0, .5), n.position.set(19, e.bg_0.height / 2 - 4), e.bg_0.addChild(i), e.bg_1.addChild(n), e.addChild(e.bg_0), e.addChild(e.bg_1), e
             }
-            return n(e, t), e.prototype.preload = function (t, e, i, n) {
-                var a = this;
-                this._mst_id = t, this._message = e, (new s.SlotLoader).add(t, "card").load(function () {
-                    a._target.texture = r.default.resources.getSlotitem(t, "card"), a._target.x = o.default.width / 2 - a._target.width / 2, a._target.y = 67, a._rarityBG.initiailzeForSlotitem(i, function () {
-                        a._messageBox.initialize(a._message), null != n && n()
-                    })
-                })
+            return n(e, t), e.prototype.dispose = function () {
+                this.bg_0.removeChildren(), this.bg_1.removeChildren(), this.removeChildren(), this.bg_0 = null, this.bg_1 = null
             }, e
-        }(a.RewardAnimation);
-    e.RewardAnimationSlot = _
+        }(PIXI.Container);
+    e.TopBarLayer = r
 }

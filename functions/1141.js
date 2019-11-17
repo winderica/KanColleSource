@@ -21,22 +21,22 @@ const function1141 = function (t, e, i) {
     });
     var o = i(4),
         r = i(3),
-        s = i(33),
+        s = i(25),
         a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._message = new o.TextBox(18, 4999235), i._message.position.set(176, 47), i.addChild(i._message), i._message1 = new o.TextBox(18, 4999235), i._message1.position.set(237, 92), i.addChild(i._message1), i._message2 = new o.TextBox(18, 4999235), i._message2.position.set(399, 92), i.addChild(i._message2), i._message3 = new o.TextBox(18, 4999235), i._message3.position.set(237, 122), i.addChild(i._message3), i._message4 = new o.TextBox(18, 4999235), i._message4.position.set(399, 122), i.addChild(i._message4), i._message5 = new o.TextBox(18, 4999235), i._message5.position.set(323, 161), i.addChild(i._message5), i._btn_yes = new s.BtnBase(0, e), i._btn_yes.position.set(191, 219), i.addChild(i._btn_yes), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(399, 219), i.addChild(i._btn_back), i
+                return i._message1 = new o.TextBox(22, 1381651), i._message1.position.set(167, 96), i.addChild(i._message1), i._message2 = new o.TextBox(22, 1381651), i._message2.position.set(167, 126), i.addChild(i._message2), i._btn_shigen = new s.BtnBase(11, e), i._btn_shigen.position.set(146, 180), i.addChild(i._btn_shigen), i._btn_kanmi = new s.BtnBase(13, e), i._btn_kanmi.position.set(284, 180), i.addChild(i._btn_kanmi), i._btn_shizai = new s.BtnBase(12, e), i._btn_shizai.position.set(422, 180), i.addChild(i._btn_shizai), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(585, 278), i.addChild(i._btn_back), i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_MEDAL_KOU.getTexture(2), this._message.text = "\u7532\u7a2e\u52f2\u7ae0\u306f\u3001\u4e0b\u8a18\u306e\u7269\u8cc7\u3068\u4ea4\u63db\u3059\u308b\u3053\u3068\u3082\u53ef\u80fd\u3067\u3059\u3002", this._message1.text = "\u71c3\u6599\xd710,000", this._message2.text = "\u6539\u4fee\u8cc7\u6750\xd710", this._message3.text = "\u958b\u767a\u8cc7\u6e90\xd710", this._message4.text = "\u5bb6\u5177\u7bb1(\u5927)\xd710", this._message5.text = "\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f";
-                var e = r.ITEM_ILIST_MEDAL_KOU.getTexture(1);
-                this._btn_yes.initialize(e), e = r.ITEM_ILIST_MEDAL_KOU.getTexture(0), this._btn_back.initialize(e)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(9), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 339 - this._message1.width / 2, this._message2.text = "\u4e0b\u8a18\u306e\u30c1\u30e7\u30a4\u30b9\u304c\u53ef\u80fd\u3067\u3059\u3002", this._message2.x = 339 - this._message2.width / 2;
+                var t = r.ITEM_ILIST_PRESENTBOX.getTexture(3);
+                this._btn_shigen.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(4), this._btn_kanmi.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(5), this._btn_shizai.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(0), this._btn_back.initialize(t)
             }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_back.activate()
+                this._btn_shigen.activate(), this._btn_kanmi.activate(), this._btn_shizai.activate(), this._btn_back.activate()
             }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_back.deactivate()
+                this._btn_shigen.deactivate(), this._btn_kanmi.deactivate(), this._btn_shizai.deactivate(), this._btn_back.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message.destroy(), this._message1.destroy(), this._message2.destroy(), this._message3.destroy(), this._message4.destroy(), this._message5.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_shigen.dispose(), this._btn_kanmi.dispose(), this._btn_shizai.dispose(), this._btn_back.dispose()
             }, e
         }(PIXI.Sprite);
     e.TopView = a

@@ -19,71 +19,54 @@ const function1173 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(4),
-        s = i(110),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onMouseOverListItem = function (t) {
-                    i._focusTo = t, i._focus.x = t.x - 6, i._focus.y = t.y - 4, i._focus.visible = !0
-                }, i._onMouseOutListItem = function (t) {
-                    i._focusTo == t && (i._focusTo = null, i._focus.visible = !1)
-                }, i._items = [];
-                for (var n = 0; n < 10; n++) {
-                    var o = new _(i._onMouseOverListItem, i._onMouseOutListItem, e);
-                    o.y = 45 * n, i.addChild(o), i._items.push(o)
-                }
-                return i._focus = new PIXI.Sprite, i.addChild(i._focus), i
+    var o = i(0),
+        r = i(6),
+        s = i(134),
+        a = i(91),
+        _ = i(1174),
+        l = i(1175),
+        u = i(1176),
+        c = i(1177),
+        h = i(1181),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._count = 0, n._onChangePage = function () {
+                    var t = n._views.indexOf(n._current);
+                    n._showView(t ? 0 : 1)
+                }, n._onSelect = function (t, e) {
+                    r.SE.play("214");
+                    var i = 10;
+                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
+                    var s = new c.TaskPurchaseConfirm(t, e, i);
+                    n.addChild(s.layer), s.start(function () {
+                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
+                    })
+                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new l.NormalItemShopMain(n._onSelect)), n._views.push(new u.SpecialItemShopMain(n._onSelect)), n
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = s.ITEM_FSHOP.getTexture(22);
-                for (var t = 0, e = this._items; t < e.length; t++) {
+                this._header.texture = s.ITEM_ISHOP.getTexture(35);
+                for (var t = 0, e = this._views; t < e.length; t++) {
                     e[t].initialize()
                 }
-                this._focus.texture = s.ITEM_FSHOP.getTexture(23)
-            }, e.prototype.update = function (t) {
-                for (var e = 0; e < this._items.length; e++) {
-                    var i = this._items[e];
-                    e < t.length ? (i.update(t[e]), i.visible = !0) : i.visible = !1
-                }
+            }, e.prototype.update = function () {
+                this._count = 0, this._showView(0)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].activate()
-                }
+                null != this._current && this._current.activate(), this._tab.activate()
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                null != this._current && this._current.deactivate(), this._tab.deactivate()
             }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._items; t < e.length; t++) {
+                this._purchasedItems = null, this._tab.dispose(), this._removeView();
+                for (var t = 0, e = this._views; t < e.length; t++) {
                     e[t].dispose()
                 }
-                this._items = null
+            }, e.prototype._removeView = function () {
+                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
+            }, e.prototype._showView = function (t) {
+                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
+                var e = o.default.view.overLayer;
+                new h.TaskWelcomeCutin(e, t, this._count).start()
             }, e
-        }(PIXI.Sprite);
-    e.FShopListPanel = a;
-    var _ = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._onMouseOver = function () {
-                null != o._cb_onMouseOver && o._cb_onMouseOver(o)
-            }, o._onMouseOut = function () {
-                null != o._cb_onMouseOut && o._cb_onMouseOut(o)
-            }, o._onClick = function () {
-                null != o._cb_onClick && o._cb_onClick(o._model)
-            }, o._cb_onMouseOver = e, o._cb_onMouseOut = i, o._cb_onClick = n, o._coin = new PIXI.Sprite, o._coin.position.set(316, 12), o.addChild(o._coin), o._name = new r.TextBox(20, 16774898), o._name.position.set(6, 10), o.addChild(o._name), o._price = new r.TextBox(18, 16774898), o._price.anchor.x = 1, o._price.position.set(433, 10), o.addChild(o._price), o._soldout = new PIXI.Sprite, o._soldout.x = 1, o._soldout.alpha = 0, o.addChild(o._soldout), o.interactive = !0, o
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._coin.texture = s.ITEM_FSHOP.getTexture(14), this._soldout.texture = s.ITEM_FSHOP.getTexture(24)
-        }, e.prototype.update = function (t) {
-            this._model = t, this._name.text = t.name, this._price.text = t.price.toString(), this._soldout.alpha = 1 == t.has() ? 1 : 0
-        }, e.prototype.activate = function () {
-            1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this.removeChildren(), this._name.destroy(), this._price.destroy(), this._model = null, this._cb_onMouseOver = null, this._cb_onMouseOut = null, this._cb_onClick = null
-        }, e
-    }(PIXI.Container)
+        }(a.ViewBase);
+    e.ItemShopMain = p
 }

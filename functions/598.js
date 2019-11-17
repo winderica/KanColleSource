@@ -19,26 +19,43 @@ const function598 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
+    var o = i(8),
+        r = i(4),
+        s = i(599),
+        a = i(34),
+        _ = i(285),
+        l = i(600),
+        u = i(106),
+        c = i(286),
+        h = i(159),
+        p = i(605),
+        d = i(1),
+        f = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._initialized = !1, e._activated = !1, e._onClick = function () {
+                    var t = new s.ExpeditionResultModel,
+                        i = new l.ExpeditionResultAPI(e._deck_id, t);
+                    (new a.APIConnector).add(i).add(new _.PortAPI).add(new u.UseItemAPI).start(function () {
+                        e._showExpeditionCutin(t)
+                    })
+                }, e._showExpeditionCutin = function (t) {
+                    new c.TaskExpeditionEndCutin(e._deck_id, t).start(function () {
+                        e._showExpeditionResult(t)
+                    })
+                }, e._showExpeditionResult = function (t) {
+                    new p.TaskExpeditionResultShow(e._deck_id, t).start()
+                }, e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                if (this.clear(), t < 20) {
-                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(36)),
-                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(113));
-                    i.x = Math.floor(e.width - i.width / 2 - 3), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-                } else if (t < 30) {
-                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(35)),
-                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(112));
-                    i.x = Math.floor(e.width - i.width / 2), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-                }
-            }, e.prototype.clear = function () {
-                this.removeChildren()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._deck_id = t, 0 == this._initialized && (this._bg = new o.AreaBox(0, 16711680), this.addChild(this._bg), this._balloon = new PIXI.Sprite(h.PORT_MAIN.getTexture(0)), this._balloon.position.set(726, 6), this.addChild(this._balloon), this._message = new r.TextBox(20, 1949120), this._message.position.set(810, 30), this._message.text = "\u9060\u5f81\u304b\u3089\u623b\u3063\u3066\u6765\u307e\u3057\u305f\u3002", this.addChild(this._message)), this._initialized = !0
+            }, e.prototype.activate = function () {
+                0 == this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(d.EventType.CLICK, this._onClick))
+            }, e.prototype.deactive = function () {
+                this.interactive = this.buttonMode = !1, this.off(d.EventType.CLICK, this._onClick), this._activated = !1
             }, e.prototype.dispose = function () {
-                this.clear()
+                this.deactive(), this._initialized = !1, this.removeChildren(), this._bg = null, this._balloon = null, this._message && this._message.destroy(), this._message = null
             }, e
         }(PIXI.Container);
-    e.BannerTired = r
+    e.ExpeditionAlert = f
 }

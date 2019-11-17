@@ -19,89 +19,44 @@ const function1281 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(27),
-        a = i(439),
-        _ = i(440),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._anim = function () {
-                    var t = n._getRandomShip(),
-                        e = t.mst_id;
-                    o.default.sound.voice.play(e.toString(), 26);
-                    var i = new _.AnimFlagShip(n._scene, e, t.isDamaged()),
-                        r = new u(n._scene, n._drop_items);
-                    new s.ParallelTask(i, r).start(function () {
-                        n._endTask()
+    var o = i(2),
+        r = i(30),
+        s = i(19),
+        a = i(1282),
+        _ = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._buff = function () {
+                    for (var t = o._scene.view.map.ship_icon.under, e = new r.SerialTask, i = 0; i < o._buff_count; i++) e.add(new a.TaskReplenishmentBuff(t));
+                    e.start(o._hideBalloon)
+                }, o._hideBalloon = function () {
+                    var t = o._balloon.y + 23;
+                    createjs.Tween.get(o._balloon).to({
+                        y: t,
+                        alpha: 0
+                    }, 100).call(function () {
+                        o._balloon.parent.removeChild(o._balloon), o._endTask()
                     })
-                }, n._scene = e, n._model = i, n
+                }, o._scene = e, o._buff_count = i, o._offset = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._drop_items = this._model.sortie.getNextCell().getDropItems();
-                for (var t = 0, e = this._drop_items; t < e.length; t++) {
-                    var i = e[t];
-                    i.icon_id;
-                    if (4 == i.type) {
-                        var n = i.getUseitemMstID();
-                        this._model.sortie.obtained_items.push(n)
-                    } else if (5 == i.type) {
-                        var n = i.getUseitemMstID();
-                        this._model.sortie.obtained_items.push(n)
-                    }
-                }
-                var o = this._drop_items.concat();
-                this._animItem(o, this._anim)
-            }, e.prototype._animItem = function (t, e) {
-                var i = this;
-                if (0 == t.length) return void(null != e && e());
-                var n = t.shift(),
-                    o = n.getUseitemMstID(),
-                    r = n.count,
-                    s = new a.CompDropItem;
-                s.initialize(o, r);
-                var _ = this._scene.view.map.ship_icon;
-                s.position.set(_.x, _.y), this._scene.view.addChild(s), createjs.Tween.get(s).to({
-                    y: _.y - 60
-                }, 400).to({
-                    y: _.y - 75,
-                    alpha: 0
-                }, 200).call(function () {
-                    i._scene.view.removeChild(s), s.dispose(), _.startWaveWhite(), i._animItem(t, e)
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.view.map.ship_icon.stopWave(), this._scene.view.message_box.text = "", t.prototype._endTask.call(this)
-            }, e.prototype._getRandomShip = function () {
-                for (var t = this._model.deck_f.ships, e = new Array, i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    null != o && (0 != o.damageType && 1 != o.isTaihi() && e.push(o))
-                }
-                return e[Math.floor(Math.random() * e.length)]
+                this._showBalloon()
+            }, e.prototype._showBalloon = function () {
+                var t = this._scene.view.map.ship_icon;
+                this._balloon = new l, this._balloon.initialize(), this._balloon.x = t.x + 21, this._balloon.y = t.y - 6, this._balloon.alpha = 0, null != this._offset && (this._balloon.x += this._offset.x, this._balloon.y += this._offset.y), this._scene.view.universal_layer.addChild(this._balloon), createjs.Tween.get(this._balloon).wait(200).to({
+                    y: this._balloon.y - 23,
+                    alpha: 1
+                }, 100).wait(200).call(this._buff)
             }, e
-        }(r.TaskBase);
-    e.CellTaskItem = l;
-    var u = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._items = i, n
+        }(o.TaskBase);
+    e.TaskReplenishmentBalloonEffect = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
         }
-        return n(e, t), e.prototype._start = function () {
-            this._current_index = 0, this._loop()
-        }, e.prototype._loop = function () {
-            if (this._current_index < this._items.length) {
-                var t = this._items[this._current_index];
-                this._current_index++, this._show(t)
-            } else this._endTask()
-        }, e.prototype._show = function (t) {
-            var e = this,
-                i = t.getUseitemMstID(),
-                n = t.count;
-            this._scene.view.message_box.showItemGetText(i, n), createjs.Tween.get(null).wait(2e3).call(function () {
-                e._loop()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._items = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = s.MAP_COMMON.getTexture(50), this._icon.texture = s.MAP_COMMON.getTexture(79), this._label.texture = s.MAP_COMMON.getTexture(184)
         }, e
-    }(r.TaskBase)
+    }(PIXI.Container)
 }

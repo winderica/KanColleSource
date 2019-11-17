@@ -19,27 +19,63 @@ const function994 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._label = new PIXI.Sprite, e._n001 = new PIXI.Sprite, e._n010 = new PIXI.Sprite, e._n100 = new PIXI.Sprite, e.addChild(e._bg), e.addChild(e._label), e.addChild(e._n001), e.addChild(e._n010), e.addChild(e._n100), e
+    var o = i(0),
+        r = i(18),
+        s = i(52),
+        a = i(361),
+        _ = i(995),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
+                    null != i._cb && i._cb(t.area_id)
+                }, i._cb = e, i._btns = new Array;
+                for (var n = [0, 96, 191, 383, 478, 574, 287], o = 0; o < n.length; o++) {
+                    var r = new a.AreaIconBtn(o + 1);
+                    r.position.set(n[o], 0), i._btns.push(r)
+                }
+                return i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = o.SALLY_COMMON.getTexture(29), this._label.texture = o.SALLY_COMMON.getTexture(34), this._n001.position.set(44, 3), this._n010.position.set(33, 3), this._n100.position.set(23, 3)
-            }, e.prototype.update = function (t) {
-                if (null == t) this.visible = !1;
-                else {
-                    var e = t.level;
-                    e = Math.max(0, e), e = Math.min(999, e);
-                    var i = Math.floor(e / 100),
-                        n = e % 100,
-                        r = Math.floor(n / 10),
-                        s = n % 10,
-                        a = [59, 60, 61, 62, 63, 64, 65, 66, 67, 68];
-                    e < 10 ? (this._bg.scale.x = .866, this._bg.position.x = 17, this._label.position.set(23, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.visible = !1, this._n100.visible = !1) : e < 100 ? (this._bg.scale.x = 1.067, this._bg.position.x = 8, this._label.position.set(12, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n010.visible = !0, this._n100.visible = !1) : (this._bg.scale.x = 1.233, this._bg.position.x = 0, this._label.position.set(3, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n100.texture = o.SALLY_COMMON.getTexture(a[i]), this._n010.visible = !0, this._n100.visible = !0), this.visible = !0
+                if (1 != this._initialized) {
+                    this._initialized = !0;
+                    var t = new PIXI.Sprite(s.SALLY_SORTIE.getTexture(32));
+                    if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
+                        if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
+                            var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
+                            e.position.set(875, -9), this._btns.push(e)
+                        }
+                    }
+                    for (var i = 0, n = this._btns; i < n.length; i++) {
+                        var e = n[i];
+                        e.initialize(this._onSelectArea), this.addChild(e)
+                    }
                 }
+            }, e.prototype.update = function (t) {
+                for (var e = 0, i = this._btns; e < i.length; e++) {
+                    var n = i[e],
+                        o = n.area_id == t;
+                    n.selected = o, o ? n.deactivate() : n.activate()
+                }
+            }, e.prototype.activate = function () {
+                if (0 == this._activated) {
+                    for (var t = 0, e = this._btns; t < e.length; t++) {
+                        e[t].activate()
+                    }
+                    this._activated = !0
+                }
+            }, e.prototype.deactivate = function () {
+                this._activated = !1;
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                this._cb = null, this.removeChildren();
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._btns = null
             }, e
         }(PIXI.Container);
-    e.CompBannerLevel = r
+    e.CompAreaIcons = l
 }

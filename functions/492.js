@@ -19,80 +19,26 @@ const function492 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = function () {
-            function t(t) {
-                this._initialize(t)
-            }
-            return Object.defineProperty(t.prototype, "id", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_squadron_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "state", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_state")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "mem_id", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_slotid")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_count")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "countMax", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_max_count")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "fatigue", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_cond")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "mst_id", {
-                get: function () {
-                    return null == this._model ? -1 : this._model.mstID
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "skill_level", {
-                get: function () {
-                    return null == this._model ? 0 : this._model.skillLevel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "level", {
-                get: function () {
-                    return null == this._model ? 0 : this._model.level
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isRelocation = function () {
-                return o.default.model.slot.getAirUnitRelocation().indexOf(this.mem_id) >= 0
-            }, t.prototype._initialize = function (t) {
-                this._o = t, this._model = o.default.model.slot.get(this.mem_id)
-            }, t
-        }();
-    e.AirUnitSquadronModel = s;
-    var a = function (t) {
+    var o = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = t.call(this) || this;
+            e._MAX_ = 360;
+            var i = new PIXI.Graphics;
+            return e._draw(i, 0), e.mask = i, e.addChild(i), e._bar = new PIXI.Graphics, e._bar.x = -e._MAX_, e.addChild(e._bar), e
         }
-        return n(e, t), e.prototype.update = function (t) {
-            this._initialize(t)
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._draw(this, 16777215), this._draw(this._bar, t)
+        }, e.prototype.createTween = function (t, e, i) {
+            void 0 === i && (i = 1e3);
+            var n = Math.max(t - e, 0),
+                o = 0 == t ? 0 : n / t,
+                r = this._MAX_ * o;
+            return r = Math.min(this._MAX_, r), r = Math.max(0, r), createjs.Tween.get(this._bar).to({
+                x: -this._MAX_ + r
+            }, i)
+        }, e.prototype._draw = function (t, e) {
+            t.beginFill(e), t.arc(8, 8, 8, Math.PI / 2, Math.PI / 2 * 3), t.arc(353, 8, 8, -Math.PI / 2, Math.PI / 2), t.endFill()
         }, e
-    }(s);
-    e.AirUnitSquadronModelEdit = a
+    }(PIXI.Graphics);
+    e.Gauge = o
 }

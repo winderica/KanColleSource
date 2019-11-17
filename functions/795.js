@@ -19,23 +19,39 @@ const function795 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(5),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.TYPE_SET = "typeset", e.TYPE_UNSET = "typeunset", e.listItem = o.COMMON_MAIN.getTexture(35), e.listItemInUse = o.COMMON_MAIN.getTexture(36), e
+            function e(e) {
+                var i = t.call(this) || this;
+                i.DURATION = 150;
+                var n = new PIXI.Graphics;
+                return n.beginFill(0, .5), n.drawRect(0, 0, o.default.width, o.default.height), n.endFill(), i._container = e, i._container.alpha = 0, i.interactive = !0, i.alpha = 0, i.addChild(n, i._container), i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (this.texture = PIXI.Texture.EMPTY, t) {
-                    case this.TYPE_SET:
-                        this.texture = this.listItemInUse;
-                        break;
-                    case this.TYPE_UNSET:
-                        this.texture = this.listItem
-                }
-            }, e.prototype.dispose = function () {
-                this.listItem = null, this.listItemInUse = null, this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._container = null
+            }, e.prototype.show = function (t) {
+                var e = this;
+                void 0 === t && (t = null), createjs.Tween.get(this).to({
+                    alpha: 1
+                }, 1.2 * this.DURATION).call(function () {
+                    createjs.Tween.get(e._container).to({
+                        alpha: 1
+                    }, .5 * e.DURATION).call(function () {
+                        null !== t && t()
+                    })
+                })
+            }, e.prototype.hide = function (t) {
+                var e = this;
+                void 0 === t && (t = null), createjs.Tween.get(this._container).to({
+                    alpha: 0
+                }, this.DURATION).call(function () {
+                    createjs.Tween.get(e).to({
+                        alpha: 0
+                    }, 1.2 * e.DURATION).call(function () {
+                        null !== t && t()
+                    })
+                })
             }, e
-        }(PIXI.Sprite);
-    e.ListHeader = r
+        }(PIXI.Container);
+    e.SlotInShipChangeConfirm = r
 }

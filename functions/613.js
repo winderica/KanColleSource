@@ -19,90 +19,87 @@ const function613 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(190),
-        s = i(614),
-        a = i(615),
-        _ = i(292),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new u, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
+    var o = i(1),
+        r = i(14),
+        s = i(9),
+        a = i(614),
+        _ = function (t) {
+            function e(e) {
+                void 0 === e && (e = null);
+                var i = t.call(this) || this;
+                return i._closeCb = e, i._container = null, i._base = null, i._chara = null, i._arrow = null, i._back = null, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "marriageEff", {
-                get: function () {
-                    return this._marrigaeEff
-                },
-                set: function (t) {
-                    this._marrigaeEff != t && (this._marrigaeEff = t, 1 == this._marrigaeEff ? this._showMarriageEff() : this._hideMarriageEff())
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._touch_count = 0, this._ship_mst_id = t;
-                var n = o.default.model.basic.getFlagShipPosIDCli(),
-                    r = _.PortConst.getMoveXValue(t),
-                    s = 0 == n ? 0 : r,
-                    a = o.default.resources.getShip(t, e, "full");
-                this._chara.texture = a;
-                var l = new PIXI.Sprite(a);
-                this._hit_area_map = o.default.settings.renderer.extract.pixels(l), this._container.position.set(491, -88);
-                var u = this._chara.width / 2,
-                    c = this._chara.height / 2,
-                    h = o.default.model.ship_graph.get(t).getPortOffset(e);
-                this._chara.position.set(-u + h.x + s, -c + h.y), this._container.positionSet(491 + u, -88 + c), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
+            return n(e, t), e.prototype.initialize = function (t) {
+                var e = this;
+                new r.UIImageLoader("port").add("port_tutorial.json").load(function () {
+                    e._container = new PIXI.Container, e._container.interactive = !0, e._container.buttonMode = !0, e._container.on(o.EventType.CLICK, e.fadeOut.bind(e, !1)), e._base = new PIXI.Sprite, e._container.addChild(e._base), e._chara = new PIXI.Container;
+                    var i = new PIXI.Sprite(a.PORT_TUTORIAL.getTexture(1));
+                    i.name = "chara1";
+                    var n = new PIXI.Sprite(a.PORT_TUTORIAL.getTexture(2));
+                    n.name = "chara2", n.visible = !1, e._chara.addChild(i, n), e._container.addChild(e._chara), e._arrow = new PIXI.Sprite(a.PORT_TUTORIAL.getTexture(0)), e._container.addChild(e._arrow), e._back = new PIXI.Sprite(s.COMMON_MISC.getTexture(22)), e._back.anchor.set(.5, 0), e._back.visible = !1, e._back.interactive = !0, e._back.buttonMode = !0, e._back.on(o.EventType.CLICK, e.fadeOut.bind(e, !0)), e.addChild(e._container, e._back), e.update(t), e.activate()
+                })
+            }, e.prototype.update = function (t) {
+                return this.alpha = 1, t < 10 ? this._tutorial1() : t < 20 ? this._tutorial2() : t < 30 ? this._tutorial3() : t < 40 ? this._tutorial4() : t < 50 ? this._tutorial5() : this._tutorial6()
+            }, e.prototype.fadeOut = function (t) {
+                var e = this;
+                void 0 === t && (t = !1), createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e.visible = !1, t && null !== e._closeCb && e._closeCb()
+                })
             }, e.prototype.activate = function () {
-                null == this._loop_tween && (this._loop_tween = createjs.Tween.get(this._container, {
-                    loop: !0
-                }).to({
-                    anim_value: Math.PI
-                }, 5200)), this._timerBeLeftVoice.reset(), this._timeSignal.reset()
+                var t = this;
+                if (null !== this._chara && (this.deactivate(), this._tweenChara = createjs.Tween.get({}, {
+                        loop: !0
+                    }).wait(500).call(function () {
+                        for (var e = 0, i = t._chara.children.length; e < i; e++) {
+                            var n = t._chara.children[e],
+                                o = n.visible;
+                            n.visible = !o
+                        }
+                    }), this._arrow.visible)) {
+                    this._tweenArrow = createjs.Tween.get(this._arrow, {
+                        loop: !0,
+                        paused: !0
+                    });
+                    var e = [];
+                    switch (this._arrowAnimationAlign) {
+                        case "up":
+                            var i = this._arrow.y;
+                            e = [{
+                                y: i - 18
+                            }, {
+                                y: i
+                            }];
+                            break;
+                        case "left":
+                        default:
+                            var n = this._arrow.x;
+                            e = [{
+                                x: n - 18
+                            }, {
+                                x: n
+                            }]
+                    }
+                    this._tweenArrow.wait(300).set(e[0]).wait(300).set(e[1]).setPaused(!1)
+                }
             }, e.prototype.deactivate = function () {
-                null != this._loop_tween && (this._loop_tween.setPaused(!0), this._loop_tween = null), this._timerBeLeftVoice.stop(), this._timeSignal.stop()
-            }, e.prototype.onMouseMove = function (t) {
-                var e = t.getLocalPosition(this._chara);
-                return this._isCharaHit(e)
-            }, e.prototype.onClick = function (t) {
-                var e = t.getLocalPosition(this._chara),
-                    i = this._isCharaHit(e);
-                return 1 == i && this._onClick(), i
-            }, e.prototype._showMarriageEff = function () {
-                var t = new PIXI.Rectangle(600, 0, 600, 720);
-                this._ship_is_marriage = !0, this._sakura.startAnimation(t)
-            }, e.prototype._hideMarriageEff = function () {
-                this._ship_is_marriage = !1, this._sakura.stopAnimation()
-            }, e.prototype._isCharaHit = function (t, e) {
-                if (void 0 === e && (e = 0), t.x < 0 || t.y < 0 || t.x > this._chara.width) return !1;
-                var i = 4 * (Math.floor(t.x) + this._chara.width * Math.floor(t.y));
-                return null != this._hit_area_map && (!(i + 3 >= this._hit_area_map.length) && this._hit_area_map[i + 3] > e)
-            }, e.prototype._onClick = function () {
-                this._touch_count < 4 ? 1 == this._ship_is_marriage && 0 == this._touch_count ? o.default.sound.voice.play(this._ship_mst_id.toString(), 28) : o.default.sound.voice.playAtRandom(this._ship_mst_id.toString(), [2, 3, 4], [60, 30, 10]) : o.default.sound.voice.play(this._ship_mst_id.toString(), 4), this._touch_count++, this._timerBeLeftVoice.reset()
+                this._tweenArrow && (this._tweenArrow.setPaused(!0), createjs.Tween.removeTweens(this._tweenArrow), this._tweenArrow = null), this._tweenChara && (this._tweenChara.setPaused(!0), createjs.Tween.removeTweens(this._tweenChara), this._tweenChara = null), this._chara.getChildByName("chara1").visible = !0, this._chara.getChildByName("chara2").visible = !1
+            }, e.prototype._tutorial1 = function () {
+                this._base.texture = a.PORT_TUTORIAL.getTexture(3), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(510, 370), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial2 = function () {
+                this._base.texture = a.PORT_TUTORIAL.getTexture(4), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(400, 36), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial3 = function () {
+                this._base.texture = a.PORT_TUTORIAL.getTexture(5), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(384, -20), this._arrow.rotation = 90 * Math.PI / 180, this._back.visible = !1, this.position.set(508, 88), this._arrowAnimationAlign = "up"
+            }, e.prototype._tutorial4 = function () {
+                this._base.texture = a.PORT_TUTORIAL.getTexture(6), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(437, 239), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial5 = function () {
+                this._base.texture = a.PORT_TUTORIAL.getTexture(7), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(220, 174), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial6 = function () {
+                this._base.texture = a.PORT_TUTORIAL.getTexture(8), this._base.position.set(0, 43), this._chara.position.set(750, 4), this._arrow.visible = !1, this._arrow.rotation = 0, this._back.visible = !0, this._back.position.set(Math.round(this._base.width / 2), this._base.height + 30), this.position.set(126, 212), this._arrowAnimationAlign = "none", this._container.buttonMode = !1, this._container.removeAllListeners(o.EventType.CLICK)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._container.interactive = !1, this._container.buttonMode = !1, this._container.removeAllListeners(o.EventType.CLICK), this._back.interactive = !0, this._back.buttonMode = !0, this._back.removeAllListeners(o.EventType.CLICK), this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.FlagShipLayer = l;
-    var u = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "anim_value", {
-            get: function () {
-                return 0
-            },
-            set: function (t) {
-                var e = Math.sin(t),
-                    i = 1 + .012 * (.5 + .5 * e);
-                this.scale.set(i), this.y = this._base_y - 1.5 * e * 1.8
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.positionSet = function (t, e) {
-            this.position.set(t, e), this._base_y = e
-        }, e
-    }(PIXI.Container)
+    e.Tutorial = _
 }

@@ -19,37 +19,22 @@ const function309 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(82),
-        s = i(5),
-        a = i(108),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._ImageManager = e, n._ev = i;
-                var _ = new PIXI.Sprite(n._ImageManager.use(a.IMAGE_FILE.MSG_BOX));
-                n.btn = new PIXI.Container;
-                var l = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(3));
-                return l.anchor.set(.5, .5), n._btnOuter = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(4)), n._btnOuter.anchor.set(.5, .5), n.btn.addChild(l, n._btnOuter), n.btn.width = n._btnOuter.width, n.btn.height = n._btnOuter.height, n.btn.position.set(s.default.width - Math.floor(n._btnOuter.width / 2) - 20, 170), n.message = new o.TextBox(27, 16777215), n.message.text = "", n.message.position.set(250, 85), n.position.set(0, 465), n.addChild(_, n.message, n.btn), n
+    var o = i(9),
+        r = function (t) {
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                i._isOldType = e, i._img = new PIXI.Sprite, i.addChild(i._img);
+                var n = new PIXI.Graphics;
+                return n.beginFill(0), n.drawRect(0, 0, 240, 300), n.endFill(), n.position.set(3, 4), i.addChild(n), i._img.mask = n, i._isOldType && (i._frame = new PIXI.Sprite, i.addChild(i._frame)), i
             }
-            return n(e, t), e.prototype.start = function () {
-                createjs.Tween.get(this._btnOuter, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 6e3, createjs.Ease.linear)
-            }, e.prototype.flashText = function (t, e) {
-                var i = this;
-                void 0 === e && (e = 40);
-                var n = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(e).call(function () {
-                    var e = t.substr(0, 1);
-                    " " == i.message.text ? i.message.text = e : i.message.text += e, t = t.substr(1), 0 == t.length && (n.setPaused(!0), n = null)
-                })
-            }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this._btnOuter)
+            return n(e, t), e.prototype.initialize = function () {
+                this._isOldType ? (this.texture = o.COMMON_MISC.getTexture(52), this._frame.texture = o.COMMON_MISC.getTexture(54)) : this.texture = o.COMMON_MISC.getTexture(53)
+            }, e.prototype.update = function (t) {
+                this._img.texture = t
+            }, e.prototype.clean = function () {
+                this._img.texture = PIXI.Texture.EMPTY
             }, e
-        }(PIXI.Container);
-    e.MessageBoxView = _
+        }(PIXI.Sprite);
+    e.FurnitureThumbnail = r
 }

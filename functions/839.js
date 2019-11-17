@@ -1,45 +1,66 @@
 const function839 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._onClickSign = function () {
-                    n._cb_onSign && n._cb_onSign()
-                }, n._onClickBack = function () {
-                    n._cb_onBack && n._cb_onBack()
-                }, n._cb_onSign = e, n._cb_onBack = i;
-                var a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(47));
-                n.addChild(a);
-                var _ = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(33));
-                return _.position.set(18, -117), a.addChild(_), n._buttonSign = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(12)), n._buttonSign.position.set(48, 212), n._buttonSign.interactive = !0, n._buttonSign.buttonMode = !0, n.addChild(n._buttonSign), n._buttonBack = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), n._buttonBack.position.set(384, 212), n._buttonBack.interactive = !0, n._buttonBack.buttonMode = !0, n.addChild(n._buttonBack), n._textBeforeCount = new o.TextBox(25, 5523516), n._textBeforeCount.position.set(386, 78), n._textBeforeCount.anchor.x = 1, n.addChild(n._textBeforeCount), n._arrow = new o.TextBox(18, 5523516), n._arrow.position.set(393, 83), n._arrow.text = "\u2192", n.addChild(n._arrow), n._textAfterCount = new o.TextBox(25, 5523516), n._textAfterCount.position.set(417, 78), n.addChild(n._textAfterCount), n._buttonSign.on(s.EventType.CLICK, n._onClickSign), n._buttonBack.on(s.EventType.CLICK, n._onClickBack), n
+    var n = i(0),
+        o = i(8),
+        r = i(342),
+        s = i(51),
+        a = i(842),
+        _ = i(843),
+        l = i(844),
+        u = function () {
+            function t(t) {
+                var e = this;
+                this._onClickSign = function () {
+                    n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.addChild(e.clickGuardMarriageConfirm);
+                    var t = new a.MarriageAPI(e.memShipId);
+                    n.default.view.clickGuard = !0, t.start(function () {
+                        n.default.view.clickGuard = !1;
+                        var t = new r.MarriageAnimation(n.default.model.ship.get(e.memShipId).mstID);
+                        n.default.view.overLayer.addChild(t), t.PreLoad(function () {
+                            t.Initialize(), t.Play(!1, function () {
+                                n.default.view.overLayer.removeChild(e.marriageConfirm), n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(t), t.Dispose(), n.default.sound.bgm.play(102), e.onUpdateShip(), e.onComplete()
+                            })
+                        })
+                    })
+                }, this._onClickConfirmBack = function () {
+                    n.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardMarriageConfirm).to({
+                        alpha: 0
+                    }, 250), createjs.Tween.get(e.marriageConfirm).to({
+                        alpha: 0
+                    }, 250).call(function () {
+                        n.default.view.clickGuard = !1, n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(e.marriageConfirm), e.onComplete()
+                    })
+                }, this._onClickAlertBack = function () {
+                    n.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardMarriageConfirm).to({
+                        alpha: 0
+                    }, 250), createjs.Tween.get(e.marriageAlert).to({
+                        alpha: 0
+                    }, 250).call(function () {
+                        n.default.view.clickGuard = !1, n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(e.marriageAlert), e.onComplete()
+                    })
+                }, this.mainView = t, this.marriageConfirm = new l.MarriageConfirm(this._onClickSign, this._onClickConfirmBack), this.marriageAlert = new _.MarriageAlert, this.clickGuardMarriageConfirm = new o.AreaBox(.5)
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._buttonSign.off(s.EventType.CLICK), this._buttonBack.off(s.EventType.CLICK), this._textBeforeCount.destroy(), this._textAfterCount.destroy(), this._arrow.destroy(), this._cb_onSign = null, this._cb_onBack = null, this._buttonSign = null, this._buttonBack = null, this._textBeforeCount = null, this._textAfterCount = null, this._arrow = null, this.removeChildren()
-            }, e.prototype.update = function (t) {
-                this._textBeforeCount.text = "" + t, this._textAfterCount.text = "" + (t - 1)
-            }, e
-        }(PIXI.Container);
-    e.MarriageConfirm = a
+            return t.prototype.start = function (t) {
+                var e = n.default.model.useItem.get(s.RemodelConst.MARRIAGE_RING_ITEMID).count;
+                this.marriageConfirm.position.set(294, 212), this.marriageAlert.position.set(294, 212), this.clickGuardMarriageConfirm.alpha = 0, this.marriageConfirm.alpha = 0, this.marriageAlert.alpha = 0, 0 < e ? (n.default.view.overLayer.addChild(this.clickGuardMarriageConfirm, this.marriageConfirm), this.marriageConfirm.update(e), n.default.view.clickGuard = !0, createjs.Tween.get(this.clickGuardMarriageConfirm).to({
+                    alpha: 1
+                }, 250), createjs.Tween.get(this.marriageConfirm).to({
+                    alpha: 1
+                }, 250).call(function () {
+                    n.default.view.clickGuard = !1
+                })) : (n.default.view.overLayer.addChild(this.clickGuardMarriageConfirm, this.marriageAlert), this.marriageAlert.onClickBack = this._onClickAlertBack, n.default.view.clickGuard = !0, createjs.Tween.get(this.clickGuardMarriageConfirm).to({
+                    alpha: 1
+                }, 250), createjs.Tween.get(this.marriageAlert).to({
+                    alpha: 1
+                }, 250).call(function () {
+                    n.default.view.clickGuard = !1
+                })), this.memShipId = t
+            }, t.prototype.dispose = function () {
+                this.marriageAlert.onClickBack = this._onClickAlertBack = null, this.onUpdateShip = null, this.onComplete = null, this.mainView = null, this.marriageConfirm && this.marriageConfirm.dispose(), this.marriageAlert && this.marriageAlert.dispose(), this.marriageConfirm = null, this.marriageAlert = null, this.clickGuardMarriageConfirm = null, this.memShipId = null
+            }, t
+        }();
+    e.TaskMarriage = u
 }

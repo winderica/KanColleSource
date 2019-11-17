@@ -1,115 +1,120 @@
 const function480 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = i(6),
-        s = i(177),
-        a = i(1452),
-        _ = i(1453),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._under_layer = new PIXI.Sprite, e._over_layer = new PIXI.Sprite, e.addChild(e._under_layer), e.addChild(e._over_layer), e
+    var n = i(7),
+        o = i(1450),
+        r = function () {
+            function t(t) {
+                this._o = t
             }
-            return n(e, t), e.prototype.playDamageExplosion = function (t, e, i, n) {
-                void 0 === n && (n = null), i < 0 ? null != n && n() : i < 16 ? this.playExplosionSmall(t, e, n) : i < 40 ? this.playExplosionMiddle(t, e, n) : this.playExplosionLarge(t, e, n)
-            }, e.prototype.playExplosionSmall = function (t, e, i) {
-                void 0 === i && (i = null), r.SE.play("102"), this._explode(t, e, i)
-            }, e.prototype.playExplosionMiddle = function (t, e, i) {
-                var n = this;
-                void 0 === i && (i = null), createjs.Tween.get(this).call(function () {
-                    r.SE.play("103"), n._explode(t - 26, e + 35)
-                }).wait(100).call(function () {
-                    n._explode(t + 27, e - 23, i)
-                })
-            }, e.prototype.playExplosionLarge = function (t, e, i) {
-                var n = this;
-                void 0 === i && (i = null), createjs.Tween.get(this).call(function () {
-                    r.SE.play("104"), n._explode(t - 5, e + 33)
-                }).wait(100).call(function () {
-                    n._explode(t + 48, e - 24)
-                }).wait(100).call(function () {
-                    n._explode(t - 50, e - 8, i)
-                })
-            }, e.prototype.playExplosions = function (t, e, i) {
-                var n = this;
-                void 0 === i && (i = null), createjs.Tween.get(null).wait(166).call(function () {
-                    n._explode(t - 98, e + 135)
-                }).wait(33).call(function () {
-                    n._explode(t - 47, e + 84)
-                }).wait(33).call(function () {
-                    n._explode(t, e + 30)
-                }).wait(33).call(function () {
-                    n._explode(t + 21, e - 27)
-                }).wait(33).call(function () {
-                    n._explode(t + 56, e - 95)
-                }).wait(33).call(function () {
-                    n._explode(t - 92, e - 42)
-                }).wait(33).call(function () {
-                    n._explode(t + 50, e + 134)
-                }).wait(33).call(function () {
-                    n._explode(t - 27, e - 80)
-                }).wait(33).call(function () {
-                    n._explode(t + 36, e - 161)
-                }).wait(33).call(function () {
-                    n._explode(t - 66, e - 150)
-                }).wait(33).call(function () {
-                    n._explode(t + 81, e + 44), n._explode(t - 89, e - 53)
-                }).wait(33).call(function () {
-                    n._explode(t - 68, e + 146, i)
-                })
-            }, e.prototype._explode = function (t, e, i) {
-                var n = this;
-                void 0 === i && (i = null);
-                var o = new s.Explosion;
-                o.position.set(t, e), this.addChild(o), o.play(function () {
-                    n.removeChild(o), null != i && i()
-                })
-            }, e.prototype.playTorpedoWaterColumn = function (t, e) {
-                void 0 === e && (e = null);
-                var i = t.getGlobalPos(!0);
-                i.y += o.BannerSize.H / 2, 1 == t.friend ? (i.x += o.BannerSize.W / 2 + 45, this.playTorpedoWaterColumnToFriend(i.x, i.y, e)) : (i.x -= o.BannerSize.W / 2 + 45, this.playTorpedoWaterColumnToEnemy(i.x, i.y, e))
-            }, e.prototype.playTorpedoWaterColumnToFriend = function (t, e, i) {
-                void 0 === i && (i = null), this._playTorpedoWaterColumn(!0, t, e, i)
-            }, e.prototype.playTorpedoWaterColumnToEnemy = function (t, e, i) {
-                void 0 === i && (i = null), this._playTorpedoWaterColumn(!1, t, e, i)
-            }, e.prototype._playTorpedoWaterColumn = function (t, e, i, n) {
-                var o = this;
-                void 0 === n && (n = null);
-                var r = new a.TorpedoWaterColumn;
-                r.initialize(), t && (r.scale.x = -1), r.position.set(e, i), this.addChild(r), r.play(), r.once("complete", function () {
-                    o.removeChild(r), null != n && n()
-                })
-            }, e.prototype.playWaterColumnToFriend = function (t, e, i) {
-                void 0 === i && (i = null), this._playWaterColumn(!0, t, e, i)
-            }, e.prototype.playWaterColumnToEnemy = function (t, e, i) {
-                void 0 === i && (i = null), this._playWaterColumn(!1, t, e, i)
-            }, e.prototype._playWaterColumn = function (t, e, i, n) {
-                var o = this;
-                void 0 === n && (n = null);
-                var r = new _.WaterColumn;
-                r.initialize(), t && (r.scale.x = -1), r.position.set(e, i), this.addChild(r), r.play(), r.once("complete", function () {
-                    o.removeChild(r), null != n && n()
-                })
-            }, e
-        }(PIXI.Container);
-    e.LayerExplosion = l
+            return Object.defineProperty(t.prototype, "deck_id", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_deck_id")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "formation_id_f", {
+                get: function () {
+                    var t = n.ObjUtil.getNumArray(this._o, "api_formation")[0];
+                    return "string" == typeof t ? parseInt(t) : t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "formation_id_e", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_formation")[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "formation_id_c", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_formation")[2]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getHPMaxFriend = function (t) {
+                return this._getNum(t, "api_f_maxhps", "api_f_maxhps_combined")
+            }, t.prototype.getHPNowFriend = function (t) {
+                return this._getNum(t, "api_f_nowhps", "api_f_nowhps_combined")
+            }, t.prototype.getMstIDEnemy = function (t) {
+                return this._getNum(t, "api_ship_ke", "api_ship_ke_combined")
+            }, t.prototype.getLevelEnemy = function (t) {
+                return this._getNum(t, "api_ship_lv", "api_ship_lv_combined", 1)
+            }, t.prototype.getHPMaxEnemy = function (t) {
+                return this._getNum(t, "api_e_maxhps", "api_e_maxhps_combined")
+            }, t.prototype.getHPNowEnemy = function (t) {
+                return this._getNum(t, "api_e_nowhps", "api_e_nowhps_combined")
+            }, t.prototype.getSlotMstIDsEnemy = function (t) {
+                return this._getNumArray(t, "api_eSlot", "api_eSlot_combined")
+            }, t.prototype.getParamsFriend = function (t) {
+                return this._getParams(t, "api_fParam", "api_fParam_combined")
+            }, t.prototype.getParamsEnemy = function (t) {
+                return this._getParams(t, "api_eParam", "api_eParam_combined")
+            }, t.prototype.isBossDamaged = function () {
+                return 1 == n.ObjUtil.getNumber(this._o, "api_xal01")
+            }, t.prototype.getTaihiShipIndexes = function () {
+                var t = [],
+                    e = n.ObjUtil.getNumArray(this._o, "api_escape_idx");
+                if (null != e)
+                    for (var i = 0, o = e; i < o.length; i++) {
+                        var r = o[i];
+                        t.push(r - 1)
+                    }
+                if (null != (e = n.ObjUtil.getNumArray(this._o, "api_escape_idx_combined")))
+                    for (var s = 0, a = e; s < a.length; s++) {
+                        var r = a[s];
+                        t.push(r - 1 + 6)
+                    }
+                return t
+            }, t.prototype.isCombinedFriend = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_f_maxhps_combined");
+                return null != t && t.length > 0 && t[0] > 0
+            }, t.prototype.isCombinedEnemy = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_e_maxhps_combined");
+                return null != t && t.length > 0 && t[0] > 0
+            }, t.prototype.getActiveDeckFriend = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_active_deck");
+                return null == t || 0 == t.length ? this.isCombinedFriend() ? 2 : 1 : t[0]
+            }, t.prototype.getActiveDeckEnemy = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_active_deck");
+                return null == t || 0 == t.length ? this.isCombinedEnemy() ? 2 : 1 : t[1]
+            }, t.prototype.getBossModels = function () {
+                var t = n.ObjUtil.getObjectArray(this._o, "api_flavor_info");
+                if (null == t) return null;
+                for (var e = [], i = 0, r = t; i < r.length; i++) {
+                    var s = r[i],
+                        a = parseInt(n.ObjUtil.getString(s, "api_type")),
+                        _ = parseInt(n.ObjUtil.getString(s, "api_boss_ship_id")),
+                        l = n.ObjUtil.getString(s, "api_class_name"),
+                        u = n.ObjUtil.getString(s, "api_ship_name"),
+                        c = new o.BossModel(a, _, l, u),
+                        h = n.ObjUtil.getString(s, "api_voice_id"),
+                        p = n.ObjUtil.getString(s, "api_message");
+                    c.setMessage(h, p);
+                    var d = parseInt(n.ObjUtil.getString(s, "api_pos_x")),
+                        f = parseInt(n.ObjUtil.getString(s, "api_pos_y"));
+                    c.setOffset(d, f), e.push(c)
+                }
+                return e
+            }, t.prototype._getNum = function (t, e, i, o) {
+                void 0 === o && (o = 0);
+                var r = n.ObjUtil.getNumArray(this._o, e);
+                return null != r && r.length > t ? r[t] : t >= 6 && null != (r = n.ObjUtil.getNumArray(this._o, i)) && r.length > t - 6 ? r[t - 6] : o
+            }, t.prototype._getNumArray = function (t, e, i) {
+                var o = n.ObjUtil.getObjectArray(this._o, e);
+                return null != o && o.length > t ? o[t] : t >= 6 && null != (o = n.ObjUtil.getObjectArray(this._o, i)) && o.length > t - 6 ? o[t - 6] : []
+            }, t.prototype._getParams = function (t, e, i) {
+                var n = {
+                        karyoku: 0,
+                        raisou: 0,
+                        taiku: 0,
+                        soukou: 0
+                    },
+                    o = this._getNumArray(t, e, i);
+                return null != o && (o.length > 0 && (n.karyoku = o[0]), o.length > 1 && (n.raisou = o[1]), o.length > 2 && (n.taiku = o[2]), o.length > 3 && (n.soukou = o[3])), n
+            }, t
+        }();
+    e.BattleCommonModel = r
 }

@@ -19,20 +19,41 @@ const function343 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.WIDTH = 150;
-            var i = new PIXI.Graphics;
-            i.beginFill(16777215, 1), i.drawRect(0, 0, e.WIDTH, 3), i.endFill();
-            var n = new PIXI.Graphics;
-            n.beginFill(0, 1), n.drawRect(0, 0, e.WIDTH, 1), n.endFill();
-            var o = n.clone();
-            return n.position.y = 3, o.position.y = 0, e.addChild(i, n, o), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren()
-        }, e
-    }(PIXI.Container);
-    e.Wire = o
+    var o = i(0),
+        r = i(10),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/ndock", e
+            }
+            return n(e, t), e.prototype._completedEnd = function () {
+                var e = o.default.model.ndock.get(1),
+                    i = o.default.model.ndock.get(2),
+                    n = o.default.model.ndock.get(3),
+                    r = o.default.model.ndock.get(4);
+                o.default.model.ndock.setData(this._raw_data);
+                var s = o.default.model.ndock.get(1),
+                    a = o.default.model.ndock.get(2),
+                    _ = o.default.model.ndock.get(3),
+                    l = o.default.model.ndock.get(4);
+                if (1 == e.state && 0 == s.state) {
+                    var u = o.default.model.ship.get(e.shipMemID);
+                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
+                }
+                if (1 == i.state && 0 == a.state) {
+                    var u = o.default.model.ship.get(i.shipMemID);
+                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
+                }
+                if (1 == n.state && 0 == _.state) {
+                    var u = o.default.model.ship.get(n.shipMemID);
+                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
+                }
+                if (1 == r.state && 0 == l.state) {
+                    var u = o.default.model.ship.get(r.shipMemID);
+                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
+                }
+                t.prototype._completedEnd.call(this)
+            }, e
+        }(r.APIBase);
+    e.NDockAPI = s
 }

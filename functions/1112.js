@@ -19,20 +19,34 @@ const function1112 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene_activate_delegate = e, i
+    var o = i(2),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n._switchOrder = [1, 2], n._switch_btn = e, n._tab_container = i;
+                var o = n._switchOrder.indexOf(n._switch_btn.mode);
+                return n._switchMode = o + 1 >= n._switchOrder.length ? n._switchOrder[0] : n._switchOrder[o + 1], n
             }
             return n(e, t), e.prototype._start = function () {
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                o.default.sound.bgm.play(102), this._startScene()
-            }, e.prototype._startScene = function () {
-                null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
+                this._switch_btn.mode = this._switchMode, this._tab_container.switchViewAlbumMode(this._switchMode), this._animate()
+            }, e.prototype._animate = function () {
+                var t = this;
+                createjs.Tween.get(this._switch_btn).to({
+                    alpha: 0
+                }, 0).to({
+                    x: -137
+                }, 0).wait(300).call(function () {
+                    t._switch_btn.update(!1), createjs.Tween.get(t._switch_btn).to({
+                        alpha: 1
+                    }, 0).wait(100).to({
+                        x: 0
+                    }, 450, createjs.Ease.quintOut).call(function () {
+                        t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._switch_btn.addOnceClickEvent(), t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskItemSceneInitialize = s
+        }(o.TaskBase);
+    e.TaskSwitchAlbumMode = r
 }

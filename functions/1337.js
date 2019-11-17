@@ -19,20 +19,23 @@ const function1337 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(141),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = 0 != n.type;
-                return i._url = 0 == o ? "api_req_sortie/airbattle" : "api_req_combined_battle/airbattle", i._data = e, i
+    var o = i(19),
+        r = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.create = function (t) {
+                null != this._airbase && null != this._airbase.parent && this._airbase.parent.removeChild(this._airbase), this._airbase = new PIXI.Sprite, this._airbase.texture = o.MAP_COMMON.getTexture(84), this._airbase.x = t.x - this._airbase.width / 2, this._airbase.y = t.y - this._airbase.height / 2, this.addChild(this._airbase)
+            }, e.prototype.shake = function () {
+                var t = this;
+                if (null != this._airbase)
+                    for (var e = this._airbase.x, i = createjs.Tween.get(this._airbase), n = 0; n < 60; n++) ! function (n) {
+                        i.wait(50), i.call(function () {
+                            Math.random();
+                            t._airbase.x = n % 2 == 0 ? e + (Math.random() + .5) : e - (Math.random() + .5)
+                        })
+                    }(n)
             }, e
-        }(o.APIBase);
-    e.APIBattleStartAirBattle = s
+        }(PIXI.Container);
+    e.AirBaseLayer = r
 }

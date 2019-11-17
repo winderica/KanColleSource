@@ -20,101 +20,162 @@ const function534 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(7),
-        s = i(535),
-        a = function () {
+        r = i(535),
+        s = function () {
             function t() {
-                this._USEITEM_FROM_SLOTITEM = {
-                    50: 42,
-                    51: 43,
-                    66: 145,
-                    67: 146,
-                    69: 150,
-                    76: 241
-                }, this._MATERIALS_ = [31, 32, 33, 34, 2, 1, 3, 4]
+                this._USE_DEVKIT_GROUP_ = [503, 504, 520]
             }
-            return t.prototype.getCount = function (t) {
-                var e = this.get(t);
-                return null == e ? 0 : e.count
-            }, t.prototype.get = function (t) {
-                var e = t.toString();
-                return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-            }, t.prototype.getMaterialCounts = function () {
-                return {
-                    fuel: this.getCount(31),
-                    ammo: this.getCount(32),
-                    steel: this.getCount(33),
-                    baux: this.getCount(34),
-                    repairKit: this.getCount(1),
-                    buildKit: this.getCount(2),
-                    devKit: this.getCount(3),
-                    revKit: this.getCount(4)
+            return t.prototype.getRequiredLevel = function (t) {
+                var e = this._getMst(t);
+                return null == e ? 0 : e.remodeling_level
+            }, t.prototype.getNextID = function (t) {
+                if (null != this._dic && 1 == this._dic.hasOwnProperty(t.toString())) {
+                    return this._dic[t].mst_id_after
                 }
-            }, t.prototype._isMaterial = function (t) {
-                return this._MATERIALS_.indexOf(t) >= 0
+                var e = this._getMst(t);
+                return null == e ? 0 : e.remodeled_mst_id
+            }, t.prototype.getRequires = function (t) {
+                var e = this._getMst(t);
+                if (null == e || e.remodeled_mst_id <= 0) return {
+                    ammo: 0,
+                    steel: 0,
+                    devkit: 0,
+                    buildkit: 0,
+                    blueprint: 0,
+                    catapult: 0,
+                    battlereport: 0,
+                    newhokohesosizai: 0,
+                    newkokuhesosizai: 0
+                };
+                var i = e.remodeling_ammo,
+                    n = e.remodeling_steel;
+                if (1 == this._dic.hasOwnProperty(t.toString())) {
+                    var o = this._dic[t];
+                    return {
+                        ammo: i,
+                        steel: n,
+                        blueprint: o.blueprint,
+                        catapult: o.catapult,
+                        battlereport: o.battlereport,
+                        devkit: this._getRequiredDevkitNum(t, o.blueprint, n),
+                        buildkit: this._getRequiredBuildKitNum(t),
+                        newhokohesosizai: o.newhokohesosizai,
+                        newkokuhesosizai: o.newkokuhesosizai
+                    }
+                }
+                return {
+                    ammo: i,
+                    steel: n,
+                    blueprint: 0,
+                    catapult: 0,
+                    battlereport: 0,
+                    devkit: this._getRequiredDevkitNum(t, 0, n),
+                    buildkit: this._getRequiredBuildKitNum(t),
+                    newhokohesosizai: 0,
+                    newkokuhesosizai: 0
+                }
+            }, t.prototype._getRequiredDevkitNum = function (t, e, i) {
+                switch (t) {
+                    case 214:
+                        return 15;
+                    case 545:
+                    case 550:
+                        return 20;
+                    case 555:
+                    case 560:
+                        return 5;
+                    case 312:
+                    case 320:
+                    case 317:
+                        return 40;
+                    case 225:
+                    case 226:
+                        return 20;
+                    case 82:
+                        return 80;
+                    case 88:
+                        return 181;
+                    case 227:
+                        return 20;
+                    case 242:
+                        return 15;
+                    case 213:
+                        return 24;
+                    case 381:
+                        return 40;
+                    case 313:
+                        return 50;
+                    case 562:
+                        return 80;
+                    case 149:
+                        return 300;
+                    case 277:
+                        return 100;
+                    case 594:
+                    case 599:
+                    case 596:
+                        return 80;
+                    case 350:
+                        return 30;
+                    case 520:
+                        return 90;
+                    case 344:
+                        return 30;
+                    default:
+                        return 0 != e && -1 == this._USE_DEVKIT_GROUP_.indexOf(t) ? 0 : i < 4500 ? 0 : i < 5500 ? 10 : i < 6500 ? 15 : 20
+                }
+            }, t.prototype._getRequiredBuildKitNum = function (t) {
+                switch (t) {
+                    case 214:
+                        return 5;
+                    case 503:
+                    case 504:
+                    case 508:
+                    case 509:
+                        return 20;
+                    case 545:
+                    case 550:
+                        return 30;
+                    case 555:
+                    case 560:
+                        return 20;
+                    case 312:
+                    case 320:
+                    case 317:
+                        return 10;
+                    case 213:
+                        return 8;
+                    case 313:
+                        return 20;
+                    case 562:
+                        return 10;
+                    case 594:
+                    case 599:
+                        return 30;
+                    case 596:
+                    case 520:
+                        return 10;
+                    default:
+                        return 0
+                }
+            }, t.prototype._getMst = function (t) {
+                return o.default.model.ship.getMst(t)
             }, t
         }();
-    e.UseItemModelHolder = a;
-    var _ = function (t) {
+    e.ShipUpgradeModelHolder = s;
+    var a = function (t) {
         function e() {
             return t.call(this) || this
         }
-        return n(e, t), e.prototype.setMstData = function (t) {
-            if (this._map = {}, null != t)
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e],
-                        n = new s.UseItemModel(i),
-                        o = n.mstID;
-                    if (o > 0 && "" != n.name) {
-                        var r = o.toString();
-                        this._map[r] = n
-                    }
-                }
-        }, e.prototype.setMemData = function (t) {
-            if (null != t) {
-                for (var e in this._map) {
-                    var i = this._map[e],
-                        n = i.mstID;
-                    0 == this._isMaterial(n) && 44 != n && i.__setCount__(0)
-                }
-                for (var o = 0; o < t.length; o++) {
-                    var s = t[o],
-                        a = r.ObjUtil.getNumber(s, "api_id");
-                    if (a > 0) {
-                        var _ = this.get(a);
-                        if (null != _) {
-                            var l = r.ObjUtil.getNumber(s, "api_count");
-                            _.__setCount__(l)
-                        }
-                    }
-                }
-            }
-        }, e.prototype.setMaterialData = function (t) {
-            for (var e = [-1].concat(this._MATERIALS_), i = 0; i < t.length; i++) {
-                var n = t[i];
-                if (null != n) {
-                    var o = r.ObjUtil.getNumber(n, "api_id"),
-                        s = r.ObjUtil.getNumber(n, "api_value"),
-                        a = this.get(e[o]);
-                    null != a && a.__setCount__(s)
-                }
-            }
-        }, e.prototype.updateMaterials = function (t) {
-            for (var e in t) {
-                var i = this.get(e);
-                if (null != i) {
-                    var n = t[e];
-                    i.__setCount__(n)
-                }
-            }
-        }, e.prototype.updateCount = function () {
-            var t = this._USEITEM_FROM_SLOTITEM;
-            for (var e in t) {
+        return n(e, t), e.prototype.setData = function (t) {
+            if (this._dic = {}, null == t) return null;
+            for (var e = 0; e < t.length; e++) {
                 var i = t[e],
-                    n = o.default.model.slot.getCount(i);
-                this.get(e).__setCount__(n)
+                    n = new r.ShipUpgradeModel(i),
+                    o = n.mst_id_before;
+                o <= 0 || null == this._dic[o] && (this._dic[o] = n)
             }
         }, e
-    }(a);
-    e.UseItemModelHolderEdit = _
+    }(s);
+    e.ShipUpgradeModelHolderEdit = a
 }

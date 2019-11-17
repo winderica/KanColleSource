@@ -19,13 +19,18 @@ const function442 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._area_id = e, s._map_no = i, s._cell_no = n, s._target_mem_id = o, s._towing_mem_id = r, s._towing_mem_id <= 0 ? s._url = "api_req_sortie/goback_port" : s._url = "api_req_combined_battle/goback_port", s
+    var o = i(4),
+        r = i(438),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new r.CompDropItemIcon, e._icon.anchor.set(.5, 1), e._text = new o.TextBox(20, 16774898), e._text.position.set(17, -27), e.addChild(e._icon), e.addChild(e._text), e
             }
-            return n(e, t), e
-        }(o.APIBase);
-    e.GobackPortAPI = r
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._icon.update(t), this._text.text = e.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy()
+            }, e
+        }(PIXI.Container);
+    e.CompDropItem = s
 }

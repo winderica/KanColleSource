@@ -1,31 +1,35 @@
 const function578 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(579),
-        o = function () {
-            function t(t, e) {
-                if (this._frames = [], this._loopMax = e, null != t)
-                    for (var i = 0; i < t.length; i++) {
-                        var o = t[i],
-                            r = new n.FurnitureKeyFrameModel(o);
-                        this._frames.push(r)
-                    }
+    var o = i(11),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_req_furniture/radio_play", e
             }
-            return Object.defineProperty(t.prototype, "frames", {
-                get: function () {
-                    return this._frames
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "loopMax", {
-                get: function () {
-                    return this._loopMax
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
-        }();
-    e.FurnitureLayerModel = o
+            return n(e, t), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                t.prototype._completedEnd.call(this)
+            }, e
+        }(o.APIBase);
+    e.UserFurnitureRadioAPI = r
 }

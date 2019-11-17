@@ -26,20 +26,20 @@ const function297 = function (t, e, i) {
                 return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this._img.texture = this._getTexture(t), this._img.x = 1 - Math.round(this._img.width / 2), this._img.y = 1 - Math.round(this._img.height / 2), 31 == t && (this._img.x += 21, this._img.y -= 8)
+                this._img.texture = this._getTexture(t), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e.prototype._getTexture = function (t) {
                 var e;
-                if (11 == t) e = 16;
-                else if (12 == t) e = 30;
-                else if (13 == t) e = 18;
-                else if (14 == t) e = 20;
-                else if (15 == t) e = 6;
+                if (11 == t) e = 15;
+                else if (12 == t) e = 29;
+                else if (13 == t) e = 17;
+                else if (14 == t) e = 19;
+                else if (15 == t) e = 5;
                 else {
                     if (31 != t) return PIXI.Texture.EMPTY;
-                    e = 22
+                    e = 21
                 }
                 return o.PORT_RINGMENU.getTexture(e)
             }, e
         }(PIXI.Container);
-    e.RingMenuBtnImgOn = r
+    e.RingMenuBtnImg = r
 }

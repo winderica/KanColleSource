@@ -19,61 +19,54 @@ const function1487 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this,
-                    o = e.battle_model.deck_f,
-                    r = e.battle_model.deck_e,
-                    s = 0 != o.type,
-                    a = null != r && 0 != r.type;
-                return n._url = 0 == s && 0 == a ? "api_req_sortie/battleresult" : "api_req_combined_battle/battleresult", n._data = e, n._debug = i, n
+    var o = i(252),
+        r = i(16),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                var e = this._data.battle_model.actual_survey_time,
-                    i = this._data.battle_model.prediction_time,
-                    n = this.__AA1(e, i);
-                n >= 0 && (this._post_data.api_btime = n);
-                for (var o = this._data.battle_model.deck_f.ships, r = 12 == o.length ? o.slice(0, 6) : o, s = 12 == o.length ? o.slice(6, 12) : [], a = this._data.battle_model.ship_info.getLastData(!0), _ = 0; _ < r.length; _++) {
-                    var l = r[_];
-                    if (null == l) break;
-                    var u = a.get(l.mem_id);
-                    null != u && (this._post_data["api_l_value[" + _ + "]"] = u.hp)
+            return n(e, t), e.prototype.show = function (t, e) {
+                void 0 === e && (e = null), this.hide(), this._current = new o.PhaseTitle, this._current.y = 16, this._current.alpha = 0, this._current.initialize(8 == t);
+                var i = this._getTexture(t);
+                this._current.update(i), this._current.activate(), null != e ? e.addChild(this._current) : this.addChild(this._current), createjs.Tween.get(this._current).to({
+                    alpha: 1
+                }, 800)
+            }, e.prototype.hide = function (t) {
+                if (void 0 === t && (t = null), null == this._current) null != t && t();
+                else {
+                    var e = this._current;
+                    this._current = null, createjs.Tween.get(e).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        e.deactivate();
+                        var i = e.parent;
+                        null != i && i.removeChild(e), e.dispose(), null != t && t()
+                    })
                 }
-                for (var _ = 0; _ < s.length; _++) {
-                    var l = s[_];
-                    if (null == l) break;
-                    var u = a.get(l.mem_id);
-                    null != u && (this._post_data["api_l_value2[" + _ + "]"] = u.hp)
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case 0:
+                        return r.BATTLE_MAIN.getTexture(129);
+                    case 1:
+                        return r.BATTLE_MAIN.getTexture(125);
+                    case 2:
+                        return r.BATTLE_MAIN.getTexture(130);
+                    case 3:
+                        return r.BATTLE_MAIN.getTexture(128);
+                    case 4:
+                        return r.BATTLE_MAIN.getTexture(124);
+                    case 5:
+                        return r.BATTLE_MAIN.getTexture(123);
+                    case 6:
+                        return r.BATTLE_MAIN.getTexture(127);
+                    case 7:
+                        return r.BATTLE_MAIN.getTexture(126);
+                    case 8:
+                        return r.BATTLE_MAIN.getTexture(131);
+                    default:
+                        return PIXI.Texture.EMPTY
                 }
-                for (var c = this._data.battle_model.deck_e.ships, h = 12 == c.length ? c.slice(0, 6) : c, p = 12 == c.length ? c.slice(6, 12) : [], d = this._data.battle_model.ship_info.getLastData(!1), _ = 0; _ < h.length; _++) {
-                    var l = h[_];
-                    if (null == l) break;
-                    var u = d.get(l.mem_id);
-                    null != u && (this._post_data["api_l_value3[" + _ + "]"] = u.hp)
-                }
-                for (var _ = 0; _ < p.length; _++) {
-                    var l = p[_];
-                    if (null == l) break;
-                    var u = d.get(l.mem_id);
-                    null != u && (this._post_data["api_l_value4[" + _ + "]"] = u.hp)
-                }
-                var _, l, u, _, l, u;
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.setData(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
-            }, e.prototype.__AA1 = function (t, e) {
-                var i = t,
-                    n = i,
-                    o = Math.floor(89999999 * Math.random()) + 1e7,
-                    r = Math.floor(o / 331),
-                    s = 331 * r;
-                if (i / n <= .6) return s;
-                var a = 99999999 - s,
-                    _ = Math.min(329, a);
-                return s + Math.floor(Math.random() * _) + 1
             }, e
-        }(o.APIBase);
-    e.APIBattleResult = r
+        }(PIXI.Container);
+    e.LayerTitle = s
 }

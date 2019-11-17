@@ -19,22 +19,34 @@ const function65 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(16),
+    var o = i(2),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._setPosition = function (t, i) {
-                    e._content.position.set(t, i)
-                }, e._content = new PIXI.Sprite, e.addChild(e._content), e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._entered = !1, n._showed_telop = !1, n._scene = e, n._record = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121));
-                this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.x = -1, t.x = 2 * t.width, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.y = -1, t.y = 2 * t.height, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.x = -1, t.scale.y = -1, t.x = 2 * t.width, t.y = 2 * t.height, this._content.addChild(t)
-            }, e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._content), this._t.loop = !0, this._t.call(this._setPosition, [0, 0]).wait(33), this._t.call(this._setPosition, [2, 5]).wait(33), this._t.call(this._setPosition, [-5, 0]).wait(33), this._t.call(this._setPosition, [3, 8]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, -2]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, 5]).wait(33), this._t.call(this._setPosition, [-5, 9]).wait(33), this._t.call(this._setPosition, [5, 0]).wait(33), this._t.call(this._setPosition, [2, 6]).wait(33), this._t.call(this._setPosition, [0, -5]).wait(33), this._t.call(this._setPosition, [5, 3]).wait(33), this._t.call(this._setPosition, [5, -3]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33))
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype._start = function () {
+                1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() ? this._endTask() : this._enterEnemies()
+            }, e.prototype._enterEnemies = function () {
+                var t = this;
+                this._scene.view.bannerGroupLayer.createEnemyEnterTask().start(function () {
+                    t._entered = !0, t._preEnd()
+                });
+                var e = this._scene.data.model.deck_e,
+                    i = e.formation,
+                    n = e.type,
+                    o = e.getCountMainDeck(),
+                    r = e.getCountSubDeck(),
+                    s = this._scene.view.raderLayer.rader_e;
+                this._scene.data.model.map_info.isLongRangeFires() ? (this._showed_telop = !0, s.show(i, n, 0, 0, !0)) : (this._scene.view.layer_info2.once("complete", function () {
+                    t._showed_telop = !0, t._preEnd()
+                }), this._scene.view.layer_info2.showCenter(5), s.show(i, n, o, r, !1))
+            }, e.prototype._preEnd = function () {
+                var t = this;
+                0 != this._entered && 0 != this._showed_telop && setTimeout(function () {
+                    t._endTask()
+                }, 200)
             }, e
-        }(PIXI.Container);
-    e.IntensiveLines = r
+        }(o.TaskBase);
+    e.PhaseEnemyEnter = r
 }

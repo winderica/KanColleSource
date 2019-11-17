@@ -1,47 +1,51 @@
 const function654 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(108),
-        r = function () {
-            function t(t) {
-                void 0 === t && (t = null), this.path = "img/tutorial", this.prefix = "tutorial_", this._loader = new PIXI.loaders.Loader(n.default.settings.path_root);
-                for (var e = function (t) {
-                        for (var e = [], i = 0, n = t.length; i < n; i++) {
-                            var o = t[i];
-                            e.push([o + ".png", o])
-                        }
-                        return e.push(["tutorial_main.json", null]), e
-                    }([o.IMAGE_FILE.BG, o.IMAGE_FILE.CRUMB, o.IMAGE_FILE.TITLE_BG, o.IMAGE_FILE.MSG_BOX]), i = 0, r = e.length; i < r; i++) {
-                    var s = e[i];
-                    this.add(s[0], s[1])
-                }
-                this.load(t)
+    var o = i(0),
+        r = i(2),
+        s = i(6),
+        a = i(655),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._pre_scene = e, i
             }
-            return t.prototype.add = function (t, e) {
-                void 0 === e && (e = null);
-                var i = this.path + "/" + t;
-                null != e ? this._loader.add(this.prefix + e, i) : this._loader.add(i)
-            }, t.prototype.load = function (t) {
-                void 0 === t && (t = null), this._loader.load(function (e, i) {
-                    null != t && t()
-                })
-            }, t.prototype.use = function (t) {
-                return PIXI.Texture.from(this.prefix + t)
-            }, t.prototype.charaImagesList = function () {
-                for (var t = [o.CHARA.FUBUKI, o.CHARA.MURAKUMO, o.CHARA.SAZANAMI, o.CHARA.INADUMA, o.CHARA.SAMIDARE], e = [], i = 0, n = t.length; i < n; i++) ! function (i, n) {
-                    var r = t[i];
-                    Object.keys(o.CHARA_SUFFIX).forEach(function (t) {
-                        var i = o.CHARA_SUFFIX[t];
-                        e.push(["chara/c" + r + "_" + i + ".png", o.CHARA_PREFIX + "_" + r + "_" + i])
-                    })
-                }(i);
-                return e
-            }, t.prototype.dispose = function () {
-                this._loader.destroy()
-            }, t
-        }();
-    e.ImageManager = r
+            return n(e, t), e.prototype._start = function () {
+                this._playVoice()
+            }, e.prototype._playVoice = function () {
+                var t = o.default.model.deck.get(1),
+                    e = t.getShipModel(0),
+                    i = e.mstID.toString();
+                if (33 == this._pre_scene || 32 == this._pre_scene) o.default.model.basic.getMFlag2() ? (s.SE.play("215"), o.default.sound.voice.play(i, 26)) : o.default.sound.voice.play(i, 7);
+                else if (50 == o.default.model.basic.getTutorialProgress()) o.default.sound.voice.play(i, 26);
+                else if (0 == this._pre_scene) o.default.sound.voice.play(i, 1);
+                else {
+                    var n = Math.random();
+                    n <= .4 && (n <= .05 ? o.default.sound.voice.play(i, 4) : n <= .2 ? o.default.sound.voice.play(i, 3) : o.default.sound.voice.play(i, 2))
+                }
+                this._playBGM()
+            }, e.prototype._playBGM = function () {
+                var t = o.default.model.basic.port_bgm_id;
+                o.default.sound.bgm.play(t), (new a.TaskCombinedAlert).start(), this._endTask()
+            }, e
+        }(r.TaskBase);
+    e.InitializeTask = _
 }

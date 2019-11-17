@@ -1,35 +1,49 @@
 const function478 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t) {
-                this._o = t
+    var o = i(479),
+        r = i(480),
+        s = i(1451),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._o = e, i._raw = new s.RawDayBattleData(e), i._common = new r.BattleCommonModel(e), i
             }
-            return Object.defineProperty(t.prototype, "deck_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "phase", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_deck_id")
+                    return "day"
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.getShipList = function () {
-                for (var t = n.ObjUtil.getNumArray(this._o, "api_ship_id"), e = n.ObjUtil.getNumArray(this._o, "api_undressing_flag"), i = [], o = 0; o < t.length; o++) i.push({
-                    mem_id: t[o],
-                    damaged: 1 == e[o]
-                });
-                return i
-            }, t.prototype.getDamage = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_damage");
-                return null != e && e.length > t ? Math.floor(e[t]) : 0
-            }, t.prototype.getHitType = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_cl_list");
-                return null == e ? 0 : e.length <= t ? 0 : 1 == e[t] ? 2 : 1
-            }, t.prototype.isShield = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_damage");
-                return null != e && (!(e.length <= t) && e[t] % 1 != 0)
-            }, t
-        }();
-    e.SupportData = o
+            }), Object.defineProperty(e.prototype, "raw", {
+                get: function () {
+                    return this._raw
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getRation = function () {
+                return this._raw.ration
+            }, e.prototype.getRationCombined = function () {
+                return this._raw.ration_combined
+            }, e
+        }(o.BattleRecord);
+    e.BattleRecordDay = a
 }

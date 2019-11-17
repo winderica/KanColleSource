@@ -19,22 +19,15 @@ const function1059 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = i(7),
-        a = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
+    var o = i(58),
+        r = i(370),
+        s = function (t) {
+            function e(e) {
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.deck.get(this._deck_id).expedition,
-                    i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
-                null == i || e.__update__(i), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._updateTexture = function () {
+                0 == this._enabled ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(23) : 1 == this._overed ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(24) : this._btn.texture = o.SALLY_EXPEDITION.getTexture(22)
             }, e
-        }(r.APIBase);
-    e.ExpeditionCancelAPI = a
+        }(r.BtnGoBase);
+    e.BtnGo = s
 }

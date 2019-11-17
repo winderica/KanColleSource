@@ -22,98 +22,140 @@ const function508 = function (t, e, i) {
     var o = i(7),
         r = function () {
             function t(t) {
-                this._hasFlag = !1, this._o = t
+                this._o = t, this._state = -1
             }
-            return Object.defineProperty(t.prototype, "mstID", {
+            return Object.defineProperty(t.prototype, "state", {
                 get: function () {
-                    return this._o.api_id
+                    return this._state
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "no", {
+            }), Object.defineProperty(t.prototype, "mstID", {
                 get: function () {
-                    return this._o.api_no
+                    return o.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "type", {
+            }), Object.defineProperty(t.prototype, "areaID", {
                 get: function () {
-                    return this._o.api_type
+                    return o.ObjUtil.getNumber(this._o, "api_maparea_id")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "dispID", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_disp_no")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "reset_type", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_reset_type")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "damage_type", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_damage_type")
                 },
                 enumerable: !0,
                 configurable: !0
             }), Object.defineProperty(t.prototype, "name", {
                 get: function () {
-                    return this._o.api_title
+                    return o.ObjUtil.getString(this._o, "api_name")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "outside", {
+            }), Object.defineProperty(t.prototype, "difficulty", {
                 get: function () {
-                    return this._o.hasOwnProperty("api_outside_id") ? this._o.api_outside_id : 4
+                    return o.ObjUtil.getNumber(this._o, "api_difficulty")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "description", {
+            }), Object.defineProperty(t.prototype, "detail", {
                 get: function () {
-                    return this._o.api_description
+                    return o.ObjUtil.getString(this._o, "api_details")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "price", {
+            }), Object.defineProperty(t.prototype, "time", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_price")
+                    return o.ObjUtil.getNumber(this._o, "api_time")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "rarity", {
+            }), Object.defineProperty(t.prototype, "fuel", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_rarity")
+                    return o.ObjUtil.getNumber(this._o, "api_use_fuel")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "seasonID", {
+            }), Object.defineProperty(t.prototype, "ammo", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_season")
+                    return o.ObjUtil.getNumber(this._o, "api_use_bull")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "version", {
+            }), Object.defineProperty(t.prototype, "item1_id", {
                 get: function () {
-                    return o.ObjUtil.getString(this._o, "api_version", "1")
+                    var t = o.ObjUtil.getNumArray(this._o, "api_win_item1");
+                    return null != t && t.length > 0 ? t[0] : 0
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.has = function () {
-                return this._hasFlag
-            }, t.prototype.isOnSale = function () {
-                return 1 == o.ObjUtil.getNumber(this._o, "api_saleflg")
-            }, t.prototype.isNeedCraftsman = function () {
-                return this.price >= 2e3 && this.price < 2e4
-            }, t.prototype.isHighGrade = function () {
-                return this.price >= 1e5
-            }, t.prototype.isActive = function () {
-                return 1 == this._o.api_active_flag
-            }, t.prototype.getDiscountPrice = function () {
-                if (0 == this.isHighGrade()) return this.price;
-                var t = .1 * (this.price - 1e5);
-                return t = Math.max(t, 0), Math.floor(t)
-            }, Object.defineProperty(t.prototype, "getVersion", {
+            }), Object.defineProperty(t.prototype, "item1_count", {
                 get: function () {
-                    return this._o.api_version
+                    var t = o.ObjUtil.getNumArray(this._o, "api_win_item1");
+                    return null != t && t.length > 1 ? t[1] : 0
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t
+            }), Object.defineProperty(t.prototype, "item2_id", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_win_item2");
+                    return null != t && t.length > 0 ? t[0] : 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "item2_count", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_win_item2");
+                    return null != t && t.length > 1 ? t[1] : 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "win_mat_level", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_win_mat_level")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "sample_fleet", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_sample_fleet")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "required_num", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_deck_num")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isCancelable = function () {
+                return 1 == o.ObjUtil.getNumber(this._o, "api_return_flag")
+            }, t.prototype.isSupport = function () {
+                return [33, 34, 301, 302].indexOf(this.mstID) >= 0
+            }, t
         }();
-    e.FurnitureModel = r;
+    e.ExpeditionModel = r;
     var s = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+        function e(e) {
+            return t.call(this, e) || this
         }
-        return n(e, t), e.prototype.updateHasFlag = function (t) {
-            this._hasFlag = t
+        return n(e, t), e.prototype.__setState__ = function (t) {
+            this._state = t
         }, e
     }(r);
-    e.FurnitureModelEdit = s
+    e.ExpeditionModelEdit = s
 }

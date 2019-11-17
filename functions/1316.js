@@ -19,73 +19,55 @@ const function1316 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(24),
-        r = i(19),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
+    var o = i(1317),
+        r = i(1318),
+        s = i(1319),
+        a = i(1),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onMouseOver = function () {
+                    null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({
+                        x: 831
+                    }, 300, createjs.Ease.quadOut).call(function () {
+                        n._move_tween = null
+                    }) : n._move_tween = createjs.Tween.get(n).to({
+                        x: 0
+                    }, 300, createjs.Ease.quadOut).call(function () {
+                        n._move_tween = null
+                    }))
+                }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "color", {
+            return n(e, t), Object.defineProperty(e.prototype, "title", {
                 get: function () {
-                    return this._color
+                    return this._title
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this.update(t)
+            }), Object.defineProperty(e.prototype, "cancel_btn", {
+                get: function () {
+                    return this._cancel_btn
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "panel", {
+                get: function () {
+                    return this._panel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                var i = null == e ? 0 : e.length;
+                this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
+            }, e.prototype.activate = function () {
+                this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
+            }, e.prototype.deactivate = function () {
+                null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
             }, e.prototype.update = function (t) {
-                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(155), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
+                this._title.update(t), this._panel.update(t, !0)
             }, e.prototype.dispose = function () {
-                this._stopTween()
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 0
-                }, 300).to({
-                    alpha: 1
-                }, 300))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
-            }, e.prototype._getTexture = function (t) {
-                switch (t) {
-                    case -1:
-                        return r.MAP_COMMON.getTexture(161);
-                    case 1:
-                        return r.MAP_COMMON.getTexture(154);
-                    case 2:
-                    case 6:
-                        return r.MAP_COMMON.getTexture(157);
-                    case 3:
-                        return r.MAP_COMMON.getTexture(159);
-                    case 4:
-                        return r.MAP_COMMON.getTexture(160);
-                    case 5:
-                        return r.MAP_COMMON.getTexture(148);
-                    case 7:
-                        return r.MAP_COMMON.getTexture(110);
-                    case 8:
-                        return r.MAP_COMMON.getTexture(147);
-                    case 9:
-                        return r.MAP_COMMON.getTexture(158);
-                    case 10:
-                        return r.MAP_COMMON.getTexture(103);
-                    case 11:
-                        return r.MAP_COMMON.getTexture(162);
-                    case 12:
-                        return r.MAP_COMMON.getTexture(163);
-                    case 13:
-                        return r.MAP_COMMON.getTexture(83);
-                    case -2:
-                        return r.MAP_COMMON.getTexture(156);
-                    case -3:
-                        return r.MAP_COMMON.getTexture(153);
-                    case 14:
-                        return r.MAP_COMMON.getTexture(154)
-                }
-                return PIXI.Texture.EMPTY
+                this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
             }, e
-        }(o.Container);
-    e.SpotPointImage = s
+        }(PIXI.Container);
+    e.AirUnitPanelSet = _
 }

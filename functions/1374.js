@@ -19,24 +19,37 @@ const function1374 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(458),
-        r = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(24),
+        s = i(16),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke = new _, i._smoke.position.set(75, 46), i
             }
-            return n(e, t), e.prototype._resume = function () {
+            return n(e, t), e.prototype._start = function () {
                 var t = this,
-                    e = this._base_pos,
-                    i = this._friend ? 1 : -1;
-                createjs.Tween.get(this._view.chara).call(function () {
-                    t._view.emit("attack"), t._shipFlash.play()
-                }).wait(135).wait(200).to({
-                    x: e.x + 78 * i,
-                    alpha: 0
-                }, 466).call(function () {
-                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
+                    e = this._smoke.x - 105,
+                    i = this._smoke.y - 12;
+                createjs.Tween.get(this._smoke).call(function () {
+                    t._layer.addChild(t._smoke)
+                }).to({
+                    x: e,
+                    y: i,
+                    alpha: 0,
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 500).call(function () {
+                    t._layer.removeChild(t._smoke), t._endTask()
                 })
             }, e
-        }(o.CutinDouble1);
-    e.CutinDouble3 = r
+        }(o.TaskBase);
+    e.AnimAntiAircraftSanshikidan = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(148)), e._img.position.set(-140, -213), e.addChild(e._img), e
+        }
+        return n(e, t), e
+    }(r.Container)
 }

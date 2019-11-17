@@ -1,78 +1,180 @@
 const function1003 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+
+    function n(t, e, i, n, _) {
+        if (0 == e.getCount()) return {
+            result: !1,
+            reason: 31
         };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        var l = o(t, e);
+        if (null != l) return l;
+        var u = t.mst_id,
+            c = e.getShipListAll();
+        if (16 == u && null != (l = r(c))) return l;
+        if (63 == u && null != (l = s(c))) return l;
+        if (64 == u && null != (l = a(c))) return l;
+        if (null != e.expedition) return {
+            result: !1,
+            reason: 30
+        };
+        if (null != n) {
+            var h = e.getCombinedType(),
+                p = n.check(h, c);
+            if (0 == p.result || 0 != p.reason) return p
         }
-    }();
+        for (var d = !1, f = !1, y = 0, m = c; y < m.length; y++) {
+            var g = m[y];
+            null != g && (-1 != i.indexOf(g.memID) && (d = !0), (g.fuelNow <= 0 || g.ammoNow <= 0) && (f = !0))
+        }
+        if (1 == d) return {
+            result: !1,
+            reason: 1
+        };
+        if (1 == f) return {
+            result: !1,
+            reason: 2
+        };
+        var v = c[0].getDamageType();
+        if (0 != e.getCombinedType()) {
+            if (50 == v || 25 == v || 0 == v) return {
+                result: !1,
+                reason: 21
+            };
+            var b = c[6].getDamageType();
+            if (50 == b || 25 == b || 0 == b) return {
+                result: !1,
+                reason: 21
+            }
+        } else if (25 == v || 0 == v) return {
+            result: !1,
+            reason: 3
+        };
+        return 1 == e.isCombined_Sub() ? {
+            result: !1,
+            reason: 20
+        } : 1 == _ ? {
+            result: !1,
+            reason: 51
+        } : {
+            result: !0,
+            reason: 0
+        }
+    }
+
+    function o(t, e) {
+        var i = e.getCombinedType(),
+            n = t.getAllowedDeckType();
+        if (0 == i) {
+            if (e.getCount() > 6) return 1 == n.yugeki ? null : {
+                result: !1,
+                reason: 36
+            };
+            if (1 == n.normal) return null
+        }
+        var o = n.rengo;
+        return 0 != o || 1 != i && 2 != i && 3 != i ? 1 == o && 1 != i ? {
+            result: !1,
+            reason: 23
+        } : 2 == o && 2 != i ? {
+            result: !1,
+            reason: 24
+        } : 3 == o && 1 != i && 2 != i ? {
+            result: !1,
+            reason: 25
+        } : 4 == o && 3 != i ? {
+            result: !1,
+            reason: 28
+        } : 5 == o && 1 != i && 3 != i ? {
+            result: !1,
+            reason: 26
+        } : 6 == o && 2 != i && 3 != i ? {
+            result: !1,
+            reason: 27
+        } : 7 == o && 1 != i && 2 != i && 3 != i ? {
+            result: !1,
+            reason: 29
+        } : null : 432 == t.mst_id || 433 == t.mst_id ? {
+            result: !1,
+            reason: 46
+        } : {
+            result: !1,
+            reason: 22
+        }
+    }
+
+    function r(t) {
+        for (var e = 0, i = t; e < i.length; e++) {
+            var n = i[e];
+            if (null != n) {
+                switch (n.shipTypeID) {
+                    case 4:
+                    case 8:
+                    case 9:
+                    case 11:
+                    case 13:
+                    case 14:
+                    case 18:
+                        return {
+                            result: !1, reason: 4
+                        }
+                }
+            }
+        }
+        return null
+    }
+
+    function s(t) {
+        for (var e = 0, i = 0, n = 0, o = 0, r = t; o < r.length; o++) {
+            var s = r[o];
+            if (null != s) {
+                var a = s.shipTypeID;
+                if (2 == a) e++;
+                else if (3 == a) i++;
+                else if (21 == a) i++;
+                else {
+                    if (16 != a) return {
+                        result: !1,
+                        reason: 5
+                    };
+                    n++
+                }
+            }
+        }
+        return 0 == e ? {
+            result: !1,
+            reason: 6
+        } : 0 == i ? {
+            result: !1,
+            reason: 7
+        } : i >= 4 ? {
+            result: !1,
+            reason: 8
+        } : 0 == n ? {
+            result: !1,
+            reason: 9
+        } : n >= 3 ? {
+            result: !1,
+            reason: 10
+        } : null
+    }
+
+    function a(t) {
+        for (var e = 0, i = 0, n = 0, o = t; n < o.length; n++) {
+            var r = o[n];
+            if (null != r) {
+                var s = r.shipTypeID;
+                8 == s ? e++ : 9 == s ? e++ : 10 == s ? e++ : 7 == s ? i++ : 11 == s ? i++ : 18 == s && i++
+            }
+        }
+        return e >= 3 ? {
+            result: !1,
+            reason: 11
+        } : i >= 3 ? {
+            result: !1,
+            reason: 12
+        } : null
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    var o = i(0),
-        r = i(18),
-        s = i(1004),
-        a = i(1005),
-        _ = i(1006),
-        l = i(1011),
-        u = i(1012),
-        c = i(1018),
-        h = i(1),
-        p = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._onSelect = function (t, e) {
-                    r._cb_select(t, e)
-                }, r._onSelectAirUnit = function () {
-                    null != r._cb_onSelectAirUnit && r._cb_onSelectAirUnit()
-                }, r._cb_select = e, r._cb_onSelectAirUnit = i, r._cb_back = n, r._cb_next = o, r._back_btn = new s.BtnBack, r._next_btn = new a.BtnNext, r
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._back_btn.on(h.EventType.CLICK, this._cb_back), this._next_btn.on(h.EventType.CLICK, this._cb_next), this.addChild(this._back_btn), this.addChild(this._next_btn)
-            }, e.prototype.update = function (t, e, i) {
-                var n = o.default.model.map.getMapMems(t);
-                t == r.EVENT_AREA_ID ? this._updateEventArea(t, e, n) : this._updateNormalArea(t, e, n), this._content.updateAirUnitEnabled(i)
-            }, e.prototype.deactivate = function () {
-                this._content.deactivate()
-            }, e.prototype.dispose = function () {
-                this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
-            }, e.prototype._updateNormalArea = function (t, e, i) {
-                this._removePreContent(), this._content = 0 == e ? new l.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
-            }, e.prototype._updateEventArea = function (t, e, i) {
-                this._removePreContent(), this._content = e >= 1 ? new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : new c.LayoutEventMap2(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
-            }, e.prototype._removePreContent = function () {
-                null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
-            }, e.prototype._updateBackBtn = function (t) {
-                void 0 === t && (t = !1), this._content.offset > 0 ? (this._back_btn.update(t), this._back_btn.show()) : this._back_btn.hide()
-            }, e.prototype._updateNextBtn = function (t, e, i) {
-                var n = !1,
-                    o = this._content.offset + this._content.num;
-                if (o < i.length) {
-                    var r = i[o];
-                    if (1 == r.isOpened()) n = !0;
-                    else if (65 == r.mst_id) {
-                        var s = i[o - 1];
-                        1 == s.isCleared() && (n = !0)
-                    }
-                }
-                1 == n ? (this._next_btn.update(t, e), this._next_btn.show()) : this._next_btn.hide()
-            }, e
-        }(PIXI.Container);
-    e.ContainerLayout = p
+    }), e.check = n
 }

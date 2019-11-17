@@ -19,20 +19,37 @@ const function1178 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
+    var o = i(11),
+        r = i(1179),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._text = new o.TextBox(28, 5010027), e._text.anchor.x = 1, e._text.position.set(174, 27), e.addChild(e._text), e
+                return e._result = !1, e._api = null, e._retry_count = 0, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = r.ITEM_FSHOP.getTexture(37), this.update(0)
-            }, e.prototype.update = function (t) {
-                t = Math.max(t, 0), this._text.text = t.toString()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                var t = this;
+                createjs.Tween.get(null).wait(500).call(function () {
+                    t._check()
+                })
+            }, e.prototype._check = function () {
+                var t = this;
+                this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
+                    t._checked()
+                })
+            }, e.prototype._checked = function () {
+                var t = this;
+                2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
+                    t._check()
+                })
+            }, e.prototype._endTask = function () {
+                this._api = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.CoinBox = s
+        }(o.TaskBase);
+    e.TaskPayCheck = s
 }

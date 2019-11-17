@@ -19,32 +19,24 @@ const function1000 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(18),
-        s = i(15),
-        a = function (t) {
+    var o = i(4),
+        r = i(169),
+        s = i(169),
+        a = i(31),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._area_id = -1, e
+                return e._fuelTitle = new PIXI.Sprite, e.addChild(e._fuelTitle), e._ammoTitle = new PIXI.Sprite, e._ammoTitle.x = 141, e.addChild(e._ammoTitle), e._fuelBox = new r.FuelContainer, e._fuelBox.y = 126, e.addChild(e._fuelBox), e._ammoBox = new s.AmmoContainer, e._ammoBox.x = 141, e._ammoBox.y = 126, e.addChild(e._ammoBox), e._fuelText = new o.TextBox(28, 4999235), e._fuelText.y = 84, e.addChild(e._fuelText), e._ammoText = new o.TextBox(28, 4999235), e._ammoText.y = 84, e.addChild(e._ammoText), e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                var i = this;
-                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
-                this._area_id = t;
-                var n = s.MathUtil.zeroPadding(t, 3),
-                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
-                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
-                else {
-                    var _ = new PIXI.loaders.Loader;
-                    _.add(a), _.load(function () {
-                        i._img.texture = _.resources[a].texture, null != e && e()
-                    })
-                }
-            }, e.prototype.clear = function () {
-                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
+            return n(e, t), e.prototype.initialize = function () {
+                this._fuelTitle.texture = a.SALLY_COMMON.getTexture(17), this._ammoTitle.texture = a.SALLY_COMMON.getTexture(16)
+            }, e.prototype.update = function (t, e) {
+                this._fuelText.text = t.toString(), this._fuelText.x = 128 - this._fuelText.width, this._ammoText.text = e.toString(), this._ammoText.x = 269 - this._ammoText.width, this._fuelBox.update(t), this._ammoBox.update(e)
+            }, e.prototype.play = function (t, e, i) {
+                1 == t ? (this._fuelBox.playSupply(i), 1 == e && this._ammoBox.playSupply(function () {})) : 1 == e ? this._ammoBox.playSupply(i) : i()
             }, e.prototype.dispose = function () {
-                this.clear()
+                this.removeChildren(), this._fuelBox.dispose(), this._ammoBox.dispose(), this._fuelText.destroy(), this._ammoText.destroy()
             }, e
         }(PIXI.Container);
-    e.AreaTextImage = a
+    e.TempSupplyBox = _
 }

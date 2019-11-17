@@ -19,19 +19,30 @@ const function1041 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._txt1 = new o.TextBox(16, 4999235), e._txt2 = new o.TextBox(16, 4999235), e._txt3 = new o.TextBox(16, 4999235), e.addChild(e._txt1), e.addChild(e._txt2), e.addChild(e._txt3), e
+    var o = i(53),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._txt1.text = "\u73fe\u5728\u306e\u6f14\u7fd2\u5019\u88dc\u306f", this._txt2.text = "\u6f14\u7fd2\u8266\u968a\u3010\u7b2c\u4e00\u7fa4\u3011", this._txt3.text = "\u3088\u308a\u62bd\u51fa\u3055\u308c\u305f\u3082\u306e\u3067\u3059\u3002", this._txt2.x = this._txt1.width
-            }, e.prototype.update = function (t) {
-                0 == t ? (this._txt2.style.fill = 6595904, this._txt2.text = "\u6f14\u7fd2\u8266\u968a\u3010\u7b2c\u4e00\u7fa4\u3011") : 1 == t ? (this._txt2.style.fill = 4236648, this._txt2.text = "\u6f14\u7fd2\u8266\u968a\u3010\u7b2c\u4e8c\u7fa4\u3011") : (this._txt2.style.fill = 4232101, this._txt2.text = "\u3010\u5168\u4f53\u3011"), this._txt3.x = this._txt2.x + this._txt2.width
+                this._update(!1)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._txt1.destroy(), this._txt1 = null, this._txt2.destroy(), this._txt2 = null, this._txt3.destroy(), this._txt3 = null
+                this.deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                this.texture = 1 == t ? o.SALLY_PRACTICE.getTexture(13) : o.SALLY_PRACTICE.getTexture(12)
             }, e
-        }(PIXI.Container);
-    e.CompSubTitle = r
+        }(PIXI.Sprite);
+    e.GoPracticeBtn = s
 }

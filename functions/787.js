@@ -19,48 +19,42 @@ const function787 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(114),
-        s = i(4),
-        a = i(61),
-        _ = i(3),
-        l = i(3),
-        u = i(31),
-        c = i(84),
-        h = i(1),
-        p = function (t) {
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._labelArr = [], e._onClickYes = function () {
-                    e.onClickYes()
-                }, e._onClickNo = function () {
-                    e.onClickNo()
-                };
-                var i = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(42));
-                e.buttonYes = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(6)), e.buttonNo = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(0)), e.downArrowAnimationView = new r.DownArrowAnimationView, e.fromShipBanner = new u.ShipBanner, e.toShipBanner = new u.ShipBanner;
-                var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(45));
-                e.iconWeapon = new a.IconWeapon;
-                var c = new s.TextBox(21, 3355443),
-                    h = new s.TextBox(21, 3355443);
-                e.textFromShipName = new s.TextBox(21, 3355443), e.textFromShipLevel = new s.TextBox(15, 3355443), e.textToShipName = new s.TextBox(21, 3355443), e.textToShipLevel = new s.TextBox(15, 3355443), e.textToSlotItemName = new s.TextBox(21, 3355443);
-                var p = new PIXI.Sprite(o.default.resources.getUIImage("mask")),
-                    d = new PIXI.Sprite(o.default.resources.getUIImage("mask")),
-                    f = new PIXI.Sprite(o.default.resources.getUIImage("mask"));
-                return f.anchor.set(1, 0), d.anchor.set(1, 0), p.anchor.set(1, 0), f.scale.set(-.9, 1), d.scale.set(-.9, 1), p.scale.set(-1.95, 1), e.toShipBanner.position.set(98, 177), e.textToShipName.position.set(348, 182), e.textToShipLevel.position.set(348, 206), c.position.set(465, 53), e.fromShipBanner.position.set(98, 41), e.textFromShipName.position.set(348, 48), e.textFromShipLevel.position.set(348, 72), h.position.set(465, 188), n.position.set(351, 116), e.textToSlotItemName.position.set(396, 125), e.iconWeapon.position.set(351, 117), e.downArrowAnimationView.position.set(216, 122), e.buttonYes.position.set(156, 270), e.buttonNo.position.set(411, 270), e.buttonYes.interactive = !0, e.buttonNo.interactive = !0, e.textToSlotItemName.text = "", c.text = "\u304c\u73fe\u5728\u88c5\u5099\u3057\u3066\u3044\u308b", h.text = "\u306b\u88c5\u5099\u3057\u307e\u3059", e._labelArr.push(c), e._labelArr.push(h), e.textFromShipName.text = "", e.textFromShipLevel.text = "", e.textToShipName.text = "", e.textToShipLevel.text = "", e.textToSlotItemName.mask = p, e.textToShipName.mask = d, e.textFromShipName.mask = f, e.textToSlotItemName.addChild(p), e.textToShipName.addChild(d), e.textFromShipName.addChild(f), e.addChild(i, e.buttonYes, e.buttonNo, e.downArrowAnimationView, e.fromShipBanner, e.toShipBanner, n, e.textFromShipName, e.textFromShipLevel, e.textToShipLevel, e.textToShipName, c, h, e.iconWeapon, e.textToSlotItemName), e
+                return e._onMouseOver = function () {
+                    e.gauge_on.visible = !0, e.huki.visible = !0
+                }, e._onMouseOut = function () {
+                    e.gauge_on.visible = !1, e.huki.visible = !1
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e.textureGauge1 = o.REMODEL_MAIN.getTexture(23), e.textureGauge1_on = o.REMODEL_MAIN.getTexture(24), e.textureGauge2 = o.REMODEL_MAIN.getTexture(25), e.textureGauge2_on = o.REMODEL_MAIN.getTexture(26), e.textureGauge3 = o.REMODEL_MAIN.getTexture(27), e.textureGauge3_on = o.REMODEL_MAIN.getTexture(28), e.textureGauge4 = o.REMODEL_MAIN.getTexture(29), e.textureGauge4_on = o.REMODEL_MAIN.getTexture(30), e.textureGauge5 = o.REMODEL_MAIN.getTexture(31), e.textureGauge5_on = o.REMODEL_MAIN.getTexture(32), e.gauge = new PIXI.Sprite, e.gauge_on = new PIXI.Sprite, e.gauge_on.visible = !1, e.huki = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(35)), e.huki.position.x = -6, e.huki.visible = !1, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.slotIconDelete.on(r.EventType.MOUSEOVER, e._onMouseOver), e.slotIconDelete.on(r.EventType.MOUSEOUT, e._onMouseOut), e.slotIconDelete.on(r.EventType.CLICK, e._onClick), e.slotIconDelete.interactive = e.slotIconDelete.buttonMode = !0, e.slotIconDelete.anchor.x = .5, e.slotIconDelete.x = 11, e.addChild(e.gauge, e.gauge_on, e.slotIconDelete, e.huki), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this.iconWeapon.dispose(), this.downArrowAnimationView.dispose(), this.fromShipBanner.dispose(), this.toShipBanner.dispose(), this.textFromShipName.destroy(), this.textToShipName.destroy(), this.textFromShipLevel.destroy(), this.textToShipLevel.destroy(), this.textToSlotItemName.destroy(), this._labelArr.forEach(function (t) {
-                    t.destroy()
-                }), this.onClickYes = null, this.onClickNo = null, this.textFromShipName = null, this.textToShipName = null, this.textFromShipLevel = null, this.textToShipLevel = null, this.fromShipBanner = null, this.toShipBanner = null, this.textToSlotItemName = null, this.iconWeapon = null, this.downArrowAnimationView = null, this.buttonYes = null, this.buttonNo = null, this._labelArr = null, this.onClickNo = null, this.onClickYes = null
-            }, e.prototype.activate = function () {
-                0 == this.buttonYes.buttonMode && (this.buttonYes.on(h.EventType.CLICK, this._onClickYes), this.buttonYes.buttonMode = !0), 0 == this.buttonNo.buttonMode && (this.buttonNo.on(h.EventType.CLICK, this._onClickNo), this.buttonNo.buttonMode = !0)
-            }, e.prototype.deactivate = function () {
-                this.buttonYes.buttonMode = !1, this.buttonYes.off(h.EventType.CLICK), this.buttonNo.buttonMode = !1, this.buttonNo.off(h.EventType.CLICK), c.TaskLoadShipResource.abortBy(this)
-            }, e.prototype.update = function (t, e, i) {
-                var n = "(Lv." + t.level + ")",
-                    o = "(Lv." + e.level + ")";
-                this.textFromShipName.text = t.name, this.textFromShipLevel.text = n, this.textToShipName.text = e.name, this.textToShipLevel.text = o, this.fromShipBanner.updateImage(t.mstID, t.isDamaged()), this.toShipBanner.updateImage(e.mstID, e.isDamaged()), this.textToSlotItemName.text = i.name, this.iconWeapon.update(i.iconType)
+                this.slotIconDelete.off(r.EventType.CLICK), this.slotIconDelete.off(r.EventType.MOUSEOUT), this.slotIconDelete.off(r.EventType.MOUSEOVER), this.onClick = null, this.gauge = null, this.gauge_on = null, this.slotIconDelete = null, this.huki = null, this.textureGauge1 = null, this.textureGauge1_on = null, this.textureGauge2 = null, this.textureGauge2_on = null, this.textureGauge3 = null, this.textureGauge3_on = null, this.textureGauge4 = null, this.textureGauge4_on = null, this.textureGauge5 = null, this.textureGauge5_on = null, this.removeChildren()
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        this.visible = !1;
+                        break;
+                    case 1:
+                        this.gauge.texture = this.textureGauge1, this.gauge_on.texture = this.textureGauge1_on, this.slotIconDelete.y = 32 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 35;
+                        break;
+                    case 2:
+                        this.gauge.texture = this.textureGauge2, this.gauge_on.texture = this.textureGauge2_on, this.slotIconDelete.y = 81 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 84;
+                        break;
+                    case 3:
+                        this.gauge.texture = this.textureGauge3, this.gauge_on.texture = this.textureGauge3_on, this.slotIconDelete.y = 131 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 134;
+                        break;
+                    case 4:
+                        this.gauge.texture = this.textureGauge4, this.gauge_on.texture = this.textureGauge4_on, this.slotIconDelete.y = 180 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 183;
+                        break;
+                    case 5:
+                        this.gauge.texture = this.textureGauge5, this.gauge_on.texture = this.textureGauge5_on, this.slotIconDelete.y = 230 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 233
+                }
             }, e
         }(PIXI.Container);
-    e.ChangeConfirmFromOtherShip = p
+    e.DetachAllButton = s
 }

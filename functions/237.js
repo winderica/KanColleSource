@@ -1,67 +1,85 @@
 const function237 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        return t <= 0 ? "\u306a\u3057" : t <= .3 ? "\u5c11\u91cf" : "\u666e\u901a"
-    }
-
-    function o(t) {
-        var e = Math.floor(t / 6e4 / 60),
-            i = Math.floor(t / 6e4 % 60),
-            n = "";
-        return e < 10 && (n += "0"), n += e + ":", i < 10 && (n += "0"), n += "" + i
-    }
-
-    function r(t) {
-        var e = Math.floor(t / 60),
-            i = Math.floor(t % 60),
-            n = "";
-        return 0 < e && (n = e + ":", i < 10 && (n += "0")), n += "" + i
-    }
-
-    function s(t) {
-        switch (t) {
-            case 1:
-                return 5;
-            case 2:
-                return 4;
-            case 3:
-            case 4:
-                return 3;
-            case 5:
-            case 6:
-                return 2;
-            case 7:
-                return 1;
-            case 8:
-            case 9:
-                return 0;
-            case 10:
-                return 8;
-            case 11:
-                return 1;
-            case 12:
-                return 0;
-            case 13:
-            case 14:
-                return 6;
-            case 15:
-            case 16:
-            case 17:
-                return 7;
-            case 18:
-                return 1;
-            case 19:
-            case 20:
-                return 7;
-            case 21:
-                return 9;
-            case 22:
-                return 7
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
         }
-        throw new Error("UNSUPPORT_TYPE")
-    }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), e.useMaterialToString = n, e.millisecondToFormatHHMM = o, e.minuteToFormatHHMM = r, e.shipTypeIdToCategory = s
+    });
+    var o, r = i(58),
+        s = i(377),
+        a = i(238);
+    ! function (t) {
+        t[t.LIST = 0] = "LIST", t[t.DETAIL = 1] = "DETAIL"
+    }(o = e.ShadowType || (e.ShadowType = {}));
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.update = function (t, e) {
+            var i = a.shipTypeIdToCategory(t),
+                n = this._shipTypeToResourceID(i, e);
+            this.texture = e ? s.SALLY_EXPEDITION_DETAIL.getTexture(n) : r.SALLY_EXPEDITION.getTexture(n)
+        }, e.prototype._shipTypeToResourceID = function (t, e) {
+            if (e == o.DETAIL) switch (t) {
+                case 0:
+                    return 4;
+                case 1:
+                    return 6;
+                case 2:
+                    return 7;
+                case 3:
+                    return 8;
+                case 4:
+                    return 9;
+                case 5:
+                    return 10;
+                case 6:
+                    return 11;
+                case 7:
+                    return 12;
+                case 8:
+                    return 5;
+                case 9:
+                    return 13
+            } else switch (t) {
+                case 0:
+                    return 106;
+                case 1:
+                    return 108;
+                case 2:
+                    return 109;
+                case 3:
+                    return 110;
+                case 4:
+                    return 111;
+                case 5:
+                    return 112;
+                case 6:
+                    return 113;
+                case 7:
+                    return 114;
+                case 8:
+                    return 107;
+                case 9:
+                    return 115
+            }
+        }, e.prototype.dispose = function () {
+            this.texture = PIXI.Texture.EMPTY
+        }, e
+    }(PIXI.Sprite);
+    e.ShipShadow = _
 }

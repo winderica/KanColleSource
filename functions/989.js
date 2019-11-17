@@ -19,63 +19,45 @@ const function989 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(18),
-        s = i(52),
-        a = i(360),
-        _ = i(990),
+    var o = i(12),
+        r = i(41),
+        s = i(990),
+        a = i(0),
+        _ = i(14),
         l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
-                    null != i._cb && i._cb(t.area_id)
-                }, i._cb = e, i._btns = new Array;
-                for (var n = [0, 96, 191, 383, 478, 574, 287], o = 0; o < n.length; o++) {
-                    var r = new a.AreaIconBtn(o + 1);
-                    r.position.set(n[o], 0), i._btns.push(r)
-                }
-                return i
+            function e() {
+                var e = t.call(this) || this;
+                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                if (1 != this._initialized) {
-                    this._initialized = !0;
-                    var t = new PIXI.Sprite(s.SALLY_SORTIE.getTexture(32));
-                    if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
-                        if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
-                            var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
-                            e.position.set(875, -9), this._btns.push(e)
-                        }
-                    }
-                    for (var i = 0, n = this._btns; i < n.length; i++) {
-                        var e = n[i];
-                        e.initialize(this._onSelectArea), this.addChild(e)
-                    }
+            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
+                get: function () {
+                    return this._createSelectView(), this._selectView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
+                    i = "?version=" + _.UIImageLoader.getVersion("sally");
+                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
+                    case 451:
+                        this._content.position.set(-330, -224), this._content.texture = PIXI.Texture.fromImage(e + "/238_70639.png" + i);
+                        break;
+                    case 452:
+                        this._content.position.set(-286, -220), this._content.texture = PIXI.Texture.fromImage(e + "/239_993e0.png" + i);
+                        break;
+                    case 453:
+                        this._content.position.set(-337, -213), this._content.texture = PIXI.Texture.fromImage(e + "/240_9df3d.png" + i);
+                        break;
+                    default:
+                        this._content.texture = PIXI.Texture.EMPTY
                 }
-            }, e.prototype.update = function (t) {
-                for (var e = 0, i = this._btns; e < i.length; e++) {
-                    var n = i[e],
-                        o = n.area_id == t;
-                    n.selected = o, o ? n.deactivate() : n.activate()
-                }
-            }, e.prototype.activate = function () {
-                if (0 == this._activated) {
-                    for (var t = 0, e = this._btns; t < e.length; t++) {
-                        e[t].activate()
-                    }
-                    this._activated = !0
-                }
-            }, e.prototype.deactivate = function () {
-                this._activated = !1;
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+            }, e.prototype.showSelectView = function () {
+                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
             }, e.prototype.dispose = function () {
-                this._cb = null, this.removeChildren();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._btns = null
+                null != this._selectView && this._selectView.dispose()
+            }, e.prototype._createSelectView = function () {
+                null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
-        }(PIXI.Container);
-    e.CompAreaIcons = l
+        }(o.Sprite);
+    e.MapIntroBoard = l
 }

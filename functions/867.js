@@ -19,53 +19,31 @@ const function867 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(343),
+    var o = i(3),
         r = i(3),
-        s = function (t) {
+        s = i(1),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._materialList = {
-                    fuel: r.REPAIR_MAIN.getTexture(26),
-                    steel: r.REPAIR_MAIN.getTexture(27),
-                    bucket: r.REPAIR_MAIN.getTexture(28)
-                }, e._wire = new o.Wire, e._wire.rotation = Math.PI / 180 * 90, e.WIRE_WIDTH = e._wire.width;
-                var i = new PIXI.Sprite(r.REPAIR_MAIN.getTexture(13));
-                return e._material = new PIXI.Sprite, e._handContainer = new PIXI.Container, e._handContainer.position.set(-Math.floor(i.width / 2 + e._wire.height / 2), e.WIRE_WIDTH), e.initialize(), e._handContainer.addChild(i, e._material), e.addChild(e._wire, e._handContainer), e
+                e._onMouseOver = function () {
+                    e.popup.visible = !0
+                }, e._onMouseOut = function () {
+                    e.popup.visible = !1
+                }, e._onClick = function () {
+                    e.hasKey ? e.onClick(e.memDockId) : r.SE.play("248")
+                };
+                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(11)),
+                    n = new PIXI.Sprite;
+                n.position.set(462, -24), e.addChild(i, n);
+                var a = o.REPAIR_MAIN.getTexture(25),
+                    _ = o.REPAIR_MAIN.getTexture(24);
+                return e.background = i, e.background.addListener(s.EventType.MOUSEOVER, e._onMouseOver), e.background.addListener(s.EventType.MOUSEOUT, e._onMouseOut), e.background.addListener(s.EventType.CLICK, e._onClick), e.popup = n, e.huki_r_01 = _, e.huki_r_02 = a, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.randomMaterial(), this.update(.3)
-            }, e.prototype.randomMaterial = function () {
-                var t = 50 < 100 * Math.random();
-                this._material.texture = t ? this._materialList.fuel : this._materialList.steel, this._material.position.set(-7, 3), this._material.visible = !0
-            }, e.prototype.bucketMaterial = function () {
-                this._material.texture = this._materialList.bucket, this._material.position.set(-18, 0), this._material.visible = !0
-            }, e.prototype.hideMaterial = function () {
-                this._material.texture = PIXI.Texture.EMPTY, this._material.visible = !1
-            }, e.prototype.update = function (t) {
-                var e = this.WIRE_WIDTH * (1 - t);
-                this._wire.width = e, this._handContainer.y = e - 3
-            }, Object.defineProperty(e.prototype, "obj", {
-                get: function () {
-                    return {
-                        wire: this._wire,
-                        container: this._handContainer
-                    }
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPosition = function (t) {
-                var e = this.WIRE_WIDTH * (1 - t);
-                return {
-                    wire: {
-                        width: e
-                    },
-                    container: {
-                        y: e - 3
-                    }
-                }
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this.popup.texture = PIXI.Texture.EMPTY, this.popup.visible = !1, this.popup.texture = this.huki_r_01, this.hasKey = i, i && (this.popup.texture = this.huki_r_02), this.background.interactive = this.background.buttonMode = !1, e && (this.background.interactive = this.background.buttonMode = !0), this.memDockId = t
             }, e.prototype.dispose = function () {
-                this._wire.dispose(), this._handContainer.removeChildren(), this._wire = null, this._handContainer = null, this._material = null, this.removeChildren()
+                this.removeChild(this.background), this.removeChild(this.popup), this.background.removeAllListeners(s.EventType.MOUSEOVER), this.background.removeAllListeners(s.EventType.MOUSEOUT), this.background.removeAllListeners(s.EventType.CLICK), this.background.interactive = this.background.buttonMode = !1, this.background.texture = PIXI.Texture.EMPTY, this.popup.texture = PIXI.Texture.EMPTY, this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.huki_r_01 = null, this.huki_r_02 = null, this.background = null, this.popup = null, this.memDockId = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.WireHand = s
+    e.ExtensionDock = a
 }

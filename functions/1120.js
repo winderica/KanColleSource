@@ -1,16 +1,10 @@
 const function1120 = function (t, e, i) {
     "use strict";
+
+    function n(t) {
+        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    ! function (t) {
-        function e(t) {
-            try {
-                return PIXI.Texture.fromFrame("item_payitemicon_id_" + t)
-            } catch (t) {
-                return PIXI.Texture.EMPTY
-            }
-        }
-        t.getTextureFromMstID = e
-    }(e.ITEM_PAYITEMICON || (e.ITEM_PAYITEMICON = {}))
+    }), n(i(401)), n(i(402)), n(i(1121)), n(i(400))
 }

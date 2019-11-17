@@ -19,36 +19,15 @@ const function205 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(55),
-        s = i(25),
-        a = i(14),
-        _ = function (t) {
+    var o = i(9),
+        r = i(32),
+        s = function (t) {
             function e() {
-                return t.call(this) || this
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.setTexture = function (t) {
-                this._loader = null, this.texture = t
-            }, e.prototype.setImage = function (t, e, i) {
-                void 0 === i && (i = null), this._load(t, e, i)
-            }, e.prototype.dispose = function () {
-                this._loader = null
-            }, e.prototype._load = function (t, e, i) {
-                var n = this,
-                    _ = s.MathUtil.zeroPadding(t, 3),
-                    l = s.MathUtil.zeroPadding(e, 2),
-                    u = r.MapUtil.toMapID(t, e),
-                    c = a.UIImageLoader.getResourceVersionMap(u),
-                    h = o.default.settings.path_root + "resources/map/" + _ + "/" + l + ".png" + (c ? "?version=" + c : "");
-                if (null != PIXI.utils.TextureCache[h]) return this.texture = PIXI.utils.TextureCache[h], void(null != i && i());
-                this._loader = new PIXI.loaders.Loader, this._loader.add(h), this._loader.load(function (t) {
-                    if (n._loader == t) {
-                        n._loader = null;
-                        var e = t.resources[h];
-                        n.texture = e.texture, null != i && i()
-                    }
-                })
+            return n(e, t), e.prototype._update = function (t) {
+                this.texture = 0 == t ? o.COMMON_MISC.getTexture(20) : o.COMMON_MISC.getTexture(21)
             }, e
-        }(PIXI.Sprite);
-    e.MapThumbnailImage = _
+        }(r.BtnBase);
+    e.BackBtn = s
 }

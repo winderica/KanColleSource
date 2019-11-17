@@ -19,211 +19,80 @@ const function665 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(18),
-        a = i(47),
-        _ = i(34),
-        l = i(69),
-        u = i(666),
-        c = i(677),
-        h = i(711),
-        p = i(712),
-        d = i(720),
-        f = i(216),
-        y = i(724),
-        m = i(725),
-        g = i(726),
-        v = i(731),
-        b = i(733),
-        w = i(734),
-        x = i(741),
-        I = i(742),
-        T = i(8),
-        O = function (t) {
-            function e() {
-                var e = null !== t && t.apply(this, arguments) || this;
-                return e.currentViewMode = null, e._onClickBreakDeck = function () {
-                    var t = function () {
-                        e.deckLayer.update(), s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                            o.default.view.clickGuard = !1
-                        }) : o.default.view.clickGuard = !1
-                    };
-                    e.deckLayer.onBreakDeck(e.deckLayer.deckID, t)
-                }, e._onDragging = function (t, i) {
-                    var n = new I.ShipDragging(t, i, e.deckLayer.shipSlotDisplayLength, e._inDragging, e._onDrop, function () {
-                        o.default.view.overLayer.removeChild(n)
-                    });
-                    o.default.view.overLayer.addChild(n)
-                }, e._inDragging = function (t) {
-                    t ? (e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1) : (e.presetButtonLayer.show(), e.deckLayer.EditNameArea.writable = !0)
-                }, e._onDrop = function (t, i, n) {
-                    if (t != i) {
-                        var s = o.default.model.deck.get(e.deckLayer.deckID),
-                            a = s.getCount();
-                        if (1 != a || 1 != s.mstID) {
-                            var u = t + e.deckLayer.shipInDeckOrigin,
-                                c = i + e.deckLayer.shipInDeckOrigin;
-                            if (!(u == a - 1 && i >= t)) {
-                                var h = new _.APIConnector;
-                                if (10 == o.default.model.basic.getTutorialProgress() && h.add(new l.UpdateTutorialAPI(20)), -1 == i) return h.add(new f.ChangeAPI(!0, s.mstID, u, -1)), void e._removeShip(h, t);
-                                var p = o.default.model.ship.get(n);
-                                h.add(new f.ChangeAPI(!0, s.mstID, c, n)), r.SE.play("235"), o.default.sound.voice.play(p.mstID.toString(), 13), c >= a && (i = a - e.deckLayer.shipInDeckOrigin - 1), e._changeShipSlot(h, i)
-                            }
-                        }
+    var o = i(150),
+        r = i(4),
+        s = i(82),
+        a = i(5),
+        _ = i(666),
+        l = i(109),
+        u = i(0),
+        c = i(163),
+        h = i(1),
+        p = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ev = e, i._maxTextLength = 12, i._deleteInputText = function () {
+                    o.EditTextBoxUtil.text = "", i._btnSubmit.visible = !1
+                }, i._onToggleSubmit = function (t) {
+                    i._btnSubmit.texture = t.type == h.EventType.MOUSEOVER ? i._btnImages.hover : i._btnImages.def
+                }, i._inputAndSubmitManage = function () {
+                    i._errorMessage.text = "", i._showSubmitBtn()
+                }, i._onClick = function () {
+                    var t = o.EditTextBoxUtil.text;
+                    return "" == t ? (i._errorMessage.text = "\u540d\u524d\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044\u3002", !1) : t.length > i._maxTextLength ? (i._errorMessage.text = "\u540d\u524d\u306f12\u6587\u5b57\u307e\u3067\u3067\u3059\u3002", !1) : (i._btnSubmit.texture = i._btnImages.def, i._btnSubmit.interactive = !1, i._btnDelete.interactive = !1, void i._getNickNameId(t))
+                }, i._getNickNameId = function (t) {
+                    var e = t;
+                    e = e.replace(/%/g, "\uff05"), e = e.replace(/\t/g, " "), e = e.replace(/</g, "\uff1c"), e = e.replace(/>/g, "\uff1e"), e = e.replace(/&/g, "\uff06"), e = e.replace(/\"/g, ""), e = e.replace(/\'/g, ""), e = e.replace(/\`/g, ""), i._NickName = e, i._GadgetIP = "http://" + u.default.settings.osapi_root;
+                    var n = i._GadgetIP;
+                    window.parent.postMessage(c.PostMessageType.NICK_NAME + "\t" + i._NickName, n), window.addEventListener("message", i._onCallback)
+                }, i._onCallback = function (t) {
+                    if (window.removeEventListener("message", i._onCallback), t.origin == i._GadgetIP) {
+                        var e = t.data;
+                        i._setNickName(e)
                     }
-                }, e._removeShip = function (t, i) {
-                    var n = new T.AreaBox(0);
-                    o.default.view.overLayer.addChild(n), t.start(function () {
-                        e.deckLayer.ShipSlotLayer.ShipSlots[i].closeAnimation(function () {
-                            e.deckLayer.update(), s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.overLayer.removeChild(n)
-                            }) : o.default.view.overLayer.removeChild(n)
-                        })
-                    })
-                }, e._changeShipSlot = function (t, i) {
-                    var n = new T.AreaBox(0);
-                    o.default.view.overLayer.addChild(n), t.start(function () {
-                        var t = function () {
-                                return e.deckLayer.update()
-                            },
-                            r = function () {
-                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                    o.default.view.overLayer.removeChild(n)
-                                }) : o.default.view.overLayer.removeChild(n)
-                            };
-                        e.deckLayer.ShipSlotLayer.shutterAnimation(i, t, r)
-                    })
-                }, e._onClickDeckFlag = function (t) {
-                    if (e.deckLayer.deckID != t) switch (e.deckLayer.shipInDeckOrigin = 0, e.currentViewMode) {
-                        case 0:
-                            e.deckLayer.updateDeck(t);
-                            break;
-                        case 1:
-                            e.deckLayer.updateDeckSelector(t), e.presetEditLayer.update(t);
-                            break;
-                        case 2:
-                            e.deckLayer.updateDeckSelector(t), e.presetExpansionLayer.update(t)
-                    }
-                }, e._onClickShipChange = function (t, i) {
-                    e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1;
-                    var n = o.default.model.deck.get(e.deckLayer.deckID),
-                        a = (n.getShipModel(i), n.getCount());
-                    e.taskChangeShip = new w.TaskChangeShip(e), e.taskChangeShip.onUpdateDeck = function () {
-                        o.default.view.clickGuard = !0;
-                        var n = o.default.model.deck.get(e.deckLayer.deckID),
-                            _ = n.getShipModel(i),
-                            l = n.getCount(),
-                            u = e.deckLayer.ShipSlotLayer.ShipSlots[t];
-                        l < a ? u.closeAnimation(function () {
-                            e.deckLayer.update(), s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        }) : (r.SE.play("235"), o.default.sound.voice.play(_.mstID.toString(), 13), a < l ? (e.deckLayer.update(), u.close(), u.openAnimation(function () {
-                            s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        })) : u.closeAnimation(function () {
-                            e.deckLayer.update(), u.close(), u.openAnimation(function () {
-                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                    o.default.view.clickGuard = !1
-                                }) : o.default.view.clickGuard = !1
-                            })
-                        }))
-                    }, e.taskChangeShip.onComplete = function () {
-                        e.presetButtonLayer.show(), e.taskChangeShip.dispose(), e.taskChangeShip = null, e.deckLayer.EditNameArea.writable = !0
-                    }, e.taskChangeShip.start(e.deckLayer.deckID, i)
-                }, e._onClickShipDetail = function (t) {
-                    e.deckLayer.EditNameArea.writable = !1, e.presetButtonLayer.hide(), e.deckLayer.ShipSlotLayer.onShipDetail(t, e, function () {
-                        e.deckLayer.EditNameArea.writable = !0, e.presetButtonLayer.show()
-                    })
-                }, e._onClickPresetChange = function (t) {
-                    if (e.currentViewMode != t) {
-                        switch (e.currentViewMode) {
-                            case 1:
-                                e.presetEditLayer.hide();
-                                break;
-                            case 2:
-                                e.presetExpansionLayer.hide()
-                        }
-                        switch (t) {
-                            case 1:
-                                e._changeMode(1);
-                                var i = o.default.model.deck.get(e.deckLayer.deckID);
-                                e.deckLayer.EditNameArea.reload(i.name), e.presetEditLayer.show(e.deckLayer.deckID, e.presetList);
-                                break;
-                            case 2:
-                                e._changeMode(2);
-                                var i = o.default.model.deck.get(e.deckLayer.deckID);
-                                e.deckLayer.EditNameArea.reload(i.name), e.presetExpansionLayer.show(e.deckLayer.deckID, e.presetList)
-                        }
-                    }
-                }, e._onClickPresetBack = function () {
-                    e._changeMode(0), e.deckLayer.update()
-                }, e._onClickExpand = function (t) {
-                    o.default.view.clickGuard = !0;
-                    var i = new y.PresetSelectAPI(t, e.deckLayer.deckID);
-                    r.SE.play("240"), i.start(function () {
-                        for (var i = o.default.model.deck.get(e.deckLayer.deckID).getShipList(), n = new Array, a = 0; a < e.deckLayer.ShipSlotLayer.ShipSlots.length; a++) {
-                            i[a + e.deckLayer.shipInDeckOrigin] && n.push(a)
-                        }
-                        s.COMBINABLE && o.default.model.deck.isCombined(), r.SE.play("235"), e.presetExpansionLayer.hide(), e.presetList.getPresetDeckData(t).__deleteLostShips__(), e._changeMode(0), e.deckLayer.update();
-                        for (var _ = function () {}, l = function () {
-                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                    o.default.view.clickGuard = !1
-                                }) : o.default.view.clickGuard = !1
-                            }, a = 0; a < e.deckLayer.ShipSlotLayer.ShipSlots.length; a++) {
-                            var u = e.deckLayer.ShipSlotLayer.ShipSlots[a];
-                            u.close()
-                        }
-                        if (0 < n.length) {
-                            for (var a = 0; a < n.length; a++) {
-                                var c = _;
-                                n.indexOf(a) == n.length - 1 && (c = l);
-                                var u = e.deckLayer.ShipSlotLayer.ShipSlots[a];
-                                u.openAnimation(c)
-                            }
-                            o.default.sound.voice.play(o.default.model.deck.get(e.deckLayer.deckID).getShipList()[0].mstID.toString(), 13)
-                        } else l()
-                    })
-                }, e
+                }, i.alpha = 0, i._btnImages = {
+                    def: s.TUTORIAL_MAIN.getTexture(5),
+                    hover: s.TUTORIAL_MAIN.getTexture(6)
+                }, i
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new g.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new b.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return new m.PreFinalizeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new v.FinalizeTask(this)
-            }, e.prototype.preInitialize = function (t) {
-                this.presetList = t, this.backgroundLayer = new u.BackgroundLayer, this.backgroundLayer.init(), this.addChild(this.backgroundLayer), this.deckLayer = new c.DeckLayer(this._onClickDeckFlag), this.deckLayer.init(this._onClickBreakDeck), this.deckLayer.ShipSlotLayer.init(this._onDragging, this._onClickShipChange, this._onClickShipDetail), this.addChild(this.deckLayer), this.deckLayer.updateDeck(1), this.presetExpansionLayer = new d.PresetExpansionLayer(this._onClickPresetBack, this._onClickExpand), this.presetExpansionLayer.hide(), this.addChild(this.presetExpansionLayer), this.presetEditLayer = new p.PresetEditLayer(this._onClickPresetBack), this.presetEditLayer.hide(), this.addChild(this.presetEditLayer), this.presetButtonLayer = new h.PresetButtonLayer, this.presetButtonLayer.position.set(66, 514), this.presetButtonLayer.onClick = this._onClickPresetChange, this.presetButtonLayer.hide(), o.default.view.overLayer.addChild(this.presetButtonLayer), this._changeMode(0)
-            }, e.prototype.initialize = function () {
-                var t = o.default.model.basic.port_bgm_id;
-                o.default.sound.bgm.play(t), this.presetButtonLayer.show(), this.deckLayer.EditNameArea.writable = !0
-            }, e.prototype.prefinalize = function () {
-                this.presetButtonLayer.hide(), this.deckLayer.EditNameArea.writable = !1
-            }, e.prototype.finalize = function () {
-                this.taskChangeShip && this.taskChangeShip.dispose(), this.taskChangeShip = null, this.presetEditLayer.dispose(), this.presetEditLayer = null, this.presetExpansionLayer.dispose(), this.presetExpansionLayer = null, this.deckLayer.dispose(), this.deckLayer = null, this.presetButtonLayer.dispose(), this.presetButtonLayer = null, this.backgroundLayer.dispose(), this.backgroundLayer = null, this.presetList = null, this.currentViewMode = null, this.removeChildren()
-            }, e.prototype._changeMode = function (t) {
-                switch (this.deckLayer.hide(), this.deckLayer.show(t), this.presetButtonLayer.update(t), t) {
-                    case 0:
-                        this.deckLayer.EditNameArea.writable = !0, this.deckLayer.EditNameArea.editable = !0;
-                        break;
-                    case 1:
-                    case 2:
-                        this.deckLayer.EditNameArea.editable = !1, this.deckLayer.EditNameArea.writable = !1
-                }
-                this.currentViewMode = t
-            }, e.prototype._asyncCheckCombineStateAndRepair = function (t) {
-                var e = this,
-                    i = new x.TaskCheckCombineStateAndRepair(o.default.view.overLayer);
-                i.onBroken = function () {
-                    e.deckLayer.update()
-                }, i.onComplete = function () {
-                    i.dispose(), t()
-                }, i.start()
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Container,
+                    e = 0,
+                    i = new r.TextBox(30, 0);
+                i.text = "\u63d0\u7763\u306e\u540d\u524d", i.anchor.set(0, .5), e += i.width;
+                var n = new PIXI.Sprite(s.TUTORIAL_MAIN.getTexture(20));
+                n.position.set(i.width + 10, 0), e += n.width;
+                var _ = Math.floor(n.height / 2);
+                this._btnDelete = new PIXI.Sprite(s.TUTORIAL_MAIN.getTexture(0)), this._btnDelete.interactive = !0, this._btnDelete.buttonMode = !0, this._btnDelete.on(h.EventType.CLICK, this._deleteInputText), this._btnDelete.anchor.set(1, .5), this._btnDelete.position.set(e, _ - 2), i.position.set(0, _), t.position.set(218, 330), t.width = e, t.height = n.height, t.addChild(i, n, this._btnDelete);
+                var l = new PIXI.Point(t.x + n.x + 8, t.y + 7),
+                    u = this.toGlobal(l);
+                o.EditTextBoxUtil.init(u.x, u.y, n.width - this._btnDelete.width - 22, 22, 0), o.EditTextBoxUtil.text = "", o.EditTextBoxUtil.onLengthCheck(12, this._inputAndSubmitManage), this._inputExtend = document.getElementById("r_editbox"), this._inputExtend.addEventListener("blur", this._inputAndSubmitManage);
+                var c = new PIXI.Container,
+                    p = {
+                        x: t.x + t.width,
+                        y: t.y + t.height
+                    },
+                    d = new r.TextBox(30, 0);
+                d.text = "\uff0812\u6587\u5b57\u307e\u3067\uff09", d.position.set(p.x - Math.floor(d.width / 2) - 5, p.y + 5), this._errorMessage = new r.TextBox(27, 10027008), this._errorMessage.text = "", this._errorMessage.anchor.set(.5, 0), this._errorMessage.position.set(a.default.width / 2, d.y + d.height), this._btnSubmit = new PIXI.Sprite(this._btnImages.def), this._btnSubmit.buttonMode = !0, this._btnSubmit.anchor.set(.5, 0), this._btnSubmit.position.set(a.default.width / 2, p.y + 125), this._btnSubmit.on(h.EventType.CLICK, this._onClick).on(h.EventType.MOUSEOVER, this._onToggleSubmit).on(h.EventType.MOUSEOUT, this._onToggleSubmit), this._btnSubmit.interactive = !1, this._btnSubmit.visible = !1, c.addChild(d, this._errorMessage, this._btnSubmit), this.addChild(t, c), this._ev.emit("tutorial-scene-start")
+            }, e.prototype.start = function () {
+                this._ev.emit("tutorial-title", !0, 21), createjs.Tween.get(this).wait(800).to({
+                    alpha: 1
+                }, 400, createjs.Ease.linear).call(function () {
+                    o.EditTextBoxUtil.setVisibility(!0)
+                })
+            }, e.prototype._showSubmitBtn = function () {
+                var t = "" !== o.EditTextBoxUtil.text;
+                t != this._btnSubmit.visible && (this._btnSubmit.visible = t, this._btnSubmit.interactive = t)
+            }, e.prototype._setNickName = function (t) {
+                new _.APISaveNickName(this._NickName, t).start(), this._ev.emit("tutorial-next-scene")
+            }, e.prototype.dispose = function () {
+                var t = this;
+                createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 100, createjs.Ease.linear).call(function () {
+                    o.EditTextBoxUtil.text = "", o.EditTextBoxUtil.setVisibility(!1), t._ev.emit("tutorial-remove-scene")
+                }), o.EditTextBoxUtil.onkeydown = null, o.EditTextBoxUtil.onkeyup = null, this._btnDelete.off(h.EventType.CLICK, this._deleteInputText), this._btnSubmit.off(h.EventType.CLICK, this._onClick).off(h.EventType.MOUSEOVER, this._onToggleSubmit).off(h.EventType.MOUSEOUT, this._onToggleSubmit), this._inputExtend.removeEventListener("blur", this._inputAndSubmitManage)
             }, e
-        }(a.SceneBase);
-    e.OrganizeScene = O
+        }(l.SceneBase);
+    e.SceneInputName = p
 }

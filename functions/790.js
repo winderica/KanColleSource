@@ -1,57 +1,61 @@
 const function790 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i.DURATION = 150;
-                var n = new PIXI.Graphics;
-                return n.beginFill(0, .5), n.drawRect(0, 0, o.default.width, o.default.height), n.endFill(), i._container = e, i._container.alpha = 0, i.interactive = !0, i.alpha = 0, i.addChild(n, i._container), i
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._container = null
-            }, e.prototype.show = function (t) {
-                var e = this;
-                void 0 === t && (t = null), createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 1.2 * this.DURATION).call(function () {
-                    createjs.Tween.get(e._container).to({
-                        alpha: 1
-                    }, .5 * e.DURATION).call(function () {
-                        null !== t && t()
-                    })
-                })
-            }, e.prototype.hide = function (t) {
-                var e = this;
-                void 0 === t && (t = null), createjs.Tween.get(this._container).to({
-                    alpha: 0
-                }, this.DURATION).call(function () {
-                    createjs.Tween.get(e).to({
-                        alpha: 0
-                    }, 1.2 * e.DURATION).call(function () {
-                        null !== t && t()
-                    })
-                })
-            }, e
-        }(PIXI.Container);
-    e.SlotInShipChangeConfirm = r
+    var n = function () {
+        function t(t, e, i, n, o, r, s, a) {
+            this._karyoku = t, this._raiso = e, this._taiku = i, this._souko = n, this._lucky = o, this._checkBonusLucky = r, this._checkBonusTaikyu = s, this._checkBonusTaisen = a
+        }
+        return Object.defineProperty(t.prototype, "karyoku", {
+            get: function () {
+                return this._karyoku
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "raiso", {
+            get: function () {
+                return this._raiso
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "taiku", {
+            get: function () {
+                return this._taiku
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "souko", {
+            get: function () {
+                return this._souko
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "lucky", {
+            get: function () {
+                return this._lucky
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "checkBonusLucky", {
+            get: function () {
+                return this._checkBonusLucky
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "checkBonusTaikyu", {
+            get: function () {
+                return this._checkBonusTaikyu
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "checkBonusTaisen", {
+            get: function () {
+                return this._checkBonusTaisen
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t
+    }();
+    e.PowerUpCheckModel = n
 }

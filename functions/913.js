@@ -19,51 +19,83 @@ const function913 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(35),
-        r = i(1),
-        s = function (t) {
+    var o = i(315),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._state = !1, e.animationParams = {
-                    progress: 0
-                }, e._onClick = function () {
-                    null != e.tween && e.tween.setPaused(!0), e.tween = null;
-                    var t = 0;
-                    switch (e._state) {
-                        case !1:
-                            e._state = !0, t = 0;
-                            break;
-                        case !0:
-                            e._state = !1, t = 1
+                e.MAX_CIRCLE = 5, e.onUpdate = function () {
+                    for (var t = 0; t < e.effectCircles.length; t++) {
+                        var i = e.effectCircles[t];
+                        if (!i.isAnimation && !(Math.floor(100 * Math.random()) >= 10)) {
+                            i.play();
+                            break
+                        }
                     }
-                    var i = createjs.Tween.get(e.animationParams);
-                    i.to({
-                        progress: t
-                    }, 300).on("change", function () {
-                        .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 0 + 103 * e.animationParams.progress
-                    }), i.play(null), e.tween = i, null != e.click_cb && e.click_cb()
-                }, e.toggle = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(147)), e.background_off = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(152)), e.background_on = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(154)), e.background_off.on(r.EventType.CLICK, e._onClick), e.toggle.position.set(103, -4), e.addChild(e.background_off, e.background_on, e.toggle), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "state", {
-                get: function () {
-                    return this._state
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.update = function (t) {
-                null != this.tween && this.tween.setPaused(!0), this.tween = null, this._state = !1, this.toggle.position.set(103, -4), this.background_off.interactive = this.background_off.buttonMode = !!t, this.background_on.visible = !1, this.animationParams.progress = 1
-            }, e.prototype.changeToggleState = function (t) {
-                switch (null != this.tween && this.tween.setPaused(!0), this.tween = null, this.toggle.x = 0, this.background_on.visible = !1, t) {
-                    case !0:
-                        this.toggle.x = 0, this.animationParams.progress = 0, this.background_on.visible = !0;
-                        break;
-                    case !1:
-                        this.toggle.x = 103, this.animationParams.progress = 1, this.background_on.visible = !1
+                };
+                var i = o.ARSENAL_ANIMATION.getTexture(1);
+                e.effectCircles = new Array;
+                for (var n = 0; n < e.MAX_CIRCLE; n++) {
+                    var r = new s(i);
+                    e.effectCircles.push(r), r.texture = i, e.addChild(r)
                 }
-                this._state = t
-            }, e.prototype.dispose = function () {
-                null != this.tween && this.tween.setPaused(!0), this.removeChildren(), this.background_off = null, this.background_on = null, this.toggle = null, this.tween = null, this.click_cb = null
+                return e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.stop();
+                for (var t = 0; t < this.effectCircles.length; t++) this.effectCircles[t].dispose(), this.effectCircles[t] = null;
+                this.effectCircles = null, this.removeChildren()
+            }, e.prototype.play = function () {
+                createjs.Tween.removeTweens(this);
+                var t = createjs.Tween.get(this, {
+                    onChange: this.onUpdate
+                });
+                t.loop = !0, t.play(null)
+            }, e.prototype.stop = function () {
+                createjs.Tween.removeTweens(this);
+                for (var t = 0; t < this.effectCircles.length; t++) this.effectCircles[t].stop(), this.effectCircles[t].reset()
             }, e
         }(PIXI.Container);
-    e.MultipleDevelopToggle = s
+    e.MaterialCircleRollAnimation = r;
+    var s = function (t) {
+        function e(e) {
+            var i = t.call(this, e) || this;
+            return i.update = function (t) {
+                var e = t.target.target.time,
+                    n = t.target.target.alpha;
+                i.rotation = i._rotationSpeed * e, i.alpha = n
+            }, i.anchor.set(.5, .5), i._isAnimation = !1, i.reset(), i
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "isAnimation", {
+            get: function () {
+                return this._isAnimation
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.dispose = function () {
+            this.stop(), this._isAnimation = null, this._rotationSpeed = null, this._time = null, this._tween = null
+        }, e.prototype.reset = function () {
+            var t = .2 * Math.random() + .8;
+            this.scale.set(t, t), this._rotationSpeed = Math.PI / 180 * (180 * Math.random() - 90), this._time = 200 + 400 * Math.random(), this.x = 450 * Math.random() - 225, this.y = 450 * Math.random() - 158, this.alpha = 0
+        }, e.prototype.play = function () {
+            var t = this;
+            this._isAnimation = !0;
+            var e = {
+                time: 0,
+                alpha: 0
+            };
+            null != this._tween && this._tween.removeAllEventListeners(), this.reset(), this._tween = createjs.Tween.get(e, {
+                onChange: this.update
+            }).to({
+                time: .5,
+                alpha: 1
+            }, this._time).to({
+                time: 1,
+                alpha: 0
+            }, this._time).call(function () {
+                t.stop()
+            })
+        }, e.prototype.stop = function () {
+            this._isAnimation = !1, null != this._tween && this._tween.removeAllEventListeners()
+        }, e
+    }(PIXI.Sprite)
 }

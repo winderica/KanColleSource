@@ -19,37 +19,61 @@ const function1165 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(1166),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._result = !1, e._api = null, e._retry_count = 0, e
+    var o = i(0),
+        r = i(243),
+        s = i(25),
+        a = i(139),
+        _ = i(1166),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._showDialog()
+            }, e.prototype._showDialog = function () {
                 var t = this;
-                createjs.Tween.get(null).wait(500).call(function () {
-                    t._check()
+                this._dialog = new _.IwashiUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
                 })
-            }, e.prototype._check = function () {
-                var t = this;
-                this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                    t._checked()
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
+                    s = n.result;
+                n.start(function () {
+                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
                 })
-            }, e.prototype._checked = function () {
-                var t = this;
-                2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._check()
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = this._layer,
+                    o = new a.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new r.UseItemUseAPI(e, !0, i),
+                            s = n.result;
+                        n.start(function () {
+                            t._result = s, t._endTask()
+                        })
+                    } else t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._api = null, t.prototype._endTask.call(this)
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskPayCheck = s
+        }(s.TaskWithResult);
+    e.TaskUseIwashi = l
 }

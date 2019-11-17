@@ -19,66 +19,83 @@ const function1472 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(247),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._points = [], i
+    var o = i(0),
+        r = i(22),
+        s = i(29),
+        a = i(157),
+        _ = i(158),
+        l = i(16),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e._icon = new a.BannerIcon, e._soot = new _.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                if (this._clearPoints(), e <= 0) return !1;
-                var i;
-                switch (t) {
-                    case 11:
-                        i = this._get11Points(e);
+            return n(e, t), e.prototype.initialize = function (t, e, i, n, o, s, a) {
+                if (this._mst_id = t, this._updateState(e, i), this._taihi = n, this._icon.initialize(o), this._combined = s, this._friend = a, this._updateImage(s, a), this._updateIcon(e, i), this._friend && this._combined) {
+                    var _ = new PIXI.Graphics;
+                    _.beginFill(16711680, .5), _.drawRect(r.BannerSize.W / 2, 0, r.BannerSize.W / 2, r.BannerSize.H), _.endFill(), this._soot.addChild(_), this._soot.mask = _
+                }
+            }, e.prototype.update = function (t, e) {
+                this._updateState(t, e), this._updateImage(this._combined, this._friend), this._updateIcon(t, e)
+            }, e.prototype.getAnimationTweens = function (t) {
+                var e = this;
+                this._combined = !1;
+                var i = this._img.texture,
+                    n = new PIXI.Sprite(i);
+                n.x = this._img.x, n.y = this._img.y;
+                var o = this.getChildIndex(this._img);
+                this.addChildAt(n, o), this._img.texture = this._getTexture(), this._img.alpha = 0;
+                var r = [createjs.Tween.get(this._img).wait(t).to({
+                    alpha: 1
+                }, 600).call(function () {
+                    e.removeChild(n);
+                    var t = e._img.mask;
+                    t && (t.parent.removeChild(t), e._img.mask = null)
+                })];
+                if (this._soot.mask) {
+                    var s = this._soot.mask;
+                    this._soot.removeChild(s), this._soot.mask = null, this._soot.alpha = 0;
+                    var a = new _.BannerSoot;
+                    a.texture = this._soot.texture, a.addChild(s), a.mask = s, this.addChildAt(a, this.getChildIndex(this._soot)), r.push(createjs.Tween.get(this._soot).wait(t).to({
+                        alpha: 1
+                    }, 600)), r.push(createjs.Tween.get(a).wait(t).to({
+                        alpha: 0
+                    }, 600).call(function () {
+                        e.removeChild(a)
+                    }))
+                }
+                return r
+            }, e.prototype._updateState = function (t, e) {
+                t <= 0 ? this._damaged = 2 : s.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
+            }, e.prototype._updateImage = function (t, e) {
+                if (this._mst_id < 0) switch (this._mst_id) {
+                    case -1:
+                        this._img.texture = l.BATTLE_MAIN.getTexture(0);
                         break;
-                    case 12:
-                        i = this._get12Points(e);
+                    case -2:
+                        this._img.texture = l.BATTLE_MAIN.getTexture(1);
                         break;
-                    case 13:
-                        i = this._get13Points(e);
-                        break;
-                    case 14:
-                        i = this._get14Points(e)
-                }
-                if (null == i) return !1;
-                for (var n = 0; n < i.length; n++) {
-                    var r = new o.FormationPoint,
-                        s = i[n];
-                    r.position.set(s.x, s.y), r.initializeForCombinedSub(this._friend), r.visible = !1, this.addChild(r), this._points.push(r)
-                }
-                return !0
-            }, e.prototype.show = function (t) {
-                void 0 === t && (t = 100);
-                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        e.wait(t), e.call(function () {
-                            i.visible = !0
-                        })
-                    }(o)
-                }
-            }, e.prototype.dispose = function () {
-                this._clearPoints()
-            }, e.prototype._clearPoints = function () {
-                for (var t = 0, e = this._points; t < e.length; t++) {
-                    var i = e[t];
-                    this.removeChild(i)
-                }
-                this._points = []
-            }, e.prototype._get11Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(38, -12)), t > 1 && e.push(new PIXI.Point(23, -35)), t > 2 && e.push(new PIXI.Point(23, 12)), t > 3 && e.push(new PIXI.Point(8, -57)), t > 4 && e.push(new PIXI.Point(8, 35)), t > 5 && e.push(new PIXI.Point(0, -12)), e
-            }, e.prototype._get12Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(17, -12)), t > 2 && e.push(new PIXI.Point(36, -38)), t > 3 && e.push(new PIXI.Point(36, 15)), t > 4 && e.push(new PIXI.Point(-3, -21)), t > 5 && e.push(new PIXI.Point(-3, 0)), e
-            }, e.prototype._get13Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(36, -12)), t > 1 && e.push(new PIXI.Point(11, -54)), t > 2 && e.push(new PIXI.Point(11, 33)), t > 3 && e.push(new PIXI.Point(-32, -54)), t > 4 && e.push(new PIXI.Point(-32, 33)), t > 5 && e.push(new PIXI.Point(-57, -12)), e
-            }, e.prototype._get14Points = function (t) {
-                var e = [];
-                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(26, -38)), t > 2 && e.push(new PIXI.Point(26, 15)), t > 3 && e.push(new PIXI.Point(26, -12)), t > 4 && e.push(new PIXI.Point(9, -21)), t > 5 && e.push(new PIXI.Point(9, 0)), e
+                    case -3:
+                        this._img.texture = l.BATTLE_MAIN.getTexture(2)
+                } else this._img.texture = t ? e ? this._getTextureCombinedFriend() : this._getTextureCombinedEnemy() : this._getTexture()
+            }, e.prototype._getTexture = function () {
+                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner_g");
+                var t = 0 != this._damaged;
+                return o.default.resources.getShip(this._mst_id, t, "banner")
+            }, e.prototype._getTextureCombinedFriend = function () {
+                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner2_g");
+                var t = 0 != this._damaged;
+                return o.default.resources.getShip(this._mst_id, t, "banner2")
+            }, e.prototype._getTextureCombinedEnemy = function () {
+                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner3_g");
+                var t = 0 != this._damaged;
+                return o.default.resources.getShip(this._mst_id, t, "banner3")
+            }, e.prototype._updateIcon = function (t, e) {
+                if (0 == this._taihi) {
+                    var i = s.ShipUtil.getDamageType(t, e);
+                    this._icon.setDamagedIcon(i), this._soot.update(i)
+                } else this._icon.setTaihiIcon()
             }, e
         }(PIXI.Container);
-    e.FormationPointsCombinedSub = r
+    e.BannerImage = u
 }

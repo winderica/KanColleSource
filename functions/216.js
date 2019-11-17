@@ -19,19 +19,39 @@ const function216 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(0),
-        s = function (t) {
-            function e(e, i, n, o) {
-                void 0 === e && (e = !1);
-                var r = t.call(this) || this;
-                return r._url = "api_req_hensei/change", r._debug = e, r.api_id = i, r.api_ship_idx = n, r.api_ship_id = o, r
+    var o = i(9),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                1 == this._debug && (-2 == this.api_ship_id || this.api_ship_id), this._post_data.api_id = this.api_id, this._post_data.api_ship_idx = this.api_ship_idx, this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = r.default.model.deck.get(this.api_id); - 2 == this.api_ship_id ? e.__removeAll__() : -1 == this.api_ship_id ? e.__remove__(this.api_ship_idx) : e.__change__(this.api_ship_idx, this.api_ship_id), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t) {
+                var e = PIXI.Texture.EMPTY;
+                switch (t) {
+                    case 0:
+                        e = o.COMMON_MISC.getTexture(26);
+                        break;
+                    case 1:
+                        e = o.COMMON_MISC.getTexture(27);
+                        break;
+                    case 2:
+                        e = o.COMMON_MISC.getTexture(28);
+                        break;
+                    case 3:
+                        e = o.COMMON_MISC.getTexture(29);
+                        break;
+                    case 4:
+                        e = o.COMMON_MISC.getTexture(30);
+                        break;
+                    case 5:
+                        e = o.COMMON_MISC.getTexture(31);
+                        break;
+                    case 6:
+                        e = o.COMMON_MISC.getTexture(32)
+                }
+                this.texture = e
+            }, e.prototype.dispose = function () {
+                this.texture = PIXI.Texture.EMPTY
             }, e
-        }(o.APIBase);
-    e.ChangeAPI = s
+        }(PIXI.Sprite);
+    e.DeckIndexEmblem = r
 }

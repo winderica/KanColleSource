@@ -19,28 +19,21 @@ const function907 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(10),
         r = i(0),
-        s = i(13),
-        a = i(226),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._stype_name = "", e._ship_name = "", e
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_kousyou/createship_speedchange", n.api_kdock_id = e, n.isLarge = i, n
             }
-            return n(e, t), e.prototype.preloadFromMst = function (t, e) {
-                var i = r.default.model.ship_graph.get(t.mstID).getCenterOffset(!1);
-                this.preload(t.mstID, t.name, t.shipTypeName, t.message_text, t.rarity, i, e)
-            }, e.prototype.preload = function (t, e, i, n, a, _, l) {
-                var u = this;
-                this._mst_id = t, this._ship_name = e, this._stype_name = i, this._message = n, (new s.ShipLoader).add(t, !1, "full").load(function () {
-                    u._target.texture = r.default.resources.getShip(t, !1, "full"), u._target.x = o.default.width / 2 - 379 + _.x, u._target.y = o.default.height / 2 - 418 + _.y, u._rarityBG.initiailzeForShip(a, function () {
-                        u._messageBox.initializeForShip(u._stype_name, u._ship_name, u._message), null != l && l()
-                    })
-                })
-            }, e.prototype._03_waitClick = function () {
-                r.default.sound.voice.play(this._mst_id.toString(), 1), t.prototype._03_waitClick.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_highspeed = 1, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.default.model.useItem.get(2),
+                    i = r.default.model.kdock.get(this.api_kdock_id),
+                    n = this.isLarge ? 10 : 1;
+                e.__setCount__(e.count - n), i.__complete__(), t.prototype._completedEnd.call(this)
             }, e
-        }(a.RewardAnimation);
-    e.RewardAnimationShip = _
+        }(o.APIBase);
+    e.CreateShipSpeedChangeAPI = s
 }

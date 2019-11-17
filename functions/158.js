@@ -19,16 +19,16 @@ const function158 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = function (t) {
+    var o = i(9),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/basic", e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.basic.setUserData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t) {
+                25 == t ? (this.texture = o.COMMON_MISC.getTexture(98), this.visible = !0) : 50 == t ? (this.texture = o.COMMON_MISC.getTexture(96), this.visible = !0) : 75 == t ? (this.texture = o.COMMON_MISC.getTexture(97), this.visible = !0) : this.clear()
+            }, e.prototype.clear = function () {
+                this.texture = PIXI.Texture.EMPTY, this.visible = !1
             }, e
-        }(r.APIBase);
-    e.UserDataAPI = s
+        }(PIXI.Sprite);
+    e.BannerSoot = r
 }

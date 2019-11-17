@@ -19,38 +19,30 @@ const function1127 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._activated = !1, n._enabled = !0, n._onClick = function () {
-                    null != n._cb_onClick && n._cb_onClick(n._target)
-                }, n._target = e, n._cb_onClick = i, n.interactive = !0, n
+    var o = i(32),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._light = new PIXI.Sprite, e._light.position.set(-22, -24), e.addChild(e._light), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                set: function (t) {
-                    this._enabled != t && (this._enabled = t, 1 == this._enabled ? 1 == this._activated && this._activate() : 1 == this._activated && this._deactivate(), this._update())
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                void 0 === e && (e = null), this._t = t, this._t_off = null == e ? t : e, this._update()
-            }, e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, 0 != this._enabled && this._activate())
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null, this._t = null, this._t_off = null
-            }, e.prototype._update = function () {
-                0 == this._enabled ? this.texture = this._t_off : this.texture = this._t
+            return n(e, t), e.prototype.dispose = function () {
+                this._stopTween(), t.prototype.dispose.call(this)
+            }, e.prototype._update = function (t) {
+                0 == t ? (this.texture = r.ITEM_ILIST.getTexture(12), this._light.texture = r.ITEM_ILIST.getTexture(1)) : (this.texture = r.ITEM_ILIST.getTexture(13), this._light.texture = r.ITEM_ILIST.getTexture(2)), this._stopTween(), this._startTween()
             }, e.prototype._activate = function () {
-                this.buttonMode = !0, this.once(o.EventType.CLICK, this._onClick)
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
+                this._stopTween(), this._startTween(), t.prototype._activate.call(this)
+            }, e.prototype._startTween = function () {
+                this._light.alpha = 0, this._tween = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 3e3).to({
+                    alpha: 0
+                }, 3e3)
+            }, e.prototype._stopTween = function () {
+                null != this._tween && this._tween.setPaused(!0), this._tween = null
             }, e
-        }(PIXI.Sprite);
-    e.BtnBase = r
+        }(o.BtnBase);
+    e.UseBtn = s
 }

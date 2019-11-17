@@ -19,67 +19,29 @@ const function1392 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(6),
-        a = i(377),
-        _ = i(39),
-        l = function (t) {
-            function e(e, i, n, s, _, l, u, c) {
-                var h = t.call(this, e, i, s, l, u, c) || this;
-                h._onCallAttackEffect = function () {
-                    var t = h._getDamage(h._defender),
-                        e = h._defenderBanner.getGlobalPos(!0),
-                        i = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        n = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
-                        o = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        s = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
-                    createjs.Tween.get(null).call(function () {
-                        h._defenderBanner.moveAtDamage(h._shield), h._scene.view.layer_explosion.playDamageExplosion(e.x, e.y, t)
-                    }).wait(150).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + i, e.y + n)
-                    }).wait(100).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + o, e.y + s, function () {
-                            h._attack(h._attackerBanner, h._defenderBanner)
-                        })
-                    })
-                }, h._finallize = function () {
-                    h._cutin.dispose(), h._cutin = null, h._attackerBanner = null, h._defenderBanner = null, h._endTask()
-                };
-                var p, d, f = h._slot.mstID,
-                    y = o.default.model.slot.getMst(_),
-                    m = y.mstID,
-                    g = new a.CutinZRK(i, f, m),
-                    v = i.friend,
-                    b = i.index,
-                    w = n.index;
-                return v ? (p = e.view.bannerGroupLayer.getBanner(!0, b), d = e.view.bannerGroupLayer.getBanner(!1, w)) : (p = e.view.bannerGroupLayer.getBanner(!1, b), d = e.view.bannerGroupLayer.getBanner(!0, w)), g.onCallAttackEffect = h._onCallAttackEffect, g.onCallAttackVoice = h._playVoice, h._attackerBanner = p, h._defenderBanner = d, h._cutin = g, h._defender = n, h._debug_slot_mst_id3 = _, h
+    var o = i(2),
+        r = i(13),
+        s = i(23),
+        a = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._attacker = e, s._slot_mst_id1 = i, s._slot_mst_id2 = n, s._slot_mst_id3 = o, s._night = r, s
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
+                this._loadShipImage()
+            }, e.prototype._loadShipImage = function () {
+                var t = this,
+                    e = new r.ShipLoader;
+                e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
+                    t._loadSlotTextImage()
                 })
-            }, e.prototype._playVoice = function () {
-                if (this._attacker.friend) {
-                    var t = this._attacker.mst_id;
-                    o.default.sound.voice.play(t.toString(), 16)
-                }
-            }, e.prototype._log = function (t) {}, e.prototype._completePreload = function () {
-                this._attackerBanner.moveFront(), this._defenderBanner.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
-            }, e.prototype._attack = function (t, e) {
-                var i = this;
-                s.SE.play("102"), t.attack(function () {
-                    i._damageEffect(t, e)
-                })
-            }, e.prototype._damageEffect = function (t, e) {
-                var i = this;
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var n = this._getDamage(this._defender);
-                this._playExplosion(e, n), this._playDamageEffect(t, e, this._defender, n, this._hit, function () {
-                    return i._finallize()
+            }, e.prototype._loadSlotTextImage = function () {
+                var t = this,
+                    e = new s.SlotLoader;
+                this._slot_mst_id1 > 0 && (e.add(this._slot_mst_id1, "item_up"), 1 == this._night && e.add(this._slot_mst_id1, "btxt_flat")), this._slot_mst_id2 > 0 && (e.add(this._slot_mst_id2, "item_up"), 1 == this._night && e.add(this._slot_mst_id2, "btxt_flat")), this._slot_mst_id3 > 0 && (e.add(this._slot_mst_id3, "item_up"), 1 == this._night && e.add(this._slot_mst_id3, "btxt_flat")), e.load(function () {
+                    t._endTask()
                 })
             }, e
-        }(_.PhaseAttackBase);
-    e.PhaseZRK = l
+        }(o.TaskBase);
+    e.PreloadCutinKubo = a
 }

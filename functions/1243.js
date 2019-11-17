@@ -19,18 +19,59 @@ const function1243 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = -1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
+    var o = i(2),
+        r = i(247),
+        s = i(436),
+        a = i(1246),
+        _ = i(1249),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._option = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                var t = this;
+                this._model = new r.BattleSceneModel(!0), this._model.updateDeckData(this._option.deck_f, this._option.deck_e), this._scene.battle.initialize(this._model), this._scene.view.shutter.once("closed", function () {
+                    t._formationSelect()
+                }), this._scene.view.shutter.close(400)
+            }, e.prototype._formationSelect = function () {
+                var t = this,
+                    e = new a.TaskFormationSelect(this._scene, this._option.deck_f);
+                e.start(function () {
+                    t._option.deck_f.formation = e.selected_formation, t._insert()
+                })
+            }, e.prototype._insert = function () {
+                var t = this;
+                this._scene.battle.bg.setDay(function () {
+                    createjs.Tween.get(t._scene.view).to({
+                        alpha: 0
+                    }, 300), t._scene.battle.shutter2.open(0), createjs.Tween.get(t._scene.battle).to({
+                        alpha: 1
+                    }, 300), new s.SallyAnimationTask(t._scene).start(function () {
+                        t._cutin()
+                    })
+                })
+            }, e.prototype._cutin = function () {
+                var t = this,
+                    e = this._option.deck_f.ships,
+                    i = this._option.deck_f.medal_num,
+                    n = this._option.deck_e.ships,
+                    o = this._option.deck_e.medal_num,
+                    r = new _.StartAnimationTask(this._scene, e, i, n, o);
+                r.preload(function () {
+                    r.start(function () {
+                        t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._option = null, t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.APIMapNext = r
+        }(o.TaskBase);
+    e.TaskMain = l
 }

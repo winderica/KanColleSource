@@ -19,35 +19,17 @@ const function1242 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(152),
-        s = i(50),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
+    var o = i(2),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "black", {
-                get: function () {
-                    return this._black
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._shutter.initializeLight()
+            return n(e, t), e.prototype._start = function () {
+                this._scene.start(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.ViewMain = a
+        }(o.TaskBase);
+    e.TaskInit = r
 }

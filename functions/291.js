@@ -19,24 +19,22 @@ const function291 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.dispose = function () {
-                e.deactivate()
-            }, e._onTimer = function () {
-                e.rotation += Math.PI / 180 * 2
+    var o = i(0),
+        r = i(2),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._check()
+            }, e.prototype._check = function () {
+                var t = o.default.model.deck.getAll();
+                t = t.filter(function (t, e, i) {
+                    return null != t.expedition && 2 == t.expedition.state
+                });
+                var e = o.default.view.portMain.expedition_alert;
+                t.length > 0 ? (e.initialize(t[0].mstID), e.activate(), e.visible = !0) : (e.deactive(), e.visible = !1), this._endTask()
             }, e
-        }
-        return n(e, t), e.prototype.setUp = function (t) {
-            this.texture = t, this.pivot.set(this.width / 2, this.height / 2)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this, {
-                loop: !0
-            }).wait(1e3).call(this._onTimer))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Sprite);
-    e.Gear = o
+        }(r.TaskBase);
+    e.TaskExpeditionAlertUpdate = s
 }

@@ -5,8 +5,8 @@ const function411 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("interior_parts_" + t)
+            return PIXI.Texture.fromFrame("item_ilist_iwashi_" + t)
         }
         t.getTexture = e
-    }(e.INTERIOR_PARTS || (e.INTERIOR_PARTS = {}))
+    }(e.ITEM_ILIST_IWASHI || (e.ITEM_ILIST_IWASHI = {}))
 }

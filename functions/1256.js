@@ -19,16 +19,18 @@ const function1256 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(10),
+        r = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = -1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._scene.view.dispose(), r.UIImageLoader.clearMemoryCache("map"), this._endTask()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskFinalize = s
+        }(o.APIBase);
+    e.APIMapNext = r
 }

@@ -19,77 +19,57 @@ const function1530 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(6),
-        s = i(36),
-        a = function (t) {
+    var o = i(1531),
+        r = i(1532),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._name_and_level = new _, e._up_to_the_next_level = new l, e._up_to_the_next_level.position.set(0, 30), e.addChild(e._name_and_level), e.addChild(e._up_to_the_next_level), e
+                e._value = 0, e._lights = [], e._nums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new o.ResultDialogNumLight;
+                    n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
+                }
+                for (var i = 0; i < 4; i++) {
+                    var s = new r.ResultDialogNum;
+                    s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "name_and_level", {
-                get: function () {
-                    return this._name_and_level
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "up_to_the_next_level", {
-                get: function () {
-                    return this._up_to_the_next_level
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._name_and_level.dispose(), this._name_and_level = null, this._up_to_the_next_level.dispose(), this._up_to_the_next_level = null
-            }, e.prototype.levelup = function () {
-                this._name_and_level.levelup(), this._up_to_the_next_level.levelup()
+            return n(e, t), e.prototype.setValue = function (t) {
+                this._value = Math.min(t, 9999);
+                for (var e = this._value, i = 0; i < this._nums.length; i++) {
+                    var n = this._nums[i],
+                        o = this._lights[i],
+                        r = e % 10;
+                    n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
+                }
+            }, e.prototype.startLightAnimation = function () {
+                this.stopLightAnimation(), this._light_tweens = [];
+                for (var t = 0; t < this._lights.length; t++) {
+                    var e = this._nums[t],
+                        i = this._lights[t];
+                    if (0 == e.visible) i.visible = !1;
+                    else {
+                        i.alpha = 0, i.visible = !0;
+                        var n = createjs.Tween.get(i, {
+                            loop: !0
+                        }).to({
+                            alpha: 1
+                        }, 500).wait(500).to({
+                            alpha: 0
+                        }, 500).wait(500);
+                        this._light_tweens.push(n)
+                    }
+                }
+            }, e.prototype.stopLightAnimation = function () {
+                if (null != this._light_tweens) {
+                    for (var t = 0, e = this._light_tweens; t < e.length; t++) {
+                        var i = e[t];
+                        i.setPaused(!0), i = null
+                    }
+                    this._light_tweens = null
+                }
             }, e
         }(PIXI.Container);
-    e.BannerInfoFriend = a;
-    var _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._name = new o.TextBox(18, 16774898), e._name_mask = new PIXI.Graphics, e._name.addChild(e._name_mask), e._name.mask = e._name_mask, e._level_label = new PIXI.Sprite, e._level_label.position.set(131, 3), e._level = new o.TextBox(16, 16774898), e._level.anchor.set(1, 0), e._level.position.set(200, 5), e.addChild(e._name), e.addChild(e._level_label), e.addChild(e._level), e
-            }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._level_label.texture = s.BATTLE_RESULT_MAIN.getTexture(68), this._name.text = t, this._name_mask.clear(), this._name_mask.beginFill(0), this._name_mask.drawRect(0, 0, 126, this._name.height), this._name_mask.endFill(), this._level.text = e.toString(), this._now_level = e
-            }, e.prototype.levelup = function () {
-                this._now_level++, this._level.text = this._now_level.toString()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy(), this._name = null, this._name_mask = null, this._level_label = null, this._level.destroy(), this._level = null
-            }, e
-        }(PIXI.Container),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._next_label = new PIXI.Sprite, e._next_label.position.set(0, 6), e._next = new o.TextBox(16, 16777215), e._next.anchor.set(1, 0), e._next.position.set(200, 5), e._next.alpha = 0, e.addChild(e._next_label), e.addChild(e._next), e
-            }
-            return n(e, t), e.prototype.showExpText = function () {
-                createjs.Tween.get(this._next).wait(10).to({
-                    alpha: 1
-                }, 0)
-            }, e.prototype.initialize = function (t) {
-                this._next_label.texture = s.BATTLE_RESULT_MAIN.getTexture(78), this.update(t)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._next_label = null, this._next.destroy(), this._next = null
-            }, e.prototype.update = function (t) {
-                this._next.text = t < 0 ? "" : Math.floor(t).toString()
-            }, e.prototype.levelup = function () {
-                var t = this,
-                    e = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(9));
-                e.anchor.set(.5), e.position.set(147, 18), e.alpha = 0, r.SE.play("221"), this.addChild(e), createjs.Tween.get(e).to({
-                    y: -6,
-                    alpha: 1
-                }, 200).to({
-                    y: 18
-                }, 0).to({
-                    y: -6,
-                    alpha: 1
-                }, 200).to({
-                    alpha: 0
-                }, 700).call(function () {
-                    t.removeChild(e)
-                })
-            }, e
-        }(PIXI.Container)
+    e.ResultDialogNumSet = s
 }

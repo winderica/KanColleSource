@@ -19,33 +19,31 @@ const function649 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(6),
-        a = i(650),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._pre_scene = e, i
+    var o = i(9),
+        r = i(48),
+        s = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._playVoice()
-            }, e.prototype._playVoice = function () {
-                var t = o.default.model.deck.get(1),
-                    e = t.getShipModel(0),
-                    i = e.mstID.toString();
-                if (33 == this._pre_scene || 32 == this._pre_scene) o.default.model.basic.getMFlag2() ? (s.SE.play("215"), o.default.sound.voice.play(i, 26)) : o.default.sound.voice.play(i, 7);
-                else if (50 == o.default.model.basic.getTutorialProgress()) o.default.sound.voice.play(i, 26);
-                else if (0 == this._pre_scene) o.default.sound.voice.play(i, 1);
-                else {
-                    var n = Math.random();
-                    n <= .4 && (n <= .05 ? o.default.sound.voice.play(i, 4) : n <= .2 ? o.default.sound.voice.play(i, 3) : o.default.sound.voice.play(i, 2))
-                }
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                var t = o.default.model.basic.port_bgm_id;
-                o.default.sound.bgm.play(t), (new a.TaskCombinedAlert).start(), this._endTask()
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                this._panel = new PIXI.Container;
+                var t = new PIXI.Sprite(o.COMMON_MISC.getTexture(165));
+                t.position.set(-267, -138), this._panel.addChild(t);
+                var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(164));
+                e.position.set(-45, -12), this._panel.addChild(e);
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(166));
+                i.position.set(-67, 102), this._panel.addChild(i);
+                var n = new PIXI.Sprite;
+                350 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(167), n.position.set(-10, 99)) : 200 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(168), n.position.set(-12, 99)) : 300 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(169), n.position.set(-11, 99)) : 180 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(170), n.position.set(-12, 99)) : 400 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(171), n.position.set(-11, 99)) : 80 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(172), n.position.set(-4, 99)) : 330 == this.model.value && (n.texture = o.COMMON_MISC.getTexture(173), n.position.set(-11, 99)), this._panel.addChild(n), this._dialog.container.addChild(this._panel), this._showDialog()
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._panel), this._panel = null
             }, e
-        }(r.TaskBase);
-    e.InitializeTask = _
+        }(r.TaskRewardDialogBase);
+    e.TaskRewardDialogWarResult = s
 }

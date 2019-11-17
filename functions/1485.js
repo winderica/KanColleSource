@@ -19,81 +19,61 @@ const function1485 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(18),
-        s = i(2),
-        a = i(1486),
-        _ = i(13),
-        l = i(36),
-        u = i(1487),
-        c = i(1488),
-        h = function (t) {
+    var o = i(16),
+        r = i(146),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._waited = !1, i._connected = !1, i._scene = e, i
+                return i._mst_id = -1, i._friend = e, i._plane = new r.Plane, i._plane.scale.set(-.25, .25), i._label = new a, i._label.position.set(-56, 35), i.addChild(i._plane), i.addChild(i._label), i
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = o.default.model.map.getArea(r.EVENT_AREA_ID),
-                    i = null != e;
-                new a.TaskLoadResourcesBattleResult(i).start(function () {
-                    t._loadBannerImages()
-                })
-            }, e.prototype._loadBannerImages = function () {
-                for (var t = this, e = new _.ShipLoader, i = this._scene.data.battle_model, n = i.deck_f.ships, o = 0, r = n; o < r.length; o++) {
-                    var s = r[o];
-                    this._addResourceToLoader(e, s)
-                }
-                for (var a = i.deck_e.ships, l = 0, u = a; l < u.length; l++) {
-                    var s = u[l];
-                    this._addResourceToLoader(e, s)
-                }
-                e.load(function () {
-                    t._showImage()
-                })
-            }, e.prototype._addResourceToLoader = function (t, e) {
-                null != e && (e.hp_now <= 0 ? t.add(e.mst_id, !0, "banner_g") : t.add(e.mst_id, e.isDamaged(), "banner"))
-            }, e.prototype._showImage = function () {
-                var t = this,
-                    e = l.BATTLE_RESULT_MAIN.getTexture(73);
-                this._img = new PIXI.Sprite(e), this._img.anchor.set(.5, .5), this._img.position.set(330, 290), this._img.alpha = 0, this._scene.addChild(this._img), createjs.Tween.get(this._img).to({
-                    alpha: 1
-                }, 200).call(function () {
-                    t._waited = !0, t._hideImage()
-                }), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t, e = this;
-                t = 1 == this._scene.data.battle_model.isPractice() ? new c.APIPracticeResult(this._scene.data) : new u.APIBattleResult(this._scene.data), t.start(function () {
-                    e._connected = !0, e._hideImage()
-                })
-            }, e.prototype._hideImage = function () {
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._mst_id = t, this._stopShowTween(), this._stopHideTween(), this._label.initialize()
+            }, e.prototype.show = function () {
                 var t = this;
-                0 != this._waited && 0 != this._connected && createjs.Tween.get(this._img).to({
-                    x: 270
-                }, 200).to({
-                    x: 240,
+                null == this._show_tween && (this._mst_id <= 0 || (this._stopHideTween(), this._label.activate(), this._plane.visible = !1, this._plane.initialize(this._mst_id, this._friend), this._plane.activate(), this._show_tween = createjs.Tween.get(this._plane).wait(133).call(function () {
+                    t._plane.alpha = .5, t._plane.visible = !0
+                }).wait(100).call(function () {
+                    t._plane.visible = !1
+                }).wait(500).call(function () {
+                    t._plane.alpha = .85, t._plane.visible = !0
+                }).wait(100).call(function () {
+                    t._plane.alpha = .6, t._plane.filters = null
+                }).to({
+                    alpha: .8
+                }, 166).call(function () {
+                    t._show_tween = null
+                })))
+            }, e.prototype.hide = function () {
+                var t = this;
+                null == this._hide_tween && (this._stopShowTween(), this._mst_id > 0 && (this._mst_id = -1, this._label.deactivate(), this._hide_tween = createjs.Tween.get(this._plane).to({
                     alpha: 0
-                }, 200).wait(500).call(function () {
-                    t._img.parent.removeChild(t._img), t._showTitle()
-                })
-            }, e.prototype._showTitle = function () {
-                var t = this;
-                this._scene.view.layer_title.show();
-                var e = this._scene.data.map_name;
-                this._scene.view.layer_map_name.initialize(e), this._scene.view.layer_bg.initialize();
-                var i = this._scene.data.user_name_f,
-                    n = this._scene.data.user_level_f,
-                    o = this._scene.data.deck_name_f,
-                    r = this._scene.data.deck_name_e,
-                    s = this._scene.data.battle_model.deck_f.isYugeki();
-                this._scene.view.layer_deck_info.initialize(i, n, o, r, s);
-                this._scene.data.battle_model.deck_f.ships, this._scene.data.battle_model.deck_e.ships;
-                this._scene.view.layer_bg.once("complete", function () {
-                    t._scene.view.layer_map_name.show()
-                }), this._scene.view.layer_map_name.once("complete", function () {
-                    t._endTask()
-                }), this._scene.view.layer_bg.show()
+                }, 200).call(function () {
+                    t._plane.deactivate(), t._plane.visible = !1, t._hide_tween = null
+                })))
+            }, e.prototype._stopShowTween = function () {
+                null != this._show_tween && (this._show_tween.setPaused(!0), this._show_tween = null)
+            }, e.prototype._stopHideTween = function () {
+                null != this._hide_tween && (this._hide_tween.setPaused(!0), this._hide_tween = null)
             }, e
-        }(s.TaskBase);
-    e.TaskInit = h
+        }(PIXI.Container);
+    e.TouchPlane = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.alpha = 0, e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.BATTLE_MAIN.getTexture(132)
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this, {
+                loop: !0
+            }).to({
+                alpha: 1
+            }, 100).wait(700).to({
+                alpha: 0
+            }, 100).wait(200))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this.alpha = 0)
+        }, e
+    }(PIXI.Sprite)
 }

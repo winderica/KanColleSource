@@ -19,76 +19,99 @@ const function1405 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(6),
-        a = i(125),
-        _ = i(39),
-        l = i(1406),
-        u = function (t) {
-            function e(e, i, n, r, s, a, _, u, c) {
-                var h = t.call(this, e, i, r, _, u, c) || this;
-                return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new l.CutinSpRDJ(i, h._slot, h._slot2, h._slot3), h
+    var o = i(5),
+        r = i(156),
+        s = i(16),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e.addChild(e._bg), e._message = new u, e.addChild(e._message), e._banner_top = new _, e.addChild(e._banner_top), e._banner_bottom = new _, e.addChild(e._banner_bottom), e._particles = new l, e.addChild(e._particles), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.preload(function () {
-                    t._completePreload()
-                })
-            }, e.prototype._completePreload = function () {
-                var t, e, i = this._attacker.friend,
-                    n = this._attacker.index,
-                    o = this._defender.index;
-                1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
-            }, e.prototype._playPicket = function (t, e) {
-                var i = this;
-                if (this._attacker.hasSlot(129, !0)) {
-                    var n = new PIXI.Point;
-                    n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                    var o = new a.Picket;
-                    o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
-                        i._playCutin(t, e)
-                    })
-                } else this._playCutin(t, e)
-            }, e.prototype._playCutin = function (t, e) {
-                var i = this;
-                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                    i._shoot(t, e)
-                }), this._cutin.view.once("attack", function () {
-                    i._playVoice()
-                })
-            }, e.prototype._shoot = function (t, e) {
-                var i = this;
-                t.moveShoot(function () {
-                    i._torpedo(t, e)
-                })
-            }, e.prototype._torpedo = function (t, e) {
-                var i = this,
-                    n = t.friend ? 1 : -1,
-                    o = t.getGlobalPos(!0);
-                o.x += r.BannerSize.W / 3 * n;
-                var a = e.getGlobalPos(!0);
-                a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
-                var _ = this._scene.view.layer_torpedo;
-                _.playTorpedoAtNight(o, a, 800, function () {
-                    _.playTorpedoWaterColumn(e), i._explosion(t, e)
-                })
-            }, e.prototype._explosion = function (t, e) {
-                var i = this,
-                    n = e.getGlobalPos(!0);
-                createjs.Tween.get(this).wait(300).call(function () {
-                    i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
-                }).wait(350).call(function () {
-                    var n = i._getDamage(i._defender);
-                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
-                })
-            }, e.prototype._playVoice = function () {
-                if (this._attacker.friend) {
-                    var t = this._attacker.mst_id,
-                        e = 17;
-                    432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_top", {
+                get: function () {
+                    return this._banner_top
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_bottom", {
+                get: function () {
+                    return this._banner_bottom
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particles", {
+                get: function () {
+                    return this._particles
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = r.COMMON_EXPEDITION.getTexture(10), this._message.initialize(s.BATTLE_MAIN.getTexture(30)), this._particles.initialize()
+            }, e.prototype.dispose = function () {
+                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
+            }, e
+        }(PIXI.Container);
+    e.SupportDeckCutin = a;
+    var _ = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._particles = new Array;
+                for (var t in this.XPOS) {
+                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
+                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
                 }
-            }, e.prototype._log = function (t) {}, e
-        }(_.PhaseAttackBase);
-    e.PhaseAttackSpRDJ = u
+            }, e.prototype.startAnim = function () {
+                if (null == this._tweens) {
+                    this._tweens = [];
+                    for (var t = 0; t < this._particles.length; t++) {
+                        var e = this._particles[t],
+                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
+                                x: 1,
+                                y: 1
+                            }, 100).to({
+                                x: 0,
+                                y: 0
+                            }, 100);
+                        this._tweens.push(i)
+                    }
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null, this._particles = null, this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            }, e
+        }(PIXI.Container)
 }

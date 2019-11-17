@@ -1,208 +1,141 @@
 const function831 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(293),
-        o = i(832),
-        r = i(833),
-        s = i(13),
-        a = i(0),
-        _ = function () {
-            function t(t, e, i) {
-                this._stage = e, this._animationKeys = i, this._easingMap = r.genEasingMap(), this._ship_mst_id = t
+    var o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(20),
+        _ = i(8),
+        l = i(38),
+        u = i(62),
+        c = i(13),
+        h = i(3),
+        p = i(832),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._white = new _.AreaBox(1, 16777215), e._holoBG = new u.RarityBG, e._holoBG.visible = !1, e._textKaiso = new PIXI.Sprite(h.REMODEL_ANIMATION.getTexture(10)), e._textKaiso.visible = !1, e._cutinBar = new p.CutinBar, e._shipFull = new PIXI.Sprite, e._shipFull.visible = !1, e._shipCard = new PIXI.Sprite, e._shipCard.visible = !1, e
             }
-            return t.prototype._genAnimation = function (t) {
+            return n(e, t), e.prototype.dispose = function () {
+                this._cb_onComplete = null, this._offset = null, this._white = null, this._commonBG.dispose(), this._commonBG = null, this._holoBG.dispose(), this._holoBG = null, this._textKaiso = null, this._cutinBar = null, this._shipFull = null, this._shipCard = null, this.removeChildren()
+            }, e.prototype.preload = function (t, e, i, n) {
+                var o = this;
+                this._ship_mstid = t, this._offset = i;
+                var s = new c.ShipLoader;
+                s.add(t, e, "full"), s.add(t, e, "card"), s.load(function () {
+                    o._shipFull.texture = r.default.resources.getShip(t, e, "full"), o._shipCard.texture = r.default.resources.getShip(t, e, "card"), o._commonBG = new u.RarityBG, o._commonBG.initiailzeForShip(3, function () {
+                        o._holoBG.initiailzeForShip(6, function () {
+                            null != n && n()
+                        })
+                    })
+                })
+            }, e.prototype.play = function (t) {
                 var e = this;
-                switch (t.type) {
-                    case o.SpecialRemodelStartKey.SHIP_CAMERA:
-                        var i = t,
-                            r = 0,
-                            s = Object(i).hasOwnProperty("duration");
-                        s && (r = i.duration);
-                        var _ = this._getEasing(t),
-                            l = n.$_$.Parallel(),
-                            u = Object(i).hasOwnProperty("position");
-                        u && l.push(function () {
-                            return n.$_$.Value(e._stage.camera.position, {
-                                x: i.position.x,
-                                y: i.position.y
-                            }, r, _)
-                        }), Object(i).hasOwnProperty("scale") && l.push(function () {
-                            return n.$_$.Value(e._stage.camera.scale, {
-                                x: i.scale,
-                                y: i.scale
-                            }, r, _)
-                        });
-                        var c = Object(i).hasOwnProperty("alpha");
-                        return c && l.push(function () {
-                            return n.$_$.Value(e._stage.camera, {
-                                alpha: i.alpha
-                            }, r, _)
-                        }), l;
-                    case o.SpecialRemodelStartKey.DELAY:
-                        var h = t,
-                            p = h.duration;
-                        return n.$_$.Delay(p);
-                    case o.SpecialRemodelStartKey.PLAY_VOICE:
-                        return n.$_$.Call(function () {
-                            a.default.sound.voice.play(e._ship_mst_id.toString(), 10)
-                        });
-                    case o.SpecialRemodelStartKey.NAME_TEXT:
-                        var d = t,
-                            f = this._getEasing(d),
-                            y = 0,
-                            s = Object(d).hasOwnProperty("duration");
-                        s && (y = d.duration);
-                        var l = n.$_$.Parallel(),
-                            c = Object(d).hasOwnProperty("alpha");
-                        if (c) {
-                            var m = d.alpha;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textName, {
-                                    alpha: m
-                                }, y, f)
-                            })
-                        }
-                        var u = Object(d).hasOwnProperty("position");
-                        if (u) {
-                            var g = d.position;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textName.position, {
-                                    x: g.x,
-                                    y: g.y
-                                }, y, f)
-                            })
-                        }
-                        return l;
-                    case o.SpecialRemodelStartKey.CLASS_TEXT:
-                        var v = t,
-                            b = this._getEasing(v),
-                            w = 0,
-                            s = Object(v).hasOwnProperty("duration");
-                        s && (w = v.duration);
-                        var l = n.$_$.Parallel(),
-                            c = Object(v).hasOwnProperty("alpha");
-                        if (c) {
-                            var x = v.alpha;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textClass, {
-                                    alpha: x
-                                }, w, b)
-                            })
-                        }
-                        var u = Object(v).hasOwnProperty("position");
-                        if (u) {
-                            var I = v.position;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textClass.position, {
-                                    x: I.x,
-                                    y: I.y
-                                }, w, b)
-                            })
-                        }
-                        return l;
-                    case o.SpecialRemodelStartKey.BACK_GROUND:
-                        var T = t,
-                            p = T.duration,
-                            O = T.color,
-                            C = this._getEasing(T);
-                        return this._stage.backgroundColorFilter.ma = 1, this._stage.backgroundColorFilter.aa = 1, this._stage.backgroundColorFilter.ar = ((16711680 & O) >> 16) / 255, this._stage.backgroundColorFilter.ag = ((65280 & O) >> 8) / 255, this._stage.backgroundColorFilter.ab = (255 & O) / 255, n.$_$.Value(this._stage.backgroundColorFilter, {
-                            factor: 1
-                        }, p, C);
-                    default:
-                        return n.$_$.Call(function () {})
-                }
-            }, t.prototype._getEasing = function (t, e) {
-                void 0 === e && (e = r.Easing.linear);
-                return t.hasOwnProperty("easing") ? this._easingMap[t.easing] : this._easingMap[e]
-            }, t.prototype.play = function () {
-                this._play()
-            }, t.prototype._play = function () {
-                var t = this;
-                this._stage.goBackArea.visible = !1, this._stage.goBackArea.interactive = !1, this._stage.ship.shadow.x = 20, this._stage.textClass.alpha = 0, this._stage.textName.alpha = 0, this._stage.backGround.alpha = 1;
-                var e = this._genSequenceAnimations(this._animationKeys),
-                    i = n.$_$.Parallel(function () {
-                        return e
-                    }, function () {
-                        return n.$_$.Value(t._stage.ship.shadow, {
-                            x: 35
-                        }, 5e3)
-                    }, function () {
-                        return n.$_$.Value(t._stage.blackOver, {
-                            alpha: 0
-                        }, 3e3)
-                    }),
-                    o = n.$_$.Sequence(function () {
-                        return i
-                    }, function () {
-                        return n.$_$.Delay(300)
-                    });
-                this._animation = e, o.execute(function () {
-                    o.dispose(), t._animation = null, t._onCompleteAnimation()
+                this._cb_onComplete = t, this.removeChildren(), this.addChild(this._commonBG, this._textKaiso, this._cutinBar, this._white), r.default.settings.renderer.plugins.prepare.upload(this._shipFull, function () {
+                    r.default.settings.renderer.plugins.prepare.upload(e._shipCard, function () {
+                        createjs.Tween.get(null).wait(200).call(function () {
+                            e._00_intro()
+                        })
+                    })
                 })
-            }, t.prototype._onCompleteAnimation = function () {
-                var t = this;
-                this._stage.goBackArea.visible = !0, this._stage.goBackArea.interactive = !0, this._stage.goBackArea.onClick = function () {
-                    return t._onClickGoBack()
-                }
-            }, t.prototype._onClickGoBack = function () {
-                var t = this;
-                this._stage.goBackArea.onClick = function () {};
-                var e = n.$_$.Value(this._stage, {
+            }, e.prototype._00_intro = function () {
+                var t, e = this,
+                    i = new a.TweenTask;
+                this._textKaiso.x = -288, this._textKaiso.y = 395, t = createjs.Tween.get(this._textKaiso).set({
+                    visible: !0
+                }).to({
+                    x: 756
+                }, 700, createjs.Ease.cubicOut).wait(100).to({
+                    x: 1122
+                }, 700, createjs.Ease.cubicIn).set({
+                    visible: !1
+                }), i.addTween(t), this._cutinBar.x = 0, this._cutinBar.y = 270, this._cutinBar.mask.scale.y = 0, t = createjs.Tween.get(this._cutinBar.mask.scale).to({
+                    y: 1
+                }, 700, createjs.Ease.cubicOut).wait(100).to({
+                    y: 0
+                }, 700, createjs.Ease.cubicIn).set({
+                    visible: !1
+                }), i.addTween(t), t = createjs.Tween.get(this._white).to({
                     alpha: 0
-                }, 150);
-                e.execute(function () {
-                    e.dispose(), t.onComplete()
+                }, 700, createjs.Ease.cubicOut).set({
+                    visible: !1
+                }), i.addTween(t), i.start(function () {
+                    e.removeChild(e._textKaiso), e.removeChild(e._cutinBar), e._cutinBar.dispose(), e.removeChild(e._white), e._01_showShip()
                 })
-            }, t.prototype.dispose = function () {
-                this._animation && (this._animation.interrupt(), this._animation.dispose()), this.onComplete = null, this._animation = null, this._animationKeys = null, this._stage = null
-            }, t.prototype._genSequenceAnimations = function (t) {
-                var e = this,
-                    i = n.$_$.Sequence();
-                return t.forEach(function (t) {
-                    var n = null;
-                    if (t instanceof Array) {
-                        var o = e._genParallelAnimations(t);
-                        n = function () {
-                            return o
-                        }
-                    } else n = function () {
-                        return e._genAnimation(t)
-                    };
-                    i.push(n)
-                }), i
-            }, t.prototype._genParallelAnimations = function (t) {
-                var e = this,
-                    i = n.$_$.Parallel();
-                return t.forEach(function (t) {
-                    var n = null;
-                    if (t instanceof Array) {
-                        var o = e._genSequenceAnimations(t);
-                        n = function () {
-                            return o
-                        }
-                    } else n = function () {
-                        return e._genAnimation(t)
-                    };
-                    i.push(n)
-                }), i
-            }, t
-        }();
-    e.SpecialRemodelStart = _;
-    var l = function () {
-        function t(t) {
-            this._ship_mst_id = t
-        }
-        return t.prototype.start = function () {
-            var t = this,
-                e = new s.ShipLoader;
-            e.add(this._ship_mst_id, !1, "full_x2"), e.add(this._ship_mst_id, !1, "text_class"), e.add(this._ship_mst_id, !1, "text_name"), e.load(function () {
-                t.onComplete()
-            })
-        }, t.prototype.dispose = function () {
-            this.onComplete = null, this._ship_mst_id = null
-        }, t
-    }();
-    e.SpecialRemodelStartInitializer = l
+            }, e.prototype._01_showShip = function () {
+                var t, e = this,
+                    i = new a.TweenTask,
+                    n = new PIXI.Container;
+                n.addChild(this._holoBG), n.addChild(this._shipFull), this.addChild(n);
+                var r = new PIXI.Graphics;
+                r.beginFill(0, 0), r.drawRect(-o.default.width / 2, -o.default.height / 2, o.default.width, o.default.height), r.endFill(), r.x = o.default.width / 2, r.y = o.default.height / 2, r.scale.y = 0, this.addChild(r), n.mask = r, this._holoBG.visible = !0, this._shipFull.x = 201 + this._offset.x, this._shipFull.y = 342 + this._offset.y, t = createjs.Tween.get(this._shipFull).set({
+                    visible: !0
+                }).to({
+                    y: -66 + this._offset.y
+                }, 2400), i.addTween(t), t = createjs.Tween.get(r.scale).to({
+                    y: 1
+                }, 500).call(function () {
+                    e._commonBG.visible = !1, n.mask.visible = !1
+                }), i.addTween(t), i.start(function () {
+                    e.removeChild(e._commonBG), e.removeChild(e.mask), n.mask = null, e._02_changeToCard(n)
+                })
+            }, e.prototype._02_changeToCard = function (t) {
+                var e = this;
+                r.default.sound.voice.play(this._ship_mstid.toString(), 10);
+                var i, n = new a.TweenTask;
+                i = createjs.Tween.get(this._shipFull).wait(600).to({
+                    x: -147 + this._offset.x,
+                    alpha: .5
+                }, 900, createjs.Ease.sineOut).to({
+                    x: 201 + this._offset.x,
+                    alpha: 0
+                }, 900, createjs.Ease.sineIn).set({
+                    visible: !1
+                }), n.addTween(i), this._shipCard.x = 443, this._shipCard.y = 135, this._shipCard.alpha = 0, t.addChild(this._shipCard), i = createjs.Tween.get(this._shipCard).wait(600).set({
+                    visible: !0
+                }).to({
+                    x: 770,
+                    alpha: .5
+                }, 900, createjs.Ease.sineOut).to({
+                    x: 443,
+                    alpha: 1
+                }, 900, createjs.Ease.sineIn), n.addTween(i), n.start(function () {
+                    t.removeChild(e._shipFull), e._03_waitClick()
+                })
+            }, e.prototype._03_waitClick = function () {
+                var t = this,
+                    e = new l.GearBtnHome;
+                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
+                var i = new _.AreaBox(0);
+                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
+                    t.removeChild(i), t._04_fadeOut(e)
+                })
+            }, e.prototype._04_fadeOut = function (t) {
+                var e = this;
+                createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 100).call(function () {
+                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
+                })
+            }, e
+        }(PIXI.Container);
+    e.KaizoAnimationMain = d
 }

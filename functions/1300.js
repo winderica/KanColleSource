@@ -19,75 +19,76 @@ const function1300 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(2),
-        s = i(12),
-        a = i(8),
-        _ = i(19),
-        l = i(1301),
-        u = i(1),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._shutter = e, n._item_ids = i, n
+    var o = i(2),
+        r = i(20),
+        s = i(1301),
+        a = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._layer = e, s._ship_pos = i, s._drum_num = n, s._daihatsu_num = o, s._direction = r, s
             }
             return n(e, t), e.prototype._start = function () {
+                this._balloon1 = this._createBalloon(this._direction, 1), this._balloon1.initialize(), this._drum_num > 0 && (this._balloon2 = this._createBalloon(this._direction, 2), this._balloon2.initialize(), this._balloon2.update(this._drum_num)), this._daihatsu_num > 0 && (this._balloon3 = this._createBalloon(this._direction, 3), this._balloon3.initialize(), this._balloon3.update(this._daihatsu_num)), this._showBalloons()
+            }, e.prototype._createBalloon = function (t, e) {
+                return 0 == t ? new s.LandingBalloonType1(e) : 1 == t ? new s.LandingBalloonType2(e) : 2 == t ? new s.LandingBalloonType3(e) : null
+            }, e.prototype._showBalloons = function () {
+                var t = this,
+                    e = new r.TweenTask;
+                0 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 48, -18)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 0, -42)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -51, -18))) : 1 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 50, -9)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 44, 8)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -15, 8))) : 2 == this._direction && (e.addTween(this._createShowTween(this._balloon1, -14, -21)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, -33, -17)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -24, 8))), e.start(function () {
+                    t._wait()
+                })
+            }, e.prototype._wait = function () {
                 var t = this;
-                this._view = new l.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
-                var e = _.MAP_COMMON.getTexture(115);
-                this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({
+                createjs.Tween.get(null).wait(250).call(function () {
+                    t._scaling()
+                })
+            }, e.prototype._scaling = function () {
+                var t = this,
+                    e = new r.TweenTask;
+                e.addTween(this._createScalingTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createScalingTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createScalingTween(this._balloon3)), e.start(function () {
+                    t._wait2()
+                })
+            }, e.prototype._wait2 = function () {
+                var t = this;
+                createjs.Tween.get(null).wait(2e3).call(function () {
+                    t._hideBalloons()
+                })
+            }, e.prototype._hideBalloons = function () {
+                var t = this,
+                    e = new r.TweenTask;
+                e.addTween(this._createHideTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createHideTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createHideTween(this._balloon3)), e.start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._createShowTween = function (t, e, i) {
+                var n = this;
+                return t.x = this._ship_pos.x + e, t.y = this._ship_pos.y + i + 23, t.alpha = 0, createjs.Tween.get(t).call(function () {
+                    n._layer.addChild(t)
+                }).to({
+                    y: this._ship_pos.y + i,
+                    alpha: 1
+                }, 100, createjs.Ease.sineOut)
+            }, e.prototype._createScalingTween = function (t) {
+                var e = t.y;
+                return createjs.Tween.get(t).to({
+                    y: e - 5,
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 150, createjs.Ease.sineOut).to({
+                    y: e,
+                    scaleX: 1,
                     scaleY: 1
-                }, 300).call(function () {
-                    t._showMessage()
-                })
-            }, e.prototype._showMessage = function () {
-                var t = this,
-                    e = _.MAP_COMMON.getTexture(118);
-                this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
-                    x: o.default.width / 2 + 180,
-                    alpha: 1
-                }, 300).to({
-                    x: o.default.width / 2
-                }, 400).to({
-                    x: o.default.width / 2 - 60,
+                }, 300, createjs.Ease.sineOut)
+            }, e.prototype._createHideTween = function (t) {
+                var e = this;
+                return createjs.Tween.get(t).to({
+                    y: t.y + 23,
                     alpha: 0
-                }, 400).call(function () {
-                    t._shutter.removeChild(t._telopText), t._closeTelop()
+                }, 100, createjs.Ease.sineOut).call(function () {
+                    e._layer.removeChild(t)
                 })
-            }, e.prototype._closeTelop = function () {
-                var t = this;
-                createjs.Tween.get(this._telopBG).to({
-                    scaleY: 0
-                }, 300).call(function () {
-                    t._shutter.removeChild(t._telopBG)
-                }), createjs.Tween.get(this._view).to({
-                    alpha: 1
-                }, 200).call(function () {
-                    t._showContent()
-                })
-            }, e.prototype._showContent = function () {
-                var t = this;
-                this._shutter.close(), this._shutter.once("closed", function () {
-                    createjs.Tween.get(t._view.content).to({
-                        alpha: 1
-                    }, 200).call(function () {
-                        t._waitClick()
-                    })
-                })
-            }, e.prototype._waitClick = function () {
-                var t = this,
-                    e = new a.AreaBox(0);
-                e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(u.EventType.CLICK, function () {
-                    t._shutter.removeChild(e), t._hideView()
-                })
-            }, e.prototype._hideView = function () {
-                var t = this;
-                createjs.Tween.get(this._view).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
-                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._ship_pos = null, this._balloon1 = null, this._balloon2 = null, this._balloon3 = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskShowMapEndView = c
+        }(o.TaskBase);
+    e.TaskLandingBalloon = a
 }

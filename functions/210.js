@@ -19,12 +19,29 @@ const function210 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
+    var o = i(0),
         r = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                return t.call(this) || this
             }
-            return n(e, t), e
-        }(o.TaskBase);
-    e.TaskBonusBase = r
+            return n(e, t), e.prototype.initiailzeGetBG1 = function (t) {
+                this._load("g1", t)
+            }, e.prototype.initiailzeGetBG2 = function (t) {
+                this._load("g2", t)
+            }, e.prototype.dispose = function () {
+                this._loader = null
+            }, e.prototype._load = function (t, e) {
+                var i = this,
+                    n = o.default.settings.path_root + "img/common/bg/" + t + ".png";
+                if (null != PIXI.utils.TextureCache[n] && (this.texture = PIXI.utils.TextureCache[n], null != e)) return void e();
+                this._loader = new PIXI.loaders.Loader, this._loader.add(n), this._loader.load(function (t) {
+                    if (i._loader == t) {
+                        i._loader = null;
+                        var o = t.resources[n];
+                        i.texture = o.texture, null != e && e()
+                    }
+                })
+            }, e
+        }(PIXI.Sprite);
+    e.GetBG = r
 }

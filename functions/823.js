@@ -1,44 +1,60 @@
 const function823 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = e._textureOn
-                }, e._onMouseOut = function () {
-                    e.texture = e._textureOff
-                }, e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e._textureNone = o.REMODEL_GRADEUP.getTexture(5), e._textureOff = o.REMODEL_GRADEUP.getTexture(6), e._textureOn = o.REMODEL_GRADEUP.getTexture(7), e.texture = e._textureNone, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+    var n = i(0),
+        o = function () {
+            function t(t, e) {
+                void 0 === e && (e = null), this._require = t, this._count = null != e ? e : {
+                    ammo: n.default.model.useItem.getCount(32),
+                    steel: n.default.model.useItem.getCount(33),
+                    devkit: n.default.model.useItem.getCount(3),
+                    buildkit: n.default.model.useItem.getCount(2),
+                    blueprint: n.default.model.useItem.getCount(58),
+                    catapult: n.default.model.useItem.getCount(65),
+                    battlereport: n.default.model.useItem.getCount(78),
+                    newhokohesosizai: n.default.model.useItem.getCount(75),
+                    newkokuhesosizai: n.default.model.useItem.getCount(77)
+                }
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._cb_onClick = t
-            }, e.prototype.update = function (t) {
-                1 == t ? (this.texture = this._textureOff, this.interactive = this.buttonMode = !0) : (this.texture = this._textureNone, this.interactive = this.buttonMode = !1)
-            }, e.prototype.dispose = function () {
-                this._textureNone = null, this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
-            }, e
-        }(PIXI.Sprite);
-    e.KaizoStartButton = s
+            return t.prototype.getCount = function (t) {
+                return this._get(t, this._count)
+            }, t.prototype.getRequire = function (t) {
+                return this._get(t, this._require)
+            }, t.prototype.validate = function (t) {
+                var e = this.getCount(t),
+                    i = this.getRequire(t);
+                if (e < i) {
+                    n.default.model.useItem.get(t);
+                    return !1
+                }
+                return !0
+            }, t.prototype.validateAll = function () {
+                return this.validate(32) && this.validate(33) && this.validate(3) && this.validate(2) && this.validate(58) && this.validate(65) && this.validate(78) && this.validate(75) && this.validate(77)
+            }, t.prototype._get = function (t, e) {
+                switch (t) {
+                    case 32:
+                        return e.ammo;
+                    case 33:
+                        return e.steel;
+                    case 3:
+                        return e.devkit;
+                    case 2:
+                        return e.buildkit;
+                    case 58:
+                        return e.blueprint;
+                    case 65:
+                        return e.catapult;
+                    case 78:
+                        return e.battlereport;
+                    case 75:
+                        return e.newhokohesosizai;
+                    case 77:
+                        return e.newkokuhesosizai
+                }
+                return 0
+            }, t
+        }();
+    e.KaizoValidateModel = o
 }

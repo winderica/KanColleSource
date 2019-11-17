@@ -19,76 +19,44 @@ const function1520 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(50),
+    var o = i(12),
         r = i(1521),
-        s = i(1522),
-        a = i(1525),
-        _ = i(1533),
-        l = i(1534),
-        u = i(1535),
-        c = i(1537),
-        h = function (t) {
+        s = i(489),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._layer_mvp = new _.LayerMVP, e._layer_mvp.position.set(474, -120), e._layer_bg = new r.LayerBG, e._layer_deck_info = new s.LayerDeckInfo, e._layer_banner = new a.LayerBanner, e._layer_title = new l.LayerTitle, e._map_name = new c.LayerMapName, e._panel_exp = new u.PanelExp, e._panel_exp.position.set(591, 116), e._panel_exp.visible = !1, e._layer_cutin = new PIXI.Container, e._shutter = new o.Shutter, e._shutter.initializeDark(), e._shutter.open(0), e.addChild(e._layer_mvp), e.addChild(e._layer_bg), e.addChild(e._layer_deck_info), e.addChild(e._layer_banner), e.addChild(e._layer_title), e.addChild(e._map_name), e.addChild(e._panel_exp), e.addChild(e._layer_cutin), e.addChild(e._shutter), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer_mvp", {
-                get: function () {
-                    return this._layer_mvp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bg", {
-                get: function () {
-                    return this._layer_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_deck_info", {
-                get: function () {
-                    return this._layer_deck_info
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_banner", {
-                get: function () {
-                    return this._layer_banner
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_title", {
-                get: function () {
-                    return this._layer_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "panel_exp", {
-                get: function () {
-                    return this._panel_exp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_cutin", {
-                get: function () {
-                    return this._layer_cutin
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_map_name", {
-                get: function () {
-                    return this._map_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._layer_mvp.dispose(), this._layer_mvp = null, this._layer_bg.dispose(), this._layer_bg = null, this._layer_deck_info.dispose(), this._layer_deck_info = null, null != this._layer_banner && (this._layer_banner.dispose(), this._layer_banner = null), null != this._layer_title && (this._layer_title.dispose(), this._layer_title = null), null != this._panel_exp && (this._panel_exp.dispose(), this._panel_exp = null), this._layer_cutin = null, this._shutter = null, this._map_name.dispose(), this._map_name = null
+            return n(e, t), e.prototype._initializeMapImages = function () {
+                this._maps = [];
+                for (var t = 0; t < 2; t++) {
+                    var e = new PIXI.Sprite;
+                    e.texture = [r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(2), r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(3)][t], e.x = 340 + 285 * t, e.y = 83, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
+                }
+            }, e.prototype._createMapShowTweens = function () {
+                return this.__createMapShowTweens(700)
+            }, e.prototype._initializeStampImages = function () {
+                this._stamps = [];
+                for (var t = 0; t < 1; t++) {
+                    var e = new o.Sprite;
+                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(0), e.x = 549 + 285 * t, e.y = 287.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
+                }
+            }, e.prototype._createStampShowTweens = function () {
+                return this.__createStampShowTweens(700)
+            }, e.prototype._showText = function () {
+                this.__showText(new _)
+            }, e.prototype._createStampLast = function () {
+                var t = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(1),
+                    e = new o.Sprite(t);
+                return e.anchor.set(.5), e.position.set(925, 296.5), e.alpha = 0, e
             }, e
-        }(PIXI.Container);
-    e.ViewMain = h
+        }(s.TaskEventEndingBase);
+    e.TaskEventEnding1 = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(4), this._text1.position.set(128, 314), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(5), this._text2.position.set(316, 533), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(7), this._text3.position.set(348, 596)
+        }, e
+    }(s.TextsBase)
 }

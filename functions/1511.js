@@ -19,44 +19,26 @@ const function1511 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(24),
-        s = i(30),
-        a = i(41),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(5),
+        r = i(11),
+        s = i(1512),
+        a = function (t) {
+            function e(e, i, n, o) {
+                void 0 === o && (o = !1);
+                var r = t.call(this) || this;
+                return r._hideTelop = function () {
+                    createjs.Tween.get(r._telop).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        r._layer.removeChild(r._telop), r._telop = null, r._endTask()
+                    })
+                }, r._layer = e, r._type = i, r._mst_id = n, r._sub_text = o, r
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
-                else switch (t) {
-                    case 1:
-                        this._img.texture = s.SALLY_COMMON.getTexture(1);
-                        break;
-                    case 2:
-                        this._img.texture = s.SALLY_COMMON.getTexture(3);
-                        break;
-                    case 3:
-                        this._img.texture = s.SALLY_COMMON.getTexture(5);
-                        break;
-                    case 4:
-                        this._img.texture = s.SALLY_COMMON.getTexture(9);
-                        break;
-                    case 5:
-                        this._img.texture = s.SALLY_COMMON.getTexture(11);
-                        break;
-                    case 6:
-                        this._img.texture = s.SALLY_COMMON.getTexture(13);
-                        break;
-                    case 7:
-                        this._img.texture = s.SALLY_COMMON.getTexture(7);
-                        break;
-                    default:
-                        this._img.texture = PIXI.Texture.EMPTY
-                }
-                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            return n(e, t), e.prototype._start = function () {
+                this._showTelop()
+            }, e.prototype._showTelop = function () {
+                this._telop = new s.BonusTelop, this._telop.position.set(o.default.width / 2, o.default.height / 2), 3 == this._type ? this._telop.initializeForShip(this._sub_text) : 2 == this._type ? this._telop.initializeForSlot() : 6 == this._type && this._telop.initializeForUseitem(this._mst_id), this._layer.addChild(this._telop), this._telop.play(), this._telop.once("complete", this._hideTelop)
             }, e
-        }(r.Container);
-    e.AreaIcon = _
+        }(r.TaskBase);
+    e.TaskBonusTelop = a
 }

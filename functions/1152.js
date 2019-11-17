@@ -19,29 +19,30 @@ const function1152 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(174),
-        s = function (t) {
-            function e() {
-                var e = null !== t && t.apply(this, arguments) || this;
-                return e._onMouseOver = function () {
-                    e._canvas.scale.set(1.05)
-                }, e._onMouseOut = function () {
-                    e._canvas.scale.set(1)
-                }, e
+    var o = i(25),
+        r = i(1153),
+        s = i(1154),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(312, 207), i.addChild(i._confirm_view), i._confirm_view.initialize(t, i._count), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 176), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.load = function (t) {
-                t()
-            }, e.prototype._initialize = function () {
-                this._icon.visible = !1;
-                this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
-                var t = new PIXI.Graphics;
-                t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
-                var e = this._candidate.mst_id,
-                    i = o.default.resources.getShip(e, !1, "card_round"),
-                    n = new PIXI.Sprite(i);
-                n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize()
+            }, e.prototype.activate = function () {
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
+            }, e.prototype.deactivate = function () {
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
+            }, e.prototype.dispose = function () {
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(r.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogShipBtn = s
+        }(o.DialogBase);
+    e.SanmaUseDialog = a
 }

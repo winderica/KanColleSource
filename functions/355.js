@@ -19,41 +19,36 @@ const function355 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = i(964),
+    var o = i(27),
+        r = i(1),
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i._total_num = 0, i._tabs = [];
-                for (var n = 0; n < 3; n++) {
-                    var o = new r.AirUnitPanelTab(e);
-                    o.x = 101 * n, i.addChild(o), i._tabs.push(o)
-                }
-                return i
+                return i._onMouseOver = function () {
+                    null == i._t && (i._light.alpha = 0, i._t = createjs.Tween.get(i._light, {
+                        loop: !0
+                    }).to({
+                        alpha: 1
+                    }, 500).to({
+                        alpha: 0
+                    }, 500))
+                }, i._onMouseOut = function () {
+                    null != i._t && (i._t.setPaused(!0), i._t = null, i._light.alpha = 0)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._light = new PIXI.Sprite, i._light.position.set(-12, -12), i.addChild(i._light), i._light.alpha = 0, i._img = new PIXI.Sprite, i.addChild(i._img), i._img.interactive = !0, i._cb_onClick = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = o.SALLY_AIRUNIT.getTexture(123), this._total_num = t;
-                for (var e = 0; e < this._tabs.length; e++) {
-                    this._tabs[e].initialize(e + 1, t)
-                }
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = o.SALLY_AIRUNIT.getTexture(21), this._light.texture = o.SALLY_AIRUNIT.getTexture(22)
             }, e.prototype.update = function (t) {
-                for (var e = 0; e < this._tabs.length; e++) {
-                    var i = this._tabs[e];
-                    i.selected = i.airunit_id == t
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                this.visible = t, 1 == t ? this._activate() : this._deactivate()
             }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].dispose()
-                }
+                this._deactivate(), this._onMouseOut(), this.removeChildren(), this._cb_onClick = null
+            }, e.prototype._activate = function () {
+                1 != this._img.buttonMode && (this._img.buttonMode = !0, this._img.on(r.EventType.MOUSEOVER, this._onMouseOver), this._img.on(r.EventType.MOUSEOUT, this._onMouseOut), this._img.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype._deactivate = function () {
+                this._img.buttonMode = !1, this._img.off(r.EventType.MOUSEOVER, this._onMouseOver), this._img.off(r.EventType.MOUSEOUT, this._onMouseOut), this._img.off(r.EventType.CLICK, this._onClick)
             }, e
-        }(PIXI.Sprite);
-    e.AirUnitPanelTabContainer = s
+        }(PIXI.Container);
+    e.AirUnitPanelSupplyAllBtn = s
 }

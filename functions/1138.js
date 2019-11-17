@@ -19,25 +19,18 @@ const function1138 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(33),
-        a = function (t) {
+    var o = i(3),
+        r = i(25),
+        s = i(405),
+        a = i(406),
+        _ = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._message1 = new o.TextBox(22, 1381651), n._message1.position.set(92, 81), n.addChild(n._message1), n._message2 = new o.TextBox(22, 1381651), n._message2.position.set(92, 111), n.addChild(n._message2), n._icon = new PIXI.Sprite, n._icon.position.set(152, 165), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(129, 267), n.addChild(n._btn_yes), n._btn_back = new s.BtnBase(-1, i), n._btn_back.position.set(279, 267), n.addChild(n._btn_back), n
+                return n._bg = new PIXI.Sprite, n._bg.position.set(-106, 37), n.addChild(n._bg), n._message = new PIXI.Sprite, n._message.position.set(282, 74), n.addChild(n._message), n._icon = new a.MedalIcon, n._icon.position.set(358, 152), n.addChild(n._icon), n._btn_yes = new r.BtnBase(e, i), n._btn_yes.position.set(241, 251), n.addChild(n._btn_yes), n._btn_no = new r.BtnBase(-1, i), n._btn_no.position.set(451, 251), n.addChild(n._btn_no), n
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(10), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 264 - this._message1.width / 2, this._message2.text = "\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f", this._message2.x = 264 - this._message2.width / 2, 11 == t ? this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(7) : 13 == t ? this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(6) : 12 == t && (this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(8));
-                var e = r.ITEM_ILIST_PRESENTBOX.getTexture(2);
-                this._btn_yes.initialize(e), e = r.ITEM_ILIST_PRESENTBOX.getTexture(1), this._btn_back.initialize(e)
-            }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_back.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_back.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
+                this._bg.texture = o.ITEM_ILIST_MEDAL.getTexture(8), this._message.texture = o.ITEM_ILIST_MEDAL.getTexture(9), this._initialize(t, 4)
             }, e
-        }(PIXI.Sprite);
-    e.ConfirmView = a
+        }(s.ConfirmViewBase);
+    e.ConfirmRemodelPlanView = _
 }

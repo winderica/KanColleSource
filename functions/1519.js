@@ -19,20 +19,42 @@ const function1519 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
+    var o = i(18),
         r = i(11),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+        s = i(14),
+        a = i(1520),
+        _ = i(1522),
+        l = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._layer = e, r._area_id = i, r._map_no = n, r._file_suffix = o, r
             }
             return n(e, t), e.prototype._start = function () {
-                this._disposeView()
-            }, e.prototype._disposeView = function () {
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                o.default.sound.voice.stopAll(), o.default.sound.voice.setNumOfMultiPlay(1), this._endTask()
+                var t = this;
+                if (this._area_id != o.EVENT_AREA_ID) return void this._endTask();
+                switch (this._map_no) {
+                    case 2:
+                        var e = new s.UIImageLoader("battle_result");
+                        e.add("battle_result_event_ed1_" + this._file_suffix + ".json"), e.load(function () {
+                            new a.TaskEventEnding1(t._layer).start(function () {
+                                t._endTask()
+                            })
+                        });
+                        break;
+                    case 3:
+                        var e = new s.UIImageLoader("battle_result");
+                        e.add("battle_result_event_ed2_" + this._file_suffix + ".json"), e.load(function () {
+                            new _.TaskEventEnding2(t._layer).start(function () {
+                                t._endTask()
+                            })
+                        });
+                        break;
+                    default:
+                        this._endTask()
+                }
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskEnd = s
+    e.TaskEventEnding = l
 }

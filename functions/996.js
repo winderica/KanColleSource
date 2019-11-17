@@ -19,31 +19,29 @@ const function996 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = i(369),
-        s = function (t) {
-            function e(e) {
-                return t.call(this, e) || this
+    var o = i(5),
+        r = i(362),
+        s = i(997),
+        a = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this, n) || this;
+                return r._panel = new s.PanelDeckSelect(e, i, r._onGo), r._panel.position.set(o.default.width, 102), r.addChild(r._panel), r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "air_unit", {
+            return n(e, t), Object.defineProperty(e.prototype, "panel", {
                 get: function () {
-                    return null != this._airunit
-                },
-                set: function (t) {
-                    if (t != this.air_unit) {
-                        if (1 == t) {
-                            this._btn.position.set(0, -8);
-                            var e = o.SALLY_SORTIE.getTexture(7);
-                            this._airunit = new PIXI.Sprite(e), this._airunit.position.set(6, 33), this.addChild(this._airunit)
-                        } else this.removeChild(this._airunit), this._airunit = null, this._btn.position.set(0, 0);
-                        this._updateTexture()
-                    }
+                    return this._panel
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._updateTexture = function () {
-                1 == this.air_unit ? 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(18) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(19) : this._btn.texture = o.SALLY_SORTIE.getTexture(17) : 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(21) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(22) : this._btn.texture = o.SALLY_SORTIE.getTexture(20)
+            }), e.prototype.initialize = function (t, e, i) {
+                this._panel.initialize(t, e, i)
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this), this._panel.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this), this._panel.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._panel.dispose(), this._panel = null
             }, e
-        }(r.BtnGoBase);
-    e.BtnGo = s
+        }(r.ContainerDeckSelectBase);
+    e.ContainerDeckSelect = a
 }

@@ -19,147 +19,52 @@ const function1309 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(1),
+    var o = i(24),
+        r = i(19),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    if (n._img.texture != PIXI.Texture.EMPTY) return void n._effect.deactivate();
-                    n._effect.activate()
-                }, n._onMouseOut = function () {
-                    n._effect.deactivate()
-                }, n._handle = -1, n._onClick = function () {
-                    if (-1 != n._handle) {
-                        if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
-                        n._cb_onDoubleClick(n._no)
-                    } else n._handle = setTimeout(function () {
-                        n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
-                    }, 300)
-                }, n._cb_onClick = e, n._cb_onDoubleClick = i, n.beginFill(65280, 0), n.drawCircle(0, 0, 15), n.endFill(), n._effect = new a, n.addChild(n._effect), n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img), n.interactive = !0, n
+            function e() {
+                var e = t.call(this) || this;
+                return e._container = new o.Container, e._img_container = new PIXI.Container, e._img = new PIXI.Sprite, e._img_container.addChild(e._img), e._container.addChild(e._img_container), e.addChild(e._container), e._container.scale.y = 0, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "no", {
-                get: function () {
-                    return this._no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._no = t;
-                var n = "blue";
-                if (e.distance > i ? n = "red" : (e.distance == i && (n = "yellow"), this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)), this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), 5 == e.color || -2 == e.color)
-                    if (e.passed) {
-                        switch (n) {
-                            case "red":
-                                this._effect.texture = o.MAP_COMMON.getTexture(134);
-                                break;
-                            case "yellow":
-                                this._effect.texture = o.MAP_COMMON.getTexture(133);
-                                break;
-                            case "blue":
-                                this._effect.texture = o.MAP_COMMON.getTexture(132)
-                        }
-                        this._effect.y = 0, this._effect.y = -2
-                    } else {
-                        switch (n) {
-                            case "red":
-                                this._effect.texture = o.MAP_COMMON.getTexture(131);
-                                break;
-                            case "yellow":
-                                this._effect.texture = o.MAP_COMMON.getTexture(130);
-                                break;
-                            case "blue":
-                                this._effect.texture = o.MAP_COMMON.getTexture(129)
-                        }
-                        this._effect.x = 0, this._effect.y = 0
-                    }
-                else if (10 == e.color && e.passed) {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(137);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(136);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(135)
-                    }
-                    this._effect.x = -11, this._effect.y = 9
-                } else if (13 == e.color && e.passed) {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(128);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(127);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(126)
-                    }
-                    this._effect.x = -1, this._effect.y = 1
-                } else if (8 == e.color && e.passed) {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(143);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(142);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(141)
-                    }
-                    this._effect.x = 0, this._effect.y = 0
-                } else {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(140);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(139);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(138)
-                    }
-                    this._effect.x = 0, this._effect.y = 0
-                }
-            }, e.prototype.dispose = function () {
-                this._effect.dispose(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
-            }, e.prototype.update = function (t) {
-                switch (t) {
-                    case 1:
-                        this._img.texture = o.MAP_COMMON.getTexture(175);
-                        break;
-                    case 2:
-                        this._img.texture = o.MAP_COMMON.getTexture(176);
-                        break;
-                    case 3:
-                        this._img.texture = o.MAP_COMMON.getTexture(177);
-                        break;
-                    default:
-                        this._img.texture = PIXI.Texture.EMPTY
-                }
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                void 0 === i && (i = null), 0 == e ? this._initializeCurveBalloon(t) : this._initializeStraightBalloon(t), this._setPoint(t, e, i)
+            }, e.prototype.open = function (t) {
+                void 0 === t && (t = null), this._startTween();
+                var e = createjs.Tween.get(this._container);
+                e.wait(500), e.to({
+                    scaleY: 1
+                }, 300, createjs.Ease.backOut), null != t && e.call(t)
+            }, e.prototype.close = function (t) {
+                var e = this;
+                void 0 === t && (t = null);
+                var i = createjs.Tween.get(this._container);
+                i.wait(500), i.to({
+                    scaleY: 0
+                }, 300, createjs.Ease.backIn), i.call(function () {
+                    e._stopTween()
+                }), null != t && i.call(t)
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._img_container, {
+                    loop: !0
+                }).to({
+                    x: 0,
+                    y: 0
+                }, 0).to({
+                    x: 0,
+                    y: -9
+                }, 700, createjs.Ease.sineIn).to({
+                    x: 0,
+                    y: 0
+                }, 700, createjs.Ease.sineOut))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype._initializeCurveBalloon = function (t) {
+                1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(18), this._img.position.set(0, -92)) : 2 == t ? (this._img.texture = r.MAP_COMMON.getTexture(20), this._img.position.set(0, -54)) : 3 == t ? (this._img.texture = r.MAP_COMMON.getTexture(22), this._img.position.set(3, -6)) : 5 == t && (this._img.texture = r.MAP_COMMON.getTexture(23), this._img.position.set(-69, -3))
+            }, e.prototype._initializeStraightBalloon = function (t) {
+                0 == t ? (this._img.texture = r.MAP_COMMON.getTexture(19), this._img.position.set(-44, -105)) : 1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(21), this._img.position.set(0, -92)) : 2 == t && (this._img.texture = r.MAP_COMMON.getTexture(24), this._img.position.set(9, -45))
+            }, e.prototype._setPoint = function (t, e, i) {
+                void 0 === i && (i = null), null == i && (i = new PIXI.Point, 0 == e ? 0 == t || (1 == t ? i.set(21, -21) : 2 == t ? i.set(36, -2) : 3 == t ? i.set(27, 5) : 4 == t || 5 == t && i.set(-38, 0)) : 0 == t ? i.set(-5, -38) : 1 == t ? i.set(-14, -33) : 2 == t && i.set(39, -17)), this._container.x = i.x, this._container.y = i.y
             }, e
-        }(PIXI.Graphics);
-    e.AirUnitAppointmentPoint = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e.visible = !1, e
-        }
-        return n(e, t), e.prototype.activate = function () {
-            this._startAnimation()
-        }, e.prototype.deactivate = function () {
-            this._stopAnimation()
-        }, e.prototype.dispose = function () {
-            this._stopAnimation()
-        }, e.prototype._startAnimation = function () {
-            this.alpha = 0, this.visible = !0, this._t = createjs.Tween.get(this).to({
-                alpha: 1
-            }, 1e3).to({
-                alpha: 0
-            }, 1e3), this._t.loop = !0
-        }, e.prototype._stopAnimation = function () {
-            this.visible = !1, null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Sprite)
+        }(PIXI.Container);
+    e.BranchBalloon = s
 }

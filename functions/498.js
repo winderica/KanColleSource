@@ -19,40 +19,144 @@ const function498 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function () {
-        function t() {
-            this._type = 0
-        }
-        return Object.defineProperty(t.prototype, "type", {
-            get: function () {
-                return this._type
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_main", {
-            get: function () {
-                return 1 == this.isCombined() ? 1 : 0
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_sub", {
-            get: function () {
-                return 1 == this.isCombined() ? 2 : 0
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.isCombined = function () {
-            return 1 == this._type || 2 == this._type || 3 == this._type
-        }, t
-    }();
-    e.DeckCombinedModel = o;
-    var r = function (t) {
+    var o = i(18),
+        r = i(7),
+        s = function () {
+            function t() {
+                this._skinID = 101, this._flagship_pos_id_svr = 0, this._flagship_pos_id_cli = 0
+            }
+            return Object.defineProperty(t.prototype, "member_id", {
+                get: function () {
+                    return this._o.api_member_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "firstFlag", {
+                get: function () {
+                    return 1 != this._o.api_firstflag
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "nickName", {
+                get: function () {
+                    return r.ObjUtil.getString(this._o, "api_nickname")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "level", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_level")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "rank", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_rank")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "rankName", {
+                get: function () {
+                    var t = o.RANK_NAME,
+                        e = this.rank;
+                    return e > 0 && e < t.length ? t[e] : t[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "port_bgm_id", {
+                get: function () {
+                    return this._port_bgm_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "medal_num", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_medals")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "shipMax", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_max_chara")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "slotMax", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_max_slotitem") + 3
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getTutorialProgress = function () {
+                return r.ObjUtil.getNumber(this._o, "api_tutorial_progress")
+            }, t.prototype.getPortFurnitureMstID = function (t) {
+                return this._o.api_furniture[t]
+            }, t.prototype.getDutyExecutableCount = function () {
+                return this._duty_executable_count
+            }, t.prototype.getCFlag = function () {
+                return this._c_flag
+            }, t.prototype.getComment = function () {
+                return r.ObjUtil.getString(this._o, "api_comment")
+            }, t.prototype.isLargeBuild = function () {
+                return 1 == r.ObjUtil.getNumber(this._o, "api_large_dock")
+            }, t.prototype.getExtraSupplyExpedition = function () {
+                return null != this._extra_supply && (!(this._extra_supply.length < 1) && 1 == this._extra_supply[0])
+            }, t.prototype.getExtraSupplySortie = function () {
+                return null != this._extra_supply && (!(this._extra_supply.length < 2) && 1 == this._extra_supply[1])
+            }, t.prototype.getFilterStatusOrganizeList = function () {
+                return this._filter_status_olist
+            }, t.prototype.isJapaneseOrganizeList = function () {
+                return this._japanese_olist
+            }, t.prototype.getDestroyShipSlotType = function () {
+                return this._destroy_ship_slot_type
+            }, t.prototype.getUISkinID = function () {
+                return this._skinID
+            }, t.prototype.getMFlag2 = function () {
+                return null != this._event_data && (0 != this._event_data.hasOwnProperty("api_m_flag2") && 1 == this._event_data.api_m_flag2)
+            }, t.prototype.getCNum = function () {
+                return r.ObjUtil.getNumber(this._event_data, "api_c_num")
+            }, t.prototype.getFlagShipPosIDSvr = function () {
+                return this._flagship_pos_id_svr
+            }, t.prototype.getFlagShipPosIDCli = function () {
+                return this._flagship_pos_id_cli
+            }, t
+        }();
+    e.BasicModel = s;
+    var a = function (t) {
         function e() {
-            return t.call(this) || this
+            return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.__update__ = function (t) {
-            this._type = t
+        return n(e, t), e.prototype.setUserData = function (t) {
+            this._o = t
+        }, e.prototype.updateTutorialProgress = function (t) {
+            null != this._o && (this._o.api_tutorial_progress = t)
+        }, e.prototype.updatePortFurnitureMstID = function (t, e) {
+            null != this._o && (this._o.api_furniture[t] = e)
+        }, e.prototype.setPortBGMID = function (t) {
+            this._port_bgm_id = t
+        }, e.prototype.setDutyExcutableCount = function (t) {
+            this._duty_executable_count = t
+        }, e.prototype.getCoinCount = function () {
+            return r.ObjUtil.getNumber(this._o, "api_fcoin")
+        }, e.prototype.setCoinCount = function (t) {
+            null != this._o && (this._o.api_fcoin = t)
+        }, e.prototype.setExtraSupplyFlag = function (t) {
+            this._extra_supply = t
+        }, e.prototype.updateOrganizeListSetting = function (t, e) {
+            this._filter_status_olist = t, this._japanese_olist = e
+        }, e.prototype.setDestroyShipSlotType = function (t) {
+            this._destroy_ship_slot_type = t
+        }, e.prototype.setUISkinID = function (t) {
+            this._skinID = t
+        }, e.prototype.setEventData = function (t) {
+            this._event_data = t
+        }, e.prototype.setCFlag = function (t) {
+            this._c_flag = t
+        }, e.prototype.setFlagShipPosIDCli = function (t) {
+            this._flagship_pos_id_cli = t
+        }, e.prototype.setFlagShipPosIDSvr = function (t) {
+            this._flagship_pos_id_svr = t
         }, e
-    }(o);
-    e.DeckCombinedModelEdit = r
+    }(s);
+    e.BasicModelEdit = a
 }

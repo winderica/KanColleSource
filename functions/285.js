@@ -19,89 +19,61 @@ const function285 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(22),
-        a = i(2),
-        _ = i(286),
-        l = i(32),
-        u = i(13),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._deck = r.default.model.deck.get(e), n._ships = n._deck.getShipList(), n._result = i, n
+    var o = i(0),
+        r = i(18),
+        s = i(10),
+        a = i(7),
+        _ = function (t) {
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                return i._url = "api_port/port", i._debug = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                r.default.view.clickGuard = !0, this._loadResources()
-            }, e.prototype._loadResources = function () {
-                for (var t = this, e = new u.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
-                    var o = n[i];
-                    null != o && e.add(o.mstID, o.isDamaged(), "banner")
-                }
-                e.load(function () {
-                    t._initCutin()
-                })
-            }, e.prototype._initCutin = function () {
-                this._cutin = new _.ExpeditionCutin, this._cutin.initialize(!1), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, o.default.height / 2), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
-            }, e.prototype._playCutin = function () {
-                var t = this;
-                r.default.view.overLayer.addChild(this._cutin);
-                var e = this._ships[0],
-                    i = e.mstID.toString();
-                r.default.sound.voice.play(i, 7), createjs.Tween.get(this._cutin.bg.scale).to({
-                    y: 2
-                }, 300).wait(1500).to({
-                    y: 0
-                }, 300).call(function () {
-                    t._endTask()
-                }), createjs.Tween.get(this._cutin.message).wait(400).to({
-                    x: 660
-                }, 400).to({
-                    x: 525
-                }, 800).to({
-                    x: 420,
-                    alpha: 0
-                }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({
-                    alpha: 1
-                }, 100).to({
-                    x: o.default.width / 2 - this._cutin.banner_top.width / 2
-                }, 800, createjs.Ease.cubicInOut).to({
-                    x: o.default.width - this._cutin.banner_top.width,
-                    alpha: 0
-                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({
-                    alpha: 1
-                }, 100).to({
-                    x: o.default.width / 2 - this._cutin.banner_bottom.width / 2
-                }, 800, createjs.Ease.cubicInOut).to({
-                    x: 0,
-                    alpha: 0
-                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
-                    t._cutin.particles.startAnim()
-                })
-            }, e.prototype._createShipContainerU = function () {
-                var t, e = this._ships[0],
-                    i = this._ships[2],
-                    n = this._ships[4];
-                t = null == i ? [e] : null == n ? [i, e] : [i, e, n];
-                for (var o = 0; o < t.length; o++) {
-                    var r = t[o],
-                        a = new l.ShipBanner;
-                    a.update(r, !1), a.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(a)
-                }
-            }, e.prototype._createShipContainerB = function () {
-                var t, e = this._ships[1],
-                    i = this._ships[3],
-                    n = this._ships[5],
-                    o = this._ships[6];
-                t = null == n ? null == i ? null == e ? [] : [e] : [e, i] : null == o ? [n, e, i] : [n, e, i, o];
-                for (var r = 0; r < t.length; r++) {
-                    var a = t[r],
-                        _ = new l.ShipBanner;
-                    _.update(a, !1), _.position.x = s.BannerSize.W * r, this._cutin.banner_bottom.addChild(_)
-                }
-            }, e.prototype._endTask = function (e) {
-                void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_sort_key = 5, this._post_data.spi_sort_order = 2, this._post_data.api_port = this._createKey(o.default.model.basic.member_id), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.basic;
+                e.setUserData(a.ObjUtil.getObject(this._raw_data, "api_basic")), e.setPortBGMID(a.ObjUtil.getNumber(this._raw_data, "api_p_bgm_id")), e.setDutyExcutableCount(a.ObjUtil.getNumber(this._raw_data, "api_parallel_quest_count")), e.setDestroyShipSlotType(a.ObjUtil.getNumber(this._raw_data, "api_dest_ship_slot")), e.setEventData(a.ObjUtil.getObject(this._raw_data, "api_event_object")), e.setCFlag(a.ObjUtil.getNumber(this._raw_data, "api_c_flag")), o.default.model.deck.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_deck_port")), o.default.model.deck.combined.__update__(a.ObjUtil.getNumber(this._raw_data, "api_combined_flag")), o.default.model.log.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_log")), o.default.model.ship.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ship")), o.default.model.useItem.setMaterialData(a.ObjUtil.getObjectArray(this._raw_data, "api_material")), o.default.model.ndock.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ndock"));
+                var i = a.ObjUtil.getObject(this._raw_data, "api_friendly_setting"),
+                    n = a.ObjUtil.getNumber(i, "api_request_flag"),
+                    r = a.ObjUtil.getNumber(i, "api_request_type");
+                o.default.friendlyRequest.setData(n, r);
+                var s = o.default.model.slot,
+                    _ = a.ObjUtil.getObject(this._raw_data, "api_plane_info");
+                if (null != _) {
+                    var l = a.ObjUtil.getNumArray(_, "api_base_convert_slot");
+                    null != l ? s.setAirUnitRelocation(l) : s.setAirUnitRelocation(null);
+                    var u = a.ObjUtil.getObjectArray(_, "api_unset_slot");
+                    if (null != u)
+                        for (var c = 0, h = u; c < h.length; c++) {
+                            var p = h[c],
+                                d = a.ObjUtil.getNumber(p, "api_type3No"),
+                                f = a.ObjUtil.getNumArray(p, "api_slot_list");
+                            s.updateUnsetData(d, f)
+                        }
+                } else s.setAirUnitRelocation(null);
+                t.prototype._completedEnd.call(this)
+            }, e.prototype._getSeed = function (t) {
+                return r.PORT_API_SEED[t % 10]
+            }, e.prototype._createKey = function (t) {
+                var e = this._getSeed(t),
+                    i = Math.floor(Date.now() / 1e3),
+                    n = 1e3 * (Math.floor(9 * Math.random()) + 1) + t % 1e3,
+                    o = Math.floor(8999 * Math.random()) + 1e3,
+                    r = Math.floor(32767 * Math.random()) + 32768,
+                    s = Math.floor(10 * Math.random()),
+                    a = Math.floor(10 * Math.random()),
+                    _ = Math.floor(10 * Math.random()),
+                    l = parseInt(t.toString().substr(0, 4)),
+                    u = (4132653 + r) * (l + 1e3) - i + (1875979 + 9 * r),
+                    c = u - t,
+                    h = c * e,
+                    p = n.toString() + h.toString() + o.toString();
+                p = s.toString() + p;
+                var d = p.substr(0, 8),
+                    f = p.substr(8);
+                return p = d + a + f, d = p.substr(0, 18), f = p.substr(18), (p = d + _ + f) + r.toString()
             }, e
-        }(a.TaskBase);
-    e.TaskExpeditionEndCutin = c
+        }(s.APIBase);
+    e.PortAPI = _
 }

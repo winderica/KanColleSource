@@ -19,41 +19,21 @@ const function1100 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
+    var o = i(4),
         r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    i._update(!0)
-                }, i._onMouseOut = function () {
-                    i._update(!1)
-                }, i._onClick = function (t) {
-                    null != i._cb_onClick && i._cb_onClick(t, i._voice_id)
-                }, i._bg = new PIXI.Sprite, i._bg.position.set(0, 0), i.addChild(i._bg), i._icon = new o.Sprite, i._icon.position.set(18.5, 18.5), i._icon.anchor.set(.5), i.addChild(i._icon), i._category = new PIXI.Sprite, i._category.position.set(0, 0), i.addChild(i._category), i._t = createjs.Tween.get(i._icon, {
-                    loop: !0
-                }).to({
-                    scaleX: 1.5,
-                    scaleY: 1.5
-                }, 1e3).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i._bg.interactive = !0, i
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._karyoku = e._createTextBox(85), e._raisou = e._createTextBox(124), e._taiku = e._createTextBox(163), e._kaihi = e._createTextBox(202), e._taikyu = e._createTextBox(241), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._voice_id = null === t ? -1 : t.api_voice_id, this._icon.texture = r.ALBUM_MAIN.getTexture(12);
-                var e = 4;
-                this._category.position.set(23, 20), null !== t && 2 === t.api_icon_id && (e = 3, this._category.position.set(20, 20)), this._category.texture = r.ALBUM_MAIN.getTexture(e), this._update(!1)
-            }, e.prototype._update = function (t) {
-                0 == t ? (this._bg.texture = r.ALBUM_MAIN.getTexture(1), this._icon.visible = !0, this._t.setPaused(!1)) : (this._bg.texture = r.ALBUM_MAIN.getTexture(13), this._icon.visible = !1, this._t.setPaused(!0))
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this._bg.buttonMode = !0, this._bg.on(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.on(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.on(s.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._bg.buttonMode = !1, this._bg.off(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.off(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.off(s.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._bg = null, this._icon = null, this._category = null, this._t = null, this._cb_onClick = null, this._voice_id = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy(), this._karyoku = null, this._raisou = null, this._taiku = null, this._kaihi = null, this._taikyu = null
+            }, e.prototype.initialize = function (t) {
+                this.texture = r.ALBUM_MAIN.getTexture(100), this._karyoku.text = t.karyoku.toString(), this._karyoku.x = 487 - Math.floor(this._karyoku.width / 2), this._raisou.text = t.raisou.toString(), this._raisou.x = 487 - Math.floor(this._raisou.width / 2), this._taiku.text = t.taiku.toString(), this._taiku.x = 487 - Math.floor(this._taiku.width / 2), this._kaihi.text = t.kaihi.toString(), this._kaihi.x = 487 - Math.floor(this._kaihi.width / 2), this._taikyu.text = t.taikyu.toString(), this._taikyu.x = 487 - Math.floor(this._taikyu.width / 2)
+            }, e.prototype._createTextBox = function (t) {
+                var e = new o.TextBox(23, 16777215);
+                return e.y = t - 3, this.addChild(e), e
             }, e
-        }(PIXI.Container);
-    e.extraVoiceBtn = a
+        }(PIXI.Sprite);
+    e.ShipDetailStatusBox = s
 }

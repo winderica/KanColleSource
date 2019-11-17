@@ -20,55 +20,74 @@ const function507 = function (t, e, i) {
         value: !0
     });
     var o = i(508),
-        r = i(7),
+        r = i(15),
         s = function () {
             function t() {}
-            return t.prototype.getData = function (t) {
-                var e = t.toString();
-                return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-            }, t.prototype.getOwnList = function (t) {
-                var e = [];
-                for (var i in this._map) {
-                    var n = this._map[i];
-                    n.type == t && 1 == n.has() && e.push(n)
+            return t.prototype.get = function (t) {
+                return 1 == this._map.hasOwnProperty(t.toString()) ? this._map[t] : null
+            }, t.prototype.getLimitTime = function (t) {
+                switch (t) {
+                    case 1:
+                        return this._limit_time[0];
+                    default:
+                        throw new Error
                 }
-                return e
-            }, t.prototype.getOnSaleList = function (t) {
-                var e = [];
-                for (var i in this._map) {
-                    var n = this._map[i];
-                    n.type == t && 1 == n.isOnSale() && e.push(n)
+            }, t.prototype.getInArea = function (t, e) {
+                var i = [];
+                for (var n in this._map) {
+                    var o = this._map[n];
+                    o.areaID == t && (1 == e && -1 == o.state || i.push(o))
                 }
-                return e.sort(function (t, e) {
-                    return t.no > e.no ? 1 : t.no < e.no ? -1 : 0
-                }), e
-            }, t.prototype.isActive = function (t) {
-                var e = this.getData(t);
-                return null != e && e.isActive()
-            }, t
+                return i.sort(function (t, e) {
+                    return t.mstID - e.mstID
+                }), i
+            }, t.prototype.getserialID = function () {
+                return this._serial_id
+            }, Object.defineProperty(t.prototype, "serial_id", {
+                set: function (t) {
+                    this._serial_id = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
         }();
-    e.FurnitureModelHolder = s;
+    e.ExpeditionModelHolder = s;
     var a = function (t) {
         function e() {
-            return t.call(this) || this
+            return null !== t && t.apply(this, arguments) || this
         }
         return n(e, t), e.prototype.setMstData = function (t) {
             if (this._map = {}, null != t)
                 for (var e = 0; e < t.length; e++) {
                     var i = t[e],
-                        n = new o.FurnitureModelEdit(i),
+                        n = new o.ExpeditionModelEdit(i),
                         r = n.mstID;
-                    this._map[r] = n
+                    if (r > 0) {
+                        var s = r.toString();
+                        this._map[s] = n
+                    }
                 }
-        }, e.prototype.setMemData = function (t) {
-            if (null != this._map)
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = r.ObjUtil.getNumber(n, "api_id"),
-                        s = this.getData(o);
-                    null != s && s.updateHasFlag(!0)
+        }, e.prototype.setData = function (t, e) {
+            if (null != this._map && null != t) {
+                for (var i in this._map) {
+                    var n = this.get(this._map[i].mstID);
+                    n.__setState__(-1)
                 }
+                for (var o = 0, s = t; o < s.length; o++) {
+                    var a = s[o],
+                        _ = r.ObjUtil.getNumber(a, "api_mission_id");
+                    if (_ > 0) {
+                        var n = this.get(_);
+                        if (null != n) {
+                            var l = r.ObjUtil.getNumber(a, "api_state"),
+                                u = l;
+                            n.__setState__(u)
+                        }
+                    }
+                }
+                this._limit_time = e
+            }
         }, e
     }(s);
-    e.FurnitureModelHolderEdit = a
+    e.ExpeditionModelHolderEdit = a
 }

@@ -1,185 +1,69 @@
 const function747 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(84),
-        o = i(748),
-        r = i(0),
-        s = i(749),
-        a = i(219),
-        _ = i(3),
-        l = i(334),
-        u = i(113),
-        c = function () {
-            function t(t) {
-                var e = this;
-                this.DECK_MAX = 6, this._isAllSupply = !1, this._isOverAllBtn2 = !1, this._onClickShip = function (t, i) {
-                    var n = e.deckSupplyBanners[t];
-                    e.supplyEditor.containts(i) ? (e.supplyEditor.remove(i), _.SE.play("238"), n.setDefault()) : (e.supplyEditor.push(i), _.SE.play("241"), n.checkOn()), e.onUpdateSupplyEdit(!0)
-                }, this._onMouseOverSupplyAll = function () {
-                    e._isAllSupply = !1, e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                        var o = t.getShipModel(n);
-                        if (o) {
-                            a.SupplyUtil.CheckRequireSupplyShip(o.memID) && e.supplyEditor.push(o.memID)
-                        }
+    var o = i(0),
+        r = i(1),
+        s = i(8),
+        a = i(320),
+        _ = [];
+    a.ShipAreaPosition.forEach(function (t) {
+        _.push([t[0] + a.ShipOffsetPosition[0], t[1] + a.ShipOffsetPosition[1]])
+    });
+    var l = function (t) {
+        function e(e, i, n, s, a, l) {
+            var u = t.call(this, 0) || this;
+            return u._beforeIndex = e, u._memShipId = i, u._maskMax = n, u._inDragging = s, u._cbOnDrop = a, u._end = l, u._drag = null, u._shipSlotMaskLayers = [], u._afterIndex = -1, u._onMove = function (t) {
+                var e = t.data.global;
+                if (null == u._drag) {
+                    u._inDragging(!0), u._drag = new PIXI.Container;
+                    for (var i = 0; i < u._maskMax; i++) {
+                        var n = new PIXI.Graphics;
+                        n.beginFill(16777215, .6).moveTo(0, 15).lineTo(14.5, 0).lineTo(480, 0).lineTo(495.5, 17.5).lineTo(495.5, 141).lineTo(480, 158).lineTo(14, 158).lineTo(0, 143).lineTo(0, 15).endFill(), n.alpha = 0, n.hitArea = new PIXI.Rectangle(0, 0, n.width, n.height);
+                        var r = _[i];
+                        n.position.set(r[0], r[1]), u._drag.addChild(n), u._shipSlotMaskLayers.push(n)
                     }
-                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin,
-                            o = t.getShipModel(s);
-                        if (o && e.supplyEditor.containts(o.memID)) {
-                            e.deckSupplyBanners[n].checkOn()
-                        }
+                    u._shipSlotMaskLayers[u._beforeIndex].alpha = 1;
+                    var s = o.default.model.ship.get(u._memShipId);
+                    u._shipBanner = new PIXI.Sprite, u._shipBanner.anchor.set(.5), u._shipBanner.texture = o.default.resources.getShip(s.mstID, s.isDamaged(), "banner"), u._shipBanner.position.set(e.x, e.y), u._drag.addChild(u._shipBanner), u._afterIndex = u._beforeIndex, u.addChild(u._drag)
+                } else {
+                    u._shipBanner.position.set(e.x, e.y);
+                    for (var a = -1, i = 0, l = u._shipSlotMaskLayers.length; i < l; i++) {
+                        var c = u._shipSlotMaskLayers[i],
+                            h = t.data.getLocalPosition(c);
+                        1 == c.hitArea.contains(h.x, h.y) ? (c.alpha = 1, a = i) : c.alpha = 0
                     }
-                    _.SE.play("241"), e.onUpdateSupplyEdit(!0)
-                }, this._onMouseOutSupplyAll = function () {
-                    if (1 == e._isAllSupply) return !1;
-                    e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = 0; i < e.deckSupplyBanners.length; i++) {
-                        var n = i + e.shipInDeckOrigin,
-                            o = t.getShipModel(n);
-                        if (o) {
-                            var s = e.deckSupplyBanners[i];
-                            a.SupplyUtil.CheckRequireSupplyShip(o.memID) && s.setDefault()
-                        }
-                    }
-                    _.SE.play("238"), e.onUpdateSupplyEdit(!0)
-                }, this._onClickSupplyAll = function () {
-                    e.supplyEditor.clear(), e._isAllSupply = !0;
-                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                        var o = i[n];
-                        if (o) {
-                            a.SupplyUtil.CheckRequireSupplyShip(o.memID) && e.supplyEditor.push(o.memID)
-                        }
-                    }
-                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin,
-                            o = t.getShipModel(s);
-                        if (o && e.supplyEditor.containts(o.memID)) {
-                            e.deckSupplyBanners[n].checkOn()
-                        }
-                    }
-                    var _ = r.default.model.useItem.get(31).count,
-                        l = r.default.model.useItem.get(32).count,
-                        u = e.supplyEditor.getMemShipIds(),
-                        c = a.SupplyUtil.CalcRequireMaterials(u),
-                        h = a.SupplyUtil.CheckRequireSupplyDeckAll(e.deckId),
-                        p = a.SupplyUtil.CheckRequireSupplyDeckBaux(e.deckId);
-                    0 < c.ammo && c.ammo <= l ? (e.onUpdateSupplyEdit(!0), e.onClickSupplyAll()) : 0 < c.fuel && c.fuel <= _ ? (e.onUpdateSupplyEdit(!0), e.onClickSupplyAll()) : h && p ? e.supplyAllButton.updateClickable(!1) : e.onUpdateSupplyEdit(!0)
-                }, this._saveTempSupply2 = [], this.onMouseOverSupplyAll2 = function () {
-                    e._isOverAllBtn2 = !0;
-                    var t = r.default.model.deck.get(e.deckId),
-                        i = e.supplyEditor.getMemShipIds();
-                    e.supplyEditor.clear();
-                    for (var n = t.getShipList(), o = 0; o < n.length; o++) {
-                        var s = t.getShipModel(o);
-                        if (s) {
-                            a.SupplyUtil.CheckRequireSupplyShipAll(s.memID) && e.supplyEditor.push(s.memID)
-                        }
-                    }
-                    for (var o = 0; o < e.deckSupplyBanners.length; o++) {
-                        var l = o + e.shipInDeckOrigin,
-                            s = t.getShipModel(l);
-                        if (s && e.supplyEditor.containts(s.memID)) {
-                            e.deckSupplyBanners[o].checkOn()
-                        }
-                    }
-                    _.SE.play("241"), e._saveTempSupply2 = i
-                }, this.onMouseOutSupplyAll2 = function () {
-                    e._isOverAllBtn2 = !1, e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = 0; i < e.deckSupplyBanners.length; i++) {
-                        var n = i + e.shipInDeckOrigin,
-                            o = t.getShipModel(n);
-                        if (o) {
-                            var s = e.deckSupplyBanners[i];
-                            a.SupplyUtil.CheckRequireSupplyShipAll(o.memID) && (s.setDefault(), -1 != e._saveTempSupply2.indexOf(o.memID) && (e.supplyEditor.push(o.memID), s.checkOn()))
-                        }
-                    }
-                    _.SE.play("238"), e.onUpdateSupplyEdit(!0), e._saveTempSupply2 = []
-                }, this.onClickSupplyAll2 = function () {
-                    if (!e._isOverAllBtn2) {
-                        e.supplyEditor.clear();
-                        for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                            var o = i[n];
-                            if (o) {
-                                a.SupplyUtil.CheckRequireSupplyShipAll(o.memID) && e.supplyEditor.push(o.memID)
-                            }
-                        }
-                        for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                            var s = n + e.shipInDeckOrigin,
-                                o = t.getShipModel(s);
-                            if (o && e.supplyEditor.containts(o.memID)) {
-                                e.deckSupplyBanners[n].checkOn()
-                            }
-                        }
-                    }
-                    e.onUpdateSupplyEdit(!0), e.supplyAllButton.updateClickable(!1)
-                }, this.onClickSupplyBaux = function () {
-                    e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                        var o = i[n];
-                        if (o) {
-                            a.SupplyUtil.CheckRequireSupplyShipBaux(o.memID) && e.supplyEditor.push(o.memID)
-                        }
-                    }
-                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin,
-                            o = t.getShipModel(s);
-                        if (o && e.supplyEditor.containts(o.memID)) {
-                            e.deckSupplyBanners[n].checkOn()
-                        }
-                    }
-                    e.onUpdateSupplyEdit(!1)
-                }, this.shipInDeckOrigin = 0, this._onClickArrowTop = function () {
-                    e.shipInDeckOrigin -= 1, e._updateDeck_(e.deckId, e.shipInDeckOrigin)
-                }, this._onClickArrowBottom = function () {
-                    e.shipInDeckOrigin += 1, e._updateDeck_(e.deckId, e.shipInDeckOrigin)
-                }, this.mainView = t, this.supplyAllButton = new o.SupplyAllButton, this.deckSupplyBanners = [];
-                for (var i = 0; i < this.DECK_MAX; i++) {
-                    var n = new s.DeckSupplyBanner(i);
-                    n.position.set(165, 215 + n.ITEM_HEIGHT * i), this.deckSupplyBanners.push(n)
+                    u._afterIndex = a
                 }
-                this.arrowTopButton = new u.ArrowTopButton, this.arrowBottomButton = new u.ArrowBottomButton
-            }
-            return t.prototype.getSupplyEdit = function () {
-                return this.supplyEditor
-            }, t.prototype.updateDeck = function (t) {
-                this.deckId = t, this.supplyEditor.clear(), this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit(!0)
-            }, t.prototype.changeDeck = function (t) {
-                this.shipInDeckOrigin = 0, this.deckId = t, this.supplyEditor.clear(), this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit(!0)
-            }, t.prototype.start = function (t) {
-                this.supplyAllButton.position.set(162, 164), this.mainView.addChild(this.supplyAllButton);
-                for (var e = 0; e < this.deckSupplyBanners.length; e++) {
-                    var i = this.deckSupplyBanners[e];
-                    i.onClick = this._onClickShip, this.mainView.addChild(i)
-                }
-                this.arrowTopButton.position.set(533, 173), this.arrowBottomButton.position.set(533, 650), this.mainView.addChild(this.arrowTopButton, this.arrowBottomButton), this.supplyAllButton.onMouseOver = this._onMouseOverSupplyAll, this.supplyAllButton.onMouseOut = this._onMouseOutSupplyAll, this.supplyAllButton.onClick = this._onClickSupplyAll, this.arrowTopButton.onClick = this._onClickArrowTop, this.arrowBottomButton.onClick = this._onClickArrowBottom, this.supplyEditor = new l.SupplyEditor, this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit(!0)
-            }, t.prototype._updateDeck_ = function (t, e) {
-                for (var i = r.default.model.deck.get(t), o = null != i.expedition, s = 0; s < this.deckSupplyBanners.length; s++) {
-                    var _ = e + s,
-                        l = this.deckSupplyBanners[s];
-                    n.TaskLoadShipResource.abortBy(l);
-                    var u = i.getShipModel(_);
-                    if (u) {
-                        var c = a.SupplyUtil.CheckRequireSupplyShip(u.memID),
-                            h = c && 0 == o,
-                            p = !!h && this.supplyEditor.containts(u.memID);
-                        l.update(_, u, o, h, p)
-                    } else l.empty()
-                }
-                if (this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 < e && (this.arrowTopButton.visible = !0), e + this.deckSupplyBanners.length < i.getCount() && (this.arrowBottomButton.visible = !0), i.expedition) this.supplyAllButton.updateClickable(!1);
-                else {
-                    var c = a.SupplyUtil.CheckRequireSupplyDeck(t);
-                    this.supplyAllButton.updateClickable(c)
-                }
-                this.deckId = t
-            }, t.prototype.dispose = function () {
-                var t = this;
-                this.mainView.removeChildren(), this.deckSupplyBanners.forEach(function (e) {
-                    n.TaskLoadShipResource.abortBy(e), e.dispose(), e.onClick = t._onClickShip = null, e = null
-                }), this.supplyAllButton.onMouseOver = this._onMouseOverSupplyAll = null, this.supplyAllButton.onMouseOut = this._onMouseOutSupplyAll = null, this.supplyAllButton.onClick = this._onClickSupplyAll = null, this.supplyAllButton.dispose(), this.supplyAllButton = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.onUpdateSupplyEdit = null, this.onClickSupplyAll = null, this.mainView = null, this.deckSupplyBanners = null, this.deckId = null, this.supplyEditor = null
-            }, t
-        }();
-    e.TaskEditSupplyDeck = c
+            }, u._onOut = function () {
+                u._inDragging(!1), u._dispose()
+            }, u._onUp = function () {
+                if (u._inDragging(!1), null == u._drag) return void u._dispose();
+                u._cbOnDrop(u._beforeIndex, u._afterIndex, u._memShipId), u._dispose()
+            }, u.on(r.EventType.MOUSEMOVE, u._onMove), u.on(r.EventType.MOUSEOUT, u._onOut), u.on(r.EventType.MOUSEUP, u._onUp), u
+        }
+        return n(e, t), e.prototype._dispose = function () {
+            this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp), this.interactive = !1, null != this._drag && this._drag.removeChildren(), this._shipBanner = null, this._shipSlotMaskLayers.forEach(function (t) {
+                null
+            }), this._shipSlotMaskLayers = null, this.removeChildren(), this._drag = null, this._inDragging = null, this._cbOnDrop = null, this._end()
+        }, e
+    }(s.AreaBox);
+    e.ShipDragging = l
 }

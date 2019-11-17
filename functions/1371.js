@@ -20,29 +20,46 @@ const function1371 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(13),
-        s = i(23),
-        a = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._attacker = e, s._plane_mst_id = i, s._slot_mst_id1 = n, s._slot_mst_id2 = o, s._type = r, s
+        r = i(24),
+        s = i(20),
+        a = i(16),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke1 = new l, i._smoke1.position.set(45, 39), i._smoke2 = new l, i._smoke2.position.set(54, 48), i._smoke3 = new l, i._smoke3.position.set(36, 65), i
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadShipImage()
-            }, e.prototype._loadShipImage = function () {
                 var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
-                    t._loadSlotTextImage()
-                })
-            }, e.prototype._loadSlotTextImage = function () {
-                var t = this;
-                this._plane_mst_id <= 0 && this._slot_mst_id1 <= 0 && this._slot_mst_id2 <= 0 && this._endTask();
-                var e = new s.SlotLoader;
-                this._plane_mst_id > 0 && e.add(this._plane_mst_id, "item_up"), this._slot_mst_id1 > 0 && (e.add(this._slot_mst_id1, "item_up"), 0 == this._type && e.add(this._slot_mst_id1, "btxt_flat")), this._slot_mst_id2 > 0 && (e.add(this._slot_mst_id2, "item_up"), e.add(this._slot_mst_id2, "btxt_flat")), e.load(function () {
+                    e = new s.TweenTask;
+                e.addTween(this._createTween(this._smoke1, 0)), e.addTween(this._createTween(this._smoke2, 100)), e.addTween(this._createTween(this._smoke3, 400)), e.start(function () {
                     t._endTask()
+                })
+            }, e.prototype._createTween = function (t, e) {
+                var i = this,
+                    n = t.x - 105,
+                    o = t.y - 8;
+                return t.scale.set(0), createjs.Tween.get(t).wait(e).call(function () {
+                    i._layer.addChild(t)
+                }).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    x: n,
+                    y: o,
+                    alpha: 0,
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 400).call(function () {
+                    i._layer.removeChild(t)
                 })
             }, e
         }(o.TaskBase);
-    e.PreloadCutinDanchaku = a
+    e.AnimAntiAircraftFunshin = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(a.BATTLE_MAIN.getTexture(150)), e._img.position.set(-32, -42), e.addChild(e._img), e
+        }
+        return n(e, t), e
+    }(r.Container)
 }

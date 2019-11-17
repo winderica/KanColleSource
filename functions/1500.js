@@ -19,52 +19,18 @@ const function1500 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1501),
-        s = i(1505),
-        a = i(1510),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(10),
+        r = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/battle_result", n._data = e, n._debug = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                this._mapClear()
-            }, e.prototype._mapClear = function () {
-                var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.shutter,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.battle_model.deck_f.ships[0],
-                        s = o.mst_id,
-                        a = o.isDamaged(),
-                        _ = this._scene.data.getClearMapSuffix();
-                    new r.TaskEventClear(e, i, n, s, a, _).start(function () {
-                        t._ending()
-                    })
-                } else this._ending()
-            }, e.prototype._ending = function () {
-                var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.layer_bonus,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.getClearOperationSuffix();
-                    new s.TaskEventEnding(e, i, n, o).start(function () {
-                        t._mapOpen()
-                    })
-                } else this._mapOpen()
-            }, e.prototype._mapOpen = function () {
-                var t = this,
-                    e = this._scene.data.getOpenedMapIDs();
-                if (e.length > 0) {
-                    var i = this._scene.layer_bonus;
-                    new a.TaskMapOpen(i, e).start(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
+            return n(e, t), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data.setData(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.PhaseClear = _
+        }(o.APIBase);
+    e.APIPracticeResult = r
 }

@@ -1,23 +1,36 @@
 const function553 = function (t, e, i) {
-    var n = i(274),
-        o = {
-            delimiter: "&"
-        };
-    o.stringify = function (t, e) {
-        if (n.isBuffer(t) ? t = t.toString() : t instanceof Date ? t = t.toISOString() : null === t && (t = ""), "string" == typeof t || "number" == typeof t || "boolean" == typeof t) return [encodeURIComponent(e) + "=" + encodeURIComponent(t)];
-        var i = [];
-        if (void 0 === t) return i;
-        for (var r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
-            var _ = r[s];
-            i = i.concat(o.stringify(t[_], e + "[" + _ + "]"))
+    "use strict";
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var n = function () {
+        function t() {
+            this._flg = 1, this._type = 0, this._onUI = !1
         }
-        return i
-    }, t.exports = function (t, e) {
-        e = e || {};
-        for (var i = void 0 === e.delimiter ? o.delimiter : e.delimiter, n = [], r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
-            var _ = r[s];
-            n = n.concat(o.stringify(t[_], _))
-        }
-        return n.join(i)
-    }
+        return Object.defineProperty(t.prototype, "flg", {
+            get: function () {
+                return this._flg
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "type", {
+            get: function () {
+                return this._type
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "UI", {
+            get: function () {
+                return this._onUI
+            },
+            set: function (t) {
+                this._onUI = t
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t.prototype.setData = function (t, e) {
+            this._flg = t, this._type = e
+        }, t
+    }();
+    e.FriendlyRequestModel = n
 }

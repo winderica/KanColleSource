@@ -1,34 +1,12 @@
 const function379 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/deck", e
-            }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.deck.setData(this._raw_data), t.prototype._completedEnd.call(this)
-            }, e
-        }(r.APIBase);
-    e.DeckAPI = s
+    ! function (t) {
+        t[t.HEADER = 0] = "HEADER", t[t.CENTER = 1] = "CENTER", t[t.FOOTER = 2] = "FOOTER"
+    }(e.ListType || (e.ListType = {}));
+    ! function (t) {
+        t[t.NONE = -1] = "NONE", t[t.EXPEDITION = 0] = "EXPEDITION", t[t.COMPLETE_MONTHLY = 1] = "COMPLETE_MONTHLY", t[t.TIME_OVER_MONTHLY = 2] = "TIME_OVER_MONTHLY"
+    }(e.ExpeditionState || (e.ExpeditionState = {}))
 }

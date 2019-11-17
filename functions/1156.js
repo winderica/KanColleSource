@@ -19,96 +19,29 @@ const function1156 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(34),
-        s = i(130),
-        a = i(167),
-        _ = i(158),
-        l = i(129),
-        u = i(106),
-        c = i(6),
-        h = i(133),
-        p = i(1157),
-        d = i(91),
-        f = i(118),
-        y = i(118),
-        m = i(118),
-        g = i(118),
-        v = i(118),
-        b = i(242),
-        w = i(402),
-        x = i(1158),
-        I = function (t) {
+    var o = i(1),
+        r = i(74),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onSelect = function (t) {
-                    var e = i._purchasedItems.getData(t);
-                    i._detail_panel.update(e)
-                }, i._onPickup = function (t) {
-                    if (16 == t.id) {
-                        var e = o.default.model.const.boko_max_ships,
-                            n = o.default.model.basic.shipMax;
-                        if (n >= e) return void c.SE.play("248");
-                        c.SE.play("244")
-                    } else c.SE.play("243");
-                    var r = new p.PurchasedItemPickupAPI(t.id, !1),
-                        s = r.result;
-                    r.start(function () {
-                        i._detail_panel.update(null), 1 == s.hasCaution() ? i._confirm(t) : i._AfterPickup(t)
-                    })
-                }, i._purchasedItems = e, i._bg = new PIXI.Sprite, i._bg.position.set(202, 201), i.addChild(i._bg), i._detail_panel = new x.PurchasedItemDetailPanel(i._onPickup), i._detail_panel.position.set(904, 201), i.addChild(i._detail_panel), i._icon_layer = new PIXI.Container, i.addChild(i._icon_layer), i
+                return i._onClickYes = function () {
+                    null != i._cb_onClick && i._cb_onClick(!0)
+                }, i._onClickNo = function () {
+                    null != i._cb_onClick && i._cb_onClick(!1)
+                }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = h.ITEM_ILIST.getTexture(14), this._detail_panel.initialize(), this._icons = [];
-                for (var t = f.PAYITEMLIST_ORDER.length, e = 0; e < t; e++) {
-                    var i = new w.PayItemIcon(this._onSelect);
-                    i.x = 238 + e % 7 * 84, e % 7 >= 3 && (i.x += 54), i.y = 265 + 112 * Math.floor(e / 7), i.initialize(), this._icon_layer.addChild(i), this._icons.push(i)
-                }
-            }, e.prototype.update = function () {
-                this._detail_panel.update(null);
-                for (var t = 0; t < this._icons.length; t++) {
-                    var e = this._icons[t],
-                        i = f.PAYITEMLIST_ORDER[t],
-                        n = this._purchasedItems.getData(i),
-                        o = null == n ? 0 : n.count;
-                    e.update(i, o)
-                }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(1);
+                var e = new PIXI.Sprite(t),
+                    i = Math.min(135 / e.width, 135 / e.height);
+                e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = r.COMMON_SELECTABLE_REWARD.getTexture(4), this._btn_no.texture = r.COMMON_SELECTABLE_REWARD.getTexture(3)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].activate()
-                }
+                1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(o.EventType.CLICK, this._onClickNo))
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                this._btn_yes.buttonMode = !1, this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(o.EventType.CLICK, this._onClickNo)
             }, e.prototype.dispose = function () {
-                this._icon_layer.removeChildren(), this._icon_layer = null;
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    i.deactivate(), i.dispose()
-                }
-                this._icons = null, this._detail_panel.dispose(), this._detail_panel = null, this._purchasedItems = null, this.removeChildren()
-            }, e.prototype._confirm = function (t) {
-                var e = this,
-                    i = o.default.view.overLayer,
-                    n = new b.TaskItemOverflowConfirm(i);
-                n.start(function () {
-                    if (1 == n.result) {
-                        var i = new p.PurchasedItemPickupAPI(t.id, !0);
-                        i.result;
-                        i.start(function () {
-                            e._AfterPickup(t)
-                        })
-                    }
-                })
-            }, e.prototype._AfterPickup = function (t) {
-                var e = this,
-                    i = t.id,
-                    n = new r.APIConnector;
-                m.RELATED_USERDATA_PAYITEM.indexOf(i) >= 0 && n.add(new _.UserDataAPI), g.RELATED_SLOTITEM_PAYITEM.indexOf(i) >= 0 && (n.add(new l.UserSlotItemAPI), n.add(new s.UnsetSlotAPI)), v.RELATED_USEITEM_PAYITEM.indexOf(i) >= 0 && n.add(new u.UseItemAPI), y.RELATED_MATERIAL_PAYITEM.indexOf(i) >= 0 && n.add(new a.MaterialAPI), n.start(function () {
-                    t.setCount(t.count - 1), e.update(), o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo()
-                })
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(d.ViewBase);
-    e.PurchasedItemListMain = I
+        }(PIXI.Sprite);
+    e.RewardSelectConfirm = s
 }

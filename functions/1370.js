@@ -19,101 +19,79 @@ const function1370 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(61),
-        s = i(70),
-        a = i(25),
-        _ = i(16),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._gauge = new c, e.addChild(e._gauge), e._ship_name = new u(46, 16774898), e.addChild(e._ship_name), e._level = new o.TextBox(32, 16774898), e.addChild(e._level), e._karyoku = new o.TextBox(24, 16774898), e._raisou = new o.TextBox(24, 16774898), e._taiku = new o.TextBox(24, 16774898), e._soukou = new o.TextBox(24, 16774898), e.addChild(e._karyoku), e.addChild(e._raisou), e.addChild(e._taiku), e.addChild(e._soukou), e._ring = new s.RingSmall, e._ring.visible = !1, e.addChild(e._ring), e._slotIcons = [], e
+    var o = i(28),
+        r = i(39),
+        s = i(2),
+        a = i(16),
+        _ = i(1371),
+        l = i(1372),
+        u = i(1373),
+        c = i(1374),
+        h = i(1375),
+        p = i(1376),
+        d = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._scene = e, s._ship = i, s._damage = n, s._type = o, s._plane = r, s
             }
-            return n(e, t), e.prototype.initilize = function (t) {
-                var e = t.friend,
-                    i = t.slots,
-                    n = t.isMarriage();
-                this._updateBackground(e, i), this._updateHPGauge(e, t.hp_now, t.hp_max), this._updateShipNameText(t.name, e, i, n), 1 == t.friend ? (this._level.position.set(56, 66), this._karyoku.position.set(94, 108), this._raisou.position.set(214, 108), this._taiku.position.set(334, 108), this._soukou.position.set(448, 108)) : (this._level.position.set(131, 66), this._karyoku.position.set(168, 108), this._raisou.position.set(288, 108), this._taiku.position.set(408, 108), this._soukou.position.set(522, 108)), n ? (this._ring.x = 1 == t.friend ? 152 : 233, this._ring.y = 69, this._ring.initialize(), this._ring.activate(), this._ring.visible = !0) : (this._ring.deactivate(), this._ring.visible = !1), this._level.text = t.level.toString(), this._karyoku.text = t.karyoku.toString(), this._raisou.text = t.raisou.toString(), this._taiku.text = t.taiku.toString(), this._soukou.text = t.soukou.toString(), this._updateSlot(e, i)
-            }, e.prototype.dispose = function () {
-                if (this.removeChildren(), this._bg = null, this._gauge = null, null != this._slotIcons)
-                    for (var t = 0, e = this._slotIcons; t < e.length; t++) {
-                        var i = e[t];
-                        i.dispose()
-                    }
-                this._slotIcons = null, this._ship_name.dispose(), this._ship_name = null, this._level.destroy(), this._level = null, this._karyoku.destroy(), this._karyoku = null, this._raisou.destroy(), this._raisou = null, this._taiku.destroy(), this._taiku = null, this._soukou.destroy(), this._soukou = null, this._ring.dispose(), this._ring = null
-            }, e.prototype._updateBackground = function (t, e) {
-                var i;
-                i = e.length >= 5 ? t ? 120 : 118 : t ? 119 : 117, this._bg.texture = _.BATTLE_MAIN.getTexture(i)
-            }, e.prototype._updateHPGauge = function (t, e, i) {
-                this._gauge.x = t ? 192 : 267, this._gauge.y = 81, this._gauge.initialize(e / i)
-            }, e.prototype._updateShipNameText = function (t, e, i, n) {
-                this._ship_name.position.set(e ? 15 : 92, 6);
-                var o = {
-                    text: t,
-                    color: n ? 16766947 : 16774898,
-                    maskW: i.length >= 5 ? 185 : 230,
-                    maskH: 53
-                };
-                this._ship_name.update(o)
-            }, e.prototype._updateSlot = function (t, e) {
-                for (; this._slotIcons.length > 0;) {
-                    var i = this._slotIcons.pop();
-                    null != i.parent && i.parent.removeChild(i)
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = 500 * Math.random();
+                this._banner = this._scene.view.bannerGroupLayer.getBanner(this._ship);
+                var i = null;
+                if (1 == this._type) i = new r.WaitTask(500);
+                else if (3 == this._type) i = new _.AnimAntiAircraftFunshin(this._banner);
+                else if (2 == this._type) i = new u.AnimAntiAircraftKoukaku(this._banner);
+                else if (5 == this._type) {
+                    var n = new o.ParallelTask;
+                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new h.AnimAntiAircraftSanshikidan2(this._banner)), i = n
+                } else if (4 == this._type) i = new l.AnimAntiAircraftFunshinKai2(this._banner);
+                else if (6 == this._type) {
+                    var n = new o.ParallelTask;
+                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new l.AnimAntiAircraftFunshinKai2(this._banner)), i = n
                 }
-                if (null != e) {
-                    var n;
-                    n = t ? e.length >= 5 ? 203 : 263 : e.length >= 5 ? 282 : 342;
-                    for (var o = 0; o < e.length; o++) {
-                        var r = new h;
-                        r.x = n + 60 * o, r.y = 18;
-                        var s = e[o];
-                        null == s ? r.visible = !1 : r.initialize(s.iconType), this.addChild(r), this._slotIcons.push(r)
-                    }
+                if (null == i ? this._endTask() : (this._banner.moveFront(), this._createGuns(), this._banner.addChild(this._gun1), this._banner.addChild(this._gun2), this._gun1.activate(), this._gun2.activate(), this._planeExplosion(), createjs.Tween.get(null).wait(e).call(function () {
+                        i.start(function () {
+                            t._endTask()
+                        })
+                    })), Math.floor(this._damage) <= 0 && (4 == this._type || 6 == this._type)) {
+                    var s = this._banner.getGlobalPos(!1);
+                    this._scene.view.bannerInfoLayer.showDanmaku(s, e)
+                } else if (5 == this._type || 6 == this._type) {
+                    var s = this._banner.getGlobalPos(!1);
+                    this._scene.view.bannerInfoLayer.showSanshiki(s, e)
                 }
+            }, e.prototype._planeExplosion = function () {
+                var t = this._scene,
+                    e = this._type,
+                    i = this._plane;
+                new p.TaskAirWarAntiAircraftExplosion(t, e, i).start()
+            }, e.prototype._endTask = function () {
+                null != this._gun1 && (null != this._gun1.parent && this._gun1.parent.removeChild(this._gun1), this._gun1.deactivate()), null != this._gun2 && (null != this._gun2.parent && this._gun2.parent.removeChild(this._gun2), this._gun2.deactivate()), this._scene = null, this._ship = null, this._type = null, this._banner.moveDefault(), this._banner = null, this._gun1 = null, this._gun2 = null, t.prototype._endTask.call(this)
+            }, e.prototype._createGuns = function () {
+                this._gun1 = new f, this._gun1.position.set(26, 20), this._gun1.rotation = (45 * -Math.random() - 30) / 180 * Math.PI, this._gun2 = new f, this._gun2.position.set(35, 30), this._gun2.rotation = (45 * -Math.random() - 30) / 180 * Math.PI
             }, e
-        }(PIXI.Container);
-    e.CutinStatusBox = l;
-    var u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._text = new o.TextBox(e, i), n.addChild(n._text);
-                var r = new PIXI.Graphics;
-                return n.addChild(r), n.mask = r, n
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                if (this.cacheAsBitmap = !1, null != t.text && t.text.length > 0 && (this._text.text = t.text), null != t.color && (this._text.style.fill = t.color), t.maskW > 0 && t.maskH > 0) {
-                    this.mask.beginFill(0, 0).drawRect(0, 0, t.maskW, t.maskH).endFill()
-                }
-                this.cacheAsBitmap = !0
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy(), this.cacheAsBitmap = !1, this.mask = null
-            }, e
-        }(PIXI.Container),
-        c = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._GAUGE_WIDTH_ = 300, e._GAUGE_HEIGHT_ = 12, e._bar = new PIXI.Graphics, e.addChild(e._bar);
-                var i = new PIXI.Graphics;
-                return e._drawShape(i, 0), e.addChild(i), e._bar.mask = i, e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                t = Math.max(t, 0), t = Math.min(t, 1), this._bar.x = -this._GAUGE_WIDTH_ * (1 - t);
-                var e = a.MathUtil.getColor(t);
-                this._drawShape(this._bar, e)
-            }, e.prototype._drawShape = function (t, e) {
-                var i = this._GAUGE_HEIGHT_ / 2;
-                t.beginFill(e), t.arc(i, i, i, Math.PI / 2, Math.PI / 2 * 3), t.arc(this._GAUGE_WIDTH_ - i, i, i, -Math.PI / 2, Math.PI / 2), t.endFill()
-            }, e
-        }(PIXI.Container),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._icon = new r.IconWeapon, e.addChild(e._icon), e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = _.BATTLE_MAIN.getTexture(56), this._icon.update(t)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._icon.dispose()
-            }, e
-        }(PIXI.Sprite)
+        }(s.TaskBase);
+    e.TaskAirWarAntiAircraft = d;
+    var f = function (t) {
+        function e() {
+            var e = t.call(this) || this,
+                i = a.BATTLE_MAIN.getTexture(122);
+            return e._content = new PIXI.Sprite(i), e._content.anchor.set(0, .5), e.addChild(e._content), e
+        }
+        return n(e, t), e.prototype.activate = function () {
+            var t = this;
+            null == this._t && (this._t = createjs.Tween.get(this._content, {
+                loop: !0
+            }).call(function () {
+                t._content.visible = !0, t._content.position.set(0, 0)
+            }).wait(33).call(function () {
+                t._content.position.set(30, 0)
+            }).wait(33).call(function () {
+                t._content.visible = !1
+            }).wait(33))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e
+    }(PIXI.Container)
 }

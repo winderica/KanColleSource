@@ -19,61 +19,37 @@ const function157 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(107),
+    var o = i(9),
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._w1 = new s, e._w2 = new s, e.addChild(e._w1), e.addChild(e._w2), e
+                return e._ground = !1, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._w1.initialize(), this._w2.initialize()
-            }, e.prototype.dispose = function () {
-                this._w1.dispose(), this._w2.dispose()
-            }, e.prototype.startAnimation = function () {
-                this._w1.startAnimation(900), this._w2.startAnimation()
-            }, e.prototype.stopAnimation = function () {
-                this._w1.stopAnimation(), this._w2.stopAnimation()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._ground = t
+            }, e.prototype.setDamagedIcon = function (t) {
+                if (25 == t) {
+                    var e = this._ground ? 107 : 109;
+                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+                } else if (50 == t) {
+                    var e = this._ground ? 106 : 99;
+                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+                } else if (75 == t) {
+                    var e = this._ground ? 104 : 105;
+                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+                } else if (0 == t) {
+                    var e = this._ground ? 103 : 102;
+                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+                } else this.clear()
+            }, e.prototype.setExpeditionIcon = function () {
+                this.texture = o.COMMON_MISC.getTexture(100), this.visible = !0
+            }, e.prototype.setRepairIcon = function () {
+                this.texture = o.COMMON_MISC.getTexture(108), this.visible = !0
+            }, e.prototype.setTaihiIcon = function () {
+                this.texture = o.COMMON_MISC.getTexture(110), this.visible = !0
+            }, e.prototype.clear = function () {
+                this.texture = PIXI.Texture.EMPTY, this.visible = !1
             }, e
-        }(PIXI.Container);
-    e.RingMenuWaves = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.scale.set(0, 0), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.PORT_RINGMENU.getTexture(31), this.anchor.set(.5, .5)
-        }, e.prototype.dispose = function () {
-            this.stopAnimation()
-        }, e.prototype.startAnimation = function (t) {
-            var e = this;
-            void 0 === t && (t = 0), this.stopAnimation(), t > 0 ? this._waitTween = createjs.Tween.get(null).wait(t).call(function () {
-                e._startAnimation()
-            }) : this._startAnimation()
-        }, e.prototype._startAnimation = function () {
-            null != this._waitTween && (this._waitTween.setPaused(!0), this._waitTween = null);
-            var t = createjs.Tween.get(this.scale, {
-                    loop: !0
-                }).to({
-                    x: .75,
-                    y: .75
-                }, 1100).to({
-                    x: 1,
-                    y: 1
-                }, 400).set({
-                    x: 0,
-                    y: 0
-                }),
-                e = createjs.Tween.get(this, {
-                    loop: !0
-                }).wait(1100).to({
-                    alpha: 0
-                }, 400).set({
-                    alpha: 1
-                });
-            this._t = new createjs.Timeline([t, e], null, null), this._t.loop = !0
-        }, e.prototype.stopAnimation = function () {
-            null != this._waitTween && (this._waitTween.setPaused(!0), this._waitTween = null), null != this._t && (this._t.setPaused(!0), this._t = null), this.scale.set(0, 0), this.alpha = 1
-        }, e
-    }(PIXI.Sprite)
+        }(PIXI.Sprite);
+    e.BannerIcon = r
 }

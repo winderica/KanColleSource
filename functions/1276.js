@@ -1,6 +1,10 @@
 const function1276 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
+
+    function n(t) {
+        return t * Math.PI / 180
+    }
+    var o = this && this.__extends || function () {
         var t = Object.setPrototypeOf || {
             __proto__: []
         }
@@ -19,181 +23,282 @@ const function1276 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(2),
-        a = i(17),
-        _ = i(12),
-        l = i(13),
-        u = i(176),
-        c = i(19),
-        h = i(1277),
-        p = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._selected_formation = 12, r._showText = function () {
-                    var t = r._telopContainer.text;
-                    t.position.set(750, o.default.height / 2), t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(117), createjs.Tween.get(t).to({
-                        x: 630,
+    var r = i(5),
+        s = i(1),
+        a = i(4),
+        _ = i(6),
+        l = i(142),
+        u = i(1277);
+    e.COMPASS_FADEIN = 500, e.PIN_SWING_VOL = n(2), e.getRad = n;
+    var c = function (t) {
+        function i() {
+            var i = t.call(this) || this;
+            return i.Dispose = function () {
+                i.removeChildren(), i._callBack = null, i._runTween = null, i._bg = null, i._clickLayer = null, i._girl = null, i._compass = null, i._txtBox = null, i._light = null, i._pin = null, i._text.destroy(), i._text = null, i._type = null, i._isPin = null, i._isSwing = null, i._vibrateR = null, i._vibrateWidth = null, i._pini = null, i._span = null, i._targetR = null, i._step = null, i._message1 = null, i._message2 = null, i._message3 = null
+            }, i.Play = function (t, e, n) {
+                i._callBack = n;
+                var o = -Math.atan2(e.y - t.y, e.x - t.x) / Math.PI * 180 + 270;
+                i._targetR = o, i.startAnimation()
+            }, i.startAnimation = function () {
+                var t;
+                switch (i._type) {
+                    case 1:
+                        t = function () {
+                            createjs.Tween.get(i._girl).to({
+                                y: 368,
+                                alpha: 1
+                            }, e.COMPASS_FADEIN)
+                        };
+                        break;
+                    case 2:
+                    case 3:
+                        t = function () {
+                            createjs.Tween.get(i._girl).to({
+                                y: 353,
+                                alpha: 1
+                            }, e.COMPASS_FADEIN)
+                        };
+                        break;
+                    case 4:
+                        t = function () {
+                            createjs.Tween.get(i._girl).to({
+                                x: 960,
+                                y: 353,
+                                alpha: 1
+                            }, e.COMPASS_FADEIN)
+                        }
+                }
+                createjs.Tween.get(null).call(function () {
+                    createjs.Tween.get(i._compass).to({
                         alpha: 1
-                    }, 500).to({
-                        x: 585
-                    }, 500).call(r._formationSelect), createjs.Tween.get(r._chara).to({
+                    }, 300), createjs.Tween.get(i._compass.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300), createjs.Tween.get(i._pin).to({
                         alpha: 1
-                    }, 500);
-                    var e = r._view.shutter;
-                    e.alpha = 0, e.close(0), createjs.Tween.get(e).to({
-                        alpha: 1
-                    }, 400)
-                }, r._formationSelect = function () {
-                    var t = r._deck.type,
-                        e = r._deck.getCountSubDeck();
-                    if (r._layer.boxes.initialize(t, e, r._onSelectFormation), r._layer.boxes.alpha = 0, r._layer.boxes.count <= 1 || r._isLongRange) {
-                        r._isLongRange && (r._selected_formation = 14);
-                        var i = r._telopContainer.bg;
-                        createjs.Tween.get(i).wait(150).to({
-                            alpha: 0,
-                            scaleY: 0
-                        }, 100).call(r._showText2);
-                        var n = r._telopContainer.text;
-                        createjs.Tween.get(n).to({
-                            x: 555,
-                            alpha: 0
-                        }, 100)
-                    } else {
-                        r._layer.fade.show(200);
-                        var i = r._telopContainer.bg;
-                        createjs.Tween.get(i).wait(150).to({
-                            alpha: 0,
-                            scaleY: 0
-                        }, 100);
-                        var n = r._telopContainer.text;
-                        createjs.Tween.get(n).to({
-                            x: 555,
-                            alpha: 0
-                        }, 100), createjs.Tween.get(r._layer.boxes).to({
-                            alpha: 1
-                        }, 300).call(function () {
-                            r._layer.boxes.activate(), r._view.message_box.text = "\u9663\u5f62\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
-                        }), r._layer.description.alpha = 0, 1 == t ? r._layer.description.texture = u.SALLY_JIN.getTexture(18) : 2 == t ? r._layer.description.texture = u.SALLY_JIN.getTexture(38) : 3 == t && (r._layer.description.texture = u.SALLY_JIN.getTexture(43)), createjs.Tween.get(r._layer.description).to({
-                            alpha: 1
-                        }, 300)
-                    }
-                }, r._onSelectFormation = function (t) {
-                    r._selected_formation = t, r._layer.boxes.deactivate(), createjs.Tween.get(r._layer.boxes).to({
-                        alpha: 0
-                    }, 200), createjs.Tween.get(r._layer.description).to({
-                        alpha: 0
-                    }, 200), r._layer.fade.hide(200, r._showText2)
-                }, r._showText2 = function () {
-                    var t = r._telopContainer.bg,
-                        e = r._telopContainer.text;
-                    e.position.set(o.default.width / 2, o.default.height / 2), e.texture = c.MAP_COMMON.getTexture(116), createjs.Tween.get(t).to({
-                        alpha: 1,
-                        scaleY: 1
-                    }, 200).wait(950).to({
-                        alpha: 0,
-                        scaleY: 0
-                    }, 200), createjs.Tween.get(e).wait(150).to({
-                        alpha: 1
-                    }, 100).wait(200).to({
-                        x: 570
-                    }, 300).to({
-                        x: 450,
-                        alpha: 0
-                    }, 400), createjs.Tween.get(r._layer.chara).wait(950).to({
-                        x: -75,
-                        alpha: 0
-                    }, 600), createjs.Tween.get(r._view.map).wait(950).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        r._view.map.ship_icon.stopWave(), r._preEnd()
-                    }), createjs.Tween.get(r._view.upper).wait(950).to({
-                        alpha: 0
-                    }, 600), createjs.Tween.get(r._view.gauge_layer).wait(950).to({
-                        alpha: 0
-                    }, 600), createjs.Tween.get(r).wait(750).call(function () {
-                        r._view.message_box.deactivate()
-                    })
-                }, r._view = e, r._deck = i, r._isLongRange = n, r
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_formation", {
-                get: function () {
-                    return this._selected_formation
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._layer = new d, this._view.universal_layer.addChild(this._layer), this._telopContainer = new f, this._view.top_layer.addChild(this._telopContainer), this._readyForFlagship()
-            }, e.prototype._readyForFlagship = function () {
-                var t = this,
-                    e = this._deck.ships[0],
-                    i = e.mst_id,
-                    n = e.isDamaged();
-                this._chara = new PIXI.Sprite;
-                var o = r.default.model.ship_graph.get(i).getMapOffset(n);
-                this._chara.position.set(-80 + o.x, -93 + o.y), this._chara.alpha = 0, this._layer.chara.addChild(this._chara), (new l.ShipLoader).add(i, n, "full").load(function () {
-                    t._chara.texture = r.default.resources.getShip(i, n, "full"), t._showTelopBG()
+                    }, 300), createjs.Tween.get(i._pin.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300), createjs.Tween.get(i._light).to({
+                        alpha: .8
+                    }, 300), createjs.Tween.get(i._light.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300), createjs.Tween.get(i._bg).to({
+                        alpha: .3
+                    }, 300)
+                }).wait(300).call(function () {
+                    t()
+                }).wait(e.COMPASS_FADEIN).call(function () {
+                    i.phase1End()
                 })
-            }, e.prototype._showTelopBG = function () {
-                var t = this._telopContainer.bg;
-                t.position.set(o.default.width / 2, o.default.height / 2), t.scaleY = 0, t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(114), createjs.Tween.get(t).to({
-                    alpha: 1,
-                    scaleY: 1
-                }, 500).call(this._showText)
-            }, e.prototype._preEnd = function () {
-                this._view.universal_layer.removeChild(this._layer), this._view = null, this._deck = null, this._chara = null, this._layer = null, this._isLongRange = null, this._endTask()
-            }, e
-        }(s.TaskBase);
-    e.TaskFormationSelectCombined = p;
-    var d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._fade = new a.FadeBox(.6), e._fade.hide(0), e._chara = new PIXI.Sprite, e._boxes = new h.FormationBoxContainerCombined, e._description = new PIXI.Sprite, e._description.x = 984, e._description.y = 500, e.addChild(e._fade), e.addChild(e._chara), e.addChild(e._boxes), e.addChild(e._description), e
+            }, i.run = function () {
+                i._isPin && i.updatePinMove(), i._isSwing && i.updateGirlSwing()
+            }, i.phase1End = function () {
+                switch (i._clickLayer.interactive = !0, i._clickLayer.buttonMode = !0, i._clickLayer.on(s.EventType.CLICK, i.clickCompass), i._runTween = createjs.Tween.get({}), i._runTween.wait(500).loop = !0, i._runTween.play(null), i._runTween.addEventListener("change", i.run), i._isPin = !0, i._txtBox.alpha = 1, i._text.alpha = 1, i._type) {
+                    case 4:
+                        i._isSwing = !0
+                }
+            }, i.clickCompass = function () {
+                i._clickLayer.interactive = !1, i._clickLayer.buttonMode = !1;
+                var t = function (t) {
+                    i._girl.texture = u.MAP_COMPASS.getTexture(t), i._text.text = i._message2, i.playRashinbanSE(), i.updateRotate()
+                };
+                switch (i._type) {
+                    case 1:
+                        i._girl.texture = u.MAP_COMPASS.getTexture(1), createjs.Tween.get(null).wait(500).call(function () {
+                            t(0)
+                        });
+                        break;
+                    case 2:
+                        i._girl.texture = u.MAP_COMPASS.getTexture(3), createjs.Tween.get(null).wait(500).call(function () {
+                            t(2)
+                        });
+                        break;
+                    case 3:
+                        i._girl.texture = u.MAP_COMPASS.getTexture(5), createjs.Tween.get(null).wait(500).call(function () {
+                            t(4)
+                        });
+                        break;
+                    case 4:
+                        i._step = 0, i._isSwing = !1, i._text.text = i._message2;
+                        var e = function () {
+                            i.playRashinbanSE(), i._isSwing = !0, i.updateRotate()
+                        };
+                        createjs.Tween.get(i._girl).to({
+                            y: 363
+                        }, 33).to({
+                            y: 321
+                        }, 133).to({
+                            y: 384
+                        }, 133).to({
+                            y: 351
+                        }, 33).wait(100).call(function () {
+                            e()
+                        })
+                }
+            }, i
+        }
+        return o(i, t), i.prototype.initialize = function (t) {
+            switch (this._type = t, this._vibrateR = 4, this._vibrateWidth = 6, this._pini = 0, this._isPin = !1, this._isSwing = !1, this._clickLayer = new PIXI.Graphics, this._clickLayer.beginFill(0, 0), this._clickLayer.drawRect(0, 0, r.default.width, r.default.height), this._clickLayer.endFill(), this._bg = new PIXI.Graphics, this._bg.beginFill(0, 1), this._bg.drawRect(0, 0, r.default.width, r.default.height), this._bg.endFill(), this._bg.alpha = 0, this._compass = new PIXI.Sprite(l.SALLY_MAP_PARTS.getTexture(15)), this._compass.anchor.set(.5), this._compass.position.set(600, 360), this._compass.alpha = 0, this._compass.scale.set(1.36, 1.36), this._light = new PIXI.Sprite(l.SALLY_MAP_PARTS.getTexture(16)), this._light.anchor.set(.5), this._light.position.set(600, 360), this._light.alpha = 0, this._light.scale.set(1.36, 1.36), this._pin = new PIXI.Sprite(l.SALLY_MAP_PARTS.getTexture(17)), this._pin.anchor.set(.5), this._pin.position.set(600, 360), this._pin.alpha = 0, this._pin.scale.set(1.36, 1.36), this._txtBox = this.createSprite(7, .5, .5, 915, 585, 0), this._text = new a.TextBox(27, "black"), this._text.position.set(705, 573), this._text.alpha = 0, this.addChild(this._bg), this.addChild(this._compass), this.addChild(this._pin), this.addChild(this._light), this.addChild(this._txtBox), this.addChild(this._text), this._type) {
+                case 1:
+                    this._step = 16, this._message1 = "\u3048\u30fc\uff1f\u3089\u3057\u3093\u3070\u3093\u3001\u307e\u308f\u3059\u306e\u30fc\uff1f", this._message2 = "\u2026\u2026\u3093", this._message3 = "\u2026\u2026\u3042\u3044", this._girl = this.createSprite(0, .5, .5, 915, 450, 0);
+                    break;
+                case 2:
+                    this._step = 15, this._message1 = "\u3088\u30fc\u3057\u3001\u3089\u3057\u3093\u3070\u3093\u307e\u308f\u3059\u3088\u30fc\uff01", this._message2 = "\u3048\u3044\u3063", this._message3 = "\u3053\u3053\u3063", this._girl = this.createSprite(2, .5, .5, 915, 450, 0);
+                    break;
+                case 3:
+                    this._step = 0, this._message1 = "\u306f\u3084\u304f\u306f\u3084\u304f\u30fc\uff01", this._message2 = "\u3048\u3044\u3048\u3044\u3048\u30fc\u3044\u3063", this._message3 = "\u3068\u307e\u308c\u30fc\u3063", this._girl = this.createSprite(4, .5, .5, 915, 450, 0);
+                    break;
+                case 4:
+                    this._step = 0, this._message1 = "\u3089\u3057\u3093\u3070\u3093\u3092\u307e\u308f\u3057\u3066\u306d\uff01", this._message2 = "\u3048\u3044\u3063", this._message3 = "\u305d\u308c\u3063", this._girl = this.createSprite(6, .5, .5, 1185, 315, 0)
             }
-            return n(e, t), Object.defineProperty(e.prototype, "fade", {
-                get: function () {
-                    return this._fade
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "boxes", {
-                get: function () {
-                    return this._boxes
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "description", {
-                get: function () {
-                    return this._description
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(PIXI.Container),
-        f = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new _.Sprite, e._bg.anchor.set(.5), e._text = new PIXI.Sprite, e._text.anchor.set(.5), e.addChild(e._bg), e.addChild(e._text), e
+            this._text.text = this._message1, this.addChild(this._girl), this.addChild(this._clickLayer)
+        }, i.prototype.playRashinbanSE = function () {
+            _.SE.play("250")
+        }, i.prototype.updateGirlSwing = function () {
+            this._step += .5, this._girl.position.y = 353 + 10 * Math.sin(this._step / 6)
+        }, i.prototype.updateRotate = function () {
+            var t = this;
+            switch (this._type) {
+                case 1:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(360)
+                    }, 700).call(function () {
+                        t._text.text = t._message3, t.speedDown()
+                    });
+                    break;
+                case 2:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(720 + this._targetR)
+                    }, 1e3).call(function () {
+                        t._text.text = t._message3, t.vibrateCompass()
+                    });
+                    break;
+                case 3:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(1080)
+                    }, 700).call(function () {
+                        t._text.text = t._message3, t.speedDown()
+                    }), createjs.Tween.get(null).wait(700).addEventListener("change", function () {
+                        t._step % 12 < 6 ? t._girl.texture = u.MAP_COMPASS.getTexture(5) : t._girl.texture = u.MAP_COMPASS.getTexture(4), t._step++
+                    });
+                    break;
+                case 4:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(2160)
+                    }, 900).call(function () {
+                        t._text.text = t._message3, t.speedDown()
+                    })
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
+        }, i.prototype.speedDown = function () {
+            var t = this;
+            this._compass.rotation, Math.PI;
+            switch (this._type) {
+                case 1:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(360 + this._targetR)
+                    }, 600, createjs.Ease.quadOut).call(function () {
+                        t.outAnimation()
+                    });
+                    break;
+                case 3:
+                    this._span = 0, createjs.Tween.get(this._compass).to({
+                        rotation: n(1440 + this._targetR)
+                    }, 1300, createjs.Ease.quadOut).call(function () {
+                        t.outAnimation()
+                    }), createjs.Tween.get(null).wait(1300).addEventListener("change", function () {
+                        2 == ++t._span && (t._girl.position.y += t._vibrateWidth, t._vibrateWidth *= -.98, t._span = 0)
+                    });
+                    break;
+                case 4:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(2520 + this._targetR)
+                    }, 700, createjs.Ease.quadOut).call(function () {
+                        t.outAnimation()
+                    })
+            }
+        }, i.prototype.vibrateCompass = function () {
+            var t = this;
+            this._span = 0, this._girl.texture = u.MAP_COMPASS.getTexture(3), createjs.Tween.get(null).wait(400).addEventListener("change", function () {
+                2 == ++t._span && (t._compass.rotation += n(t._vibrateR), t._vibrateR *= -1, t._span = 0)
+            }), createjs.Tween.get(null).wait(400).call(function () {
+                t._compass.rotation = n(t._targetR), t.outAnimation()
+            })
+        }, i.prototype.updatePinMove = function () {
+            if (6 == ++this._pini) {
+                var t = 41 * Math.random() / 10 - 2;
+                this._pin.rotation += n(t), this._pin.rotation > e.PIN_SWING_VOL ? this._pin.rotation = e.PIN_SWING_VOL : this._pin.rotation < -e.PIN_SWING_VOL && (this._pin.rotation = -e.PIN_SWING_VOL), this._pini = 0
+            }
+        }, i.prototype.outAnimation = function () {
+            var t = this,
+                e = function () {
+                    switch (t._type) {
+                        case 1:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(0);
+                            break;
+                        case 2:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(2);
+                            break;
+                        case 3:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(4);
+                            break;
+                        case 4:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(6)
+                    }
                 },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return this._text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(PIXI.Container)
+                i = null;
+            switch (this._type) {
+                case 1:
+                case 2:
+                case 3:
+                    i = function () {
+                        createjs.Tween.get(t._girl).to({
+                            alpha: 0
+                        }, 433)
+                    };
+                    break;
+                case 4:
+                    i = function () {
+                        createjs.Tween.get(t._girl).to({
+                            x: 1185,
+                            y: t._girl.y - 53,
+                            alpha: 0
+                        }, 433)
+                    }
+            }
+            createjs.Tween.get(null).wait(800).call(function () {
+                t._isSwing = !1, e(), createjs.Tween.get(t._compass).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._compass.scale).to({
+                    x: 1.36,
+                    y: 1.36
+                }, 300), createjs.Tween.get(t._pin).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._pin.scale).to({
+                    x: 1.36,
+                    y: 1.36
+                }, 300), createjs.Tween.get(t._light).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._light.scale).to({
+                    x: 1.36,
+                    y: 1.36
+                }, 300), createjs.Tween.get(t._text).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._txtBox).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._bg).to({
+                    alpha: 0
+                }, 300), i()
+            }).wait(433).call(function () {
+                t.animateEnd()
+            })
+        }, i.prototype.animateEnd = function () {
+            this._isPin = !1, this._runTween.removeAllEventListeners("change"), this._runTween.setPaused(!0), createjs.Tween.removeTweens(this._runTween.target), null != this._callBack && this._callBack()
+        }, i.prototype.createSprite = function (t, e, i, n, o, r) {
+            var s = new PIXI.Sprite(u.MAP_COMPASS.getTexture(t));
+            return s.anchor.x = e, s.anchor.y = i, s.position.x = n, s.position.y = o, s.alpha = r, s
+        }, i
+    }(PIXI.Container);
+    e.AnimCompass = c
 }

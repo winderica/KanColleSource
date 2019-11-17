@@ -19,27 +19,23 @@ const function166 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = i(9),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_get_member/ship3", i.api_id = e, i
+    var o = i(4),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Container,
+                    n = new PIXI.Sprite(r.COMMON_MAIN.getTexture(30)),
+                    s = new PIXI.Sprite(r.COMMON_MAIN.getTexture(29)),
+                    a = new o.TextBox(20, 1949120),
+                    _ = new PIXI.Sprite(r.COMMON_MAIN.getTexture(31));
+                return n.width = 18, n.height = 18, s.position.set(17, 3), a.position.set(30, -3), _.position.set(8, -6), i.addChild(n, s, a), e.starLevel = i, e.text = a, e.starMax = _, e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_shipid = this.api_id, this._post_data.api_sort_key = "1", this._post_data.spi_sort_order = "1", t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = r.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"),
-                    i = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"),
-                    n = r.ObjUtil.getObjectArray(this._raw_data, "api_slot_data");
-                o.default.model.deck.setData(e);
-                for (var s = 0, a = i; s < a.length; s++) {
-                    var _ = a[s];
-                    o.default.model.ship.updateData(_)
-                }
-                o.default.model.slot.setUnsetData(n), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.starLevel.removeChildren(), this.text.destroy(), this.starLevel = null, this.text = null, this.starMax = null
+            }, e.prototype.update = function (t) {
+                this.removeChildren(), 10 <= t ? this.addChild(this.starMax) : 0 < t && (this.addChild(this.starLevel), this.text.text = t.toString())
             }, e
-        }(s.APIBase);
-    e.Ship3API = a
+        }(PIXI.Container);
+    e.SlotItemLevel = s
 }

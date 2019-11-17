@@ -3,108 +3,102 @@ const function543 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(264),
+    var n = i(7),
         o = function () {
-            function t() {
-                this._KEY_VOL_BGM = "vol_bgm", this._KEY_VOL_SE = "vol_se", this._KEY_VOL_VOICE = "vol_voice", this._KEY_V_BELEFT = "v_be_left", this._KEY_V_DUTY = "v_duty"
+            function t(t, e, i) {
+                void 0 === e && (e = 219), void 0 === i && (i = 14), this._barW_default = 219, this._barH_default = 14, this._o = t, this._barW_default = e, this._barH_default = i
             }
-            return Object.defineProperty(t.prototype, "vol_bgm", {
+            return Object.defineProperty(t.prototype, "x", {
                 get: function () {
-                    return this._vol_bgm
-                },
-                set: function (t) {
-                    this._vol_bgm = Math.min(100, Math.max(0, Math.round(t)))
+                    return n.ObjUtil.getNumber(this._o, "x")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "vol_se", {
+            }), Object.defineProperty(t.prototype, "y", {
                 get: function () {
-                    return this._vol_se
-                },
-                set: function (t) {
-                    this._vol_se = Math.min(100, Math.max(0, Math.round(t)))
+                    return n.ObjUtil.getNumber(this._o, "y")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "vol_voice", {
+            }), Object.defineProperty(t.prototype, "image_path", {
                 get: function () {
-                    return this._vol_voice
-                },
-                set: function (t) {
-                    this._vol_voice = Math.min(100, Math.max(0, Math.round(t)))
+                    return n.ObjUtil.getString(this._o, "img")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_be_left", {
+            }), Object.defineProperty(t.prototype, "image_light_path", {
                 get: function () {
-                    return this._voice_be_left
-                },
-                set: function (t) {
-                    this._voice_be_left = t
+                    var t = n.ObjUtil.getString(this._o, "img_l");
+                    return null == t || "" == t ? this.image_path + "_light" : t
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_duty", {
+            }), Object.defineProperty(t.prototype, "lightX", {
                 get: function () {
-                    return this._voice_duty
-                },
-                set: function (t) {
-                    this._voice_duty = t
+                    var t = n.ObjUtil.getString(this._o, "light");
+                    return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.initialize = function () {
-                this.vol_bgm = this.__vol_bgm__, this.vol_se = this.__vol_se__, this.vol_voice = this.__vol_voice__, this.voice_be_left = this.__v_beleft__, this.voice_duty = this.__v_duty__
-            }, t.prototype.save = function () {
-                var t = this.__vol_bgm__;
-                t != this.vol_bgm && n.CookieUtil.setItem(this._KEY_VOL_BGM, this.vol_bgm.toString(), 1 / 0), t = this.__vol_se__, t != this.vol_se && n.CookieUtil.setItem(this._KEY_VOL_SE, this.vol_se.toString(), 1 / 0), (t = this.__vol_voice__) != this.vol_voice && n.CookieUtil.setItem(this._KEY_VOL_VOICE, this.vol_voice.toString(), 1 / 0);
-                var e = this.__v_beleft__;
-                e != this.voice_be_left && n.CookieUtil.setItem(this._KEY_V_BELEFT, this.voice_be_left ? "1" : "0", 1 / 0), (e = this.__v_duty__) != this.voice_duty && n.CookieUtil.setItem(this._KEY_V_DUTY, this.voice_duty ? "1" : "0", 1 / 0)
-            }, Object.defineProperty(t.prototype, "_log_string", {
+            }), Object.defineProperty(t.prototype, "lightY", {
                 get: function () {
-                    return "bgm:" + this.vol_bgm + " se:" + this.vol_se + " voice:" + this.vol_voice + " \u653e\u7f6e:" + this._voice_be_left + " \u4efb\u52d9:" + this._voice_duty
+                    var t = n.ObjUtil.getString(this._o, "light");
+                    return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "__vol_bgm__", {
+            }), Object.defineProperty(t.prototype, "barX", {
                 get: function () {
-                    return this._getNumValue(this._KEY_VOL_BGM, 30)
+                    var t = n.ObjUtil.getString(this._o, "bar");
+                    return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "__vol_se__", {
+            }), Object.defineProperty(t.prototype, "barY", {
                 get: function () {
-                    return this._getNumValue(this._KEY_VOL_SE, 40)
+                    var t = n.ObjUtil.getString(this._o, "bar");
+                    return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "__vol_voice__", {
+            }), Object.defineProperty(t.prototype, "barW", {
                 get: function () {
-                    return this._getNumValue(this._KEY_VOL_VOICE, 60)
+                    var t = n.ObjUtil.getString(this._o, "bar");
+                    return null == t ? this._barW_default : n.ObjUtil.getNumber(t, "w", this._barW_default)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "__v_beleft__", {
+            }), Object.defineProperty(t.prototype, "barH", {
                 get: function () {
-                    return this._getBoolValue(this._KEY_V_BELEFT, !0)
+                    var t = n.ObjUtil.getString(this._o, "bar");
+                    return null == t ? this._barH_default : n.ObjUtil.getNumber(t, "h", this._barH_default)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "__v_duty__", {
+            }), Object.defineProperty(t.prototype, "barColor", {
                 get: function () {
-                    return this._getBoolValue(this._KEY_V_DUTY, !0)
+                    var t = n.ObjUtil.getString(this._o, "bar");
+                    return null == t ? 16711680 : n.ObjUtil.getNumber(t, "color", 16711680)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype._getNumValue = function (t, e) {
-                if (1 == n.CookieUtil.hasItem(t)) {
-                    var i = parseInt(n.CookieUtil.getItem(t));
-                    if (0 == isNaN(i)) return i
-                }
-                return e
-            }, t.prototype._getBoolValue = function (t, e) {
-                return 1 == n.CookieUtil.hasItem(t) ? "1" == n.CookieUtil.getItem(t) : e
+            }), Object.defineProperty(t.prototype, "transportX", {
+                get: function () {
+                    var t = n.ObjUtil.getString(this._o, "transport");
+                    return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "transportY", {
+                get: function () {
+                    var t = n.ObjUtil.getString(this._o, "transport");
+                    return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isTransport = function () {
+                return this._o.hasOwnProperty("transport")
             }, t
         }();
-    e.OptionModel = o
+    e.GaugeModel = o
 }

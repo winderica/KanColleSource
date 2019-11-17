@@ -21,10 +21,17 @@ const function301 = function (t, e, i) {
     });
     var o = i(46),
         r = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._flag = e, i
             }
-            return n(e, t), e
+            return n(e, t), Object.defineProperty(e.prototype, "flag", {
+                get: function () {
+                    return this._flag
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
         }(o.RewardModel);
-    e.RewardModelLargeBuild = r
+    e.RewardModelExtraSupply = r
 }

@@ -19,35 +19,20 @@ const function1047 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1048),
-        r = i(58),
-        s = i(30),
-        a = function (t) {
-            function e() {
-                for (var e = t.call(this) || this, i = new Array, n = 47, a = 0; a < 8; a++) {
-                    var _ = new o.ExpeditionListItem;
-                    _.x = 8, _.y = n, i.push(_), n += 45
-                }
-                var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(90));
-                l.position.y = -1;
-                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(18));
-                u.anchor.set(0, .5), u.position.set(40, 20);
-                var c = new PIXI.Sprite(s.SALLY_COMMON.getTexture(51));
-                return c.addChild(u), c.position.set(-20, -90), i.forEach(function (t) {
-                    e.addChild(t)
-                }), e.addChild(l), e.addChild(c), e._listItems = i, e
+    var o = i(2),
+        r = i(1048),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._selected_type = e, n._view = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "items", {
-                get: function () {
-                    return this._listItems
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._listItems.forEach(function (t) {
-                    return t.dispose()
-                }), this._listItems.length = 0, this._listItems = null
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = new r.ChangeMatchingAPI(this._selected_type);
+                e.start(function () {
+                    t._view.updateMatchingState(e.res_model.isSucceed(), t._selected_type), t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.ExpeditionList = a
+        }(o.TaskBase);
+    e.TaskChangeMatching = s
 }

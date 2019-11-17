@@ -3,77 +3,58 @@ const function739 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(1),
-        s = i(8),
-        a = i(37),
-        _ = i(740),
+    var n = i(0),
+        o = i(34),
+        r = i(69),
+        s = i(217),
+        a = i(740),
+        _ = i(744),
         l = function () {
             function t(t) {
                 var e = this;
-                this._onClickBackground = function () {
-                    e.onComplete(!1)
-                }, this._onClickChange = function () {
-                    e.onComplete(!0)
-                }, this.mainView = t, this.shipChangeConfirm = new _.ShipChangeConfirm, this.dialogBackground = new s.AreaBox(.5)
+                this._onCompleteChoiceShip = function (t) {
+                    switch (t) {
+                        case a.TaskChoiceShipResult.CHOICE:
+                            e.memShipId = e.taskChoiceShip.memShipId, e.taskConfirmChangeShip = new _.TaskConfirmChangeShip(e.mainView), e.taskConfirmChangeShip.onComplete = e._onCompleteComfirm, e.taskConfirmChangeShip.start(e.deckId, e.slotIndex, e.memShipId);
+                            break;
+                        case a.TaskChoiceShipResult.CANCEL:
+                            n.default.view.clickGuard = !0, e.taskChoiceShip.hide(function () {
+                                e.taskChoiceShip.dispose(), e.taskChoiceShip = null, n.default.view.clickGuard = !1, e.onComplete()
+                            });
+                            break;
+                        case a.TaskChoiceShipResult.DETACH:
+                            n.default.view.clickGuard = !0;
+                            var i = new o.APIConnector;
+                            i.add(new s.ChangeAPI(!1, e.deckId, e.slotIndex, -1)), 10 == n.default.model.basic.getTutorialProgress() && i.add(new r.UpdateTutorialAPI(20)), i.start(function () {
+                                n.default.view.clickGuard = !1, e.onUpdateDeck(), e.onComplete()
+                            })
+                    }
+                }, this._onCompleteComfirm = function (t) {
+                    switch (t) {
+                        case !0:
+                            n.default.view.clickGuard = !0;
+                            var i = new o.APIConnector;
+                            i.add(new s.ChangeAPI(!1, e.deckId, e.slotIndex, e.memShipId)), 10 == n.default.model.basic.getTutorialProgress() && i.add(new r.UpdateTutorialAPI(20)), i.start(function () {
+                                n.default.view.clickGuard = !1, e.onUpdateDeck(), e.taskConfirmChangeShip.hide(function () {
+                                    e.taskChoiceShip.dispose(), e.taskChoiceShip = null, e.taskConfirmChangeShip.dispose(), e.taskConfirmChangeShip = null, e.onComplete()
+                                }), e.taskChoiceShip.hide(function () {})
+                            });
+                            break;
+                        case !1:
+                            n.default.view.clickGuard = !0, e.taskConfirmChangeShip.hide(function () {
+                                e.taskConfirmChangeShip.dispose(), e.taskConfirmChangeShip = null, n.default.view.clickGuard = !1
+                            })
+                    }
+                }, this.mainView = t
             }
-            return t.prototype.start = function (t, e, i) {
-                this.shipChangeConfirm.position.set(1200, 138), this.shipChangeConfirm.onClick = this._onClickChange, this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBackground);
-                var n = o.default.model.ship.get(i),
-                    s = o.default.model.deck.isInDeck(i),
-                    a = this.__validationOrganize__(t, e, i),
-                    _ = !1;
-                if (s) {
-                    _ = null != o.default.model.deck.get(s[0]).expedition
-                }
-                this.shipChangeConfirm.updatePosition(n.getSlotViewMax()), this.shipChangeConfirm.updateBanner(n, _), this.shipChangeConfirm.updateMaterial(n.fuelNow, n.fuelMax, n.ammoNow, n.ammoMax), this.shipChangeConfirm.updateParams(n.karyoku, n.raisou, n.taiku, n.soukou), this.shipChangeConfirm.updateShip(n.mstID, n.isDamaged(), n.name, n.level, n.starNum, n.hpNow, n.hpMax, n.hpNow / n.hpMax), this.shipChangeConfirm.updateSlots(n, n.getSlotitems()), this.shipChangeConfirm.updateChangable(a), this.mainView.addChild(this.dialogBackground, this.shipChangeConfirm), this.toDeckId = t, this.toIndex = e, this.memShipId = i, o.default.view.clickGuard = !0;
-                createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 1
-                }, 125), createjs.Tween.get(this.shipChangeConfirm).to({
-                    x: 882
-                }, 125).call(function () {
-                    o.default.view.clickGuard = !1
-                })
-            }, t.prototype.hide = function (t) {
-                a.TaskLoadShipResource.abortBy(this.shipChangeConfirm);
-                createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 0
-                }, 125), createjs.Tween.get(this.shipChangeConfirm).to({
-                    x: n.default.width
-                }, 125).call(function () {
-                    t()
-                })
-            }, t.prototype.dispose = function () {
-                this.dialogBackground.off(r.EventType.CLICK, this._onClickBackground), this.shipChangeConfirm.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipChangeConfirm), this.shipChangeConfirm.onClick = this._onClickChange = null, this.onComplete = null, this.mainView = null, this.shipChangeConfirm = null, this.dialogBackground = null, this.toDeckId = null, this.toIndex = null, this.memShipId = null, this.deckEditor = null, this.organizable = null
-            }, t.prototype.__validationOrganize__ = function (t, e, i) {
-                var n = o.default.model.deck.get(t),
-                    r = n.getShipModel(e),
-                    s = o.default.model.ship.get(i),
-                    a = o.default.model.deck.isInDeck(i),
-                    _ = null;
-                if (a) {
-                    var l = a[0];
-                    _ = o.default.model.deck.get(l)
-                }
-                if (null == r && _ && 1 == _.mstID && 1 == _.getCount()) return !1;
-                if (null == r && _ && n && _.mstID == n.mstID) return !1;
-                if (s && _ && _.expedition) return !1;
-                if (s && r && s.memID == r.memID) return !1;
-                for (var u = n.getShipList(), c = 0; c < u.length; c++) {
-                    var h = u[c];
-                    if (s && h && h.yomi == s.yomi && c != e) {
-                        if (!_) return !1;
-                        if (n.mstID != _.mstID) return !1
-                    }
-                }
-                if (r && s && _)
-                    for (var p = _.getShipList(), d = _.isInDeck(s.memID), f = 0; f < p.length; f++) {
-                        var y = p[f];
-                        if (r && y && y.yomi == r.yomi && n.mstID != _.mstID && f != d) return !1
-                    }
-                return !0
+            return t.prototype.dispose = function () {
+                this.taskChoiceShip && this.taskChoiceShip.dispose(), this.taskConfirmChangeShip && this.taskConfirmChangeShip.dispose(), this.taskChoiceShip = null, this.taskConfirmChangeShip = null, this.mainView = null, this.deckId = null, this.memShipId = null, this.slotIndex = null
+            }, t.prototype.start = function (t, e) {
+                this.deckId = t, this.slotIndex = e;
+                var i = n.default.model.deck.get(t),
+                    o = !1;
+                1 == i.mstID && 1 == i.getCount() ? o = !1 : i.getShipModel(e) && (o = !0), this.taskChoiceShip = new a.TaskChoiceShip(this.mainView), this.taskChoiceShip.onComplete = this._onCompleteChoiceShip, this.taskChoiceShip.start(o)
             }, t
         }();
-    e.TaskConfirmChangeShip = l
+    e.TaskChangeShip = l
 }

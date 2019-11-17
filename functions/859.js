@@ -19,21 +19,45 @@ const function859 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_nyukyo/speedchange", i.api_ndock_id = e, i
+    var o = i(4),
+        r = i(33),
+        s = i(3),
+        a = i(26),
+        _ = i(1),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._labelArr = [], e._onClickYES = function () {
+                    e.onClickYES()
+                }, e._onClickNO = function () {
+                    e.onClickNO()
+                };
+                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63)),
+                    n = new o.TextBox(21, 1949120),
+                    a = new o.TextBox(21, 1949120),
+                    l = new o.TextBox(21, 1949120),
+                    u = new o.TextBox(21, 16777215),
+                    c = new o.TextBox(21, 1949120),
+                    h = new o.TextBox(24, 16777215),
+                    p = new o.TextBox(24, 16777215),
+                    d = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(9)),
+                    f = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(5)),
+                    y = new r.ShipBanner,
+                    m = new o.TextBox(21, 16777215),
+                    g = new o.TextBox(24, 16777215),
+                    v = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(28)),
+                    b = new o.TextBox(24, 16777215),
+                    w = new o.TextBox(24, 16777215),
+                    x = new o.TextBox(24, 16777215);
+                return n.position.set(i.width / 2, -39), n.anchor.set(.5, 0), m.position.set(576, 147), a.position.set(310, 147), y.position.set(576, 180), l.position.set(310, 258), v.position.set(580, 288), u.position.set(577, 258), b.position.set(684, 298), w.position.set(718, 298), x.position.set(685, 294), c.position.set(310, 345), g.position.set(684, 345), p.position.set(687, 342), h.position.set(718, 345), f.position.set(297, 516), d.position.set(580, 516), b.anchor.x = 1, g.anchor.x = 1, n.text = "-\u8266\u8239\u3000\u5165\u6e20-", e._labelArr.push(n), a.text = "\u4fee\u5fa9\u3059\u308b\u8266\u8239", e._labelArr.push(a), l.text = "\u9ad8\u901f\u4fee\u5fa9", e._labelArr.push(l), u.text = "\u4f7f\u7528\u3059\u308b", e._labelArr.push(u), b.text = "9999", x.text = "\u2192", e._labelArr.push(x), w.text = "9999", c.text = "\u6240\u8981\u6642\u9593", e._labelArr.push(c), p.text = "\u2192", e._labelArr.push(p), h.text = "00:00:00", e._labelArr.push(h), d.addListener(_.EventType.CLICK, e._onClickYES), f.addListener(_.EventType.CLICK, e._onClickNO), f.interactive = f.buttonMode = !0, d.interactive = d.buttonMode = !0, e.addChild(i, n, a, l, c, m, g, v, u, p, h, f, d, y, b, x, w), e.textName = m, e.textRequireTime = g, e.buttonYes = d, e.buttonNo = f, e.shipBanner = y, e.beforeRepairKitCount = b, e.afterRepairKitCount = w, e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_ndock_id = this.api_ndock_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.useItem.get(1),
-                    i = o.default.model.ndock.get(this.api_ndock_id),
-                    n = o.default.model.ship.get(i.shipMemID);
-                n.__updateNowHp__(n.hpMax), n.__updateNDockTime__(0), n.__updateNDockItem__([0, 0]), n.tired < 40 && n.__updateCond__(40), i.__updateCompleteTime__(0), i.__updateShipId__(-1), i.__updateState__(0), e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t, e) {
+                this.textName.text = t.name, this.textRequireTime.text = a.MathUtil.timeToString(t.getRepairTime()), this.beforeRepairKitCount.text = e.toString(), this.afterRepairKitCount.text = (e - 1).toString(), this.shipBanner.update(t, !1)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.buttonYes.texture = PIXI.Texture.EMPTY, this.buttonNo.texture = PIXI.Texture.EMPTY, this.shipBanner.dispose(), this.buttonYes.removeAllListeners(_.EventType.CLICK), this.buttonNo.removeAllListeners(_.EventType.CLICK), this.textName.destroy(), this.textRequireTime.destroy(), this.beforeRepairKitCount.destroy(), this.afterRepairKitCount.destroy(), this._labelArr.forEach(function (t) {
+                    t.destroy()
+                }), this._labelArr = null, this.buttonYes = null, this.buttonNo = null, this.shipBanner = null, this.onClickYES = null, this.onClickNO = null, this.textName = null, this.textRequireTime = null, this.beforeRepairKitCount = null, this.afterRepairKitCount = null
             }, e
-        }(r.APIBase);
-    e.SpeedChangeAPI = s
+        }(PIXI.Container);
+    e.UseHiSpeedRepairConfirmView = l
 }

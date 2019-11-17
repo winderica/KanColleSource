@@ -20,24 +20,27 @@ const function189 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+        r = i(46),
+        s = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = null);
+                var n = t.call(this) || this;
+                return n._mst_id = e, n._message = i, n
             }
-            return n(e, t), e.prototype.load = function (t) {
-                var e = this._getPath(t);
-                this.texture = PIXI.Texture.fromImage(e)
-            }, e.prototype._getKeyName = function () {
-                var t = location.hostname;
-                if (t.match(/\./)) {
-                    for (var e = t.split("."), i = 0; i < e.length; i++) e[i] = ("00" + e[i]).slice(-3);
-                    return e.join("_")
-                }
-                return t
-            }, e.prototype._getPath = function (t) {
-                var e = this._getKeyName();
-                return "title" == t ? o.default.settings.path_root + "resources/world/" + e + "_t.png" : "small" == t ? o.default.settings.path_root + "resources/world/" + e + "_s.png" : "large" == t ? o.default.settings.path_root + "resources/world/" + e + "_l.png" : void 0
-            }, e
-        }(PIXI.Sprite);
-    e.WorldTextImage = r
+            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "name", {
+                get: function () {
+                    var t = o.default.model.ship.get(this._mst_id);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(r.RewardModel);
+    e.RewardModelShip = s
 }

@@ -19,20 +19,27 @@ const function170 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(4),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.visible = !1, e
+    var o = i(0),
+        r = i(7),
+        s = i(10),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_get_member/ship3", i.api_id = e, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._icon = new PIXI.Sprite(o.COMMON_MISC.getTexture(111)), this._text = new r.TextBox(21, 4999235), this._text.position.set(35, 15), this.addChild(this._icon), this.addChild(this._text)
-            }, e.prototype.update = function (t, e) {
-                void 0 === e && (e = 4999235), t > 0 ? (this._text.style.fill = e, this._text.text = t.toString(), this.visible = !0) : this.visible = !1
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text && this._text.destroy()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_shipid = this.api_id, this._post_data.api_sort_key = "1", this._post_data.spi_sort_order = "1", t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"),
+                    i = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"),
+                    n = r.ObjUtil.getObjectArray(this._raw_data, "api_slot_data");
+                o.default.model.deck.setData(e);
+                for (var s = 0, a = i; s < a.length; s++) {
+                    var _ = a[s];
+                    o.default.model.ship.updateData(_)
+                }
+                o.default.model.slot.setUnsetData(n), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.MedalIcon = s
+        }(s.APIBase);
+    e.Ship3API = a
 }

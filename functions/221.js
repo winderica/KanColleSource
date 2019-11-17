@@ -19,15 +19,24 @@ const function221 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_kaisou/slotset_ex", n.api_id = e, n.api_item_id = i, n
+    var o = i(10),
+        r = i(0),
+        s = i(7),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_kaisou/slotset", o.api_id = e, o.api_item_id = i, o.api_slot_idx = n, o
             }
             return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, t.prototype._connect.call(this)
+                this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, this._post_data.api_slot_idx = this.api_slot_idx, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                r.default.model.ship.get(this.api_id).__updateSlot__(this.api_slot_idx, this.api_item_id), this._set_bauxite(), t.prototype._completedEnd.call(this)
+            }, e.prototype._set_bauxite = function () {
+                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
+                    var t = s.ObjUtil.getNumber(this._raw_data, "api_bauxite");
+                    r.default.model.useItem.get(34).__setCount__(t)
+                }
             }, e
         }(o.APIBase);
-    e.SlotSetExAPI = r
+    e.SlotSetAPI = a
 }

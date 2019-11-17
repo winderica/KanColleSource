@@ -20,60 +20,33 @@ const function1473 = function (t, e, i) {
         value: !0
     });
     var o = i(16),
-        r = i(143),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = -1, i._friend = e, i._plane = new r.Plane, i._plane.scale.set(-.25, .25), i._label = new a, i._label.position.set(-56, 35), i.addChild(i._plane), i.addChild(i._label), i
+        r = i(1474),
+        s = i(1475),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._gauge_bg = new PIXI.Sprite, e._gauge = new s.BannerHPBar, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._mst_id = t, this._stopShowTween(), this._stopHideTween(), this._label.initialize()
-            }, e.prototype.show = function () {
-                var t = this;
-                null == this._show_tween && (this._mst_id <= 0 || (this._stopHideTween(), this._label.activate(), this._plane.visible = !1, this._plane.initialize(this._mst_id, this._friend), this._plane.activate(), this._show_tween = createjs.Tween.get(this._plane).wait(133).call(function () {
-                    t._plane.alpha = .5, t._plane.visible = !0
-                }).wait(100).call(function () {
-                    t._plane.visible = !1
-                }).wait(500).call(function () {
-                    t._plane.alpha = .85, t._plane.visible = !0
-                }).wait(100).call(function () {
-                    t._plane.alpha = .6, t._plane.filters = null
-                }).to({
-                    alpha: .8
-                }, 166).call(function () {
-                    t._show_tween = null
-                })))
-            }, e.prototype.hide = function () {
-                var t = this;
-                null == this._hide_tween && (this._stopShowTween(), this._mst_id > 0 && (this._mst_id = -1, this._label.deactivate(), this._hide_tween = createjs.Tween.get(this._plane).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t._plane.deactivate(), t._plane.visible = !1, t._hide_tween = null
-                })))
-            }, e.prototype._stopShowTween = function () {
-                null != this._show_tween && (this._show_tween.setPaused(!0), this._show_tween = null)
-            }, e.prototype._stopHideTween = function () {
-                null != this._hide_tween && (this._hide_tween.setPaused(!0), this._hide_tween = null)
+            return n(e, t), e.prototype.initialize = function (t, e, i, n, r) {
+                this._index = i, this._friend = n, this._gauge_bg.texture = o.BATTLE_MAIN.getTexture(45), n ? (this._gauge_bg.x = 240, this._gauge.x = 240) : (this._gauge_bg.x = -10, this._gauge.x = -10, this._frame.x = -15), this._frame.texture = this._getTexture(i, n, r), this.updateHp(t, e)
+            }, e.prototype.updateHp = function (t, e) {
+                this._gauge.draw(t / e)
+            }, e.prototype.getAnimationTween = function (t) {
+                var e = this,
+                    i = this._frame.texture,
+                    n = new PIXI.Sprite(i);
+                return n.x = this._frame.x, n.y = this._frame.y, this.addChild(n), this._frame.texture = this._getTexture1(this._index, this._friend), this._frame.alpha = 0, createjs.Tween.get(this._frame).wait(t).to({
+                    alpha: 1
+                }, 600).call(function () {
+                    e.removeChild(n)
+                })
+            }, e.prototype._getTexture = function (t, e, i) {
+                return 0 == i ? this._getTexture1(t, e) : this._getTexture2(t, e)
+            }, e.prototype._getTexture1 = function (t, e) {
+                return e ? 0 == t ? o.BATTLE_MAIN.getTexture(46) : o.BATTLE_MAIN.getTexture(47) : 0 == t ? o.BATTLE_MAIN.getTexture(43) : o.BATTLE_MAIN.getTexture(44)
+            }, e.prototype._getTexture2 = function (t, e) {
+                return e ? 0 == t ? r.BATTLE_MAIN2.getTexture(2) : r.BATTLE_MAIN2.getTexture(3) : 0 == t ? r.BATTLE_MAIN2.getTexture(0) : r.BATTLE_MAIN2.getTexture(1)
             }, e
         }(PIXI.Container);
-    e.TouchPlane = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.alpha = 0, e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.BATTLE_MAIN.getTexture(132)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this, {
-                loop: !0
-            }).to({
-                alpha: 1
-            }, 100).wait(700).to({
-                alpha: 0
-            }, 100).wait(200))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this.alpha = 0)
-        }, e
-    }(PIXI.Sprite)
+    e.BannerFrame = a
 }

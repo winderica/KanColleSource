@@ -19,67 +19,51 @@ const function236 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o, r = i(58),
-        s = i(376),
-        a = i(237);
-    ! function (t) {
-        t[t.LIST = 0] = "LIST", t[t.DETAIL = 1] = "DETAIL"
-    }(o = e.ShadowType || (e.ShadowType = {}));
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._offset = 0, i._offset = e, i._maps = [], i
         }
-        return n(e, t), e.prototype.update = function (t, e) {
-            var i = a.shipTypeIdToCategory(t),
-                n = this._shipTypeToResourceID(i, e);
-            this.texture = e ? s.SALLY_EXPEDITION_DETAIL.getTexture(n) : r.SALLY_EXPEDITION.getTexture(n)
-        }, e.prototype._shipTypeToResourceID = function (t, e) {
-            if (e == o.DETAIL) switch (t) {
-                case 0:
-                    return 4;
-                case 1:
-                    return 6;
-                case 2:
-                    return 7;
-                case 3:
-                    return 8;
-                case 4:
-                    return 9;
-                case 5:
-                    return 10;
-                case 6:
-                    return 11;
-                case 7:
-                    return 12;
-                case 8:
-                    return 5;
-                case 9:
-                    return 13
-            } else switch (t) {
-                case 0:
-                    return 106;
-                case 1:
-                    return 108;
-                case 2:
-                    return 109;
-                case 3:
-                    return 110;
-                case 4:
-                    return 111;
-                case 5:
-                    return 112;
-                case 6:
-                    return 113;
-                case 7:
-                    return 114;
-                case 8:
-                    return 107;
-                case 9:
-                    return 115
+        return n(e, t), Object.defineProperty(e.prototype, "offset", {
+            get: function () {
+                return this._offset
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "num", {
+            get: function () {
+                return this._maps.length
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function (t) {
+            for (var e = 0; e < this._maps.length; e++) {
+                var i = e + this._offset,
+                    n = t.length > i ? t[i] : null;
+                this._maps[e].initialize(n)
+            }
+        }, e.prototype.updateAirUnitEnabled = function (t) {
+            for (var e = 0, i = this._maps; e < i.length; e++) {
+                i[e].updateAirUnitEnabled(t)
+            }
+        }, e.prototype.updateGauge = function (t) {
+            for (var e = t.mst_id, i = 0, n = this._maps; i < n.length; i++) {
+                var o = n[i];
+                if (o.mst_id == e) return void o.updateGauge(t)
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._maps; t < e.length; t++) {
+                e[t].activate()
+            }
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._maps; t < e.length; t++) {
+                e[t].deactivate()
             }
         }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY
+            for (var t = 0, e = this._maps; t < e.length; t++) {
+                e[t].dispose()
+            }
         }, e
-    }(PIXI.Sprite);
-    e.ShipShadow = _
+    }(PIXI.Container);
+    e.LayoutBase = o
 }

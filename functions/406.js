@@ -19,87 +19,18 @@ const function406 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(78),
-        s = i(13),
-        a = i(23),
-        _ = i(67),
-        l = i(14),
-        u = i(2),
-        c = function (t) {
+    var o = i(0),
+        r = i(4),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._task = new o.SerialTask, e
+                return e._arrow = new r.TextBox(22, 4999235), e._arrow.position.set(152, 20), e.addChild(e._arrow), e._from = new r.TextBox(24, 4999235), e._from.y = 20, e.addChild(e._from), e._tobe = new r.TextBox(24, 4999235), e._tobe.position.set(188, 20), e.addChild(e._tobe), e
             }
-            return n(e, t), e.prototype.addShip = function (t) {
-                this._task.add(new h(t))
-            }, e.prototype.addSlotitem = function (t) {
-                this._task.add(new p(t))
-            }, e.prototype.addUseitem = function (t) {
-                this._task.add(new d(t))
-            }, e.prototype.addFurniture = function (t) {
-                this._task.add(new f(t))
-            }, e.prototype._start = function () {
-                var t = this,
-                    e = new l.UIImageLoader("common");
-                e.add("common_selectable_reward.json"), e.load(function () {
-                    t._task.start(function () {
-                        t._endTask()
-                    })
-                })
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                void 0 === e && (e = 1), this.texture = o.default.resources.getUseitem(57, 0), this._arrow.text = "\u2192", this._from.text = t.toString(), this._from.x = 147 - this._from.width, this._tobe.text = (t - e).toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._arrow.destroy(), this._from.destroy(), this._tobe.destroy()
             }, e
-        }(u.TaskBase);
-    e.TaskLoadResources = c;
-    var h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.ShipLoader;
-                e.add(this._mst_id, !1, "card_round"), e.add(this._mst_id, !1, "icon_box"), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(u.TaskBase),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new a.SlotLoader;
-                e.add(this._mst_id, "card"), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(u.TaskBase),
-        d = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new _.UseitemLoader;
-                e.add(this._mst_id, 1), e.add(this._mst_id, 2), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(u.TaskBase),
-        f = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new r.FurnitureLoader;
-                e.add(this._mst_id, "reward"), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(u.TaskBase)
+        }(PIXI.Sprite);
+    e.MedalIcon = s
 }

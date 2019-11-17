@@ -19,55 +19,45 @@ const function1304 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1305),
-        r = i(1306),
-        s = i(1307),
-        a = i(1),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({
-                        x: 831
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }) : n._move_tween = createjs.Tween.get(n).to({
-                        x: 0
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }))
-                }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
+    var o = i(20),
+        r = i(64),
+        s = i(19),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "title", {
-                get: function () {
-                    return this._title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "cancel_btn", {
-                get: function () {
-                    return this._cancel_btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "panel", {
-                get: function () {
-                    return this._panel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                var i = null == e ? 0 : e.length;
-                this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
-            }, e.prototype.activate = function () {
-                this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.deactivate = function () {
-                null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.update = function (t) {
-                this._title.update(t), this._panel.update(t, !0)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(114), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(119), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(121) : s.MAP_COMMON.getTexture(120)
+            }, e.prototype.playAnimation = function (t) {
+                this._animation1(t)
+            }, e.prototype._animation1 = function (t) {
+                var e = this,
+                    i = new o.TweenTask;
+                i.addTween(createjs.Tween.get(this._bg).to({
+                    alpha: 1,
+                    scaleY: 1
+                }, 500)), i.addTween(createjs.Tween.get(this._txt1).wait(300).to({
+                    x: 30,
+                    alpha: 1
+                }, 700)), i.addTween(createjs.Tween.get(this._txt2).wait(300).to({
+                    alpha: 1
+                }, 700)), i.start(function () {
+                    e._animation2(t)
+                })
+            }, e.prototype._animation2 = function (t) {
+                var e = new o.TweenTask;
+                e.addTween(createjs.Tween.get(this._bg).wait(1200).to({
+                    scaleY: 0
+                }, 200)), e.addTween(createjs.Tween.get(this._txt1).wait(800).to({
+                    x: -40,
+                    alpha: 0
+                }, 300)), e.addTween(createjs.Tween.get(this._txt2).wait(1100).to({
+                    alpha: 0
+                }, 100)), e.start(function () {
+                    null != t && t()
+                })
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelSet = _
+    e.AirRaidTelop = a
 }

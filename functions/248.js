@@ -19,39 +19,30 @@ const function248 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(19),
-        s = function (t) {
+    var o = i(178),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._activated = !1;
-                var i = r.MAP_COMMON.getTexture(17);
-                return e._wave = new o.Sprite(i), e._wave.anchor.set(.5), e._wave.scale.set(0), e.addChild(e._wave), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this._startTween())
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._stopTween()
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._wave = null
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._wave.scale.set(0), this._wave.alpha = 1, this._t = createjs.Tween.get(this._wave, {
-                    loop: !0
-                }).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 800).to({
-                    scaleX: 1.35,
-                    scaleY: 1.35,
-                    alpha: 0
-                }, 300).to({
-                    scaleX: 0,
-                    scaleY: 0,
-                    alpha: 1
-                }, 0))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = 1 == t ? o.SALLY_JIN.getTexture(13) : o.SALLY_JIN.getTexture(12)
+            }, e.prototype.initializeForCombinedMain = function (t, e) {
+                if (1 == t) switch (e) {
+                    case 1:
+                        this.texture = o.SALLY_JIN.getTexture(27);
+                        break;
+                    case 2:
+                        this.texture = o.SALLY_JIN.getTexture(31);
+                        break;
+                    case 3:
+                        this.texture = o.SALLY_JIN.getTexture(32);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
+                } else this.texture = o.SALLY_JIN.getTexture(29)
+            }, e.prototype.initializeForCombinedSub = function (t) {
+                this.texture = 1 == t ? o.SALLY_JIN.getTexture(28) : o.SALLY_JIN.getTexture(30)
             }, e
-        }(PIXI.Graphics);
-    e.CellWave = s
+        }(PIXI.Sprite);
+    e.FormationPoint = r
 }

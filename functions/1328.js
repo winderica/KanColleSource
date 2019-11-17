@@ -19,46 +19,73 @@ const function1328 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1329),
-        s = i(1331),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+    var o = i(24),
+        r = i(19),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
-                var e = this._model.escape,
-                    i = e.getTargetShipIndexes(),
-                    n = e.getTowingShipIndexes(),
-                    o = null;
-                if (i.length > 0) {
-                    var a = i[0];
-                    o = this._model.deck_f.ships[a]
+            return n(e, t), Object.defineProperty(e.prototype, "color", {
+                get: function () {
+                    return this._color
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this.update(t)
+            }, e.prototype.update = function (t) {
+                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(155), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
+            }, e.prototype.dispose = function () {
+                this._stopTween()
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 300).to({
+                    alpha: 1
+                }, 300))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case -1:
+                        return r.MAP_COMMON.getTexture(161);
+                    case 1:
+                        return r.MAP_COMMON.getTexture(154);
+                    case 2:
+                    case 6:
+                        return r.MAP_COMMON.getTexture(157);
+                    case 3:
+                        return r.MAP_COMMON.getTexture(159);
+                    case 4:
+                        return r.MAP_COMMON.getTexture(160);
+                    case 5:
+                        return r.MAP_COMMON.getTexture(148);
+                    case 7:
+                        return r.MAP_COMMON.getTexture(110);
+                    case 8:
+                        return r.MAP_COMMON.getTexture(147);
+                    case 9:
+                        return r.MAP_COMMON.getTexture(158);
+                    case 10:
+                        return r.MAP_COMMON.getTexture(103);
+                    case 11:
+                        return r.MAP_COMMON.getTexture(162);
+                    case 12:
+                        return r.MAP_COMMON.getTexture(163);
+                    case 13:
+                        return r.MAP_COMMON.getTexture(83);
+                    case -2:
+                        return r.MAP_COMMON.getTexture(156);
+                    case -3:
+                        return r.MAP_COMMON.getTexture(153);
+                    case 14:
+                        return r.MAP_COMMON.getTexture(154)
                 }
-                var _ = null;
-                if (n.length > 0) {
-                    var l = n[0];
-                    _ = this._model.deck_f.ships[l]
-                }
-                if (null != o)
-                    if (null != _) {
-                        var u = new s.EscapeGoeiTask(this._scene, this._model, o, _);
-                        u.start(function () {
-                            t._endTask()
-                        })
-                    } else {
-                        var u = new r.EscapeTankanTask(this._scene, this._model, o);
-                        u.start(function () {
-                            t._endTask()
-                        })
-                    }
-                else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, t.prototype._endTask.call(this)
+                return PIXI.Texture.EMPTY
             }, e
-        }(o.TaskBase);
-    e.EscapeTask = a
+        }(o.Container);
+    e.SpotPointImage = s
 }

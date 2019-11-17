@@ -19,84 +19,42 @@ const function1464 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = function (t) {
+    var o = i(12),
+        r = i(16),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._friend = !1, e._combined = !1, e.visible = !1, e
+                return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.5, .87), e._splash2.anchor.set(.56, .95), e._splash3.anchor.set(.58, .9), e._splash1.position.set(5, 5), e._splash2.position.set(18, -11), e._splash3.position.set(24, -26), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "combined", {
-                set: function (t) {
-                    this._combined = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._friend = t, this._combined = e
-            }, e.prototype.show = function (t, e) {
-                void 0 === t && (t = 16711680), void 0 === e && (e = .5), this._draw(t, e), this.alpha = 1, this.visible = !0
-            }, e.prototype.playDamageAnimation = function () {
+            return n(e, t), e.prototype.initialize = function () {
+                this._splash1.texture = r.BATTLE_MAIN.getTexture(114), this._splash2.texture = r.BATTLE_MAIN.getTexture(115), this._splash3.texture = r.BATTLE_MAIN.getTexture(116)
+            }, e.prototype.play = function () {
                 var t = this;
-                this._stop(), this.alpha = 0, this.visible = !0, this._draw(16711680, .5), this._t = createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 300).to({
+                createjs.Tween.get(this._splash1).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 366).to({
+                    scaleX: .78,
+                    scaleY: .78,
                     alpha: 0
-                }, 500).call(function () {
-                    t.visible = !1, t._t = null
-                })
-            }, e.prototype.playShieldAnimation = function () {
-                var t = this;
-                this._stop(), this._draw(16777088, 0), this.alpha = 1, this.visible = !0;
-                var e = {
-                        r: 255,
-                        g: 255,
-                        b: 128,
-                        a: 0
-                    },
-                    i = function (e) {
-                        var i = e.target.target,
-                            n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                        t._draw(n, i.a)
-                    };
-                this._t = createjs.Tween.get(e, {
-                    onChange: i
-                }).to({
-                    a: .75
-                }, 233).to({
-                    r: 128,
-                    g: 255,
-                    b: 255
-                }, 100).to({
-                    r: 255,
-                    g: 192,
-                    b: 192
-                }, 100).to({
-                    r: 255,
-                    g: 255,
-                    b: 255
+                }, 200), createjs.Tween.get(this._splash2).wait(200).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    alpha: 0
+                }, 33), createjs.Tween.get(this._splash3).wait(333).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 166).to({
+                    scaleX: .88,
+                    scaleY: .88,
+                    alpha: 0
                 }, 166).call(function () {
-                    t.visible = !1, t._t = null
+                    t._init(), t.emit("complete")
                 })
-            }, e.prototype._stop = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype._draw = function (t, e) {
-                if (this.clear(), this._combined)
-                    if (this._friend) {
-                        for (var i = o.BannerSize.W / 5 * 2 - Math.ceil(e / .025), n = i; n < o.BannerSize.W / 5 * 2; n++) {
-                            var r = Math.min(.025 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                        this.beginFill(t, e), this.drawRect(o.BannerSize.W / 5 * 2, 0, o.BannerSize.W - o.BannerSize.W / 5 * 2, o.BannerSize.H), this.endFill()
-                    } else {
-                        var i = o.BannerSize.W / 5 * 3;
-                        this.beginFill(t, e), this.drawRect(0, 0, i, o.BannerSize.H), this.endFill();
-                        for (var n = i; n < o.BannerSize.W; n++) {
-                            var r = Math.min(1 - .05 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                    }
-                else this.beginFill(t, e), this.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), this.endFill()
+            }, e.prototype._init = function () {
+                this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
             }, e
-        }(PIXI.Graphics);
-    e.BannerOverlay = r
+        }(PIXI.Container);
+    e.TorpedoWaterColumn = s
 }

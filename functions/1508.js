@@ -19,44 +19,45 @@ const function1508 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(1509),
-        s = i(484),
-        a = function (t) {
+    var o = i(0),
+        r = i(8),
+        s = i(62),
+        a = i(81),
+        _ = i(211),
+        l = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
             }
-            return n(e, t), e.prototype._initializeMapImages = function () {
-                this._maps = [];
-                for (var t = 0; t < 3; t++) {
-                    var e = new PIXI.Sprite;
-                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(4)][t], e.x = 276 + 225 * t, e.y = 83, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
-                }
-            }, e.prototype._createMapShowTweens = function () {
-                return this.__createMapShowTweens(700)
-            }, e.prototype._initializeStampImages = function () {
-                this._stamps = [];
-                for (var t = 0; t < 2; t++) {
-                    var e = new o.Sprite;
-                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(0), e.x = 433 + 225 * t, e.y = 233.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
-                }
-            }, e.prototype._createStampShowTweens = function () {
-                return this.__createStampShowTweens(700)
-            }, e.prototype._showText = function () {
-                this.__showText(new _)
-            }, e.prototype._createStampLast = function () {
-                var t = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(1),
-                    e = new o.Sprite(t);
-                return e.anchor.set(.5), e.position.set(1001, 275.5), e.alpha = 0, e
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), this._message_box.initializeForSlot(n, e, i)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
             }, e
-        }(s.TaskEventEndingBase);
-    e.TaskEventEnding2 = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(5), this._text1.position.set(108, 248), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(6), this._text2.position.set(243, 508)
-        }, e
-    }(s.TextsBase)
+        }(PIXI.Container);
+    e.BonusSlot = l
 }

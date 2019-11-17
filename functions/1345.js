@@ -19,16 +19,49 @@ const function1345 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_practice/midnight_battle", n._data = e, n._debug = i, n
+    var o = i(279),
+        r = i(1346),
+        s = i(1355),
+        a = i(1449),
+        _ = i(1462),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "data", {
+                get: function () {
+                    return this._data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
+            }, e.prototype.dispose = function () {
+                this._view.dispose(), t.prototype.dispose.call(this)
+            }, e.prototype.start = function () {
+                var t = this;
+                new r.TaskInit(this).start(function () {
+                    t._main()
+                })
+            }, e.prototype._main = function () {
+                var t = this;
+                new s.TaskMain(this).start(function () {
+                    t._end()
+                })
+            }, e.prototype._end = function () {
+                var t = this.data.model.deck_f.ships,
+                    e = this.data.model.deck_e.ships;
+                this.data.model.ship_info.add(t, e);
+                var i = (new Date).getTime();
+                this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
             }, e
-        }(o.APIBase);
-    e.APIPracticeDayToNight = r
+        }(o.BattleSceneBase);
+    e.BattleScene = l
 }

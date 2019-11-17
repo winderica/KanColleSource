@@ -1,10 +1,6 @@
 const function244 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), n(i(417)), n(i(415)), n(i(1205)), n(i(1206))
+    }), e.POSTER_GIRL = "sanma", e.POSTER_KEY_1 = "duty_poster_1", e.POSTER_KEY_2 = "duty_poster_2", e.BUTAI_SAIHENSEI = [626, 629, 630, 659, 660]
 }

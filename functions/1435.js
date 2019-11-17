@@ -19,163 +19,49 @@ const function1435 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(126),
-        s = i(2),
-        a = i(12),
-        _ = i(6),
-        l = i(16),
-        u = i(1),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._result = !1, i._onSelect = function (t) {
-                    _.SE.play("106"), i._result = t, i._hide()
-                }, i._scene = e, i
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._layer = new h(this._onSelect), this._layer.position.set(o.default.width / 2, o.default.height / 2), this._layer.alpha = 0, this._scene.addChild(this._layer), this._scene.view.layer_title.show(7, this._scene), this._showBtns()
-            }, e.prototype._showBtns = function () {
-                var t = this;
-                this._layer.initialize(), createjs.Tween.get(this._layer).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    t._layer.activate()
-                })
-            }, e.prototype._hide = function () {
-                var t = this;
-                this._layer.deactivate(), this._scene.view.layer_title.hide(), createjs.Tween.get(this._layer.btn_not_night).to({
-                    x: -o.default.width / 2
-                }, 500), createjs.Tween.get(this._layer.btn_go_night).to({
-                    x: o.default.width / 2
-                }, 500).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.removeChild(this._layer), this._layer.dispose(), this._scene = null, this._layer = null, t.prototype._endTask.call(this)
-            }, e
-        }(s.TaskBase);
-    e.TaskGoNightBattleSelect = c;
-    var h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._btn_not_night = new f(e), i._btn_not_night.position.set(-162, 0), i._btn_go_night = new y(e), i._btn_go_night.position.set(162, 0), i.addChild(i._btn_not_night), i.addChild(i._btn_go_night), i
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "btn_not_night", {
-                get: function () {
-                    return this._btn_not_night
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_go_night", {
-                get: function () {
-                    return this._btn_go_night
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._btn_not_night.initialize(), this._btn_go_night.initialize()
-            }, e.prototype.activate = function () {
-                this._btn_not_night.activate(), this._btn_go_night.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_not_night.deactivate(), this._btn_go_night.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn_not_night.dispose(), this._btn_go_night.dispose()
-            }, e
-        }(PIXI.Container),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    n._setTexture(!0), n._wave.start()
-                }, n._onMouseOut = function () {
-                    n._setTexture(!1), n._wave.stop()
-                }, n._onClick = function () {
-                    0 != n.buttonMode && null != n._cb_onClick && n._cb_onClick(n._value)
-                }, n._value = e, n._cb_onClick = i, n._wave = new d, n._btn = new PIXI.Sprite, n.interactive = !0, n.addChild(n._wave), n.addChild(n._btn), n
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = [new PIXI.Point(-21, -71), new PIXI.Point(78, -60), new PIXI.Point(96, 14), new PIXI.Point(17, 77), new PIXI.Point(-81, 65), new PIXI.Point(-99, -8)];
-                this.hitArea = new PIXI.Polygon(t), this._wave.initialize(), this._setTexture(!1)
-            }, e.prototype._drawHitArea = function (t) {
-                if (null != t) {
-                    var e = new PIXI.Graphics;
-                    e.beginFill(65280, .3), e.moveTo(t[0].x, t[0].y);
-                    for (var i = 1; i < t.length; i++) e.lineTo(t[i].x, t[i].y);
-                    e.endFill(), this.addChildAt(e, 0)
-                }
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(u.EventType.MOUSEOVER, this._onMouseOver), this.on(u.EventType.MOUSEOUT, this._onMouseOut), this.on(u.EventType.CLICK, this._onClick), 1 == r.InteractiveUtil.isOnMouse(this) && this._onMouseOver())
-            }, e.prototype.deactivate = function () {
-                this.off(u.EventType.MOUSEOVER, this._onMouseOver), this.off(u.EventType.MOUSEOUT, this._onMouseOut), this.off(u.EventType.CLICK, this._onClick), this.buttonMode = !1
-            }, e.prototype.dispose = function () {
-                this._wave.dispose(), this.deactivate(), this._cb_onClick = null
-            }, e
-        }(PIXI.Container),
-        d = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._wave1 = new a.Sprite, e._wave1.anchor.set(.5), e._initWave(e._wave1), e._wave2 = new a.Sprite, e._wave2.anchor.set(.5), e._initWave(e._wave2), e._wave_tweens = new Array(2), e.addChild(e._wave1), e.addChild(e._wave2), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._wave1.texture = l.BATTLE_MAIN.getTexture(3), this._wave2.texture = l.BATTLE_MAIN.getTexture(3)
-            }, e.prototype.dispose = function () {
-                this.stop()
-            }, e.prototype._initWave = function (t) {
-                t.scale.set(0), t.alpha = 0
-            }, e.prototype.start = function () {
-                this.stop(), this._wave_tweens[0] = createjs.Tween.get(this._wave1, {
-                    loop: !0
-                }).to({
-                    alpha: 1,
-                    scaleX: .4,
-                    scaleY: .4
-                }, 400).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 400).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 0).wait(200), this._wave_tweens[1] = createjs.Tween.get(this._wave2, {
-                    loop: !0
-                }).wait(200).to({
-                    alpha: 1,
-                    scaleX: .4,
-                    scaleY: .4
-                }, 400).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 400).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 0)
-            }, e.prototype.stop = function () {
-                for (var t = 0; t < this._wave_tweens.length; t++) null != this._wave_tweens[t] && (this._wave_tweens[t].setPaused(!0), this._wave_tweens[t] = null);
-                this._initWave(this._wave1), this._initWave(this._wave2)
+            return n(e, t), e.prototype._getNormalAttackType = function (t, e, i, n) {
+                if (1 == n) return 1;
+                var r = t.stype;
+                if (7 == r && 1 == e.isSubMarine()) return 2;
+                if (7 == r || 11 == r || 18 == r) {
+                    var s = t.mst_id,
+                        a = t.name;
+                    return 432 == s || 353 == s || 433 == s ? 0 : "\u30ea\u30b3\u30ea\u30b9\u68f2\u59eb" == a ? 0 : "\u6df1\u6d77\u6d77\u6708\u59eb" == a ? 0 : 1
+                }
+                if (t.isSubMarine()) return 3;
+                if (e.isSubMarine()) return 6 == r || 10 == r || 16 == r || 17 == r ? 1 : 2;
+                var _ = o.default.model.slot.getMst(i);
+                return null == _ || 5 != _.equipTypeSp && 32 != _.equipTypeSp ? 0 : 3
+            }, e.prototype._hasRocketEffect = function (t, e, i) {
+                if (0 == e.isGround()) return !1;
+                if (1 == i) return !1;
+                for (var n = t.slots, o = 0, r = n; o < r.length; o++) {
+                    var s = r[o];
+                    if (null != s) {
+                        var a = s.mst_id;
+                        if (126 == a || 346 == a || 347 == a || 348 == a || 349 == a) return !0
+                    }
+                }
+                return !1
+            }, e.prototype._getDaihatsuEffectType = function (t, e) {
+                var i = ["\u96e2\u5cf6\u68f2\u59eb", "\u7832\u53f0\u5c0f\u9b3c", "\u96c6\u7a4d\u5730\u68f2\u59eb", "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca", "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca", "\u98db\u884c\u5834\u59eb"];
+                if (1 == t.hasSlot(355) && 1 == e.isGround()) return 6;
+                if (1 == t.hasSlot(230)) return 1 == e.isGround() ? 5 : 0;
+                if (1 == t.hasSlot(355) && i.indexOf(e.name) >= 0) return 6;
+                if (1 == t.hasSlot(167)) {
+                    if (1 == t.isSubMarine()) {
+                        if (1 == e.isGround()) return 4
+                    } else if (i.indexOf(e.name) >= 0) return 4;
+                    return 0
+                }
+                return 1 == t.hasSlot(166) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(193) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(68) && i.indexOf(e.name) >= 0 ? 3 : 0
             }, e
-        }(PIXI.Container),
-        f = function (t) {
-            function e(e) {
-                return t.call(this, !1, e) || this
-            }
-            return n(e, t), e.prototype._setTexture = function (t) {
-                1 == t ? (this._btn.texture = l.BATTLE_MAIN.getTexture(5), this._btn.position.set(-128, -105)) : (this._btn.texture = l.BATTLE_MAIN.getTexture(4), this._btn.position.set(-99, -78))
-            }, e
-        }(p),
-        y = function (t) {
-            function e(e) {
-                return t.call(this, !0, e) || this
-            }
-            return n(e, t), e.prototype._setTexture = function (t) {
-                1 == t ? (this._btn.texture = l.BATTLE_MAIN.getTexture(7), this._btn.position.set(-129, -105)) : (this._btn.texture = l.BATTLE_MAIN.getTexture(6), this._btn.position.set(-101, -78))
-            }, e
-        }(p)
+        }(r.TaskBase);
+    e.PhaseHougekiBase = s
 }

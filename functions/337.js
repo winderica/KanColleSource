@@ -19,24 +19,20 @@ const function337 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = e._textureOn
-                }, e._onMouseOut = function () {
-                    e.texture = e._textureOff
-                }, e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e._textureOff = o.REMODEL_MAIN.getTexture(1), e._textureOn = o.REMODEL_MAIN.getTexture(2), e.texture = e._textureOff, e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+    var o = i(0),
+        r = i(11),
+        s = i(15),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kaisou/lock", i.api_slotitem_id = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._cb_onClick = t
-            }, e.prototype.dispose = function () {
-                this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_slotitem_id = this.api_slotitem_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked");
+                o.default.model.slot.get(this.api_slotitem_id).__setLocked__(e), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.CancelButton = s
+        }(r.APIBase);
+    e.SlotItemLockAPI = a
 }

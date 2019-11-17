@@ -19,46 +19,40 @@ const function527 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(528),
+    var o = i(7),
         r = function () {
-            function t() {
-                this._dic = {}
-            }
-            return t.prototype.get = function (t) {
-                var e = t.toString();
-                return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
-            }, t.prototype.getAllExId = function () {
-                return this._equippable_types_ex
-            }, t
+            function t() {}
+            return Object.defineProperty(t.prototype, "boko_max_ships", {
+                get: function () {
+                    var t = o.ObjUtil.getObject(this._o, "api_boko_max_ships");
+                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "quest_max", {
+                get: function () {
+                    var t = o.ObjUtil.getObject(this._o, "api_parallel_quest_max");
+                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "voice_server", {
+                get: function () {
+                    var t = o.ObjUtil.getObject(this._o, "api_voice_server_addr");
+                    return null == t ? "" : o.ObjUtil.getString(t, "api_string_value")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
         }();
-    e.ShipTypeModelHolder = r;
+    e.ServerConstModel = r;
     var s = function (t) {
         function e() {
-            return t.call(this) || this
+            return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.__setData__ = function (t) {
-            if (this._dic = {}, null != t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e],
-                        n = new o.ShipTypeModelEdit(i),
-                        r = n.id;
-                    if (r > 0) {
-                        var s = r.toString();
-                        this._dic[s] = n
-                    }
-                }
-                this._setExEtypes()
-            }
-        }, e.prototype.__setEquipTypeExData__ = function (t) {
-            this._equippable_types_ex = t, this._setExEtypes()
-        }, e.prototype._setExEtypes = function () {
-            var t = this._equippable_types_ex;
-            if (null != this._dic && null != t)
-                for (var e in this._dic) {
-                    var i = this._dic[e];
-                    i.__set_equippqble_types_ex__(t)
-                }
+        return n(e, t), e.prototype.setData = function (t) {
+            this._o = t
         }, e
     }(r);
-    e.ShipTypeModelHolderEdit = s
+    e.ServerConstModelEdit = s
 }

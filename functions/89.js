@@ -5,9 +5,9 @@ const function89 = function (t, e, i) {
     });
     var n = i(51),
         o = i(136),
-        r = i(28),
+        r = i(29),
         s = i(0),
-        a = i(785);
+        a = i(790);
     ! function (t) {
         function e(t, e) {
             var i = s.default.model.ship_upgrade.getRequiredLevel(t);

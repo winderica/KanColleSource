@@ -19,23 +19,32 @@ const function1397 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(471),
-        r = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this, e, i) || this;
-                return r._model = n, r._bannerGroup = o, r
+    var o = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._chara = [];
+            for (var i = 0; i < 3; i++) {
+                var n = new PIXI.Container;
+                e._chara.push(n), e.addChild(n)
             }
-            return n(e, t), e.prototype._getShips_f = function () {
-                return this._model.ships
-            }, e.prototype._getShips_e = function () {
-                return this._scene.data.model.deck_e.ships
-            }, e.prototype._getFlareBanner_f = function () {
-                var t = this._model.getFlareIndex_f();
-                return this._bannerGroup.getBanner(t)
-            }, e.prototype._getFlareBanner_e = function () {
-                var t = this._model.getFlareIndex_e();
-                return this._scene.view.bannerGroupLayer.getBanner(!1, t)
-            }, e
-        }(o.PhaseLightingBase);
-    e.PhaseAllyLighting = r
+            return e._explosion = new PIXI.Container, e.addChild(e._explosion), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "explosion", {
+            get: function () {
+                return this._explosion
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function (t) {}, e.prototype.dispose = function () {
+            for (var t = 0; t < 3; t++) this._chara[t].removeChildren(), this._chara[t] = null;
+            this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
+        }, e
+    }(PIXI.Container);
+    e.CutinNelsonTouchCanvas = o
 }

@@ -19,17 +19,30 @@ const function732 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_member/set_oss_condition", n._filter_status = e, n._japanese = i, n
+    var o = i(18),
+        r = i(2),
+        s = i(14),
+        a = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_language_type = this._japanese ? 0 : 1;
-                for (var e = 0; e < this._filter_status.length; e++) this._post_data["api_oss_items[" + e + "]"] = this._filter_status[e] ? 1 : 0;
-                t.prototype._connect.call(this)
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = new s.UIImageLoader("organize");
+                switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_filter.json"), o.COMBINABLE && e.add("organize_rengo.json"), o.MAMIYA_IRAKO_SEASON) {
+                    case 2:
+                        e.add("organize_hokyu_dialog_xmas.json");
+                        break;
+                    case 4:
+                        e.add("organize_hokyu_dialog_summer.json");
+                        break;
+                    default:
+                        e.add("organize_hokyu_dialog_default.json")
+                }
+                e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(o.APIBase);
-    e.UpdateListStatusAPI = r
+        }(r.TaskBase);
+    e.TaskLoadResourcesOrganize = a
 }

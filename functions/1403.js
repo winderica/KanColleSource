@@ -19,81 +19,32 @@ const function1403 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(12),
-        s = i(178),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._light = new r.Sprite, e._light.anchor.set(0, .5), e.addChild(e._light), e._animatin_task = new _(e), e
+    var o = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._chara = [];
+            for (var i = 0; i < 3; i++) {
+                var n = new PIXI.Container;
+                e._chara.push(n), e.addChild(n)
             }
-            return n(e, t), Object.defineProperty(e.prototype, "light", {
-                get: function () {
-                    return this._light
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                var e;
-                e = 1 == t ? 8 : 7, this._light.texture = s.BATTLE_NIGHT.getTexture(e)
-            }, e.prototype.getAnimationTask = function () {
-                return this._animatin_task
-            }, e
-        }(PIXI.Container);
-    e.SearchLight = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._light = e, i._light.light.scale.x = .74, i._light.light.alpha = 0, i
+            return e._explosion = new PIXI.Container, e.addChild(e._explosion), e
         }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = this._light.light;
-            createjs.Tween.get(e).to({
-                scaleX: .95,
-                scaleY: 1.12,
-                alpha: .35
-            }, 433).to({
-                scaleX: 1,
-                scaleY: 1.16,
-                alpha: .5
-            }, 166).to({
-                scaleX: .98,
-                scaleY: 1.16,
-                alpha: .65
-            }, 166).to({
-                scaleX: .9,
-                scaleY: 1.12,
-                alpha: 1
-            }, 433).to({
-                scaleX: .9,
-                scaleY: 1.12,
-                alpha: .43
-            }, 200).to({
-                scaleX: .95,
-                scaleY: 1.12,
-                alpha: .35
-            }, 266).to({
-                scaleX: 1,
-                scaleY: 1.16,
-                alpha: .5
-            }, 166).to({
-                scaleX: .98,
-                scaleY: 1.16,
-                alpha: .65
-            }, 166).to({
-                scaleX: .9,
-                scaleY: 1.12,
-                alpha: 1
-            }, 433).to({
-                scaleX: .9,
-                scaleY: 1.12,
-                alpha: 0
-            }, 200).wait(200).call(function () {
-                t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._light = null, t.prototype._endTask.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "explosion", {
+            get: function () {
+                return this._explosion
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.dispose = function () {
+            for (var t = 0; t < 3; t++) this._chara[t].removeChildren(), this._chara[t] = null;
+            this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
         }, e
-    }(o.TaskBase)
+    }(PIXI.Container);
+    e.CutinColoradoAttackCanvas = o
 }

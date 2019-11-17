@@ -20,102 +20,34 @@ const function1347 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(20),
-        s = i(16),
-        a = [{
-            x: 0,
-            y: 0,
-            delay: 0
-        }, {
-            x: 0,
-            y: -23,
-            delay: 60
-        }, {
-            x: -45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 0,
-            y: 30,
-            delay: 120
-        }, {
-            x: -75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 0,
-            y: -53,
-            delay: 180
-        }, {
-            x: -98,
-            y: 45,
-            delay: 180
-        }, {
-            x: 98,
-            y: 45,
-            delay: 180
-        }],
-        _ = function (t) {
+        r = i(14),
+        s = function (t) {
             function e(e, i) {
+                void 0 === e && (e = !1), void 0 === i && (i = !1);
                 var n = t.call(this) || this;
-                return n._layer = e, n._pos = i, n
+                return n._night = e, n._combined = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._container = new PIXI.Container, this._container.x = this._pos.x, this._container.y = this._pos.y, this._layer.addChild(this._container);
-                for (var e = new r.TweenTask, i = 0, n = a; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        var n = new l;
-                        n.Initialize(), n.x = i.x + 24 * Math.random() - 12, n.y = i.y + 6 * Math.random() - 3, n.x -= 18, n.y -= 18, n.alpha = 0;
-                        var o = .6 * Math.random(),
-                            r = createjs.Tween.get(n);
-                        r.wait(i.delay), r.call(function () {
-                            n.activate(), t._container.addChild(n)
-                        }), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * o), r.to({
-                            alpha: 0
-                        }, 100), r.wait(100), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * (.6 - o)), r.to({
-                            alpha: 0
-                        }, 200), r.call(function () {
-                            t._container.removeChild(n), n.deactivate()
-                        }), e.addTween(r)
-                    }(o)
-                }
-                e.start(function () {
-                    t._layer.removeChild(t._container), t._endTask()
+                this._loadCommon()
+            }, e.prototype._loadCommon = function () {
+                var t = this,
+                    e = new r.UIImageLoader("common");
+                e.add("common_explosion.json"), e.load(function () {
+                    t._loadImage()
                 })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._pos = null, this._container = null, t.prototype._endTask.call(this)
+            }, e.prototype._loadImage = function () {
+                var t = this,
+                    e = new r.UIImageLoader("battle");
+                e.add("battle_telop/txt_start.png", "battle_telop_txt_start"), e.add("battle_telop/mes_bg_f.png", "battle_telop_mes_bg_f"), e.add("battle_telop/mes_bg_e.png", "battle_telop_mes_bg_e"), e.add("battle_telop/mes2_f_hbg.png", "battle_telop_mes2_f_hbg"), e.add("battle_telop/mes2_e_hbg.png", "battle_telop_mes2_e_hbg"), e.add("battle_telop/mes2_f_ybg.png", "battle_telop_mes2_f_ybg"), e.add("battle_telop/mes2_e_ybg.png", "battle_telop_mes2_e_ybg"), e.add("battle_telop/mes_f_hbg.png", "battle_telop_mes_f_hbg"), e.add("battle_telop/mes_f_ybg.png", "battle_telop_mes_f_ybg"), e.add("battle_telop/mes_e_hbg.png", "battle_telop_mes_e_hbg"), e.add("battle_telop/mes_e_ybg.png", "battle_telop_mes_e_ybg"), e.add("battle_telop/mes_f_hbg3.png", "battle_telop_kkcutin_f"), e.add("battle_telop/mes_e_hbg3.png", "battle_telop_kkcutin_e"), e.load(function () {
+                    t._loadSpriteSheet()
+                })
+            }, e.prototype._loadSpriteSheet = function () {
+                var t = this,
+                    e = new r.UIImageLoader("battle");
+                e.add("battle_main.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop/mes_ybg3_f.png", "battle_telop_mes_ybg3_f"), e.add("battle_telop/mes_ybg3_e.png", "battle_telop_mes_ybg3_e"), e.add("battle_telop/mes_ybg4_f.png", "battle_telop_mes_ybg4_f"), e.add("battle_telop/mes_ybg4_e.png", "battle_telop_mes_ybg4_e"), e.add("battle_telop/mes_ybg6_f.png", "battle_telop_mes_ybg6_f"), e.add("battle_telop/mes_ybg6_e.png", "battle_telop_mes_ybg6_e")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_main2.json"), e.add("battle_airunit.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(o.TaskBase);
-    e.TaskBannerParticle = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._update = function (t) {
-                e._img.texture = 1 == t ? s.BATTLE_MAIN.getTexture(62) : s.BATTLE_MAIN.getTexture(63), e._img.x = e._img.width / 2, e._img.y = e._img.height / 2
-            }, e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.Initialize = function () {
-            this._update(!0)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._update(!0), this._t = createjs.Tween.get(null, {
-                loop: !0
-            }).wait(300).call(this._update, [!1]).wait(300).call(this._update, [!0]))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+    e.TaskLoadResourcesBattle = s
 }

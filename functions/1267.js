@@ -20,107 +20,122 @@ const function1267 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(27),
-        a = i(38),
-        _ = i(13),
-        l = i(1268),
+        r = i(55),
+        s = i(26),
+        a = i(7),
+        _ = i(2),
+        l = i(14),
         u = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._playVoiceFrom = function () {
-                    o._scene.view.message_box.text = "\u8266\u968a\u306b\u6d0b\u4e0a\u88dc\u7d66\u3092\u884c\u3044\u307e\u3059\u3002";
-                    var t = new s.ParallelTask;
-                    t.add(new a.WaitTask(1e3)), t.add(new c(o._ship_from.mst_id, 26)), t.start(function () {
-                        o._showShipTo()
-                    })
-                }, o._playVoiceTo = function () {
-                    var t = new s.ParallelTask;
-                    t.add(new a.WaitTask(2e3)), t.add(new c(o._ship_to.mst_id, 27)), t.start(function () {
-                        o._hideShips()
-                    })
-                }, o._scene = e, o._model = i, o._data = n, o
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o)
+                    for (var s = 0, a = o; s < a.length; s++) {
+                        var _ = a[s];
+                        r._memData[_.no] = _, r._memDataNum++
+                    }
+                return r._version = l.UIImageLoader.getResourceVersionMap(r._map_id), r
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadShipResource()
-            }, e.prototype._loadShipResource = function () {
-                var t = this;
-                this._ship_from = this._getShip(this._data.ship_mem_id), this._ship_to = this._getShip(this._data.ship_mem_id_supplied);
-                var e = new _.ShipLoader;
-                e.add(this._ship_from.mst_id, this._ship_from.isDamaged(), "full"), null != this._ship_to && e.add(this._ship_to.mst_id, this._ship_to.isDamaged(), "full"), e.load(function () {
-                    t._anim()
-                })
-            }, e.prototype._anim = function () {
                 var t = this,
-                    e = this._ship_from.mst_id,
-                    i = this._ship_from.isDamaged(),
-                    n = o.default.resources.getShip(e, i, "full");
-                this._ship_from_sprite = new PIXI.Sprite(n);
-                var r = o.default.model.ship_graph.get(e).getMapOffset(i);
-                this._ship_from_x = -80 + r.x, this._ship_from_sprite.x = this._ship_from_x - 300, this._ship_from_sprite.y = -93 + r.y, this._ship_from_sprite.alpha = 0, this._scene.view.chara_layer.addChild(this._ship_from_sprite), createjs.Tween.get(this._ship_from_sprite).to({
-                    x: this._ship_from_x,
-                    alpha: 1
-                }, 750, createjs.Ease.quadInOut), createjs.Tween.get(null).wait(450).call(function () {
-                    t._playVoiceFrom()
+                    e = this._getPath("info.json" + (this._version ? "?version=" + this._version : ""));
+                axios.get(e).then(function (e) {
+                    var i = a.ObjUtil.getObject(e, "data");
+                    t._mapInfo.add(i), t._loadSpriteSheet()
+                }).catch(function (e) {
+                    t._failedEnd()
                 })
-            }, e.prototype._showShipTo = function () {
-                var t = this;
-                if (null == this._ship_to) createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._hideShips()
-                });
+            }, e.prototype._loadSpriteSheet = function () {
+                var t = this,
+                    e = this._getPath("image.json");
+                if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo();
                 else {
-                    var e = this._ship_to.mst_id,
-                        i = this._ship_to.isDamaged(),
-                        n = o.default.resources.getShip(e, i, "full");
-                    this._ship_to_sprite = new PIXI.Sprite(n);
-                    var r = o.default.model.ship_graph.get(e).getMapOffset(i);
-                    this._ship_to_x = 520 + r.x, this._ship_to_sprite.x = this._ship_to_x + 300, this._ship_to_sprite.y = -93 + r.y, this._ship_to_sprite.alpha = 0, this._scene.view.chara_layer.addChild(this._ship_to_sprite), createjs.Tween.get(this._ship_to_sprite).to({
-                        x: this._ship_to_x,
-                        alpha: 1
-                    }, 750, createjs.Ease.quadInOut), createjs.Tween.get(null).wait(450).call(function () {
-                        t._playVoiceTo()
+                    var i = new PIXI.loaders.Loader;
+                    null != this._version && (i.defaultQueryString = "version=" + this._version), i.add(e), i.load(function () {
+                        t._loadAddingInfo()
                     })
                 }
-            }, e.prototype._hideShips = function () {
+            }, e.prototype._loadAddingInfo = function () {
                 var t = this;
-                createjs.Tween.get(this._ship_from_sprite).to({
-                    x: this._ship_from_x - 300,
-                    alpha: 0
-                }, 300, createjs.Ease.sineIn).call(function () {
-                    t._shipIconEffect()
-                }), null != this._ship_to && createjs.Tween.get(this._ship_to_sprite).to({
-                    x: this._ship_to_x + 300,
-                    alpha: 0
-                }, 300, createjs.Ease.sineIn)
-            }, e.prototype._shipIconEffect = function () {
-                var t = this,
-                    e = this._data.num_of_use,
-                    i = this._model.sortie.now_cell_no,
-                    n = this._scene.resInfo.getReplenishConfirmOffsets(i),
-                    o = null != n ? n.bln : null;
-                new l.TaskReplenishmentBalloonEffect(this._scene, e, o).start(function () {
-                    t._scene.view.message_box.text = "", createjs.Tween.get(null).wait(500).call(function () {
-                        t._endTask()
+                if (this._mapInfo.spots.length >= this._memDataNum)
+                    if (445 == this._map_id) {
+                        var e = new l.UIImageLoader("map");
+                        e.add("map_event_anime.json"), e.load(function () {
+                            t._createMapBackGround()
+                        })
+                    } else this._createMapBackGround();
+                else {
+                    var i = this._mapInfo.spots.length,
+                        n = this._getPath("info" + i + ".json" + (this._version ? "?version=" + this._version : ""));
+                    axios.get(n).then(function (e) {
+                        var n = a.ObjUtil.getObject(e, "data");
+                        t._mapInfo.add(n), t._loadAddingSpriteSheet(i)
+                    }).catch(function (e) {
+                        t._failedEnd()
                     })
-                })
-            }, e.prototype._getShip = function (t) {
-                for (var e = this._model.deck_f.ships, i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o && o.mem_id == t) return o
                 }
-                return null
+            }, e.prototype._loadAddingSpriteSheet = function (t) {
+                var e = this,
+                    i = this._getPath("image" + t + ".json");
+                if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo();
+                else {
+                    var n = new PIXI.loaders.Loader;
+                    null != this._version && (n.defaultQueryString = "version=" + this._version), n.add(i), n.load(function () {
+                        e._loadAddingInfo()
+                    })
+                }
+            }, e.prototype._createMapBackGround = function () {
+                for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = r.MapUtil.toResKey(this._map_id),
+                        s = "map" + o + "_" + n.img,
+                        a = PIXI.Texture.fromFrame(s);
+                    this._mapView.bg.addBGLayer(a, n.name)
+                }
+                445 == this._map_id && this._mapView.bg.setMapAnime(), this._createLabel()
+            }, e.prototype._createLabel = function () {
+                for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = r.MapUtil.toResKey(this._map_id),
+                        s = "map" + o + "_" + n.img,
+                        a = PIXI.Texture.fromFrame(s);
+                    this._mapView.bg.addLabel(a, n.x, n.y)
+                }
+                this._createSpots()
+            }, e.prototype._createSpots = function () {
+                for (var t = this._mapInfo.spots, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = n.no;
+                    if (!(this._memDataNum > 0 && null == this._memData[o]) && (this._mapView.addSpot(this._map_id, o, this._mapInfo), null != n.landing)) {
+                        var r = n.x + n.landing.x,
+                            s = n.y + n.landing.y;
+                        this._mapView.spotLayer.addFlag(o, r, s)
+                    }
+                }
+                this._createAirBase()
+            }, e.prototype._createAirBase = function () {
+                var t = this._mapInfo.getAirBasePos();
+                null != t && this._mapView.airbaseLayer.create(t), this._initCellColor()
+            }, e.prototype._initCellColor = function () {
+                for (var t = [], e = this._mapView.spotLayer.getAllSpots(), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    if (!(t.indexOf(o.no) >= 0)) {
+                        for (var r = !1, s = 0, a = 0, _ = this._mapInfo.getSameSpotData(o.no), l = 0, u = _; l < u.length; l++) {
+                            var c = u[l];
+                            t.push(c.no), 0 == s && (s = c.color);
+                            var h = this._memData[c.no];
+                            null != h && (r = r || h.passed, 0 == a && (a = h.color))
+                        }
+                        var p = _[0].no,
+                            d = this._mapView.spotLayer.getSpot(p);
+                        1 == r ? d.setColor(a) : d.setColor(s)
+                    }
+                }
+                this._endTask()
+            }, e.prototype._getPath = function (t) {
+                var e = r.MapUtil.toAreaID(this._map_id),
+                    i = r.MapUtil.toMapNo(this._map_id);
+                return o.default.settings.path_root + "resources/map/" + s.MathUtil.zeroPadding(e, 3) + "/" + s.MathUtil.zeroPadding(i, 2) + "_" + t
             }, e
-        }(r.TaskBase);
-    e.TaskReplenishmentEffect = u;
-    var c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onVoiceEnd = function () {
-                n._endTask()
-            }, n._mst_id = e, n._voice_id = i, n
-        }
-        return n(e, t), e.prototype._start = function () {
-            o.default.option.vol_voice <= 0 ? this._endTask() : o.default.sound.voice.play(this._mst_id.toString(), this._voice_id, this._onVoiceEnd)
-        }, e
-    }(r.TaskBase)
+        }(_.TaskBase);
+    e.TaskCreateMap = u
 }

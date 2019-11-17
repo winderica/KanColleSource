@@ -19,55 +19,32 @@ const function452 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(29),
-        s = i(72),
-        a = i(20),
-        _ = i(38),
-        l = i(6),
-        u = i(142),
-        c = i(181),
-        h = i(448),
-        p = i(182),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(16),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._seiku = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data_", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._log();
-                var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new u.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
-                var t = this,
-                    e = new o.ParallelTask,
-                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
-                e.add((new a.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
-                    t._fireDogFight()
-                }, 750)), e.add(new s.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 900)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 1050)), e.add(new s.FuncTask(function () {
-                    t._antiAircraft()
-                }, 1200)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 1350)), e.add((new r.SerialTask).add(new _.WaitTask(1700)).add((new o.ParallelTask).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 2950)), e.add(new s.FuncTask(function () {
-                    t._showDamage()
-                }, 3300)), e.add(new s.FuncTask(function () {
-                    t._showDamageNumber()
-                }, 3600)), this._main_task = e, this._main_task.start(function () {})
-            }, e.prototype._showSeikuResult = function () {
-                var t = this._scene.view.layer_content;
-                new h.TaskAirWarShowSeiku(t, this.data_.seiku).start()
+            return n(e, t), e.prototype._start = function () {
+                var t = -1;
+                if (1 == this._seiku ? t = 136 : 2 == this._seiku ? t = 140 : 4 == this._seiku && (t = 138), t < 0) this._endTask();
+                else {
+                    var e = r.BATTLE_MAIN.getTexture(t);
+                    this._content = new PIXI.Sprite(e), this._anim()
+                }
+            }, e.prototype._anim = function () {
+                var t = this;
+                this._content.position.set(600, 600), this._content.anchor.set(.5), this._content.alpha = 0, this._layer.addChild(this._content), createjs.Tween.get(this._content).to({
+                    alpha: 1
+                }, 400).wait(1800).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._content), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._content = null
             }, e
-        }(c.TaskAircraftFlightBase);
-    e.TaskAirWar = d
+        }(o.TaskBase);
+    e.TaskAirWarShowSeiku = s
 }

@@ -20,140 +20,161 @@ const function382 = function (t, e, i) {
         value: !0
     });
     var o = i(15),
-        r = i(239),
+        r = i(240),
         s = function (t) {
             function e(e) {
-                var i = t.call(this, e) || this;
-                i._list = [], i._isLoaded = !1;
-                for (var n = 0; n < 10; n++) i._list[n] = new a;
-                return i
+                return t.call(this, e) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "isLoaded", {
+            return n(e, t), Object.defineProperty(e.prototype, "nickname", {
                 get: function () {
-                    return this._isLoaded
-                },
-                set: function (t) {
-                    this._isLoaded = t
+                    return this._nickname
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "count", {
+            }), Object.defineProperty(e.prototype, "comment", {
                 get: function () {
-                    return this._count
+                    return this._comment
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "pageCount", {
+            }), Object.defineProperty(e.prototype, "level", {
                 get: function () {
-                    return this._page_count
+                    return this._level
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "dispPage", {
+            }), Object.defineProperty(e.prototype, "rank", {
                 get: function () {
-                    return this._disp_page
+                    return this._rank
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "list", {
+            }), Object.defineProperty(e.prototype, "experience_now", {
                 get: function () {
-                    return this._list
+                    return this._experience_now
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.SetAll = function (t, e) {
-                this._count = o.ObjUtil.getNumber(t, "api_count"), this._page_count = o.ObjUtil.getNumber(t, "api_page_count"), this._disp_page = o.ObjUtil.getNumber(t, "api_disp_page");
-                for (var i = o.ObjUtil.getObjectArray(t, "api_list"), n = 0, r = 0, s = i; r < s.length; r++) {
-                    var a = s[r];
-                    this._list[n].rank = o.ObjUtil.getNumber(a, "api_mxltvkpyuklh"), this._list[n].nickname = o.ObjUtil.getString(a, "api_mtjmdcwtvhdr"), this._list[n].comment = o.ObjUtil.getString(a, "api_itbrdpdbkynm"), this._list[n].flagtype = o.ObjUtil.getNumber(a, "api_pbgkfylkbjuy"), this._list[n].classrank = o.ObjUtil.getNumber(a, "api_pcumlrymlujh"), this._list[n].medals = o.ObjUtil.getNumber(a, "api_itslcqtmrxtf"), this._list[n].score[0] = o.ObjUtil.getNumber(a, "api_wuhnhojjxmke"), this._list[n].score[1] = o.ObjUtil.getNumber(a, "api_xlqcmisdyfiu"), this._list[n].score[2] = o.ObjUtil.getNumber(a, "api_mcouotbbbzpx"), this._list[n].isLoaded = !0, n++
-                }
-                for (var _ = n; _ < n; _++) this._list[n].isLoaded = !1;
-                i = null, this._isLoaded = !0, 0 == e && this._disp_page > 0 && this.SetAll(t, this._disp_page)
-            }, e.prototype.remove_list = function () {
-                for (var t = 0; t < this._list.length; t++) this._list[t].dispose();
-                this._list = null
+            }), Object.defineProperty(e.prototype, "experience_next", {
+                get: function () {
+                    return this._experience_next
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "warWin", {
+                get: function () {
+                    return this._war_win
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "warLose", {
+                get: function () {
+                    return this._war_lose
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "warRate", {
+                get: function () {
+                    return this._war_rate
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "missionCount", {
+                get: function () {
+                    return this._mission_count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "missionSuccess", {
+                get: function () {
+                    return this._mission_success
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "missionRate", {
+                get: function () {
+                    return this._mission_rate
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "practiceWin", {
+                get: function () {
+                    return this._practice_win
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "practiceLose", {
+                get: function () {
+                    return this._practice_lose
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "practiceRate", {
+                get: function () {
+                    return this._practice_rate
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "deckNum", {
+                get: function () {
+                    return this._deck
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kDockNum", {
+                get: function () {
+                    return this._kdoc
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "nDockNum", {
+                get: function () {
+                    return this._ndoc
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipNum", {
+                get: function () {
+                    return this._shipNow
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipMax", {
+                get: function () {
+                    return this._shipMax
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slotitemNum", {
+                get: function () {
+                    return this._slotitemNow
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slotitemMax", {
+                get: function () {
+                    return this._slotitemMax
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "furnitureNum", {
+                get: function () {
+                    return this._furniture
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "materialMax", {
+                get: function () {
+                    return this._material_max
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.SetAll = function (t) {
+                var e;
+                this._nickname = o.ObjUtil.getString(t, "api_nickname"), this._comment = o.ObjUtil.getString(t, "api_cmt"), this._level = o.ObjUtil.getNumber(t, "api_level"), this._rank = o.ObjUtil.getNumber(t, "api_rank");
+                var i = o.ObjUtil.getNumArray(t, "api_experience");
+                this._experience_now = i[0], this._experience_next = i[1], i = null, e = o.ObjUtil.getNumArray(t, "api_war"), this._war_win = o.ObjUtil.getNumber(e, "api_win"), this._war_lose = o.ObjUtil.getNumber(e, "api_lose"), this._war_rate = o.ObjUtil.getString(e, "api_rate"), e = o.ObjUtil.getNumArray(t, "api_mission"), this._mission_count = o.ObjUtil.getNumber(e, "api_count"), this._mission_success = o.ObjUtil.getNumber(e, "api_success"), this._mission_rate = o.ObjUtil.getString(e, "api_rate"), e = o.ObjUtil.getNumArray(t, "api_practice"), this._practice_win = o.ObjUtil.getNumber(e, "api_win"), this._practice_lose = o.ObjUtil.getNumber(e, "api_lose"), this._practice_rate = o.ObjUtil.getString(e, "api_rate"), this._deck = o.ObjUtil.getNumber(t, "api_deck"), this._kdoc = o.ObjUtil.getNumber(t, "api_kdoc"), this._ndoc = o.ObjUtil.getNumber(t, "api_ndoc"), i = o.ObjUtil.getNumArray(t, "api_ship"), this._shipNow = i[0], this._shipMax = i[1], i = null, i = o.ObjUtil.getNumArray(t, "api_slotitem"), this._slotitemNow = i[0], this._slotitemMax = i[1], i = null, this._furniture = o.ObjUtil.getNumber(t, "api_furniture"), this._material_max = o.ObjUtil.getNumber(t, "api_material_max")
             }, e
         }(r.RecordModelBase);
-    e.RecordRankingModel = s;
-    var a = function () {
-        function t() {
-            this._score = [], this._isLoaded = !1
-        }
-        return Object.defineProperty(t.prototype, "isLoaded", {
-            get: function () {
-                return this._isLoaded
-            },
-            set: function (t) {
-                this._isLoaded = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "rank", {
-            get: function () {
-                return this._rank
-            },
-            set: function (t) {
-                this._rank = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "nickname", {
-            get: function () {
-                return this._nickname
-            },
-            set: function (t) {
-                this._nickname = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "comment", {
-            get: function () {
-                return this._comment
-            },
-            set: function (t) {
-                this._comment = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "flagtype", {
-            get: function () {
-                return this._flagtype
-            },
-            set: function (t) {
-                this._flagtype = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "classrank", {
-            get: function () {
-                return this._classrank
-            },
-            set: function (t) {
-                this._classrank = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "medals", {
-            get: function () {
-                return this._medals
-            },
-            set: function (t) {
-                this._medals = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "score", {
-            get: function () {
-                return this._score
-            },
-            set: function (t) {
-                this._score = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.dispose = function () {
-            this._score = null
-        }, t
-    }();
-    e.RecordRankingLineModel = a
+    e.RecordInfoModel = s
 }
