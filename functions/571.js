@@ -19,49 +19,163 @@ const function571 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(47),
-        r = i(17),
-        s = i(572),
-        a = function (t) {
+    var o = i(572),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._initialized = !1, e._furniture_layer = new s.FurnitureView, e.addChild(e._furniture_layer), e._contentLayer = new PIXI.Container, e.addChild(e._contentLayer), e._fadeLayer = new r.FadeBox(1), e._fadeLayer.hide(), e._fadeLayer.visible = !1, e.addChild(e._fadeLayer), e._overLayer = new PIXI.Graphics, e.addChild(e._overLayer), e
+                return e._tween = null, e._shogo_anime = [
+                    [{
+                        texture: 0,
+                        time: 100
+                    }, {
+                        texture: 4,
+                        time: 100
+                    }, {
+                        texture: 13,
+                        time: 100
+                    }, {
+                        texture: 14,
+                        time: 200
+                    }, {
+                        texture: 13,
+                        time: 100
+                    }, {
+                        texture: 4,
+                        time: 100
+                    }, {
+                        texture: 0,
+                        time: 500
+                    }, {
+                        texture: 15,
+                        time: 100
+                    }, {
+                        texture: 16,
+                        time: 100
+                    }, {
+                        texture: 17,
+                        time: 100
+                    }, {
+                        texture: 18,
+                        time: 100
+                    }, {
+                        texture: 19,
+                        time: 100
+                    }, {
+                        texture: 20,
+                        time: 100
+                    }, {
+                        texture: 5,
+                        time: 100
+                    }, {
+                        texture: 6,
+                        time: 100
+                    }, {
+                        texture: 7,
+                        time: 100
+                    }, {
+                        texture: 8,
+                        time: 100
+                    }, {
+                        texture: 9,
+                        time: 100
+                    }, {
+                        texture: 10,
+                        time: 100
+                    }, {
+                        texture: 11,
+                        time: 100
+                    }, {
+                        texture: 12,
+                        time: 100
+                    }, {
+                        texture: 0,
+                        time: 5400
+                    }],
+                    [{
+                        texture: 0,
+                        time: 100
+                    }, {
+                        texture: 21,
+                        time: 100
+                    }, {
+                        texture: 22,
+                        time: 100
+                    }, {
+                        texture: 23,
+                        time: 200
+                    }, {
+                        texture: 22,
+                        time: 100
+                    }, {
+                        texture: 21,
+                        time: 100
+                    }, {
+                        texture: 0,
+                        time: 500
+                    }, {
+                        texture: 24,
+                        time: 100
+                    }, {
+                        texture: 25,
+                        time: 100
+                    }, {
+                        texture: 26,
+                        time: 100
+                    }, {
+                        texture: 27,
+                        time: 100
+                    }, {
+                        texture: 25,
+                        time: 100
+                    }, {
+                        texture: 24,
+                        time: 100
+                    }, {
+                        texture: 0,
+                        time: 6200
+                    }],
+                    [{
+                        texture: 0,
+                        time: 100
+                    }, {
+                        texture: 1,
+                        time: 100
+                    }, {
+                        texture: 2,
+                        time: 100
+                    }, {
+                        texture: 3,
+                        time: 200
+                    }, {
+                        texture: 2,
+                        time: 100
+                    }, {
+                        texture: 1,
+                        time: 100
+                    }, {
+                        texture: 0,
+                        time: 7300
+                    }],
+                    [{
+                        texture: 0,
+                        time: 0
+                    }]
+                ], e._NowPlaying = !1, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "furnitureLayer", {
-                get: function () {
-                    return this._furniture_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "fadeLayer", {
-                get: function () {
-                    return this._fadeLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "overLayer", {
-                get: function () {
-                    return this._overLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.isInitialized = function () {
-                return this._initialized
-            }, e.prototype.initialize = function () {
-                1 != this._initialized && (this._initialized = !0, this.showPortUI(!0))
-            }, e.prototype.update = function (t) {
-                this._furniture_layer.visible = 0 == t || 25 == t
-            }, e.prototype.activate = function (t, e) {
-                this._furniture_layer.activate()
-            }, e.prototype.deactivate = function () {
-                this._furniture_layer.deactivate()
-            }, e.prototype.dispose = function () {}, e.prototype.showPortUI = function (t) {
-                this._overLayer.visible = !0
-            }, e.prototype.getContent = function () {
-                return this._contentLayer.children.length > 0 ? this._contentLayer.getChildAt(0) : null
-            }, e.prototype.setContent = function (t) {
-                this._contentLayer.removeChildren(), null != t && this._contentLayer.addChild(t)
+            return n(e, t), e.prototype.startAnimation = function (t, e) {
+                this._shogo_type = e, null != this._shogo && this._shogo.position.set(t.x, t.y), this._NowPlaying || (this._NowPlaying = !0, this._shogo_anime_frm = 0, this._shogo = new PIXI.Sprite, this._shogo.texture = o.COMMON_SHOGO.getTexture(this._shogo_anime[this._shogo_type][this._shogo_anime_frm].texture), this._shogo.position.set(t.x, t.y), this.addChild(this._shogo), 0 != this._shogo_anime[this._shogo_type][0].time && this._animate())
+            }, e.prototype.stopAnimation = function () {
+                this._NowPlaying && -1 != this._shogo_type && (null != this._tween && this._tween.pause(null), this._NowPlaying = !1, this.removeChild(this._shogo), this._shogo = null, this._tween = null)
+            }, e.prototype._animate = function () {
+                var t = this;
+                if (0 != this._NowPlaying) {
+                    var e = this._shogo_anime[this._shogo_type][this._shogo_anime_frm].time,
+                        i = this._shogo_anime[this._shogo_type][this._shogo_anime_frm].texture;
+                    ++this._shogo_anime_frm == this._shogo_anime[this._shogo_type].length && (this._shogo_anime_frm = 0), this._shogo.texture = o.COMMON_SHOGO.getTexture(i), this._tween = createjs.Tween.get(this._shogo.texture).wait(e).call(function () {
+                        t._tween = null, t._animate()
+                    })
+                }
             }, e
-        }(o.SceneBase);
-    e.MainView = a
+        }(PIXI.Container);
+    e.Shogo = r
 }

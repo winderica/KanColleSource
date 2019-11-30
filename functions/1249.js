@@ -1,123 +1,167 @@
 const function1249 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(2),
-        a = i(28),
-        _ = i(20),
-        l = i(13),
-        u = i(143),
-        c = i(1250),
-        h = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._layer = e, s._ships_f = i, s._medal_num_f = n, s._ships_e = o, s._medal_num_e = r, s
+    var n = i(7),
+        o = i(1250),
+        r = function () {
+            function t(t) {
+                this._offsetDic = null, this._line = null, this._route = null, this._branch = null, this._o = t
             }
-            return n(e, t), e.prototype.preload = function (t) {
-                var e = new l.ShipLoader,
-                    i = this._ships_f[0];
-                e.add(i.mst_id, i.isDamaged(), "full");
-                var n = this._ships_e[0];
-                e.add(n.mst_id, n.isDamaged(), "full"), e.load(function () {
-                    null != t && t()
-                })
-            }, e.prototype._start = function () {
-                var t = this;
-                this._view = new c.PracticeAnimMainView, this._view.initialize(this._ships_f, this._medal_num_f, this._ships_e, this._medal_num_e), r.default.view.addChild(this._view);
-                var e = new _.TweenTask;
-                e.addTween(createjs.Tween.get(this._view.upper).to({
-                    alpha: 1
-                }, 200)), e.addTween(createjs.Tween.get(this._view.enemy.content).wait(200).to({
-                    x: 0,
-                    alpha: 1
-                }, 200)), e.addTween(createjs.Tween.get(this._view.friend.content).wait(200).to({
-                    x: 0,
-                    alpha: 1
-                }, 200)), e.start(function () {
-                    t._animation2()
-                })
-            }, e.prototype._animation2 = function () {
-                var t = this,
-                    e = new a.ParallelTask;
-                e.add(this._view.friend.getAnimationTask()), e.add(this._view.enemy.getAnimationTask()), e.start(function () {
-                    t._animation3()
-                })
-            }, e.prototype._animation3 = function () {
-                var t = this,
-                    e = u.PRAC_MAIN.getTexture(5);
-                this._line_g = new PIXI.extras.TilingSprite(e, 825, 45), this._line_g.rotation = 109 / 180 * Math.PI, this._line_g.position.set(o.default.width / 2 - 128 + 38, o.default.height), this._view.friend.addChild(this._line_g), e = u.PRAC_MAIN.getTexture(6), this._line_r = new PIXI.extras.TilingSprite(e, 825, 45), this._line_r.rotation = -71 / 180 * Math.PI, this._line_r.position.set(90, 0), this._view.enemy.addChild(this._line_r);
-                var i = new _.TweenTask;
-                i.addTween(createjs.Tween.get(this._line_g).to({
-                    x: o.default.width / 2 + 128,
-                    y: 0
-                }, 200)), i.addTween(createjs.Tween.get(this._line_r).to({
-                    x: -128,
-                    y: o.default.height
-                }, 200)), i.start(function () {
-                    t._animation4()
-                })
-            }, e.prototype._animation4 = function () {
-                var t = this;
-                this._view.friend.circle.visible = !0, this._view.enemy.circle.visible = !0;
-                var e = new _.TweenTask;
-                e.addTweens([createjs.Tween.get(this._view.friend.circle.scale).to({
-                    x: 1,
-                    y: 1
-                }, 600), createjs.Tween.get(this._view.friend.circle).to({
-                    rotation: 4 * Math.PI
-                }, 600), createjs.Tween.get(this._view.enemy.circle.scale).to({
-                    x: 1,
-                    y: 1
-                }, 600), createjs.Tween.get(this._view.enemy.circle).to({
-                    rotation: 4 * Math.PI
-                }, 600)]), e.start(function () {
-                    t._animation5()
-                })
-            }, e.prototype._animation5 = function () {
-                var t = this,
-                    e = new _.TweenTask;
-                e.addTweens([createjs.Tween.get(this._line_g).wait(400).to({
-                    x: 773
-                }, 500), createjs.Tween.get(this._line_r).wait(400).to({
-                    x: -173
-                }, 500), createjs.Tween.get(this._view.friend.content).wait(400).to({
-                    x: 45
-                }, 100).to({
-                    x: -375,
-                    alpha: 0
-                }, 400), createjs.Tween.get(this._view.enemy.content).wait(400).to({
-                    x: -45
-                }, 100).to({
-                    x: 375,
-                    alpha: 0
-                }, 400), createjs.Tween.get(this._view.upper).wait(500).to({
-                    y: -54,
-                    alpha: 0
-                }, 400)]), e.start(function () {
-                    r.default.view.removeChild(t._view), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._ships_f = null, this._ships_e = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
-            }, e
-        }(s.TaskBase);
-    e.StartAnimationTask = h
+            return Object.defineProperty(t.prototype, "no", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "no")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "x", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "x")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "y", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "y")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "color", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "color")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offsetDic", {
+                get: function () {
+                    return 0 == this._o.hasOwnProperty("offsets") ? {} : this._o.offsets
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "line", {
+                get: function () {
+                    if (null == this._line && 1 == this._o.hasOwnProperty("line")) {
+                        var t = this._o.line;
+                        this._line = {
+                            x: n.ObjUtil.getNumber(t, "x"),
+                            y: n.ObjUtil.getNumber(t, "y"),
+                            r: n.ObjUtil.getNumber(t, "r"),
+                            img: n.ObjUtil.getString(t, "img")
+                        }
+                    }
+                    return this._line
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "route", {
+                get: function () {
+                    if (null == this._route && 1 == this._o.hasOwnProperty("route")) {
+                        var t = this._o.route;
+                        this._route = {
+                            x: t.hasOwnProperty("x") ? t.x : null == this.line ? 0 : this.line.x,
+                            y: t.hasOwnProperty("y") ? t.y : null == this.line ? 0 : this.line.y,
+                            r: t.hasOwnProperty("r") ? t.r : null == this.line ? 0 : this.line.r,
+                            img: n.ObjUtil.getString(t, "img")
+                        }
+                    }
+                    return this._route
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "landing", {
+                get: function () {
+                    if (0 == this._o.hasOwnProperty("landing")) return null;
+                    var t = this._o.landing;
+                    return {
+                        x: n.ObjUtil.getNumber(t, "x"),
+                        y: n.ObjUtil.getNumber(t, "y"),
+                        type: n.ObjUtil.getNumber(t, "type")
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "branch", {
+                get: function () {
+                    if (null == this._branch) {
+                        if (0 == this._o.hasOwnProperty("branch")) return null;
+                        var t = this._o.branch;
+                        this._branch = new o.BranchBalloonData(t)
+                    }
+                    return this._branch
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "direction", {
+                get: function () {
+                    if (0 == this._o.hasOwnProperty("direction")) return 0;
+                    var t = n.ObjUtil.getString(this._o, "direction");
+                    return "R" == t ? 2 : "L" == t ? 1 : 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "controll_point", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "cpoint");
+                    return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "repair_confirm_offsets", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "repair");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "btn"),
+                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
+                        s = n.ObjUtil.getObject(t, "beak");
+                    return {
+                        box: i,
+                        btn: r,
+                        beak: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "replenish_confirm_offsets", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "replenish");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "btn"),
+                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
+                        s = n.ObjUtil.getObject(t, "beak"),
+                        a = new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y")),
+                        _ = n.ObjUtil.getObject(t, "balloon");
+                    return {
+                        box: i,
+                        btn: r,
+                        beak: a,
+                        bln: new PIXI.Point(n.ObjUtil.getNumber(_, "x"), n.ObjUtil.getNumber(_, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ration_confirm_offset", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "ration");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "btn"),
+                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
+                        s = n.ObjUtil.getObject(t, "beak");
+                    return {
+                        box: i,
+                        btn: r,
+                        beak: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.SpotData = r
 }

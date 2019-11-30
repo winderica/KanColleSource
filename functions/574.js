@@ -19,32 +19,17 @@ const function574 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(11),
         r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._url = "api_req_furniture/radio_play", e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.removeChildren();
-                var e;
-                switch (t.type) {
-                    case 1:
-                        e = o.COMMON_MISC.getTexture(117);
-                        break;
-                    case 2:
-                        e = o.COMMON_MISC.getTexture(118);
-                        break;
-                    case 3:
-                        e = o.COMMON_MISC.getTexture(119);
-                        break;
-                    default:
-                        e = PIXI.Texture.EMPTY
-                }
-                var i = new PIXI.Sprite(e);
-                i.x = t.pos.x, i.y = t.pos.y, this.addChild(i)
-            }, e.prototype.finalize = function () {
-                this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.Kaikyo = r
+        }(o.APIBase);
+    e.UserFurnitureRadioAPI = r
 }

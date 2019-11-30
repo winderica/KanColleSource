@@ -19,81 +19,78 @@ const function1295 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(13),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._additional_waittime = 0, n._scene = e, n._model = i, n
+    var o = i(5),
+        r = i(0),
+        s = i(149),
+        a = i(7),
+        _ = i(2),
+        l = i(249),
+        u = i(50),
+        c = i(6),
+        h = i(1296),
+        p = i(1297),
+        d = function (t) {
+            function e(e, i, n, o, r, s, a, _, l, u) {
+                var c = t.call(this) || this;
+                return c._PLANEKEY = "airbaseraid", c._area_id = e, c._map_no = i, c._battle_obj = n, c._has_boku_airunit = o, c._mapinfo = r, c._plane_layer = s, c._telop_layer = a, c._battle_layer = _, c._airbase_layer = l, c._battle_cls = u, c
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this._model.sortie,
-                    e = t.getNextCell().isDeadEnd(),
-                    i = this._scene.resInfo.hasAirReconnaissancePoint();
-                1 == e && 1 == i ? (this._additional_waittime = 3e3, o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(null).wait(1e3).call(function () {
-                    o.default.sound.bgm.play(4, !1, 1e3, "fanfare")
-                }), this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002\n\u672c\u4f5c\u6226\u5b8c\u9042\u5931\u6557\u3002")) : this._selectMessage()
-            }, e.prototype._selectMessage = function () {
-                var t = this._model.sortie.getNextCell().flavor_text;
-                if (null != t && t.length > 0) {
-                    var e = this._model.sortie.getNextCell().flavor_text_type;
-                    t = t.replace(/<br>/g, "\n"), 0 == e ? this._merefancy(t) : this._calm_sea(t)
-                } else {
-                    var i = this._model.sortie.getNextCell().event_detail_id;
-                    0 == i ? this._merefancy("\u6c17\u306e\u305b\u3044\u3060\u3063\u305f\u3002") : 1 == i ? this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002") : 3 == i ? this._calm_sea("\u7a4f\u3084\u304b\u306a\u6d77\u3067\u3059\u3002") : 4 == i ? this._merefancy("\u7a4f\u3084\u304b\u306a\u6d77\u5ce1\u3067\u3059\u3002") : 5 == i ? this._merefancy("\u8b66\u6212\u304c\u5fc5\u8981\u3067\u3059\u3002") : 6 == i ? this._calm_sea("\u9759\u304b\u306a\u6d77\u3067\u3059\u3002") : this._merefancy("")
-                }
-            }, e.prototype._merefancy = function (t) {
-                var e = this;
-                this._scene.view.map.ship_icon.startWaveRed(function () {
-                    e._scene.view.message_box.text = t, e._stopShipWave(2e3)
+                null == this._battle_obj ? this._endTask() : (c.SE.play("253"), this._flightEnemyAirUnit())
+            }, e.prototype._flightEnemyAirUnit = function () {
+                var t = this,
+                    e = this._mapinfo.getAirBaseRaidOption();
+                this._plane_layer.show(this._PLANEKEY, e, 2e3, this._map_no, this._area_id, function () {
+                    t._showTelop()
                 })
-            }, e.prototype._calm_sea = function (t) {
-                var e, i = this,
-                    n = this._model.deck_f.ships;
-                if (n.length > 6) {
-                    e = n[Math.random() < .5 ? 0 : 6]
-                } else e = n[0];
-                var o = e.mst_id,
-                    r = e.isDamaged(),
-                    a = new s.ShipLoader;
-                a.add(o, r, "full"), a.load(function () {
-                    i._calm_sea2(o, r, t)
+            }, e.prototype._showTelop = function () {
+                var t = this,
+                    e = new h.AirRaidTelop;
+                e.initialize(this._has_boku_airunit), e.x = o.default.width / 2, e.y = o.default.height / 2, this._telop_layer.addChild(e), e.playAnimation(function () {
+                    t._telop_layer.removeChild(e), t._fadeoutBGM()
                 })
-            }, e.prototype._calm_sea2 = function (t, e, i) {
-                var n = this;
-                this._chara = new PIXI.Sprite, this._chara.alpha = 0, this._chara.texture = o.default.resources.getShip(t, e, "full");
-                var r = o.default.model.ship_graph.get(t).getMapOffset(e);
-                this._chara.x = -80 + r.x, this._chara.y = -93 + r.y, this._scene.view.chara_layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
+            }, e.prototype._fadeoutBGM = function () {
+                var t = this;
+                1 == r.default.sound.bgm.playing ? (r.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
+                    t._startBattle()
+                })) : this._startBattle()
+            }, e.prototype._startBattle = function () {
+                var t = this,
+                    e = new l.BattleSceneModel(!1);
+                e.setGekimetsuData(this._battle_obj);
+                var i = new u.Shutter;
+                i.initializeDark(), i.close(0), this._battle_layer.addChild(i);
+                var n = new this._battle_cls;
+                n.initialize(e), this._battle_layer.addChild(n), i.alpha = 0, n.alpha = 0, createjs.Tween.get(i).to({
+                    alpha: 1
+                }, 200), createjs.Tween.get(n).to({
                     alpha: 1
                 }, 300).call(function () {
-                    n._calm_sea3(i)
+                    n.once("complete", function () {
+                        t._hideBattle(i, n)
+                    }), n.start()
                 })
-            }, e.prototype._calm_sea3 = function (t) {
-                var e = this;
-                this._scene.view.map.ship_icon.startWaveRed(function () {
-                    e._scene.view.message_box.text = t, e._stopShipWave(2e3)
-                })
-            }, e.prototype._stopShipWave = function (t) {
-                var e = this;
-                createjs.Tween.get(null).wait(t).call(function () {
-                    e._scene.view.map.ship_icon.stopWave(), e._changeCellColor()
-                })
-            }, e.prototype._changeCellColor = function () {
-                var t = this,
-                    e = this._model.sortie.getNextCell(),
-                    i = this._scene.view.map.spotLayer.getSpot(e.no);
-                (8 != this._model.sortie.getCellInfo(e.no).color && i.setColor(1), null != this._chara) ? (this._chara.x, createjs.Tween.get(this._chara).to({
+            }, e.prototype._hideBattle = function (t, e) {
+                var i = this;
+                this._plane_layer.hide(this._PLANEKEY), this._battle_layer.removeChild(e), e.dispose(), createjs.Tween.get(t).wait(800).to({
                     alpha: 0
-                }, 300).call(function () {
-                    t._chara.parent.removeChild(t._chara), t._endTask()
-                })) : this._endTask()
-            }, e.prototype._endTask = function () {
-                var e = this;
-                createjs.Tween.get(null).wait(this._additional_waittime).call(function () {
-                    t.prototype._endTask.call(e)
+                }, 300).wait(400).call(function () {
+                    i._battle_layer.removeChild(t), i._showResultTelop()
                 })
+            }, e.prototype._showResultTelop = function () {
+                var t = this,
+                    e = s.MapConst.getMapBGMID(this._area_id, this._map_no);
+                1 == e.battle_bgm ? r.default.sound.bgm.playBattleBGM(e.id) : r.default.sound.bgm.play(e.id);
+                var i = a.ObjUtil.getNumber(this._battle_obj, "api_lost_kind"),
+                    n = new p.AirRaidResultTelop;
+                n.initialize(i), n.x = o.default.width / 2, n.y = o.default.height / 2, this._telop_layer.addChild(n), n.playAnimation(function () {
+                    var e = a.ObjUtil.getNumber(t._battle_obj, "api_m2");
+                    45 == t._area_id && 3 == t._map_no && 1 == e && c.SE.play("258")
+                }, function () {
+                    t._telop_layer.removeChild(n), t._endTask()
+                }), 4 != i && null != this._airbase_layer && this._airbase_layer.shake()
+            }, e.prototype._endTask = function () {
+                this._battle_obj = null, this._mapinfo = null, this._plane_layer = null, this._telop_layer = null, this._battle_layer = null, this._battle_cls = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.CellTaskFancy = a
+        }(_.TaskBase);
+    e.AirRaidTask = d
 }

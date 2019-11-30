@@ -4,7 +4,7 @@ const function78 = function (t, e, i) {
         value: !0
     });
     var n = i(0),
-        o = i(26),
+        o = i(25),
         r = i(105),
         s = i(79),
         a = function () {

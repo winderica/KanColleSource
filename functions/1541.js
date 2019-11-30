@@ -19,28 +19,43 @@ const function1541 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(29),
-        s = i(157),
-        a = i(158),
-        _ = i(199),
-        l = i(1542),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._taihi = e, i._img = new PIXI.Sprite, i._icon = new s.BannerIcon, i._soot = new a.BannerSoot, i._smoke = new _.BannerSmoke, i._smoke.visible = !1, i.addChild(i._img), i.addChild(i._icon), i.addChild(i._soot), i.addChild(i._smoke), i
+    var o = i(36),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._img.texture = PIXI.Texture.EMPTY, this._img = null, this._icon = null, this._soot = null, this._smoke.dispose(), this._smoke = null, null != this._coin && (this._coin.dispose(), this._coin = null)
-            }, e.prototype.updateTexture = function (t, e, i) {
-                e <= 0 || 1 == this._taihi ? this._img.texture = o.default.resources.getShip(t, !0, "banner_g") : r.ShipUtil.isDamaged(e, i) ? this._img.texture = o.default.resources.getShip(t, !0, "banner") : this._img.texture = o.default.resources.getShip(t, !1, "banner")
-            }, e.prototype.updateIcon = function (t, e) {
-                this._smoke.stop(), this._smoke.play(t), 0 == this._taihi ? (this._soot.update(t), this._icon.initialize(e), this._icon.setDamagedIcon(t)) : (this._soot.clear(), this._icon.setTaihiIcon())
-            }, e.prototype.createShowMVPCoinTween = function () {
-                return this._coin = new l.MVPCoin, this._coin.position.set(270, 30), this._coin.initialize(), this._coin.activate(), this._coin.alpha = 0, this.addChild(this._coin), createjs.Tween.get(this._coin).to({
+            return n(e, t), e.prototype.show = function () {
+                this.hide(), this._current = new s, this._current.y = 17, this._current.alpha = 0, this._current.activate(), this.addChild(this._current), createjs.Tween.get(this._current).to({
                     alpha: 1
-                }, 300)
+                }, 800)
+            }, e.prototype.hide = function () {
+                var t = this;
+                if (null != this._current) {
+                    var e = this._current;
+                    this._current = null, createjs.Tween.get(e).to({
+                        alpha: 0
+                    }, 600).call(function () {
+                        e.deactivate(), t.removeChild(e)
+                    })
+                }
+            }, e.prototype.dispose = function () {
+                this.hide()
             }, e
         }(PIXI.Container);
-    e.ShipBannerClone = u
+    e.LayerTitle = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(65)), e._gear = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(66)), e._gear.anchor.set(.5), e._gear.position.set(32, 45), e._text = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(67)), e._text.position.set(60, 23), e.addChild(e._bg), e.addChild(e._gear), e.addChild(e._text), e
+        }
+        return n(e, t), e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._gear, {
+                loop: !0
+            }).to({
+                rotation: 2 * Math.PI
+            }, 6e3))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e
+    }(PIXI.Container)
 }

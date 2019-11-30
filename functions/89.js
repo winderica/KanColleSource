@@ -4,10 +4,10 @@ const function89 = function (t, e, i) {
         value: !0
     });
     var n = i(51),
-        o = i(136),
-        r = i(29),
+        o = i(137),
+        r = i(28),
         s = i(0),
-        a = i(790);
+        a = i(786);
     ! function (t) {
         function e(t, e) {
             var i = s.default.model.ship_upgrade.getRequiredLevel(t);

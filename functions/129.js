@@ -20,16 +20,31 @@ const function129 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(10),
+        r = i(14),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/slot_item", e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = this._raw_data;
-                o.default.model.slot.setMemData(e), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.setDay = function (t) {
+                this._load("bg_h", t)
+            }, e.prototype.setNight = function (t) {
+                this._load("bg_y", t)
+            }, e.prototype.dispose = function () {
+                this._loader = null
+            }, e.prototype._load = function (t, e) {
+                var i = this,
+                    n = r.UIImageLoader.getVersion("map");
+                n = n ? "?version=" + n : "";
+                var s = o.default.settings.path_root + "img/common/bg_map/" + t + ".png" + n;
+                if (null != PIXI.utils.TextureCache[s] && (this.texture = PIXI.utils.TextureCache[s], null != e)) return void e();
+                this._loader = new PIXI.loaders.Loader, this._loader.add(s), this._loader.load(function (t) {
+                    if (i._loader == t) {
+                        i._loader = null;
+                        var n = t.resources[s];
+                        i.texture = n.texture, null != e && e()
+                    }
+                })
             }, e
-        }(r.APIBase);
-    e.UserSlotItemAPI = s
+        }(PIXI.Sprite);
+    e.MapBG = s
 }

@@ -21,51 +21,99 @@ const function979 = function (t, e, i) {
     });
     var o = i(5),
         r = i(0),
-        s = i(2),
-        a = i(17),
-        _ = i(980),
-        l = i(1),
-        u = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._result = !1, s._onCancel = function () {
-                    s._result = !1, s._close()
-                }, s._onChange = function () {
-                    s._result = !0, s._close()
-                }, s._layer = e, s._area_id = i, s._airunit_id = n, s._index = o, s._item = r, s
+        s = i(17),
+        a = i(2),
+        _ = i(18),
+        l = i(980),
+        u = i(982),
+        c = i(354),
+        h = i(362),
+        p = function (t) {
+            function e(e, i, n, o, s) {
+                var a = t.call(this) || this;
+                return a._showBeginnerAlert = function () {
+                    new l.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
+                }, a._showMapIntro = function () {
+                    var t = r.default.model.basic.level,
+                        e = [];
+                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
+                    var i = a._model.getSelectedOperationType();
+                    new u.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
+                        var t = a._model.getSelectedOperationType(),
+                            e = 0 == t;
+                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
+                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
+                        }) : a._hideFade(e)
+                    })
+                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.cancel = function () {
-                this._onCancel()
-            }, e.prototype._start = function () {
-                this._cancel_area = new a.FadeBox(.2), this._layer.addChild(this._cancel_area), this._openPanel()
-            }, e.prototype._openPanel = function () {
+            return n(e, t), e.prototype._start = function () {
+                if (this._model.area_id == s.EVENT_AREA_ID) {
+                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
+                    var t = this._model.map_no,
+                        e = r.default.model.basic.level;
+                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
+                    var i = this._voicePlayList(t);
+                    null != i && this._voicePlay(i)
+                } else this._showDetailPanel()
+            }, e.prototype._voicePlayList = function (t) {
+                switch (t) {
+                    case 1:
+                        return {
+                            voice: [411, 415], delay: [0, 200]
+                        };
+                    case 2:
+                        return {
+                            voice: [411, 416, 424], delay: [0, 200, 200]
+                        };
+                    case 3:
+                        return {
+                            voice: [411, 417, 422, 424], delay: [0, 200, 200, 200]
+                        };
+                    case 4:
+                        return {
+                            voice: [411, 418, 423, 424], delay: [0, 200, 200, 200]
+                        };
+                    case 5:
+                        return {
+                            voice: [412, 419, 424], delay: [0, 200, 200]
+                        };
+                    case 6:
+                        return {
+                            voice: [412, 421, 422, 423, 424], delay: [0, 200, 200, 200, 200]
+                        };
+                    default:
+                        return null
+                }
+            }, e.prototype._voicePlay = function (t) {
+                var e = this,
+                    i = t.voice,
+                    n = t.delay;
+                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
+                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
+                })
+            }, e.prototype._voiceNextDelay = function (t) {
+                var e = this,
+                    i = t.delay;
+                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
+                    e._voicePlay(t)
+                })
+            }, e.prototype._hideFade = function (t) {
+                var e = this;
+                this._fade.hide(300, function () {
+                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
+                })
+            }, e.prototype._showDetailPanel = function () {
                 var t = this,
-                    e = null,
-                    i = r.default.model.airunit.getAirUnit(this._area_id, this._airunit_id),
-                    n = i.squadrons[this._index];
-                n.mem_id > 0 && (e = r.default.model.slot.get(n.mem_id));
-                var s = this._item;
-                this._panel = new _.AirUnitChangeConfirmPanel(this._onChange), this._panel.initialize(), this._panel.update(e, s), this._panel.position.set(o.default.width, 102), this._layer.addChild(this._panel), createjs.Tween.get(this._panel).to({
+                    e = this._detailPanel;
+                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({
                     x: 840
                 }, 200).call(function () {
-                    t._cancel_area.on(l.EventType.CLICK, t._onCancel), t._cancel_area.buttonMode = !0, t._panel.activate()
+                    e.activate(), t._endTask()
                 })
-            }, e.prototype._close = function () {
-                var t = this;
-                this._cancel_area.off(l.EventType.CLICK, this._onCancel), this._cancel_area.buttonMode = !1, this._panel.deactivate(), createjs.Tween.get(this._panel).to({
-                    x: o.default.width
-                }, 200).call(function () {
-                    t._panel.dispose(), t._layer.removeChild(t._panel), t._layer.removeChild(t._cancel_area), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._cancel_area = null, this._panel = null, this._item = null, t.prototype._endTask.call(this)
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
             }, e
-        }(s.TaskBase);
-    e.TaskShowAirUnitChangeConfirm = u
+        }(a.TaskBase);
+    e.TaskShowDetailPanel = p
 }

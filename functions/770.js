@@ -19,45 +19,15 @@ const function770 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(771),
-        a = i(311),
-        _ = i(213),
-        l = i(314),
-        u = i(313),
-        c = i(71),
-        h = i(131),
-        p = function (t) {
+    var o = i(9),
+        r = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i.phasePreInitialize = function () {
-                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
-                }, i._scene = e, i
+                return i._url = "api_req_kaisou/unsetslot_all", i.api_id = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this;
-                (new s.TaskLoadResourcesRemodel).start(function () {
-                    t._uploadToGPU()
-                })
-            }, e.prototype._uploadToGPU = function () {
-                var t, e = this;
-                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                        t = u.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                            t = l.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                        e.phasePreInitialize()
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = p
+        }(o.APIBase);
+    e.UnsetSlotAll = r
 }

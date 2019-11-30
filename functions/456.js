@@ -19,55 +19,28 @@ const function456 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(28),
-        r = i(30),
-        s = i(72),
-        a = i(20),
-        _ = i(39),
-        l = i(6),
-        u = i(145),
-        c = i(183),
-        h = i(452),
-        p = i(184),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(6),
+        s = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._onComplete = function () {
+                    r._layer.removeChild(r._planes), r._planes.stopFluctuations(), r._planes.dispose(), r._endTask()
+                }, r._layer = e, r._planes = i, r._to_pos = n, r._cb_onDamaged = o, r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data_", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._log();
-                var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new u.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
-                var t = this,
-                    e = new o.ParallelTask,
-                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
-                e.add((new a.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
-                    t._fireDogFight()
-                }, 750)), e.add(new s.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 900)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 1050)), e.add(new s.FuncTask(function () {
-                    t._antiAircraft()
-                }, 1200)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 1350)), e.add((new r.SerialTask).add(new _.WaitTask(1700)).add((new o.ParallelTask).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 2950)), e.add(new s.FuncTask(function () {
-                    t._showDamage()
-                }, 3300)), e.add(new s.FuncTask(function () {
-                    t._showDamageNumber()
-                }, 3600)), this._main_task = e, this._main_task.start(function () {})
-            }, e.prototype._showSeikuResult = function () {
-                var t = this._scene.view.layer_content;
-                new h.TaskAirWarShowSeiku(t, this.data_.seiku).start()
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._planes.startFluctuations(), this._planes.scale.set(0), this._layer.addChild(this._planes), r.SE.play("115"), createjs.Tween.get(this._planes.scale).to({
+                    x: 1,
+                    y: 1
+                }, 250).call(function () {
+                    var e = t._to_pos,
+                        i = t._planes.friend ? 1275 : -75;
+                    t._planes.play(e, i, 2500, t._cb_onDamaged, t._onComplete)
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._planes = null, this._to_pos = null, this._cb_onDamaged = null, t.prototype._endTask.call(this)
             }, e
-        }(c.TaskAircraftFlightBase);
-    e.TaskAirWar = d
+        }(o.TaskBase);
+    e.TaskPlane = s
 }

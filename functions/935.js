@@ -19,22 +19,23 @@ const function935 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
+    var o = i(9),
+        r = i(936),
         s = function (t) {
             function e(e) {
+                void 0 === e && (e = !1);
                 var i = t.call(this) || this;
-                return i._event = e, i
+                return i._url = "api_get_member/practice", i._res_model = new r.PracticeAPIModel, i._debug = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("sally");
-                e.add("sally_common.json"), e.add("sally_top.json"), e.add("sally_sortie.json"), e.add("sally_practice.json"), e.add("sally_expedition.json"), e.add("sally_expedition_detail.json"), e.add("sally_airunit.json"), e.add("sally_jin.json"), e.add("sally_map_parts.json"), this._event && (e.add("sally_event.json"), e.add("sally_strategymap.json"), e.add("sally_strategymap_s.json")), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+                get: function () {
+                    return this._res_model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._completedEnd = function () {
+                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResourcesSally = s
+        }(o.APIBase);
+    e.PracticeAPI = s
 }

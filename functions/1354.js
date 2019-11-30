@@ -19,67 +19,70 @@ const function1354 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(2),
-        a = i(8),
-        _ = i(81),
-        l = i(13),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClick = function () {
-                    n._messagebox.deactivate(), n._layer.removeChild(n._click_area), createjs.Tween.get(n._fade).to({
-                        alpha: 0
-                    }, 500).wait(300).call(function () {
-                        n._layer.removeChild(n._messagebox), n._layer.removeChild(n._chara), n._layer.removeChild(n._fade), n._endTask()
-                    }), createjs.Tween.get(n._chara).to({
-                        y: n._chara.y + 327,
-                        alpha: 0
-                    }, 300), createjs.Tween.get(n._messagebox).to({
-                        y: n._messagebox.y + 98,
-                        alpha: 0
-                    }, 100)
-                }, n._layer = e, n._model = i, n
+    var o = i(5),
+        r = i(0),
+        s = i(180),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.count = 50, e.col = 16777215, e._updateMask = function (t) {
+                    e._circleMask.clear(), e._circleMask.beginFill(e.col);
+                    for (var i = 0; i < e.count; i++) e._circle_list[i].radius = e.rndScale[i] * t.target.target.val, e._circleMask.drawShape(e._circle_list[i]);
+                    e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !0)
+                }, e._bg = new PIXI.Sprite, e._bg.alpha = 0, e._layer_effect = new PIXI.Container, e._card_bg = new PIXI.Sprite, e._card_bg.anchor.set(.5), e._card_bg.alpha = 1, e._layer_ship = new PIXI.Container, e._grad = new PIXI.Sprite, e._layer_text = new PIXI.Container, e._layer_mask = new PIXI.Container, e._layer_mask.alpha = 0, e._renderTex = PIXI.RenderTexture.create(327, 450), e._renderSprite = new PIXI.Sprite(e._renderTex), e._renderSprite.anchor.set(.5), e._card_bg.mask = e._renderSprite, e._layer_mask.addChild(e._card_bg), e._layer_mask.addChild(e._renderSprite), e.rndPos = [], e.rndScale = [];
+                for (var i = 0; i < e.count; i++) e.rndPos.push(new PIXI.Point(Math.floor(327 * Math.random()), Math.floor(450 * Math.random()))), e.rndScale.push(100 * Math.floor(2 * Math.random()));
+                e.addChild(e._bg), e.addChild(e._layer_effect), e.addChild(e._layer_mask), e.addChild(e._layer_ship), e.addChild(e._grad), e.addChild(e._layer_text), e._circle_list = [];
+                for (var i = 0; i < e.count; i++) e._circle_list.push(new PIXI.Circle(e.rndPos[i].x, e.rndPos[i].y, e.rndScale[i]));
+                return e._circleMask = new PIXI.Graphics, e._circleMask.beginFill(e.col), e._circleMask.drawRect(0, 0, 327, 450), e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !1), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                this._fade = new a.AreaBox(1), this._fade.alpha = 0, this._layer.addChild(this._fade), createjs.Tween.get(this._fade).to({
-                    alpha: 1
-                }, 500), this._loadResource()
-            }, e.prototype._loadResource = function () {
-                var t = this,
-                    e = this._model.mst_id,
-                    i = new l.ShipLoader;
-                i.add(e, !1, "full"), i.load(function () {
-                    t._showChara()
-                })
-            }, e.prototype._showChara = function () {
-                var t = this,
-                    e = this._model.mst_id,
-                    i = o.default.resources.getShip(e, !1, "full");
-                this._chara = new PIXI.Sprite(i), this._chara.x = this._model.offset_x, this._chara.y = this._model.offset_y + 327, this._chara.alpha = 0, this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
-                    y: this._model.offset_y,
-                    alpha: 1
-                }, 800).call(function () {
-                    t._showMessageBox()
-                })
-            }, e.prototype._showMessageBox = function () {
-                var t = this,
-                    e = this._model.stype,
-                    i = this._model.name,
-                    n = this._model.message;
-                this._messagebox = new _.MessageBox(!1), this._messagebox.initializeForShip(e, i, n), this._messagebox.y = 578, this._layer.addChild(this._messagebox);
-                var s = this._messagebox.y - 98;
-                createjs.Tween.get(this._messagebox).to({
-                    y: s
-                }, 200).call(function () {
-                    t._messagebox.activate(), o.default.sound.voice.play("9998", t._model.voice_id), t._click_area = new a.AreaBox(0), t._click_area.buttonMode = !0, t._layer.addChild(t._click_area), t._click_area.once(r.EventType.CLICK, t._onClick)
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._fade = null, this._chara = null, this._messagebox.dispose(), this._messagebox = null, this._click_area = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_effect", {
+                get: function () {
+                    return this._layer_effect
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "card_bg", {
+                get: function () {
+                    return this._card_bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_ship", {
+                get: function () {
+                    return this._layer_ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_text", {
+                get: function () {
+                    return this._layer_text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_mask", {
+                get: function () {
+                    return this._layer_mask
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(0), this._grad.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(1), this._grad.y = o.default.height - this._grad.height
+            }, e.prototype.playMask = function () {
+                var t = {
+                    val: 1
+                };
+                createjs.Tween.get(t, {
+                    onChange: this._updateMask
+                }).to({
+                    val: 0
+                }, 1800)
             }, e
-        }(s.TaskBase);
-    e.TaskBossCutin = u
+        }(PIXI.Container);
+    e.GouchinCutinView = a
 }

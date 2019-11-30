@@ -1,52 +1,47 @@
 const function700 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(49),
-        r = i(8),
-        s = i(321),
-        a = i(701),
-        _ = i(702),
-        l = i(703),
-        u = i(218),
-        c = function () {
-            function t(t) {
-                this.mainView = t, this.dialogBackground = new r.AreaBox(o.UISettings.DIALOG_BG_ALPHA), this.combineTypeSelectDialog = new l.CombineTypeSelectDialog, this.combineConfirmDialog = new _.CombineConfirmDialog, this.combineConfirmAlertDialog = new a.CombineConfirmAlertDialog
+    var o = i(10),
+        r = i(1),
+        s = i(8),
+        a = function (t) {
+            function e(e, i, n) {
+                var a = t.call(this, .1) || this;
+                a._cbDrop = n, a._drag = null, a._isPosible = !1, a._onMove = function (t) {
+                    a._flagIcon.position.set(t.data.global.x, t.data.global.y);
+                    var e = a._reactionArea,
+                        i = t.data.getLocalPosition(e);
+                    a._isPosible = e.hitArea.contains(i.x, i.y)
+                }, a._onUp = function () {
+                    a._dispose(), a._cbDrop(a._isPosible)
+                }, a._onOut = function () {
+                    a._dispose(), a._cbDrop(!1)
+                }, a._drag = new PIXI.Container, a._flagIcon = new PIXI.Sprite(o.COMMON_MISC.getTexture(77)), a._flagIcon.anchor.set(.5), a._flagIcon.position.set(i.x, i.y);
+                var _ = a._flagIcon.width,
+                    l = a._flagIcon.height;
+                return a._reactionArea = new s.AreaBox(0, 16777215, _, l), a._reactionArea.hitArea = new PIXI.Rectangle(0, 0, _, l), a._reactionArea.position.set(e.x, e.y), a._drag.addChild(a._reactionArea, a._flagIcon), a.addChild(a._drag), a.on(r.EventType.MOUSEMOVE, a._onMove), a.on(r.EventType.MOUSEOUT, a._onOut), a.on(r.EventType.MOUSEUP, a._onUp), a
             }
-            return t.prototype.dispose = function () {
-                this.combineTypeSelectDialog.dispose(), this.combineConfirmDialog.dispose(), this.combineConfirmAlertDialog.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineConfirmAlertDialog), this.mainView.removeChild(this.combineConfirmDialog), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineTypeSelectDialog.onClickBack = null, this.combineTypeSelectDialog.onClickKido = null, this.combineTypeSelectDialog.onClickSuijo = null, this.combineTypeSelectDialog.onClickYuso = null, this.combineConfirmDialog.onClickNO = null, this.combineConfirmDialog.onClickYES = null, this.combineConfirmAlertDialog.onClickYES = null, this.onCombined = null, this.onComplete = null, this.mainView = null, this.dialogBackground = null, this.combineTypeSelectDialog = null, this.combineConfirmDialog = null, this.combineConfirmAlertDialog = null
-            }, t.prototype.start = function () {
-                var t = this;
-                this.combineTypeSelectDialog.position.set(304, 232), this.combineTypeSelectDialog.update(!0, !0, !0), this.combineTypeSelectDialog.onClickBack = function () {
-                    t.onComplete()
-                }, this.combineConfirmAlertDialog.position.set(216, 186), this.combineTypeSelectDialog.onClickKido = function () {
-                    t._onClickType(1)
-                }, this.combineTypeSelectDialog.onClickSuijo = function () {
-                    t._onClickType(2)
-                }, this.combineTypeSelectDialog.onClickYuso = function () {
-                    t._onClickType(3)
-                }, this.mainView.addChild(this.dialogBackground, this.combineTypeSelectDialog)
-            }, t.prototype._onClickType = function (t) {
-                var e = this,
-                    i = n.default.model.deck.get(1),
-                    o = n.default.model.deck.get(2);
-                this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineConfirmDialog.position.set(171, 186);
-                var r = s.CombineUtil.checkCombinable(i, o, t),
-                    a = r[0],
-                    _ = r[1],
-                    l = r[2];
-                a ? (this.combineConfirmDialog.updateViewType(t), this.combineConfirmDialog.updateCombineDeck(i, o), this.combineConfirmDialog.onClickNO = function () {
-                    e.onComplete()
-                }, this.combineConfirmDialog.onClickYES = function () {
-                    n.default.view.clickGuard = !0, new u.CombinedAPI(t).start(function () {
-                        e.onCombined(), n.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmDialog)) : (this.combineConfirmAlertDialog.updateCombineDeck(i, o, _, l), this.combineConfirmAlertDialog.updateViewType(t), this.combineConfirmAlertDialog.onClickYES = function () {
-                    e.onComplete()
-                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmAlertDialog))
-            }, t
-        }();
-    e.TaskCombineTypeSelect = c
+            return n(e, t), e.prototype._dispose = function () {
+                this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp)
+            }, e
+        }(s.AreaBox);
+    e.CombineDragging = a
 }

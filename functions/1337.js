@@ -19,23 +19,49 @@ const function1337 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = function (t) {
+    var o = i(282),
+        r = i(1338),
+        s = i(1347),
+        a = i(1441),
+        _ = i(1454),
+        l = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
             }
-            return n(e, t), e.prototype.create = function (t) {
-                null != this._airbase && null != this._airbase.parent && this._airbase.parent.removeChild(this._airbase), this._airbase = new PIXI.Sprite, this._airbase.texture = o.MAP_COMMON.getTexture(84), this._airbase.x = t.x - this._airbase.width / 2, this._airbase.y = t.y - this._airbase.height / 2, this.addChild(this._airbase)
-            }, e.prototype.shake = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "data", {
+                get: function () {
+                    return this._data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
+            }, e.prototype.dispose = function () {
+                this._view.dispose(), t.prototype.dispose.call(this)
+            }, e.prototype.start = function () {
                 var t = this;
-                if (null != this._airbase)
-                    for (var e = this._airbase.x, i = createjs.Tween.get(this._airbase), n = 0; n < 60; n++) ! function (n) {
-                        i.wait(50), i.call(function () {
-                            Math.random();
-                            t._airbase.x = n % 2 == 0 ? e + (Math.random() + .5) : e - (Math.random() + .5)
-                        })
-                    }(n)
+                new r.TaskInit(this).start(function () {
+                    t._main()
+                })
+            }, e.prototype._main = function () {
+                var t = this;
+                new s.TaskMain(this).start(function () {
+                    t._end()
+                })
+            }, e.prototype._end = function () {
+                var t = this.data.model.deck_f.ships,
+                    e = this.data.model.deck_e.ships;
+                this.data.model.ship_info.add(t, e);
+                var i = (new Date).getTime();
+                this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
             }, e
-        }(PIXI.Container);
-    e.AirBaseLayer = r
+        }(o.BattleSceneBase);
+    e.BattleScene = l
 }

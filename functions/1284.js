@@ -21,82 +21,85 @@ const function1284 = function (t, e, i) {
     });
     var o = i(2),
         r = i(6),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+        s = i(19),
+        a = i(440),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._preLoad()
-            }, e.prototype._preLoad = function () {
-                this._layer.initilize(), this._anim()
-            }, e.prototype._anim = function () {
+                var t = this;
+                this._data = this._model.sortie.getNextCell().getHappeningData(), this._scene.view.message_box.text = "\u53f8\u4ee4\u5b98\uff01\u3046\u305a\u3057\u304a\u304c\u767a\u751f\u3057\u307e\u3057\u305f\uff01", this._uzu = new l;
+                var e = this._scene.view.map.ship_icon;
+                e.under.addChild(this._uzu), this._uzu.activate(), e.startWaveWhite(), r.SE.play("254");
+                var i = {
+                    rad: 0,
+                    a: 36
+                };
+                createjs.Tween.get(i, {
+                    onChange: function () {
+                        e.ship.x = Math.cos(i.rad) * i.a, e.ship.y = Math.sin(i.rad) * i.a, i.rad += Math.PI / 180 * 5 * (60 / createjs.Ticker.framerate)
+                    }
+                }).to({
+                    a: 0
+                }, 2400).call(function () {
+                    e.stopWave(), t._animItem()
+                })
+            }, e.prototype._animItem = function () {
                 var t = this,
-                    e = function () {
-                        for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) {
-                            var i = t._layer.kiraPos[e];
-                            t._layer.kirakira[e].position.set(i.x + 10, i.y + 25), t._layer.kirakira[e].visible = !0, createjs.Tween.get(t._layer.kirakira[e].scale).wait(70 * e).to({
-                                x: 1,
-                                y: 1
-                            }, 140).to({
-                                x: 0,
-                                y: 0
-                            }, 140)
-                        }
-                    };
-                createjs.Tween.get(null).call(function () {
-                    t._layer.get_flash.visible = !0, createjs.Tween.get(t._layer.get_flash.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 500), createjs.Tween.get(t._layer.get_flash).to({
-                        alpha: 1
-                    }, 500).to({
-                        alpha: 0
-                    }, 150), createjs.Tween.get(t._layer.white).wait(400).set({
-                        visible: !0
-                    }).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        createjs.Tween.get(t._layer.txt_repair).wait(100).set({
-                            visible: !0
-                        }).to({
-                            x: 77
-                        }, 600, createjs.Ease.sineOut).to({
-                            x: 47
-                        }, 733)
-                    })
-                }).wait(133).call(function () {
-                    r.SE.play("230")
-                }).wait(2e3).call(function () {
-                    createjs.Tween.get(t._layer.txt_repair).to({
-                        x: -1107
-                    }, 300, createjs.Ease.sineIn).set({
-                        visible: !1
-                    }), t._layer.ship_layer.visible = !0, createjs.Tween.get(t._layer.ship_layer).wait(180).to({
-                        alpha: 1
-                    }, 500), createjs.Tween.get(t._layer.ship_layer.scale).wait(180).to({
-                        x: 1,
-                        y: 1
-                    }, 500, createjs.Ease.cubicOut)
-                }).wait(680).call(function () {
-                    e()
-                }).wait(100 * (this._layer.EFFECT_MAX / 2 - 1) + 540).call(function () {
-                    t._layer.white.alpha = 1;
-                    for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) t._layer.kirakira[e].visible = !1;
-                    createjs.Tween.get(t._layer.ship_layer.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 633), createjs.Tween.get(t._layer.ship_layer).to({
-                        alpha: 0
-                    }, 633), createjs.Tween.get(t._layer.white).to({
-                        alpha: 0
-                    }, 633).set({
-                        visible: !1
-                    })
-                }).wait(1e3).call(function () {
+                    e = this._data.getUseitemMstID(),
+                    i = this._data.lost_count,
+                    n = new a.CompDropItem;
+                n.initialize(e, i);
+                var o = this._scene.view.map.ship_icon;
+                o.under.addChild(n), createjs.Tween.get(n).to({
+                    x: -120
+                }, 1400), createjs.Tween.get(n).to({
+                    y: -60
+                }, 400, createjs.Ease.quadOut).to({
+                    y: 150
+                }, 1e3, createjs.Ease.quadIn), createjs.Tween.get(n).wait(1200).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    o.under.removeChild(n), n.dispose(), t._hideUzu()
+                })
+            }, e.prototype._hideUzu = function () {
+                var t = this,
+                    e = this._scene.view.map.ship_icon;
+                createjs.Tween.get(this._uzu).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    e.under.removeChild(t._uzu), t._uzu.deactivate(), t._uzu = null, t._showText()
+                })
+            }, e.prototype._showText = function () {
+                var t = this,
+                    e = this._data.getUseitemMstID(),
+                    i = this._data.lost_count,
+                    n = this._data.isDentan();
+                this._scene.view.message_box.showUzushioText(e, i, n), createjs.Tween.get(null).wait(1e3).call(function () {
                     t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._model = null, this._data = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskAnchorageRepairEffect = s
+    e.CellTaskHappening = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.scale.y = .5;
+            var i = s.MAP_COMMON.getTexture(181);
+            return e._content = new PIXI.Sprite(i), e._content.anchor.set(.5), e.addChild(e._content), e
+        }
+        return n(e, t), e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._content, {
+                loop: !0
+            }).to({
+                rotation: 2 * Math.PI
+            }, 3e3))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e
+    }(PIXI.Container)
 }

@@ -20,93 +20,48 @@ const function1271 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(59),
-        s = i(28),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n.TIME = 2e3, n._scene = e, n._model = i, n
+        r = i(12),
+        s = i(6),
+        a = i(19),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._initialize()
-            }, e.prototype._initialize = function () {
-                var t = this,
-                    e = new s.ParallelTask,
-                    i = new _(this._scene, this._model, this.TIME);
-                e.add(i);
-                var n = new l(this._scene, this._model, this.TIME);
-                e.add(n), e.start(function () {
-                    t._setCellColor()
+                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(142)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(143)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(144)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
+            }, e.prototype._anim = function () {
+                var t = this;
+                s.SE.play("213"), createjs.Tween.get(this._img1).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img2).wait(133).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img3).wait(266).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.3,
+                    scaleY: 1.3,
+                    alpha: 0
+                }, 300).wait(300).call(function () {
+                    t._layer.removeChild(t._img1), t._layer.removeChild(t._img2), t._layer.removeChild(t._img3), t._endTask()
                 })
-            }, e.prototype._setCellColor = function () {
-                var t = this._model.sortie.getNextCell().no,
-                    e = this._scene.view.map.spotLayer.getSpot(t);
-                if (null != e) {
-                    e.showLine();
-                    for (var i = this._scene.resInfo.getSameSpotData(t), n = 0; n < i.length; n++) {
-                        var o = i[n].no;
-                        if (0 == n) {
-                            var r = this._model.sortie.getCellInfo(o);
-                            this._scene.view.map.spotLayer.getSpot(o).setColor(r.color)
-                        } else {
-                            this._scene.view.map.spotLayer.getSpot(o).setColor(0)
-                        }
-                    }
-                }
-                this._endTask()
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.AnimShipMove = a;
-    var _ = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._model = i, o._time = n, o
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t, e = this,
-                    i = this._scene.view.map,
-                    n = i.ship_icon,
-                    o = this._model.sortie.now_cell_no,
-                    s = (i.spotLayer.getSpot(o), this._model.sortie.getNextCell().no),
-                    a = i.spotLayer.getSpot(s),
-                    _ = this._scene.resInfo.getControlPoint(s);
-                if (null == _) t = createjs.Tween.get(n), t.to({
-                    x: a.x,
-                    y: a.y
-                }, this._time);
-                else {
-                    var l = new PIXI.Point(n.x, n.y),
-                        u = new PIXI.Point(a.x, a.y),
-                        c = r.TweenUtil.create2BezierPoints(l, _, u, this._time);
-                    t = createjs.Tween.get(n);
-                    for (var h = 0, p = c; h < p.length; h++) {
-                        var d = p[h];
-                        t.to({
-                            x: d.x,
-                            y: d.y
-                        }, d.t)
-                    }
-                }
-                t.call(function () {
-                    e._endTask()
-                })
-            }, e
-        }(o.TaskBase),
-        l = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._model = i, o._time = n, o
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._model.sortie.getNextCell().no,
-                    i = this._scene.resInfo.getAirRaidOption(e);
-                if (null == i) this._endTask();
-                else {
-                    this._scene.view.map.plane_layer.show(e, i, 2e3, this._model.sortie.map_no, this._model.sortie.area_id, function () {
-                        t._endTask()
-                    })
-                }
-            }, e
-        }(o.TaskBase)
+    e.TaskReplenishmentBuff = _
 }

@@ -19,20 +19,33 @@ const function1352 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(144),
+    var o = i(12),
+        r = i(16),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = 0 != n.type;
-                return i._url = 0 == o ? "api_req_sortie/ld_shooting" : "api_req_combined_battle/ld_shooting", i._data = e, i
+            function e() {
+                var e = t.call(this) || this;
+                return e._wave1 = new o.Sprite, e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this._wave1.scale.set(0), this._wave2.scale.set(0), this._wave1.alpha = 0, this._wave2.alpha = 0, this._wave1.texture = r.BATTLE_MAIN.getTexture(108), this._wave2.texture = r.BATTLE_MAIN.getTexture(108)
+            }, e.prototype.play = function () {
+                var t = this;
+                createjs.Tween.get(this._wave1).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._wave2).wait(600).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.removeChildren(), null != t.parent && t.parent.removeChild(t)
+                })
             }, e
-        }(o.APIBase);
-    e.APIBattleStartLongRangeFires = s
+        }(PIXI.Container);
+    e.SubMarineWave = s
 }

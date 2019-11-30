@@ -19,31 +19,32 @@ const function1001 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = i(370),
-        s = function (t) {
-            function e(e) {
-                return t.call(this, e) || this
+    var o = i(0),
+        r = i(17),
+        s = i(15),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._area_id = -1, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "air_unit", {
-                get: function () {
-                    return null != this._airunit
-                },
-                set: function (t) {
-                    if (t != this.air_unit) {
-                        if (1 == t) {
-                            this._btn.position.set(0, -8);
-                            var e = o.SALLY_SORTIE.getTexture(7);
-                            this._airunit = new PIXI.Sprite(e), this._airunit.position.set(6, 33), this.addChild(this._airunit)
-                        } else this.removeChild(this._airunit), this._airunit = null, this._btn.position.set(0, 0);
-                        this._updateTexture()
-                    }
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._updateTexture = function () {
-                1 == this.air_unit ? 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(18) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(19) : this._btn.texture = o.SALLY_SORTIE.getTexture(17) : 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(21) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(22) : this._btn.texture = o.SALLY_SORTIE.getTexture(20)
+            return n(e, t), e.prototype.update = function (t, e) {
+                var i = this;
+                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
+                this._area_id = t;
+                var n = s.MathUtil.zeroPadding(t, 3),
+                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
+                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
+                else {
+                    var _ = new PIXI.loaders.Loader;
+                    _.add(a), _.load(function () {
+                        i._img.texture = _.resources[a].texture, null != e && e()
+                    })
+                }
+            }, e.prototype.clear = function () {
+                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
+            }, e.prototype.dispose = function () {
+                this.clear()
             }, e
-        }(r.BtnGoBase);
-    e.BtnGo = s
+        }(PIXI.Container);
+    e.AreaTextImage = a
 }

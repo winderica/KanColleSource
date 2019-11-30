@@ -19,33 +19,33 @@ const function1010 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(52),
-        s = i(41),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._content = new PIXI.Sprite, e._light = new PIXI.Sprite, e._light.alpha = 0, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
+    var o = i(52),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                void 0 === e && (e = null);
+                var i = t.call(this) || this;
+                return i._onClick = function (t) {
+                    t.stopPropagation(), null != i._click_cb && i._click_cb()
+                }, i._click_cb = e, i._bg = new PIXI.Sprite, i._title = new PIXI.Sprite, i._number = new PIXI.Sprite, i._touch_area = new PIXI.Graphics, i._touch_area.on(r.EventType.CLICK, i._onClick), i.enabled = !0, i.addChild(i._bg), i.addChild(i._title), i.addChild(i._number), i.addChild(i._touch_area), i
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                t == o.EVENT_AREA_ID ? (e >= 0 && (this._content.position.set(1012, 328), this._content.texture = s.SALLY_EVENT.getTexture(13)), this._light.texture = s.SALLY_EVENT.getTexture(16), this._light.position.set(1012, 328), this._light.alpha = 0) : (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0)
-            }, e.prototype.show = function () {
-                this._activate(), this.visible = !0
-            }, e.prototype.hide = function () {
-                this._deactivate(), this.visible = !1
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._touch_area.interactive
+                },
+                set: function (t) {
+                    this._touch_area.interactive = t, this._touch_area.buttonMode = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._type = t, this._touch_area.clear(), this._touch_area.beginFill(16711680, 0), 0 == t ? (this._bg.texture = o.SALLY_SORTIE.getTexture(0), this._title.texture = o.SALLY_SORTIE.getTexture(10), this._title.position.set(143, 62), this._title.visible = !1, this._number.position.set(233, 59), this._number.visible = !1, this._touch_area.drawRect(32, 18, 287, 48)) : 1 == t ? (this._bg.texture = o.SALLY_SORTIE.getTexture(6), this._title.texture = o.SALLY_SORTIE.getTexture(10), this._title.position.set(86, 54), this._title.visible = !1, this._number.position.set(176, 51), this._number.visible = !1, this._touch_area.drawRect(32, 18, 227, 36)) : 2 == t ? (this._bg.texture = o.SALLY_SORTIE.getTexture(1), this._title.texture = o.SALLY_SORTIE.getTexture(2), this._title.position.set(314, 25), this._title.visible = !1, this._number.position.set(325, 44), this._number.visible = !1, this._touch_area.drawRect(24, 27, 287, 36)) : 3 == t && (this._bg.texture = o.SALLY_SORTIE.getTexture(1), this._title.texture = o.SALLY_SORTIE.getTexture(2), this._title.position.set(250, 71), this._title.visible = !1, this._number.position.set(261, 90), this._number.visible = !1, this._touch_area.drawRect(24, 27, 287, 36)), this._touch_area.endFill()
+            }, e.prototype.update = function (t) {
+                var e = -1;
+                0 == this._type || 1 == this._type ? (1 == t && (e = 11), 2 == t && (e = 12), 3 == t && (e = 13)) : (1 == t && (e = 3), 2 == t && (e = 4), 3 == t && (e = 5)), -1 == e ? (this._title.visible = !1, this._number.visible = !1) : (this._number.texture = o.SALLY_SORTIE.getTexture(e), this._title.visible = !0, this._number.visible = !0)
             }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 1500).to({
-                    alpha: 0
-                }, 800))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+                this._touch_area.off(r.EventType.CLICK, this._click_cb)
             }, e
         }(PIXI.Container);
-    e.BtnNext = a
+    e.AirUnitBadge = s
 }

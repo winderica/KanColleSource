@@ -19,24 +19,21 @@ const function1213 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
+    var o = i(2),
+        r = i(14),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._data = e, n._scene_activate_delegate = i, n
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                o.default.sound.bgm.play(102), this._playVoice()
-            }, e.prototype._playVoice = function () {
-                1 == o.default.option.voice_duty && (1 == this._data.hasComplete() ? o.default.sound.voice.playAtRandom("9999", [401, 402, 403, 404, 405], [20, 20, 20, 20, 20]) : o.default.sound.voice.playAtRandom("9999", [406, 407], [50, 50])), this._startScene()
-            }, e.prototype._startScene = function () {
-                null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._data = null, this._scene_activate_delegate = null, t.prototype._endTask.call(this)
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("revamp");
+                e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(r.TaskBase);
-    e.TaskDutySceneInitialize = s
+        }(o.TaskBase);
+    e.TaskLoadResources = s
 }

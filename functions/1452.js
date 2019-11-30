@@ -4,43 +4,76 @@ const function1452 = function (t, e, i) {
         value: !0
     });
     var n = i(7),
-        o = function () {
-            function t(t) {
-                this._o = t
+        o = i(171),
+        r = i(229),
+        s = i(480),
+        a = function () {
+            function t(t, e) {
+                this._info = t, this._battle = e, this._initializeShipData()
             }
-            return t.prototype.isSuccess_f = function () {
-                return this._isSuccess(this._data_f)
-            }, t.prototype.isSuccess_e = function () {
-                return this._isSuccess(this._data_e)
-            }, t.prototype.hasPlane_f = function () {
-                return this._hasPlane(this._data_f)
-            }, t.prototype.hasPlane_e = function () {
-                return this._hasPlane(this._data_e)
-            }, t.prototype.hasMikikan_f = function () {
-                return this._hasMikikan(this._data_f)
-            }, t.prototype.hasMikikan_e = function () {
-                return this._hasMikikan(this._data_e)
-            }, Object.defineProperty(t.prototype, "_data_f", {
+            return Object.defineProperty(t.prototype, "ships", {
                 get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_search");
-                    return null != t && t.length > 0 ? t[0] : -1
+                    return this._ships
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "_data_e", {
+            }), t.prototype.getDisplayList = function () {
+                for (var t = [], e = this._voice_p_no, i = this._voice_ids, n = 0; n < 3; n++) {
+                    var o = e.indexOf(n + 1);
+                    if (!(o >= 0)) break;
+                    var r = o < this._ships.length ? this._ships[o] : null,
+                        s = i[o];
+                    t.push({
+                        ship: r,
+                        voiceID: s.toString()
+                    })
+                }
+                return t
+            }, t.prototype.getFlareIndex_f = function () {
+                var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
+                return null == t || t.length < 1 ? -1 : t[0]
+            }, t.prototype.getFlareIndex_e = function () {
+                var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
+                return null == t || t.length < 2 ? -1 : t[1]
+            }, t.prototype.getHougekiData = function () {
+                var t = n.ObjUtil.getObject(this._battle, "api_hougeki");
+                return new s.HougekiListNightData(t)
+            }, t.prototype._initializeShipData = function () {
+                this._ships = [];
+                for (var t = n.ObjUtil.getNumArray(this._info, "api_ship_id"), e = n.ObjUtil.getNumArray(this._info, "api_ship_lv"), i = n.ObjUtil.getNumArray(this._info, "api_maxhps"), s = n.ObjUtil.getNumArray(this._info, "api_nowhps"), a = n.ObjUtil.getObjectArray(this._info, "api_Slot"), _ = n.ObjUtil.getObjectArray(this._info, "api_Param"), l = 0; l < t.length; l++) {
+                    var u = t[l],
+                        c = e[l],
+                        h = new o.ShipModelReplica(2, !1, l, u, 0, c),
+                        p = s[l],
+                        d = i[l];
+                    h.initializeHPInfo(p, d);
+                    for (var f = a[l], y = [], m = [], g = 0, v = f; g < v.length; g++) {
+                        var b = v[g];
+                        b > 0 && (y.push(new r.SlotitemModelReplica(b)), m.push(1))
+                    }
+                    h.initializeSlots(y, null, m);
+                    var w = _[l],
+                        x = w[0],
+                        I = w[1],
+                        T = w[2],
+                        O = w[3];
+                    h.initializeParams(x, I, T, O), this._ships.push(h)
+                }
+            }, Object.defineProperty(t.prototype, "_voice_p_no", {
                 get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_search");
-                    return null != t && t.length > 1 ? t[1] : -1
+                    var t = n.ObjUtil.getNumArray(this._info, "api_voice_p_no");
+                    return null == t ? [] : t
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype._isSuccess = function (t) {
-                return 1 == t || 2 == t || 5 == t
-            }, t.prototype._hasPlane = function (t) {
-                return 1 == t || 2 == t || 3 == t || 4 == t
-            }, t.prototype._hasMikikan = function (t) {
-                return 2 == t || 3 == t
-            }, t
+            }), Object.defineProperty(t.prototype, "_voice_ids", {
+                get: function () {
+                    var t = n.ObjUtil.getNumArray(this._info, "api_voice_id");
+                    return null == t ? [] : t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
         }();
-    e.SakutekiData = o
+    e.AllyAttackModel = a
 }

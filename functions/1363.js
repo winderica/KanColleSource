@@ -20,55 +20,46 @@ const function1363 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(12),
-        s = i(182),
-        a = function (t) {
+        r = i(24),
+        s = i(20),
+        a = i(16),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._ready2 = function () {
-                    i._gray = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(7)), i._gray.anchor.set(.5), i._gray.position.set(600, 300), i._gray.alpha = 0, i._gray_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(5)), i._gray_lost.anchor.set(.5), i._gray_lost.position.set(600, 420), i._gray_lost.alpha = 0, i._hideText()
-                }, i._layer = e, i
+                return i._layer = e, i._smoke1 = new l, i._smoke1.position.set(45, 39), i._smoke2 = new l, i._smoke2.position.set(54, 48), i._smoke3 = new l, i._smoke3.position.set(36, 65), i
             }
             return n(e, t), e.prototype._start = function () {
-                this._ready()
-            }, e.prototype._ready = function () {
-                this._blue = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(6)), this._blue.anchor.set(.5), this._blue.scale.set(.58), this._blue.position.set(600, 330), this._blue.alpha = 0, this._blue_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(4)), this._blue_lost.anchor.set(.5), this._blue_lost.scale.set(.58), this._blue_lost.position.set(600, 390), this._blue_lost.alpha = 0, this._showText()
-            }, e.prototype._showText = function () {
-                this._layer.addChild(this._blue), this._layer.addChild(this._blue_lost), createjs.Tween.get(this._blue).to({
-                    y: 300,
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 300), createjs.Tween.get(this._blue_lost).to({
-                    y: 420,
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 300).wait(500).call(this._ready2)
-            }, e.prototype._hideText = function () {
-                var t = this;
-                this._layer.addChild(this._gray), this._layer.addChild(this._gray_lost), createjs.Tween.get(this._gray).to({
-                    alpha: 1
-                }, 500).call(function () {
-                    t._layer.removeChild(t._blue)
-                }).wait(500).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(t._gray)
-                }), createjs.Tween.get(this._gray_lost).to({
-                    alpha: 1
-                }, 500).call(function () {
-                    t._layer.removeChild(t._blue_lost)
-                }).wait(500).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(t._gray_lost)
-                }).wait(500).call(function () {
+                var t = this,
+                    e = new s.TweenTask;
+                e.addTween(this._createTween(this._smoke1, 0)), e.addTween(this._createTween(this._smoke2, 100)), e.addTween(this._createTween(this._smoke3, 400)), e.start(function () {
                     t._endTask()
                 })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._blue = null, this._blue_lost = null, this._gray = null, this._gray_lost = null, t.prototype._endTask.call(this)
+            }, e.prototype._createTween = function (t, e) {
+                var i = this,
+                    n = t.x - 105,
+                    o = t.y - 8;
+                return t.scale.set(0), createjs.Tween.get(t).wait(e).call(function () {
+                    i._layer.addChild(t)
+                }).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    x: n,
+                    y: o,
+                    alpha: 0,
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 400).call(function () {
+                    i._layer.removeChild(t)
+                })
             }, e
         }(o.TaskBase);
-    e.TaskGouchinCutinText = a
+    e.AnimAntiAircraftFunshin = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(a.BATTLE_MAIN.getTexture(150)), e._img.position.set(-32, -42), e.addChild(e._img), e
+        }
+        return n(e, t), e
+    }(r.Container)
 }

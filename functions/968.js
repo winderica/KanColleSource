@@ -19,25 +19,40 @@ const function968 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(356),
-        s = i(970),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e) || this;
-                return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
+    var o = i(969),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._tabs = [];
+                for (var n = 0; n < 5; n++) {
+                    var r = new o.AirUnitListTab(e);
+                    r.x = 69 * n, i.addChild(r), i._tabs.push(r)
+                }
+                return i
             }
-            return n(e, t), e.prototype.initialize = function (e) {
-                t.prototype.initialize.call(this, e), this._btn_extend.initialize()
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0; t < this._tabs.length; t++) {
+                    var e = this._tabs[t];
+                    0 == t && (e.selected = !0), e.initialize(t)
+                }
+            }, e.prototype.update = function (t) {
+                for (var e = 0, i = this._tabs; e < i.length; e++) {
+                    var n = i[e];
+                    n.selected = n.category == t
+                }
             }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._btn_extend.activate()
+                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                    e[t].activate()
+                }
             }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._btn_extend.deactivate()
+                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._btn_extend.dispose()
-            }, e.prototype.updateExtendBtn = function (t, e) {
-                this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
+                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(r.AirUnitPanelTabContainer);
-    e.AirUnitPanelTabContainerWithExtend = a
+        }(PIXI.Container);
+    e.AirUnitListTabContainer = r
 }

@@ -19,17 +19,17 @@ const function1231 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
+    var o = i(2),
         r = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_req_kousyou/remodel_slotlist", i._revampSlotlistModel = e, i
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._revampSlotlistModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._scene.start(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.RevampSlotlistAPI = r
+        }(o.TaskBase);
+    e.TaskInit = r
 }

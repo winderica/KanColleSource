@@ -20,88 +20,168 @@ const function924 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(1),
-        s = i(168),
-        a = i(127),
-        _ = i(87),
-        l = i(215),
-        u = i(4),
-        c = i(6),
-        h = i(21),
-        p = i(35),
-        d = i(90),
-        f = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.ITEM_NUM = 10, e._onClick = function (t, i) {
-                    e.onClickShip(t, i)
-                };
-                var i = new PIXI.Sprite(h.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(h.COMMON_MAIN.getTexture(39));
-                e.listItems = new Array, n.position.set(45, 12), e.addChild(n);
-                for (var o = 0; o < e.ITEM_NUM; o++) {
-                    var r = new y,
-                        s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(37));
-                    r.onClick = e._onClick, s.position.set(48, 46 * o + 46 + 43), r.position.set(0, 46 * o + 46), e.addChild(s, r), e.listItems.push(r)
-                }
-                return e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose(), this.listItems[t] = null;
-                this.listItems = null, this._onClick = this.onClickShip = null, this.removeChildren()
-            }, e.prototype.update = function (t) {
-                for (var e = 0; e < this.listItems.length; e++) {
-                    var i = this.listItems[e];
-                    if (i.visible = !1, e < t.length) {
-                        var n = t[e],
-                            r = o.default.model.deck.isInDeck(n.memID),
-                            s = 0 == d.Util.ShipDisassemblyValidation(n.memID) ? 1 : 2;
-                        i.update(n.memID, n.shipTypeName, n.name, n.level, n.hpMax, n.karyoku, n.raisou, n.taiku, n.speed, n.isLocked(), n.hasLockedSlotitem(), r, s, e), i.visible = !0
+        r = i(5),
+        s = i(1),
+        a = i(49),
+        _ = i(45),
+        l = i(8),
+        u = i(86),
+        c = i(85),
+        h = i(6),
+        p = i(21),
+        d = i(35),
+        f = i(925),
+        y = i(926),
+        m = i(927),
+        g = i(928),
+        v = i(353),
+        b = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i.slotItemFilterKeyType = 0, i._pageIndex = 0, i.checkedMemSlotIdList = [], i.animation = {
+                    progress: 0
+                }, i._onClickFilter = function (t) {
+                    var e = [],
+                        n = i._sortAndFilter(i.slots, t),
+                        o = i._getPage(n.length),
+                        r = i._getSlotsInPage(n, 0);
+                    i.slotDisassemblyChoice.update(r, e), i.slotDisassemblyConfirm.visibleContainer(!1), i.slotItemFilterView.updateFilterType(t), i.slotItemFilterView.hideFilterListImmidiate(), i.filteredSlots = n, i.pagerView.init(o), i.checkedMemSlotIdList = e, i._pageIndex = 0, i.slotItemFilterKeyType = t
+                }, i._onClickSlot = function (t) {
+                    var e = o.default.model.slot.get(t),
+                        n = i._getSlotsInPage(i.filteredSlots, i.pageIndex);
+                    if (e.isLocked()) 0 == i.checkedMemSlotIdList.length && (i.slotDisassemblyConfirm.clearInfo(), i.slotDisassemblyConfirm.update([e.memID], !1), i.slotDisassemblyConfirm.visibleContainer(!0));
+                    else {
+                        h.SE.play("239");
+                        var r = i.checkedMemSlotIdList.indexOf(t);
+                        switch (-1 < r ? i.checkedMemSlotIdList.splice(r, 1) : i.checkedMemSlotIdList.push(t), i.slotDisassemblyConfirm.clearInfo(), i.slotDisassemblyChoice.update(n, i.checkedMemSlotIdList), i.checkedMemSlotIdList.length) {
+                            case 0:
+                                i.slotDisassemblyConfirm.visibleContainer(!1);
+                                break;
+                            case 1:
+                            default:
+                                i.slotDisassemblyConfirm.update(i.checkedMemSlotIdList, !0), i.slotDisassemblyConfirm.visibleContainer(!0)
+                        }
                     }
+                }, i._onChangePage = function (t) {
+                    if (i._pageIndex != t) {
+                        var e = [],
+                            n = i._getSlotsInPage(i.filteredSlots, t);
+                        i.slotDisassemblyChoice.update(n, e), i.slotDisassemblyConfirm.visibleContainer(!1), i._pageIndex = t, i.checkedMemSlotIdList = e
+                    }
+                }, i._onClickDisassembly = function (t) {
+                    var e = new f.DestroyItem2API(t),
+                        n = i.slotDisassemblyConfirm.viewIcon;
+                    i.disassemblyAnimation = new v.DisassemblyAnimation(162, 142), i.disassemblyAnimation.position.x = n.x + -.5 * n.width, i.disassemblyAnimation.position.y = n.y + -.5 * n.height, o.default.view.clickGuard = !0, e.start(function () {
+                        var t = new PIXI.Graphics;
+                        t.beginFill(0, .2), t.drawRect(0, 0, r.default.width, r.default.height), t.endFill(), o.default.view.overLayer.addChild(t), n.parent.addChild(i.disassemblyAnimation);
+                        var e = function () {
+                            h.SE.play("202")
+                        };
+                        createjs.Tween.get(n).call(function () {
+                            e(), i.disassemblyAnimation.play(5)
+                        }).to({
+                            alpha: .33
+                        }, 1e3).call(e).to({
+                            alpha: .66
+                        }, 1e3).call(e).to({
+                            alpha: 1
+                        }, 1e3).call(function () {
+                            t.clear(), o.default.view.overLayer.removeChild(t), n.parent.removeChild(i.disassemblyAnimation), i.disassemblyAnimation.dispose(), i.disassemblyAnimation = null, i.slotDisassemblyConfirm.viewIcon.alpha = 1;
+                            var e = [],
+                                r = o.default.model.slot.createUnsetList(),
+                                s = i._sortAndFilter(r, i.slotItemFilterKeyType),
+                                a = i._getPage(s.length),
+                                _ = i._pageIndex;
+                            a <= i._pageIndex && (_ = a - 1) < 0 && (_ = 0);
+                            var l = i._getSlotsInPage(s, _);
+                            i.pagerView.init(a), i.pagerView.changePage(_), i.slotDisassemblyConfirm.visibleContainer(!1), o.default.view.portMain.updateInfo(), i.slotDisassemblyChoice.update(l, []), i.slots = r, i.filteredSlots = s, i.checkedMemSlotIdList = e, i._pageIndex = _, o.default.view.clickGuard = !1
+                        })
+                    })
+                }, i._onClickBackground = function () {
+                    i.onComplete()
+                }, i.list_tit_bg_0 = new PIXI.Sprite(p.COMMON_MAIN.getTexture(64)), i.list_tit_bg_1 = new PIXI.Sprite(p.COMMON_MAIN.getTexture(64)), i.pagerView = new u.PagerView, i.pagerView.position.set(42, 529), i.pagerView.onChangePage = i._onChangePage, i.slotItemFilterView = new y.SlotItemFilterView, i.slotItemFilterView.position.set(247, 13), i.slotItemFilterView.onClick = i._onClickFilter, i.slotDisassemblyChoice = new m.SlotDisassemblyChoice, i.slotDisassemblyChoice.onClickSlot = i._onClickSlot, i.slotDisassemblyChoice.addChild(i.slotItemFilterView, i.pagerView), i.slotDisassemblyConfirm = new g.SlotDisassemblyConfirm, i.slotDisassemblyConfirm.position.set(654, -16), i.slotDisassemblyConfirm.onClickStart = i._onClickDisassembly, i.blue_txt_04 = new PIXI.Sprite(p.COMMON_MAIN.getTexture(2)), i.blue_txt_04.anchor.set(0, .5), i.blue_txt_04.position.set(22, Math.floor(i.list_tit_bg_0.height / 2 - 4)), i.blue_txt_11 = new PIXI.Sprite(d.ARSENAL_MAIN.getTexture(6)), i.blue_txt_11.anchor.set(0, .5), i.blue_txt_11.position.set(22, Math.floor(i.list_tit_bg_0.height / 2 - 4)), i.list_tit_bg_0.position.set(0, -37), i.list_tit_bg_1.position.set(654, -37), i.list_tit_bg_0.addChild(i.blue_txt_04), i.list_tit_bg_1.addChild(i.blue_txt_11), i.addChild(i.slotDisassemblyChoice, i.slotDisassemblyConfirm, i.list_tit_bg_0, i.list_tit_bg_1), i.position.set(1200, 139);
+                return i.dialogBackground = new l.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = r.default.height - 103, e.addChild(i.dialogBackground), e.addChild(i), i.mainView = e, i.dialogBackground.on(s.EventType.CLICK, i._onClickBackground), i
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "pageIndex", {
+                get: function () {
+                    return this._pageIndex
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._sortAndFilter = function (t, e) {
+                if (0 == e) return _.SlotUtil.sort(t, 0), t;
+                if (13 == e) return _.SlotUtil.sort(t, 1), t;
+                if (14 == e) return _.SlotUtil.sort(t, 2), t;
+                switch (e) {
+                    case 1:
+                        return _.SlotUtil.filter(t, 1);
+                    case 2:
+                        return _.SlotUtil.filter(t, 2);
+                    case 3:
+                        return _.SlotUtil.filter(t, 3);
+                    case 4:
+                        return _.SlotUtil.filter(t, 4);
+                    case 5:
+                        return _.SlotUtil.filter(t, 5);
+                    case 6:
+                        return _.SlotUtil.filter(t, 6);
+                    case 7:
+                        return _.SlotUtil.filter(t, 7);
+                    case 8:
+                        return _.SlotUtil.filter(t, 8);
+                    case 9:
+                        return _.SlotUtil.filter(t, 9);
+                    case 10:
+                        return _.SlotUtil.filter(t, 10);
+                    case 11:
+                        return _.SlotUtil.filter(t, 11);
+                    case 12:
+                        return _.SlotUtil.filter(t, 12)
                 }
-            }, e.prototype.toggleCheckBox = function (t) {
-                this.listItems[t].toggleCheckBox()
+            }, e.prototype._getSlotsInPage = function (t, e) {
+                var i = this.slotDisassemblyChoice.ITEM_NUM;
+                return t.slice(e * i, e * i + i)
+            }, e.prototype._getPage = function (t) {
+                var e = this.slotDisassemblyChoice.ITEM_NUM;
+                return Math.ceil(t / e)
+            }, e.prototype.start = function (t, e) {
+                var i = this,
+                    n = o.default.model.slot.createUnsetList(),
+                    r = this._sortAndFilter(n, t),
+                    s = [],
+                    a = this._getSlotsInPage(r, e),
+                    _ = this._getPage(r.length);
+                this.pagerView.init(_), this.slotItemFilterView.updateFilterType(t), this._pageIndex = e, this.pagerView.changePage(e), this.slotDisassemblyChoice.update(a, s), this.animation.progress = 0, o.default.view.clickGuard = !0;
+                var l = function () {
+                    i.x = 1200 - 945 * i.animation.progress, i.dialogBackground.alpha = i.animation.progress
+                };
+                this.checkedMemSlotIdList = s, this.filteredSlots = r, this.slots = n;
+                var u = createjs.Tween.get(this.animation);
+                u.call(function () {
+                    u.addEventListener("change", l)
+                }).to({
+                    progress: 1
+                }, 200).call(function () {
+                    u.removeAllEventListeners("change"), createjs.Tween.removeTweens(u.target), i.animation.progress = 1, l(), i.dialogBackground.width = 288, o.default.view.clickGuard = !1
+                })
+            }, e.prototype.hide = function (t) {
+                var e = this;
+                c.TaskLoadSlotResource.abortBy(this.slotDisassemblyConfirm.viewIcon), this.dialogBackground.width = r.default.width;
+                var i = function () {
+                    e.x = 1200 - 945 * (1 - e.animation.progress), e.dialogBackground.alpha = 1 - e.animation.progress
+                };
+                this.animation.progress = 0;
+                var n = createjs.Tween.get(this.animation);
+                n.call(function () {
+                    i(), n.addEventListener("change", i)
+                }).to({
+                    progress: 1
+                }, 200).call(function () {
+                    n.removeAllEventListeners("change"), createjs.Tween.removeTweens(n.target), e.animation.progress = 1, i(), t()
+                })
+            }, e.prototype.dispose = function () {
+                this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.removeChildren(), createjs.Tween.removeTweens(this.animation), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.list_tit_bg_0.removeChild(this.blue_txt_04), this.list_tit_bg_1.removeChild(this.blue_txt_11), this.slotDisassemblyChoice.dispose(), this.slotDisassemblyConfirm.visibleContainer(!1), this.slotDisassemblyConfirm.dispose(), this.pagerView.dispose(), this.slotItemFilterView.dispose(), this.disassemblyAnimation && this.disassemblyAnimation.dispose(), this.onComplete = null, this.slots = null, this.slotItemFilterKeyType = null, this.filteredSlots = null, this._pageIndex = null, this.mainView = null, this.dialogBackground = null, this.slotDisassemblyChoice = null, this.slotDisassemblyConfirm = null, this.pagerView = null, this.slotItemFilterView = null, this.checkedMemSlotIdList = null, this.list_tit_bg_0 = null, this.list_tit_bg_1 = null, this.blue_txt_04 = null, this.blue_txt_11 = null, this.animation = null, this.disassemblyAnimation = null
             }, e
         }(PIXI.Container);
-    e.ShipDisassemblyChoice = f;
-    var y = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClick = function () {
-                e.onClick(e.memShipId, e.arrayIndex)
-            }, e._onMouseOver = function () {
-                e.containerShipTypeAndName.cacheAsBitmap = !1, e.background.visible = !0, e.textShipType.style.fill = e.textName.style.fill = e.textLevel.style.fill = e.textTaikyu.style.fill = e.textKaryoku.style.fill = e.textRaiso.style.fill = e.textTaiku.style.fill = 16777215, e.containerShipTypeAndName.cacheAsBitmap = !0
-            }, e._onMouseOut = function () {
-                e.containerShipTypeAndName.cacheAsBitmap = !1, e.background.visible = !1, e.textLevel.style.fill = e.mouseoutColor, e.textShipType.style.fill = e.textName.style.fill = e.textTaikyu.style.fill = e.textKaryoku.style.fill = e.textRaiso.style.fill = e.textTaiku.style.fill = 5523516, e.containerShipTypeAndName.cacheAsBitmap = !0
-            };
-            e.shipInDeckFlag = new _.ShipInDeckFlag, e.textShipType = new u.TextBox(18, 5523516), e.textName = new u.TextBox(20, 5523516), e.textLevel = new u.TextBox(22, 5523516), e.textTaikyu = new u.TextBox(18, 5523516), e.textKaryoku = new u.TextBox(18, 5523516), e.textRaiso = new u.TextBox(18, 5523516), e.textTaiku = new u.TextBox(18, 5523516), e.iconLockedShip = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(88)), e.iconLockedItem = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(80)), e.shipSpeedImage = new l.ShipSpeedImage, e.background = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), e.clickArea = new PIXI.Graphics, e.containerShipTypeAndName = new PIXI.Container, e.iconCheckState = new PIXI.Sprite;
-            var i = Math.floor(22.5) + 1,
-                n = a.CreateRect.gradientLeftToRight(240, 45, .85, .9);
-            return e.shipInDeckFlag.scale.set(.8, .8), e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 645, 45), e.clickArea.endFill(), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.interactive = e.clickArea.buttonMode = !0, e.background.visible = !1, e.iconCheckState.position.set(12, 12), e.containerShipTypeAndName.position.set(79, 0), e.textShipType.anchor.set(0, 0), e.textShipType.position.set(0, Math.floor(i - e.textShipType.height / 2)), e.textName.anchor.set(0, 0), e.textName.position.set(90, Math.floor(i - e.textName.height / 2) + 0), e.textLevel.position.set(336, Math.floor(i - e.textLevel.height / 2)), e.textTaikyu.position.set(393, Math.floor(i - e.textTaikyu.height / 2)), e.textKaryoku.position.set(439, Math.floor(i - e.textKaryoku.height / 2)), e.textRaiso.position.set(486, Math.floor(i - e.textRaiso.height / 2)), e.textTaiku.position.set(531, Math.floor(i - e.textTaiku.height / 2)), e.shipSpeedImage.position.set(540, i), e.iconLockedShip.position.set(591, Math.floor(i - e.iconLockedShip.height / 2)), e.iconLockedItem.position.set(591, Math.floor(i - e.iconLockedItem.height / 2)), e.shipInDeckFlag.position.set(47, i), e.background.position.set(75, 0), e.background.scale.x = 1.05, e.textLevel.anchor.set(1, 0), e.textTaikyu.anchor.set(1, 0), e.textKaryoku.anchor.set(1, 0), e.textRaiso.anchor.set(1, 0), e.textTaiku.anchor.set(1, 0), e.shipSpeedImage.anchor.set(0, .5), e.iconLockedShip.anchor.set(0, 0), e.iconLockedItem.anchor.set(0, 0), e.shipInDeckFlag.anchor.set(0, .5), e.containerShipTypeAndName.mask = n, e.containerShipTypeAndName.addChild(e.textShipType, e.textName), e.addChild(e.background, e.iconCheckState, e.shipInDeckFlag, e.textLevel, e.containerShipTypeAndName, e.textLevel, e.textTaikyu, e.textKaryoku, e.textRaiso, e.textTaiku, e.iconLockedShip, e.iconLockedItem, e.shipSpeedImage, e.clickArea), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.shipInDeckFlag.dispose(), this.containerShipTypeAndName.cacheAsBitmap = !1, this.containerShipTypeAndName.mask = null, this.containerShipTypeAndName.removeChildren(), this.shipSpeedImage.dispose(), this.clickArea.off(r.EventType.CLICK), this.clickArea.off(r.EventType.MOUSEOUT), this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.clear(), this.textShipType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textTaikyu.destroy(), this.textKaryoku.destroy(), this.textRaiso.destroy(), this.textTaiku.destroy(), this.onClick = null, this.shipInDeckFlag = null, this.containerShipTypeAndName = null, this.iconLockedShip = null, this.iconLockedItem = null, this.shipSpeedImage = null, this.background = null, this.clickArea = null, this.textShipType = null, this.textName = null, this.textLevel = null, this.textTaikyu = null, this.textKaryoku = null, this.textRaiso = null, this.textTaiku = null, this.mouseoutColor = null, this.iconCheckState = null, this.checkState = null, this.arrayIndex = null
-        }, e.prototype.update = function (t, e, i, n, o, r, a, _, l, u, c, h, d, f) {
-            switch (void 0 === h && (h = null), this.arrayIndex = f, this.containerShipTypeAndName.cacheAsBitmap = !1, this.memShipId = t, this.textShipType.text = e + " ", this.textName.text = i, this.textLevel.text = n.toString(), this.textTaikyu.text = o.toString(), this.textKaryoku.text = r.toString(), this.textRaiso.text = a.toString(), this.textTaiku.text = _.toString(), this.shipSpeedImage.update(l), this.textName.position.x = this.textShipType.position.x + this.textShipType.width, this.iconLockedShip.visible = !1, this.iconLockedItem.visible = !1, u ? this.iconLockedShip.visible = !0 : c && (this.iconLockedItem.visible = !0), d) {
-                case 1:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(12);
-                    break;
-                case 2:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13);
-                    break;
-                case 3:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14)
-            }
-            this.checkState = d, this.textLevel.style.fill = this.mouseoutColor = s.ColorUtil.getLevelColor(n), this.shipInDeckFlag.visible = !1, h && (this.shipInDeckFlag.update(h), this.shipInDeckFlag.visible = !0), this.containerShipTypeAndName.cacheAsBitmap = !0
-        }, e.prototype.toggleCheckBox = function () {
-            switch (c.SE.play("239"), this.checkState) {
-                case 2:
-                    this.checkState = 3, this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14);
-                    break;
-                case 3:
-                    this.checkState = 2, this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13)
-            }
-        }, e
-    }(PIXI.Container)
+    e.SlotDisassemblyContainer = b
 }

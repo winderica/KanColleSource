@@ -19,50 +19,33 @@ const function650 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(9),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onChange = function () {
-                    for (var t = 0, i = e.children; t < i.length; t++) {
-                        i[t].update()
-                    }
-                };
-                for (var i = 0; i < 30; i++) {
-                    var n = new a;
-                    e.addChild(n)
-                }
-                return e.visible = !1, e
+    var o = i(0),
+        r = i(2),
+        s = i(6),
+        a = i(651),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._pre_scene = e, i
             }
-            return n(e, t), e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(null, {
-                    loop: !0,
-                    onChange: this._onChange
-                }), this.visible = !0)
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren()
+            return n(e, t), e.prototype._start = function () {
+                this._playVoice()
+            }, e.prototype._playVoice = function () {
+                var t = o.default.model.deck.get(1),
+                    e = t.getShipModel(0),
+                    i = e.mstID.toString();
+                if (33 == this._pre_scene || 32 == this._pre_scene) o.default.model.basic.getMFlag2() ? (s.SE.play("215"), o.default.sound.voice.play(i, 26)) : o.default.sound.voice.play(i, 7);
+                else if (50 == o.default.model.basic.getTutorialProgress()) o.default.sound.voice.play(i, 26);
+                else if (0 == this._pre_scene) o.default.sound.voice.play(i, 1);
+                else {
+                    var n = Math.random();
+                    n <= .4 && (n <= .05 ? o.default.sound.voice.play(i, 4) : n <= .2 ? o.default.sound.voice.play(i, 3) : o.default.sound.voice.play(i, 2))
+                }
+                this._playBGM()
+            }, e.prototype._playBGM = function () {
+                var t = o.default.model.basic.port_bgm_id;
+                o.default.sound.bgm.play(t), (new a.TaskCombinedAlert).start(), this._endTask()
             }, e
-        }(PIXI.Container);
-    e.BonusInsertParticle = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._vx = 0, e._vy = 0, e._vr = 0, e._vscale = 0;
-            return e.texture = r.COMMON_MISC.getTexture(114), e._init(), e
-        }
-        return n(e, t), e.prototype.update = function () {
-            if (--this._life < 0 && (this.alpha -= .1 * Math.random() + .1, this.alpha <= 0)) return void this._init();
-            this.x += this._vx, this.y += this._vy, this.rotation += this._vr, this.scale.x += this._vscale, this.scale.y += this._vscale;
-            var t = 60 / createjs.Ticker.framerate;
-            this._vx *= 1 + .01 * t, this._vy += .01 * t
-        }, e.prototype._init = function () {
-            var t = 60 / createjs.Ticker.framerate;
-            this.x = o.default.width / 2, this.y = o.default.height / 2 - 45, this.alpha = 1, this.scale.set(0), this._life = 100 * t, this._life += 100 * Math.random() * t, this._vx = 6 * Math.random() * t, Math.random() < .5 && (this._vx *= -1), this._vy = (12 * Math.random() - 9) * t;
-            var e = 50 / 180 * Math.PI * t;
-            this._vr = (Math.random() * e + 1) / 100, this._vscale = (.0025 * Math.random() + .005) * t
-        }, e
-    }(PIXI.Sprite)
+        }(r.TaskBase);
+    e.InitializeTask = _
 }

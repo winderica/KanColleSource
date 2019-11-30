@@ -19,84 +19,31 @@ const function1322 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(155),
-        r = i(50),
-        s = i(437),
-        a = i(1323),
-        _ = i(1324),
-        l = i(1338),
-        u = function (t) {
+    var o = i(1323),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new l.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e._anchorage_repair_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e.addChild(e._anchorage_repair_layer), e
+                return e._frame = 0, e._sprite = new PIXI.Sprite(o.MAP_EVENT_ANIME.getTexture(e._frame)), e.addChild(e._sprite), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "map", {
-                get: function () {
-                    return this._map
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "upper", {
-                get: function () {
-                    return this._upper
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "gauge_layer", {
-                get: function () {
-                    return this._gauge_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara_layer", {
-                get: function () {
-                    return this._chara_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "universal_layer", {
-                get: function () {
-                    return this._universal_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message_box", {
-                get: function () {
-                    return this._message_box
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "top_layer", {
-                get: function () {
-                    return this._top_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "anchorage_repair_leyer", {
-                get: function () {
-                    return this._anchorage_repair_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
-            }, e.prototype.frontOfGaugeLayer = function () {
-                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
+            return n(e, t), e.prototype.dispose = function () {
+                this.stopAnimation(), this.removeChildren(), this._sprite = null, this._frame = null
+            }, e.prototype.startAnimation = function () {
+                var t = this;
+                this._tween = createjs.Tween.get(null), this._tween.loop = !0, this._tween.wait(250).call(function () {
+                    t._onUpdate()
+                })
+            }, e.prototype.stopAnimation = function () {
+                this._tween && (this._tween.setPaused(!0), this._tween = null, this._sprite.alpha = 0)
+            }, e.prototype.hide = function () {
+                var t = this;
+                createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t.stopAnimation()
+                })
+            }, e.prototype._onUpdate = function () {
+                this._frame >= 29 ? this._frame = 0 : this._frame++, this._sprite.texture = o.MAP_EVENT_ANIME.getTexture(this._frame)
             }, e
         }(PIXI.Container);
-    e.ViewMain = u
+    e.MapAnime = r
 }

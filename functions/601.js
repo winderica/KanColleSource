@@ -19,29 +19,168 @@ const function601 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(602),
-        r = i(18),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(2),
+        _ = i(8),
+        l = i(18),
+        u = i(602),
+        c = i(59),
+        h = i(50),
+        p = i(13),
+        d = i(155),
+        f = i(293),
+        y = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._deck_id = e, n._expedition_result = i, n
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this.texture = this._getTexture(t), this.visible = this.texture != PIXI.Texture.EMPTY
-            }, e.prototype.clear = function () {
-                this.update(-1)
-            }, e.prototype._getTexture = function (t) {
-                if (-1 === r.EVENT_AREA_ID) return PIXI.Texture.EMPTY;
-                switch (t) {
-                    case 1:
-                        return o.COMMON_EVENT.getTexture(0);
-                    case 2:
-                        return o.COMMON_EVENT.getTexture(1);
-                    case 3:
-                        return o.COMMON_EVENT.getTexture(2);
-                    default:
-                        return PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._start = function () {
+                this._showShutter()
+            }, e.prototype._showShutter = function () {
+                this._shutter = new h.Shutter, this._shutter.initializeDark(), this._shutter.close(0), this._shutter.interactive = !0, r.default.view.overLayer.addChild(this._shutter), this._loadResources()
+            }, e.prototype._loadResources = function () {
+                for (var t = this, e = new p.ShipLoader, i = this._expedition_result.ship_mem_ids, n = 0; n < i.length; n++) {
+                    var o = i[n],
+                        s = r.default.model.ship.get(o),
+                        a = s.mstID,
+                        _ = s.isDamaged();
+                    0 == n && e.add(a, _, "full"), e.add(a, _, "banner")
                 }
+                e.load(function () {
+                    t._showWhiteLight()
+                })
+            }, e.prototype._showWhiteLight = function () {
+                var t = this;
+                this._view = new u.ExpeditionResult, this._view.initialize(this._deck_id, this._expedition_result);
+                var e = this._expedition_result;
+                this._view.expedition_name.visible = !1, this._view.user_info.visible = !1, this._view.item.visible = !1;
+                var i = e.item1;
+                null != i && this._view.item.updateItem1(i.mstID, i.name, i.count), i = e.item2, null != i && this._view.item.updateItem2(i.mstID, i.name, i.count), this._view.item.updateMaterials(e.fuel, e.ammo, e.steel, e.baux), this._view.visible = !1, r.default.view.overLayer.addChild(this._view);
+                var n = new l.FadeBox(1, 16777215);
+                n.hide(0), r.default.view.overLayer.addChild(n), n.show(200, function () {
+                    t._view.visible = !0, n.hide(200, function () {
+                        r.default.view.overLayer.removeChild(n), t._showUserInfo()
+                    })
+                })
+            }, e.prototype._showUserInfo = function () {
+                var t = this;
+                this._view.expedition_name.text = this._expedition_result.expedition_name, this._view.expedition_name.visible = !0;
+                var e = r.default.model.basic.nickName,
+                    i = this._expedition_result.user_level,
+                    n = r.default.model.basic.rankName,
+                    o = r.default.model.deck.get(this._deck_id).name;
+                this._view.user_info.update(e, i, n, o), this._view.user_info.visible = !0;
+                for (var s = this._expedition_result.ship_mem_ids, a = new createjs.Timeline([], null, {
+                        paused: !0
+                    }), _ = this._view.banners, l = 0; l < _.length; l++) {
+                    var u = _[l];
+                    if (s.length <= l) u.visible = !1;
+                    else {
+                        var c = r.default.model.ship.get(s[l]);
+                        u.y = 68 * l + 15, u.alpha = 0, u.update(c, !1);
+                        var h = createjs.Tween.get(u).wait(200 * l).to({
+                            y: u.y - 15,
+                            alpha: 1
+                        }, 200);
+                        a.addTween(h)
+                    }
+                }
+                for (var p = this._view.infos.items, l = 0; l < p.length; l++) {
+                    var d = p[l];
+                    if (s.length <= l) d.visible = !1;
+                    else {
+                        var c = r.default.model.ship.get(s[l]);
+                        d.y = 68 * l + 8, d.alpha = 0, d.initialize(), d.update(c.name, c.level)
+                    }
+                }
+                this._view.infos.visible = !0;
+                for (var f, l = 0; l < p.length; l++) {
+                    var d = p[l];
+                    null != d && (f = createjs.Tween.get(d).wait(500 + 100 * l).to({
+                        y: d.y - 8,
+                        alpha: 1
+                    }, 200), a.addTween(f))
+                }
+                null != f && f.call(function () {
+                    t._showTelopBG()
+                }), a.setPaused(!1)
+            }, e.prototype._showTelopBG = function () {
+                var t = this;
+                this._telop_bg = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(10)), this._telop_bg.anchor.set(.5, .5), this._telop_bg.position.set(o.default.width / 2, o.default.height / 2), this._telop_bg.scale.set(1, 0), r.default.view.overLayer.addChild(this._telop_bg), createjs.Tween.get(this._telop_bg.scale).to({
+                    y: 2
+                }, 200).call(function () {
+                    t._showTelop()
+                })
+            }, e.prototype._showTelop = function () {
+                var t = this,
+                    e = o.default.height / 2;
+                this._telop_label = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(2)), this._telop_label.anchor.set(.5, .5), this._telop_label.position.set(1338, e), 2 == this._expedition_result.result ? (this._telop_result = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(9)), this._telop_result.position.set(795, e)) : 1 == this._expedition_result.result ? (this._telop_result = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(7)), this._telop_result.position.set(909, e)) : (this._telop_result = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(8)), this._telop_result.position.set(909, e)), this._telop_result.anchor.set(.5, .5), this._telop_result.scale.set(1.6, 1.6), this._telop_result.alpha = 0, r.default.view.overLayer.addChild(this._telop_label), r.default.view.overLayer.addChild(this._telop_result), createjs.Tween.get(this._telop_label).to({
+                    x: 426
+                }, 1e3).to({
+                    x: 330
+                }, 1e3), createjs.Tween.get(this._telop_result).wait(1500).to({
+                    alpha: 1
+                }, 800, createjs.Ease.bounceOut), createjs.Tween.get(this._telop_result.scale).wait(1500).to({
+                    x: 1,
+                    y: 1
+                }, 800, createjs.Ease.bounceOut).call(function () {
+                    t._waitClick()
+                })
+            }, e.prototype._waitClick = function () {
+                var t = this;
+                this._gear_btn = new c.GearBtnNext, this._gear_btn.position.set(1145, 666), this._gear_btn.initialize(), this._click_area = new _.AreaBox(0), this._click_area.buttonMode = !0, r.default.view.overLayer.addChild(this._gear_btn), r.default.view.overLayer.addChild(this._click_area), this._gear_btn.activate(), this._click_area.once(s.EventType.CLICK, function () {
+                    t._hideTelop()
+                })
+            }, e.prototype._hideTelop = function () {
+                var t = this;
+                createjs.Tween.get(this._telop_label).to({
+                    alpha: 0
+                }, 100), createjs.Tween.get(this._telop_result).to({
+                    alpha: 0
+                }, 100), createjs.Tween.get(this._telop_bg.scale).wait(100).to({
+                    y: 0
+                }, 50).call(function () {
+                    t._removeChild(t._telop_label), t._removeChild(t._telop_result), t._removeChild(t._telop_bg), t._showBonusAndItem()
+                })
+            }, e.prototype._showBonusAndItem = function () {
+                var t = this;
+                this._view.bonus.alpha = 0, this._view.bonus.visible = !0, createjs.Tween.get(this._view.bonus).to({
+                    alpha: 1
+                }, 100), this._view.item.alpha = 0, this._view.item.visible = !0, createjs.Tween.get(this._view.item).wait(50).to({
+                    alpha: 1
+                }, 100).call(function () {
+                    t._waitClick2()
+                });
+                var e = this._expedition_result.ship_mem_ids[0],
+                    i = r.default.model.ship.get(e),
+                    n = r.default.resources.getShip(i.mstID, i.isDamaged(), "full"),
+                    o = new PIXI.Sprite(n),
+                    s = r.default.model.ship_graph.get(i.mstID).getCenterOffset(i.isDamaged());
+                o.x = s.x / this._view.ship_canvas.scale.x, o.y = s.y / this._view.ship_canvas.scale.y, this._view.ship_canvas.addChild(o)
+            }, e.prototype._waitClick2 = function () {
+                var t = this;
+                this._click_area.once(s.EventType.CLICK, function () {
+                    t._viewUpdate()
+                })
+            }, e.prototype._viewUpdate = function () {
+                var t = this;
+                (new f.TaskExpeditionAlertUpdate).start(function () {
+                    r.default.view.portMain.updateInfo(), t._hide()
+                })
+            }, e.prototype._hide = function () {
+                var t = this;
+                this._gear_btn.deactivate(), this._gear_btn.dispose(), this._removeChild(this._gear_btn), createjs.Tween.get(this._view).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._shutter).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._removeChild(t._click_area), t._removeChild(t._view), t._view.dispose(), t._removeChild(t._shutter), t._endTask()
+                })
+            }, e.prototype._removeChild = function (t) {
+                r.default.view.overLayer.removeChild(t)
             }, e
-        }(PIXI.Sprite);
-    e.BannerPlate = s
+        }(a.TaskBase);
+    e.TaskExpeditionResultShow = y
 }

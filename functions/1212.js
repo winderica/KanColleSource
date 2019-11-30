@@ -21,32 +21,40 @@ const function1212 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(34),
-        a = i(69),
-        _ = i(418),
-        l = i(419),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._data = e, n._scene_initialize_delegate = i, n
+        s = i(1213),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
                 this._loadResources()
             }, e.prototype._loadResources = function () {
                 var t = this;
-                (new l.TaskLoadResources).start(function () {
-                    t._connectAPI()
+                (new s.TaskLoadResources).start(function () {
+                    t._showTopView()
                 })
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = new s.APIConnector;
-                20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
-                e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
-                    null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
+            }, e.prototype._showTopView = function () {
+                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
             }, e
         }(r.TaskBase);
-    e.TaskDutyScenePreInitialize = u
+    e.PreInitializeTask = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            var t = this._getBGMID();
+            o.default.sound.bgm.play(t), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
+        }, e.prototype._getBGMID = function () {
+            var t = o.default.model.deck.get(1).getShipModel(1);
+            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
+        }, e
+    }(r.TaskBase);
+    e.InitializeTask = _
 }

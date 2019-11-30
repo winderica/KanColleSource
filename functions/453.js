@@ -19,66 +19,55 @@ const function453 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = i(2),
-        s = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._scene = e, r._data = i, r._from_planes = n, r._to_ships = o, r._tasks = new Array, r
+    var o = i(27),
+        r = i(29),
+        s = i(72),
+        a = i(20),
+        _ = i(38),
+        l = i(6),
+        u = i(145),
+        c = i(181),
+        h = i(449),
+        p = i(182),
+        d = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                for (var t = this, e = this, i = 0, n = this._to_ships; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        if (null == i) return "continue";
-                        if (1 == (1 == i.friend ? e._data.stage3_f.getRai(i.index) : e._data.stage3_e.getRai(i.index)) && e._from_planes.length > 0) {
-                            var n = Math.floor(Math.random() * e._from_planes.length),
-                                o = e._from_planes[n],
-                                r = e._scene.view.bannerGroupLayer.getBanner(i),
-                                s = 1 == i.friend ? e._data.stage3_f : e._data.stage3_e,
-                                _ = s.getDamage(i.index),
-                                l = s.isShield(i.index),
-                                u = new a(e._scene, o, r, _, l);
-                            e._tasks.push(u), u.start(function () {
-                                t._taskComplete(i, u)
-                            })
-                        }
-                    }(o)
-                }
-                0 == this._tasks.length && this._endTask()
-            }, e.prototype._taskComplete = function (t, e) {
-                var i = this._tasks.indexOf(e);
-                this._tasks.splice(i, 1), 0 == this._tasks.length && this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._data = null, this._from_planes = null, this._to_ships = null, this._tasks = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "data_", {
+                get: function () {
+                    return this._data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._log();
+                var t = this._scene.data.model.map_info.isAirRaid();
+                this._canvas = new u.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
+                var t = this,
+                    e = new o.ParallelTask,
+                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
+                e.add((new a.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
+                    t._fireDogFight()
+                }, 750)), e.add(new s.FuncTask(function () {
+                    t._showTaikuCutin()
+                }, 900)), e.add(new s.FuncTask(function () {
+                    t._damageAtStage1()
+                }, 1050)), e.add(new s.FuncTask(function () {
+                    t._antiAircraft()
+                }, 1200)), e.add(new s.FuncTask(function () {
+                    t._damageAtStage2()
+                }, 1350)), e.add((new r.SerialTask).add(new _.WaitTask(1700)).add((new o.ParallelTask).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
+                    t._showBakuExplosion()
+                }, 2950)), e.add(new s.FuncTask(function () {
+                    t._showDamage()
+                }, 3300)), e.add(new s.FuncTask(function () {
+                    t._showDamageNumber()
+                }, 3600)), this._main_task = e, this._main_task.start(function () {})
+            }, e.prototype._showSeikuResult = function () {
+                var t = this._scene.view.layer_content;
+                new h.TaskAirWarShowSeiku(t, this.data_.seiku).start()
             }, e
-        }(r.TaskBase);
-    e.TaskAerialTorpedoJet = s;
-    var a = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._explosion = function () {
-                var t = s._shield;
-                if (1 == t) {
-                    var e = s._scene.view.bannerGroupLayer.getShieldTargetBanner(s._to_banner);
-                    s._scene.view.layer_damage.showShieldAtBanner(e)
-                }
-                s._to_banner.moveAtDamage(t);
-                var i = s._to_banner.getGlobalPos(!0),
-                    n = s._scene.view;
-                n.layer_explosion.playDamageExplosion(i.x, i.y, s._damage), n.layer_explosion.playTorpedoWaterColumn(s._to_banner, function () {
-                    s._endTask()
-                })
-            }, s._scene = e, s._from_plane = i, s._to_banner = n, s._damage = o, s._shield = r, s
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._torpedo()
-        }, e.prototype._torpedo = function () {
-            var t = new PIXI.Point(this._from_plane.x, this._from_plane.y),
-                e = this._to_banner.getGlobalPos();
-            1 == this._to_banner.friend ? e.x += o.BannerSize.W / 2 : e.x -= o.BannerSize.W / 2, this._scene.view.layer_torpedo.playAerialTorpedoJet(t, e, this._explosion)
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._from_plane = null, this._to_banner = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase)
+        }(c.TaskAircraftFlightBase);
+    e.TaskAirWar = d
 }

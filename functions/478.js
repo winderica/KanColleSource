@@ -19,31 +19,20 @@ const function478 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(479),
-        r = i(480),
-        s = i(1451),
-        a = function (t) {
+    var o = i(7),
+        r = i(186),
+        s = function (t) {
             function e(e) {
-                var i = t.call(this) || this;
-                return i._o = e, i._raw = new s.RawDayBattleData(e), i._common = new r.BattleCommonModel(e), i
+                var i = t.call(this, e) || this;
+                return i._initPlaneFrom(), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "phase", {
-                get: function () {
-                    return "day"
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "raw", {
-                get: function () {
-                    return this._raw
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getRation = function () {
-                return this._raw.ration
-            }, e.prototype.getRationCombined = function () {
-                return this._raw.ration_combined
+            return n(e, t), e.prototype.getShipList = function () {
+                for (var t = o.ObjUtil.getNumArray(this._o, "api_ship_id"), e = o.ObjUtil.getNumArray(this._o, "api_undressing_flag"), i = [], n = 0; n < t.length; n++) i.push({
+                    mem_id: t[n],
+                    damaged: 1 == e[n]
+                });
+                return i
             }, e
-        }(o.BattleRecord);
-    e.BattleRecordDay = a
+        }(r.AirWarDataBase);
+    e.AirSupportData = s
 }

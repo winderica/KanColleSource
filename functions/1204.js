@@ -1,60 +1,47 @@
 const function1204 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
-        o = i(415),
-        r = function () {
-            function t() {
-                this._models = []
+    var o = i(11),
+        r = i(246),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._waitClick = function () {
+                    i._layer.buttonMode = !0, i._layer.once(s.EventType.CLICK, i._onClick)
+                }, i._onClick = function () {
+                    i._layer.buttonMode = !1, i._chara.texture = PIXI.Texture.fromFrame(r.POSTER_KEY_2), createjs.Tween.get(i._chara).wait(300).to({
+                        x: 1200
+                    }, 500, createjs.Ease.sineInOut).call(function () {
+                        i._layer.removeChild(i._chara), i._endTask()
+                    })
+                }, i._layer = e, i
             }
-            return Object.defineProperty(t.prototype, "selected_type", {
-                get: function () {
-                    return this._selected_type
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "selected_page_no", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_disp_page", 1)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "page_max", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_page_count", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "models", {
-                get: function () {
-                    return this._models
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.update = function (t, e) {
-                this._selected_type = t, this._o = e, this._models = [];
-                var i = n.ObjUtil.getObjectArray(this._o, "api_list"),
-                    r = n.ObjUtil.getObjectArray(this._o, "api_c_list");
-                if (null != i)
-                    for (var s = 0, a = i; s < a.length; s++) {
-                        var _ = a[s];
-                        "number" == typeof _ && -1 == _ || this._models.push(new o.DutyModel_(_, r))
-                    }
-            }, t.prototype.getExecCount = function () {
-                return n.ObjUtil.getNumber(this._o, "api_exec_count")
-            }, t.prototype.hasComplete = function () {
-                if (1 == (1 == n.ObjUtil.getNumber(this._o, "api_completed_kind"))) return !0;
-                var t = n.ObjUtil.getObjectArray(this._o, "api_c_list");
-                if (null != t)
-                    for (var e = 0, i = t; e < i.length; e++) {
-                        var r = i[e],
-                            s = new o.DutyModel_(r, t);
-                        if (3 == s.status) return !0
-                    }
-                return !1
-            }, t
-        }();
-    e.DutyDataHolder = r
+            return n(e, t), e.prototype._start = function () {
+                this._chara = PIXI.Sprite.fromFrame(r.POSTER_KEY_1), this._chara.position.set(760, 705), this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
+                    y: 45
+                }, 500).call(this._waitClick)
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._chara = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase);
+    e.TaskPosterGirl = a
 }

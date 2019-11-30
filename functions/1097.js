@@ -19,47 +19,34 @@ const function1097 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(132),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._activated = !1, n._onMouseOver = function () {
-                    n._update(!0)
-                }, n._onMouseOut = function () {
-                    n._update(!1)
-                }, n._onClick = function () {
-                    null != n._cb_onClick && null != n._cb_onChange && (n._cb_onClick(), n._cb_onChange(n._mode, 0))
-                }, n._mode = 1, n._cb_onChange = i, n._cb_onClick = e, n.interactive = !0, n
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._n100 = new s, e.addChild(e._n100), e._n010 = new s, e._n010.x = 18, e.addChild(e._n010), e._n001 = new s, e._n001.x = 36, e.addChild(e._n001), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "mode", {
-                get: function () {
-                    return this._mode
-                },
-                set: function (t) {
-                    this._mode = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._ship_texture_cache = r.ALBUM_MAIN.getTexture(24), this._ship_texture_on_cache = r.ALBUM_MAIN.getTexture(25), this._slot_texture_cache = r.ALBUM_MAIN.getTexture(22), this._slot_texture_on_cache = r.ALBUM_MAIN.getTexture(23), this._update(!1)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
             }, e.prototype.update = function (t) {
-                this._update(t)
-            }, e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this._activate())
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._slot_texture_cache = null, this._slot_texture_on_cache = null, this._ship_texture_cache = null, this._ship_texture_on_cache = null, this._cb_onChange = null, this._cb_onClick = null
-            }, e.prototype.addOnceClickEvent = function () {
-                this.once(o.EventType.CLICK, this._onClick)
-            }, e.prototype._update = function (t) {
-                1 == t ? 1 == this._mode ? this.texture = this._slot_texture_on_cache : this.texture = this._ship_texture_on_cache : 1 == this._mode ? this.texture = this._slot_texture_cache : this.texture = this._ship_texture_cache
-            }, e.prototype._activate = function () {
-                this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.once(o.EventType.CLICK, this._onClick)
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
+                if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY;
+                else {
+                    this._n100.update(Math.floor(t / 100));
+                    var e = t % 100;
+                    this._n010.update(Math.floor(e / 10)), e = t % 10, this._n001.update(e)
+                }
             }, e
-        }(PIXI.Sprite);
-    e.AlbumModeSwitchBtn = s
+        }(PIXI.Container);
+    e.DetailPanelNumbers = r;
+    var s = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.update = function (t) {
+            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY;
+            else {
+                var e = [107, 108, 109, 110, 111, 112, 113, 114, 115, 116][t];
+                this.texture = o.ALBUM_MAIN.getTexture(e)
+            }
+        }, e
+    }(PIXI.Sprite)
 }

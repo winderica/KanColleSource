@@ -19,92 +19,35 @@ const function1339 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(19),
+    var o = i(2),
+        r = i(14),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._now = -1, e._max = 100, e._bar = new PIXI.Graphics, e._img = new PIXI.Sprite, e._light = new PIXI.Sprite, e._tp = new a, e.addChild(e._bar), e.addChild(e._img), e.addChild(e._light), e.addChild(e._tp), e.visible = !1, e
+            function e(e, i) {
+                void 0 === e && (e = !1), void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._night = e, n._combined = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "now", {
-                get: function () {
-                    return this._now
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "max", {
-                get: function () {
-                    return this._max
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                if (null == t) return this._stopLoopTween(), this._tp.enabled = !1, void(this.visible = !1);
-                this._img.texture = o.default.resources.gauge.getTexture(t.image_path), this._light.texture = o.default.resources.gauge.getTexture(t.image_light_path), this._light.x = t.lightX, this._light.y = t.lightY, this._bar.x = t.barX, this._bar.y = t.barY, this._bar.clear(), this._bar.beginFill(t.barColor), this._bar.drawRect(0, 0, t.barW, t.barH), this._bar.endFill(), this._tp.visible = !1, 1 == t.isTransport() ? (this._tp.initialize(), this._tp.x = t.transportX, this._tp.y = t.transportY, this._tp.enabled = !0) : this._tp.enabled = !1, this.visible = !0, this._startLoopTween()
-            }, e.prototype.update = function (t, e) {
-                this._now = t, this._max = e;
-                var i = this._now / this._max;
-                i = Math.max(i, 0), i = Math.min(i, 1), this._bar.scale.y = i, 1 == this._tp.enabled ? (this._tp.update(t, e), this._tp.visible = !0) : this._tp.visible = !1
-            }, e.prototype.dispose = function () {
-                this._stopLoopTween()
-            }, e.prototype._startLoopTween = function () {
-                null == this._t && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 500).to({
-                    alpha: 0
-                }, 500))
-            }, e.prototype._stopLoopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null), this._light.alpha = 0
+            return n(e, t), e.prototype._start = function () {
+                this._loadCommon()
+            }, e.prototype._loadCommon = function () {
+                var t = this,
+                    e = new r.UIImageLoader("common");
+                e.add("common_explosion.json"), e.load(function () {
+                    t._loadImage()
+                })
+            }, e.prototype._loadImage = function () {
+                var t = this,
+                    e = new r.UIImageLoader("battle");
+                e.add("battle_telop/txt_start.png", "battle_telop_txt_start"), e.add("battle_telop/mes_bg_f.png", "battle_telop_mes_bg_f"), e.add("battle_telop/mes_bg_e.png", "battle_telop_mes_bg_e"), e.add("battle_telop/mes2_f_hbg.png", "battle_telop_mes2_f_hbg"), e.add("battle_telop/mes2_e_hbg.png", "battle_telop_mes2_e_hbg"), e.add("battle_telop/mes2_f_ybg.png", "battle_telop_mes2_f_ybg"), e.add("battle_telop/mes2_e_ybg.png", "battle_telop_mes2_e_ybg"), e.add("battle_telop/mes_f_hbg.png", "battle_telop_mes_f_hbg"), e.add("battle_telop/mes_f_ybg.png", "battle_telop_mes_f_ybg"), e.add("battle_telop/mes_e_hbg.png", "battle_telop_mes_e_hbg"), e.add("battle_telop/mes_e_ybg.png", "battle_telop_mes_e_ybg"), e.add("battle_telop/mes_f_hbg3.png", "battle_telop_kkcutin_f"), e.add("battle_telop/mes_e_hbg3.png", "battle_telop_kkcutin_e"), e.load(function () {
+                    t._loadSpriteSheet()
+                })
+            }, e.prototype._loadSpriteSheet = function () {
+                var t = this,
+                    e = new r.UIImageLoader("battle");
+                e.add("battle_main.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop/mes_ybg3_f.png", "battle_telop_mes_ybg3_f"), e.add("battle_telop/mes_ybg3_e.png", "battle_telop_mes_ybg3_e"), e.add("battle_telop/mes_ybg4_f.png", "battle_telop_mes_ybg4_f"), e.add("battle_telop/mes_ybg4_e.png", "battle_telop_mes_ybg4_e"), e.add("battle_telop/mes_ybg6_f.png", "battle_telop_mes_ybg6_f"), e.add("battle_telop/mes_ybg6_e.png", "battle_telop_mes_ybg6_e")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_main2.json"), e.add("battle_airunit.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.GaugeVertical = s;
-    var a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enabled = !1, e._title = new PIXI.Sprite, e._slash = new PIXI.Sprite, e._slash.x = 62, e._now = new _, e._now.x = 30, e._max = new _, e._max.x = 68, e.addChild(e._title), e.addChild(e._slash), e.addChild(e._now), e.addChild(e._max), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                set: function (t) {
-                    this._enabled = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._title.texture = r.MAP_COMMON.getTexture(44), this._slash.texture = r.MAP_COMMON.getTexture(43)
-            }, e.prototype.update = function (t, e) {
-                this._now.update(t), this._max.update(e)
-            }, e
-        }(PIXI.Container),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._nums = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new l;
-                    n.x = 8 * i, e.addChild(n), e._nums.push(n)
-                }
-                return e
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                t = Math.max(0, t), t = Math.min(9999, t);
-                for (var e = !1, i = 0; i < this._nums.length; i++) {
-                    var n = Math.pow(10, this._nums.length - i - 1),
-                        o = Math.floor(t / n);
-                    o > 0 || 1 == e ? (this._nums[i].update(o), e = !0) : this._nums[i].update(-1), t %= n
-                }
-            }, e
-        }(PIXI.Container),
-        l = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                t >= 0 && t <= 9 ? (this.texture = r.MAP_COMMON.getTexture(e._TEXTURES[t]), this.visible = !0) : this.visible = !1
-            }, e._TEXTURES = [33, 34, 35, 36, 37, 38, 39, 40, 41, 42], e
-        }(PIXI.Sprite)
+        }(o.TaskBase);
+    e.TaskLoadResourcesBattle = s
 }

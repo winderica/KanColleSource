@@ -20,8 +20,8 @@ const function81 = function (t, e, i) {
         value: !0
     });
     var o = i(4),
-        r = i(306),
-        s = i(9),
+        r = i(308),
+        s = i(10),
         a = i(5),
         _ = function (t) {
             function e(e) {
@@ -44,6 +44,9 @@ const function81 = function (t, e, i) {
                 this._stype_name.position.x = 21 + Math.floor(95.5 - this._stype_name.width / 2), this._ship_name.position.x = 8 + Math.floor(108 - this._ship_name.width / 2), this._text.text = "", this._message = i.replace(/<br\s*>/g, "\n").replace(/\u2019/g, "'"), null != this._get_icon && this._get_icon.initialize()
             }, e.prototype.initializeForSlot = function (t, e, i) {
                 this.texture = s.COMMON_MISC.getTexture(120), this._stype_name.text = "", this._ship_name.text = "", this._text.text = "", this._message = t + (i > 0 ? "(\u2605+" + i + ")" : "") + "\u3092", e > 1 && (this._message += e + "\u500b"), this._message += "\u624b\u306b\u5165\u308c\u307e\u3057\u305f\u3002", null != this._get_icon && this._get_icon.initialize()
+            }, e.prototype.initializeForSlot361 = function (t, e) {
+                this.texture = s.COMMON_MISC.getTexture(120);
+                this._message = "Bofors 15cm\u9023\u88c5\u901f\u5c04\u7832 Mk.9\u6539\n+\u5358\u88c5\u901f\u5c04\u7832 Mk.10\u6539 Model 1938" + (e > 0 ? "(\u2605+" + e + ")" : "") + "\u3092", t > 1 && (this._message += t + "\u500b"), this._message += "\u624b\u306b\u5165\u308c\u307e\u3057\u305f\u3002", null != this._get_icon && this._get_icon.initialize()
             }, e.prototype.initializeForUseitem = function (t, e) {
                 this.texture = s.COMMON_MISC.getTexture(120), this._stype_name.text = "", this._ship_name.text = "", this._text.text = "", this._message = "\u9c2f" == t ? t + "\uff08\u30a4\u30ef\u30b7\uff09\u3092" : t + "\u3092", e > 1 && (this._message += e + "\u500b"), this._message += "\u624b\u306b\u5165\u308c\u307e\u3057\u305f\u3002", null != this._get_icon && this._get_icon.initialize()
             }, e.prototype.initializeForFood = function (t) {

@@ -20,29 +20,16 @@ const function1221 = function (t, e, i) {
         value: !0
     });
     var o = i(11),
-        r = i(6),
-        s = i(245),
-        a = i(177),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._model = e, n._holder = i, n
+        r = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._url = "api_req_kousyou/remodel_slotlist_detail", r._id = e, r._slot_id = i, r._revampSlotlistModel = n, r._boxno = o, r._post_data.api_id = r._id, r._post_data.api_slot_id = r._slot_id, r
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
-                    t._update()
-                })
-            }, e.prototype._update = function () {
-                var t = this,
-                    e = this._holder.selected_page_no,
-                    i = this._holder.selected_type;
-                new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._model = null, this._holder = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._revampSlotlistModel.SetDetail(this._raw_data, this._boxno), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskExecutedDutySelect = _
+        }(o.APIBase);
+    e.RevampSlotListDetailAPI = r
 }

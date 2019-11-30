@@ -19,29 +19,36 @@ const function1529 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(6),
-        s = i(179),
+    var o = i(20),
+        r = i(1530),
+        s = i(1531),
         a = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = 0);
-                var r = t.call(this) || this;
-                return r._layer = e, r._x = i, r._y = n, r._delay = o, r
+            function e() {
+                var e = t.call(this) || this;
+                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._wait()
-            }, e.prototype._wait = function () {
-                var t = this;
-                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(function () {
-                    t._explode()
-                }) : this._explode()
-            }, e.prototype._explode = function () {
-                var t = this,
-                    e = new s.Explosion;
-                e.x = this._x, e.y = this._y, this._layer.addChild(e), r.SE.play("102"), e.play(function () {
-                    t._layer.removeChild(e), t._endTask()
+            return n(e, t), Object.defineProperty(e.prototype, "friend", {
+                get: function () {
+                    return this._friend
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "enemy", {
+                get: function () {
+                    return this._enemy
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n, o) {
+                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
+            }, e.prototype.show = function (t) {
+                var e = new o.TweenTask;
+                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
+                    null != t && t()
                 })
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
             }, e
-        }(o.TaskBase);
-    e.TaskExplosion = a
+        }(PIXI.Container);
+    e.LayerDeckInfo = a
 }

@@ -19,23 +19,51 @@ const function1163 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(74),
-        s = i(141),
-        a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._btn = new a(e), i.addChild(i._btn), i
             }
-            return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(7);
-                var t = new PIXI.Graphics;
-                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-                var e = this._candidate.mst_id,
-                    i = o.default.resources.getUseitem(e, 1),
-                    n = new PIXI.Sprite(i),
-                    s = Math.min(195 / n.width, 195 / n.height);
-                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+            return n(e, t), e.prototype.initialize = function () {
+                this._btn.initialize()
+            }, e.prototype.activate = function () {
+                this._btn.activate()
+            }, e.prototype.update = function (t) {
+                this._btn.update(t), 0 == t ? this._btn.position.set(801, 667) : this._btn.position.set(207, 666)
+            }, e.prototype.deactivate = function () {
+                this._btn.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn.dispose()
             }, e
-        }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogUseitemBtn = a
+        }(PIXI.Container);
+    e.TabContainer = s;
+    var a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i._over = new PIXI.Sprite, i.addChild(i._over), i.interactive = !0, i
+        }
+        return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
+            0 == t ? (this._texture = o.ITEM_ISHOP.getTexture(6), this._over.texture = o.ITEM_ISHOP.getTexture(7)) : (this._texture = o.ITEM_ISHOP.getTexture(4), this._over.texture = o.ITEM_ISHOP.getTexture(5))
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this._startTween())
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._stopTween()
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e.prototype._startTween = function () {
+            null == this._t && (this._over.alpha = 0, this._t = createjs.Tween.get(this._over, {
+                loop: !0
+            }).to({
+                alpha: 1
+            }, 500).to({
+                alpha: 0
+            }, 500))
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._over.alpha = 0, this._t.setPaused(!0), this._t = null)
+        }, e
+    }(PIXI.Sprite)
 }

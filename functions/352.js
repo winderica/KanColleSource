@@ -19,33 +19,31 @@ const function352 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(68),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._maps = e, i
+    var o = i(4),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.iconMaterial = new PIXI.Sprite, e.textCount = new o.TextBox(25, 5523516), e.iconMaterial.position.set(0, 18), e.textCount.anchor.set(1, 0), e.textCount.position.set(261, 9), e.addChild(e.iconMaterial, e.textCount), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                for (var t = this, e = o.default.resources.gauge.createLoaderHorizontal(), i = 0, n = this._maps; i < n.length; i++) {
-                    var r = n[i];
-                    if ((0 != r.defeat_required || 0 != r.gauge_max) && 0 != r.isOpened()) {
-                        var a = r.area_id,
-                            _ = r.map_no,
-                            l = r.getGaugeNum(),
-                            u = s.GaugeSetModel.createKey(a, _, l);
-                        e.add(u)
-                    }
+            return n(e, t), e.prototype.update = function (t, e) {
+                switch (t) {
+                    case 31:
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(160);
+                        break;
+                    case 32:
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(162);
+                        break;
+                    case 33:
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(164);
+                        break;
+                    case 34:
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(166)
                 }
-                e.count > 0 ? e.load(function () {
-                    t._endTask()
-                }) : this._endTask()
-            }, e.prototype._endTask = function () {
-                this._maps = null, t.prototype._endTask.call(this)
+                this.textCount.text = e.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.textCount.destroy(), this.iconMaterial = null, this.textCount = null
             }, e
-        }(r.TaskBase);
-    e.TaskLoadGaugeResources = a
+        }(PIXI.Container);
+    e.DisassemblyMaterialItem = s
 }

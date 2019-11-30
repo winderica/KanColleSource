@@ -1,61 +1,103 @@
 const function1441 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(28),
-        r = i(30),
-        s = i(20),
-        a = i(2),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var n = i(228),
+        o = i(171),
+        r = i(229),
+        s = i(475),
+        a = i(1451),
+        _ = function () {
+            function t(t) {
+                this._model = t, this._records = []
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new o.ParallelTask;
-                e.add(this._createTween_f()), e.add(this._createTween_e()), e.start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null
-            }, e.prototype._createTween_f = function () {
-                var t = this._scene.view.bannerGroupLayer;
-                if (0 == t.isEnteredFriend()) return t.createFriendEnterTask();
-                var e = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_f.isCombined()) {
-                    var i = this._record.common.getActiveDeckFriend();
-                    1 == i ? e.addTweens(t.friends_combined.createExitTweensUpDown()) : 2 == i && (e.addTweens(t.friends.createExitTweens()), e.addTweens(t.createFriendSubDeckMoveTween(200)))
+            return Object.defineProperty(t.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.addDayRecord = function (t) {
+                var e = new s.BattleRecordDay(t);
+                this._records.push(e);
+                var i = this._model.deck_f;
+                i = null != i ? this._createDeckFriend(i, e) : this._createAirBase(e);
+                var n = this._createDeckEnemy(this._model.deck_e, e);
+                this._model.updateDeckData(i, n)
+            }, t.prototype.addNightRecord = function (t) {
+                var e = new a.BattleRecordNight(t);
+                this._records.push(e);
+                var i = this._model.deck_f;
+                i = null != i ? this._createDeckFriend(i, e) : this._createAirBase(e);
+                var n = this._createDeckEnemy(this._model.deck_e, e);
+                this._model.updateDeckData(i, n)
+            }, t.prototype.getFirstRecord = function () {
+                return 0 == this._records.length ? null : this._records[0]
+            }, t.prototype.getLastRecord = function () {
+                if (0 == this._records.length) return null;
+                var t = this._records.length;
+                return this._records[t - 1]
+            }, t.prototype.isNight = function () {
+                var t = this.getLastRecord();
+                return null != t && "day" != t.phase
+            }, t.prototype.isBossDamaged = function () {
+                var t = this.getFirstRecord();
+                if (null != t) return t.common.isBossDamaged()
+            }, t.prototype._createDeckFriend = function (t, e) {
+                for (var i = t.practice, o = e.common.deck_id, r = t.medal_num, s = t.user_name, a = t.type, _ = t.name, l = e.common.getTaihiShipIndexes(), u = new Array, c = 0; c < t.ships.length; c++) {
+                    var h = t.ships[c];
+                    if (null == h) u.push(null);
+                    else {
+                        var p = h.clone(),
+                            d = e.common.getHPNowFriend(c);
+                        i && (d = Math.max(1, d));
+                        var f = e.common.getHPMaxFriend(c);
+                        p.initializeHPInfo(d, f);
+                        var y = e.common.getParamsFriend(c);
+                        p.initializeParams(y.karyoku, y.raisou, y.taiku, y.soukou);
+                        var m = -1 != l.indexOf(c);
+                        p.initializeTaihi(m), u.push(p)
+                    }
                 }
-                return e
-            }, e.prototype._createTween_e = function () {
-                var t = this._record.common.getActiveDeckEnemy(),
-                    e = this._scene.view.bannerGroupLayer;
-                if (0 == e.isEnteredEnemy()) return 1 == t ? e.createEnemyEnterTask() : 2 == t ? new r.SerialTask(e.createEnemyEnterTask(), (new s.TweenTask).addTweens(e.enemies.createExitTweens()).addTweens(e.createEnemySubDeckMoveTween(200))) : e.createEnemyEnterTask();
-                var i = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_e.isCombined()) {
-                    var n = this._record.common.getActiveDeckEnemy();
-                    1 == n ? i.addTweens(e.enemies_combined.createExitTweensUpDown()) : 2 == n && (i.addTweens(e.enemies.createExitTweens()), i.addTweens(e.createEnemySubDeckMoveTween(200)))
+                var g = t.id_second,
+                    v = t.name_second,
+                    b = new n.DeckModelReplica(o, i, r, s, a, _, u, g, v);
+                return b.formation = e.common.formation_id_f, b
+            }, t.prototype._createAirBase = function (t) {
+                for (var e = [], i = 0; i < 6; i++) {
+                    var r = t.common.getHPMaxFriend(i);
+                    if (r <= 0) break;
+                    var s = -(i + 1),
+                        a = s,
+                        _ = new o.ShipModelReplica(0, !1, i, s, a, 1, 0),
+                        l = t.common.getHPNowFriend(i);
+                    _.initializeHPInfo(l, r);
+                    var u = t.common.getParamsFriend(i);
+                    _.initializeParams(u.karyoku, u.raisou, u.taiku, u.soukou), e.push(_)
                 }
-                return i
-            }, e
-        }(a.TaskBase);
-    e.TaskMoveBannerDay = _
+                var c = new n.DeckModelReplica(0, !1, 0, "", 0, "", e, 0, "");
+                return c.formation = t.common.formation_id_f, c
+            }, t.prototype._createDeckEnemy = function (t, e) {
+                for (var i = null != t && t.practice, s = null == t ? 0 : t.id, a = null == t ? 0 : t.medal_num, _ = null == t ? "" : t.user_name, l = null == t ? "" : t.name, u = [], c = e.common.isCombinedEnemy(), h = 0; h < (c ? 12 : 6); h++) {
+                    var p = e.common.getMstIDEnemy(h);
+                    if (p <= 0) u.push(null);
+                    else {
+                        var d = e.common.getLevelEnemy(h),
+                            f = new o.ShipModelReplica(1, i, h, p, -h, d),
+                            y = e.common.getHPNowEnemy(h);
+                        i && (y = Math.max(1, y));
+                        var m = e.common.getHPMaxEnemy(h);
+                        f.initializeHPInfo(y, m);
+                        for (var g = e.common.getSlotMstIDsEnemy(h), v = r.SlotitemModelReplica.convertFromMstIDs(g), b = [], w = 0; w < v.length; w++) b.push(0);
+                        f.initializeSlots(v, null, b);
+                        var x = e.common.getParamsEnemy(h);
+                        f.initializeParams(x.karyoku, x.raisou, x.taiku, x.soukou), u.push(f)
+                    }
+                }
+                var I;
+                return I = 0 == c ? new n.DeckModelReplica(s, i, a, _, 0, l, u) : new n.DeckModelReplica(s, i, a, _, 1, l, u, 0, ""), I.formation = e.common.formation_id_e, I
+            }, t
+        }();
+    e.BattleData = _
 }

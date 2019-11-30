@@ -19,46 +19,26 @@ const function991 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(992),
+    var o = i(41),
+        r = i(363),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._cancel = !0, n._waitClick = function () {
-                    n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
-                }, n._onNo = function () {
-                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
-                }, n._onYes = function () {
-                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
-                }, n._layer = e, n._model = i, n
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "cancel", {
-                get: function () {
-                    return this._cancel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
-            }, e.prototype._openDialog = function () {
-                var t = this;
-                this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
-                    createjs.Tween.get(t._dialog.bg).to({
-                        alpha: 1
-                    }, 300).call(t._waitClick)
-                })
-            }, e.prototype._closeDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._dialog).to({
+            function e(e) {
+                var i = t.call(this, e) || this;
+                return i._overlay = new PIXI.Sprite, i.addChild(i._overlay), i._t = createjs.Tween.get(i._overlay, {
+                    loop: !0
+                }).to({
                     alpha: 0
-                }, 200).call(function () {
-                    t._dialog.fade.hide(100, function () {
-                        t._layer.removeChild(t._dialog), t._endTask()
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
+                }, 600).to({
+                    alpha: 1
+                }, 600), i._t.setPaused(!0), i
+            }
+            return n(e, t), e.prototype.initialize = function (e) {
+                this._overlay.texture = o.SALLY_EVENT.getTexture(1), this.texture = o.SALLY_EVENT.getTexture(0), t.prototype.initialize.call(this, e)
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._t.setPaused(!0), this._t = null
+            }, e.prototype._update = function (t) {
+                1 == this.selected ? (this._t.setPaused(!0), this._overlay.alpha = 1) : 1 == t ? (this._t.setPaused(!0), this._overlay.alpha = 1) : this._t.setPaused(!1)
             }, e
-        }(o.TaskBase);
-    e.ChangeConfirmTask = s
+        }(r.AreaIconBtn);
+    e.EventAreaIconBtn = s
 }

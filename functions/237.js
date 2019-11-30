@@ -19,67 +19,30 @@ const function237 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o, r = i(58),
-        s = i(377),
-        a = i(238);
-    ! function (t) {
-        t[t.LIST = 0] = "LIST", t[t.DETAIL = 1] = "DETAIL"
-    }(o = e.ShadowType || (e.ShadowType = {}));
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.update = function (t, e) {
-            var i = a.shipTypeIdToCategory(t),
-                n = this._shipTypeToResourceID(i, e);
-            this.texture = e ? s.SALLY_EXPEDITION_DETAIL.getTexture(n) : r.SALLY_EXPEDITION.getTexture(n)
-        }, e.prototype._shipTypeToResourceID = function (t, e) {
-            if (e == o.DETAIL) switch (t) {
-                case 0:
-                    return 4;
-                case 1:
-                    return 6;
-                case 2:
-                    return 7;
-                case 3:
-                    return 8;
-                case 4:
-                    return 9;
-                case 5:
-                    return 10;
-                case 6:
-                    return 11;
-                case 7:
-                    return 12;
-                case 8:
-                    return 5;
-                case 9:
-                    return 13
-            } else switch (t) {
-                case 0:
-                    return 106;
-                case 1:
-                    return 108;
-                case 2:
-                    return 109;
-                case 3:
-                    return 110;
-                case 4:
-                    return 111;
-                case 5:
-                    return 112;
-                case 6:
-                    return 113;
-                case 7:
-                    return 114;
-                case 8:
-                    return 107;
-                case 9:
-                    return 115
+    var o = i(41),
+        r = i(236),
+        s = i(1014),
+        a = i(1016),
+        _ = i(362),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                n._onMouseOver = function (t) {
+                    n._strategy_map.update(t)
+                }, n._onMouseOut = function (t) {};
+                var r = o.SALLY_EVENT.getTexture(4),
+                    _ = new PIXI.Sprite(r);
+                return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
             }
-        }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY
-        }, e
-    }(PIXI.Sprite);
-    e.ShipShadow = _
+            return n(e, t), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e);
+                var i = e[this.offset].mst_id;
+                this._strategy_map.update(i), this._airunitbtn.initialize()
+            }, e.prototype.updateAirUnitEnabled = function (e) {
+                t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose(), _.EventOperationVoice.killVoice()
+            }, e
+        }(r.LayoutBase);
+    e.EventLayoutBase = l
 }

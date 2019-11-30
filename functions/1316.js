@@ -20,54 +20,76 @@ const function1316 = function (t, e, i) {
         value: !0
     });
     var o = i(1317),
-        r = i(1318),
-        s = i(1319),
-        a = i(1),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({
-                        x: 831
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }) : n._move_tween = createjs.Tween.get(n).to({
-                        x: 0
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }))
-                }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
+        r = i(1319),
+        s = i(1321),
+        a = i(1324),
+        _ = i(1326),
+        l = i(1327),
+        u = i(1329),
+        c = i(15),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new u.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new l.MapPlaneLayer, e.addChild(e._plane_layer), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "title", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._title
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "cancel_btn", {
+            }), Object.defineProperty(e.prototype, "ship_icon", {
                 get: function () {
-                    return this._cancel_btn
+                    return this._ship_icon
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "panel", {
+            }), Object.defineProperty(e.prototype, "spotLayer", {
                 get: function () {
-                    return this._panel
+                    return this._spotLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                var i = null == e ? 0 : e.length;
-                this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
-            }, e.prototype.activate = function () {
-                this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.deactivate = function () {
-                null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.update = function (t) {
-                this._title.update(t), this._panel.update(t, !0)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
+            }), Object.defineProperty(e.prototype, "airbaseLayer", {
+                get: function () {
+                    return this._airbaseLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "enemy_layer", {
+                get: function () {
+                    return this._enemy_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "plane_layer", {
+                get: function () {
+                    return this._plane_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bg.dispose(), this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
+            }, e.prototype.addSpot = function (t, e, i) {
+                var n = i.getSpot(e),
+                    o = new r.CompSpot(e, n.offsetDic);
+                if (o.position.set(n.x, n.y), null != n.route) {
+                    var s = n.route,
+                        a = c.MapUtil.toResKey(t),
+                        _ = "map" + a + "_" + s.img,
+                        l = PIXI.Texture.fromFrame(_);
+                    o.setRoute(l, s.x, s.y, s.r)
+                }
+                var u = n.line;
+                if (null != u) {
+                    var a = c.MapUtil.toResKey(t),
+                        h = void 0;
+                    h = null != u.img && u.img.length > 0 ? "map" + a + "_" + u.img : "map" + a + "_route_" + e;
+                    var l = PIXI.Texture.fromFrame(h);
+                    o.setLine(l, u.x, u.y, u.r)
+                }
+                this._spotLayer.addSpot(o)
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelSet = _
+    e.MapView = h
 }

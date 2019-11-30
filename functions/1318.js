@@ -20,51 +20,51 @@ const function1318 = function (t, e, i) {
         value: !0
     });
     var o = i(19),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
-                    null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "complete", {
-                get: function () {
-                    return this._complete
-                },
-                set: function (t) {
-                    this._complete = t, this.buttonMode = t, this._update()
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
-            }, e.prototype.update = function (t) {
-                this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
+            return n(e, t), e.prototype.update = function (t) {
+                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
+            }, e.prototype.activate = function () {
+                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
+                    loop: !0
+                }).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
+                    loop: !0
+                }).wait(500).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
+                    loop: !0
+                }).wait(500).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400))
+            }, e.prototype.deactivate = function () {
+                this._stopTween()
             }, e.prototype.dispose = function () {
-                this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._update = function () {
-                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(182), this._img.position.set(0, 0);
-                else {
-                    switch (this._airunit_id) {
-                        case 0:
-                            this._img.texture = o.MAP_COMMON.getTexture(178);
-                            break;
-                        case 1:
-                            this._img.texture = o.MAP_COMMON.getTexture(179);
-                            break;
-                        case 2:
-                            this._img.texture = o.MAP_COMMON.getTexture(180);
-                            break;
-                        case 3:
-                            this._img.texture = o.MAP_COMMON.getTexture(181);
-                            break;
-                        default:
-                            this._img.texture = PIXI.Texture.EMPTY
-                    }
-                    this._img.position.set(11, 9)
-                }
+                this._stopTween()
+            }, e.prototype._stopTween = function () {
+                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
+                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
             }, e
         }(PIXI.Container);
-    e.AirUnitAppointmentTitle = s
+    e.CompShipWave = r
 }

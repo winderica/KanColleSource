@@ -20,27 +20,28 @@ const function1498 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(14),
-        s = function (t) {
+        r = i(1499),
+        s = i(1503),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._event = e, i
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadCommon()
-            }, e.prototype._loadCommon = function () {
-                var t = this,
-                    e = new r.UIImageLoader("common");
-                e.add("common_explosion.json"), e.load(function () {
-                    t._load()
+                this._normalBonus()
+            }, e.prototype._normalBonus = function () {
+                var t = this;
+                new r.TaskNormalBonus(this._scene).start(function () {
+                    t._scene.view.dispose(), t._mapBonus()
                 })
-            }, e.prototype._load = function () {
+            }, e.prototype._mapBonus = function () {
                 var t = this,
-                    e = new r.UIImageLoader("battle_result");
-                e.add("battle_result_main.json"), e.add("battle_result_sanma_fes.json"), this._event && e.add("battle_result_event_base.json"), e.load(function () {
+                    e = this._scene.layer_bonus,
+                    i = this._scene.data.getMapBonus();
+                new s.TaskEventBonus(e, i).start(function () {
                     t._endTask()
                 })
             }, e
         }(o.TaskBase);
-    e.TaskLoadResourcesBattleResult = s
+    e.PhaseBonus = a
 }

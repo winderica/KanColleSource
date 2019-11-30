@@ -19,61 +19,81 @@ const function916 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(15),
-        a = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._url = "api_req_kousyou/createitem", s.api_item1 = e, s.api_item2 = i, s.api_item3 = n, s.api_item4 = o, s.multpleFlag = r, s._api_slotitem_memid = [], s._api_slotitem_mstid = [], s
+    var o = i(5),
+        r = i(0),
+        s = i(23),
+        a = i(227),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._isWait = e, i._targetMulti = [], i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "api_create_flag", {
-                get: function () {
-                    return this._api_create_flag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_slotitem_memid", {
-                get: function () {
-                    return this._api_slotitem_memid
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_slotitem_mstid", {
-                get: function () {
-                    return this._api_slotitem_mstid
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_item1 = this.api_item1, this._post_data.api_item2 = this.api_item2, this._post_data.api_item3 = this.api_item3, this._post_data.api_item4 = this.api_item4, this._post_data.api_multiple_flag = Number(this.multpleFlag), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._raw_data.api_create_flag,
-                    i = this._raw_data.api_material;
-                switch (o.default.model.useItem.get(31).__setCount__(i[0]), o.default.model.useItem.get(32).__setCount__(i[1]), o.default.model.useItem.get(33).__setCount__(i[2]), o.default.model.useItem.get(34).__setCount__(i[3]), o.default.model.useItem.get(2).__setCount__(i[4]), o.default.model.useItem.get(1).__setCount__(i[5]), o.default.model.useItem.get(3).__setCount__(i[6]), o.default.model.useItem.get(4).__setCount__(i[7]), e) {
-                    case 0:
-                        this._api_slotitem_memid = [-1, -1, -1], this._api_slotitem_mstid = [-1, -1, -1];
-                        break;
-                    case 1:
-                        var n = s.ObjUtil.getObjectArray(this._raw_data, "api_get_items");
-                        if (null != n) {
-                            for (var r = 0, a = n; r < a.length; r++) {
-                                var _ = a[r];
-                                this._api_slotitem_memid.push(s.ObjUtil.getNumber(_, "api_id")), this._api_slotitem_mstid.push(s.ObjUtil.getNumber(_, "api_slotitem_id"))
-                            }
-                            o.default.model.slot.addMemData(n)
+            return n(e, t), e.prototype.preload = function (t, e, i, n) {
+                var a = this;
+                this._mst_id = t, this._message = e, (new s.SlotLoader).add(t, "card").load(function () {
+                    a._target.texture = r.default.resources.getSlotitem(t, "card"), a._target.x = o.default.width / 2 - a._target.width / 2, a._target.y = 67, a._rarityBG.initiailzeForSlotitem(i, function () {
+                        a._messageBox.initialize(a._message), null != n && n()
+                    })
+                })
+            }, e.prototype.preMultiload = function (t, e, i, n) {
+                var a = this,
+                    _ = t.filter(function (t) {
+                        return t > 0
+                    });
+                this._message = e;
+                for (var l = new s.SlotLoader, u = 0; u < _.length - 1; u++) l.add(_[u], "card");
+                l.load(function () {
+                    for (var t = 0; t < _.length; t++) {
+                        a._targetMulti.push(new PIXI.Sprite), a._targetMulti[t].texture = r.default.resources.getSlotitem(_[t], "card"), a._targetMulti[t].anchor.set(0, .5);
+                        var e = void 0;
+                        switch (_.length) {
+                            case 1:
+                            case 2:
+                                e = 1;
+                                break;
+                            case 3:
+                                e = .8;
+                                break;
+                            default:
+                                e = 1
                         }
-                        var l = s.ObjUtil.getObjectArray(this._raw_data, "api_unset_items");
-                        if (null != l)
-                            for (var u = 0, c = l; u < c.length; u++) {
-                                var h = c[u],
-                                    p = s.ObjUtil.getNumber(h, "api_type3"),
-                                    d = s.ObjUtil.getNumArray(h, "api_slot_list");
-                                o.default.model.slot.updateUnsetData(p, d)
-                            }
-                }
-                this._api_create_flag = e, t.prototype._completedEnd.call(this)
+                        var s = a._targetMulti[t].width * e;
+                        a._targetMulti[t].x = o.default.width / 2 - (s * _.length + 30 * (_.length - 1)) / 2 + t * (s + 30), a._targetMulti[t].y = 261, a._targetMulti[t].scale.set(e)
+                    }
+                    a._rarityBG.initiailzeForSlotitem(i, function () {
+                        a._messageBox.initialize(a._message), null != n && n()
+                    })
+                })
+            }, e.prototype.play = function (e, i) {
+                var n = this;
+                this._cb_onWhiteOut = e, this._cb_onComplete = i, this.addChild(this._clickGuard), this.addChild(this._rarityBG), this._targetMulti.length > 0 ? this._targetMulti.forEach(function (t) {
+                    return n.addChild(t)
+                }) : (this._gearBtnHome.visible = !1, this.addChild(this._target)), this.addChild(this._materialCircleRollAnimation), t.prototype._01_whiteOut.call(this)
+            }, e.prototype._02_showMessageBox = function () {
+                var e = this;
+                this._messageBox.y = o.default.height, this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
+                    y: 480
+                }, 300, createjs.Ease.cubicOut).call(function () {
+                    e._gearBtnHome.activate(), e.addChild(e._gearBtnHome), 1 == e._isWait ? (e._messageBox.text = e._message, e._messageBox.textCentering()) : e._messageBox.activate(function () {
+                        return e._04_whiteInOut()
+                    }), t.prototype._03_waitClick.call(e)
+                })
+            }, e.prototype._04_whiteInOut = function () {
+                var t = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 100).call(function () {
+                    t.removeChild(t._rarityBG), t.removeChild(t._target), t.removeChild(t._materialCircleRollAnimation), t.removeChild(t._messageBox), t._messageBox.deactivate(), t.removeChild(t._gearBtnHome), t._gearBtnHome.deactivate(), null != t._cb_onWhiteOut && t._cb_onWhiteOut(), t._targetMulti.length > 0 && t._targetMulti.forEach(function (e) {
+                        return t.removeChild(e)
+                    })
+                }).to({
+                    alpha: 0
+                }, 500).call(function () {
+                    t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                })
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._targetMulti = null
             }, e
-        }(r.APIBase);
-    e.CreateItemAPI = a
+        }(a.RewardAnimation);
+    e.RewardAnimationMultiSlot = _
 }

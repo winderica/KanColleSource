@@ -19,37 +19,46 @@ const function1332 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1333),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._spots = {}, e._flags = {}, e
+    var o = i(2),
+        r = i(1333),
+        s = i(1335),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n
             }
-            return n(e, t), e.prototype.addSpot = function (t) {
-                this._spots[t.no] = t, this.addChild(t)
-            }, e.prototype.addFlag = function (t, e, i) {
-                var n = new o.LandingFlag;
-                n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
-            }, e.prototype.getAllSpots = function () {
-                var t = [];
-                for (var e in this._spots) {
-                    var i = this._spots[e];
-                    t.push(i)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
+                var e = this._model.escape,
+                    i = e.getTargetShipIndexes(),
+                    n = e.getTowingShipIndexes(),
+                    o = null;
+                if (i.length > 0) {
+                    var a = i[0];
+                    o = this._model.deck_f.ships[a]
                 }
-                return t
-            }, e.prototype.getSpot = function (t) {
-                var e = t.toString();
-                return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
-            }, e.prototype.getFlag = function (t) {
-                var e = t.toString();
-                return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
-            }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t in this._spots) {
-                    this._spots[t].dispose()
+                var _ = null;
+                if (n.length > 0) {
+                    var l = n[0];
+                    _ = this._model.deck_f.ships[l]
                 }
-                this._spots = null
+                if (null != o)
+                    if (null != _) {
+                        var u = new s.EscapeGoeiTask(this._scene, this._model, o, _);
+                        u.start(function () {
+                            t._endTask()
+                        })
+                    } else {
+                        var u = new r.EscapeTankanTask(this._scene, this._model, o);
+                        u.start(function () {
+                            t._endTask()
+                        })
+                    }
+                else this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._model = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.MapSpotLayer = r
+        }(o.TaskBase);
+    e.EscapeTask = a
 }

@@ -19,102 +19,38 @@ const function593 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(4),
-        s = i(194),
-        a = i(1),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._tween = new Array(2), i._textScrollEnable = !0, i._onChibiClick = function () {
-                    i._textScrollEnable && !i._musicChibiJumping && (i._musicChibiJumping = !0, i._tween[4] = createjs.Tween.get(i._musicChibi).to({
-                        y: i._offset_y + 144.5
-                    }, 1).to({
-                        y: i._offset_y + 144.5 - 48
-                    }, 250, createjs.Ease.cubicOut).to({
-                        y: i._offset_y + 144.5
-                    }, 250, createjs.Ease.cubicIn).call(function () {
-                        i._tween[4] = null, i._musicChibiJumping = !1
-                    }))
-                }, i._furnitureJukeBoxBGMLineModel = e, i._textScrollEnable = !0, i
+    var o = i(1),
+        r = i(195),
+        s = i(196),
+        a = i(286),
+        _ = i(287),
+        l = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "jukebox_close", {
-                get: function () {
-                    return this._close
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "jukebox_btn_bgm", {
-                get: function () {
-                    return this._btn_bgm
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.init = function () {
-                this._offset_x = 148, this._offset_y = 264, this._bg = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(5)), this._bg.position.set(this._offset_x, this._offset_y), this.addChild(this._bg), this._close = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(9)), this._close.position.set(this._offset_x + 892, this._offset_y + 4), this._close.interactive = this._close.buttonMode = !0, this.addChild(this._close), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._btn_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(6)), this._btn_bgm.position.set(this._offset_x + 639, this._offset_y - 4), this._btn_bgm.interactive = this._btn_bgm.buttonMode = !0, this.addChild(this._btn_bgm)), this._text_mask = new PIXI.Graphics, this._text_mask.beginFill(11184810), this._text_mask.drawRect(this._offset_x + 216, this._offset_y + 52, 510, 22), this._text_mask.endFill(), this.addChild(this._text_mask), this._text = new r.TextBox(19, 4473924), this._text.mask = this._text_mask, this._text.position.set(o.default.width, this._offset_y + 51), this._text.anchor.set(.5, 0), this._text.text = "\u300c" + this._furnitureJukeBoxBGMLineModel.api_name + "\u300d\u3000\u30ea\u30af\u30a8\u30b9\u30c8\u4e2d\u266a", this.addChild(this._text), this._musicChibi = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(12)), this._musicChibi.position.set(this._offset_x + 36.5, this._offset_y + 144.5), this._musicChibi.anchor.set(.5, .5), this._musicChibi.interactive = !0, this.addChild(this._musicChibi)
-            }, e.prototype.text_scroll = function () {
-                this._textScrollEnable && (this._tween[0] = createjs.Tween.get(this._text, {
-                    loop: !0
-                }).to({
-                    x: 1138
-                }, 1).to({
-                    x: 613
-                }, 5e3).wait(1e3).to({
-                    x: 88
-                }, 5e3))
-            }, e.prototype.musicChibiAnime = function () {
-                this._musicChibiMove(), this._musicChibiTexture(), this._musicChibiRot(), this._musicChibi.on(a.EventType.CLICK, this._onChibiClick), this._musicChibiJumping = !1
-            }, e.prototype._musicChibiMove = function () {
-                var t = this;
-                this._textScrollEnable && (this._tween[1] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).to({
-                    x: 867,
-                    width: 94,
-                    height: 82
-                }, 1).to({
-                    x: 232
-                }, 5e3).to({
-                    width: 1
-                }, 500).call(function () {
-                    t._musicChibi.scale.x = -1, t._musicChibi.width = 1
-                }).to({
-                    width: 94
-                }, 500).to({
-                    x: 867
-                }, 5e3).to({
-                    width: 1
-                }, 500).call(function () {
-                    t._musicChibi.scale.x = 1, t._musicChibi.width = 1
-                }).to({
-                    width: 94
-                }, 500))
-            }, e.prototype._musicChibiTexture = function () {
-                var t = this;
-                this._textScrollEnable && (this._tween[2] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(12)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(14)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
-                }))
-            }, e.prototype._musicChibiRot = function () {
-                this._textScrollEnable && (this._tween[3] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).to({
-                    rotation: .05
-                }, 1).wait(249).to({
-                    rotation: -.05
-                }, 1).wait(249))
-            }, e.prototype.discard = function () {
-                this._musicChibi.off(a.EventType.CLICK, this._onChibiClick), this._textScrollEnable = !1;
-                for (var t = 0; t < this._tween.length; t++) null != this._tween[t] && (this._tween[t].setPaused(!0), this._tween[t].removeAllEventListeners());
-                this.removeChildren(), this._text.destroy()
+            return n(e, t), e.prototype.initialize = function () {
+                this._background.texture = r.PORT_SKIN_3.getTexture(0), this._background.position.set(-40, -49), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(o.EventType.CLICK, this._onClick), this._startAnimation()
             }, e
-        }(PIXI.Container);
-    e.JukeBoxDisp = _
+        }(a.CircleContentSkin2);
+    e.CircleContentSkin3 = l;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._background = new PIXI.Sprite, e.addChild(e._background), e._content = new c, e.addChild(e._content), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 95), e._hit_area.endFill(), e._hit_area.position.set(68, 60), e.addChild(e._hit_area), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._background.texture = s.PORT_SKIN_3K.getTexture(2), this._background.position.set(-40, -49), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(o.EventType.CLICK, this._onClick), this._startAnimation()
+        }, e
+    }(l);
+    e.CircleContentSkin3k = u;
+    var c = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype._getTexture = function (t) {
+            return 11 == t ? s.PORT_SKIN_3K.getTexture(7) : 12 == t ? s.PORT_SKIN_3K.getTexture(9) : 13 == t ? s.PORT_SKIN_3K.getTexture(11) : 14 == t ? s.PORT_SKIN_3K.getTexture(15) : 15 == t ? s.PORT_SKIN_3K.getTexture(13) : 31 == t ? s.PORT_SKIN_3K.getTexture(0) : 16 == t ? s.PORT_SKIN_3K.getTexture(17) : s.PORT_SKIN_3K.getTexture(4)
+        }, e.prototype._getTextureOver = function (t) {
+            return 11 == t ? s.PORT_SKIN_3K.getTexture(8) : 12 == t ? s.PORT_SKIN_3K.getTexture(10) : 13 == t ? s.PORT_SKIN_3K.getTexture(12) : 14 == t ? s.PORT_SKIN_3K.getTexture(16) : 15 == t ? s.PORT_SKIN_3K.getTexture(14) : 31 == t ? s.PORT_SKIN_3K.getTexture(1) : 16 == t ? s.PORT_SKIN_3K.getTexture(18) : s.PORT_SKIN_3K.getTexture(5)
+        }, e
+    }(_.CircleContentWithSwitching)
 }

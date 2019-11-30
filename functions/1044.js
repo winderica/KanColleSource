@@ -19,32 +19,34 @@ const function1044 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(53),
-        r = i(1),
+    var o = i(9),
+        r = i(7),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !1, i._onMouseOver = function () {
-                    i._update(!0)
-                }, i._onMouseOut = function () {
-                    i._update(!1)
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i.interactive = !0, i
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/change_matching_kind", n._selected_type = e, n._res_model = new a, n._debug = i, n
             }
-            return n(e, t), e.prototype.setEnabled = function (t) {
-                this._enabled != t && (this._enabled = t, 0 == this._enabled ? this.deactivate() : this.activate(), this._update(!1))
-            }, e.prototype.initialize = function () {
-                this._update(!1)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && 0 != this._enabled && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
-            }, e.prototype._update = function (t) {
-                0 == this._enabled ? this.texture = o.SALLY_PRACTICE.getTexture(10) : this.texture = 1 == t ? o.SALLY_PRACTICE.getTexture(11) : o.SALLY_PRACTICE.getTexture(9)
+            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+                get: function () {
+                    return this._res_model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_selected_kind = this._selected_type, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.StartPracticeBtn = s
+        }(o.APIBase);
+    e.ChangeMatchingAPI = s;
+    var a = function () {
+        function t() {}
+        return t.prototype.setData = function (t) {
+            this._o = t
+        }, t.prototype.isSucceed = function () {
+            return 1 == r.ObjUtil.getNumber(this._o, "api_update_flag")
+        }, t
+    }();
+    e.ChangeMatchingAPIResultModel = a
 }

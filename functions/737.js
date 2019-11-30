@@ -19,17 +19,32 @@ const function737 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_member/set_oss_condition", n._filter_status = e, n._japanese = i, n
+    var o = i(332),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_language_type = this._japanese ? 0 : 1;
-                for (var e = 0; e < this._filter_status.length; e++) this._post_data["api_oss_items[" + e + "]"] = this._filter_status[e] ? 1 : 0;
-                t.prototype._connect.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeAllListeners(r.EventType.CLICK), this.onClick = null
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 1:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(6);
+                        break;
+                    case 4:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(7);
+                        break;
+                    case 3:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(8);
+                        break;
+                    case 2:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(9)
+                }
             }, e
-        }(o.APIBase);
-    e.UpdateListStatusAPI = r
+        }(PIXI.Sprite);
+    e.ShipSortButton = s
 }

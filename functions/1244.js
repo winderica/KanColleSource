@@ -1,30 +1,53 @@
 const function1244 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(1245),
-        o = function () {
-            function t() {
-                this._dic = {}
+    var o = i(18),
+        r = i(129),
+        s = i(50),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
             }
-            return t.prototype.add = function (t) {
-                null != t && (this._dic[t.mem_id] = new n.ShipInstantModel(t))
-            }, t.prototype.addList = function (t) {
-                if (null != t)
-                    for (var e = 0, i = t; e < i.length; e++) {
-                        var n = i[e];
-                        this.add(n)
-                    }
-            }, t.prototype.get = function (t) {
-                return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
-            }, t.prototype.getTotalHP = function () {
-                var t = 0;
-                for (var e in this._dic) {
-                    t += this._dic[e].hp
-                }
-                return t
-            }, t
-        }();
-    e.DeckInstantModel = o
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "black", {
+                get: function () {
+                    return this._black
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._shutter.initializeLight()
+            }, e
+        }(PIXI.Container);
+    e.ViewMain = a
 }

@@ -1,85 +1,91 @@
 const function814 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(29),
-        s = i(138),
-        a = i(51),
-        _ = i(89),
-        l = i(815),
-        u = i(816),
-        c = function () {
-            function t(t) {
-                var e = this;
-                this._onClickShip = function (t, i) {
-                    e.onClickShip(i);
-                    o.default.view.clickGuard = !0, e.backAreaChoiceShip.width = n.default.width, createjs.Tween.get(e.backAreaChoiceShip).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(e.shipList).to({
-                        x: n.default.width
-                    }, 125).call(function () {
-                        o.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickBack = function () {
-                    o.default.view.clickGuard = !0, e.backAreaChoiceShip.width = n.default.width, createjs.Tween.get(e.backAreaChoiceShip).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(e.shipList).to({
-                        x: n.default.width
-                    }, 125).call(function () {
-                        o.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickPager_ = function (t) {
-                    e.pageIndex != t && e._updatePage_(t)
-                }, this._onClickSort_ = function () {
-                    switch (s.SceneMemory.shipSortKeyType) {
-                        case 1:
-                            s.SceneMemory.shipSortKeyType = 2;
-                            break;
-                        case 2:
-                            s.SceneMemory.shipSortKeyType = 3;
-                            break;
-                        case 3:
-                            s.SceneMemory.shipSortKeyType = 4;
-                            break;
-                        case 4:
-                            s.SceneMemory.shipSortKeyType = 1
-                    }
-                    e._updateSort_(s.SceneMemory.shipSortKeyType), e._updatePage_(e.pageIndex)
-                }, this.mainView = t, this.backAreaChoiceShip = new l.BackAreaChoiceShip, this.shipList = new u.ShipList, this.shipList.pagerView.onChangePage = this._onClickPager_, this.shipList.shipSortButton.onClick = this._onClickSort_, this.backAreaChoiceShip.onClick = this._onClickBack, this.shipList.onClick = this._onClickShip
+    var o = i(341),
+        r = i(20),
+        s = i(8),
+        a = i(342),
+        _ = i(40),
+        l = i(81),
+        u = i(6),
+        c = i(3),
+        h = i(343),
+        p = i(1),
+        d = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._mainView = i, n._bg_itemlost = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(0)), n._penguin = new a.FailedPenguin, n._obj_leaf = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(1)), n._obj_leaf.anchor.set(.5, .5), n._messageBox = new l.MessageBox(!1), n._gearBtnHome = new _.GearBtnHome, n._gearBtnHome.initialize(), n._gearBtnHome.x = 1140, n._gearBtnHome.y = 660, n.leafTween = o.LeafAnimationUtil.LeafAnimation(n._obj_leaf, new PIXI.Point(0, 60)), n.leafTween.setPaused(!0), n
             }
-            return t.prototype.dispose = function () {
-                this.mainView.removeChild(this.backAreaChoiceShip), this.mainView.removeChild(this.shipList), this.onClickShip = null, this.onComplete = null, this._onClickBack = null, this._onClickShip = null, this.backAreaChoiceShip && this.backAreaChoiceShip.dispose(), this.shipList && this.shipList.dispose(), this.mainView = null, this.backAreaChoiceShip = null, this.shipList = null, this.targets = null, this.pageIndex = null
-            }, t.prototype.start = function (t, e) {
-                var i = this;
-                o.default.view.clickGuard = !0;
-                var a;
-                a = _.RemodelUtil.createShipListForPowerUp(), a = r.ShipUtil.filter(a, !0, t), this._updateTargets_(a), this._updateSort_(s.SceneMemory.shipSortKeyType), this._updatePage_(e), this.shipList.position.set(n.default.width, 141), this.backAreaChoiceShip.alpha = 0, this.mainView.addChild(this.backAreaChoiceShip), this.mainView.addChild(this.shipList);
-                createjs.Tween.get(this.backAreaChoiceShip).to({
+            return n(e, t), e.prototype._03_link = function () {
+                this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin), this._obj_leaf.visible = !1, this.addChild(this._obj_leaf), this.addChild(this._background), this.addChild(this._ship), this._04_whiteInOut()
+            }, e.prototype._04_whiteInOut = function () {
+                var t = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
                     alpha: 1
-                }, 125), createjs.Tween.get(this.shipList).to({
-                    x: 638
-                }, 125).call(function () {
-                    i.backAreaChoiceShip.width = 684, o.default.view.clickGuard = !1
+                }, 400).call(function () {
+                    t.removeChild(t._background), t.removeChild(t._ship)
+                }).to({
+                    alpha: 0
+                }, 500).call(function () {
+                    t.removeChild(t._white), t._05_showFailedPenguin()
                 })
-            }, t.prototype._updateTargets_ = function (t) {
-                var e = _.RemodelUtil.calcPageCount(t.length);
-                this.shipList.pagerView.init(e), this.targets = t
-            }, t.prototype._updateSort_ = function (t) {
-                r.ShipUtil.sort(this.targets, t), 1 == t && (this.targets = this.targets.reverse()), s.SceneMemory.shipSortKeyType = t, this.shipList.shipSortButton.update(t)
-            }, t.prototype._updatePage_ = function (t) {
-                var e = this.targets.slice(a.RemodelConst.ITEM_NUM * t, a.RemodelConst.ITEM_NUM * t + a.RemodelConst.ITEM_NUM);
-                this.shipList.clear();
-                for (var i = 0; i < e.length; i++) {
-                    var n = e[i],
-                        r = o.default.model.ship.getMst(n.mstID),
-                        s = o.default.model.deck.isInDeck(n.memID);
-                    this.shipList.update(i, n, r, s)
-                }
-                this.pageIndex = t
-            }, t
-        }();
-    e.TaskShipChoice = c
+            }, e.prototype._05_showFailedPenguin = function () {
+                var t, e = this,
+                    i = new r.TweenTask;
+                t = createjs.Tween.get(this._penguin.light).to({
+                    alpha: 1
+                }, 300), i.addTween(t), t = createjs.Tween.get(this._penguin.light_place).to({
+                    alpha: 1
+                }, 300), i.addTween(t), i.start(function () {
+                    e._obj_leaf.visible = !0, e.leafTween.setPaused(!1), e._06_typeMessage()
+                })
+            }, e.prototype._06_typeMessage = function () {
+                var t = this;
+                this._messageBox.y = 1200, this._messageBox.initialize("\u8fd1\u4ee3\u5316\u6539\u4fee\uff08\u5408\u6210\uff09\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002"), this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
+                    y: 480
+                }, 500, createjs.Ease.quadOut).call(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), u.SE.play("247"), t._messageBox.activate(function () {
+                        t._07_waitClick()
+                    })
+                })
+            }, e.prototype._07_waitClick = function () {
+                var t = this,
+                    e = new s.AreaBox(0);
+                e.buttonMode = !0, this.addChild(e), e.once(p.EventType.CLICK, function () {
+                    t.removeChild(e), t._08_whiteInOut()
+                })
+            }, e.prototype._08_whiteInOut = function () {
+                var t = this;
+                this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t.removeChild(t._bg_itemlost), t.removeChild(t._obj_leaf), t.removeChild(t._penguin), t.removeChild(t._messageBox), t.removeChild(t._gearBtnHome), t._gearBtnHome.dispose(), t._mainView.visible = !0, createjs.Tween.get(t._white).to({
+                        alpha: 0
+                    }, 500).call(function () {
+                        t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                    })
+                })
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), createjs.Tween.removeTweens(this.leafTween.target), this.leafTween = null, t.prototype.dispose.call(this), this._bg_itemlost = null, this._penguin.dispose(), this._penguin = null, this._obj_leaf = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome = null
+            }, e
+        }(h.PowerUpAnimation);
+    e.PowerUpAnimationFailed = d
 }

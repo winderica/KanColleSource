@@ -19,28 +19,35 @@ const function1056 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(362),
-        r = i(1057),
+    var o = i(153),
+        r = i(58),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this, e) || this;
-                return i._panel = new r.PanelDeckSelect(i._onGo), i._panel.position.set(1200, 102), i.addChild(i._panel), i
+            function e() {
+                var e = t.call(this) || this;
+                e._drums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "panel", {
-                get: function () {
-                    return this._panel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._panel.initialize(t, e, i)
-            }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._panel.activate()
-            }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._panel.deactivate()
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._panel.dispose()
+            return n(e, t), e.prototype.initialize = function () {
+                this.update(0);
+                for (var t = 0, e = this._drums; t < e.length; t++) {
+                    e[t].texture = r.SALLY_EXPEDITION.getTexture(68)
+                }
+            }, e.prototype.update = function (t) {
+                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+            }, e.prototype._updateFromShipModel = function (t) {
+                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    null != r && (75 == r.mstID && e++)
+                }
+                var s = t.getSlotitemEx();
+                null != s && 75 == s.mstID && e++, this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
             }, e
-        }(o.ContainerDeckSelectBase);
-    e.ContainerDeckSelect = s
+        }(PIXI.Container);
+    e.CompDrumCount = s
 }

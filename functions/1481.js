@@ -19,29 +19,51 @@ const function1481 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1482),
-        r = function (t) {
+    var o = i(283),
+        r = i(1482),
+        s = i(1489),
+        a = i(1493),
+        _ = i(1526),
+        l = i(1527),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
+                return e._view = new l.ViewMain, e.addChild(e._view), e._layer_bonus = new PIXI.Container, e.addChild(e._layer_bonus), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
+            return n(e, t), Object.defineProperty(e.prototype, "data", {
                 get: function () {
-                    return this._rader_f
+                    return this._data
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "rader_e", {
+            }), Object.defineProperty(e.prototype, "view", {
                 get: function () {
-                    return this._rader_e
+                    return this._view
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
-            }, e.prototype.resetChildren = function () {
-                this.addChild(this._rader_f), this.addChild(this._rader_e)
+            }), Object.defineProperty(e.prototype, "layer_bonus", {
+                get: function () {
+                    return this._layer_bonus
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.start = function (e) {
+                var i = this;
+                t.prototype.start.call(this, e), this._data = new r.BattleResultData(e), new s.TaskInit(this).start(function () {
+                    i._main()
+                })
+            }, e.prototype._main = function () {
+                var t = this;
+                new a.TaskMain(this).start(function () {
+                    t._end()
+                })
+            }, e.prototype._end = function () {
+                var t = this;
+                new _.TaskEnd(this).start(function () {
+                    t.emit("complete")
+                })
             }, e
-        }(PIXI.Container);
-    e.RaderLayer = r
+        }(o.BattleResultSceneBase);
+    e.BattleResultScene = u
 }

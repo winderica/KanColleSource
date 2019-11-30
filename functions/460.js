@@ -19,91 +19,66 @@ const function460 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(59),
-        r = i(6),
-        s = i(122),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._planes = [], i
+    var o = i(43),
+        r = i(1383),
+        s = i(1386),
+        a = i(124),
+        _ = i(456),
+        l = i(457),
+        u = i(39),
+        c = function (t) {
+            function e(e, i, n, o, a, _, u, c, h, p) {
+                void 0 === p && (p = !1);
+                var d = t.call(this, e, i, o, u, c, h) || this;
+                d._onAttack = function () {
+                    d._playVoice(), d._createPlanes()
+                }, d._onDamaged = function () {
+                    1 == d._shield && d._showShield(d._d_banner), d._d_banner.moveAtDamage(d._shield);
+                    var t = d._getDamage(d._defender);
+                    d._playExplosion(d._d_banner, t), d._playDamageEffect(d._a_banner, d._d_banner, d._defender, t, d._hit, function () {
+                        d._complete_flg_damage = !0, d._endTask()
+                    })
+                }, d._complete_flg_plane = !1, d._complete_flg_damage = !1, d._defender = n, d._yasenkouku = p;
+                var f = d._scene.data.isNight(),
+                    y = d._scene.view.layer_cutin;
+                return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new l.PlaneTrio(i.friend), d
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.addPlane = function (t, e) {
-                if (void 0 === e && (e = null), !(this._planes.length >= 3)) {
-                    var i = new s.Plane;
-                    null == e && (e = new PIXI.Point, 0 == this._planes.length ? (e.x = 45, e.y = 18) : 1 == this._planes.length ? (e.x = 18, e.y = -27) : 2 == this._planes.length && (e.x = -36, e.y = 38)), i.initialize(t, this._friend, new PIXI.Point, e), this._planes.push(i);
-                    for (var n = 0; n < this._planes.length; n++) {
-                        var o = this._planes[n];
-                        if (i.y < o.y) {
-                            var r = this.getChildIndex(o);
-                            this.addChildAt(i, r);
-                            break
-                        }
-                        n == this._planes.length - 1 && this.addChild(i)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.getPreloadTask().start(function () {
+                    t._completePreload()
+                })
+            }, e.prototype._completePreload = function () {
+                var t = this._attacker.friend,
+                    e = this._attacker.index,
+                    i = this._defender.index;
+                1 == t ? (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!0, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!1, i)) : (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!1, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!0, i)), this._cutin.setCallback(this._onAttack), this._cutin.start()
+            }, e.prototype._createPlanes = function () {
+                var t;
+                t = 1 == this._defender.isSubMarine() ? o.PlaneConst.getPlaneType(!0) : o.PlaneConst.getPlaneType(!1);
+                for (var e = this._attacker.slots, i = 0, n = e; i < n.length; i++) {
+                    var r = n[i];
+                    if (null != r && t.indexOf(r.equipTypeSp) >= -0) {
+                        var s = r.mst_id;
+                        if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 0 == this._yasenkouku && 242 != s && 243 != s && 244 != s) continue;
+                        var a = this._a_banner.getGlobalPos(!0);
+                        this._trio.x = a.x, this._trio.y = a.y, this._trio.addPlane(s)
                     }
                 }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype.startFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].startFluctuations()
-                }
-            }, e.prototype.stopFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].stopFluctuations()
-                }
-            }, e.prototype.fire = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].fire()
-                }
-            }, e.prototype.play = function (t, e, i, n, s) {
-                var a = this;
-                void 0 === e && (e = NaN), void 0 === s && (s = null);
-                var _, l = new PIXI.Point(this.x, this.y),
-                    u = this._createControllPoints(l, t),
-                    c = u.c1,
-                    h = u.c2;
-                if (0 == isNaN(e)) {
-                    var p = .99,
-                        d = 1 - p,
-                        f = Math.pow(d, 3) * l.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
-                        y = Math.pow(d, 3) * l.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
-                        m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
-                        g = t.x - f,
-                        v = (e - t.x) / g,
-                        b = i / (100 + v) * 100,
-                        w = i / (100 + v) * v;
-                    this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
-                        x: e,
-                        y: m
-                    }, w), _ = new PIXI.Point(e, m)
-                } else this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
-                return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
-                    r.SE.play("116"), a.fire()
-                }), {
-                    s: l,
-                    c1: c,
-                    c2: h,
-                    e: t,
-                    ex: _
-                }
-            }, e.prototype.debugLine = function (t) {
-                var e = new PIXI.Graphics;
-                return e.lineStyle(1, 16711680), e.moveTo(t.s.x, t.s.y), e.bezierCurveTo(t.c1.x, t.c1.y, t.c2.x, t.c2.y, t.e.x, t.e.y), e.lineStyle(1, 65280), e.lineTo(t.ex.x, t.ex.y), e
-            }, e.prototype._createControllPoints = function (t, e) {
-                var i, n, o = t.x <= e.x;
-                return 1 == o ? (i = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)) : (i = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)), {
-                    c1: i,
-                    c2: n
-                }
+                this._attack()
+            }, e.prototype._attack = function () {
+                var t = this,
+                    e = this._scene.view.layer_content,
+                    i = this._a_banner,
+                    n = this._d_banner;
+                new a.TaskDaihatsuEff(e, i, n, this._daihatsu_eff).start();
+                var o = n.getGlobalPos(!0);
+                new _.TaskPlane(e, this._trio, o, this._onDamaged).start(function () {
+                    t._complete_flg_plane = !0, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                0 != this._complete_flg_plane && 0 != this._complete_flg_damage && t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.PlaneTrio = a
+        }(u.PhaseAttackBase);
+    e.PhaseAttackKuboCutin = c
 }

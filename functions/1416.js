@@ -20,172 +20,83 @@ const function1416 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(72),
-        s = i(28),
-        a = i(30),
-        _ = i(20),
-        l = i(2),
-        u = i(8),
-        c = i(13),
-        h = i(1),
-        p = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._model = e, o._list = e.getDisplayList(), o._bannerGroupLayer = i, o._cutinLayer = n, o
+        r = i(2),
+        s = i(18),
+        a = i(13),
+        _ = i(23),
+        l = i(1417),
+        u = i(65),
+        c = i(44),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new PIXI.Container, e
             }
-            return n(e, t), e.prototype.preload = function (t) {
-                for (var e = new c.ShipLoader, i = 0, n = this._list; i < n.length; i++) {
-                    var o = n[i],
-                        r = o.ship,
-                        s = r.mst_id,
-                        a = r.isDamaged();
-                    e.add(s, a, "full")
-                }
-                for (var _ = 0, l = this._model.ships; _ < l.length; _++) {
-                    var r = l[_];
-                    if (null != r) {
-                        var u = r.mst_id,
-                            a = r.isDamaged();
-                        e.add(u, a, "banner"), 0 == a && e.add(u, !0, "banner")
-                    }
-                }
-                null == t ? e.load() : e.load(t)
+            return n(e, t), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.preload = function (t, e, i, n) {
+                var o = this;
+                this._attacker = t, this._slot1 = e, this._slot2 = i;
+                var r = new a.ShipLoader;
+                r.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), r.load(function () {
+                    var t = null == o._slot1 ? 0 : o._slot1.mstID,
+                        e = null == o._slot2 ? 0 : o._slot2.mstID,
+                        i = new _.SlotLoader;
+                    t > 0 && (i.add(t, "item_up"), i.add(t, "btxt_flat")), e > 0 && (i.add(e, "item_up"), i.add(e, "btxt_flat")), i.load(function () {
+                        null != n && n()
+                    })
+                })
             }, e.prototype._start = function () {
-                this._charaLayer = new PIXI.Container, this._cutinLayer.addChild(this._charaLayer), this._clickLayer = new PIXI.Container, this._cutinLayer.addChild(this._clickLayer), this._showShip1()
-            }, e.prototype._showShip1 = function () {
+                this._canvas = new l.CutinCanvasSpSR, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
+            }, e.prototype._ready = function () {
+                var t = this._attacker.mst_id,
+                    e = this._attacker.isDamaged(),
+                    i = o.default.model.ship_graph.get(t).getBattleOffset(e);
+                this._ship.texture = o.default.resources.getShip(t, e, "full"), this._ship.position.set(i.x, i.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(t, e, "full")), this._shipFlash.position.set(i.x, i.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -399, this._canvas.chara.y = -54) : (this._canvas.chara.x = 676, this._canvas.chara.y = -54), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID), this._anim1()
+            }, e.prototype._anim1 = function () {
+                var t = this;
+                this._canvas.bg.show(200), createjs.Tween.get(this._canvas.chara).wait(200).to({
+                    x: (this._attacker.friend ? 0 : 480) - 104,
+                    y: (this._attacker.friend ? 0 : 23) - 87,
+                    alpha: 1
+                }, 300).wait(1200).call(function () {
+                    t._anim2()
+                }), this._canvas.layer_bg.show(400), this._canvas.layer_item.show(400), this._canvas.layer_name.show(400), this._canvas.layer_center.show(733), this._canvas.layer_center_name.show(1300)
+            }, e.prototype._anim2 = function () {
+                var t = this;
+                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
+                    t._shipFlash.play()
+                }).wait(200).call(function () {
+                    t._anim3()
+                })
+            }, e.prototype._anim3 = function () {
                 var t = this,
-                    e = this._list[0].ship,
-                    i = e.mst_id,
-                    n = e.isDamaged(),
-                    r = o.default.resources.getShip(i, n, "full"),
-                    s = new PIXI.Sprite(r),
-                    a = o.default.model.ship_graph.get(i).getBattleOffset(n);
-                s.x = -285 + a.x, s.y = -87 + a.y, s.alpha = 0, this._charaLayer.addChild(s), createjs.Tween.get(s).to({
-                    x: 165 + a.x,
+                    e = new u.IntensiveLines;
+                e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
                     alpha: 1
-                }, 700, createjs.Ease.cubicOut).call(function () {
-                    t._playVoice1(s)
-                })
-            }, e.prototype._playVoice1 = function (t) {
-                var e = this,
-                    i = this._list[0].ship.mst_id,
-                    n = this._list[0].voiceID,
-                    o = new d(i.toString(), n, this._clickLayer, !0),
-                    l = new _.TweenTask;
-                l.addTweens(this._bannerGroupLayer.friends_combined.createExitTweensUpDown());
-                var u = new _.TweenTask;
-                u.addTweens(this._bannerGroupLayer.friends.createExitTweens());
-                var c = new _.TweenTask;
-                c.addTweens(this._bannerGroupLayer.ally.createEnterTweens());
-                var h = new a.SerialTask;
-                h.add(l), h.add(u), h.add(c), h.add(new r.FuncTask(function () {
-                    o.clickable = !0
-                }));
-                var p = new s.ParallelTask;
-                p.add(o), p.add(h), p.start(function () {
-                    e._list.length > 1 ? e._showShip2(t) : createjs.Tween.get(t).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        e._charaLayer.removeChild(t), e._endTask()
-                    })
-                })
-            }, e.prototype._showShip2 = function (t) {
-                var e = this,
-                    i = this._list[1].ship,
-                    n = i.mst_id,
-                    r = i.isDamaged(),
-                    s = o.default.resources.getShip(n, r, "full"),
-                    a = new PIXI.Sprite(s),
-                    _ = o.default.model.ship_graph.get(n).getBattleOffset(r);
-                a.x = -360 + _.x, a.y = -87 + _.y, a.alpha = 0, this._charaLayer.addChild(a), createjs.Tween.get(a).to({
-                    x: 15 + _.x,
+                }, 200);
+                var i = new s.FadeBox(1, 16777215);
+                i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({
                     alpha: 1
-                }, 600, createjs.Ease.cubicOut).call(function () {
-                    e._playVoice2(a)
-                }), createjs.Tween.get(t).to({
+                }, 500).call(function () {
+                    t._anim4(e, i)
+                })
+            }, e.prototype._anim4 = function (t, e) {
+                var i = this;
+                this._canvas.dispose(), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(e).to({
                     alpha: 0
                 }, 300).call(function () {
-                    e._charaLayer.removeChild(t)
-                })
-            }, e.prototype._playVoice2 = function (t) {
-                var e = this,
-                    i = this._list[1].ship.mst_id,
-                    n = this._list[1].voiceID,
-                    o = this._list.length > 2,
-                    r = new d(i.toString(), n, this._clickLayer, o);
-                r.clickable = !0, r.start(function () {
-                    o ? e._showShip3(t) : createjs.Tween.get(t).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        e._charaLayer.removeChild(t), e._endTask()
-                    })
-                })
-            }, e.prototype._showShip3 = function (t) {
-                var e = this,
-                    i = this._list[2].ship,
-                    n = i.mst_id,
-                    r = i.isDamaged(),
-                    s = o.default.resources.getShip(n, r, "full"),
-                    a = new PIXI.Sprite(s),
-                    _ = o.default.model.ship_graph.get(n).getBattleOffset(r);
-                a.x = -435 + _.x, a.y = -87 + _.y, a.alpha = 0, this._charaLayer.addChild(a), createjs.Tween.get(a).to({
-                    x: -135 + _.x,
-                    alpha: 1
-                }, 600, createjs.Ease.cubicOut).call(function () {
-                    e._playVoice3(t)
-                }), createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._charaLayer.removeChild(t)
-                })
-            }, e.prototype._playVoice3 = function (t) {
-                var e = this,
-                    i = this._list[2].ship.mst_id,
-                    n = this._list[2].voiceID,
-                    o = new d(i.toString(), n, this._clickLayer, !1);
-                o.clickable = !0, o.start(function () {
-                    createjs.Tween.get(t).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        e._charaLayer.removeChild(t), e._endTask()
-                    })
+                    t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._model = null, this._list = null, this._bannerGroupLayer = null, this._cutinLayer = null, null != this._charaLayer.parent && this._charaLayer.parent.removeChild(this._charaLayer), this._charaLayer = null, null != this._clickLayer.parent && this._clickLayer.parent.removeChild(this._clickLayer), this._clickLayer = null, t.prototype._endTask.call(this)
+                this._attacker = null, this._slot1 = null, this._slot2 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
             }, e
-        }(l.TaskBase);
-    e.PhaseAllyOpening = p;
-    var d = function (t) {
-        function e(e, i, n, r) {
-            var s = t.call(this) || this;
-            return s._clickArea = null, s._voice = null, s._onClick = function () {
-                s._stop_onClick && null != s._voice && o.default.sound.voice.stop(s._voice), s._endTask()
-            }, s._mstID = e, s._voiceID = i, s._clickLayer = n, s._stop_onClick = r, s
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "clickable", {
-            get: function () {
-                return null != this._clickArea
-            },
-            set: function (t) {
-                if (t) {
-                    if (null != this._clickArea) return;
-                    this._clickArea = new u.AreaBox(0), this._clickArea.buttonMode = !0, this._clickArea.once(h.EventType.CLICK, this._onClick), null != this._clickLayer && this._clickLayer.addChild(this._clickArea)
-                } else {
-                    if (null == this._clickArea) return;
-                    null != this._clickArea.parent && this._clickArea.parent.removeChild(this._clickArea), this._clickArea.off(h.EventType.CLICK, this._onClick), this._clickArea = null
-                }
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype._start = function () {
-            var t = this;
-            this._voice = o.default.sound.voice.play(this._mstID, this._voiceID, function () {
-                t._onEnd()
-            })
-        }, e.prototype._onEnd = function () {
-            this._endTask()
-        }, e.prototype._endTask = function () {
-            this.clickable = !1, this._clickLayer = null, this._voice = null, t.prototype._endTask.call(this)
-        }, e
-    }(l.TaskBase)
+        }(r.TaskBase);
+    e.CutinSpSR = h
 }

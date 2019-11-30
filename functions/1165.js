@@ -20,60 +20,48 @@ const function1165 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(243),
-        s = i(25),
-        a = i(139),
-        _ = i(1166),
+        r = i(4),
+        s = i(135),
+        a = i(91),
+        _ = i(410),
         l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
-                }, n._layer = e, n._target = i, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOn = function (t, e) {
+                    i._description.text = e.replace(/<br>/g, "\n")
+                }, i._onMouseOff = function () {
+                    i._description.text = ""
+                }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(19, 16777215), i._description.position.set(219, 219), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 744, i.addChild(i._description), i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                this._dialog = new _.IwashiUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
-                    s = n.result;
-                n.start(function () {
-                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = this._layer,
-                    o = new a.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new r.UseItemUseAPI(e, !0, i),
-                            s = n.result;
-                        n.start(function () {
-                            t._result = s, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(26));
+                t.position.set(172, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(30)), t.position.set(202, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(19)), t.position.set(202, 202), this._bg_layer.addChild(t), this._icons = [];
+                for (var e = 0; e < 14; e++) {
+                    var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
+                    i.x = 234 + 118 * Math.floor(e / 2), i.y = 288 + (0 == Math.floor(e % 2) ? 0 : 181), i.initialize(3), this.addChild(i), this._icons.push(i)
+                }
+            }, e.prototype.update = function () {
+                for (var t = o.default.model.payitem.getOrder(1), e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e],
+                        n = t[e],
+                        r = o.default.model.payitem.getData(n);
+                    i.update(r)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._description.destroy(), this._cb_onSelect = null
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseIwashi = l
+        }(a.ViewBase);
+    e.SpecialItemShopMain = l
 }

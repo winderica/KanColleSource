@@ -19,41 +19,34 @@ const function716 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(56),
-        r = i(1),
+    var o = i(84),
+        r = i(717),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClickEdit = function () {
-                    e.onClick(1)
-                }, e._onClickExpansion = function () {
-                    e.onClick(2)
-                }, e.buttonSave = new PIXI.Sprite, e.buttonLoad = new PIXI.Sprite, e.buttonLoad.y = 43, e.buttonSave.interactive = e.buttonLoad.interactive = !0, e.buttonSave.buttonMode = e.buttonLoad.buttonMode = !0, e.buttonSave.addListener(r.EventType.CLICK, e._onClickEdit), e.buttonLoad.addListener(r.EventType.CLICK, e._onClickExpansion), e.addChild(e.buttonSave, e.buttonLoad), e.update(0), e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.buttonLoad.removeAllListeners(r.EventType.CLICK), this.buttonSave.removeAllListeners(r.EventType.CLICK), this.onClick = null, this.buttonSave = null, this.buttonLoad = null, this.removeChildren()
-            }, e.prototype.update = function (t) {
-                switch (t) {
-                    case 0:
-                        var e = o.ORGANIZE_MAIN.getTexture(48),
-                            i = o.ORGANIZE_MAIN.getTexture(45);
-                        this.buttonSave.texture = e, this.buttonLoad.texture = i;
-                        break;
-                    case 1:
-                        var n = o.ORGANIZE_MAIN.getTexture(50),
-                            r = o.ORGANIZE_MAIN.getTexture(46);
-                        this.buttonSave.texture = n, this.buttonLoad.texture = r;
-                        break;
-                    case 2:
-                        var s = o.ORGANIZE_MAIN.getTexture(49),
-                            a = o.ORGANIZE_MAIN.getTexture(47);
-                        this.buttonSave.texture = s, this.buttonLoad.texture = a
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                o.HEIGHT = 76, o.presetEditSlots = [];
+                for (var s = 0; s < 5; s++) {
+                    var a = new r.PresetEditSlot(s);
+                    a.onClickSave = e, a.onClickDelete = i, a.onClickExtension = n, a.position.y = o.HEIGHT * s, o.presetEditSlots.push(a)
                 }
-            }, e.prototype.show = function () {
-                this.visible = !0
-            }, e.prototype.hide = function () {
-                this.visible = !1
+                return o.presetEditSlots.forEach(function (t) {
+                    return o.addChild(t)
+                }), o
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "slotsLength", {
+                get: function () {
+                    return this.presetEditSlots.length
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                o.TaskLoadShipResource.abortBy(this), this.presetEditSlots.forEach(function (t) {
+                    t.dispose(), t = null
+                }), this.presetEditSlots = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i, n, r) {
+                void 0 === r && (r = null), o.TaskLoadShipResource.abortBy(this);
+                for (var s = !1, a = 0; a < 5; a++) s = this.presetEditSlots[a].update(t[a], e, i, n, r, s)
             }, e
         }(PIXI.Container);
-    e.PresetButtonLayer = s
+    e.PresetEditContainer = s
 }

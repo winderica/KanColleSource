@@ -19,20 +19,20 @@ const function391 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(132),
+    var o = i(133),
         r = i(392),
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i.TABMAX_SHIP = 6, i.TABMAX_SLOT = 6, i._ship_tabs = [];
+                i.TABMAX_SHIP = 7, i.TABMAX_SLOT = 7, i._ship_tabs = [];
                 for (var n = 0; n < i.TABMAX_SHIP; n++) {
                     var o = new r.TabBtn(1, n, e);
-                    o.position.set(0, 53 * n), o.visible = !0, i.addChild(o), i._ship_tabs.push(o)
+                    o.position.set(0, 46 * n), o.visible = !0, i.addChild(o), i._ship_tabs.push(o)
                 }
                 i._slot_tabs = [];
                 for (var n = 0; n < i.TABMAX_SLOT; n++) {
                     var o = new r.TabBtn(2, n, e);
-                    o.position.set(0, 53 * n), o.visible = !1, i.addChild(o), i._slot_tabs.push(o)
+                    o.position.set(0, 46 * n), o.visible = !1, i.addChild(o), i._slot_tabs.push(o)
                 }
                 return i
             }
@@ -103,9 +103,9 @@ const function391 = function (t, e, i) {
                         })
                 }
             }, e.prototype._getBtnTextureNo = function (t, e) {
-                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [80, 82, 84, 86, 88, 90][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [68, 70, 72, 74, 76, 78][e] : -1
+                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [82, 84, 86, 88, 90, 92, 94][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [68, 70, 72, 74, 76, 78, 80][e] : -1
             }, e.prototype._getBtnOnTextureNo = function (t, e) {
-                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [81, 83, 85, 87, 89, 91][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [69, 71, 73, 75, 77, 79][e] : -1
+                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [83, 85, 87, 89, 91, 93, 95][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [69, 71, 73, 75, 77, 79, 81][e] : -1
             }, e.prototype._initializeTabBtns = function (t) {
                 for (var e = 0, i = t; e < i.length; e++) {
                     var n = i[e],

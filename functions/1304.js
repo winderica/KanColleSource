@@ -19,45 +19,75 @@ const function1304 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(64),
-        s = i(19),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
+    var o = i(5),
+        r = i(2),
+        s = i(12),
+        a = i(8),
+        _ = i(19),
+        l = i(1305),
+        u = i(1),
+        c = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._shutter = e, n._item_ids = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(114), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(119), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(121) : s.MAP_COMMON.getTexture(120)
-            }, e.prototype.playAnimation = function (t) {
-                this._animation1(t)
-            }, e.prototype._animation1 = function (t) {
-                var e = this,
-                    i = new o.TweenTask;
-                i.addTween(createjs.Tween.get(this._bg).to({
-                    alpha: 1,
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._view = new l.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
+                var e = _.MAP_COMMON.getTexture(113);
+                this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({
                     scaleY: 1
-                }, 500)), i.addTween(createjs.Tween.get(this._txt1).wait(300).to({
-                    x: 30,
-                    alpha: 1
-                }, 700)), i.addTween(createjs.Tween.get(this._txt2).wait(300).to({
-                    alpha: 1
-                }, 700)), i.start(function () {
-                    e._animation2(t)
+                }, 300).call(function () {
+                    t._showMessage()
                 })
-            }, e.prototype._animation2 = function (t) {
-                var e = new o.TweenTask;
-                e.addTween(createjs.Tween.get(this._bg).wait(1200).to({
+            }, e.prototype._showMessage = function () {
+                var t = this,
+                    e = _.MAP_COMMON.getTexture(116);
+                this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
+                    x: o.default.width / 2 + 180,
+                    alpha: 1
+                }, 300).to({
+                    x: o.default.width / 2
+                }, 400).to({
+                    x: o.default.width / 2 - 60,
+                    alpha: 0
+                }, 400).call(function () {
+                    t._shutter.removeChild(t._telopText), t._closeTelop()
+                })
+            }, e.prototype._closeTelop = function () {
+                var t = this;
+                createjs.Tween.get(this._telopBG).to({
                     scaleY: 0
-                }, 200)), e.addTween(createjs.Tween.get(this._txt1).wait(800).to({
-                    x: -40,
+                }, 300).call(function () {
+                    t._shutter.removeChild(t._telopBG)
+                }), createjs.Tween.get(this._view).to({
+                    alpha: 1
+                }, 200).call(function () {
+                    t._showContent()
+                })
+            }, e.prototype._showContent = function () {
+                var t = this;
+                this._shutter.close(), this._shutter.once("closed", function () {
+                    createjs.Tween.get(t._view.content).to({
+                        alpha: 1
+                    }, 200).call(function () {
+                        t._waitClick()
+                    })
+                })
+            }, e.prototype._waitClick = function () {
+                var t = this,
+                    e = new a.AreaBox(0);
+                e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(u.EventType.CLICK, function () {
+                    t._shutter.removeChild(e), t._hideView()
+                })
+            }, e.prototype._hideView = function () {
+                var t = this;
+                createjs.Tween.get(this._view).to({
                     alpha: 0
-                }, 300)), e.addTween(createjs.Tween.get(this._txt2).wait(1100).to({
-                    alpha: 0
-                }, 100)), e.start(function () {
-                    null != t && t()
+                }, 200).call(function () {
+                    t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
                 })
             }, e
-        }(PIXI.Container);
-    e.AirRaidTelop = a
+        }(r.TaskBase);
+    e.TaskShowMapEndView = c
 }

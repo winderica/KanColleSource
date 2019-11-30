@@ -3,28 +3,12 @@ const function505 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(506),
-        r = function () {
-            function t() {
-                this.__map__ = {}
-            }
-            return t.prototype.__initData__ = function (t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e],
-                        n = new o.EquipModel(i),
-                        r = n.ship_id.toString();
-                    this.__map__[r] = n
-                }
-            }, t.prototype.get = function (t) {
-                var e = t.toString(),
-                    i = this.__map__[e];
-                if (i) return i;
-                var r = n.default.model.ship.getMst(t).shipTypeID,
-                    s = n.default.model.shipType.get(r).getEquippableTypes(),
-                    a = {};
-                return a.api_ship_id = t, a.api_equip_type = s, new o.EquipModel(a)
-            }, t
-        }();
-    e.EquipModelHolder = r
+    ! function (t) {
+        function e(t, e) {
+            e || (e = "YYYY/MM/DD hh:mm:ss");
+            var i = new Date(t);
+            return e = e.replace(/YYYY/g, i.getFullYear().toString()), e = e.replace(/MM/g, ("0" + (i.getMonth() + 1)).slice(-2)), e = e.replace(/DD/g, ("0" + i.getDate()).slice(-2)), e = e.replace(/hh/g, ("0" + i.getHours()).slice(-2)), e = e.replace(/mm/g, ("0" + i.getMinutes()).slice(-2)), e = e.replace(/ss/g, ("0" + i.getSeconds()).slice(-2))
+        }
+        t.format = e
+    }(e.DateUtil || (e.DateUtil = {}))
 }

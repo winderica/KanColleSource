@@ -20,38 +20,29 @@ const function1375 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(64),
-        s = i(16),
+        r = i(13),
+        s = i(23),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._attacker = e, s._plane_mst_id = i, s._slot_mst_id1 = n, s._slot_mst_id2 = o, s._type = r, s
             }
             return n(e, t), e.prototype._start = function () {
+                this._loadShipImage()
+            }, e.prototype._loadShipImage = function () {
+                var t = this,
+                    e = new r.ShipLoader;
+                e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
+                    t._loadSlotTextImage()
+                })
+            }, e.prototype._loadSlotTextImage = function () {
                 var t = this;
-                this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
-                    alpha: 1
-                }, 100).to({
-                    x: this._smoke1.x - 4,
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({
-                    alpha: 1
-                }, 100).to({
-                    x: this._smoke2.x - 4,
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 700);
-                var e = [s.BATTLE_MAIN.getTexture(86), s.BATTLE_MAIN.getTexture(87), s.BATTLE_MAIN.getTexture(88), s.BATTLE_MAIN.getTexture(89), s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107)],
-                    i = new PIXI.extras.AnimatedSprite(e);
-                i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
-                    i.play(), i.onComplete = function () {
-                        i.onComplete = null, t._layer.removeChild(i), t._endTask()
-                    }
+                this._plane_mst_id <= 0 && this._slot_mst_id1 <= 0 && this._slot_mst_id2 <= 0 && this._endTask();
+                var e = new s.SlotLoader;
+                this._plane_mst_id > 0 && e.add(this._plane_mst_id, "item_up"), this._slot_mst_id1 > 0 && (e.add(this._slot_mst_id1, "item_up"), 0 == this._type && e.add(this._slot_mst_id1, "btxt_flat")), this._slot_mst_id2 > 0 && (e.add(this._slot_mst_id2, "item_up"), e.add(this._slot_mst_id2, "btxt_flat")), e.load(function () {
+                    t._endTask()
                 })
             }, e
         }(o.TaskBase);
-    e.AnimAntiAircraftSanshikidan2 = a
+    e.PreloadCutinDanchaku = a
 }

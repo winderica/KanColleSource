@@ -1,72 +1,160 @@
 const function490 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(32),
-        r = i(9),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._particles = [], e
+    var n = i(491),
+        o = i(494),
+        r = i(495),
+        s = i(498),
+        a = i(501),
+        _ = i(503),
+        l = i(506),
+        u = i(508),
+        c = i(510),
+        h = i(511),
+        p = i(513),
+        d = i(515),
+        f = i(519),
+        y = i(521),
+        m = i(523),
+        g = i(524),
+        v = i(526),
+        b = i(528),
+        w = i(530),
+        x = i(532),
+        I = i(535),
+        T = function () {
+            function t() {
+                this._const = new m.ServerConstModelEdit, this._basic = new o.BasicModelEdit, this._incentive = new c.IncentiveModelHolderEdit, this._log = new p.LogModelHolder, this._furniture = new u.FurnitureModelHolderEdit, this._furniture_graph = new l.FurnitureGraphModelHolder, this._deck = new s.DeckModelHolder, this._shiptype = new b.ShipTypeModelHolderEdit, this._ship = new v.ShipModelHolder, this._ship_graph = new g.ShipGraphModelHolder, this._ship_upgrade = new w.ShipUpgradeModelHolderEdit, this._slot = new x.SlotitemModelHolderEdit, this._useItem = new I.UseItemModelHolderEdit, this._kdock = new h.KDockModelHolderEdit, this._ndock = new f.NDockModelHolder, this._map = new d.MapModelHolderEdit, this._airunit = new n.AirUnitModelHolderEdit, this._mst_bgm = new r.BGMMstModelHolderEdit, this._expedition = new _.ExpeditionModelHolderEdit, this._payitem = new y.PayItemModelHolderEdit, this._equip = new a.EquipModelHolder
             }
-            return n(e, t), e.prototype.addParticle = function (t, e) {
-                var i = new a;
-                i.initialize(), i.position.set(t, e), this.addChild(i), this._particles.push(i)
-            }, e.prototype.startAnimation = function () {
-                for (var t = 0, e = this._particles; t < e.length; t++) {
-                    e[t].startAnimation()
-                }
-            }, e.prototype.stopAnimation = function () {
-                for (var t = 0, e = this._particles; t < e.length; t++) {
-                    e[t].stopAnimation()
-                }
-            }, e
-        }(PIXI.Container);
-    e.ParticleLayer = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._r_canvas = new PIXI.Container, e.addChild(e._r_canvas), e._img = new PIXI.Sprite, e._r_canvas.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = r.COMMON_MISC.getTexture(115), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.scale.set(0)
-        }, e.prototype.startAnimation = function () {
-            var t = this;
-            if (null == this._anim) {
-                var e = 2e3 * Math.random();
-                this._anim = createjs.Tween.get(this).wait(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 200).call(function () {
-                    t._anim = null, t.startAnimation()
-                }), this.rotation = Math.random() * Math.PI * 2 - Math.PI;
-                var i = this.rotation + Math.random() * Math.PI / 10 - Math.PI / 5;
-                createjs.Tween.get(this._r_canvas).wait(e).to({
-                    rotation: i
-                }, 300)
-            }
-        }, e.prototype.stopAnimation = function () {
-            null != this._anim && (this._anim.setPaused(!0), this._anim = null)
-        }, e
-    }(o.Container)
+            return Object.defineProperty(t.prototype, "const", {
+                get: function () {
+                    return this._const
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "basic", {
+                get: function () {
+                    return this._basic
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "incentive", {
+                get: function () {
+                    return this._incentive
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "log", {
+                get: function () {
+                    return this._log
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "furniture_graph", {
+                get: function () {
+                    return this._furniture_graph
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "furniture", {
+                get: function () {
+                    return this._furniture
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "deck", {
+                get: function () {
+                    return this._deck
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "shipType", {
+                get: function () {
+                    return this._shiptype
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ship", {
+                get: function () {
+                    return this._ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ship_graph", {
+                get: function () {
+                    return this._ship_graph
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ship_upgrade", {
+                get: function () {
+                    return this._ship_upgrade
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "slot", {
+                get: function () {
+                    return this._slot
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equip", {
+                get: function () {
+                    return this._equip
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "useItem", {
+                get: function () {
+                    return this._useItem
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ndock", {
+                get: function () {
+                    return this._ndock
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "kdock", {
+                get: function () {
+                    return this._kdock
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "map", {
+                get: function () {
+                    return this._map
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "airunit", {
+                get: function () {
+                    return this._airunit
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "mst_bgm", {
+                get: function () {
+                    return this._mst_bgm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "expedition", {
+                get: function () {
+                    return this._expedition
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "payitem", {
+                get: function () {
+                    return this._payitem
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.ModelManager = T
 }

@@ -3,42 +3,30 @@ const function948 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
+    var n = i(7),
         o = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "id", {
+            return Object.defineProperty(t.prototype, "type", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_usemst")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "id", {
                 get: function () {
                     return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "no", {
+            }), Object.defineProperty(t.prototype, "count", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_no")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "color", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_color_no")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "passed", {
-                get: function () {
-                    return 1 == n.ObjUtil.getNumber(this._o, "api_passed")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "distance", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_distance")
+                    return n.ObjUtil.getNumber(this._o, "api_getcount")
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.CellModel = o
+    e.EOItemModel = o
 }

@@ -19,31 +19,15 @@ const function649 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(48),
-        s = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+    var o = i(11),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_member/set_flagship_position", i._posId = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                this._panel = new PIXI.Container;
-                var t = new PIXI.Sprite(o.COMMON_MISC.getTexture(165));
-                t.position.set(-267, -138), this._panel.addChild(t);
-                var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(164));
-                e.position.set(-45, -12), this._panel.addChild(e);
-                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(166));
-                i.position.set(-67, 102), this._panel.addChild(i);
-                var n = new PIXI.Sprite;
-                350 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(167), n.position.set(-10, 99)) : 200 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(168), n.position.set(-12, 99)) : 300 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(169), n.position.set(-11, 99)) : 180 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(170), n.position.set(-12, 99)) : 400 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(171), n.position.set(-11, 99)) : 80 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(172), n.position.set(-4, 99)) : 330 == this.model.value && (n.texture = o.COMMON_MISC.getTexture(173), n.position.set(-11, 99)), this._panel.addChild(n), this._dialog.container.addChild(this._panel), this._showDialog()
-            }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._panel), this._panel = null
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_position_id = this._posId, t.prototype._connect.call(this)
             }, e
-        }(r.TaskRewardDialogBase);
-    e.TaskRewardDialogWarResult = s
+        }(o.APIBase);
+    e.setFlagshipPositionAPI = r
 }

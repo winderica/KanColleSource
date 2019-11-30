@@ -48,7 +48,7 @@ const function390 = function (t, e, i) {
             }, e.prototype.dispose = function () {
                 this.removeChildren(), this.deactivate(), this._from.dispose(), this._to.dispose(), this._dash = null, this._from = null, this._to = null, this._cb_onChange = null
             }, e.prototype._setBGTexture = function () {
-                0 == this._selected ? (this.texture = o.ALBUM_MAIN.getTexture(101), this._dash.texture = o.ALBUM_MAIN.getTexture(26)) : (this.texture = o.ALBUM_MAIN.getTexture(102), this._dash.texture = o.ALBUM_MAIN.getTexture(27))
+                0 == this._selected ? (this.texture = o.ALBUM_MAIN.getTexture(105), this._dash.texture = o.ALBUM_MAIN.getTexture(26)) : (this.texture = o.ALBUM_MAIN.getTexture(106), this._dash.texture = o.ALBUM_MAIN.getTexture(27))
             }, e.prototype._activate = function () {
                 1 != this._selected && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
             }, e.prototype._deactivate = function () {

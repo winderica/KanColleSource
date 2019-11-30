@@ -19,62 +19,52 @@ const function1319 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(150),
-        s = i(27),
-        a = i(356),
-        _ = i(353),
-        l = i(357),
-        u = i(354),
-        c = i(355),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._selected_airunit_id = 0, e._onChangeTab = function (t) {
-                    e.update(t)
-                }, e._area = new PIXI.Graphics, e.addChild(e._area), e._tabs = new a.AirUnitPanelTabContainer(e._onChangeTab), e._tabs.x = 30, e.addChild(e._tabs), e._base = new PIXI.Sprite, e._base.position.set(0, 21), e.addChild(e._base), e._banner = new _.AirUnitPanelBanner, e._banner.position.set(26, 45), e.addChild(e._banner), e._name = new o.TextBox(21, 0), e._name.position.set(33, 119), e.addChild(e._name), e._tag = new l.AirUnitPanelWoodenTag, e._tag.position.set(314, 47), e.addChild(e._tag), e._items = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new u.AirUnitPanelItem(null, null);
-                    n.position.set(17, 164 + 90 * i), e.addChild(n), e._items.push(n)
-                }
-                return e._supply_btn = new c.AirUnitPanelSupplyAllBtn(null), e._supply_btn.position.set(287, 146), e.addChild(e._supply_btn), e.interactive = !0, e
+    var o = i(62),
+        r = i(1320),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "no", {
                 get: function () {
-                    return this._selected_airunit_id
+                    return this._no
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._models = e, this._tabs.initialize(this._models.length), this._base.texture = s.SALLY_AIRUNIT.getTexture(8), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
-                for (var i = 0; i < this._items.length; i++) {
-                    this._items[i].initialize(i)
-                }
-                this._supply_btn.initialize()
-            }, e.prototype.update = function (t, e) {
-                if (void 0 === e && (e = !1), (0 != e || this._selected_airunit_id != t) && !(t <= 0 || t > this._models.length)) {
-                    this._selected_airunit_id = t;
-                    for (var i = null, n = 0, o = this._models; n < o.length; n++) {
-                        var s = o[n];
-                        if (s.id == t) {
-                            i = s;
-                            break
-                        }
-                    }
-                    this._tabs.update(t), this._name.text = i.name, r.EditTextBoxUtil.text = i.name, this._tag.update(i.airUnitState, !1);
-                    for (var a = i.squadrons, _ = 0, l = !1, u = 0; u < this._items.length; u++) {
-                        var c = u < a.length ? a[u] : null;
-                        this._items[u].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), l = l || c.count < c.countMax
-                    }
-                    this._banner.update(t, _, i.distance_base, i.distance_bonus), this._supply_btn.update(l)
-                }
+            }), Object.defineProperty(e.prototype, "route", {
+                get: function () {
+                    return this._route
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "point", {
+                get: function () {
+                    return this._point
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.isAddedSpot = function () {
+                return null != this._route
+            }, e.prototype.showLine = function () {
+                null != this._line && (this._line.visible = !0)
+            }, e.prototype.hideLine = function () {
+                null != this._line && (this._line.visible = !1)
+            }, e.prototype.setColor = function (t) {
+                this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
+            }, e.prototype.getColor = function () {
+                return this._point.color
+            }, e.prototype.setRoute = function (t, e, i, n) {
+                null != this._route && (this.removeChild(this._route), this._route = null);
+                var r = new o.CenteringSprite(t);
+                r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
+            }, e.prototype.setLine = function (t, e, i, n) {
+                null != this._line && (this.removeChild(this._line), this._line = null);
+                var o = new PIXI.Sprite(t);
+                o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._tabs.dispose(), this._banner.dispose(), this._name.destroy(), this._tag.dispose();
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._supply_btn.dispose()
+                this._point.dispose()
             }, e
         }(PIXI.Container);
-    e.AirUnitPanel = h
+    e.CompSpot = s
 }

@@ -19,50 +19,31 @@ const function475 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(28),
-        r = i(2),
-        s = i(1410),
-        a = i(1414),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = i(476),
+        r = i(477),
+        s = i(1443),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._o = e, i._raw = new s.RawDayBattleData(e), i._common = new r.BattleCommonModel(e), i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showLight()
-            }, e.prototype._showLight = function () {
-                var t = this,
-                    e = this._scene.view.layer_cutin,
-                    i = this._getFlareBanner_f(),
-                    n = this._getFlareBanner_e(),
-                    o = this._createSearchLightTask();
-                new s.TaskFlareEffect(e, i, n, o).start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._createSearchLightTask = function () {
-                var t = this._getShips_f(),
-                    e = this._getSearchLightAnimationTask(t),
-                    i = this._getShips_e(),
-                    n = this._getSearchLightAnimationTask(i),
-                    r = new o.ParallelTask;
-                return r.add(e), r.add(n), r
-            }, e.prototype._getSearchLightAnimationTask = function (t) {
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e];
-                    if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(42))) {
-                        var o = this._scene.view.bannerGroupLayer.getBanner(n);
-                        return new a.TaskSearchLightAnimation(o, !0)
-                    }
-                }
-                for (var r = 0, s = t; r < s.length; r++) {
-                    var n = s[r];
-                    if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(29))) {
-                        var o = this._scene.view.bannerGroupLayer.getBanner(n);
-                        return new a.TaskSearchLightAnimation(o, !1)
-                    }
-                }
-                return null
+            return n(e, t), Object.defineProperty(e.prototype, "phase", {
+                get: function () {
+                    return "day"
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raw", {
+                get: function () {
+                    return this._raw
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getRation = function () {
+                return this._raw.ration
+            }, e.prototype.getRationCombined = function () {
+                return this._raw.ration_combined
             }, e
-        }(r.TaskBase);
-    e.PhaseLightingBase = _
+        }(o.BattleRecord);
+    e.BattleRecordDay = a
 }

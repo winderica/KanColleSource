@@ -19,49 +19,61 @@ const function565 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(566),
-        r = i(0),
-        s = i(2),
-        a = i(14),
-        _ = i(18),
-        l = function (t) {
-            function e(e) {
-                void 0 === e && (e = null);
-                var i = t.call(this) || this;
-                return i._onProgressPhase1 = function (t, e) {
-                    var n = .4 * t.progress;
-                    null != i._progress && i._progress(n)
-                }, i._loadPhase2 = function () {
-                    var t = new a.UIImageLoader("common");
-                    t.add("common_icon_weapon.json"), t.add("common_itemicons.json"), t.add("common_misc.json"), t.add("common_expedition.json"), t.add("common_shutter.json"), -1 != _.EVENT_AREA_ID && t.add("common_event.json"), t.load(i._loadPhase3, i._onProgressPhase2)
-                }, i._onProgressPhase2 = function (t, e) {
-                    var n = 40 + .4 * t.progress;
-                    null != i._progress && i._progress(n)
-                }, i._loadPhase3 = function () {
-                    o.load({
-                        custom: {
-                            families: ["font_j:n4,n7"],
-                            urls: [r.default.settings.path_root + "css/fonts.css"]
-                        },
-                        active: i._onComplete,
-                        inactive: function () {
-                            r.default.view.showError("[WebFontLoader] inactive")
-                        },
-                        fontinactive: function (t, e) {
-                            r.default.view.showError("[WebFontLoader] fontinactive")
-                        },
-                        timeout: 6e4
-                    })
-                }, i._onComplete = function () {
-                    null != i._progress && i._progress(100), i._endTask()
-                }, i._progress = e, i
+    var o = i(188),
+        r = i(24),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._wave1 = new a(0, 1300), e.addChild(e._wave1), e._wave2 = new a(650, 650), e.addChild(e._wave2), e._wave3 = new a(1300, 0), e.addChild(e._wave3), e._ship = new PIXI.Sprite, e._ship.y = -10, e._ship.anchor.y = 1, e.addChild(e._ship), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadPhase1()
-            }, e.prototype._loadPhase1 = function () {
-                var t = new a.UIImageLoader("common");
-                t.add("hpgauge/hp_gauge_mask.png"), t.add("hpgauge/hp_s_bg2.png"), t.add("hpgauge/hp_s_red_light.png"), t.add("error.png", "error"), t.add("focus_mask3.png", "mask"), t.add("common_main.json"), t.add("common_sort.json"), t.add("common_animation.json"), t.add("common_shogo.json"), t.load(this._loadPhase2, this._onProgressPhase1)
+            return n(e, t), e.prototype.initialize = function () {
+                this._wave1.initialize(), this._wave2.initialize(), this._wave3.initialize(), this._ship.texture = o.TITLE_MAIN.getTexture(1), this._ship.x = -Math.round(this._ship.width / 2)
+            }, e.prototype.activate = function () {
+                null == this._t && (this._wave1.activate(), this._wave2.activate(), this._wave3.activate(), this._t = createjs.Tween.get(this._ship, {
+                    loop: !0
+                }).to({
+                    y: -18
+                }, 800, createjs.Ease.circOut).to({
+                    y: -10
+                }, 800, createjs.Ease.circIn))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._wave1.deactivate(), this._wave2.deactivate(), this._wave3.deactivate(), this._t.setPaused(!0), this._t = null, this._ship.y = -10)
+            }, e.prototype.dispose = function () {
+                this._wave1.dispose(), this._wave2.dispose(), this._wave3.dispose(), this.deactivate()
             }, e
-        }(s.TaskBase);
-    e.TaskLoadResourcesCommon = l
+        }(PIXI.Container);
+    e.Pukapuka = s;
+    var a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._waittime1 = e, n._waittime2 = i, n._img = new PIXI.Sprite, n.addChild(n._img), n
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._init(), this._img.texture = o.TITLE_MAIN.getTexture(0), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        }, e.prototype.activate = function () {
+            var t = this;
+            null == this._t && (this._t = createjs.Tween.get(this, {
+                loop: !0
+            }).wait(this._waittime1).to({
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 1
+            }, 500).to({
+                scaleX: 1.5,
+                scaleY: 1.5
+            }, 1e3).to({
+                scaleX: 1.7,
+                scaleY: 1.7,
+                alpha: 0
+            }, 500).call(function () {
+                t._init()
+            }).wait(this._waittime2))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._init())
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e.prototype._init = function () {
+            this.alpha = 0, this.scale.set(.5)
+        }, e
+    }(r.Container)
 }

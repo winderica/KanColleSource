@@ -19,102 +19,69 @@ const function1462 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(50),
-        r = i(1463),
-        s = i(1467),
-        a = i(484),
-        _ = i(1477),
-        l = i(1478),
-        u = i(1481),
-        c = i(1486),
-        h = i(1487),
-        p = i(1488),
-        d = function (t) {
+    var o = i(12),
+        r = i(16),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new l.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new u.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
-                get: function () {
-                    return this._layer_torpedo
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
-                get: function () {
-                    return this._bannerGroupLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_explosion", {
-                get: function () {
-                    return this._layer_explosion
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_damage", {
-                get: function () {
-                    return this._layer_damage
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
-                get: function () {
-                    return this._bannerInfoLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_content", {
-                get: function () {
-                    return this._layer_content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "raderLayer", {
-                get: function () {
-                    return this._raderLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_gauge", {
-                get: function () {
-                    return this._layer_gauge
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_info", {
-                get: function () {
-                    return this._layer_info
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_title", {
-                get: function () {
-                    return this._layer_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_info2", {
-                get: function () {
-                    return this._layer_info2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_cutin", {
-                get: function () {
-                    return this._layer_cutin
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
+            return n(e, t), e.prototype.show = function () {
+                var t = this,
+                    e = r.BATTLE_MAIN.getTexture(109);
+                this._content = new o.Sprite(e), this._content.anchor.set(.5), this._content.scale.set(0), this.addChild(this._content), this._t = createjs.Tween.get(this._content, {
+                    loop: !0
+                }).to({
+                    x: 5,
+                    y: -7,
+                    scaleX: .14,
+                    scaleY: .14
+                }, 200).to({
+                    x: 7,
+                    y: -15,
+                    scaleX: .25,
+                    scaleY: .25
+                }, 200).to({
+                    x: 12,
+                    y: -21,
+                    scaleX: .35,
+                    scaleY: .35
+                }, 200).to({
+                    x: 14,
+                    y: -29,
+                    scaleX: .46,
+                    scaleY: .46
+                }, 200).to({
+                    x: 15,
+                    y: -36,
+                    scaleX: .57,
+                    scaleY: .57
+                }, 200).to({
+                    x: 17,
+                    y: -42,
+                    scaleX: .68,
+                    scaleY: .68
+                }, 200).to({
+                    x: 17,
+                    y: -50,
+                    scaleX: .78,
+                    scaleY: .78
+                }, 200).to({
+                    x: 21,
+                    y: -57,
+                    scaleX: .89,
+                    scaleY: .89
+                }, 200).to({
+                    x: 24,
+                    y: -65,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 0
+                }, 200).call(function () {
+                    t._content.scale.set(0), t._content.alpha = 1, t._content.position.set(0, 0)
+                })
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
         }(PIXI.Container);
-    e.ViewMain = d
+    e.BannerBabble = s
 }

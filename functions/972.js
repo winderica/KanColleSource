@@ -19,40 +19,20 @@ const function972 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(973),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._tabs = [];
-                for (var n = 0; n < 5; n++) {
-                    var r = new o.AirUnitListTab(e);
-                    r.x = 69 * n, i.addChild(r), i._tabs.push(r)
-                }
-                return i
+    var o = i(4),
+        r = i(26),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._star = new PIXI.Sprite, e._star.position.set(0, 3), e.addChild(e._star), e._plus = new PIXI.Sprite, e._plus.position.set(18, 6), e.addChild(e._plus), e._num = new o.TextBox(19, 3198426), e._num.position.set(30, 0), e.addChild(e._num), e._max = new PIXI.Sprite, e._max.position.set(6, 0), e.addChild(e._max), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0; t < this._tabs.length; t++) {
-                    var e = this._tabs[t];
-                    0 == t && (e.selected = !0), e.initialize(t)
-                }
+                this._star.visible = !1, this._plus.visible = !1, this._max.visible = !1, this._star.texture = r.SALLY_AIRUNIT.getTexture(45), this._plus.texture = r.SALLY_AIRUNIT.getTexture(44), this._max.texture = r.SALLY_AIRUNIT.getTexture(46)
             }, e.prototype.update = function (t) {
-                for (var e = 0, i = this._tabs; e < i.length; e++) {
-                    var n = i[e];
-                    n.selected = n.category == t
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                t <= 0 || t > 10 ? (this._star.visible = !1, this._plus.visible = !1, this._num.text = "", this._max.visible = !1) : 10 == t ? (this._star.visible = !1, this._plus.visible = !1, this._num.text = "", this._max.visible = !0) : (this._star.visible = !0, this._plus.visible = !0, this._num.text = t.toString(), this._max.visible = !1)
             }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].dispose()
-                }
+                this.removeChildren(), this._num.destroy()
             }, e
         }(PIXI.Container);
-    e.AirUnitListTabContainer = r
+    e.SlotitemLevel = s
 }

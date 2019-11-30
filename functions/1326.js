@@ -19,52 +19,38 @@ const function1326 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
+    var o = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+        return n(e, t), e.prototype.isDisplaying = function () {
+            return null != this._enemy
+        }, e.prototype.show = function (t, e) {
+            void 0 === e && (e = null), null != this._enemy && this.hide(), this._enemy = t;
+            var i = t.y;
+            t.y += 30, t.alpha = 0, this.addChild(t), t.startAnimation();
+            var n = createjs.Tween.get(t);
+            n.to({
+                y: i,
+                alpha: 1
+            }, 500), n.wait(600), null != e && n.call(e)
+        }, e.prototype.hide = function (t) {
+            var e = this;
+            if (void 0 === t && (t = null), null == this._enemy) null != t && t();
+            else {
+                var i = this._enemy;
+                this._enemy = null;
+                var n = createjs.Tween.get(i);
+                n.to({
+                    y: i.y + 30,
+                    alpha: 0
+                }, 1e3), n.call(function () {
+                    e.removeChild(i), i.stopAnimation(), null != t && t()
+                })
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
-            }, e.prototype.activate = function () {
-                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
-                    loop: !0
-                }).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
-                    loop: !0
-                }).wait(500).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
-                    loop: !0
-                }).wait(500).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400))
-            }, e.prototype.deactivate = function () {
-                this._stopTween()
-            }, e.prototype.dispose = function () {
-                this._stopTween()
-            }, e.prototype._stopTween = function () {
-                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
-                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
-            }, e
-        }(PIXI.Container);
-    e.CompShipWave = r
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._enemy && this._enemy.dispose(), this._enemy = null
+        }, e
+    }(PIXI.Container);
+    e.MapEnemyLayer = o
 }

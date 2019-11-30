@@ -19,31 +19,46 @@ const function987 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(10),
+    var o = i(2),
+        r = i(988),
         s = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
+                return n._cancel = !0, n._waitClick = function () {
+                    n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
+                }, n._onNo = function () {
+                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
+                }, n._onYes = function () {
+                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
+                }, n._layer = e, n._model = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._model.getGaugeNum(),
-                    i = this._model.gauge_type,
-                    n = this._model.gauge_max,
-                    r = this._model.gauge_now,
-                    s = this._raw_data;
-                if (null != s) {
-                    if (s.hasOwnProperty("api_maphp")) {
-                        var a = s.api_maphp;
-                        a.hasOwnProperty("api_gauge_num") && (e = a.api_gauge_num), a.hasOwnProperty("api_gauge_type") && (i = a.api_gauge_type), 1 == a.hasOwnProperty("api_max_maphp") && (n = a.api_max_maphp), 1 == a.hasOwnProperty("api_now_maphp") && (r = a.api_now_maphp)
-                    }
-                    this._model.changeOperation(this._selected, e, i, n, r);
-                    var _ = o.ObjUtil.getNumArray(s, "api_sally_flag");
-                    _ && this._model.changeAllowedDeckType(_), t.prototype._completedEnd.call(this)
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "cancel", {
+                get: function () {
+                    return this._cancel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
+            }, e.prototype._openDialog = function () {
+                var t = this;
+                this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
+                    createjs.Tween.get(t._dialog.bg).to({
+                        alpha: 1
+                    }, 300).call(t._waitClick)
+                })
+            }, e.prototype._closeDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._dialog.fade.hide(100, function () {
+                        t._layer.removeChild(t._dialog), t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(r.APIBase);
-    e.APIOperationChange = s
+        }(o.TaskBase);
+    e.ChangeConfirmTask = s
 }

@@ -1,44 +1,36 @@
 const function1245 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t(t) {
-            this._hp = t.hp_now, this._slotitem = [];
-            var e = t.slots;
-            if (null != e)
-                for (var i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    null != o && this._slotitem.push({
-                        mst: o.mst_id,
-                        mem: o.mem_id
-                    })
-                }
-            null != t.slot_ex && (this._slotitem_ex = {
-                mst: t.slot_ex.mst_id,
-                mem: t.slot_ex.mem_id
-            })
-        }
-        return Object.defineProperty(t.prototype, "hp", {
-            get: function () {
-                return this._hp
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "slotitem", {
-            get: function () {
-                return this._slotitem
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "slotitem_ex", {
-            get: function () {
-                return this._slotitem_ex
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t
-    }();
-    e.ShipInstantModel = n
+    var o = i(9),
+        r = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = -1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
+            }
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+            }, e
+        }(o.APIBase);
+    e.APIMapNext = r
 }

@@ -20,130 +20,91 @@ const function1124 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(3),
-        s = i(91),
-        a = i(118),
-        _ = i(403),
-        l = i(1126),
-        u = i(139),
-        c = i(1),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onSelect = function (t) {
-                    e._detail_panel.update(t)
-                }, e._onUse = function (t) {
-                    var i = o.default.model.useItem.get(t);
-                    if (null != i) {
-                        var n = o.default.view.overLayer,
-                            r = new u.TaskUseItem(n, i);
-                        r.start(function () {
-                            1 == r.result && (e.update(!1), e.activate(), e._detail_panel.update(-1))
-                        })
-                    }
-                }, e._onExOpen = function () {
-                    e._openExShelf(300)
-                }, e._onExClose = function () {
-                    e._closeExShelf(300)
-                }, e._bg_layer = new PIXI.Container, e.addChild(e._bg_layer), e._btn_ex_close = new f, e._btn_ex_close.position.set(186, 205), e.addChild(e._btn_ex_close), e._btn_ex_open = new d, e._btn_ex_open.position.set(735, 205), e.addChild(e._btn_ex_open), e._shelf_layer = new PIXI.Container, e.addChild(e._shelf_layer), e._shelf_mask = new PIXI.Graphics, e._shelf_mask.beginFill(0), e._shelf_mask.drawRect(180, 240, 727, 427), e._shelf_mask.endFill(), e.addChild(e._shelf_mask), e._shelf_layer.mask = e._shelf_mask, e._shelf_grad = new PIXI.Sprite, e._shelf_grad.position.set(180, 240), e._shelf_grad.visible = !1, e.addChild(e._shelf_grad), e._detail_panel = new l.OwnedItemDetailPanel(e._onUse), e._detail_panel.position.set(904, 201), e.addChild(e._detail_panel), e
+        r = i(2),
+        s = i(18),
+        a = i(34),
+        _ = i(169),
+        l = i(131),
+        u = i(106),
+        c = i(160),
+        h = i(201),
+        p = i(6),
+        d = i(404),
+        f = i(1129),
+        y = i(1131),
+        m = i(1136),
+        g = i(1140),
+        v = i(1144),
+        b = i(1148),
+        w = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(r.ITEM_ILIST.getTexture(16));
-                t.position.set(180, 202), this._bg_layer.addChild(t), this._btn_ex_open.initialize(this._onExOpen), this._btn_ex_close.initialize(this._onExClose), t = new PIXI.Sprite(r.ITEM_ILIST.getTexture(18)), t.position.set(180, 240), this._shelf_layer.addChild(t), t = new PIXI.Sprite(r.ITEM_ILIST.getTexture(19)), t.position.set(907, 240), this._shelf_layer.addChild(t), this._shelf_grad.texture = r.ITEM_ILIST.getTexture(0), this._detail_panel.initialize(), this._icons = [];
-                for (var e = a.ITEMLIST_ORDER.length, i = 0; i < e; i++) {
-                    var n = new _.ItemIcon(this._onSelect);
-                    if (i < 32) {
-                        var o = Math.floor(i / 8);
-                        n.x = 213 + i % 8 * 84, n.y = 260 + 104 * o, o >= 2 && (n.y -= 1)
-                    } else {
-                        var s = i - 32,
-                            o = Math.floor(s / 3);
-                        n.x = 928 + s % 3 * 84, n.y = 260 + 104 * o, o >= 2 && (n.y -= 1)
-                    }
-                    n.initialize(), this._shelf_layer.addChild(n), this._icons.push(n)
-                }
-            }, e.prototype.update = function (t) {
-                void 0 === t && (t = !0), t && this._closeExShelf(0), this._detail_panel.update(-1);
-                for (var e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e],
-                        n = a.ITEMLIST_ORDER[e],
-                        r = o.default.model.useItem.get(n),
-                        s = null == r ? 0 : r.count;
-                    i.update(n, s)
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].activate()
-                }
-                this._btn_ex_open.activate(), this._btn_ex_close.activate()
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-                this._btn_ex_open.deactivate(), this._btn_ex_close.deactivate()
-            }, e.prototype.dispose = function () {
-                this._shelf_layer.removeChildren(), this._shelf_layer = null;
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    i.deactivate(), i.dispose()
-                }
-                this._icons = null, this._btn_ex_open.dispose(), this._btn_ex_close.dispose(), this._detail_panel.dispose(), this.removeChildren()
-            }, e.prototype._openExShelf = function (t) {
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return null != this._api_result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                if (null == this._target) return void this._endTask();
+                this._fade = new s.FadeBox(.6), this._fade.hide(0), this._startTask()
+            }, e.prototype._startTask = function () {
+                var t, e = this._target.mstID;
+                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target);
+                else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target);
+                else if (60 == e) t = new m.TaskUsePresentBox(this._fade, this._target);
+                else if (61 == e) t = new g.TaskUseKouMedal(this._fade, this._target);
+                else if (62 == e) t = new v.TaskUseHishimochi(this._fade, this._target);
+                else if (63 == e) {
+                    var i = o.default.model.const.quest_max,
+                        n = o.default.model.basic.getDutyExecutableCount();
+                    n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
+                } else 68 == e || 72 == e || (80 == e ? t = new b.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || 90 == e || 93 == e || (t = new d.TaskUseNormalItem(this._fade, this._target)));
+                null != t ? this._showFade(t) : this._endTask()
+            }, e.prototype._showFade = function (t) {
                 var e = this;
-                this._btn_ex_open.hide(), this._shelf_grad.visible = !0, createjs.Tween.get(this._shelf_layer).to({
-                    x: -282
-                }, t, createjs.Ease.cubicOut).call(function () {
-                    e._btn_ex_close.show()
+                this._layer.addChild(this._fade), this._fade.show(200, function () {
+                    t.start(function () {
+                        e._api_result = t.result, e._updateData()
+                    })
                 })
-            }, e.prototype._closeExShelf = function (t) {
-                var e = this;
-                this._btn_ex_close.hide(), createjs.Tween.get(this._shelf_layer).to({
-                    x: 0
-                }, t, createjs.Ease.cubicOut).call(function () {
-                    e._shelf_grad.visible = !1, e._btn_ex_open.show()
+            }, e.prototype._updateData = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                if (63 == this._target.mstID) {
+                    var e = o.default.model.basic.getDutyExecutableCount();
+                    o.default.model.basic.setDutyExcutableCount(e + 1)
+                } else if (68 == this._target.mstID || 93 == this._target.mstID) {
+                    var i = o.default.model.deck.get(1).getShipModel(0);
+                    o.default.sound.voice.play(i.mstID.toString(), 26)
+                }
+                var n = new a.APIConnector;
+                if (n.add(new u.UseItemAPI), this._api_result.hasMaterialReward() && n.add(new _.MaterialAPI), this._api_result.hasCoinReward() && n.add(new c.UserDataAPI), this._api_result.hasSlotitemReward()) {
+                    var r = this._api_result.getSlotitemObjects();
+                    o.default.model.slot.addMemData(r), n.add(new l.UnsetSlotAPI)
+                }
+                n.start(function () {
+                    o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo(), t._showReward()
                 })
+            }, e.prototype._showReward = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                var e = this._api_result.rewards;
+                if (null == e || 0 == e.length) return void this._hideFade();
+                var i = o.default.view.overLayer;
+                new h.TaskReward(i, e).start(function () {
+                    t._hideFade()
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._fade.hide(150, function () {
+                    t._layer.removeChild(t._fade), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, this._fade = null, t.prototype._endTask.call(this)
             }, e
-        }(s.ViewBase);
-    e.OwnedItemListMain = h;
-    var p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e._update(!0)
-                }, e._onMouseOut = function () {
-                    e._update(!1)
-                }, e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._cb_onClick = t, this._update(!1)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(c.EventType.MOUSEOVER, this._onMouseOver), this.on(c.EventType.MOUSEOUT, this._onMouseOut), this.on(c.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(c.EventType.MOUSEOVER, this._onMouseOver), this.off(c.EventType.MOUSEOUT, this._onMouseOut), this.off(c.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype.show = function () {
-                this.visible = !0
-            }, e.prototype.hide = function () {
-                this.visible = !1, this._update(!1)
-            }, e
-        }(PIXI.Sprite),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._update = function (t) {
-                this.texture = 0 == t ? r.ITEM_ILIST.getTexture(20) : r.ITEM_ILIST.getTexture(21)
-            }, e
-        }(p),
-        f = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._update = function (t) {
-                this.texture = 0 == t ? r.ITEM_ILIST.getTexture(22) : r.ITEM_ILIST.getTexture(23)
-            }, e
-        }(p)
+        }(r.TaskBase);
+    e.TaskUseItem = w
 }

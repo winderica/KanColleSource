@@ -36,7 +36,7 @@ const function387 = function (t, e, i) {
                 }, i._cb_onClose = e, i._title = new d, i._title.position.set(39, 45), i.addChild(i._title), i._message = new s.TextBox(23, 5523516), i._message.position.set(106, 138), i._message.style.breakWords = !0, i._message.style.wordWrap = !0, i._message.style.wordWrapWidth = 585, i._message.style.lineHeight = 34.5, i.addChild(i._message), i._statusBox = new _.ShipDetailStatusBox, i._statusBox.position.set(107, 354), i.addChild(i._statusBox), i._stype = new u.EngStypeView, i._stype.position.set(873, 37), i.addChild(i._stype), i._rader = new c.RaderGraph, i._rader.position.set(255, 513), i.addChild(i._rader), i._content = new h.ShipDetailContent, i._content.position.set(706, 33), i.addChild(i._content), i._close_btn = new PIXI.Sprite, i._close_btn.position.set(1111, 30), i._close_btn.interactive = !0, i.addChild(i._close_btn), i.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function (t, e) {
-                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(94);
+                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(98);
                 var i = t.no,
                     n = t.mst_ids[0];
                 this._title.initialize(i, n), this._message.text = t.message.replace(/<br>/g, "\n").replace(/\u2019/g, "'"), this._statusBox.initialize(t);
@@ -61,7 +61,7 @@ const function387 = function (t, e, i) {
         return n(e, t), e.prototype.dispose = function () {
             this.removeChildren(), this._nums.dispose(), this._nums = null, this._img = null
         }, e.prototype.initialize = function (t, e) {
-            this.texture = a.ALBUM_MAIN.getTexture(93), this._nums.update(t), this._img.texture = o.default.resources.getShip(e, !1, "album_status")
+            this.texture = a.ALBUM_MAIN.getTexture(97), this._nums.update(t), this._img.texture = o.default.resources.getShip(e, !1, "album_status")
         }, e
     }(PIXI.Sprite)
 }

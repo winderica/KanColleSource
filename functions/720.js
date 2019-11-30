@@ -19,34 +19,23 @@ const function720 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(84),
-        r = i(721),
-        s = function (t) {
+    var o = i(11),
+        r = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
-                o.HEIGHT = 76, o.presetEditSlots = [];
-                for (var s = 0; s < 5; s++) {
-                    var a = new r.PresetEditSlot(s);
-                    a.onClickSave = e, a.onClickDelete = i, a.onClickExtension = n, a.position.y = o.HEIGHT * s, o.presetEditSlots.push(a)
-                }
-                return o.presetEditSlots.forEach(function (t) {
-                    return o.addChild(t)
-                }), o
+                return o._url = "api_req_hensei/preset_register", o.deckId = e, o.presetNo = i, o.name = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "slotsLength", {
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
                 get: function () {
-                    return this.presetEditSlots.length
+                    return this._result
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.dispose = function () {
-                o.TaskLoadShipResource.abortBy(this), this.presetEditSlots.forEach(function (t) {
-                    t.dispose(), t = null
-                }), this.presetEditSlots = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i, n, r) {
-                void 0 === r && (r = null), o.TaskLoadShipResource.abortBy(this);
-                for (var s = !1, a = 0; a < 5; a++) s = this.presetEditSlots[a].update(t[a], e, i, n, r, s)
+            }), e.prototype._connect = function () {
+                this._post_data.api_deck_id = this.deckId, this._post_data.api_preset_no = this.presetNo, this._post_data.api_name = this.name, this._post_data.api_name_id = "", t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result = this._raw_data, t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.PresetEditContainer = s
+        }(o.APIBase);
+    e.PresetRegisterAPI = r
 }

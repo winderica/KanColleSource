@@ -1,23 +1,46 @@
 const function558 = function (t, e, i) {
-    var n = i(275),
-        o = {
-            delimiter: "&"
+    "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
         };
-    o.stringify = function (t, e) {
-        if (n.isBuffer(t) ? t = t.toString() : t instanceof Date ? t = t.toISOString() : null === t && (t = ""), "string" == typeof t || "number" == typeof t || "boolean" == typeof t) return [encodeURIComponent(e) + "=" + encodeURIComponent(t)];
-        var i = [];
-        if (void 0 === t) return i;
-        for (var r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
-            var _ = r[s];
-            i = i.concat(o.stringify(t[_], e + "[" + _ + "]"))
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
-        return i
-    }, t.exports = function (t, e) {
-        e = e || {};
-        for (var i = void 0 === e.delimiter ? o.delimiter : e.delimiter, n = [], r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
-            var _ = r[s];
-            n = n.concat(o.stringify(t[_], _))
-        }
-        return n.join(i)
-    }
+    }();
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(559),
+        r = i(560),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._view1 = new o.TitleView1, this._view1.initialize(), this.addChild(this._view1)
+            }, e.prototype.dispose = function () {
+                this._view2.dispose()
+            }, e.prototype.setProgress = function (t) {
+                this._view1.setProgress(t)
+            }, e.prototype.showSecondPageTween = function (t) {
+                var e = this;
+                this._view2 = new r.TitleView2, this._view2.initialize(), this.addChildAt(this._view2, 0), this._view1.hideTween(function () {
+                    e.removeChild(e._view1), e._view1.dispose(), e._view1 = null, e._view2.showTween(function () {
+                        t()
+                    })
+                })
+            }, e.prototype.waitClickTween = function (t) {
+                this._view2.waitClickTween(t)
+            }, e
+        }(PIXI.Container);
+    e.TitleViewMain = s
 }

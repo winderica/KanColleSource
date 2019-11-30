@@ -19,8 +19,8 @@ const function388 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(64),
-        r = i(132),
+    var o = i(62),
+        r = i(133),
         s = i(1),
         a = function (t) {
             function e() {
@@ -39,9 +39,9 @@ const function388 = function (t, e, i) {
                 }, e._shadow = new o.CenteringSprite, e._shadow.position.set(60, 92), e.addChild(e._shadow), e._frown = new PIXI.Sprite, e.addChild(e._frown), e._caterpillar = new o.CenteringSprite, e._caterpillar.position.set(63, 77), e._caterpillar.interactive = !0, e.addChild(e._caterpillar), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = r.ALBUM_MAIN.getTexture(117), this._shadow.texture = r.ALBUM_MAIN.getTexture(116), this._frown.texture = r.ALBUM_MAIN.getTexture(114);
-                var t = new PIXI.Sprite(r.ALBUM_MAIN.getTexture(115));
-                t.position.set(71, 21), this._frown.addChild(t), this._caterpillar.texture = r.ALBUM_MAIN.getTexture(113), this._caterpillar.buttonMode = !0, this._caterpillar.on(s.EventType.CLICK, this._onClick)
+                this.texture = r.ALBUM_MAIN.getTexture(121), this._shadow.texture = r.ALBUM_MAIN.getTexture(120), this._frown.texture = r.ALBUM_MAIN.getTexture(118);
+                var t = new PIXI.Sprite(r.ALBUM_MAIN.getTexture(119));
+                t.position.set(71, 21), this._frown.addChild(t), this._caterpillar.texture = r.ALBUM_MAIN.getTexture(117), this._caterpillar.buttonMode = !0, this._caterpillar.on(s.EventType.CLICK, this._onClick)
             }, e.prototype.activate = function () {
                 this._startWait()
             }, e.prototype.deactivate = function () {

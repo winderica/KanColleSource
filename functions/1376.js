@@ -19,83 +19,98 @@ const function1376 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
+    var o = i(18),
         r = i(12),
         s = i(16),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._type = i, o._plane = n, o
+        a = i(184),
+        _ = i(146),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._bg = new o.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._telop_bg = new a.TelopBG, e._telop_bg.position.set(600, 150), e._telop_bg.alpha = 0, e.addChild(e._telop_bg), e._slot_bg1 = new a.TelopBG, e.addChild(e._slot_bg1), e._slot1 = new r.Sprite, e._slot1.anchor.set(.5), e._slot1.scale.set(.9), e._slot1.alpha = 0, e.addChild(e._slot1), e._slot_bg2 = new a.TelopBG, e.addChild(e._slot_bg2), e._slot2 = new r.Sprite, e._slot2.anchor.set(.5), e._slot2.scale.set(.9), e._slot2.alpha = 0, e._slot1_text = new r.Sprite, e._slot1_text.scale.set(.76), e._slot1_text.alpha = 0, e._slot2_text = new r.Sprite, e._slot2_text.scale.set(.76), e._slot2_text.alpha = 0, e._telop = new r.Sprite, e._telop.anchor.set(.5), e._telop.position.set(600, 150), e._telop.alpha = 0, e._plane = new _.Plane(.88), e.addChild(e._slot2), e.addChild(e._slot1_text), e.addChild(e._slot2_text), e.addChild(e._telop), e.addChild(e._plane);
+                var i = new PIXI.Graphics;
+                return i.beginFill(0), i.drawRect(0, 321, 1200, 138), i.endFill(), e.addChild(i), e._slot1.mask = i, i = new PIXI.Graphics, i.beginFill(0), i.drawRect(0, 530, 1200, 138), i.endFill(), e.addChild(i), e._slot2.mask = i, e
             }
-            return n(e, t), e.prototype._start = function () {
-                null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
-            }, e.prototype._animSanshiki = function () {
-                var t = this,
-                    e = new _(5);
-                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), t._endTask()
-                })
-            }, e.prototype._animKoukaku = function () {
-                var t = this,
-                    e = new _(2);
-                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), t._endTask()
-                })
-            }, e.prototype._animFunshin = function () {
-                var t = this,
-                    e = new _(3);
-                e.position.set(0, -15), this._plane.addChild(e);
-                var i = new _(3);
-                i.position.set(-15, 0), this._plane.addChild(i);
-                var n = new _(3);
-                n.position.set(23, 0), this._plane.addChild(n), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700), createjs.Tween.get(i).wait(100).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700), createjs.Tween.get(n).wait(200).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), i.parent.removeChild(i), n.parent.removeChild(n), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._type = null, this._plane = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara", {
+                get: function () {
+                    return this._chara
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "telop_bg", {
+                get: function () {
+                    return this._telop_bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slot_bg1", {
+                get: function () {
+                    return this._slot_bg1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slot1", {
+                get: function () {
+                    return this._slot1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slot_bg2", {
+                get: function () {
+                    return this._slot_bg2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slot2", {
+                get: function () {
+                    return this._slot2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slot1_text", {
+                get: function () {
+                    return this._slot1_text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slot2_text", {
+                get: function () {
+                    return this._slot2_text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "telop", {
+                get: function () {
+                    return this._telop
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "plane", {
+                get: function () {
+                    return this._plane
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                switch (this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), e) {
+                    case 1:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(141);
+                        break;
+                    case 2:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(135);
+                        break;
+                    default:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(139)
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren()
             }, e
-        }(o.TaskBase);
-    e.TaskAirWarAntiAircraftExplosion = a;
-    var _ = function (t) {
-        function e(e) {
-            var i, n = t.call(this) || this;
-            return 5 == e ? (i = 148, n.anchor.set(.5, .91)) : 2 == e ? (i = 149, n.anchor.set(.5, .85)) : 3 == e && (i = 148, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
-        }
-        return n(e, t), e
-    }(r.Sprite)
+        }(PIXI.Container);
+    e.CutinDanchakuCanvas = l
 }

@@ -19,24 +19,182 @@ const function1030 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(1031),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !1, i._btn1 = new r.BtnMatchingSelect(e), i._btn2 = new r.BtnMatchingSelect(e), i._btn3 = new r.BtnMatchingSelect(e), i._txt1 = new o.TextBox(19, 4999235), i._txt = new o.TextBox(15, 4999235), i
+    var o = i(0),
+        r = i(17),
+        s = i(9),
+        a = i(7),
+        _ = function (t) {
+            function e(e, i, n, o) {
+                void 0 === o && (o = !1);
+                var r = t.call(this) || this;
+                return r._url = "api_req_member/get_practice_enemyinfo", r._rival_id = e, r._flag_type = i, r._medal_num = n, r._res_model = new l, r._debug = o, r
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._btn1.initialize(0), this._btn2.initialize(1), this._btn3.initialize(2), this._txt1.text = "\u3088\u308a\u6b21\u56de\u6f14\u7fd2\u5019\u88dc\u3092\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u3002", this._txt1.position.set(141, 7), this.addChild(this._btn1), this.addChild(this._btn2), this.addChild(this._btn3), this.addChild(this._txt1), this.addChild(this._txt)
-            }, e.prototype.update = function (t, e) {
-                this._enabled = t, 1 == t ? (this._btn1.position.set(0, 0), this._btn2.position.set(150, 0), this._btn3.position.set(300, 0), this._txt1.visible = !1, this._txt.position.set(445, 9), 0 == e ? (this._btn1.setSelected(!0), this._btn2.setSelected(!1), this._btn3.setSelected(!1)) : 1 == e ? (this._btn1.setSelected(!1), this._btn2.setSelected(!0), this._btn3.setSelected(!1)) : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!0)), this._txt.text = "\u6f14\u7fd2\u76f8\u624b\u306f\u4e00\u65e5\u4e8c\u56de\u66f4\u65b0\u3055\u308c\u307e\u3059\u3002") : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!1), this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate(), this._btn1.visible = !1, this._btn2.visible = !1, this._btn3.visible = !1, 0 == e ? (this._btn1.visible = !0, this._btn1.position.set(0, 0)) : 1 == e ? (this._btn2.visible = !0, this._btn2.position.set(0, 0)) : (this._btn3.visible = !0, this._btn3.position.set(0, 0)), this._txt1.visible = !0, this._txt.position.set(490, 10), this._txt.text = "\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u5909\u66f4\u53ef\u80fd\u3067\u3059\u3002")
-            }, e.prototype.activate = function () {
-                1 == this._enabled && (this._btn1.activate(), this._btn2.activate(), this._btn3.activate())
-            }, e.prototype.deactivate = function () {
-                this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._btn1.dispose(), this._btn2.dispose(), this._btn3.dispose(), this._txt1.destroy(), this._txt.destroy()
+            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+                get: function () {
+                    return this._res_model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_member_id = this._rival_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._res_model.setData(this._rival_id, this._raw_data, this._flag_type, this._medal_num), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.CompMatchingSelectBtns = s
+        }(s.APIBase);
+    e.RivalDetailAPI = _;
+    var l = function () {
+        function t() {}
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return this._id
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "flag_type", {
+            get: function () {
+                return this._flag_type
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "medal_num", {
+            get: function () {
+                return this._medal_num
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return a.ObjUtil.getString(this._o, "api_nickname")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "level", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_level")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "rank", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_rank")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "rank_name", {
+            get: function () {
+                return r.RANK_NAME[this.rank]
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "exp_now", {
+            get: function () {
+                var t = a.ObjUtil.getStrArray(this._o, "api_experience");
+                return null != t && t.length > 0 ? t[0] : ""
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "exp_next", {
+            get: function () {
+                var t = a.ObjUtil.getStrArray(this._o, "api_experience");
+                return null != t && t.length > 1 ? t[1] : ""
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "comment", {
+            get: function () {
+                return a.ObjUtil.getString(this._o, "api_cmt")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "friend_num", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_friend")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "ship_nums", {
+            get: function () {
+                var t = a.ObjUtil.getNumArray(this._o, "api_ship");
+                return null != t && t.length > 1 ? [t[0], t[1]] : [0, 0]
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "slot_nums", {
+            get: function () {
+                var t = a.ObjUtil.getNumArray(this._o, "api_slotitem");
+                return null != t && t.length > 1 ? [t[0], t[1] + 3] : [0, 0]
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "furniture_num", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_furniture")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "deck_name", {
+            get: function () {
+                return a.ObjUtil.getString(this._o, "api_deckname")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "ships", {
+            get: function () {
+                return this._ships
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t.prototype.setData = function (t, e, i, n) {
+            this._id = t, this._o = e, this._flag_type = i, this._medal_num = n, this._ships = new Array;
+            var o = a.ObjUtil.getObject(e, "api_deck");
+            if (null != o)
+                for (var r = a.ObjUtil.getObjectArray(o, "api_ships"), s = 0, _ = r; s < _.length; s++) {
+                    var l = _[s],
+                        c = new u(l);
+                    1 == c.isValid() ? this._ships.push(c) : this._ships.push(null)
+                }
+            for (; this._ships.length < 6;) this._ships.push(null)
+        }, t
+    }();
+    e.RivalDetailAPIResultModel = l;
+    var u = function () {
+        function t(t) {
+            this._o = t
+        }
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_ship_id")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                var t = o.default.model.ship.getMst(this.id);
+                return null == t ? "" : t.name
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "level", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_level")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "star", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_star")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t.prototype.isValid = function () {
+            return this._mem_id > 0
+        }, Object.defineProperty(t.prototype, "_mem_id", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_id")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t
+    }();
+    e.RivalShipModel = u
 }

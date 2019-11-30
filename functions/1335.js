@@ -19,118 +19,50 @@ const function1335 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1336),
-        r = i(0),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._dic = {}, e
-            }
-            return n(e, t), e.prototype.show = function (t, e, i, n, o, r) {
-                null == t && (t = "");
-                var s = t.toString();
-                if (1 == this._dic.hasOwnProperty(s)) {
-                    var _ = this._dic[t];
-                    _.hide(function () {
-                        _.dispose()
+    var o = i(2),
+        r = i(13),
+        s = i(443),
+        a = i(1336),
+        _ = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._onTaihi = function () {
+                    r._view.deactivate();
+                    var t = r._model.map_info.area_id,
+                        e = r._model.map_info.map_no,
+                        i = r._model.map_info.cell_no;
+                    new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
+                        r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
                     })
-                }
-                var l = new a(s, e, this, i);
-                this._dic[t] = l, l.show(n, o, r)
-            }, e.prototype.hide = function (t, e) {
-                if (void 0 === e && (e = null), null == t && (t = ""), 1 == this._dic.hasOwnProperty(t)) {
-                    var i = this._dic[t];
-                    delete this._dic[t], i.hide(function () {
-                        i.dispose(), null != e && e()
-                    })
-                }
-            }, e.prototype.hideAll = function (t) {
-                void 0 === t && (t = null);
-                var e = [];
-                for (var i in this._dic) e.push(this._dic[i]);
-                if (0 == e.length) null != t && t();
-                else {
-                    var n = e[0];
-                    n.hide(function () {
-                        n.dispose(), null != t && t()
-                    });
-                    for (var o = 1; o < e.length; o++) ! function (t) {
-                        var i = e[t];
-                        i.hide(function () {
-                            i.dispose()
-                        })
-                    }(o)
-                }
-            }, e.prototype.dispose = function () {
-                for (var t in this._dic) {
-                    this._dic[t].dispose()
-                }
-                this._dic = null
-            }, e
-        }(PIXI.Container);
-    e.MapPlaneLayer = s;
-    var a = function () {
-        function t(t, e, i, n) {
-            void 0 === n && (n = 0), this._key = t, this._data = e, this._layer = i, this._time = n
-        }
-        return Object.defineProperty(t.prototype, "key", {
-            get: function () {
-                return this._key
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.show = function (t, e, i) {
-            var n = this;
-            if (null == this._data) return void i();
-            var s = function () {
-                var i = r.default.model.map.getMapMst(e, t).mst_id,
-                    o = r.default.model.map.getMapMem(i),
-                    s = [4, 3].indexOf(o.getSelectedOperationType()) >= 0;
-                if ("airbaseraid" == n._key && s) {
-                    if (452 == o.mst_id) return 4;
-                    if (453 == o.mst_id) return 5
-                }
-                return n._data.type
-            }();
-            this._plane = new o.MapPlane, this._plane.alpha = 0, this._plane.initialize(s), this._data.from.x < this._data.to.x && (this._plane.scale.x = -1), this._plane.x = this._data.from.x, this._plane.y = this._data.from.y, this._layer.addChild(this._plane), this._plane.activate();
-            var a = this._time;
-            if (a <= 0) {
-                var _ = this._data.to.x - this._data.from.x;
-                _ = Math.pow(_, 2);
-                var l = this._data.to.y - this._data.from.y;
-                l = Math.pow(l, 2);
-                a = Math.sqrt(_ + l) / 40
+                }, r._onTaihiSezu = function () {
+                    r._view.deactivate(), r._hideView()
+                }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
             }
-            var u = createjs.Tween.get(this._plane).to({
+            return n(e, t), e.prototype._start = function () {
+                this._loadShipResources()
+            }, e.prototype._loadShipResources = function () {
+                var t = this,
+                    e = new r.ShipLoader;
+                e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
+                    t._show()
+                })
+            }, e.prototype._show = function () {
+                this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
+                var t = this._target,
+                    e = this._towing;
+                this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({
                     alpha: 1
-                }, 500),
-                c = createjs.Tween.get(this._plane).to({
-                    x: this._data.to.x,
-                    y: this._data.to.y
-                }, a, createjs.Ease.sineInOut);
-            null != i && (500 > a ? u.call(function () {
-                i()
-            }) : c.call(function () {
-                i()
-            })), this._tweens = [u, c]
-        }, t.prototype.hide = function (t) {
-            var e = this;
-            if (void 0 === t && (t = null), this._stopTweens(), null == this._plane) return void(null != t && t());
-            var i = createjs.Tween.get(this._plane).to({
-                alpha: 0
-            }, 200).call(function () {
-                null != e._plane.parent && e._plane.parent.removeChild(e._plane), e._plane.deactivate(), e._plane = null, null != t && t()
-            });
-            this._tweens = [i]
-        }, t.prototype.dispose = function () {
-            this._stopTweens(), null != this._plane && (null != this._plane.parent && this._plane.parent.removeChild(this._plane), this._plane.deactivate(), this._plane = null), this._data = null, this._layer = null
-        }, t.prototype._stopTweens = function () {
-            if (null != this._tweens) {
-                for (var t = 0, e = this._tweens; t < e.length; t++) {
-                    e[t].setPaused(!0)
-                }
-                this._tweens = null
-            }
-        }, t
-    }()
+                }, 300)
+            }, e.prototype._hideView = function () {
+                var t = this;
+                createjs.Tween.get(this._view).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase);
+    e.EscapeGoeiTask = _
 }

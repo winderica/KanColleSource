@@ -19,26 +19,21 @@ const function978 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(27),
+    var o = i(0),
+        r = i(9),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._fuel_max = 0, e._baux_max = 0, e._key = null, e._title = new PIXI.Sprite, e._title.position.set(15, 17), e.addChild(e._title), e._icon_fuel = new PIXI.Sprite, e._icon_fuel.position.set(17, 75), e.addChild(e._icon_fuel), e._icon_baux = new PIXI.Sprite, e._icon_baux.position.set(158, 75), e.addChild(e._icon_baux), e._txt_fuel = new o.TextBox(28, 5523516), e._txt_fuel.y = 158, e.addChild(e._txt_fuel), e._txt_baux = new o.TextBox(28, 5523516), e._txt_baux.y = 158, e.addChild(e._txt_baux), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_air_corps/expand_base", i._area_id = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._fuel_max = t, this._baux_max = e, this._title.texture = r.SALLY_AIRUNIT.getTexture(118), this._icon_fuel.texture = r.SALLY_AIRUNIT.getTexture(12), this._icon_baux.texture = r.SALLY_AIRUNIT.getTexture(11)
-            }, e.prototype.show = function (t, e, i) {
-                void 0 === i && (i = null), this._key = i;
-                var n = t > this._fuel_max ? 16711680 : 5523516;
-                this._txt_fuel.style.fill = n, this._txt_fuel.text = t.toString(), this._txt_fuel.x = 144 - this._txt_fuel.width;
-                var o = e > this._baux_max ? 16711680 : 5523516;
-                this._txt_baux.style.fill = o, this._txt_baux.text = e.toString(), this._txt_baux.x = 285 - this._txt_baux.width
-            }, e.prototype.hide = function (t) {
-                void 0 === t && (t = null), null != t && t != this._key || (this._key = null, this._txt_fuel.text = "", this._txt_baux.text = "")
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._txt_fuel.destroy(), this._txt_baux.destroy()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_area_id = this._area_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = this._raw_data[0];
+                o.default.model.airunit.addData(e);
+                var i = o.default.model.useItem.get(73);
+                i.__setCount__(i.count - 1), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitSupplyPanelTitle = s
+        }(r.APIBase);
+    e.AirUnitExtendAPI = s
 }

@@ -19,67 +19,118 @@ const function1404 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
+    var o = i(2),
+        r = i(12),
         s = i(6),
-        a = i(378),
-        _ = i(40),
-        l = function (t) {
-            function e(e, i, n, s, _, l, u, c) {
-                var h = t.call(this, e, i, s, l, u, c) || this;
-                h._onCallAttackEffect = function () {
-                    var t = h._getDamage(h._defender),
-                        e = h._defenderBanner.getGlobalPos(!0),
-                        i = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        n = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
-                        o = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        s = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
-                    createjs.Tween.get(null).call(function () {
-                        h._defenderBanner.moveAtDamage(h._shield), h._scene.view.layer_explosion.playDamageExplosion(e.x, e.y, t)
-                    }).wait(150).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + i, e.y + n)
-                    }).wait(100).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + o, e.y + s, function () {
-                            h._attack(h._attackerBanner, h._defenderBanner)
-                        })
-                    })
-                }, h._finallize = function () {
-                    h._cutin.dispose(), h._cutin = null, h._attackerBanner = null, h._defenderBanner = null, h._endTask()
-                };
-                var p, d, f = h._slot.mstID,
-                    y = o.default.model.slot.getMst(_),
-                    m = y.mstID,
-                    g = new a.CutinZRK(i, f, m),
-                    v = i.friend,
-                    b = i.index,
-                    w = n.index;
-                return v ? (p = e.view.bannerGroupLayer.getBanner(!0, b), d = e.view.bannerGroupLayer.getBanner(!1, w)) : (p = e.view.bannerGroupLayer.getBanner(!1, b), d = e.view.bannerGroupLayer.getBanner(!0, w)), g.onCallAttackEffect = h._onCallAttackEffect, g.onCallAttackVoice = h._playVoice, h._attackerBanner = p, h._defenderBanner = d, h._cutin = g, h._defender = n, h._debug_slot_mst_id3 = _, h
+        a = i(16),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._fire1 = new u, e._fire2 = new u, e._fire2.position.set(-35, -21), e._smoke1 = new c, e._smoke1.position.set(36, -3), e._smoke2 = new c, e._smoke2.position.set(-2, -24), e._fire3 = new h, e._fire3.position.set(17, 0), e._fire4 = new h, e._fire4.position.set(-18, -21), e.addChild(e._fire1, e._fire2), e.addChild(e._smoke1, e._smoke2), e.addChild(e._fire3, e._fire4), e._animatin_task = new l(e), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "fire1", {
+                get: function () {
+                    return this._fire1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "fire2", {
+                get: function () {
+                    return this._fire2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "smoke1", {
+                get: function () {
+                    return this._smoke1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "smoke2", {
+                get: function () {
+                    return this._smoke2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "fire3", {
+                get: function () {
+                    return this._fire3
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "fire4", {
+                get: function () {
+                    return this._fire4
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._fire1.initialize(), this._fire2.initialize(), this._smoke1.initialize(), this._smoke2.initialize(), this._fire3.initialize(), this._fire4.initialize()
+            }, e.prototype.getAnimationTask = function () {
+                return this._animatin_task
+            }, e
+        }(PIXI.Container);
+    e.AntiAircraftFire = _;
+    var l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._aa_fire = e, i
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
-                })
-            }, e.prototype._playVoice = function () {
-                if (this._attacker.friend) {
-                    var t = this._attacker.mst_id;
-                    o.default.sound.voice.play(t.toString(), 16)
-                }
-            }, e.prototype._log = function (t) {}, e.prototype._completePreload = function () {
-                this._attackerBanner.moveFront(), this._defenderBanner.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
-            }, e.prototype._attack = function (t, e) {
-                var i = this;
-                s.SE.play("102"), t.attack(function () {
-                    i._damageEffect(t, e)
-                })
-            }, e.prototype._damageEffect = function (t, e) {
-                var i = this;
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var n = this._getDamage(this._defender);
-                this._playExplosion(e, n), this._playDamageEffect(t, e, this._defender, n, this._hit, function () {
-                    return i._finallize()
-                })
+                s.SE.play("116"), this._aa_fire.fire1.getTween(0), this._aa_fire.fire2.getTween(133), this._aa_fire.smoke1.getTween(200), this._aa_fire.smoke2.getTween(333).call(function () {
+                    t._endTask()
+                }), this._aa_fire.fire3.getTween(200), this._aa_fire.fire4.getTween(366)
             }, e
-        }(_.PhaseAttackBase);
-    e.PhaseZRK = l
+        }(o.TaskBase),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.anchor.set(0, .5), e.scale.set(0), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = a.BATTLE_MAIN.getTexture(39)
+            }, e.prototype.getTween = function (t) {
+                return createjs.Tween.get(this).wait(t).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    alpha: 0
+                }, 200)
+            }, e
+        }(r.Sprite),
+        c = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.anchor.set(.5), e.scale.set(0), e.alpha = 0, e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = a.BATTLE_MAIN.getTexture(111)
+            }, e.prototype.getTween = function (t) {
+                return createjs.Tween.get(this).wait(t).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    alpha: 0
+                }, 400)
+            }, e
+        }(r.Sprite),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._content = new PIXI.Sprite, e._content.anchor.set(.5), e._content.alpha = 0, e.addChild(e._content), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._content.texture = a.BATTLE_MAIN.getTexture(40)
+            }, e.prototype.getTween = function (t) {
+                return createjs.Tween.get(this._content).wait(t).to({
+                    x: 27,
+                    alpha: 1
+                }, 133).to({
+                    x: 74,
+                    alpha: 0
+                }, 366)
+            }, e
+        }(PIXI.Container)
 }

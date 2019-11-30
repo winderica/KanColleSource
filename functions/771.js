@@ -19,27 +19,25 @@ const function771 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(9),
+        r = i(0),
+        s = i(7),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_kaisou/slot_exchange_index", o.api_id = e, o.api_src_idx = i, o.api_dst_idx = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load01()
-            }, e.prototype._load01 = function () {
-                var t = this,
-                    e = new r.UIImageLoader("remodel");
-                e.add("6slot_huki1_c.png"), e.add("6slot_huki1_r.png"), e.add("6slot_huki1_l.png"), e.add("6slot_huki2.png"), e.load(function () {
-                    t._load02()
-                })
-            }, e.prototype._load02 = function () {
-                var t = this,
-                    e = new r.UIImageLoader("remodel");
-                e.add("remodel_main.json"), e.add("remodel_powerup.json"), e.add("remodel_gradeup.json"), e.add("remodel_animation.json"), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, this._post_data.api_src_idx = this.api_src_idx, this._post_data.api_dst_idx = this.api_dst_idx, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = this._raw_data.api_ship_data;
+                r.default.model.ship.updateData(e), this._set_bauxite(), t.prototype._completedEnd.call(this)
+            }, e.prototype._set_bauxite = function () {
+                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
+                    var t = s.ObjUtil.getNumber(this._raw_data, "api_bauxite");
+                    r.default.model.useItem.get(34).__setCount__(t)
+                }
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResourcesRemodel = s
+        }(o.APIBase);
+    e.SlotExchangeIndexAPI = a
 }

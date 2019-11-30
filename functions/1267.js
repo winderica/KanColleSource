@@ -19,123 +19,114 @@ const function1267 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(55),
-        s = i(26),
-        a = i(7),
-        _ = i(2),
-        l = i(14),
-        u = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o)
-                    for (var s = 0, a = o; s < a.length; s++) {
-                        var _ = a[s];
-                        r._memData[_.no] = _, r._memDataNum++
-                    }
-                return r._version = l.UIImageLoader.getResourceVersionMap(r._map_id), r
+    var o = i(2),
+        r = i(6),
+        s = i(19),
+        a = i(1),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onSelect = function (t) {
+                    n._scene.user_select.ration = 1 == t ? 1 : 0, n._hideConfirmDialog()
+                }, n._scene = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
+                1 == this._model.sortie.getNextCell().isUsableRation() ? this._showConfirmDialog() : (this._scene.user_select.ration = -1, this._endTask())
+            }, e.prototype._showConfirmDialog = function () {
                 var t = this,
-                    e = this._getPath("info.json" + (this._version ? "?version=" + this._version : ""));
-                axios.get(e).then(function (e) {
-                    var i = a.ObjUtil.getObject(e, "data");
-                    t._mapInfo.add(i), t._loadSpriteSheet()
-                }).catch(function (e) {
-                    t._failedEnd()
+                    e = this._model.sortie.now_cell_no,
+                    i = this._scene.resInfo.getRationConfirmOffset(e),
+                    n = this._scene.view.map.ship_icon;
+                this._confirm = new l(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
+                    y: n.y,
+                    alpha: 1
+                }, 300).call(function () {
+                    t._confirm.activate()
                 })
-            }, e.prototype._loadSpriteSheet = function () {
-                var t = this,
-                    e = this._getPath("image.json");
-                if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo();
-                else {
-                    var i = new PIXI.loaders.Loader;
-                    null != this._version && (i.defaultQueryString = "version=" + this._version), i.add(e), i.load(function () {
-                        t._loadAddingInfo()
-                    })
-                }
-            }, e.prototype._loadAddingInfo = function () {
+            }, e.prototype._hideConfirmDialog = function () {
                 var t = this;
-                if (this._mapInfo.spots.length >= this._memDataNum)
-                    if (445 == this._map_id) {
-                        var e = new l.UIImageLoader("map");
-                        e.add("map_event_anime.json"), e.load(function () {
-                            t._createMapBackGround()
-                        })
-                    } else this._createMapBackGround();
-                else {
-                    var i = this._mapInfo.spots.length,
-                        n = this._getPath("info" + i + ".json" + (this._version ? "?version=" + this._version : ""));
-                    axios.get(n).then(function (e) {
-                        var n = a.ObjUtil.getObject(e, "data");
-                        t._mapInfo.add(n), t._loadAddingSpriteSheet(i)
-                    }).catch(function (e) {
-                        t._failedEnd()
-                    })
-                }
-            }, e.prototype._loadAddingSpriteSheet = function (t) {
-                var e = this,
-                    i = this._getPath("image" + t + ".json");
-                if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo();
-                else {
-                    var n = new PIXI.loaders.Loader;
-                    null != this._version && (n.defaultQueryString = "version=" + this._version), n.add(i), n.load(function () {
-                        e._loadAddingInfo()
-                    })
-                }
-            }, e.prototype._createMapBackGround = function () {
-                for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = r.MapUtil.toResKey(this._map_id),
-                        s = "map" + o + "_" + n.img,
-                        a = PIXI.Texture.fromFrame(s);
-                    this._mapView.bg.addBGLayer(a, n.name)
-                }
-                445 == this._map_id && this._mapView.bg.setMapAnime(), this._createLabel()
-            }, e.prototype._createLabel = function () {
-                for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = r.MapUtil.toResKey(this._map_id),
-                        s = "map" + o + "_" + n.img,
-                        a = PIXI.Texture.fromFrame(s);
-                    this._mapView.bg.addLabel(a, n.x, n.y)
-                }
-                this._createSpots()
-            }, e.prototype._createSpots = function () {
-                for (var t = this._mapInfo.spots, e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = n.no;
-                    if (!(this._memDataNum > 0 && null == this._memData[o]) && (this._mapView.addSpot(this._map_id, o, this._mapInfo), null != n.landing)) {
-                        var r = n.x + n.landing.x,
-                            s = n.y + n.landing.y;
-                        this._mapView.spotLayer.addFlag(o, r, s)
-                    }
-                }
-                this._createAirBase()
-            }, e.prototype._createAirBase = function () {
-                var t = this._mapInfo.getAirBasePos();
-                null != t && this._mapView.airbaseLayer.create(t), this._initCellColor()
-            }, e.prototype._initCellColor = function () {
-                for (var t = [], e = this._mapView.spotLayer.getAllSpots(), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    if (!(t.indexOf(o.no) >= 0)) {
-                        for (var r = !1, s = 0, a = 0, _ = this._mapInfo.getSameSpotData(o.no), l = 0, u = _; l < u.length; l++) {
-                            var c = u[l];
-                            t.push(c.no), 0 == s && (s = c.color);
-                            var h = this._memData[c.no];
-                            null != h && (r = r || h.passed, 0 == a && (a = h.color))
-                        }
-                        var p = _[0].no,
-                            d = this._mapView.spotLayer.getSpot(p);
-                        1 == r ? d.setColor(a) : d.setColor(s)
-                    }
-                }
-                this._endTask()
-            }, e.prototype._getPath = function (t) {
-                var e = r.MapUtil.toAreaID(this._map_id),
-                    i = r.MapUtil.toMapNo(this._map_id);
-                return o.default.settings.path_root + "resources/map/" + s.MathUtil.zeroPadding(e, 3) + "/" + s.MathUtil.zeroPadding(i, 2) + "_" + t
+                this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._confirm.btn_no).to({
+                    alpha: 0
+                }, 200);
+                var e = this._confirm.y;
+                createjs.Tween.get(this._confirm).wait(200).to({
+                    y: e,
+                    alpha: 0
+                }, 300).call(function () {
+                    t._scene.view.universal_layer.removeChild(t._confirm), t._confirm.dispose(), t._endTask()
+                })
             }, e
-        }(_.TaskBase);
-    e.TaskCreateMap = u
+        }(o.TaskBase);
+    e.TaskConfirmRation = _;
+    var l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                if (n._onClickYes = function () {
+                        null != n._cb_onSelect && n._cb_onSelect(!0)
+                    }, n._onClickNo = function () {
+                        null != n._cb_onSelect && n._cb_onSelect(!1)
+                    }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new u(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new u(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e) {
+                    if (null != e.box) {
+                        var o = e.box;
+                        n._box.x += o.x, n._box.y += o.y, n._beak.x += o.x, n._beak.y += o.y
+                    }
+                    if (null != e.btn) {
+                        var o = e.btn;
+                        n._btn_yes.x += o.x, n._btn_yes.y += o.y, n._btn_no.x += o.x, n._btn_no.y += o.y
+                    }
+                    if (null != e.beak) {
+                        var o = e.beak;
+                        n._beak.x += o.x, n._beak.y += o.y
+                    }
+                }
+                return n
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
+                get: function () {
+                    return this._btn_yes
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_no", {
+                get: function () {
+                    return this._btn_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._box.texture = s.MAP_COMMON.getTexture(75), this._beak.texture = s.MAP_COMMON.getTexture(76);
+                var t = s.MAP_COMMON.getTexture(102),
+                    e = s.MAP_COMMON.getTexture(104);
+                this._btn_yes.initialize(t, e), t = s.MAP_COMMON.getTexture(84), e = s.MAP_COMMON.getTexture(85), this._btn_no.initialize(t, e)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_no.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_no.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn_yes.dispose(), this._btn_no.dispose()
+            }, e
+        }(PIXI.Container),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    r.SE.play("225"), i._over.alpha = 1
+                }, i._onMouseOut = function () {
+                    i._over.alpha = 0
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
+            }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e
+        }(PIXI.Container)
 }

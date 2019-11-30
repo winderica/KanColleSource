@@ -19,35 +19,28 @@ const function1052 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1053),
-        r = i(58),
-        s = i(31),
-        a = function (t) {
-            function e() {
-                for (var e = t.call(this) || this, i = new Array, n = 47, a = 0; a < 8; a++) {
-                    var _ = new o.ExpeditionListItem;
-                    _.x = 8, _.y = n, i.push(_), n += 45
-                }
-                var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(90));
-                l.position.y = -1;
-                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(18));
-                u.anchor.set(0, .5), u.position.set(40, 20);
-                var c = new PIXI.Sprite(s.SALLY_COMMON.getTexture(51));
-                return c.addChild(u), c.position.set(-20, -90), i.forEach(function (t) {
-                    e.addChild(t)
-                }), e.addChild(l), e.addChild(c), e._listItems = i, e
+    var o = i(364),
+        r = i(1053),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this, e) || this;
+                return i._panel = new r.PanelDeckSelect(i._onGo), i._panel.position.set(1200, 102), i.addChild(i._panel), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "items", {
+            return n(e, t), Object.defineProperty(e.prototype, "panel", {
                 get: function () {
-                    return this._listItems
+                    return this._panel
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._listItems.forEach(function (t) {
-                    return t.dispose()
-                }), this._listItems.length = 0, this._listItems = null
+            }), e.prototype.initialize = function (t, e, i) {
+                this._panel.initialize(t, e, i)
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this), this._panel.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this), this._panel.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._panel.dispose()
             }, e
-        }(PIXI.Container);
-    e.ExpeditionList = a
+        }(o.ContainerDeckSelectBase);
+    e.ContainerDeckSelect = s
 }

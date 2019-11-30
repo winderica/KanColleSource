@@ -19,75 +19,55 @@ const function1312 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(2),
-        s = i(12),
-        a = i(8),
-        _ = i(19),
-        l = i(1313),
-        u = i(1),
-        c = function (t) {
+    var o = i(6),
+        r = i(1313),
+        s = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._shutter = e, n._item_ids = i, n
+                return n._onClick = function (t) {
+                    n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
+                }, n._onDoubleClick = function (t) {
+                    var e = n._selected_spot_no.lastIndexOf(t); - 1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
+                }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._view = new l.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
-                var e = _.MAP_COMMON.getTexture(115);
-                this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({
-                    scaleY: 1
-                }, 300).call(function () {
-                    t._showMessage()
-                })
-            }, e.prototype._showMessage = function () {
-                var t = this,
-                    e = _.MAP_COMMON.getTexture(118);
-                this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
-                    x: o.default.width / 2 + 180,
-                    alpha: 1
-                }, 300).to({
-                    x: o.default.width / 2
-                }, 400).to({
-                    x: o.default.width / 2 - 60,
-                    alpha: 0
-                }, 400).call(function () {
-                    t._shutter.removeChild(t._telopText), t._closeTelop()
-                })
-            }, e.prototype._closeTelop = function () {
-                var t = this;
-                createjs.Tween.get(this._telopBG).to({
-                    scaleY: 0
-                }, 300).call(function () {
-                    t._shutter.removeChild(t._telopBG)
-                }), createjs.Tween.get(this._view).to({
-                    alpha: 1
-                }, 200).call(function () {
-                    t._showContent()
-                })
-            }, e.prototype._showContent = function () {
-                var t = this;
-                this._shutter.close(), this._shutter.once("closed", function () {
-                    createjs.Tween.get(t._view.content).to({
-                        alpha: 1
-                    }, 200).call(function () {
-                        t._waitClick()
-                    })
-                })
-            }, e.prototype._waitClick = function () {
-                var t = this,
-                    e = new a.AreaBox(0);
-                e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(u.EventType.CLICK, function () {
-                    t._shutter.removeChild(e), t._hideView()
-                })
-            }, e.prototype._hideView = function () {
-                var t = this;
-                createjs.Tween.get(this._view).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
-                })
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._clear(), e = this._dedupeCells(e);
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n],
+                        a = s.no,
+                        _ = i.getCellInfo(a);
+                    if (!(_.distance <= 0)) {
+                        var l = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
+                        l.initialize(a, _, t), l.x = s.x + s.point.x, l.y = s.y + s.point.y, this.addChild(l), this._points[a] = l
+                    }
+                }
+            }, e.prototype.update = function () {
+                var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
+                    e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
+                for (var i in this._points) {
+                    var n = this._points[i];
+                    n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
+                }
+            }, e.prototype.dispose = function () {
+                this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
+            }, e.prototype._clear = function () {
+                for (var t in this._points) this._points[t].dispose();
+                this.removeChildren(), this._points = []
+            }, e.prototype._dedupeCells = function (t) {
+                for (var e = [], i = t.concat(); i.length > 0;) {
+                    for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
+                        var a = s[r],
+                            _ = n.x - a.x,
+                            l = n.y - a.y;
+                        if (Math.sqrt(_ * _ + l * l) <= 10) {
+                            o = !0;
+                            break
+                        }
+                    }
+                    0 == o && e.push(n)
+                }
+                return e
             }, e
-        }(r.TaskBase);
-    e.TaskShowMapEndView = c
+        }(PIXI.Container);
+    e.AirUnitAppointmentLayer = s
 }

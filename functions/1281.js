@@ -19,44 +19,41 @@ const function1281 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(30),
-        s = i(19),
-        a = i(1282),
-        _ = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._buff = function () {
-                    for (var t = o._scene.view.map.ship_icon.under, e = new r.SerialTask, i = 0; i < o._buff_count; i++) e.add(new a.TaskReplenishmentBuff(t));
-                    e.start(o._hideBalloon)
-                }, o._hideBalloon = function () {
-                    var t = o._balloon.y + 23;
-                    createjs.Tween.get(o._balloon).to({
-                        y: t,
-                        alpha: 0
-                    }, 100).call(function () {
-                        o._balloon.parent.removeChild(o._balloon), o._endTask()
-                    })
-                }, o._scene = e, o._buff_count = i, o._offset = n, o
+    var o = i(1282),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._count = 0, e._boxes = [], e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showBalloon()
-            }, e.prototype._showBalloon = function () {
-                var t = this._scene.view.map.ship_icon;
-                this._balloon = new l, this._balloon.initialize(), this._balloon.x = t.x + 21, this._balloon.y = t.y - 6, this._balloon.alpha = 0, null != this._offset && (this._balloon.x += this._offset.x, this._balloon.y += this._offset.y), this._scene.view.universal_layer.addChild(this._balloon), createjs.Tween.get(this._balloon).wait(200).to({
-                    y: this._balloon.y - 23,
-                    alpha: 1
-                }, 100).wait(200).call(this._buff)
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._count = 0;
+                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
+                    var s = new o.FormationBoxCombined,
+                        a = [626, 873, 626, 873][r],
+                        _ = [96, 96, 302, 302][r];
+                    s.position.set(a, _);
+                    var l = n[r];
+                    s.initialize(t, l, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(o.TaskBase);
-    e.TaskReplenishmentBalloonEffect = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = s.MAP_COMMON.getTexture(50), this._icon.texture = s.MAP_COMMON.getTexture(79), this._label.texture = s.MAP_COMMON.getTexture(184)
-        }, e
-    }(PIXI.Container)
+        }(PIXI.Container);
+    e.FormationBoxContainerCombined = r
 }

@@ -20,76 +20,36 @@ const function1324 = function (t, e, i) {
         value: !0
     });
     var o = i(1325),
-        r = i(1327),
-        s = i(1329),
-        a = i(1332),
-        _ = i(1334),
-        l = i(1335),
-        u = i(1337),
-        c = i(15),
-        h = function (t) {
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new u.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new l.MapPlaneLayer, e.addChild(e._plane_layer), e
+                return e._spots = {}, e._flags = {}, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ship_icon", {
-                get: function () {
-                    return this._ship_icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "spotLayer", {
-                get: function () {
-                    return this._spotLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "airbaseLayer", {
-                get: function () {
-                    return this._airbaseLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy_layer", {
-                get: function () {
-                    return this._enemy_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "plane_layer", {
-                get: function () {
-                    return this._plane_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._bg.dispose(), this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
-            }, e.prototype.addSpot = function (t, e, i) {
-                var n = i.getSpot(e),
-                    o = new r.CompSpot(e, n.offsetDic);
-                if (o.position.set(n.x, n.y), null != n.route) {
-                    var s = n.route,
-                        a = c.MapUtil.toResKey(t),
-                        _ = "map" + a + "_" + s.img,
-                        l = PIXI.Texture.fromFrame(_);
-                    o.setRoute(l, s.x, s.y, s.r)
+            return n(e, t), e.prototype.addSpot = function (t) {
+                this._spots[t.no] = t, this.addChild(t)
+            }, e.prototype.addFlag = function (t, e, i) {
+                var n = new o.LandingFlag;
+                n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
+            }, e.prototype.getAllSpots = function () {
+                var t = [];
+                for (var e in this._spots) {
+                    var i = this._spots[e];
+                    t.push(i)
                 }
-                var u = n.line;
-                if (null != u) {
-                    var a = c.MapUtil.toResKey(t),
-                        h = void 0;
-                    h = null != u.img && u.img.length > 0 ? "map" + a + "_" + u.img : "map" + a + "_route_" + e;
-                    var l = PIXI.Texture.fromFrame(h);
-                    o.setLine(l, u.x, u.y, u.r)
+                return t
+            }, e.prototype.getSpot = function (t) {
+                var e = t.toString();
+                return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
+            }, e.prototype.getFlag = function (t) {
+                var e = t.toString();
+                return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t in this._spots) {
+                    this._spots[t].dispose()
                 }
-                this._spotLayer.addSpot(o)
+                this._spots = null
             }, e
         }(PIXI.Container);
-    e.MapView = h
+    e.MapSpotLayer = r
 }

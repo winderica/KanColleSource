@@ -19,17 +19,36 @@ const function418 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_get_member/questlist", o._page_no = e, o._type = i, o._data_holder = n, o
+    var o = i(9),
+        r = i(414),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_quest/clearitemget", n._duty_id = e, n._selected_no_list = i, n._result = new a(e), n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_page_no = this._page_no, this._post_data.api_tab_id = this._type, t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                if (this._post_data.api_quest_id = this._duty_id, null != this._selected_no_list && this._selected_no_list.length > 0) {
+                    this._post_data.api_select_no = this._selected_no_list[0];
+                    for (var e = 1; e < this._selected_no_list.length; e++) this._post_data["api_select_no" + (e + 1)] = this._selected_no_list[e]
+                }
+                t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                this._data_holder.update(this._type, this._raw_data), this._data_holder = null, t.prototype._completedEnd.call(this)
+                this._result.initialize(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.DutyListAPI = r
+    e.DutyEndAPI = s;
+    var a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._o = t, this._initialize()
+        }, e
+    }(r.DutyEndModel)
 }

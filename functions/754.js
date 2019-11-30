@@ -19,47 +19,32 @@ const function754 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(8),
-        s = i(326),
-        a = i(21),
-        _ = i(164),
-        l = i(333),
-        u = i(334),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i.ITEM_WIDTH = 765, i.ITEM_HEIGHT = 77, i._onClick = function () {
-                    i.onClick(i.index, i.memShipId)
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._onClick = function () {
+                    e.onClick()
                 };
-                var n = new r.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT);
-                n.renderable = !1, n.buttonMode = !0, n.on(o.EventType.CLICK, i._onClick);
-                var c = new PIXI.Sprite;
-                c.position.x = 38, c.texture = a.COMMON_MAIN.getTexture(19);
-                var h = new s.LongShipBanner;
-                h.position.x = 38;
-                var p = new u.SupplyCheckBox;
-                p.position.set(0, 24);
-                var d = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(26));
-                d.position.x = 33, d.position.y = -5;
-                var f = new l.MaterialView;
-                return f.position.set(517, 6), i.emptyBackground = c, i.supplyCheckBox = p, i.longShipBanner = h, i.clickArea = n, i.focusFrame = d, i.index = e, i.materialView = f, i
+                var i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(19)),
+                    n = new PIXI.Sprite;
+                return n.position.set(3, 3), n.buttonMode = !0, n.addListener(r.EventType.CLICK, e._onClick), e.addChild(i, n), e.background = i, e.checkState = n, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea = null, this.materialView.dispose(), this.materialView = null, this.emptyBackground = null, this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.longShipBanner.dispose(), this.longShipBanner = null, this.focusFrame = null, this.onClick = this._onClick = null
-            }, e.prototype.update = function (t, e, i, n, o) {
-                this.removeChildren(), this.addChild(this.longShipBanner, this.supplyCheckBox, this.materialView, this.focusFrame), n ? (this.addChild(this.clickArea), this.isDisable = !1, o ? this.checkOn() : this.checkOff()) : (this.isDisable = !0, this.checkDisable()), this.longShipBanner.update(t, e, i), this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax), this.memShipId = e.memID
-            }, e.prototype.checkOn = function () {
-                this.supplyCheckBox.update(3), this.focusFrame.visible = !0
-            }, e.prototype.checkDisable = function () {
-                this.supplyCheckBox.update(1), this.focusFrame.visible = !1
-            }, e.prototype.checkOff = function () {
-                this.supplyCheckBox.update(2), this.focusFrame.visible = !1
-            }, e.prototype.setDefault = function () {
-                this.isDisable ? this.checkDisable() : this.checkOff()
-            }, e.prototype.empty = function () {
-                this.memShipId = null, this.removeChildren(), this.addChild(this.emptyBackground)
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.checkState.interactive = !1, t) {
+                    case 1:
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(18), this.checkState.texture = o.SUPPLY_MAIN.getTexture(20);
+                        break;
+                    case 2:
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(21), this.checkState.interactive = !0;
+                        break;
+                    case 3:
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(22), this.checkState.interactive = !0
+                }
+            }, e.prototype.dispose = function () {
+                this.background = null, this.checkState.removeListener(r.EventType.CLICK, this._onClick), this.checkState = null, this.onClick = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.DeckSupplyBanner = c
+    e.SupplySelectAllButton = s
 }

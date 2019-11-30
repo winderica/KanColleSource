@@ -1,55 +1,59 @@
 const function1250 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(1251),
-        s = i(1254),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enemy = new r.Panel(!1), e._enemy.position.set(o.default.width / 2, 0), e.addChild(e._enemy), e._friend = new r.Panel(!0), e.addChild(e._friend), e._upper = new s.PracticeTitleBar, e._upper.position.set(38, 56), e._upper.alpha = 0, e.addChild(e._upper), e
+    var n = i(7),
+        o = function () {
+            function t(t) {
+                this._o = t
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enemy", {
+            return Object.defineProperty(t.prototype, "offset", {
                 get: function () {
-                    return this._enemy
+                    return this._o.hasOwnProperty("x") || this._o.hasOwnProperty("y") ? new PIXI.Point(n.ObjUtil.getNumber(this._o, "x"), n.ObjUtil.getNumber(this._o, "y")) : null
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "friend", {
+            }), Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    return this._friend
+                    switch (n.ObjUtil.getString(this._o, "type")) {
+                        case "R":
+                            return 2;
+                        case "L":
+                            return 6;
+                        case "T":
+                            return 0;
+                        case "B":
+                            return 4;
+                        case "RT":
+                        case "TR":
+                            return 1;
+                        case "RB":
+                        case "BR":
+                            return 3;
+                        case "LT":
+                        case "TL":
+                            return 7;
+                        case "LB":
+                        case "BL":
+                            return 5
+                    }
+                    return 1
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "upper", {
+            }), Object.defineProperty(t.prototype, "beak", {
                 get: function () {
-                    return this._upper
+                    switch (n.ObjUtil.getString(this._o, "beak")) {
+                        case "s":
+                        case "straight":
+                            return 1
+                    }
+                    return 0
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._friend.initialize(t, e), this._enemy.initialize(i, n), this._upper.initialize("\u6f14\u7fd2")
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._enemy.dispose(), this._friend.dispose(), this._upper.dispose()
-            }, e
-        }(PIXI.Container);
-    e.PracticeAnimMainView = a
+            }), t
+        }();
+    e.BranchBalloonData = o
 }

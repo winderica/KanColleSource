@@ -19,27 +19,36 @@ const function1257 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(7),
-        a = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._url = "api_get_member/ship_deck", r._deck_ids = e, r._area_id = i, r._map_no = n, r._cell_no = o, r
+    var o = i(2),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._anim = function () {
+                    var t = n._scene.view.map.ship_icon;
+                    createjs.Tween.get(t).to({
+                        alpha: 1
+                    }, 300), createjs.Tween.get(t.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300).call(function () {
+                        n._endTask()
+                    })
+                }, n._scene = e, n._model = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_rid = this._deck_ids.join(","), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                for (var e = s.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"), i = 0, n = e; i < n.length; i++) {
-                    var r = n[i];
-                    o.default.model.deck.updateData(r)
-                }
-                for (var a = s.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), _ = 0, l = a; _ < l.length; _++) {
-                    var r = l[_];
-                    o.default.model.ship.updateData(r)
-                }
-                t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._initialize()
+            }, e.prototype._initialize = function () {
+                var t = this._scene.view.map.ship_icon;
+                t.alpha = 0, t.scale.set(1.7);
+                var e = this._model.deck_f.type;
+                t.initialize(e);
+                var i = this._model.sortie.now_cell_no,
+                    n = this._scene.view.map.spotLayer.getSpot(i);
+                t.position.set(n.x, n.y);
+                var o = t.direction,
+                    r = this._scene.resInfo.getShipDirection(i);
+                1 == r ? o = 1 : 2 == r && (o = 2), t.turn(o, this._anim, 0)
             }, e
-        }(r.APIBase);
-    e.APIShipDeck = a
+        }(o.TaskBase);
+    e.AnimShipInit = r
 }

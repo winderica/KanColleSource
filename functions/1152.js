@@ -19,30 +19,41 @@ const function1152 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(25),
-        r = i(1153),
-        s = i(1154),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onSelectFromTop = function (t) {
-                    if (i._top_view.deactivate(), -1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(312, 207), i.addChild(i._confirm_view), i._confirm_view.initialize(t, i._count), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
-                }, i._onSelectFromConfirm = function (t) {
-                    null != i._cb_onResult && i._cb_onResult(t)
-                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 176), i.addChild(i._top_view), i
+    var o = i(74),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._num = new PIXI.Sprite, e.addChild(e._num), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._count = t, this._top_view.initialize()
-            }, e.prototype.activate = function () {
-                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
-            }, e.prototype.dispose = function () {
-                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
+            }, e.prototype.update = function (t) {
+                88 == t ? this._num.position.set(25, 19) : this._num.position.set(29, 15), this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
+            }, e.prototype._getNumImage = function (t) {
+                switch (t) {
+                    case 1:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
+                    case 2:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
+                    case 3:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
+                    case 4:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
+                    case 5:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
+                    case 6:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
+                    case 7:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
+                    case 8:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(32);
+                    case 9:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(34);
+                    case 88:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(33)
+                }
+                return PIXI.Texture.EMPTY
             }, e
-        }(o.DialogBase);
-    e.SanmaUseDialog = a
+        }(PIXI.Sprite);
+    e.RewardSelectDialogCount = r
 }

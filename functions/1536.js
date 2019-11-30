@@ -19,36 +19,62 @@ const function1536 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(1537),
-        s = i(1538),
-        a = function (t) {
+    var o = i(1537),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
+                return e._items = [], e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
+            return n(e, t), Object.defineProperty(e.prototype, "items", {
                 get: function () {
-                    return this._friend
+                    return this._items
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy", {
-                get: function () {
-                    return this._enemy
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n, o) {
-                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
-            }, e.prototype.show = function (t) {
-                var e = new o.TweenTask;
-                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
-                    null != t && t()
-                })
+            }), e.prototype.initialize = function (t) {
+                this._resetItems();
+                var e = 0;
+                e = 7 == t.length ? 0 : 68;
+                for (var i = 0; i < t.length; i++) {
+                    var n = t[i];
+                    if (null != n) {
+                        var r = new o.BannerInfoFriend;
+                        r.y = e + 68 * i;
+                        var s = n.name,
+                            a = n.level;
+                        r.name_and_level.alpha = 0, r.name_and_level.initialize(s, a), this.addChild(r), this._items.push(r)
+                    }
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
+                this._resetItems(), this.removeChildren(), this._items = null
+            }, e.prototype.createShowTweens = function (t) {
+                for (var e = [], i = 0; i < this._items.length; i++) {
+                    var n = this._items[i],
+                        o = n.name_and_level;
+                    o.x -= 15;
+                    var r = createjs.Tween.get(o).wait(t + 100 * i).to({
+                        x: o.x + 15,
+                        alpha: 1
+                    }, 300);
+                    e.push(r)
+                }
+                return e
+            }, e.prototype.createHideTweens = function (t) {
+                for (var e = [], i = 0; i < this._items.length; i++) {
+                    var n = this._items[i],
+                        o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
+                            x: n.x - 15,
+                            alpha: 0
+                        }, 300);
+                    e.push(o)
+                }
+                return e
+            }, e.prototype._resetItems = function () {
+                for (null == this._items && (this._items = []); this._items.length > 0;) {
+                    var t = this._items.pop();
+                    null != t.parent && t.parent.removeChild(t), t.dispose()
+                }
             }, e
         }(PIXI.Container);
-    e.LayerDeckInfo = a
+    e.BannerInfoFriendCanvas = r
 }

@@ -19,59 +19,78 @@ const function1314 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(6),
-        s = i(1315),
-        a = i(1316),
-        _ = i(1320),
-        l = function (t) {
-            function e(e, i, n, o, s, a) {
-                var _ = t.call(this) || this;
-                return _._selected_spot_no_1 = null, _._selected_spot_no_2 = null, _._selected_spot_no_3 = null, _._onChange = function () {
-                    _._point_layer.update(), 2 == _._selected_spot_no.length ? (_._panel.title.complete = !0, _._panel.cancel_btn.visible = !0) : 1 == _._selected_spot_no.length ? (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !0) : (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !1)
-                }, _._onFixed = function () {
-                    switch (_._current_target.id) {
-                        case 1:
-                            _._selected_spot_no_1 = _._selected_spot_no.concat();
-                            break;
-                        case 2:
-                            _._selected_spot_no_2 = _._selected_spot_no.concat();
-                            break;
-                        case 3:
-                            _._selected_spot_no_3 = _._selected_spot_no.concat()
-                    }
-                    r.SE.play("227");
-                    var t = _._airunits.indexOf(_._current_target);
-                    t == _._airunits.length - 1 ? _._endTask() : (_._current_target = _._airunits[t + 1], _._onCancel(), _._panel.update(_._current_target.id), _._initializePoints())
-                }, _._onCancel = function () {
-                    for (; _._selected_spot_no.length > 0;) _._selected_spot_no.pop();
-                    _._point_layer.update(), _._panel.title.complete = !1, _._panel.cancel_btn.visible = !1
-                }, _._layer = e, _._area_id = i, _._airunits_all = n, _._airunits = o, _._model = s, _._map = a, _
+    var o = i(129),
+        r = i(50),
+        s = i(435),
+        a = i(1315),
+        _ = i(1316),
+        l = i(1330),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new l.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._current_target = this._airunits[0], this._selected_spot_no = [], this._point_layer = new _.AirUnitAppointmentLayer(this._selected_spot_no, this._onChange), this._layer.addChild(this._point_layer), this._panel = new a.AirUnitPanelSet(this._onFixed, this._onCancel), this._panel.x = -375, this._layer.addChild(this._panel);
-                var e = this._area_id;
-                this._panel.initialize(e, this._airunits_all), this._panel.update(this._current_target.id), createjs.Tween.get(this._panel).to({
-                    x: 0
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    t._panel.activate(), t._initializePoints()
-                })
-            }, e.prototype._initializePoints = function () {
-                var t = this._current_target.distance,
-                    e = this._model.sortie,
-                    i = this._map.spotLayer.getAllSpots();
-                this._point_layer.initialize(t, i, e)
-            }, e.prototype._endTask = function () {
-                var e = this;
-                this._layer.removeChild(this._point_layer), this._point_layer.dispose(), this._panel.deactivate(), createjs.Tween.get(this._panel).to({
-                    x: -450
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    e._layer.removeChild(e._panel), e._panel.dispose(), new s.AirUnitGoAPI(e._selected_spot_no_1, e._selected_spot_no_2, e._selected_spot_no_3).start(function () {
-                        t.prototype._endTask.call(e)
-                    })
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "map", {
+                get: function () {
+                    return this._map
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "upper", {
+                get: function () {
+                    return this._upper
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gauge_layer", {
+                get: function () {
+                    return this._gauge_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara_layer", {
+                get: function () {
+                    return this._chara_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "universal_layer", {
+                get: function () {
+                    return this._universal_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "top_layer", {
+                get: function () {
+                    return this._top_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
+            }, e.prototype.frontOfGaugeLayer = function () {
+                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
             }, e
-        }(o.TaskBase);
-    e.TaskAirUnitAppointment = l
+        }(PIXI.Container);
+    e.ViewMain = u
 }

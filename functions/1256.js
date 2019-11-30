@@ -19,18 +19,127 @@ const function1256 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = -1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
+    var o = i(0),
+        r = i(55),
+        s = i(25),
+        a = i(7),
+        _ = i(2),
+        l = i(14),
+        u = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o)
+                    for (var s = 0, a = o; s < a.length; s++) {
+                        var _ = a[s];
+                        r._memData[_.no] = _, r._memDataNum++
+                    }
+                return r._version = l.UIImageLoader.getResourceVersionMap(r._map_id), r
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._getPath("info.json" + (this._version ? "?version=" + this._version : ""));
+                axios.get(e).then(function (e) {
+                    var i = a.ObjUtil.getObject(e, "data");
+                    t._mapInfo.add(i), t._loadSpriteSheet()
+                }).catch(function (e) {
+                    t._failedEnd()
+                })
+            }, e.prototype._loadSpriteSheet = function () {
+                var t = this,
+                    e = this._getPath("image.json");
+                if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo();
+                else {
+                    var i = new PIXI.loaders.Loader;
+                    null != this._version && (i.defaultQueryString = "version=" + this._version), i.add(e), i.load(function () {
+                        t._loadAddingInfo()
+                    })
+                }
+            }, e.prototype._loadAddingInfo = function () {
+                var t = this;
+                if (this._mapInfo.spots.length >= this._memDataNum)
+                    if (445 == this._map_id) {
+                        var e = new l.UIImageLoader("map");
+                        e.add("map_event_anime.json"), e.load(function () {
+                            t._createMapBackGround()
+                        })
+                    } else this._createMapBackGround();
+                else {
+                    var i = this._mapInfo.spots.length,
+                        n = this._getPath("info" + i + ".json" + (this._version ? "?version=" + this._version : ""));
+                    axios.get(n).then(function (e) {
+                        var n = a.ObjUtil.getObject(e, "data");
+                        t._mapInfo.add(n), t._loadAddingSpriteSheet(i)
+                    }).catch(function (e) {
+                        t._failedEnd()
+                    })
+                }
+            }, e.prototype._loadAddingSpriteSheet = function (t) {
+                var e = this,
+                    i = this._getPath("image" + t + ".json");
+                if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo();
+                else {
+                    var n = new PIXI.loaders.Loader;
+                    null != this._version && (n.defaultQueryString = "version=" + this._version), n.add(i), n.load(function () {
+                        e._loadAddingInfo()
+                    })
+                }
+            }, e.prototype._createMapBackGround = function () {
+                for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = r.MapUtil.toResKey(this._map_id),
+                        s = "map" + o + "_" + n.img,
+                        a = PIXI.Texture.fromFrame(s);
+                    this._mapView.bg.addBGLayer(a, n.name)
+                }
+                445 == this._map_id && this._mapView.bg.setMapAnime(), this._createLabel()
+            }, e.prototype._createLabel = function () {
+                for (var t = this._mapInfo.labels, e = [], i = 0, n = t; i < n.length; i++) {
+                    var o = n[i],
+                        s = r.MapUtil.toResKey(this._map_id),
+                        a = "map" + s + "_" + o.img,
+                        _ = PIXI.Texture.fromFrame(a);
+                    e.push({
+                        texture: _,
+                        x: o.x,
+                        y: o.y
+                    })
+                }
+                this._mapView.bg.addLabels(e), this._createSpots()
+            }, e.prototype._createSpots = function () {
+                for (var t = this._mapInfo.spots, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = n.no;
+                    if (!(this._memDataNum > 0 && null == this._memData[o]) && (this._mapView.addSpot(this._map_id, o, this._mapInfo), null != n.landing)) {
+                        var r = n.x + n.landing.x,
+                            s = n.y + n.landing.y;
+                        this._mapView.spotLayer.addFlag(o, r, s)
+                    }
+                }
+                this._createAirBase()
+            }, e.prototype._createAirBase = function () {
+                var t = this._mapInfo.getAirBasePos();
+                null != t && this._mapView.airbaseLayer.create(t), this._initCellColor()
+            }, e.prototype._initCellColor = function () {
+                for (var t = [], e = this._mapView.spotLayer.getAllSpots(), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    if (!(t.indexOf(o.no) >= 0)) {
+                        for (var r = !1, s = 0, a = 0, _ = this._mapInfo.getSameSpotData(o.no), l = 0, u = _; l < u.length; l++) {
+                            var c = u[l];
+                            t.push(c.no), 0 == s && (s = c.color);
+                            var h = this._memData[c.no];
+                            null != h && (r = r || h.passed, 0 == a && (a = h.color))
+                        }
+                        var p = _[0].no,
+                            d = this._mapView.spotLayer.getSpot(p);
+                        1 == r ? d.setColor(a) : d.setColor(s)
+                    }
+                }
+                this._endTask()
+            }, e.prototype._getPath = function (t) {
+                var e = r.MapUtil.toAreaID(this._map_id),
+                    i = r.MapUtil.toMapNo(this._map_id);
+                return o.default.settings.path_root + "resources/map/" + s.MathUtil.zeroPadding(e, 3) + "/" + s.MathUtil.zeroPadding(i, 2) + "_" + t
             }, e
-        }(o.APIBase);
-    e.APIMapNext = r
+        }(_.TaskBase);
+    e.TaskCreateMap = u
 }

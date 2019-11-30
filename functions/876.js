@@ -24,11 +24,15 @@ const function876 = function (t, e, i) {
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i.repairScene = e, i.repairScene.dispose(), i
+                return i._skinID = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                r.UIImageLoader.clearMemoryCache("repair"), this._endTask()
+                var t = this,
+                    e = new r.UIImageLoader("arsenal");
+                e.add("arsenal_main.json"), e.add("arsenal_animation.json"), 101 == this._skinID || 102 == this._skinID ? e.add("arsenal_skin_1.json") : 201 == this._skinID ? e.add("arsenal_skin_2.json") : 301 != this._skinID && 311 != this._skinID || e.add("arsenal_skin_3.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(o.TaskBase);
-    e.DisposeTask = s
+    e.TaskLoadResourcesArsenal = s
 }

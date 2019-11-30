@@ -1,99 +1,63 @@
 const function855 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(29),
-        s = i(172),
-        a = i(856),
-        _ = i(3),
-        l = i(1),
-        u = function () {
-            function t(t, e, i, n, o) {
-                var a = this;
-                this._pageIndex = 0, this._onClickPage = function (t) {
-                    if (a._pageIndex != t) {
-                        var e = a.ships.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
-                        a.repairShipChoiceView.update(e, a.repairingIds), a._pageIndex = t
-                    }
-                }, this._onClickBack = function () {
-                    a.onComplete(!1)
-                }, this._onClickListItem = function (t) {
-                    a._memShipId = t, a.onComplete(!0)
-                }, this._onClickSort = function () {
-                    var t;
-                    switch (a._shipSortKeyType) {
-                        case 1:
-                            t = 2;
-                            break;
-                        case 2:
-                            t = 3;
-                            break;
-                        case 3:
-                            t = 4;
-                            break;
-                        case 4:
-                            t = 1
-                    }
-                    r.ShipUtil.sort(a.ships, t);
-                    var e = a.ships.slice(a._pageIndex * s.RepairConst.ITEM_IN_COUNT, a._pageIndex * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
-                    a.repairShipChoiceView.update(e, a.repairingIds), a.shipSortButton.update(t), a._shipSortKeyType = t
-                }, n.onClick = this._onClickSort, i.onChangePage = this._onClickPage, e.onClickListItem = this._onClickListItem, o.interactive = !0, o.addListener(l.EventType.CLICK, this._onClickBack), o.alpha = 0, t.addChild(o, e), e.addChild(i, n), e.position.set(1200, 142), n.position.set(585, 6), i.position.set(69, 528), this.repairShipChoiceView = e, this.shipSortButton = n, this.pagerView = i, this.mainView = t, this.background = o
+    var o = i(4),
+        r = i(32),
+        s = i(3),
+        a = i(25),
+        _ = i(1),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._labelArr = [], e._onClickYES = function () {
+                    e.onClickYES()
+                }, e._onClickNO = function () {
+                    e.onClickNO()
+                };
+                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63)),
+                    n = new o.TextBox(21, 1949120),
+                    a = new o.TextBox(21, 1949120),
+                    l = new o.TextBox(21, 1949120),
+                    u = new o.TextBox(21, 16777215),
+                    c = new o.TextBox(21, 1949120),
+                    h = new o.TextBox(24, 16777215),
+                    p = new o.TextBox(24, 16777215),
+                    d = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(9)),
+                    f = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(5)),
+                    y = new r.ShipBanner,
+                    m = new o.TextBox(21, 16777215),
+                    g = new o.TextBox(24, 16777215),
+                    v = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(28)),
+                    b = new o.TextBox(24, 16777215),
+                    w = new o.TextBox(24, 16777215),
+                    x = new o.TextBox(24, 16777215);
+                return n.position.set(i.width / 2, -39), n.anchor.set(.5, 0), m.position.set(576, 147), a.position.set(310, 147), y.position.set(576, 180), l.position.set(310, 258), v.position.set(580, 288), u.position.set(577, 258), b.position.set(684, 298), w.position.set(718, 298), x.position.set(685, 294), c.position.set(310, 345), g.position.set(684, 345), p.position.set(687, 342), h.position.set(718, 345), f.position.set(297, 516), d.position.set(580, 516), b.anchor.x = 1, g.anchor.x = 1, n.text = "-\u8266\u8239\u3000\u5165\u6e20-", e._labelArr.push(n), a.text = "\u4fee\u5fa9\u3059\u308b\u8266\u8239", e._labelArr.push(a), l.text = "\u9ad8\u901f\u4fee\u5fa9", e._labelArr.push(l), u.text = "\u4f7f\u7528\u3059\u308b", e._labelArr.push(u), b.text = "9999", x.text = "\u2192", e._labelArr.push(x), w.text = "9999", c.text = "\u6240\u8981\u6642\u9593", e._labelArr.push(c), p.text = "\u2192", e._labelArr.push(p), h.text = "00:00:00", e._labelArr.push(h), d.addListener(_.EventType.CLICK, e._onClickYES), f.addListener(_.EventType.CLICK, e._onClickNO), f.interactive = f.buttonMode = !0, d.interactive = d.buttonMode = !0, e.addChild(i, n, a, l, c, m, g, v, u, p, h, f, d, y, b, x, w), e.textName = m, e.textRequireTime = g, e.buttonYes = d, e.buttonNo = f, e.shipBanner = y, e.beforeRepairKitCount = b, e.afterRepairKitCount = w, e
             }
-            return Object.defineProperty(t.prototype, "memShipId", {
-                get: function () {
-                    return this._memShipId
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "pageIndex", {
-                get: function () {
-                    return this._pageIndex
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "shipSortKeyType", {
-                get: function () {
-                    return this._shipSortKeyType
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.start = function (t, e) {
-                var i = this;
-                _.SE.play("249"), o.default.view.clickGuard = !0;
-                var n = o.default.model.ndock.getAll(),
-                    l = [];
-                n.forEach(function (t) {
-                    l.push(t.shipMemID)
-                });
-                var u = o.default.model.ship.getAll(),
-                    c = a.RepairUtil.calcPageCount(u.length);
-                r.ShipUtil.sort(u, e);
-                var h = u.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
-                this.repairShipChoiceView.update(h, l), this.shipSortButton.update(e), this.ships = u, this._pageIndex = t, this._shipSortKeyType = e, this.pagerView.init(c), this.pagerView.changePage(t), this.repairingIds = l;
-                var p = createjs.Tween.get(this.repairShipChoiceView);
-                createjs.Tween.get(this.background).to({
-                    alpha: 1
-                }, 150).play(null), p.to({
-                    x: 532
-                }, 150).call(function () {
-                    o.default.view.clickGuard = !1, i.background.width = 568
-                }).play(null)
-            }, t.prototype.hide = function (t) {
-                var e = createjs.Tween.get(this.repairShipChoiceView),
-                    i = createjs.Tween.get(this.background);
-                this.background.width = n.default.width, i.to({
-                    alpha: 0
-                }, 150).play(null), e.to({
-                    x: 1200
-                }, 150).call(function () {
-                    t()
-                }).play(null)
-            }, t.prototype.dispose = function () {
-                this.mainView.removeChild(this.background), this.mainView.removeChild(this.repairShipChoiceView), this.repairShipChoiceView.removeChild(this.shipSortButton), this.repairShipChoiceView.removeChild(this.pagerView), this.background.removeAllListeners(l.EventType.CLICK), this.onComplete = null, this._memShipId = null, this.repairShipChoiceView = null, this.shipSortButton = null, this.pagerView = null, this.ships = null, this._shipSortKeyType = null, this._pageIndex = null
-            }, t
-        }();
-    e.PhaseRepairShipChoice = u
+            return n(e, t), e.prototype.update = function (t, e) {
+                this.textName.text = t.name, this.textRequireTime.text = a.MathUtil.timeToString(t.getRepairTime()), this.beforeRepairKitCount.text = e.toString(), this.afterRepairKitCount.text = (e - 1).toString(), this.shipBanner.update(t, !1)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.buttonYes.texture = PIXI.Texture.EMPTY, this.buttonNo.texture = PIXI.Texture.EMPTY, this.shipBanner.dispose(), this.buttonYes.removeAllListeners(_.EventType.CLICK), this.buttonNo.removeAllListeners(_.EventType.CLICK), this.textName.destroy(), this.textRequireTime.destroy(), this.beforeRepairKitCount.destroy(), this.afterRepairKitCount.destroy(), this._labelArr.forEach(function (t) {
+                    t.destroy()
+                }), this._labelArr = null, this.buttonYes = null, this.buttonNo = null, this.shipBanner = null, this.onClickYES = null, this.onClickNO = null, this.textName = null, this.textRequireTime = null, this.beforeRepairKitCount = null, this.afterRepairKitCount = null
+            }, e
+        }(PIXI.Container);
+    e.UseHiSpeedRepairConfirmView = l
 }

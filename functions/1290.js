@@ -19,41 +19,45 @@ const function1290 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1291),
-        r = function (t) {
+    var o = i(0),
+        r = i(8),
+        s = i(60),
+        a = i(81),
+        _ = i(210),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._count = 0, e._boxes = [], e
+                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "count", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._count
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t, e, i) {
-                this._count = 0;
-                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
-                    var s = new o.FormationBoxCombined,
-                        a = [626, 873, 626, 873][r],
-                        _ = [96, 96, 302, 302][r];
-                    s.position.set(a, _);
-                    var l = n[r];
-                    s.initialize(t, l, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
             }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].dispose()
-                }
+                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.FormationBoxContainerCombined = r
+    e.BonusUseItem = l
 }

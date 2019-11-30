@@ -20,64 +20,80 @@ const function1410 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(17),
-        s = i(28),
-        a = i(6),
-        _ = i(1411),
-        l = i(1413),
+        r = i(18),
+        s = i(474),
+        a = i(1411),
+        _ = i(65),
+        l = i(44),
         u = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
-                return r._layer = e, r._banner_f = i, r._banner_e = n, r._search_light_task = o, r
+                return r._attacker = e, r._slot1 = i, r._slot2 = n, r._slot3 = o, r._friend = r._attacker.friend, r._canvas = new a.CutinCanvasSpRDJ, r._view = new PIXI.Container, r.view.addChild(r._canvas), r._ship = new PIXI.Sprite, r
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._banner_f,
-                    i = this._banner_e;
-                1 == (null != e || null != i) ? this._effectWithFlare(e, i) : null == this._search_light_task ? this._preEndTask() : this._search_light_task.start(function () {
-                    t._search_light_task = null, t._preEndTask()
-                })
-            }, e.prototype._effectWithFlare = function (t, e) {
-                var i = this,
-                    n = new s.ParallelTask;
-                n.add(new _.TaskBannerFlareFire(t)), n.add(new _.TaskBannerFlareFire(e)), n.start(function () {
-                    createjs.Tween.get(null).wait(1170).call(function () {
-                        i._flareAnimation(t, e)
-                    }), null != i._search_light_task && createjs.Tween.get(null).wait(3200).call(function () {
-                        i._search_light_task.start(function () {
-                            i._search_light_task = null, i._preEndTask()
-                        })
+            return n(e, t), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.preload = function (t) {
+                if (null != this._preload_task) t();
+                else {
+                    var e = this._attacker.mst_id,
+                        i = this._attacker.isDamaged(),
+                        n = null == this._slot1 ? 0 : this._slot1.mstID,
+                        o = null == this._slot2 ? 0 : this._slot2.mstID,
+                        r = null == this._slot3 ? 0 : this._slot3.mstID;
+                    this._preload_task = new s.CutinResourcesPreloadTask(e, i, !0, n, o, r), this._preload_task.start(function () {
+                        t()
                     })
+                }
+            }, e.prototype._start = function () {
+                this._ready()
+            }, e.prototype._ready = function () {
+                this._ship.texture = this._preload_task.getShipTexture();
+                var t = this._preload_task.getShipOffset();
+                this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new l.ShipFlash(this._preload_task.getShipTexture()), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._friend ? (this._canvas.chara.x = -225, this._canvas.chara.y = -87) : (this._canvas.chara.x = 483, this._canvas.chara.y = -138), this._canvas.initialize(this._friend, this._preload_task), this._anim1()
+            }, e.prototype._anim1 = function () {
+                var t = this;
+                this._canvas.bg.show(366), createjs.Tween.get(this._canvas.chara).wait(200).to({
+                    x: (this._friend ? 0 : 465) - 104,
+                    alpha: 1
+                }, 366).wait(1200).call(function () {
+                    t._anim2()
+                }), this._canvas.layer_item1.show(400), this._canvas.layer_item2.show(833), this._canvas.layer_item3.show(1266), this._canvas.layer_wave.show(533), this._canvas.layer_names.show(400)
+            }, e.prototype._anim2 = function () {
+                var t = this;
+                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
+                    t._shipFlash.play()
+                }).wait(200).call(function () {
+                    t._anim3()
                 })
-            }, e.prototype._flareAnimation = function (t, e) {
+            }, e.prototype._anim3 = function () {
+                var t = this;
+                this._canvas.layer_item1.hide(0), this._canvas.layer_item2.hide(0), this._canvas.layer_item3.hide(0);
+                var e = new _.IntensiveLines;
+                e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 200);
+                var i = new r.FadeBox(1, 16777215);
+                i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._anim4(e, i)
+                })
+            }, e.prototype._anim4 = function (t, e) {
                 var i = this;
-                this._flare_light_task = new s.ParallelTask;
-                var n = this._layer;
-                this._flare_light_task.add(new c(n));
-                var o;
-                null != t && (o = new PIXI.Point(855, 255), this._flare_light_task.add(new l.TaskFlareAnimation(n, o))), null != e && (o = new PIXI.Point(345, 150), this._flare_light_task.add(new l.TaskFlareAnimation(n, o))), this._flare_light_task.start(function () {
-                    i._flare_light_task = null, i._preEndTask()
+                this._canvas.dispose(), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
                 })
-            }, e.prototype._preEndTask = function () {
-                null == this._search_light_task && null == this._flare_light_task && this._endTask()
             }, e.prototype._endTask = function () {
-                this._layer = null, this._banner_f = null, this._banner_e = null, this._search_light_task = null, t.prototype._endTask.call(this)
+                this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, this._preload_task = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskFlareEffect = u;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = new r.FadeBox(.5, 16777215);
-            e.hide(0), this._layer.addChild(e), a.SE.play("120"), e.show(170, function () {
-                e.hide(170, function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
-            })
-        }, e
-    }(o.TaskBase)
+    e.CutinSpRDJ = u
 }

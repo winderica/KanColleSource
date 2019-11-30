@@ -19,87 +19,48 @@ const function1293 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(6),
-        s = i(19),
-        a = i(442),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+    var o = i(24),
+        r = i(19),
+        s = i(1294),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._type = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._numset = new s.NumericalDisplaySet, i.addChild(i._numset), i._numset.visible = !1, i
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._data = this._model.sortie.getNextCell().getHappeningData(), this._scene.view.message_box.text = "\u53f8\u4ee4\u5b98\uff01\u3046\u305a\u3057\u304a\u304c\u767a\u751f\u3057\u307e\u3057\u305f\uff01", this._uzu = new l;
-                var e = this._scene.view.map.ship_icon;
-                e.under.addChild(this._uzu), this._uzu.activate(), e.startWaveWhite(), r.SE.play("254");
-                var i = {
-                    rad: 0,
-                    a: 36
-                };
-                createjs.Tween.get(i, {
-                    onChange: function () {
-                        e.ship.x = Math.cos(i.rad) * i.a, e.ship.y = Math.sin(i.rad) * i.a, i.rad += Math.PI / 180 * 5 * (60 / createjs.Ticker.framerate)
-                    }
-                }).to({
-                    a: 0
-                }, 2400).call(function () {
-                    e.stopWave(), t._animItem()
-                })
-            }, e.prototype._animItem = function () {
-                var t = this,
-                    e = this._data.getUseitemMstID(),
-                    i = this._data.lost_count,
-                    n = new a.CompDropItem;
-                n.initialize(e, i);
-                var o = this._scene.view.map.ship_icon;
-                o.under.addChild(n), createjs.Tween.get(n).to({
-                    x: -120
-                }, 1400), createjs.Tween.get(n).to({
-                    y: -60
-                }, 400, createjs.Ease.quadOut).to({
-                    y: 150
-                }, 1e3, createjs.Ease.quadIn), createjs.Tween.get(n).wait(1200).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    o.under.removeChild(n), n.dispose(), t._hideUzu()
-                })
-            }, e.prototype._hideUzu = function () {
-                var t = this,
-                    e = this._scene.view.map.ship_icon;
-                createjs.Tween.get(this._uzu).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e.under.removeChild(t._uzu), t._uzu.deactivate(), t._uzu = null, t._showText()
-                })
-            }, e.prototype._showText = function () {
-                var t = this,
-                    e = this._data.getUseitemMstID(),
-                    i = this._data.lost_count,
-                    n = this._data.isDentan();
-                this._scene.view.message_box.showUzushioText(e, i, n), createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, this._data = null, t.prototype._endTask.call(this)
-            }, e
-        }(o.TaskBase);
-    e.CellTaskHappening = _;
+            return n(e, t), e
+        }(o.Container);
+    e.LandingBalloonBase = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(52), this._img.position.set(-5, -92)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(53), this._img.position.set(-45, -105)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(54), this._img.position.set(-86, -92))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 8 - Math.round(this._numset.width / 2), this._numset.y = -36, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -33 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType1 = _;
     var l = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e.scale.y = .5;
-            var i = s.MAP_COMMON.getTexture(183);
-            return e._content = new PIXI.Sprite(i), e._content.anchor.set(.5), e.addChild(e._content), e
+            return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._content, {
-                loop: !0
-            }).to({
-                rotation: 2 * Math.PI
-            }, 3e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(56), this._img.position.set(0, -45)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(57), this._img.position.set(-29, 0)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(58), this._img.position.set(-63, 0))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 24 - Math.round(this._numset.width / 2), this._numset.y = 84, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -12 - Math.round(this._numset.width / 2), this._numset.y = 83, this._numset.visible = !0) : this._numset.visible = !1
         }, e
-    }(PIXI.Container)
+    }(a);
+    e.LandingBalloonType2 = l;
+    var u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(60), this._img.position.set(-15, -101)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(61), this._img.position.set(-87, -93)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(62), this._img.position.set(-99, -12))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = -35 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -47 - Math.round(this._numset.width / 2), this._numset.y = 57, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType3 = u
 }

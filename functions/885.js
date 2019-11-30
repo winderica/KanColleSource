@@ -19,30 +19,48 @@ const function885 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(4),
-        s = i(21),
-        a = i(35),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClickYes = function () {
-                    i._cb_onComplete(!0)
-                }, i._onClickNo = function () {
-                    i._cb_onComplete(!1)
-                }, i._cb_onComplete = e;
-                var n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63)),
-                    _ = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(83)),
-                    l = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(3));
-                i.labelUse = new r.TextBox(21, 16777215), i.labelName = new r.TextBox(21, 1949120), i.beforeCount = new r.TextBox(22, 16777215), i.afterCount = new r.TextBox(22, 16777215);
-                var u = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(0));
-                return i.labelName.text = "\u9ad8\u901f\u5efa\u9020", i.labelUse.text = "\u4f7f\u7528\u3059\u308b", i.beforeCount.anchor.x = 1, i.beforeCount.position.set(630, 217), i.afterCount.position.set(664, 217), i.labelName.position.set(307, 166), i.labelUse.position.set(513, 166), u.position.set(730, 297), l.position.set(432, -43), _.position.set(498, 210), u.position.set(639, 226), i.addChild(n, l), i._btn_yes = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(44)), i._btn_yes.interactive = !0, i._btn_yes.buttonMode = !0, i._btn_yes.position.set(540, 484), i._btn_yes.on(o.EventType.CLICK, i._onClickYes), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(36)), i._btn_no.interactive = !0, i._btn_no.buttonMode = !0, i._btn_no.position.set(273, 484), i._btn_no.on(o.EventType.CLICK, i._onClickNo), i.addChild(i._btn_no), i.addChild(i.beforeCount, i.afterCount, u, _, i.labelName, i.labelUse), i
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.STAR = 5, e.SHOOTING_STAR_DISTANCE = 45;
+                var i = Math.random();
+                e.stars = [], e.starTables = new Array;
+                for (var n = 0; n < e.STAR; n++) {
+                    var r = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(143));
+                    r.anchor.set(.5, .5), r.alpha = 0, r.position.set(0, 0);
+                    var s = Math.sin(Math.PI / 180 * (360 * i)),
+                        a = Math.cos(Math.PI / 180 * (360 * i)),
+                        _ = {
+                            x: 0,
+                            y: 0
+                        };
+                    _.x = s, _.y = a, e.stars.push(r), e.starTables.push(_), e.addChild(r)
+                }
+                return e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.off(o.EventType.CLICK, this._onClickNo), this.beforeCount.destroy(), this.afterCount.destroy(), this.labelName.destroy(), this.labelUse.destroy(), this._cb_onComplete = null, this._btn_yes = null, this._btn_no = null, this.beforeCount = null, this.afterCount = null, this.labelName = null, this.labelUse = null
-            }, e.prototype.update = function (t, e) {
-                this.beforeCount.text = t.toString(), this.afterCount.text = e.toString()
+            return n(e, t), e.prototype.updateStarPosition = function () {
+                for (var t = 0; t < this.stars.length; t++) {
+                    var e = Math.PI / 180 * (360 * Math.random()),
+                        i = Math.sin(e),
+                        n = Math.cos(e);
+                    this.starTables[t].x = i, this.starTables[t].y = n
+                }
+            }, e.prototype.updateAlpha = function (t) {
+                void 0 === t && (t = 0);
+                for (var e = 0; e < this.stars.length; e++) {
+                    this.stars[e].alpha = t
+                }
+            }, e.prototype.updateAnimation = function (t) {
+                for (var e = Math.PI / 180 * (180 * t), i = 0; i < this.stars.length; i++) {
+                    var n = this.stars[i],
+                        o = this.starTables[i];
+                    n.rotation = e, n.position.set(o.x * this.SHOOTING_STAR_DISTANCE * t, o.y * this.SHOOTING_STAR_DISTANCE * t)
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0; t < this.stars.length; t++) this.stars[t] = null;
+                this.starTables = null, this.stars = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.HighSpeedConfirmView = _
+    e.GreenStarParticle = r
 }

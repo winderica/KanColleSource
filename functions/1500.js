@@ -19,18 +19,45 @@ const function1500 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_practice/battle_result", n._data = e, n._debug = i, n
+    var o = i(0),
+        r = i(8),
+        s = i(60),
+        a = i(81),
+        _ = i(210),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.setData(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), 361 == t ? this._message_box.initializeForSlot361(e, i) : this._message_box.initializeForSlot(n, e, i)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
             }, e
-        }(o.APIBase);
-    e.APIPracticeResult = r
+        }(PIXI.Container);
+    e.BonusSlot = l
 }

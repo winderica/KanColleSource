@@ -19,18 +19,25 @@ const function941 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(15),
-        a = function (t) {
-            function e(e) {
-                void 0 === e && (e = !1);
-                var i = t.call(this) || this;
-                return i._url = "api_get_member/mission", i._debug = e, i
+    var o = i(199),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._sortie_data = e, n._deck_f = i, n
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.expedition.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_list_items"), s.ObjUtil.getNumArray(this._raw_data, "api_limit_time")), t.prototype._completedEnd.call(this)
-            }, e
-        }(r.APIBase);
-    e.ExpeditionAPI = a
+            return n(e, t), Object.defineProperty(e.prototype, "sortie", {
+                get: function () {
+                    return this._sortie_data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "deck_f", {
+                get: function () {
+                    return this._deck_f
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(o.SceneModel);
+    e.MapSceneModel = r
 }

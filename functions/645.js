@@ -19,36 +19,31 @@ const function645 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = i(48),
-        a = function (t) {
+    var o = i(10),
+        r = i(48),
+        s = function (t) {
             function e(e, i) {
-                var n = t.call(this, e, null) || this;
-                return n._models = i, n
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype._createContent = function () {
-                this._icons = [], this._text = new r.TextBox(25, 16774898), this._dialog.container.addChild(this._text);
-                for (var t = "", e = 0, i = this._models.rewards; e < i.length; e++) {
-                    var n = i[e],
-                        s = o.default.resources.getUseitem(n.mst_id, 0),
-                        a = new PIXI.Sprite(s);
-                    a.y = -121, this._dialog.container.addChild(a), this._icons.push(a), t += n.name + "\xd7" + n.count + "\n"
-                }
-                this._text.text = t, this._text.x = -Math.round(this._text.width / 2), this._models.rewards.length >= 6 ? this._text.y = -30 : 5 == this._models.rewards.length ? this._text.y = -15 : this._text.y = 0;
-                for (var _ = this._icons.length, l = [0, 0, 96, 75, 45, 30, 15][_], u = 75 * _ + l * (_ - 1), c = 0; c < _; c++) {
-                    var a = this._icons[c];
-                    a.x = -u / 2 + (75 + l) * c
-                }
-                this._showDialog()
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                this._panel = new PIXI.Container;
+                var t = new PIXI.Sprite(o.COMMON_MISC.getTexture(165));
+                t.position.set(-267, -138), this._panel.addChild(t);
+                var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(164));
+                e.position.set(-45, -12), this._panel.addChild(e);
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(166));
+                i.position.set(-67, 102), this._panel.addChild(i);
+                var n = new PIXI.Sprite;
+                350 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(167), n.position.set(-10, 99)) : 200 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(168), n.position.set(-12, 99)) : 300 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(169), n.position.set(-11, 99)) : 180 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(170), n.position.set(-12, 99)) : 400 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(171), n.position.set(-11, 99)) : 80 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(172), n.position.set(-4, 99)) : 330 == this.model.value && (n.texture = o.COMMON_MISC.getTexture(173), n.position.set(-11, 99)), this._panel.addChild(n), this._dialog.container.addChild(this._panel), this._showDialog()
             }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._text), this._text.destroy(), this._text = null;
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    this._dialog.container.removeChild(i)
-                }
-                this._icons = null
+                this._dialog.container.removeChild(this._panel), this._panel = null
             }, e
-        }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogMultiUseitem = a
+        }(r.TaskRewardDialogBase);
+    e.TaskRewardDialogWarResult = s
 }

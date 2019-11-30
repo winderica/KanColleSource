@@ -19,57 +19,69 @@ const function1455 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(188),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this, e) || this;
-                return i._initPlaneFrom(), i
+    var o = i(5),
+        r = i(22),
+        s = i(481),
+        a = i(1458),
+        _ = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "airunit_id", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_base_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "squadrons", {
-                get: function () {
-                    var t = [],
-                        e = o.ObjUtil.getObjectArray(this._o, "api_squadron_plane");
-                    if (null != e)
-                        for (var i = 0, n = e; i < n.length; i++) {
-                            var r = n[i];
-                            t.push({
-                                mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
-                                count: o.ObjUtil.getNumber(r, "api_count")
-                            })
-                        }
-                    if (null != (e = o.ObjUtil.getObjectArray(this._o, "api_map_squadron_plane")))
-                        for (var s = this.plane_from_f.map(function (t) {
-                                return t + 1
-                            }), a = 0, _ = s; a < _.length; a++) {
-                            var l = _[a];
-                            if (e.hasOwnProperty(l.toString()))
-                                for (var u = e[l], c = 0, h = u; c < h.length; c++) {
-                                    var p = h[c];
-                                    t.push({
-                                        mst_id: o.ObjUtil.getNumber(p, "api_mst_id"),
-                                        count: o.ObjUtil.getNumber(p, "api_count")
-                                    })
-                                }
-                        }
-                    return t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "seiku", {
-                get: function () {
-                    var t = this._stage1;
-                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_disp_seiku")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(r.AirWarDataBase);
-    e.AirUnitData = s
+            return n(e, t), e.prototype.playTorpedo = function (t, e, i, n) {
+                var o = this;
+                void 0 === i && (i = 1800), void 0 === n && (n = null);
+                var r = new a.Torpedo(1);
+                this.addChild(r), r.play(t, e, i, function () {
+                    o.removeChild(r), null != n && n()
+                })
+            }, e.prototype.playTorpedoAtNight = function (t, e, i, n) {
+                var o = this;
+                void 0 === i && (i = 800), void 0 === n && (n = null);
+                var r = new a.Torpedo(2);
+                this.addChild(r), r.play(t, e, i, function () {
+                    o.removeChild(r), null != n && n()
+                })
+            }, e.prototype.playAerialTorpedo = function (t, e, i) {
+                var n = this;
+                void 0 === i && (i = null);
+                var o = new a.Torpedo(3);
+                this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
+                    n.removeChild(o), null != i && i()
+                })
+            }, e.prototype.playAerialTorpedoSuper = function (t, e, i) {
+                var n = this;
+                void 0 === i && (i = null);
+                var o = new a.Torpedo(5);
+                this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
+                    n.removeChild(o), null != i && i()
+                })
+            }, e.prototype.playAerialTorpedoJet = function (t, e, i) {
+                var n = this;
+                void 0 === i && (i = null);
+                var o = new a.Torpedo(4);
+                this.addChild(o), o.play(t, e, 0, function () {
+                    n.removeChild(o), null != i && i()
+                })
+            }, e
+        }(s.LayerExplosion);
+    e.LayerTorpedo = _;
+    ! function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._night = e, i._canvas = new Array, i._createCanvas(!1, !1), i._createCanvas(!0, !1), i._createCanvas(!1, !0), i._createCanvas(!0, !0), i
+        }
+        n(e, t), e.prototype.getCanvas = function (t, e) {
+            return this._night ? this._canvas[0] : this._canvas[(t ? 1 : 0) + (e ? 2 : 0)]
+        }, e.prototype._createCanvas = function (t, e) {
+            var i = r.BannerSize.W;
+            1 == t && (i += .9 * r.BannerSize.W);
+            var n = r.BannerSize.W;
+            1 == e && (n += .9 * r.BannerSize.W);
+            var s = o.default.width - i - n,
+                a = new PIXI.Graphics;
+            a.beginFill(16711680, .3), a.drawRect(i, 0, s, o.default.height), a.endFill(), this.addChild(a);
+            var _ = new PIXI.Container;
+            _.mask = a, this.addChild(_), this._canvas.push(_)
+        }
+    }(PIXI.Container)
 }

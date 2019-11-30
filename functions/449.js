@@ -19,33 +19,32 @@ const function449 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(145),
-        r = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(16),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._seiku = i, n
             }
-            return n(e, t), e.prototype.play = function (t) {
-                for (var e = this, i = this, n = 0, o = this._planes_f; n < o.length; n++) {
-                    var r = o[n];
-                    ! function (n) {
-                        var o = new PIXI.Point(1373, n.y - 405);
-                        1 == i._air_raid && (o.x += -570, o.y += -450), n.playForJet(o, 1850), i._now_animation.push(n), n.once("complete", function () {
-                            var i = e._now_animation.indexOf(n);
-                            e._now_animation.splice(i, 1), 0 == e._now_animation.length && t()
-                        })
-                    }(r)
+            return n(e, t), e.prototype._start = function () {
+                var t = -1;
+                if (1 == this._seiku ? t = 136 : 2 == this._seiku ? t = 140 : 4 == this._seiku && (t = 138), t < 0) this._endTask();
+                else {
+                    var e = r.BATTLE_MAIN.getTexture(t);
+                    this._content = new PIXI.Sprite(e), this._anim()
                 }
-                for (var s = this, a = 0, _ = this._planes_e; a < _.length; a++) {
-                    var r = _[a];
-                    ! function (i) {
-                        var n = new PIXI.Point(-173, i.y - 855);
-                        i.playForJet(n, 1850), s._now_animation.push(i), i.once("complete", function () {
-                            var n = e._now_animation.indexOf(i);
-                            e._now_animation.splice(n, 1), 0 == e._now_animation.length && t()
-                        })
-                    }(r)
-                }
+            }, e.prototype._anim = function () {
+                var t = this;
+                this._content.position.set(600, 600), this._content.anchor.set(.5), this._content.alpha = 0, this._layer.addChild(this._content), createjs.Tween.get(this._content).to({
+                    alpha: 1
+                }, 400).wait(1800).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._content), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._content = null
             }, e
-        }(o.AirWarCanvas);
-    e.AirWarJetCanvas = r
+        }(o.TaskBase);
+    e.TaskAirWarShowSeiku = s
 }

@@ -19,36 +19,45 @@ const function1305 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(64),
+    var o = i(0),
+        r = i(40),
         s = i(19),
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._container = new PIXI.Container, e.addChild(e._container), e._bg = new r.CenteringSprite, e._bg.scale.x = 1.2, e._container.addChild(e._bg), e._txt = new r.CenteringSprite, e._container.addChild(e._txt), e
+                return e._bg = new PIXI.Sprite, e._bg.position.set(86, 60), e._content = new _, e._content.position.set(390, 153), e.addChild(e._bg), e.addChild(e._content), e._gearBtn = new r.GearBtnHome, e._gearBtn.position.set(1127, 653), e.addChild(e._gearBtn), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                switch (t) {
-                    case 1:
-                        this._bg.texture = s.MAP_COMMON.getTexture(111), this._txt.texture = s.MAP_COMMON.getTexture(122);
-                        break;
-                    case 2:
-                        this._bg.texture = s.MAP_COMMON.getTexture(114), this._txt.texture = s.MAP_COMMON.getTexture(124);
-                        break;
-                    case 3:
-                        this._bg.texture = s.MAP_COMMON.getTexture(111), this._txt.texture = s.MAP_COMMON.getTexture(123);
-                        break;
-                    case 4:
-                        this._bg.texture = s.MAP_COMMON.getTexture(112), this._txt.texture = s.MAP_COMMON.getTexture(125)
-                }
-                this._container.y = -o.default.height / 2 - this._container.height
-            }, e.prototype.playAnimation = function (t, e) {
-                createjs.Tween.get(this._container).call(t).to({
-                    y: 0
-                }, 600, createjs.Ease.sineOut).wait(1e3).to({
-                    y: o.default.height / 2 + this.height
-                }, 600, createjs.Ease.sineIn).call(e)
+            return n(e, t), Object.defineProperty(e.prototype, "content", {
+                get: function () {
+                    return this._content
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gearBtn", {
+                get: function () {
+                    return this._gearBtn
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._bg.texture = s.MAP_COMMON.getTexture(168), this._content.initialize(t), this._gearBtn.initialize()
             }, e
         }(PIXI.Container);
-    e.AirRaidResultTelop = a
+    e.MapEndView = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            if (this._title.texture = s.MAP_COMMON.getTexture(187), null != t)
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e],
+                        n = o.default.resources.getUseitem(i, 0),
+                        r = new PIXI.Sprite(n);
+                    r.x = 33 + e % 5 * 75, r.y = 56 + 75 * Math.floor(e / 5), this.addChild(r)
+                }
+        }, e
+    }(PIXI.Container);
+    e.MapEndContentView = _
 }

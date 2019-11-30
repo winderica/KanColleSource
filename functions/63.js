@@ -19,80 +19,34 @@ const function63 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(135),
+    var o = i(2),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._icon = new PIXI.Sprite, e.addChild(e._icon), e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._entered = !1, n._showed_telop = !1, n._scene = e, n._record = i, n
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this._icon.texture = 0 == t ? PIXI.Texture.EMPTY : o.COMMON_ICON_WEAPON.getTextureFromMstID(t);
-                var e = this._getOffset(t);
-                this._icon.position.set(e.x, e.y)
-            }, e.prototype.clear = function () {
-                this._icon.texture = PIXI.Texture.EMPTY
-            }, e.prototype.dispose = function () {
-                this.clear(), this.removeChild(this._icon), this._icon = null
-            }, e.prototype._getOffset = function (t) {
-                var e = new PIXI.Point;
-                switch (t) {
-                    case 0:
-                        e.set(0, 0);
-                        break;
-                    case 1:
-                        e.set(-6, -6);
-                        break;
-                    case 2:
-                        e.set(0, -2);
-                        break;
-                    case 3:
-                        e.set(-5, -6);
-                        break;
-                    case 5:
-                        e.set(-4, -5);
-                        break;
-                    case 6:
-                    case 7:
-                    case 8:
-                        e.set(-3, 0);
-                        break;
-                    case 9:
-                        e.set(-8, -5);
-                        break;
-                    case 10:
-                        e.set(2, 0);
-                        break;
-                    case 11:
-                        e.set(0, 0);
-                        break;
-                    case 12:
-                        e.set(-5, -3);
-                        break;
-                    case 13:
-                        e.set(-6, -6);
-                        break;
-                    case 14:
-                        e.set(-5, -6);
-                        break;
-                    case 15:
-                    case 19:
-                        e.set(0, 0);
-                        break;
-                    case 21:
-                        e.set(-3, -3);
-                        break;
-                    case 22:
-                    case 23:
-                        e.set(-5, -3);
-                        break;
-                    case 29:
-                        e.set(-6, -5);
-                        break;
-                    default:
-                        e.set(-5, -5)
-                }
-                return e
+            return n(e, t), e.prototype._start = function () {
+                1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() ? this._endTask() : this._enterEnemies()
+            }, e.prototype._enterEnemies = function () {
+                var t = this;
+                this._scene.view.bannerGroupLayer.createEnemyEnterTask().start(function () {
+                    t._entered = !0, t._preEnd()
+                });
+                var e = this._scene.data.model.deck_e,
+                    i = e.formation,
+                    n = e.type,
+                    o = e.getCountMainDeck(),
+                    r = e.getCountSubDeck(),
+                    s = this._scene.view.raderLayer.rader_e;
+                this._scene.data.model.map_info.isLongRangeFires() ? (this._showed_telop = !0, s.show(i, n, 0, 0, !0)) : (this._scene.view.layer_info2.once("complete", function () {
+                    t._showed_telop = !0, t._preEnd()
+                }), this._scene.view.layer_info2.showCenter(5), s.show(i, n, o, r, !1))
+            }, e.prototype._preEnd = function () {
+                var t = this;
+                0 != this._entered && 0 != this._showed_telop && setTimeout(function () {
+                    t._endTask()
+                }, 200)
             }, e
-        }(PIXI.Container);
-    e.IconWeapon = r
+        }(o.TaskBase);
+    e.PhaseEnemyEnter = r
 }

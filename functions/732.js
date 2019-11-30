@@ -19,30 +19,34 @@ const function732 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
+    var o = i(0),
         r = i(2),
         s = i(14),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+        a = i(219),
+        _ = i(733),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.UIImageLoader("organize");
-                switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_filter.json"), o.COMBINABLE && e.add("organize_rengo.json"), o.MAMIYA_IRAKO_SEASON) {
-                    case 2:
-                        e.add("organize_hokyu_dialog_xmas.json");
-                        break;
-                    case 4:
-                        e.add("organize_hokyu_dialog_summer.json");
-                        break;
-                    default:
-                        e.add("organize_hokyu_dialog_default.json")
-                }
-                e.load(function () {
-                    t._endTask()
-                })
+                var t = this;
+                if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
+                    var e = a.OrganizeSceneMemory.filterStatus,
+                        i = a.OrganizeSceneMemory.japanese;
+                    new _.UpdateListStatusAPI(e, i).start(function () {
+                        o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._isChangeListStatus = function () {
+                if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
+                var t = o.default.model.basic.getFilterStatusOrganizeList(),
+                    e = a.OrganizeSceneMemory.filterStatus;
+                if (t.length != e.length) return !0;
+                for (var i = 0; i < t.length; i++)
+                    if (t[i] != e[i]) return !0;
+                return !1
             }, e
         }(r.TaskBase);
-    e.TaskLoadResourcesOrganize = a
+    e.FinalizeTask = l
 }

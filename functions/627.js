@@ -19,117 +19,52 @@ const function627 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(24),
-        s = i(12),
-        a = i(306),
-        _ = i(4),
-        l = i(9),
+    var o = i(10),
+        r = i(8),
+        s = i(30),
+        a = i(30),
+        _ = i(310),
+        l = i(205),
         u = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._bg = new s.Sprite, e._bg.anchor.set(.5), e.addChild(e._bg), e._light = new c, e.addChild(e._light), e._container = new r.Container, e.addChild(e._container), e._message = new h, e._message.position.set(-360, -291), e.addChild(e._message), e._get_icon = new a.GetIcon, e._get_icon.position.set(223, -181), e.addChild(e._get_icon), e._close_btn = new p, e._close_btn.position.set(-90, 222), e.addChild(e._close_btn), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "light", {
-                get: function () {
-                    return this._light
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "container", {
-                get: function () {
-                    return this._container
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return this._message
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "get_icon", {
-                get: function () {
-                    return this._get_icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "close_btn", {
-                get: function () {
-                    return this._close_btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = l.COMMON_MISC.getTexture(187), this._light.initialize(), this._get_icon.initialize(), this._close_btn.initialize()
-            }, e.prototype.dispose = function () {
-                this._light.dispose(), this._message.dispose(), this._get_icon.dispose(), this._close_btn.dispose()
+            return n(e, t), e.prototype._initBG = function () {
+                var t = this;
+                this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
+                    t._animation()
+                })
+            }, e.prototype._createItemTobe = function (t, e) {
+                var i = o.COMMON_MISC.getTexture(49),
+                    n = new l.CenteringSprite(i);
+                return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
+            }, e.prototype._change = function () {
+                var e = this;
+                t.prototype._change.call(this);
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
+                i.x = -i.width / 2, i.y = -i.height / 2;
+                var n = new a.Container;
+                n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
+                    scaleX: 3.3,
+                    scaleY: 3.3,
+                    alpha: 1
+                }, 350).to({
+                    scaleX: 5,
+                    scaleY: 5
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(n)
+                });
+                var s = new r.AreaBox(1, 16777215);
+                s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({
+                    alpha: 1
+                }, 500).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(s)
+                })
             }, e
-        }(r.Container);
-    e.RewardDialog = u;
-    var c = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = l.COMMON_MISC.getTexture(69)
-            }, e.prototype.activate = function () {
-                null == this._t && (this.rotation = 0, this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 6e3))
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e
-        }(s.Sprite),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.beginFill(0, .7), e.drawRect(0, 0, 721, 76), e.endFill(), e._texts = [], e.visible = !1, e
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0, i = this._texts; e < i.length; e++) {
-                    var n = i[e];
-                    null != n.parent && n.parent.removeChild(n)
-                }
-                if (this._texts = [], null == t) return void(this.visible = !1);
-                for (var o = t.split("\n"), r = 9, s = 0; s < o.length; s++) {
-                    var n = new _.TextBox(21, 16777215);
-                    n.text = o[s], n.x = 360 - n.width / 2, n.y = r, this.addChild(n), this._texts.push(n), r += n.height
-                }
-                this.visible = !0
-            }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._texts; t < e.length; t++) {
-                    e[t].destroy()
-                }
-            }, e
-        }(PIXI.Graphics),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e.visible = !1, e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = l.COMMON_MISC.getTexture(22)
-            }, e.prototype.activate = function (t) {
-                this._cb_onClick = t, 1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.CLICK, this._onClick), this.visible = !0)
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
-            }, e
-        }(s.Sprite)
+        }(_.ModelChangeTask);
+    e.AirunitBaseOpenTask = u
 }

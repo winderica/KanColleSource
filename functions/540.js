@@ -4,47 +4,27 @@ const function540 = function (t, e, i) {
         value: !0
     });
     var n = i(0),
-        o = i(7),
+        o = i(275),
         r = function () {
-            function t(t) {
-                this._o = t
+            function t() {
+                this._now = 0
             }
-            return Object.defineProperty(t.prototype, "mstID", {
+            return Object.defineProperty(t.prototype, "now", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_id")
+                    return null == this._task ? this._now : this._task.after
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
-                get: function () {
-                    return o.ObjUtil.getString(this._o, "api_name")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "description", {
-                get: function () {
-                    var t = o.ObjUtil.getStrArray(this._o, "api_description");
-                    return null != t && t.length > 0 ? t[0] : ""
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
-                get: function () {
-                    return 44 == this.mstID ? n.default.model.basic.getCoinCount() : o.ObjUtil.getNumber(this._o, "api_count")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isUsable = function () {
-                return 4 == this._use_type
-            }, t.prototype.__setCount__ = function (t) {
-                44 == this.mstID ? n.default.model.basic.setCoinCount(t) : this._o.api_count = t
-            }, Object.defineProperty(t.prototype, "_use_type", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_usetype")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            }), t.prototype.isChangingNow = function () {
+                return null != this._task
+            }, t.prototype.change = function (t, e) {
+                var i = this;
+                return void 0 === e && (e = null), 1 != this.isChangingNow() && (this._now != t && (this._task = new o.TaskSceneChange(this._now, t, e), this._task.start(function () {
+                    i._changeComplete()
+                }), !0))
+            }, t.prototype._changeComplete = function () {
+                this._now = this._task.after, this._task = null, n.default.view.getNowScene().emit("showed")
+            }, t
         }();
-    e.UseItemModel = r
+    e.SceneManager = r
 }

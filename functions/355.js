@@ -19,36 +19,71 @@ const function355 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    null == i._t && (i._light.alpha = 0, i._t = createjs.Tween.get(i._light, {
-                        loop: !0
-                    }).to({
-                        alpha: 1
-                    }, 500).to({
-                        alpha: 0
-                    }, 500))
-                }, i._onMouseOut = function () {
-                    null != i._t && (i._t.setPaused(!0), i._t = null, i._light.alpha = 0)
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._light = new PIXI.Sprite, i._light.position.set(-12, -12), i.addChild(i._light), i._light.alpha = 0, i._img = new PIXI.Sprite, i.addChild(i._img), i._img.interactive = !0, i._cb_onClick = e, i
+    var o = i(0),
+        r = i(2),
+        s = i(17),
+        a = i(23),
+        _ = i(25),
+        l = i(26),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.NUM_TEXTURE_M = [67, 68, 69, 70, 71, 72, 73, 74, 75, 76], e.PULS_TEXTURE = [87, 88, 89], e._setTexture = function (t) {
+                    e.texture = l.SALLY_AIRUNIT.getTexture(t)
+                }, e._fairy = new PIXI.Sprite, e.addChild(e._fairy), e._area = new PIXI.Sprite, e._area.position.set(5, 5), e.addChild(e._area), e._distanceLayer = new PIXI.Container, e.addChild(e._distanceLayer), e._text = new PIXI.Sprite(l.SALLY_AIRUNIT.getTexture(132)), e._text.position.set(5, 46), e._distanceLayer.addChild(e._text), e._distance1 = new PIXI.Sprite, e._distanceLayer.addChild(e._distance1), e._distance2 = new PIXI.Sprite, e._distanceLayer.addChild(e._distance2), e._plusNum = new PIXI.Sprite, e._distanceLayer.addChild(e._plusNum), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = o.SALLY_AIRUNIT.getTexture(21), this._light.texture = o.SALLY_AIRUNIT.getTexture(22)
-            }, e.prototype.update = function (t) {
-                this.visible = t, 1 == t ? this._activate() : this._deactivate()
+            return n(e, t), e.prototype.initialize = function (t) {
+                var e = _.MathUtil.zeroPadding(t, 3),
+                    i = "./resources/area/airunit/" + e + ".png";
+                i = i + "?" + s.START_TIME, this._area.texture = PIXI.Texture.fromImage(i)
+            }, e.prototype.update = function (t, e, i, n) {
+                var o = this;
+                this._stopLoadImage(), e > 0 ? (this._load_task = new c(e, this._fairy), this._load_task.start(function () {
+                    o._load_task = null
+                })) : this._fairy.texture = PIXI.Texture.EMPTY, this._stopAnimation(), 1 == t ? this._t = createjs.Tween.get(null, {
+                    loop: !0
+                }).call(this._setTexture, [0]).wait(150).call(this._setTexture, [1]).wait(150) : 2 == t ? this.texture = l.SALLY_AIRUNIT.getTexture(2) : 3 == t ? this._t = createjs.Tween.get(null, {
+                    loop: !0
+                }).call(this._setTexture, [3]).wait(150).call(this._setTexture, [4]).wait(150) : this.texture = PIXI.Texture.EMPTY;
+                var r = i,
+                    s = n;
+                if (this._distanceLayer.visible = !1, this._plusNum.visible = !1, this._distance2.visible = !1, r > 0) {
+                    switch (this._distanceLayer.visible = !0, s) {
+                        case 1:
+                        case 2:
+                        case 3:
+                            this._plusNum.visible = !0, this._plusNum.texture = l.SALLY_AIRUNIT.getTexture(this.PULS_TEXTURE[s - 1])
+                    }
+                    if (r >= 10) {
+                        var a = r.toString().split(""),
+                            _ = parseInt(a[0]),
+                            u = parseInt(a[1]);
+                        this._distance2.visible = !0, this._distance1.position.set(86, 35), this._distance2.position.set(102, 35), this._plusNum.position.set(120, 40), this._distance1.texture = l.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[_]), this._distance2.texture = l.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[u])
+                    } else this._distance1.position.set(86, 35), this._plusNum.position.set(102, 40), this._distance1.texture = l.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[r])
+                }
             }, e.prototype.dispose = function () {
-                this._deactivate(), this._onMouseOut(), this.removeChildren(), this._cb_onClick = null
-            }, e.prototype._activate = function () {
-                1 != this._img.buttonMode && (this._img.buttonMode = !0, this._img.on(r.EventType.MOUSEOVER, this._onMouseOver), this._img.on(r.EventType.MOUSEOUT, this._onMouseOut), this._img.on(r.EventType.CLICK, this._onClick))
-            }, e.prototype._deactivate = function () {
-                this._img.buttonMode = !1, this._img.off(r.EventType.MOUSEOVER, this._onMouseOver), this._img.off(r.EventType.MOUSEOUT, this._onMouseOut), this._img.off(r.EventType.CLICK, this._onClick)
+                this.removeChildren(), this._distanceLayer.removeChildren(), this._stopLoadImage(), this._stopAnimation()
+            }, e.prototype._stopLoadImage = function () {
+                null != this._load_task && (this._load_task.cancel(), this._load_task = null)
+            }, e.prototype._stopAnimation = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelSupplyAllBtn = s
+        }(PIXI.Sprite);
+    e.AirUnitPanelBanner = u;
+    var c = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._mst_id = e, n._target = i, n
+        }
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._l = new a.SlotLoader, this._l.add(this._mst_id, "airunit_fairy"), this._l.load(function () {
+                null != t._target && (t._target.texture = o.default.resources.getSlotitem(t._mst_id, "airunit_fairy"), t._endTask())
+            })
+        }, e.prototype.cancel = function () {
+            this._endTask()
+        }, e.prototype._endTask = function () {
+            this._target = null, this._l = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase)
 }

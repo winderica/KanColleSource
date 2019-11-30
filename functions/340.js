@@ -20,28 +20,23 @@ const function340 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._light = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(3)), e._light.position.set(600, 195), e._light.anchor.set(.5, .5), e.addChild(e._light), e._light_place = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(4)), e._light_place.position.set(600, 360), e._light_place.anchor.set(.5, .5), e.addChild(e._light_place);
-                var i = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(2));
-                return i.position.set(509, 276), e.addChild(i), e
+                return e._onMouseOver = function () {
+                    e.texture = e._textureOn
+                }, e._onMouseOut = function () {
+                    e.texture = e._textureOff
+                }, e._onClick = function () {
+                    null != e._cb_onClick && e._cb_onClick()
+                }, e._textureOff = o.REMODEL_MAIN.getTexture(1), e._textureOn = o.REMODEL_MAIN.getTexture(2), e.texture = e._textureOff, e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "light", {
-                get: function () {
-                    return this._light
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "light_place", {
-                get: function () {
-                    return this._light_place
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._light = null, this._light_place = null
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._cb_onClick = t
+            }, e.prototype.dispose = function () {
+                this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.FailedPenguin = r
+        }(PIXI.Sprite);
+    e.CancelButton = s
 }

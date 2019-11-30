@@ -1,85 +1,72 @@
 const function529 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
+    var o = i(15),
+        r = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mstID", {
+            return Object.defineProperty(t.prototype, "id", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_id")
+                    return o.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "version", {
+            }), Object.defineProperty(t.prototype, "name", {
                 get: function () {
-                    var t = n.ObjUtil.getStrArray(this._o, "api_version");
-                    return null != t && t.length > 0 ? t[0] : "1"
+                    return o.ObjUtil.getString(this._o, "api_name")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "version_voice", {
+            }), Object.defineProperty(t.prototype, "build_phase_num", {
                 get: function () {
-                    var t = n.ObjUtil.getStrArray(this._o, "api_version");
-                    return null != t && t.length > 1 ? t[1] : "1"
+                    return o.ObjUtil.getNumber(this._o, "api_kcnt", 3)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "version_voice_boko", {
-                get: function () {
-                    var t = n.ObjUtil.getStrArray(this._o, "api_version");
-                    return null != t && t.length > 2 ? t[2] : "1"
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "unique_key", {
-                get: function () {
-                    return n.ObjUtil.getString(this._o, "api_filename")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getPortOffset = function (t) {
-                void 0 === t && (t = !1);
-                var e = t ? "api_boko_d" : "api_boko_n",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-            }, t.prototype.getCenterOffset = function (t) {
-                void 0 === t && (t = !1);
-                var e = t ? "api_kaizo_d" : "api_kaizo_n",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-            }, t.prototype.getLeftOffset = function (t) {
-                void 0 === t && (t = !1);
-                var e = t ? "api_ensyuf_d" : "api_ensyuf_n",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-            }, t.prototype.getMapOffset = function (t) {
-                void 0 === t && (t = !1);
-                var e = t ? "api_map_d" : "api_map_n",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-            }, t.prototype.getRemodelPowupUIOffset = function (t) {
-                void 0 === t && (t = !1);
-                var e = t ? "api_kaisyu_d" : "api_kaisyu_n",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-            }, t.prototype.getBattleOffset = function (t) {
-                void 0 === t && (t = !1);
-                var e = t ? "api_battle_d" : "api_battle_n",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-            }, t.prototype.getFaceRect = function (t) {
-                void 0 === t && (t = !1);
-                var e = n.ObjUtil.getNumArray(this._o, "api_weda"),
-                    i = n.ObjUtil.getNumArray(this._o, "api_wedb");
-                return new PIXI.Rectangle(e[0], e[1], i[0], i[1])
-            }, t.prototype.getPaOffset = function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_pa");
-                return new PIXI.Point(t[0], t[1])
+            }), t.prototype.getEquippableTypes = function () {
+                if (null == this._equippqble_types) {
+                    this._equippqble_types = new Array;
+                    var t = o.ObjUtil.getObject(this._o, "api_equip_type");
+                    if (null != t)
+                        for (var e in t) 1 == t[e] && this._equippqble_types.push(parseInt(e))
+                }
+                return this._equippqble_types.concat()
+            }, t.prototype.getEquippableTypesEx = function () {
+                if (null == this._equippqble_types_ex) return new Array;
+                var t = this.getEquippableTypes(),
+                    e = this._equippqble_types_ex.concat();
+                return t.filter(function (t, i, n) {
+                    return -1 != e.indexOf(t)
+                })
             }, t
         }();
-    e.ShipGraphModel = o
+    e.ShipTypeModel = r;
+    var s = function (t) {
+        function e(e) {
+            return t.call(this, e) || this
+        }
+        return n(e, t), e.prototype.__set_equippqble_types_ex__ = function (t) {
+            this._equippqble_types_ex = t
+        }, e
+    }(r);
+    e.ShipTypeModelEdit = s
 }

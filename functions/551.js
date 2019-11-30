@@ -20,38 +20,18 @@ const function551 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(26),
-        s = function (t) {
+        r = i(9),
+        s = i(7),
+        a = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._url = "api_start2/getData", e
             }
-            return n(e, t), e.prototype.setImage = function (t, e) {
-                switch (t) {
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 23:
-                    case 31:
-                        var i = r.MathUtil.zeroPadding(t, 3),
-                            n = o.default.settings.path_root + "img/common/bg/" + i + ".png";
-                        null != PIXI.utils.TextureCache[n] ? (this.texture = PIXI.utils.TextureCache[n], this.visible = !0, null != e && e()) : this._load(n, e);
-                        break;
-                    default:
-                        this.visible = !1, null != e && e()
-                }
-            }, e.prototype._load = function (t, e) {
-                var i = this;
-                this._loader = new PIXI.loaders.Loader, this._loader.add(t), this._loader.load(function (n) {
-                    if (i._loader == n) {
-                        i._loader = null;
-                        var o = n.resources[t];
-                        i.texture = o.texture, i.visible = !0, null != e && e()
-                    }
-                })
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.const.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_const")), o.default.model.shipType.__setData__(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_stype")), o.default.model.shipType.__setEquipTypeExData__(s.ObjUtil.getNumArray(this._raw_data, "api_mst_equip_exslot")), o.default.model.ship.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_ship")), o.default.model.ship_upgrade.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_shipupgrade")), o.default.model.slot.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_slotitem")), o.default.model.slot.setMstEquipTypeData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_slotitem_equiptype")), o.default.model.furniture_graph.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_furnituregraph")), o.default.model.useItem.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_useitem")), o.default.model.expedition.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mission")), o.default.model.map.setAreaMst(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_maparea")), o.default.model.map.setMapMst(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mapinfo")), o.default.model.mst_bgm.setMstBGMData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_bgm")), o.default.model.mst_bgm.setMapBGMData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mapbgm")), o.default.model.slot.setExtraEquipShipData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_equip_exslot_ship"));
+                var e = o.default.model.payitem;
+                e.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_payitem")), e.setOrders(s.ObjUtil.getObject(this._raw_data, "api_mst_item_shop")), o.default.model.equip.__initData__(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_equip_ship")), o.default.model.furniture.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_furniture")), o.default.model.ship_graph.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_shipgraph")), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.Background = s
+        }(r.APIBase);
+    e.GetDataAPI = a
 }

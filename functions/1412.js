@@ -19,118 +19,76 @@ const function1412 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(12),
+    var o = i(0),
+        r = i(22),
         s = i(6),
-        a = i(16),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._fire1 = new u, e._fire2 = new u, e._fire2.position.set(-35, -21), e._smoke1 = new c, e._smoke1.position.set(36, -3), e._smoke2 = new c, e._smoke2.position.set(-2, -24), e._fire3 = new h, e._fire3.position.set(17, 0), e._fire4 = new h, e._fire4.position.set(-18, -21), e.addChild(e._fire1, e._fire2), e.addChild(e._smoke1, e._smoke2), e.addChild(e._fire3, e._fire4), e._animatin_task = new l(e), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "fire1", {
-                get: function () {
-                    return this._fire1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "fire2", {
-                get: function () {
-                    return this._fire2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "smoke1", {
-                get: function () {
-                    return this._smoke1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "smoke2", {
-                get: function () {
-                    return this._smoke2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "fire3", {
-                get: function () {
-                    return this._fire3
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "fire4", {
-                get: function () {
-                    return this._fire4
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._fire1.initialize(), this._fire2.initialize(), this._smoke1.initialize(), this._smoke2.initialize(), this._fire3.initialize(), this._fire4.initialize()
-            }, e.prototype.getAnimationTask = function () {
-                return this._animatin_task
-            }, e
-        }(PIXI.Container);
-    e.AntiAircraftFire = _;
-    var l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._aa_fire = e, i
+        a = i(125),
+        _ = i(39),
+        l = i(1413),
+        u = function (t) {
+            function e(e, i, n, r, s, a, _, u, c) {
+                var h = t.call(this, e, i, r, _, u, c) || this;
+                return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new l.CutinSpSRD(i, h._slot, h._slot2, h._slot3), h
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;
-                s.SE.play("116"), this._aa_fire.fire1.getTween(0), this._aa_fire.fire2.getTween(133), this._aa_fire.smoke1.getTween(200), this._aa_fire.smoke2.getTween(333).call(function () {
-                    t._endTask()
-                }), this._aa_fire.fire3.getTween(200), this._aa_fire.fire4.getTween(366)
-            }, e
-        }(o.TaskBase),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(0, .5), e.scale.set(0), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = a.BATTLE_MAIN.getTexture(39)
-            }, e.prototype.getTween = function (t) {
-                return createjs.Tween.get(this).wait(t).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 200).to({
-                    alpha: 0
-                }, 200)
-            }, e
-        }(r.Sprite),
-        c = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e.scale.set(0), e.alpha = 0, e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = a.BATTLE_MAIN.getTexture(111)
-            }, e.prototype.getTween = function (t) {
-                return createjs.Tween.get(this).wait(t).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 200).to({
-                    alpha: 0
-                }, 400)
-            }, e
-        }(r.Sprite),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._content = new PIXI.Sprite, e._content.anchor.set(.5), e._content.alpha = 0, e.addChild(e._content), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this._content.texture = a.BATTLE_MAIN.getTexture(40)
-            }, e.prototype.getTween = function (t) {
-                return createjs.Tween.get(this._content).wait(t).to({
-                    x: 27,
-                    alpha: 1
-                }, 133).to({
-                    x: 74,
-                    alpha: 0
-                }, 366)
-            }, e
-        }(PIXI.Container)
+                this._cutin.preload(function () {
+                    t._completePreload()
+                })
+            }, e.prototype._completePreload = function () {
+                var t, e, i = this._attacker.friend,
+                    n = this._attacker.index,
+                    o = this._defender.index;
+                1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
+            }, e.prototype._playPicket = function (t, e) {
+                var i = this;
+                if (this._attacker.hasSlot(129, !0)) {
+                    var n = new PIXI.Point;
+                    n.x = this._attacker.friend ? r.BannerSize.W : 0;
+                    var o = new a.Picket;
+                    o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
+                        i._playCutin(t, e)
+                    })
+                } else this._playCutin(t, e)
+            }, e.prototype._playCutin = function (t, e) {
+                var i = this;
+                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
+                    i._shoot(t, e)
+                }), this._cutin.view.once("attack", function () {
+                    i._playVoice()
+                })
+            }, e.prototype._shoot = function (t, e) {
+                var i = this;
+                t.moveShoot(function () {
+                    i._torpedo(t, e)
+                })
+            }, e.prototype._torpedo = function (t, e) {
+                var i = this,
+                    n = t.friend ? 1 : -1,
+                    o = t.getGlobalPos(!0);
+                o.x += r.BannerSize.W / 3 * n;
+                var a = e.getGlobalPos(!0);
+                a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
+                var _ = this._scene.view.layer_torpedo;
+                _.playTorpedoAtNight(o, a, 800, function () {
+                    _.playTorpedoWaterColumn(e), i._explosion(t, e)
+                })
+            }, e.prototype._explosion = function (t, e) {
+                var i = this,
+                    n = e.getGlobalPos(!0);
+                createjs.Tween.get(this).wait(300).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
+                }).wait(350).call(function () {
+                    var n = i._getDamage(i._defender);
+                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+                })
+            }, e.prototype._playVoice = function () {
+                if (this._attacker.friend) {
+                    var t = this._attacker.mst_id,
+                        e = 17;
+                    432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
+                }
+            }, e.prototype._log = function (t) {}, e
+        }(_.PhaseAttackBase);
+    e.PhaseAttackSpSRD = u
 }

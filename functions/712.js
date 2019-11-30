@@ -19,65 +19,41 @@ const function712 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(56),
-        s = i(167),
-        a = i(57),
-        _ = i(18),
-        l = function (t) {
+    var o = i(56),
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickYES = function () {
-                    e.onClickYES()
-                }, e._onClickNO = function () {
-                    e.onClickNO()
-                }, e.message = new PIXI.Sprite;
-                var i = r.ORGANIZE_MAIN.getTexture(26),
-                    n = r.ORGANIZE_MAIN.getTexture(20);
-                return e.buttonYes = new a.SimpleButton(i, i), e.buttonNo = new a.SimpleButton(n, n), e.textMamiyaCount = new o.TextBox(25, 5523516), e.textIrakoCount = new o.TextBox(25, 5523516), e.buttonYes.onClick = e._onClickYES, e.buttonNo.onClick = e._onClickNO, e.addChild(e.message, e.buttonYes, e.buttonNo, e.textMamiyaCount, e.textIrakoCount), e
+                return e._onClickEdit = function () {
+                    e.onClick(1)
+                }, e._onClickExpansion = function () {
+                    e.onClick(2)
+                }, e.buttonSave = new PIXI.Sprite, e.buttonLoad = new PIXI.Sprite, e.buttonLoad.y = 43, e.buttonSave.interactive = e.buttonLoad.interactive = !0, e.buttonSave.buttonMode = e.buttonLoad.buttonMode = !0, e.buttonSave.addListener(r.EventType.CLICK, e._onClickEdit), e.buttonLoad.addListener(r.EventType.CLICK, e._onClickExpansion), e.addChild(e.buttonSave, e.buttonLoad), e.update(0), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.buttonYes.dispose(), this.buttonNo.dispose(), this.textMamiyaCount.destroy(), this.textIrakoCount.destroy(), this.onClickYES = null, this.onClickNO = null, this.message = null, this.buttonYes = null, this.buttonNo = null, this.textMamiyaCount = null, this.textIrakoCount = null
-            }, e.prototype.update = function (t, e, i) {
-                switch (this.textMamiyaCount.text = e + " \u2192 " + (e - 1), this.textIrakoCount.text = i + " \u2192 " + (i - 1), this.textIrakoCount.visible = this.textMamiyaCount.visible = !1, t) {
-                    case 2:
-                        switch (s.OrganizeConst.getMamiyaOption().playVoiceDialogIrako(), this.message.texture = s.OrganizeConst.getMamiyaOption().res_info5, this.message.position.set(219, 87), this.buttonYes.position.set(763, 471), this.buttonNo.position.set(540, 471), this.textIrakoCount.visible = !0, this.textIrakoCount.position.set(747, 362), _.MAMIYA_IRAKO_SEASON) {
-                            case 4:
-                                this.textIrakoCount.position.set(747, 362);
-                                break;
-                            case 2:
-                                this.textIrakoCount.position.set(747, 353);
-                                break;
-                            default:
-                                this.textIrakoCount.position.set(747, 348)
-                        }
+                this.buttonLoad.removeAllListeners(r.EventType.CLICK), this.buttonSave.removeAllListeners(r.EventType.CLICK), this.onClick = null, this.buttonSave = null, this.buttonLoad = null, this.removeChildren()
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        var e = o.ORGANIZE_MAIN.getTexture(48),
+                            i = o.ORGANIZE_MAIN.getTexture(45);
+                        this.buttonSave.texture = e, this.buttonLoad.texture = i;
                         break;
                     case 1:
-                        switch (s.OrganizeConst.getMamiyaOption().playVoiceDialogMamiya(), this.message.texture = s.OrganizeConst.getMamiyaOption().res_info3, this.message.position.set(219, 87), this.buttonYes.position.set(763, 471), this.buttonNo.position.set(538, 471), this.textMamiyaCount.visible = !0, _.MAMIYA_IRAKO_SEASON) {
-                            case 4:
-                                this.textMamiyaCount.position.set(747, 354);
-                                break;
-                            case 2:
-                                this.textMamiyaCount.position.set(747, 357);
-                                break;
-                            default:
-                                this.textMamiyaCount.position.set(747, 340)
-                        }
+                        var n = o.ORGANIZE_MAIN.getTexture(50),
+                            r = o.ORGANIZE_MAIN.getTexture(46);
+                        this.buttonSave.texture = n, this.buttonLoad.texture = r;
                         break;
-                    case 3:
-                        switch (s.OrganizeConst.getMamiyaOption().playVoiceDialogMamiyaIrako(), this.message.texture = s.OrganizeConst.getMamiyaOption().res_info6, this.message.position.set(63, 72), this.buttonYes.position.set(630, 471), this.buttonNo.position.set(405, 471), _.MAMIYA_IRAKO_SEASON) {
-                            case 4:
-                                this.textMamiyaCount.position.set(427, 345), this.textIrakoCount.position.set(654, 345);
-                                break;
-                            case 2:
-                                this.textMamiyaCount.position.set(468, 342), this.textIrakoCount.position.set(694, 342);
-                                break;
-                            default:
-                                this.textMamiyaCount.position.set(487, 340), this.textIrakoCount.position.set(715, 340)
-                        }
-                        this.textMamiyaCount.visible = !0, this.textIrakoCount.visible = !0
+                    case 2:
+                        var s = o.ORGANIZE_MAIN.getTexture(49),
+                            a = o.ORGANIZE_MAIN.getTexture(47);
+                        this.buttonSave.texture = s, this.buttonLoad.texture = a
                 }
+            }, e.prototype.show = function () {
+                this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
             }, e
         }(PIXI.Container);
-    e.UseSweetConfirm = l
+    e.PresetButtonLayer = s
 }

@@ -19,16 +19,49 @@ const function561 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_req_member/get_incentive", e
+    var o = i(562),
+        r = i(0),
+        s = i(2),
+        a = i(14),
+        _ = i(17),
+        l = function (t) {
+            function e(e) {
+                void 0 === e && (e = null);
+                var i = t.call(this) || this;
+                return i._onProgressPhase1 = function (t, e) {
+                    var n = .4 * t.progress;
+                    null != i._progress && i._progress(n)
+                }, i._loadPhase2 = function () {
+                    var t = new a.UIImageLoader("common");
+                    t.add("common_icon_weapon.json"), t.add("common_itemicons.json"), t.add("common_misc.json"), t.add("common_expedition.json"), t.add("common_shutter.json"), -1 != _.EVENT_AREA_ID && t.add("common_event.json"), t.load(i._loadPhase3, i._onProgressPhase2)
+                }, i._onProgressPhase2 = function (t, e) {
+                    var n = 40 + .4 * t.progress;
+                    null != i._progress && i._progress(n)
+                }, i._loadPhase3 = function () {
+                    o.load({
+                        custom: {
+                            families: ["font_j:n4,n7"],
+                            urls: [r.default.settings.path_root + "css/fonts.css"]
+                        },
+                        active: i._onComplete,
+                        inactive: function () {
+                            r.default.view.showError("[WebFontLoader] inactive")
+                        },
+                        fontinactive: function (t, e) {
+                            r.default.view.showError("[WebFontLoader] fontinactive")
+                        },
+                        timeout: 6e4
+                    })
+                }, i._onComplete = function () {
+                    null != i._progress && i._progress(100), i._endTask()
+                }, i._progress = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.incentive.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._loadPhase1()
+            }, e.prototype._loadPhase1 = function () {
+                var t = new a.UIImageLoader("common");
+                t.add("hpgauge/hp_gauge_mask.png"), t.add("hpgauge/hp_s_bg2.png"), t.add("hpgauge/hp_s_red_light.png"), t.add("error.png", "error"), t.add("focus_mask3.png", "mask"), t.add("common_main.json"), t.add("common_sort.json"), t.add("common_animation.json"), t.add("common_shogo.json"), t.load(this._loadPhase2, this._onProgressPhase1)
             }, e
-        }(r.APIBase);
-    e.GetIncentiveAPI = s
+        }(s.TaskBase);
+    e.TaskLoadResourcesCommon = l
 }

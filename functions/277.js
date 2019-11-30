@@ -19,49 +19,43 @@ const function277 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(276),
-        r = function (t) {
+    var o = i(5),
+        r = i(8),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._particle = new Array;
-                for (var i = [51, 257, 44, 8, 168, 53, 158, 113, 275, 194, 251, 0, 197], n = [51, 30, 87, 222, 213, 129, 122, 222, 216, 0, 194, 149, 84], o = 0; o < i.length; o++) {
-                    var r = new s;
-                    r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
+                for (var e = t.call(this, 0, 0, o.default.width, o.default.height) || this, i = 0; i < 20; i++) {
+                    var n = 4.5 * i;
+                    e.beginFill(0, .8 * Math.cos(n * Math.PI / 180)), e.drawRect(0, o.default.height - 3 * i, o.default.width, 3), e.endFill()
                 }
-                return e
+                return e._arc = PIXI.Sprite.fromImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA1ElEQVQ4jaWUzRGCMBBGv8x4xw60Ay3BDrQDSqEFO4gl2IF0gFagHUQreB5EHcku4PBu7LBvfxKQOgALIAKJnAYouzkZQGUkWzTAaqrkzdWSlH9KUtYRr51Mk7SiOFnSijyuQNEZ35b0iPzKDjMnfg4hXIyihaS18f7dE82d+EbS0YjXfTv6ucFAwesiWsSZpJukpVHlAMwlndvnvTPWp6Oqp6sxJKAYankM3xUAK+yvfYiYDdnK/umscvb1OZnTgCBh/JOCI9xK2hmnWUvahxAe3ZwnVxLPxY8eTuoAAAAASUVORK5CYII="), e._arc.anchor.set(.5, .5), e._arc.x = o.default.width - 23, e._arc.y = o.default.height - 23, e._arc.scale.set(1.5), e._arc.alpha = .8, e.addChild(e._arc), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._particle; t < e.length; t++) {
-                    var i = e[t];
-                    i.initialize(), i.startAnim()
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._particle; t < e.length; t++) {
-                    e[t].stopAnim()
-                }
+            return n(e, t), e.prototype.show = function (t, e) {
+                var i = this;
+                void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), this._setVisiblity(!0), t <= 0 ? (this.alpha = 1, null != e && e()) : this._tween = createjs.Tween.get(this).to({
+                    alpha: 1
+                }, t).call(function () {
+                    i._tween = null, null != e && e()
+                })
+            }, e.prototype.hide = function (t, e) {
+                var i = this;
+                void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), t <= 0 ? (this.alpha = 0, this._setVisiblity(!1), null != e && e()) : this._tween = createjs.Tween.get(this).to({
+                    alpha: 0
+                }, t).call(function () {
+                    i._setVisiblity(!1), i._tween = null, null != e && e()
+                })
+            }, e.prototype._setVisiblity = function (t) {
+                this.visible = t, 1 == t ? this._startArcTween() : this._stopArcTween()
+            }, e.prototype._startArcTween = function () {
+                null == this._tween_arc && (this._arc.rotation = 0, this._tween_arc = createjs.Tween.get(this._arc, {
+                    loop: !0
+                }).to({
+                    rotation: 2 * Math.PI
+                }, 1200))
+            }, e.prototype._stopArcTween = function () {
+                null != this._tween_arc && (this._tween_arc.setPaused(!0), this._tween_arc = null)
+            }, e.prototype._stopTween = function () {
+                null != this._tween && (this._tween.setPaused(!0), this._tween = null)
             }, e
-        }(PIXI.Container);
-    e.KiraLayer = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.alpha = 0, e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.TITLE_MAIN.getTexture(2)
-        }, e.prototype.startAnim = function () {
-            this._anim()
-        }, e.prototype.stopAnim = function () {
-            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-        }, e.prototype._anim = function () {
-            var t = this;
-            this._tween = createjs.Tween.get(this).wait(1e3 * Math.random() + 1e3).to({
-                alpha: 1
-            }, 150).to({
-                alpha: 0
-            }, 150).call(function () {
-                t._tween = null, t._anim()
-            })
-        }, e
-    }(PIXI.Sprite)
+        }(r.AreaBox);
+    e.LoadingBox = s
 }

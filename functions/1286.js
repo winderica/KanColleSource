@@ -20,88 +20,80 @@ const function1286 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(5),
-        s = i(19),
-        a = i(12),
-        _ = i(2),
-        l = i(13),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._EFFECT_MAX = 24, i._ship_mst_id = e, i._ship_sprite = new a.Sprite, i._get_flash = new a.Sprite, i._txt_repair = new a.Sprite, i._ship_layer = new PIXI.Container, i._kiraPos = [new PIXI.Point(550, 66), new PIXI.Point(504, 82), new PIXI.Point(615, 127), new PIXI.Point(453, 226), new PIXI.Point(570, 261), new PIXI.Point(669, 207), new PIXI.Point(498, 348), new PIXI.Point(693, 375), new PIXI.Point(492, 463), new PIXI.Point(583, 556), new PIXI.Point(499, 589), new PIXI.Point(415, 693)], i._poreload_task = new c(e), i
+        r = i(2),
+        s = i(13),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._additional_waittime = 0, n._scene = e, n._model = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "EFFECT_MAX", {
-                get: function () {
-                    return this._EFFECT_MAX
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ship_layer", {
-                get: function () {
-                    return this._ship_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "get_flash", {
-                get: function () {
-                    return this._get_flash
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "white", {
-                get: function () {
-                    return this._white
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "txt_repair", {
-                get: function () {
-                    return this._txt_repair
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "kirakira", {
-                get: function () {
-                    return this._kirakira
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "kiraPos", {
-                get: function () {
-                    return this._kiraPos
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPreLoadTask = function () {
-                return this._poreload_task
-            }, e.prototype.initilize = function () {
-                this._get_flash = new PIXI.Sprite(s.MAP_COMMON.getTexture(45)), this._get_flash.visible = !1, this._get_flash.anchor.set(.5), this._get_flash.position.set(r.default.width / 2, r.default.height / 2), this._get_flash.alpha = 0, this._get_flash.scale.set(.3), this._white = new PIXI.Graphics, this._white.visible = !1, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, r.default.width, r.default.height), this._white.endFill(), this._white.alpha = 0, this._txt_repair = new PIXI.Sprite(s.MAP_COMMON.getTexture(189)), this._txt_repair.visible = !1, this._txt_repair.anchor.set(0, .5), this._txt_repair.position.set(1200, 487), this._kirakira = [];
-                for (var t = 0; t < this._EFFECT_MAX; t++) {
-                    var e = new PIXI.Sprite(s.MAP_COMMON.getTexture(102));
-                    e.anchor.set(.5), this._kirakira.push(e)
+            return n(e, t), e.prototype._start = function () {
+                var t = this._model.sortie,
+                    e = t.getNextCell().isDeadEnd(),
+                    i = this._scene.resInfo.hasAirReconnaissancePoint();
+                1 == e && 1 == i ? (this._additional_waittime = 3e3, o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(null).wait(1e3).call(function () {
+                    o.default.sound.bgm.play(4, !1, 1e3, "fanfare")
+                }), this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002\n\u672c\u4f5c\u6226\u5b8c\u9042\u5931\u6557\u3002")) : this._selectMessage()
+            }, e.prototype._selectMessage = function () {
+                var t = this._model.sortie.getNextCell().flavor_text;
+                if (null != t && t.length > 0) {
+                    var e = this._model.sortie.getNextCell().flavor_text_type;
+                    t = t.replace(/<br>/g, "\n"), 0 == e ? this._merefancy(t) : this._calm_sea(t)
+                } else {
+                    var i = this._model.sortie.getNextCell().event_detail_id;
+                    0 == i ? this._merefancy("\u6c17\u306e\u305b\u3044\u3060\u3063\u305f\u3002") : 1 == i ? this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002") : 3 == i ? this._calm_sea("\u7a4f\u3084\u304b\u306a\u6d77\u3067\u3059\u3002") : 4 == i ? this._merefancy("\u7a4f\u3084\u304b\u306a\u6d77\u5ce1\u3067\u3059\u3002") : 5 == i ? this._merefancy("\u8b66\u6212\u304c\u5fc5\u8981\u3067\u3059\u3002") : 6 == i ? this._calm_sea("\u9759\u304b\u306a\u6d77\u3067\u3059\u3002") : this._merefancy("")
                 }
-                var i = o.default.resources.getShip(this._ship_mst_id, !1, "full");
-                this._ship_sprite = new PIXI.Sprite(i);
-                var n = o.default.model.ship_graph.get(this._ship_mst_id).getFaceRect(!1);
-                this._ship_sprite.position.set(-(n.x + n.width / 2), -(n.y + n.height / 2)), this._ship_layer.visible = !0, this._ship_layer.position.set(600, 200), this._ship_layer.scale.set(2), this._ship_layer.alpha = 0, this._ship_layer.addChild(this._ship_sprite), this.addChild(this._get_flash, this._white, this._ship_layer, this._txt_repair);
-                for (var t = 0; t < this._EFFECT_MAX; t++) this._kirakira[t].visible = !1, this._kirakira[t].scale.set(0), this.addChild(this._kirakira[t])
+            }, e.prototype._merefancy = function (t) {
+                var e = this;
+                this._scene.view.map.ship_icon.startWaveRed(function () {
+                    e._scene.view.message_box.text = t, e._stopShipWave(2e3)
+                })
+            }, e.prototype._calm_sea = function (t) {
+                var e, i = this,
+                    n = this._model.deck_f.ships;
+                if (n.length > 6) {
+                    e = n[Math.random() < .5 ? 0 : 6]
+                } else e = n[0];
+                var o = e.mst_id,
+                    r = e.isDamaged(),
+                    a = new s.ShipLoader;
+                a.add(o, r, "full"), a.load(function () {
+                    i._calm_sea2(o, r, t)
+                })
+            }, e.prototype._calm_sea2 = function (t, e, i) {
+                var n = this;
+                this._chara = new PIXI.Sprite, this._chara.alpha = 0, this._chara.texture = o.default.resources.getShip(t, e, "full");
+                var r = o.default.model.ship_graph.get(t).getMapOffset(e);
+                this._chara.x = -80 + r.x, this._chara.y = -93 + r.y, this._scene.view.chara_layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    n._calm_sea3(i)
+                })
+            }, e.prototype._calm_sea3 = function (t) {
+                var e = this;
+                this._scene.view.map.ship_icon.startWaveRed(function () {
+                    e._scene.view.message_box.text = t, e._stopShipWave(2e3)
+                })
+            }, e.prototype._stopShipWave = function (t) {
+                var e = this;
+                createjs.Tween.get(null).wait(t).call(function () {
+                    e._scene.view.map.ship_icon.stopWave(), e._changeCellColor()
+                })
+            }, e.prototype._changeCellColor = function () {
+                var t = this,
+                    e = this._model.sortie.getNextCell(),
+                    i = this._scene.view.map.spotLayer.getSpot(e.no);
+                (8 != this._model.sortie.getCellInfo(e.no).color && i.setColor(1), null != this._chara) ? (this._chara.x, createjs.Tween.get(this._chara).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._chara.parent.removeChild(t._chara), t._endTask()
+                })) : this._endTask()
+            }, e.prototype._endTask = function () {
+                var e = this;
+                createjs.Tween.get(null).wait(this._additional_waittime).call(function () {
+                    t.prototype._endTask.call(e)
+                })
             }, e
-        }(PIXI.Container);
-    e.AnchorageRepairLayer = u;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._ship_mst_id = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._loadShipImage()
-        }, e.prototype._loadShipImage = function () {
-            var t = this,
-                e = new l.ShipLoader;
-            e.add(this._ship_mst_id, !1, "full"), e.load(function () {
-                t._endTask()
-            })
-        }, e
-    }(_.TaskBase);
-    e.PreLoadShipImage = c
+        }(r.TaskBase);
+    e.CellTaskFancy = a
 }

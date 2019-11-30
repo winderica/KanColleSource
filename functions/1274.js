@@ -19,40 +19,37 @@ const function1274 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(55),
-        r = i(2),
-        s = i(1275),
+    var o = i(9),
+        r = i(7),
+        s = i(0),
         a = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = 0);
-                var o = t.call(this) || this;
-                return o._scene = e, o._model = i, o._delay = n, o
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_req_map/anchorage_repair", e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._model.sortie.getNextCell().no,
-                    i = this._scene.resInfo.getEnemyOption(e);
-                null == i ? this._endTask() : this._delay <= 0 ? this._showEnemy(i.img, i.x, i.y) : createjs.Tween.get(null).wait(this._delay).call(function () {
-                    t._showEnemy(i.img, i.x, i.y)
-                })
-            }, e.prototype._showEnemy = function (t, e, i) {
-                var n, r = this,
-                    a = this._model.sortie.area_id,
-                    _ = this._model.sortie.map_no,
-                    l = this._model.sortie.getNextCell().no,
-                    u = this._model.sortie.map.getGaugeNum();
-                if (42 == a && 3 == _ && 25 == l && 3 == u) n = new s.MapEnemy(PIXI.Texture.fromFrame("map04203_icon_E3boss_2"), 5), n.x = 130, n.y = 230;
-                else {
-                    var c = this._model.sortie.map_id,
-                        h = o.MapUtil.toResKey(c);
-                    n = new s.MapEnemy(PIXI.Texture.fromFrame("map" + h + "_" + t), 5), n.x = e, n.y = i
+            return n(e, t), Object.defineProperty(e.prototype, "used_ship", {
+                get: function () {
+                    return this._used_ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "repair_ships", {
+                get: function () {
+                    return this._repair_ships
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._used_ship = r.ObjUtil.getNumber(this._raw_data, "api_used_ship");
+                for (var e = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    s.default.model.ship.updateData(o)
                 }
-                this._scene.view.map.enemy_layer.show(n, function () {
-                    r._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, t.prototype._endTask.call(this)
+                var a = r.ObjUtil.getNumArray(this._raw_data, "api_repair_ships");
+                this._repair_ships = a, t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.AnimShowMapEnemy = a
+        }(o.APIBase);
+    e.APIAnchorageRepair = a
 }

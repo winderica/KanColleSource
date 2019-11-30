@@ -1,10 +1,30 @@
 const function1233 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), n(i(1234)), n(i(1235)), n(i(430)), n(i(429)), n(i(1236)), n(i(1237)), n(i(432)), n(i(433)), n(i(431)), n(i(434)), n(i(435))
+    });
+    var n = i(1234),
+        o = function () {
+            function t() {
+                this._dic = {}
+            }
+            return t.prototype.add = function (t) {
+                null != t && (this._dic[t.mem_id] = new n.ShipInstantModel(t))
+            }, t.prototype.addList = function (t) {
+                if (null != t)
+                    for (var e = 0, i = t; e < i.length; e++) {
+                        var n = i[e];
+                        this.add(n)
+                    }
+            }, t.prototype.get = function (t) {
+                return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
+            }, t.prototype.getTotalHP = function () {
+                var t = 0;
+                for (var e in this._dic) {
+                    t += this._dic[e].hp
+                }
+                return t
+            }, t
+        }();
+    e.DeckInstantModel = o
 }

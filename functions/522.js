@@ -4,26 +4,13 @@ const function522 = function (t, e, i) {
         value: !0
     });
     var n = i(7),
-        o = i(267),
-        r = function () {
+        o = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mst_id", {
+            return Object.defineProperty(t.prototype, "id", {
                 get: function () {
                     return n.ObjUtil.getNumber(this._o, "api_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "area_id", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_maparea_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "map_no", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_no")
                 },
                 enumerable: !0,
                 configurable: !0
@@ -33,29 +20,26 @@ const function522 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "operation_name", {
+            }), Object.defineProperty(t.prototype, "description", {
                 get: function () {
-                    return n.ObjUtil.getString(this._o, "api_opetext")
+                    return n.ObjUtil.getString(this._o, "api_description")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "operation_detail", {
+            }), Object.defineProperty(t.prototype, "price", {
                 get: function () {
-                    return n.ObjUtil.getString(this._o, "api_infotext")
+                    return n.ObjUtil.getNumber(this._o, "api_price")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "item_ids", {
+            }), Object.defineProperty(t.prototype, "description_at_shop", {
                 get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_item")
+                    var t = "api_shop_description";
+                    return 1 == this._o.hasOwnProperty(t) ? this._o[t] : this.description
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.getAllowedDeckType = function () {
-                var t = new o.AllowedDeckTypeModel,
-                    e = n.ObjUtil.getNumArray(this._o, "api_sally_flag");
-                return t.init(e), t
-            }, t
+            }), t
         }();
-    e.MapMstModel = r
+    e.PayItemModel = o
 }

@@ -19,44 +19,29 @@ const function1522 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(1523),
-        s = i(489),
+    var o = i(2),
+        r = i(6),
+        s = i(177),
         a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+            function e(e, i, n, o) {
+                void 0 === o && (o = 0);
+                var r = t.call(this) || this;
+                return r._layer = e, r._x = i, r._y = n, r._delay = o, r
             }
-            return n(e, t), e.prototype._initializeMapImages = function () {
-                this._maps = [];
-                for (var t = 0; t < 3; t++) {
-                    var e = new PIXI.Sprite;
-                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(4)][t], e.x = 276 + 225 * t, e.y = 83, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
-                }
-            }, e.prototype._createMapShowTweens = function () {
-                return this.__createMapShowTweens(700)
-            }, e.prototype._initializeStampImages = function () {
-                this._stamps = [];
-                for (var t = 0; t < 2; t++) {
-                    var e = new o.Sprite;
-                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(0), e.x = 433 + 225 * t, e.y = 233.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
-                }
-            }, e.prototype._createStampShowTweens = function () {
-                return this.__createStampShowTweens(700)
-            }, e.prototype._showText = function () {
-                this.__showText(new _)
-            }, e.prototype._createStampLast = function () {
-                var t = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(1),
-                    e = new o.Sprite(t);
-                return e.anchor.set(.5), e.position.set(1001, 275.5), e.alpha = 0, e
+            return n(e, t), e.prototype._start = function () {
+                this._wait()
+            }, e.prototype._wait = function () {
+                var t = this;
+                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(function () {
+                    t._explode()
+                }) : this._explode()
+            }, e.prototype._explode = function () {
+                var t = this,
+                    e = new s.Explosion;
+                e.x = this._x, e.y = this._y, this._layer.addChild(e), r.SE.play("102"), e.play(function () {
+                    t._layer.removeChild(e), t._endTask()
+                })
             }, e
-        }(s.TaskEventEndingBase);
-    e.TaskEventEnding2 = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(5), this._text1.position.set(108, 248), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(6), this._text2.position.set(243, 508)
-        }, e
-    }(s.TextsBase)
+        }(o.TaskBase);
+    e.TaskExplosion = a
 }
