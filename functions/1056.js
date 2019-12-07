@@ -19,35 +19,15 @@ const function1056 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(153),
-        r = i(58),
+    var o = i(58),
+        r = i(370),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._drums = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new PIXI.Sprite;
-                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
-                }
-                return e
+            function e(e) {
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.update(0);
-                for (var t = 0, e = this._drums; t < e.length; t++) {
-                    e[t].texture = r.SALLY_EXPEDITION.getTexture(68)
-                }
-            }, e.prototype.update = function (t) {
-                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
-            }, e.prototype._updateFromShipModel = function (t) {
-                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
-                    var r = o[n];
-                    null != r && (75 == r.mstID && e++)
-                }
-                var s = t.getSlotitemEx();
-                null != s && 75 == s.mstID && e++, this._update(e)
-            }, e.prototype._update = function (t) {
-                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
+            return n(e, t), e.prototype._updateTexture = function () {
+                0 == this._enabled ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(23) : 1 == this._overed ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(24) : this._btn.texture = o.SALLY_EXPEDITION.getTexture(22)
             }, e
-        }(PIXI.Container);
-    e.CompDrumCount = s
+        }(r.BtnGoBase);
+    e.BtnGo = s
 }

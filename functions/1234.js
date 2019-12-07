@@ -3,42 +3,28 @@ const function1234 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t(t) {
-            this._hp = t.hp_now, this._slotitem = [];
-            var e = t.slots;
-            if (null != e)
-                for (var i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    null != o && this._slotitem.push({
-                        mst: o.mst_id,
-                        mem: o.mem_id
-                    })
+    var n = i(1235),
+        o = function () {
+            function t() {
+                this._dic = {}
+            }
+            return t.prototype.add = function (t) {
+                null != t && (this._dic[t.mem_id] = new n.ShipInstantModel(t))
+            }, t.prototype.addList = function (t) {
+                if (null != t)
+                    for (var e = 0, i = t; e < i.length; e++) {
+                        var n = i[e];
+                        this.add(n)
+                    }
+            }, t.prototype.get = function (t) {
+                return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
+            }, t.prototype.getTotalHP = function () {
+                var t = 0;
+                for (var e in this._dic) {
+                    t += this._dic[e].hp
                 }
-            null != t.slot_ex && (this._slotitem_ex = {
-                mst: t.slot_ex.mst_id,
-                mem: t.slot_ex.mem_id
-            })
-        }
-        return Object.defineProperty(t.prototype, "hp", {
-            get: function () {
-                return this._hp
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "slotitem", {
-            get: function () {
-                return this._slotitem
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "slotitem_ex", {
-            get: function () {
-                return this._slotitem_ex
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t
-    }();
-    e.ShipInstantModel = n
+                return t
+            }, t
+        }();
+    e.DeckInstantModel = o
 }

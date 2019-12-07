@@ -23,13 +23,12 @@ const function1004 = function (t, e, i) {
         r = i(17),
         s = i(1005),
         a = i(1006),
-        _ = i(1007),
-        l = i(1012),
-        u = i(1013),
-        c = i(1018),
-        h = i(1019),
-        p = i(1),
-        d = function (t) {
+        _ = i(1008),
+        l = i(1013),
+        u = i(1014),
+        c = i(1020),
+        h = i(1),
+        p = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
                 return r._onSelect = function (t, e) {
@@ -45,18 +44,18 @@ const function1004 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._back_btn.on(p.EventType.CLICK, this._cb_back), this._next_btn.on(p.EventType.CLICK, this._cb_next), this.addChild(this._back_btn), this.addChild(this._next_btn)
+                this._back_btn.on(h.EventType.CLICK, this._cb_back), this._next_btn.on(h.EventType.CLICK, this._cb_next), this.addChild(this._back_btn), this.addChild(this._next_btn)
             }, e.prototype.update = function (t, e, i) {
                 var n = o.default.model.map.getMapMems(t);
                 t == r.EVENT_AREA_ID ? this._updateEventArea(t, e, n) : this._updateNormalArea(t, e, n), this._content.updateAirUnitEnabled(i)
             }, e.prototype.deactivate = function () {
                 this._content.deactivate()
             }, e.prototype.dispose = function () {
-                this._back_btn.off(p.EventType.CLICK, this._cb_back), this._next_btn.off(p.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
+                this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
             }, e.prototype._updateNormalArea = function (t, e, i) {
                 this._removePreContent(), this._content = 0 == e ? new l.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
             }, e.prototype._updateEventArea = function (t, e, i) {
-                this._removePreContent(), 0 == e ? this._content = new h.LayoutEventMap3(e, this._onSelect, this._onSelectAirUnit) : 3 == e ? this._content = new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : e > 3 && (this._content = new c.LayoutEventMap2ex(e, this._onSelect, this._onSelectAirUnit)), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), 0 == e ? (this._updateBackBtn(!0), this._updateNextBtn(t, e, i)) : 3 == e ? (this._updateBackBtn(!0), this._next_btn.hide()) : (this._next_btn.hide(), this._back_btn.hide())
+                this._removePreContent(), 0 == e ? this._content = new c.LayoutEventMap3(e, this._onSelect, this._onSelectAirUnit) : e >= 3 && (this._content = new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit)), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
             }, e.prototype._removePreContent = function () {
                 null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
             }, e.prototype._updateBackBtn = function (t) {
@@ -75,5 +74,5 @@ const function1004 = function (t, e, i) {
                 1 == n ? (this._next_btn.update(t, e), this._next_btn.show()) : this._next_btn.hide()
             }, e
         }(PIXI.Container);
-    e.ContainerLayout = d
+    e.ContainerLayout = p
 }

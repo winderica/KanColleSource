@@ -121,6 +121,8 @@ const function530 = function (t, e, i) {
                         return 90;
                     case 344:
                         return 30;
+                    case 597:
+                        return 100;
                     default:
                         return 0 != e && -1 == this._USE_DEVKIT_GROUP_.indexOf(t) ? 0 : i < 4500 ? 0 : i < 5500 ? 10 : i < 6500 ? 15 : 20
                 }
@@ -155,6 +157,8 @@ const function530 = function (t, e, i) {
                     case 596:
                     case 520:
                         return 10;
+                    case 597:
+                        return 20;
                     default:
                         return 0
                 }

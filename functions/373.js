@@ -19,32 +19,36 @@ const function373 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = i(1011),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._type = e, i._black = new PIXI.Sprite, i._key = new PIXI.Sprite, i._cloud = new r.MapThumbnailLockedCloud, i._text = new PIXI.Container, i
+    var o = i(41),
+        r = i(234),
+        s = i(1019),
+        a = function (t) {
+            function e(e, i, n, o, r) {
+                return t.call(this, e, i, n, o, r) || this
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._black.texture = this._getBlackTexture(), this._key.texture = o.SALLY_SORTIE.getTexture(30), this._cloud.initialize(), this._text.visible = !0, this._text.removeChildren();
-                var e = new PIXI.Sprite;
-                0 == t ? e.texture = o.SALLY_SORTIE.getTexture(42) : 1 == t ? e.texture = o.SALLY_SORTIE.getTexture(43) : 3 == t ? e.texture = o.SALLY_SORTIE.getTexture(44) : this._text.visible = !1, 1 == this._text.visible && (e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._text.addChild(e)), this._setPositions(), this.addChild(this._black), this.addChild(this._key), this.addChild(this._cloud), this.addChild(this._text)
-            }, e.prototype.activate = function () {
-                this._cloud.activate()
-            }, e.prototype.deactivate = function () {
-                this._cloud.deactivate()
-            }, e.prototype._getBlackTexture = function () {
+            return n(e, t), e.prototype._setPositions = function () {
+                1 == this._type ? this._clear.position.set(600, 0) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(600, 0)
+            }, e.prototype._getNoneTexture = function () {
                 switch (this._type) {
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(42);
                     case 3:
-                        return o.SALLY_SORTIE.getTexture(36);
-                    case 4:
-                        return o.SALLY_SORTIE.getTexture(35)
+                        return o.SALLY_EVENT.getTexture(41)
                 }
                 return PIXI.Texture.EMPTY
-            }, e.prototype._setPositions = function () {
-                3 == this._type ? (this._key.position.set(470, 14), this._cloud.position.set(491, 53), this._text.position.set(490, 99)) : 4 == this._type && (this._key.position.set(218, 42), this._cloud.position.set(239, 81), this._text.position.set(240, 152))
+            }, e.prototype._getFocusTexture = function () {
+                switch (this._type) {
+                    case 1:
+                        return o.SALLY_EVENT.getTexture(37);
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(38);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(36)
+                }
+                return PIXI.Texture.EMPTY
+            }, e.prototype._createLock = function () {
+                return new s.EventMapThumbnailLocked(this._type)
             }, e
-        }(PIXI.Container);
-    e.MapThumbnailLocked = s
+        }(r.MapThumbnail);
+    e.EventMapThumbnail = a
 }

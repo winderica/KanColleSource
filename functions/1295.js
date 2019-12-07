@@ -19,78 +19,29 @@ const function1295 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(149),
-        a = i(7),
-        _ = i(2),
-        l = i(249),
-        u = i(50),
-        c = i(6),
-        h = i(1296),
-        p = i(1297),
-        d = function (t) {
-            function e(e, i, n, o, r, s, a, _, l, u) {
-                var c = t.call(this) || this;
-                return c._PLANEKEY = "airbaseraid", c._area_id = e, c._map_no = i, c._battle_obj = n, c._has_boku_airunit = o, c._mapinfo = r, c._plane_layer = s, c._telop_layer = a, c._battle_layer = _, c._airbase_layer = l, c._battle_cls = u, c
+    var o = i(251),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._imgs = [], e
             }
-            return n(e, t), e.prototype._start = function () {
-                null == this._battle_obj ? this._endTask() : (c.SE.play("253"), this._flightEnemyAirUnit())
-            }, e.prototype._flightEnemyAirUnit = function () {
-                var t = this,
-                    e = this._mapinfo.getAirBaseRaidOption();
-                this._plane_layer.show(this._PLANEKEY, e, 2e3, this._map_no, this._area_id, function () {
-                    t._showTelop()
-                })
-            }, e.prototype._showTelop = function () {
-                var t = this,
-                    e = new h.AirRaidTelop;
-                e.initialize(this._has_boku_airunit), e.x = o.default.width / 2, e.y = o.default.height / 2, this._telop_layer.addChild(e), e.playAnimation(function () {
-                    t._telop_layer.removeChild(e), t._fadeoutBGM()
-                })
-            }, e.prototype._fadeoutBGM = function () {
-                var t = this;
-                1 == r.default.sound.bgm.playing ? (r.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
-                    t._startBattle()
-                })) : this._startBattle()
-            }, e.prototype._startBattle = function () {
-                var t = this,
-                    e = new l.BattleSceneModel(!1);
-                e.setGekimetsuData(this._battle_obj);
-                var i = new u.Shutter;
-                i.initializeDark(), i.close(0), this._battle_layer.addChild(i);
-                var n = new this._battle_cls;
-                n.initialize(e), this._battle_layer.addChild(n), i.alpha = 0, n.alpha = 0, createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 200), createjs.Tween.get(n).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    n.once("complete", function () {
-                        t._hideBattle(i, n)
-                    }), n.start()
-                })
-            }, e.prototype._hideBattle = function (t, e) {
-                var i = this;
-                this._plane_layer.hide(this._PLANEKEY), this._battle_layer.removeChild(e), e.dispose(), createjs.Tween.get(t).wait(800).to({
-                    alpha: 0
-                }, 300).wait(400).call(function () {
-                    i._battle_layer.removeChild(t), i._showResultTelop()
-                })
-            }, e.prototype._showResultTelop = function () {
-                var t = this,
-                    e = s.MapConst.getMapBGMID(this._area_id, this._map_no);
-                1 == e.battle_bgm ? r.default.sound.bgm.playBattleBGM(e.id) : r.default.sound.bgm.play(e.id);
-                var i = a.ObjUtil.getNumber(this._battle_obj, "api_lost_kind"),
-                    n = new p.AirRaidResultTelop;
-                n.initialize(i), n.x = o.default.width / 2, n.y = o.default.height / 2, this._telop_layer.addChild(n), n.playAnimation(function () {
-                    var e = a.ObjUtil.getNumber(t._battle_obj, "api_m2");
-                    45 == t._area_id && 3 == t._map_no && 1 == e && c.SE.play("258")
-                }, function () {
-                    t._telop_layer.removeChild(n), t._endTask()
-                }), 4 != i && null != this._airbase_layer && this._airbase_layer.shake()
-            }, e.prototype._endTask = function () {
-                this._battle_obj = null, this._mapinfo = null, this._plane_layer = null, this._telop_layer = null, this._battle_layer = null, this._battle_cls = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.update = function (t) {
+                if (this._imgs = [], t <= 0) {
+                    var e = new o.NumericalDisplay(0);
+                    this.addChild(e), this._imgs.push(e)
+                } else
+                    for (; t > 0;) {
+                        var i = t % 10,
+                            e = new o.NumericalDisplay(i);
+                        this.addChild(e), this._imgs.push(e), t = Math.floor(t / 10)
+                    }
+                var n = new o.NumericalDisplay(-1);
+                this.addChild(n), this._imgs.push(n), this._imgs = this._imgs.reverse();
+                for (var r = 0, s = 0, a = this._imgs; s < a.length; s++) {
+                    var _ = a[s];
+                    _.x = r, r += _.width
+                }
             }, e
-        }(_.TaskBase);
-    e.AirRaidTask = d
+        }(PIXI.Container);
+    e.NumericalDisplaySet = r
 }

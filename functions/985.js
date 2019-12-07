@@ -51,6 +51,12 @@ const function985 = function (t, e, i) {
                     case 464:
                         this._content.position.set(-287, -213), this._content.texture = PIXI.Texture.fromImage(e + "/244_f193d.png" + i);
                         break;
+                    case 465:
+                        this._content.position.set(-310, -227), this._content.texture = PIXI.Texture.fromImage(e + "/245_9d0e8.png" + i);
+                        break;
+                    case 466:
+                        this._content.position.set(-324, -225), this._content.texture = PIXI.Texture.fromImage(e + "/246_edb06.png" + i);
+                        break;
                     default:
                         this._content.texture = PIXI.Texture.EMPTY
                 }

@@ -20,57 +20,43 @@ const function1103 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(42),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onPrev = function (t) {
-                    if (t.stopPropagation(), null != e._current) {
-                        var i = e._data_list.indexOf(e._current);
-                        if (!(i < 0)) {
-                            var n = i - 1;
-                            n < 0 && (n = e._data_list.length - 1), e._current = e._data_list[n], e._update()
-                        }
-                    }
-                }, e._onNext = function (t) {
-                    if (t.stopPropagation(), null != e._current) {
-                        var i = e._data_list.indexOf(e._current);
-                        if (!(i < 0)) {
-                            var n = i + 1;
-                            n >= e._data_list.length && (n = 0), e._current = e._data_list[n], e._update()
-                        }
-                    }
-                }, e._canvas = new PIXI.Sprite, e.addChild(e._canvas), e._prevBtn = new r.PrevBtn(e._onPrev), e._prevBtn.position.set(10, 582), e.addChild(e._prevBtn), e._nextBtn = new r.NextBtn(e._onNext), e._nextBtn.position.set(55, 582), e.addChild(e._nextBtn), e._canvas.interactive = !0, e
+        r = i(1),
+        s = i(4),
+        a = i(3),
+        _ = i(42),
+        l = i(42),
+        u = i(42),
+        c = i(42),
+        h = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClose = function () {
+                    null != i._cb_onClose && i._cb_onClose()
+                }, i._cb_onClose = e, i._title = new p, i._title.position.set(39, 45), i.addChild(i._title), i._message = new s.TextBox(20, 5523516), i._message.position.set(94, 136), i._message.style.breakWords = !0, i._message.style.wordWrap = !0, i._message.style.wordWrapWidth = 598, i._message.style.lineHeight = 33.6, i.addChild(i._message), i._statusBox = new _.SlotDetailStatusBox, i._statusBox.position.set(93, 355), i.addChild(i._statusBox), i._etype = new u.SlotTypeView, i._etype.position.set(873, 37), i.addChild(i._etype), i._content = new c.SlotDetailContent, i._content.position.set(699, 34), i.addChild(i._content), i._close_btn = new PIXI.Sprite, i._close_btn.position.set(1111, 30), i._close_btn.interactive = !0, i.addChild(i._close_btn), i.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this._data_list = [];
-                for (var e = 0, i = t.mst_ids; e < i.length; e++) {
-                    var n = i[e],
-                        r = o.default.resources.getSlotitem(n, "card");
-                    this._addImageData(n, r, new PIXI.Point(20, 142)), r = o.default.resources.getSlotitem(n, "item_up"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_on"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_character"), this._addImageData(n, r)
-                }
-                this._data_list.length > 0 && (this._current = this._data_list[0], this._update()), this._prevBtn.initialize(), this._nextBtn.initialize()
+                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(98);
+                var e = t.no,
+                    i = t.mst_ids[0];
+                this._title.initialize(e, i), this._message.text = t.message.replace(/<br>/g, "\n"), this._statusBox.initialize(t), this._etype.update(t.cardType), this._content.initialize(t), this._close_btn.texture = a.ALBUM_MAIN.getTexture(21)
             }, e.prototype.activate = function () {
-                1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(s.EventType.CLICK, this._onNext), this._prevBtn.activate(), this._nextBtn.activate())
+                1 != this.buttonMode && (this.buttonMode = !0, this._content.activate(), this.on(r.EventType.CLICK, this._onClose))
             }, e.prototype.deactivate = function () {
-                this._canvas.buttonMode = !1, this._canvas.off(s.EventType.CLICK, this._onNext), this._prevBtn.deactivate(), this._nextBtn.deactivate()
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClose), this._content.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._prevBtn.dispose(), this._nextBtn.dispose();
-                for (var t = 0; t < this._data_list.length; t++) this._data_list[t] = null;
-                this._data_list = null, this._current = null, this._canvas = null, this._prevBtn = null, this._nextBtn = null
-            }, e.prototype._addImageData = function (t, e, i) {
-                if (void 0 === i && (i = null), e != PIXI.Texture.EMPTY) {
-                    var n = new _;
-                    n.mst_id = t, n.texture = e, n.offset = i, this._data_list.push(n)
-                }
-            }, e.prototype._update = function () {
-                null != this._current && (this._canvas.texture = this._current.texture, null != this._current.offset ? (this._canvas.x = this._current.offset.x, this._canvas.y = this._current.offset.y) : this._canvas.position.set(0, 0))
+                this.removeChildren(), this.deactivate(), this._title.dispose(), this._content.dispose(), this._statusBox.dispose(), this._message.destroy(), this._model = null, this._title = null, this._message = null, this._statusBox = null, this._etype = null, this._content = null, this._close_btn = null, this._cb_onClose = null
             }, e
-        }(PIXI.Container);
-    e.SlotDetailContent = a;
-    var _ = function () {
-        function t() {}
-        return t
-    }()
+        }(PIXI.Sprite);
+    e.SlotDetailPanel = h;
+    var p = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._nums = new l.DetailPanelNumbers, e._nums.position.set(60, 36), e.addChild(e._nums), e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._nums.dispose(), this._nums = null, this._img = null
+        }, e.prototype.initialize = function (t, e) {
+            this.texture = a.ALBUM_MAIN.getTexture(97), this._nums.update(t), this._img.texture = o.default.resources.getSlotitem(e, "statustop_item")
+        }, e
+    }(PIXI.Sprite)
 }

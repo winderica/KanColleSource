@@ -19,47 +19,57 @@ const function1524 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(36),
-        r = function (t) {
+    var o = i(1525),
+        r = i(1526),
+        s = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                e._value = 0, e._lights = [], e._nums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new o.ResultDialogNumLight;
+                    n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
+                }
+                for (var i = 0; i < 4; i++) {
+                    var s = new r.ResultDialogNum;
+                    s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
+                }
+                return e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (t) {
-                    case 0:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(44);
-                        break;
-                    case 1:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(46);
-                        break;
-                    case 2:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(48);
-                        break;
-                    case 3:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(50);
-                        break;
-                    case 4:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(52);
-                        break;
-                    case 5:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(54);
-                        break;
-                    case 6:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(56);
-                        break;
-                    case 7:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(58);
-                        break;
-                    case 8:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(60);
-                        break;
-                    case 9:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(62);
-                        break;
-                    default:
-                        this.texture = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype.setValue = function (t) {
+                this._value = Math.min(t, 9999);
+                for (var e = this._value, i = 0; i < this._nums.length; i++) {
+                    var n = this._nums[i],
+                        o = this._lights[i],
+                        r = e % 10;
+                    n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
+                }
+            }, e.prototype.startLightAnimation = function () {
+                this.stopLightAnimation(), this._light_tweens = [];
+                for (var t = 0; t < this._lights.length; t++) {
+                    var e = this._nums[t],
+                        i = this._lights[t];
+                    if (0 == e.visible) i.visible = !1;
+                    else {
+                        i.alpha = 0, i.visible = !0;
+                        var n = createjs.Tween.get(i, {
+                            loop: !0
+                        }).to({
+                            alpha: 1
+                        }, 500).wait(500).to({
+                            alpha: 0
+                        }, 500).wait(500);
+                        this._light_tweens.push(n)
+                    }
+                }
+            }, e.prototype.stopLightAnimation = function () {
+                if (null != this._light_tweens) {
+                    for (var t = 0, e = this._light_tweens; t < e.length; t++) {
+                        var i = e[t];
+                        i.setPaused(!0), i = null
+                    }
+                    this._light_tweens = null
                 }
             }, e
-        }(PIXI.Sprite);
-    e.ResultDialogNumLight = r
+        }(PIXI.Container);
+    e.ResultDialogNumSet = s
 }

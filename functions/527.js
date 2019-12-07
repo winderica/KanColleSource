@@ -49,6 +49,7 @@ const function527 = function (t, e, i) {
                 get: function () {
                     if (553 == this.mstID || 554 == this.mstID) return "\u6539\u88c5\u822a\u7a7a\u6226\u8266";
                     if (574 == this.mstID) return "\u8efd(\u822a\u7a7a)\u5de1\u6d0b\u8266";
+                    if (597 == this.mstID || 696 == this.mstID) return "\u9632\u7a7a\u5de1\u6d0b\u8266";
                     var t = n.default.model.shipType.get(this.shipTypeID);
                     return null == t ? "" : t.name
                 },

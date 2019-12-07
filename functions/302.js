@@ -21,23 +21,10 @@ const function302 = function (t, e, i) {
     });
     var o = i(46),
         r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._deck_id = e, n._deck_name = i, n
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "deck_id", {
-                get: function () {
-                    return this._deck_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "deck_name", {
-                get: function () {
-                    return this._deck_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
+            return n(e, t), e
         }(o.RewardModel);
-    e.RewardModelDeck = r
+    e.RewardModelLargeBuild = r
 }

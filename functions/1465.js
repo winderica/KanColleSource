@@ -19,34 +19,83 @@ const function1465 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(16),
-        r = i(1466),
-        s = i(1467),
-        a = function (t) {
+    var o = i(0),
+        r = i(22),
+        s = i(28),
+        a = i(156),
+        _ = i(157),
+        l = i(16),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._gauge_bg = new PIXI.Sprite, e._gauge = new s.BannerHPBar, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
+                return e._img = new PIXI.Sprite, e._icon = new a.BannerIcon, e._soot = new _.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n, r) {
-                this._index = i, this._friend = n, this._gauge_bg.texture = o.BATTLE_MAIN.getTexture(45), n ? (this._gauge_bg.x = 240, this._gauge.x = 240) : (this._gauge_bg.x = -10, this._gauge.x = -10, this._frame.x = -15), this._frame.texture = this._getTexture(i, n, r), this.updateHp(t, e)
-            }, e.prototype.updateHp = function (t, e) {
-                this._gauge.draw(t / e)
-            }, e.prototype.getAnimationTween = function (t) {
-                var e = this,
-                    i = this._frame.texture,
+            return n(e, t), e.prototype.initialize = function (t, e, i, n, o, s, a) {
+                if (this._mst_id = t, this._updateState(e, i), this._taihi = n, this._icon.initialize(o), this._combined = s, this._friend = a, this._updateImage(s, a), this._updateIcon(e, i), this._friend && this._combined) {
+                    var _ = new PIXI.Graphics;
+                    _.beginFill(16711680, .5), _.drawRect(r.BannerSize.W / 2, 0, r.BannerSize.W / 2, r.BannerSize.H), _.endFill(), this._soot.addChild(_), this._soot.mask = _
+                }
+            }, e.prototype.update = function (t, e) {
+                this._updateState(t, e), this._updateImage(this._combined, this._friend), this._updateIcon(t, e)
+            }, e.prototype.getAnimationTweens = function (t) {
+                var e = this;
+                this._combined = !1;
+                var i = this._img.texture,
                     n = new PIXI.Sprite(i);
-                return n.x = this._frame.x, n.y = this._frame.y, this.addChild(n), this._frame.texture = this._getTexture1(this._index, this._friend), this._frame.alpha = 0, createjs.Tween.get(this._frame).wait(t).to({
+                n.x = this._img.x, n.y = this._img.y;
+                var o = this.getChildIndex(this._img);
+                this.addChildAt(n, o), this._img.texture = this._getTexture(), this._img.alpha = 0;
+                var r = [createjs.Tween.get(this._img).wait(t).to({
                     alpha: 1
                 }, 600).call(function () {
-                    e.removeChild(n)
-                })
-            }, e.prototype._getTexture = function (t, e, i) {
-                return 0 == i ? this._getTexture1(t, e) : this._getTexture2(t, e)
-            }, e.prototype._getTexture1 = function (t, e) {
-                return e ? 0 == t ? o.BATTLE_MAIN.getTexture(46) : o.BATTLE_MAIN.getTexture(47) : 0 == t ? o.BATTLE_MAIN.getTexture(43) : o.BATTLE_MAIN.getTexture(44)
-            }, e.prototype._getTexture2 = function (t, e) {
-                return e ? 0 == t ? r.BATTLE_MAIN2.getTexture(2) : r.BATTLE_MAIN2.getTexture(3) : 0 == t ? r.BATTLE_MAIN2.getTexture(0) : r.BATTLE_MAIN2.getTexture(1)
+                    e.removeChild(n);
+                    var t = e._img.mask;
+                    t && (t.parent.removeChild(t), e._img.mask = null)
+                })];
+                if (this._soot.mask) {
+                    var s = this._soot.mask;
+                    this._soot.removeChild(s), this._soot.mask = null, this._soot.alpha = 0;
+                    var a = new _.BannerSoot;
+                    a.texture = this._soot.texture, a.addChild(s), a.mask = s, this.addChildAt(a, this.getChildIndex(this._soot)), r.push(createjs.Tween.get(this._soot).wait(t).to({
+                        alpha: 1
+                    }, 600)), r.push(createjs.Tween.get(a).wait(t).to({
+                        alpha: 0
+                    }, 600).call(function () {
+                        e.removeChild(a)
+                    }))
+                }
+                return r
+            }, e.prototype._updateState = function (t, e) {
+                t <= 0 ? this._damaged = 2 : s.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
+            }, e.prototype._updateImage = function (t, e) {
+                if (this._mst_id < 0) switch (this._mst_id) {
+                    case -1:
+                        this._img.texture = l.BATTLE_MAIN.getTexture(0);
+                        break;
+                    case -2:
+                        this._img.texture = l.BATTLE_MAIN.getTexture(1);
+                        break;
+                    case -3:
+                        this._img.texture = l.BATTLE_MAIN.getTexture(2)
+                } else this._img.texture = t ? e ? this._getTextureCombinedFriend() : this._getTextureCombinedEnemy() : this._getTexture()
+            }, e.prototype._getTexture = function () {
+                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner_g");
+                var t = 0 != this._damaged;
+                return o.default.resources.getShip(this._mst_id, t, "banner")
+            }, e.prototype._getTextureCombinedFriend = function () {
+                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner2_g");
+                var t = 0 != this._damaged;
+                return o.default.resources.getShip(this._mst_id, t, "banner2")
+            }, e.prototype._getTextureCombinedEnemy = function () {
+                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner3_g");
+                var t = 0 != this._damaged;
+                return o.default.resources.getShip(this._mst_id, t, "banner3")
+            }, e.prototype._updateIcon = function (t, e) {
+                if (0 == this._taihi) {
+                    var i = s.ShipUtil.getDamageType(t, e);
+                    this._icon.setDamagedIcon(i), this._soot.update(i)
+                } else this._icon.setTaihiIcon()
             }, e
         }(PIXI.Container);
-    e.BannerFrame = a
+    e.BannerImage = u
 }

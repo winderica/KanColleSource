@@ -23,33 +23,23 @@ const function298 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = this._getTexture(t), this._img.x = 1 - Math.round(this._img.width / 2), this._img.y = 1 - Math.round(this._img.height / 2), 31 == t && (this._img.x += 21, this._img.y -= 8)
+            }, e.prototype._getTexture = function (t) {
                 var e;
-                if (11 == t) e = 9;
-                else if (12 == t) e = 14;
-                else if (13 == t) e = 10;
-                else if (14 == t) e = 11;
-                else if (15 == t) e = 8;
+                if (11 == t) e = 16;
+                else if (12 == t) e = 30;
+                else if (13 == t) e = 18;
+                else if (14 == t) e = 20;
+                else if (15 == t) e = 6;
                 else {
-                    if (31 != t) return void(this._img.texture = PIXI.Texture.EMPTY);
-                    e = 12
+                    if (31 != t) return PIXI.Texture.EMPTY;
+                    e = 22
                 }
-                this._img.texture = o.PORT_RINGMENU.getTexture(e)
-            }, e.prototype.show = function () {
-                var t = this;
-                1 != this._img.visible && null == this._t && (this._img.position.set(5, -23), this._img.alpha = 0, this._img.visible = !0, this._t = createjs.Tween.get(this._img).wait(400).to({
-                    x: 35,
-                    alpha: 1
-                }, 100).call(function () {
-                    t._t = null
-                }))
-            }, e.prototype.hide = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null), this._img.visible = !1
-            }, e.prototype.dispose = function () {
-                this.hide()
+                return o.PORT_RINGMENU.getTexture(e)
             }, e
         }(PIXI.Container);
-    e.RingMenuBtnDescription = r
+    e.RingMenuBtnImgOn = r
 }

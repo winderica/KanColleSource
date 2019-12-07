@@ -123,5 +123,5 @@ const function1438 = function (t, e, i) {
                 })
             }, e
         }(o.PhaseCombatBase);
-    e.PhaseDay_Suijo = v
+    e.PhaseDay_Suijo_vs12 = v
 }

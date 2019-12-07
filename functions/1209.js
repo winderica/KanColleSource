@@ -19,33 +19,15 @@ const function1209 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(6),
-        a = i(247),
-        _ = i(175),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._model = e, n._holder = i, n
+    var o = i(11),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_quest/stop", i._duty_id = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = o.default.model.basic.getDutyExecutableCount();
-                if (this._holder.getExecCount() >= e) return void this._endTask();
-                s.SE.play("240"), new a.DutyStartAPI(this._model.id).start(function () {
-                    t._update()
-                })
-            }, e.prototype._update = function () {
-                var t = this,
-                    e = this._holder.selected_page_no,
-                    i = this._holder.selected_type;
-                new _.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                    1 == o.default.option.voice_duty && o.default.sound.voice.playAtRandom("9999", [409, 410], [50, 50]), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._model = null, this._holder = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskWaitedDutySelect = l
+        }(o.APIBase);
+    e.DutyCancelAPI = r
 }

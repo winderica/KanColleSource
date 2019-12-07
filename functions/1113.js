@@ -20,19 +20,41 @@ const function1113 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(11),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene_activate_delegate = e, i
+        r = i(2),
+        s = i(14),
+        a = i(242),
+        _ = function (t) {
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                o.default.sound.bgm.play(102), this._startScene()
-            }, e.prototype._startScene = function () {
-                null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
+                    t._load2()
+                })
+            }, e.prototype._load2 = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
+                    t._loadSkinResource()
+                })
+            }, e.prototype._loadSkinResource = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item"),
+                    i = o.default.model.basic.getUISkinID();
+                101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
+                    t._loadAkashiResoueces()
+                })
+            }, e.prototype._loadAkashiResoueces = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("akashi/" + a.POSTER_TYPE + "1.png", a.POSTER_KEY_1), e.add("akashi/" + a.POSTER_TYPE + "2.png", a.POSTER_KEY_2), e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(r.TaskBase);
-    e.TaskItemSceneInitialize = s
+    e.TaskLoadResources = _
 }

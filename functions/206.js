@@ -36,15 +36,17 @@ const function206 = function (t, e, i) {
             }, e.prototype._load = function (t, e, i) {
                 var n = this,
                     _ = s.MathUtil.zeroPadding(t, 3),
-                    l = s.MathUtil.zeroPadding(e, 2),
-                    u = r.MapUtil.toMapID(t, e),
-                    c = a.UIImageLoader.getResourceVersionMap(u),
-                    h = o.default.settings.path_root + "resources/map/" + _ + "/" + l + ".png" + (c ? "?version=" + c : "");
-                if (null != PIXI.utils.TextureCache[h]) return this.texture = PIXI.utils.TextureCache[h], void(null != i && i());
-                this._loader = new PIXI.loaders.Loader, this._loader.add(h), this._loader.load(function (t) {
+                    l = r.MapUtil.toMapID(t, e),
+                    u = o.default.model.map.getMapMem(l).getGaugeNum(),
+                    c = s.MathUtil.zeroPadding(e, 2);
+                465 == l && u > 1 && (c += "_2");
+                var h = a.UIImageLoader.getResourceVersionMap(l),
+                    p = o.default.settings.path_root + "resources/map/" + _ + "/" + c + ".png" + (h ? "?version=" + h : "");
+                if (null != PIXI.utils.TextureCache[p]) return this.texture = PIXI.utils.TextureCache[p], void(null != i && i());
+                this._loader = new PIXI.loaders.Loader, this._loader.add(p), this._loader.load(function (t) {
                     if (n._loader == t) {
                         n._loader = null;
-                        var e = t.resources[h];
+                        var e = t.resources[p];
                         n.texture = e.texture, null != i && i()
                     }
                 })

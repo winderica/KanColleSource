@@ -20,158 +20,165 @@ const function1276 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(252),
-        s = i(4),
-        a = i(17),
-        _ = i(15),
-        l = i(30),
-        u = i(197),
-        c = function (t) {
-            function e(e, i, n, o, r) {
-                var a = t.call(this) || this;
-                return a._index = e, a._mst_id = i, a.alpha = 0, a._container = new PIXI.Container, a.addChild(a._container), a._content = new h, a._container.addChild(a._content), a.y = a._baseY, a._text = new s.TextBox(19, 16777215), a._container.addChild(a._text), a._hp_now = n, a._hp_max = r, a._hp_repaired = o, a
+        r = i(5),
+        s = i(250),
+        a = i(12),
+        _ = i(2),
+        l = i(13),
+        u = i(129),
+        c = i(1277),
+        h = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n._leftFairies = [11, 12, 13, 14], n._rightFairies = [18, 19, 20, 21], n._ship_mst_id = e, n._bg = new u.MapBG, n._ship_sprite = new a.Sprite, n._ship_layer = new PIXI.Container, n._cranes = new PIXI.Container;
+                var o = [];
+                i.map(function (t) {
+                    return o.push(new c.AnchorageRepairShipBanner(t.index, t.mst_id, t.hp_now, t.hp_repaired, t.hp_max))
+                }), n._banners = o, n._txt_repairing = new a.Sprite, n._fairy_left = new a.Sprite, n._fairy_right = new a.Sprite;
+                var r = i.map(function (t) {
+                    return t.mst_id
+                });
+                return n._poreload_task = new p(e, r), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "index", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._index
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "hp_repaired", {
+            }), Object.defineProperty(e.prototype, "ship_layer", {
                 get: function () {
-                    return this._hp_repaired
+                    return this._ship_layer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "content", {
+            }), Object.defineProperty(e.prototype, "cranes", {
                 get: function () {
-                    return this._content
+                    return this._cranes
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "_baseY", {
+            }), Object.defineProperty(e.prototype, "banners", {
                 get: function () {
-                    return this._index * (a.BannerSize.H + 7)
+                    return this._banners
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function () {
-                this._content.initialize(this._mst_id, this._hp_now, this._hp_max, this._index), this._text.text = this._hp_now + "/" + this._hp_max, this._text.position.set(200, 60), this._content.updateHp(this._hp_now, this._hp_max)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
-            }, e.prototype.getGlobalPos = function (t) {
-                void 0 === t && (t = !0);
-                var e = new PIXI.Point;
-                return 1 == t && (e.x = a.BannerSize.W / 2, e.y = a.BannerSize.H / 2), this.toGlobal(e)
-            }, e.prototype.updateHp = function (t, e) {
-                void 0 === e && (e = null), this._content.updateHp(t, this._hp_max, e), this._updateHpText()
-            }, e.prototype._updateHpText = function () {
-                var t = Math.abs(this._hp_repaired - this._hp_now);
-                if (t > 0) {
-                    var e = Math.floor(1e3 / t);
-                    this._updateTextTween(e, this._hp_now + 1)
+            }), Object.defineProperty(e.prototype, "fariy_worker", {
+                get: function () {
+                    return this._fairy_worker
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "fairy_left", {
+                get: function () {
+                    return this._fairy_left
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "fairy_right", {
+                get: function () {
+                    return this._fairy_right
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "fairy_cutin", {
+                get: function () {
+                    return this._fairy_cutin
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPreLoadTask = function () {
+                return this._poreload_task
+            }, e.prototype.initilize = function () {
+                var t = this;
+                this._bg.alpha = 0;
+                var e = o.default.resources.getShip(this._ship_mst_id, !1, "full");
+                this._ship_sprite = new PIXI.Sprite(e);
+                var i = o.default.model.ship_graph.get(this._ship_mst_id).getFaceRect(!1);
+                this._ship_sprite.position.set(-(i.x + i.width / 2), -(i.y + i.height / 2));
+                for (var n = 0; n < 3; n++) {
+                    var a = new PIXI.Sprite(s.MAP_ANCHORAGE_REPAIR.getTexture(10));
+                    a.visible = !0, a.position.set(-350, 10 + 230 * n), this._cranes.addChild(a)
                 }
-            }, e.prototype._updateTextTween = function (t, e) {
-                var i = this;
-                e > this._hp_repaired || createjs.Tween.get(null).call(function () {
-                    i._text.text = e + "/" + i._hp_max
-                }).wait(t).call(function () {
-                    i._updateTextTween(t, e + 1)
-                })
+                this.banners.map(function (t) {
+                    t.initialize(), t.visible = !0, t.scale.set(1.5), t.alpha = 0
+                }), this._txt_repairing = new PIXI.Sprite(s.MAP_ANCHORAGE_REPAIR.getTexture(16)), this._txt_repairing.position.set(r.default.width / 2 - this._txt_repairing.width / 2, r.default.height / 2 - this._txt_repairing.height / 2), this._txt_repairing.alpha = 0, this._fairy_worker = new PIXI.Sprite(s.MAP_ANCHORAGE_REPAIR.getTexture(17)), this._fairy_worker.alpha = 0, this._fairy_worker.position.set(120, 700), this._fairy_cutin = new PIXI.Sprite(s.MAP_ANCHORAGE_REPAIR.getTexture(this._getTextureIdFairiesCutin())), this._fairy_cutin.visible = !1, this._fairy_cutin.scale.set(.7), this._fairy_cutin.anchor.set(.5), this._fairy_cutin.position.set(1350, 350), this._ship_layer.visible = !0, this._ship_layer.position.set(1200, 600), this._ship_layer.alpha = 0, this._ship_layer.addChild(this._ship_sprite), this._white = new PIXI.Graphics, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, r.default.width, r.default.height), this._white.endFill(), this.addChild(this._bg), this.addChild(this._ship_layer), this.addChild(this.cranes), this.banners.map(function (e) {
+                    return t.addChild(e)
+                }), this.addChild(this._txt_repairing), this.addChild(this._fairy_worker, this._fairy_right, this._fairy_cutin), this.addChild(this._white)
+            }, e.prototype.getBannerGroup = function (t) {
+                for (var e = [], i = this, n = 0, o = t; n < o.length; n++) {
+                    var r = o[n];
+                    ! function (t) {
+                        var n = i._banners.filter(function (e) {
+                            return e.index == t
+                        });
+                        1 == n.length ? e.push(n.shift()) : e.push(null)
+                    }(r)
+                }
+                return e
+            }, e.prototype.playTxtReparing = function () {
+                this._txt_reparing_tween = createjs.Tween.get(this._txt_repairing, {
+                    paused: !1,
+                    loop: !0
+                }).set({
+                    visible: !0
+                }).to({
+                    alpha: 1
+                }, 350).wait(300).to({
+                    alpha: 0
+                }, 250)
+            }, e.prototype.stopTxtReparing = function () {
+                this._txt_reparing_tween.setPaused(!0), createjs.Tween.get(this._txt_repairing).to({
+                    alpha: 0
+                }, 250)
+            }, e.prototype.getLeftFairy = function () {
+                this.removeChild(this._fairy_left);
+                var t = new PIXI.Sprite(s.MAP_ANCHORAGE_REPAIR.getTexture(this._getTextureIdFairiesLeft()));
+                t.alpha = 0, t.anchor.set(.5), t.scale.set(.5), t.position.set(r.default.width - (r.default.width - t.width / 2 - 20), r.default.height + t.height), this._fairy_left = t, this.addChild(this._fairy_left)
+            }, e.prototype.getRightFairy = function () {
+                this.removeChild(this._fairy_right);
+                var t = new PIXI.Sprite(s.MAP_ANCHORAGE_REPAIR.getTexture(this._getTextureIdFairiesRight()));
+                t.alpha = 0, t.anchor.set(.5), t.scale.set(.5), t.position.set(r.default.width + t.width, r.default.height - t.height / 2 - 10), this._fairy_right = t, this.addChild(this._fairy_right)
+            }, e.prototype._getTextureIdFairiesLeft = function () {
+                var t = Math.floor(Math.random() * this._leftFairies.length),
+                    e = this._leftFairies[t];
+                return this._leftFairies.splice(t, 1), e
+            }, e.prototype._getTextureIdFairiesRight = function () {
+                var t = Math.floor(Math.random() * this._rightFairies.length),
+                    e = this._rightFairies[t];
+                return this._rightFairies.splice(t, 1), e
+            }, e.prototype._getTextureIdFairiesCutin = function () {
+                var t = [0, 1, 2];
+                return t[Math.floor(Math.random() * t.length)]
             }, e
         }(PIXI.Container);
-    e.AnchorageRepairShipBanner = c;
-    var h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new p, e._flagship_mark = new PIXI.Sprite, e._flagship_mark.position.set(210, 6), e._frame = new d, e._kira = new u.BannerKirakira, e.addChild(e._img), e.addChild(e._flagship_mark), e.addChild(e._frame), e.addChild(e._kira), e
+    e.AnchorageRepairLayer = h;
+    var p = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._ship_mst_id = e, n._banner_ship_mst_ids = i, n
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipImage()
+        }, e.prototype._loadShipImage = function () {
+            var t = this,
+                e = new l.ShipLoader;
+            e.add(this._ship_mst_id, !1, "full");
+            for (var i = 0, n = this._banner_ship_mst_ids; i < n.length; i++) {
+                var o = n[i];
+                e.add(o, !1, "banner"), e.add(o, !0, "banner")
             }
-            return n(e, t), Object.defineProperty(e.prototype, "img", {
-                get: function () {
-                    return this._img
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "flagship_mark", {
-                get: function () {
-                    return this._flagship_mark
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "frame", {
-                get: function () {
-                    return this._frame
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "kira", {
-                get: function () {
-                    return this._kira
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._img.initialize(t, e, i), 0 == n && (this._flagship_mark.texture = r.MAP_ANCHORAGE_REPAIR.getTexture(9)), this._frame.initialize(e, i)
-            }, e.prototype.updateHp = function (t, e, i) {
-                void 0 === i && (i = null), this._img.update(t, e), this._frame.updateHp(t, e, i)
-            }, e
-        }(PIXI.Container),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._icon = new l.BannerIcon, e.addChild(e._img), e.addChild(e._icon), e
-            }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._mst_id = t, this._updateState(e, i), this._icon.initialize(!1), this._updateImage(), this._updateIcon(e, i)
-            }, e.prototype.update = function (t, e) {
-                this._updateState(t, e), this._updateImage(), this._updateIcon(t, e)
-            }, e.prototype._updateState = function (t, e) {
-                t <= 0 ? this._damaged = 2 : _.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
-            }, e.prototype._updateImage = function () {
-                this._img.texture = this._getTexture()
-            }, e.prototype._getTexture = function () {
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner")
-            }, e.prototype._updateIcon = function (t, e) {
-                var i = _.ShipUtil.getDamageType(t, e);
-                this._icon.setDamagedIcon(i)
-            }, e
-        }(PIXI.Container),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._gauge_bg = new PIXI.Sprite, e._gauge = new f, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
-            }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._gauge_bg.texture = r.MAP_ANCHORAGE_REPAIR.getTexture(7), this._gauge_bg.x = 240, this._gauge.position.set(240, 60), this._gauge.pivot.y = 60, this._frame.texture = r.MAP_ANCHORAGE_REPAIR.getTexture(8), this.updateHp(t, e)
-            }, e.prototype.updateHp = function (t, e, i) {
-                void 0 === i && (i = null), this._gauge.update(t / e, i)
-            }, e
-        }(PIXI.Container),
-        f = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._BAR_HEIGHT = 60, e
-            }
-            return n(e, t), e.prototype.update = function (t, e) {
-                var i = this;
-                void 0 === e && (e = null), this._stopAnimation(), t = Math.max(t, 0), t = Math.min(t, 1);
-                var n = _.MathUtil.getColor(t),
-                    o = this._BAR_HEIGHT * t;
-                if (null == e) this.beginFill(n), this.drawRect(0, this._BAR_HEIGHT, 10, -o), this.endFill();
-                else {
-                    var r = this.height,
-                        s = Math.max(o / r, 0);
-                    this._t = createjs.Tween.get(this.scale).to({
-                        y: s
-                    }, 1200).call(function () {
-                        i.clear(), i.beginFill(n), i.drawRect(0, i._BAR_HEIGHT, 10, -r), i.endFill()
-                    }).wait(300).call(e)
-                }
-            }, e.prototype.dispose = function () {
-                this._stopAnimation()
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e
-        }(PIXI.Graphics)
+            e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(_.TaskBase);
+    e.PreLoadShipImage = p
 }

@@ -20,23 +20,33 @@ const function1202 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(11),
-        s = function (t) {
+        r = i(2),
+        s = i(34),
+        a = i(69),
+        _ = i(416),
+        l = i(417),
+        u = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._data = e, n._scene_activate_delegate = i, n
+                return n._data = e, n._scene_initialize_delegate = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                o.default.sound.bgm.play(102), this._playVoice()
-            }, e.prototype._playVoice = function () {
-                1 == o.default.option.voice_duty && (1 == this._data.hasComplete() ? o.default.sound.voice.playAtRandom("9999", [401, 402, 403, 404, 405], [20, 20, 20, 20, 20]) : o.default.sound.voice.playAtRandom("9999", [406, 407], [50, 50])), this._startScene()
-            }, e.prototype._startScene = function () {
-                null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this;
+                (new l.TaskLoadResources).start(function () {
+                    t._connectAPI()
+                })
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = new s.APIConnector;
+                20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
+                e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
+                    null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
+                })
             }, e.prototype._endTask = function () {
-                this._data = null, this._scene_activate_delegate = null, t.prototype._endTask.call(this)
+                this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskDutySceneInitialize = s
+    e.TaskDutyScenePreInitialize = u
 }

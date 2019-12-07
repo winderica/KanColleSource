@@ -40,6 +40,10 @@ const function597 = function (t, e, i) {
                         return o.COMMON_EVENT.getTexture(2);
                     case 4:
                         return o.COMMON_EVENT.getTexture(3);
+                    case 5:
+                        return o.COMMON_EVENT.getTexture(4);
+                    case 6:
+                        return o.COMMON_EVENT.getTexture(5);
                     default:
                         return PIXI.Texture.EMPTY
                 }

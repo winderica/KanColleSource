@@ -16,7 +16,7 @@ const function179 = function (t, e, i) {
                 if (t.data.model.map_info.area_id != n.EVENT_AREA_ID) return -1;
                 if (0 == t.data.model.map_info.isBoss()) return -1;
                 var i = (t.data.model.map_info.map_no, e.name);
-                return "\u6f5c\u6c34\u65b0\u68f2\u59eb" == i || "\u6f5c\u6c34\u65b0\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 391173640 : "\u6226\u8266\u4ecf\u68f2\u59eb" == i || "\u6226\u8266\u4ecf\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 394174540 : "\u8b77\u885b\u72ec\u9084\u59eb" == i ? 423182140 : "\u8b77\u885b\u72ec\u9084\u59eb-\u58ca" == i ? 423182140 : "\u8239\u6e20\u68f2\u59eb" == i ? 424182740 : "\u6b27\u5dde\u68f2\u59eb" == i ? 397175540 : "\u6b27\u5dde\u6c34\u59eb" == i ? 425184040 : "\u6df1\u6d77\u6d77\u6708\u59eb" == i ? 445171140 : "\u592a\u5e73\u6d0b\u6df1\u6d77\u68f2\u59eb" == i || "\u592a\u5e73\u6d0b\u6df1\u6d77\u68f2\u59eb-\u58ca" == i ? 445187140 : "\u6df1\u6d77\u5730\u4e2d\u6d77\u68f2\u59eb" == i ? 452187740 : "\u30a2\u30f3\u30c4\u30a3\u30aa\u6c96\u68f2\u59eb" == i ? 453188340 : "\u30d0\u30bf\u30d3\u30a2\u6c96\u68f2\u59eb" == i ? 464189840 : -1
+                return "\u6f5c\u6c34\u65b0\u68f2\u59eb" == i || "\u6f5c\u6c34\u65b0\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 391173640 : "\u6226\u8266\u4ecf\u68f2\u59eb" == i || "\u6226\u8266\u4ecf\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 394174540 : "\u8b77\u885b\u72ec\u9084\u59eb" == i ? 423182140 : "\u8b77\u885b\u72ec\u9084\u59eb-\u58ca" == i ? 423182140 : "\u8239\u6e20\u68f2\u59eb" == i ? 424182740 : "\u6b27\u5dde\u68f2\u59eb" == i ? 397175540 : "\u6b27\u5dde\u6c34\u59eb" == i ? 425184040 : "\u6df1\u6d77\u6d77\u6708\u59eb" == i ? 445171140 : "\u592a\u5e73\u6d0b\u6df1\u6d77\u68f2\u59eb" == i || "\u592a\u5e73\u6d0b\u6df1\u6d77\u68f2\u59eb-\u58ca" == i ? 445187140 : "\u6df1\u6d77\u5730\u4e2d\u6d77\u68f2\u59eb" == i ? 452187740 : "\u30a2\u30f3\u30c4\u30a3\u30aa\u6c96\u68f2\u59eb" == i ? 453188340 : "\u30d0\u30bf\u30d3\u30a2\u6c96\u68f2\u59eb" == i ? 464189840 : "\u6f5c\u6c34\u68f2\u59eb\u6539" == i ? 465191540 : "\u9632\u7a7a\u5de1\u68f2\u59eb" == i ? 466190940 : -1
             }, t.getLastGaspVoiceID = function (t, e) {
                 if (t.data.model.map_info.area_id != n.EVENT_AREA_ID) return -1;
                 if (0 == t.data.model.map_info.isBoss()) return -1;
@@ -26,7 +26,7 @@ const function179 = function (t, e, i) {
                     if (1659 == o || 1660 == o || 1661 == o) return 33365940;
                     if (1662 == o || 1663 == o || 1664 == o) return 33366240
                 }
-                return "\u91cd\u5de1\u590f\u59eb" == i ? 35470540 : "\u7a7a\u6bcd\u68f2\u9b3c" == i || "\u7a7a\u6bcd\u590f\u9b3c" == i ? 27305854 : "\u7a7a\u6bcd\u68f2\u59eb" == i || "\u7a7a\u6bcd\u590f\u59eb" == i ? 29405864 : "\u6f5c\u6c34\u590f\u59eb" == i ? 35169340 : "\u6f5c\u6c34\u65b0\u68f2\u59eb" == i || "\u6f5c\u6c34\u65b0\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 391173641 : "\u6226\u8266\u4ecf\u68f2\u59eb" == i || "\u6226\u8266\u4ecf\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 394174540 : "\u6226\u8266\u4ecf\u68f2\u59eb-\u58ca" == i || "\u6226\u8266\u4ecf\u68f2\u59eb-\u58ca \u30d0\u30ab\u30f3\u30b9mode" == i ? 394174840 : "\u6226\u8266\u68f2\u59eb" == i || "\u6226\u8266\u68f2\u59eb\u6539" == i || "\u6226\u8266\u590f\u59eb" == i ? 27605574 : "\u6cca\u5730\u6c34\u9b3c" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i ? 30506094 : "\u8b77\u885b\u72ec\u9084\u59eb" == i ? 423182440 : "\u8b77\u885b\u72ec\u9084\u59eb-\u58ca" == i ? 423182440 : "\u6e2f\u6e7e\u590f\u59eb" == i || "\u6e2f\u6e7e\u590f\u59eb-\u58ca" == i ? 35369940 : "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u590f\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 33265340 : "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i ? 33265640 : "\u8239\u6e20\u68f2\u59eb" == i ? 424182740 : "\u8239\u6e20\u68f2\u59eb-\u58ca" == i ? 424183040 : "\u6b27\u5dde\u68f2\u59eb-\u58ca" == i ? 397175840 : "\u6b27\u5dde\u6c34\u59eb" == i ? 425184040 : "\u6b27\u5dde\u6c34\u59eb-\u58ca" == i ? 425184340 : "\u6df1\u6d77\u96e8\u96f2\u59eb" == i ? 431184640 : "\u6df1\u6d77\u96e8\u96f2\u59eb-\u58ca" == i ? 431184940 : "\u5357\u65b9\u68f2\u9b3c" == i ? 432154640 : "\u5357\u65b9\u68f2\u6226\u59eb" == i ? 433154740 : "\u6df1\u6d77\u65e5\u68f2\u59eb" == i ? 433185240 : "\u6df1\u6d77\u65e5\u68f2\u59eb-\u58ca" == i ? 433185540 : "\u5317\u65b9\u68f2\u59b9" == i ? 443186540 : "\u5317\u65b9\u68f2\u59b9-\u58ca" == i ? 443186840 : "\u4e2d\u67a2\u68f2\u59eb" == i ? 34668440 : "\u4e2d\u67a2\u68f2\u59eb-\u58ca" == i ? 34768740 : "\u6df1\u6d77\u6d77\u6708\u59eb" == i ? 445171141 : "\u592a\u5e73\u6d0b\u6df1\u6d77\u68f2\u59eb-\u58ca" == i ? 445187441 : "\u6df1\u6d77\u5730\u4e2d\u6d77\u68f2\u59eb-\u58ca" == i ? 452188041 : "\u30a2\u30f3\u30c4\u30a3\u30aa\u6c96\u68f2\u59eb-\u58ca" == i ? 453188641 : "\u6226\u8266\u6c34\u9b3c" == i || "\u6226\u8266\u6c34\u9b3c\u6539" == i || "\u6226\u8266\u6c34\u9b3c\u6539-\u58ca" == i ? 30606034 : "\u30d0\u30bf\u30d3\u30a2\u6c96\u68f2\u59eb-\u58ca" == i ? 464190141 : -1
+                return "\u91cd\u5de1\u590f\u59eb" == i ? 35470540 : "\u7a7a\u6bcd\u68f2\u9b3c" == i || "\u7a7a\u6bcd\u590f\u9b3c" == i ? 27305854 : "\u7a7a\u6bcd\u68f2\u59eb" == i || "\u7a7a\u6bcd\u590f\u59eb" == i || "\u7a7a\u6bcd\u68f2\u59eb\u6539" == i ? 29405864 : "\u6f5c\u6c34\u590f\u59eb" == i ? 35169340 : "\u6f5c\u6c34\u65b0\u68f2\u59eb" == i || "\u6f5c\u6c34\u65b0\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 391173641 : "\u6226\u8266\u4ecf\u68f2\u59eb" == i || "\u6226\u8266\u4ecf\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 394174540 : "\u6226\u8266\u4ecf\u68f2\u59eb-\u58ca" == i || "\u6226\u8266\u4ecf\u68f2\u59eb-\u58ca \u30d0\u30ab\u30f3\u30b9mode" == i ? 394174840 : "\u6226\u8266\u68f2\u59eb" == i || "\u6226\u8266\u68f2\u59eb\u6539" == i || "\u6226\u8266\u590f\u59eb" == i ? 27605574 : "\u6cca\u5730\u6c34\u9b3c" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i ? 30506094 : "\u8b77\u885b\u72ec\u9084\u59eb" == i ? 423182440 : "\u8b77\u885b\u72ec\u9084\u59eb-\u58ca" == i ? 423182440 : "\u6e2f\u6e7e\u590f\u59eb" == i || "\u6e2f\u6e7e\u590f\u59eb-\u58ca" == i ? 35369940 : "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u590f\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i ? 33265340 : "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i ? 33265640 : "\u8239\u6e20\u68f2\u59eb" == i ? 424182740 : "\u8239\u6e20\u68f2\u59eb-\u58ca" == i ? 424183040 : "\u6b27\u5dde\u68f2\u59eb-\u58ca" == i ? 397175840 : "\u6b27\u5dde\u6c34\u59eb" == i ? 425184040 : "\u6b27\u5dde\u6c34\u59eb-\u58ca" == i ? 425184340 : "\u6df1\u6d77\u96e8\u96f2\u59eb" == i ? 431184640 : "\u6df1\u6d77\u96e8\u96f2\u59eb-\u58ca" == i ? 431184940 : "\u5357\u65b9\u68f2\u9b3c" == i ? 432154640 : "\u5357\u65b9\u68f2\u6226\u59eb" == i ? 433154740 : "\u6df1\u6d77\u65e5\u68f2\u59eb" == i ? 433185240 : "\u6df1\u6d77\u65e5\u68f2\u59eb-\u58ca" == i ? 433185540 : "\u5317\u65b9\u68f2\u59b9" == i ? 443186540 : "\u5317\u65b9\u68f2\u59b9-\u58ca" == i ? 443186840 : "\u4e2d\u67a2\u68f2\u59eb" == i ? 34668440 : "\u4e2d\u67a2\u68f2\u59eb-\u58ca" == i ? 34768740 : "\u6df1\u6d77\u6d77\u6708\u59eb" == i ? 445171141 : "\u592a\u5e73\u6d0b\u6df1\u6d77\u68f2\u59eb-\u58ca" == i ? 445187441 : "\u6df1\u6d77\u5730\u4e2d\u6d77\u68f2\u59eb-\u58ca" == i ? 452188041 : "\u30a2\u30f3\u30c4\u30a3\u30aa\u6c96\u68f2\u59eb-\u58ca" == i ? 453188641 : "\u6226\u8266\u6c34\u9b3c" == i || "\u6226\u8266\u6c34\u9b3c\u6539" == i || "\u6226\u8266\u6c34\u9b3c\u6539-\u58ca" == i ? 30606034 : "\u30d0\u30bf\u30d3\u30a2\u6c96\u68f2\u59eb-\u58ca" == i ? 464190141 : "\u6f5c\u6c34\u68f2\u59eb" == i ? 35169340 : "\u6f5c\u6c34\u68f2\u59eb\u6539-\u58ca" == i ? 465191841 : "\u9632\u7a7a\u5de1\u68f2\u59eb-\u58ca" == i ? 466191241 : -1
             }, t._getVoiceIDs = function (t, e, i) {
                 var n = e.data.model.map_info.map_no,
                     o = i.mst_id,
@@ -107,7 +107,7 @@ const function179 = function (t, e, i) {
                     a: [27305852],
                     d: [27305853]
                 };
-                if ("\u7a7a\u6bcd\u68f2\u59eb" == r || "\u7a7a\u6bcd\u590f\u59eb" == r) return {
+                if ("\u7a7a\u6bcd\u68f2\u59eb" == r || "\u7a7a\u6bcd\u590f\u59eb" == r || "\u7a7a\u6bcd\u68f2\u59eb\u6539" == r) return {
                     a: [29405862],
                     d: [29405863]
                 };
@@ -252,6 +252,24 @@ const function179 = function (t, e, i) {
                 } : "\u30d0\u30bf\u30d3\u30a2\u6c96\u68f2\u59eb-\u58ca" == r ? {
                     a: [464190120],
                     d: [464190130]
+                } : "\u6f5c\u6c34\u68f2\u59eb" == r ? {
+                    a: [35169320],
+                    d: [35169330]
+                } : "\u6f5c\u6c34\u68f2\u59eb\u6539" == r ? {
+                    a: [465191520],
+                    d: [465191530]
+                } : "\u6f5c\u6c34\u68f2\u59eb\u6539-\u58ca" == r ? {
+                    a: [465191820],
+                    d: [465191830]
+                } : "\u9632\u7a7a\u5de1\u68f2\u59eb" == r ? {
+                    a: [466190920],
+                    d: [466190930]
+                } : "\u9632\u7a7a\u5de1\u68f2\u59eb-\u58ca" == r ? a ? {
+                    a: [466191220],
+                    d: [466191231]
+                } : {
+                    a: [466191220],
+                    d: [466191230]
                 } : void 0
             }, t
         }();

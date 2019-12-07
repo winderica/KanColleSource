@@ -19,34 +19,19 @@ const function1085 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(173),
-        s = i(385),
-        a = i(386),
-        _ = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._model = i, r._view = n, r._onBack = o, r
+    var o = i(9),
+        r = i(7),
+        s = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_get_member/picture_book", o._mode = e, o._no = i, o._modelManager = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                (new a.TaskLoadResources).start(function () {
-                    t._initView()
-                })
-            }, e.prototype._initView = function () {
-                this._view.initialize(this._onBack), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this;
-                new s.AlbumAPI(1, 0, this._model).start(function () {
-                    t._showImage()
-                })
-            }, e.prototype._showImage = function () {
-                var t = r.AlbumConst.COUNT_INPAGE,
-                    e = this._model.getData(1, 0, t);
-                this._view.content.update(1, 0, e), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._model = null, this._view = null, this._onBack = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_type = this._mode, this._post_data.api_no = this._no + 1, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.ObjUtil.getObjectArray(this._raw_data, "api_list");
+                null != e && (1 == this._mode ? this._modelManager.addShipData(this._no, e) : this._modelManager.addSlotData(this._no, e)), this._modelManager = null, t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskScenePreInitialize = _
+        }(o.APIBase);
+    e.AlbumAPI = s
 }

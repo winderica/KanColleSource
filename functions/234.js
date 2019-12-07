@@ -25,10 +25,10 @@ const function234 = function (t, e, i) {
         a = i(235),
         _ = i(206),
         l = i(52),
-        u = i(1008),
-        c = i(1009),
-        h = i(1010),
-        p = i(373),
+        u = i(1009),
+        c = i(1010),
+        h = i(1011),
+        p = i(371),
         d = i(1),
         f = function (t) {
             function e(e, i, n, o, r) {
@@ -93,6 +93,14 @@ const function234 = function (t, e, i) {
                                 this._gauge.update(l, _)
                             }
                     }
+                }
+            }, e.prototype.updateThumbnail = function (t) {
+                if (null == t) this._image.setTexture(this._getNoneTexture());
+                else {
+                    this._mst_id = t.mst_id;
+                    var e = r.MapUtil.toAreaID(this._mst_id),
+                        i = r.MapUtil.toMapNo(this._mst_id);
+                    this._image.setImage(e, i)
                 }
             }, e.prototype._initClearBadge = function (t) {
                 if (null == t || 0 == t.isOpened() || 0 == t.isCleared()) return void this._clear.hide();

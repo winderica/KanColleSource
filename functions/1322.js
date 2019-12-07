@@ -19,31 +19,53 @@ const function1322 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1323),
-        r = function (t) {
+    var o = i(5),
+        r = i(62),
+        s = i(1323),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._frame = 0, e._sprite = new PIXI.Sprite(o.MAP_EVENT_ANIME.getTexture(e._frame)), e.addChild(e._sprite), e
+                return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e._extraLayer = [], e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.stopAnimation(), this.removeChildren(), this._sprite = null, this._frame = null
-            }, e.prototype.startAnimation = function () {
-                var t = this;
-                this._tween = createjs.Tween.get(null), this._tween.loop = !0, this._tween.wait(250).call(function () {
-                    t._onUpdate()
-                })
-            }, e.prototype.stopAnimation = function () {
-                this._tween && (this._tween.setPaused(!0), this._tween = null, this._sprite.alpha = 0)
-            }, e.prototype.hide = function () {
-                var t = this;
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t.stopAnimation()
-                })
-            }, e.prototype._onUpdate = function () {
-                this._frame >= 29 ? this._frame = 0 : this._frame++, this._sprite.texture = o.MAP_EVENT_ANIME.getTexture(this._frame)
+            return n(e, t), Object.defineProperty(e.prototype, "extraLayerLast", {
+                get: function () {
+                    return this._extraLayer[this._extraLayer.length - 1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "mapAnime", {
+                get: function () {
+                    return this._mapAnime
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._mapAnime && this._mapAnime.dispose()
+            }, e.prototype.addBGLayer = function (t, e) {
+                var i = new PIXI.Sprite(t);
+                if (null != e && e.length > 0) {
+                    if (1 == this._bgDic.hasOwnProperty(e)) {
+                        var n = this._bgDic[e];
+                        null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
+                    }
+                    this._bgDic[e] = i
+                }
+                i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
+            }, e.prototype.getBGLayer = function (t) {
+                return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
+            }, e.prototype.addLabels = function (t) {
+                if (0 != t.length) {
+                    var e = new PIXI.Container;
+                    this._extraLayer.push(e), this.addChild(e);
+                    for (var i = 0, n = t; i < n.length; i++) {
+                        var o = n[i],
+                            s = new r.CenteringSprite(o.texture);
+                        s.x = o.x + Math.round(s.width / 2), s.y = o.y + Math.round(s.height / 2), e.addChild(s)
+                    }
+                }
+            }, e.prototype.setMapAnime = function () {
+                this._mapAnime = new s.MapAnime, this._mapAnime.position.set(899, 370), this._bgLayer.addChildAt(this._mapAnime, 2), this._mapAnime.startAnimation()
             }, e
         }(PIXI.Container);
-    e.MapAnime = r
+    e.MapBackGround = a
 }

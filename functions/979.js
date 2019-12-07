@@ -26,8 +26,8 @@ const function979 = function (t, e, i) {
         _ = i(18),
         l = i(980),
         u = i(982),
-        c = i(354),
-        h = i(362),
+        c = i(352),
+        h = i(360),
         p = function (t) {
             function e(e, i, n, o, s) {
                 var a = t.call(this) || this;
@@ -42,7 +42,7 @@ const function979 = function (t, e, i) {
                         var t = a._model.getSelectedOperationType(),
                             e = 0 == t;
                         i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
-                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
+                            a._mapThumbnailPanel.updateGauge(a._model), 465 == a._model.mst_id && a._mapThumbnailPanel.updateThumbnail(a._model), a._hideFade(e)
                         }) : a._hideFade(e)
                     })
                 }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
@@ -80,7 +80,7 @@ const function979 = function (t, e, i) {
                         };
                     case 6:
                         return {
-                            voice: [412, 421, 422, 423, 424], delay: [0, 200, 200, 200, 200]
+                            voice: [412, 421, 423, 424], delay: [0, 200, 200, 200, 200]
                         };
                     default:
                         return null

@@ -19,36 +19,26 @@ const function1529 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(1530),
-        s = i(1531),
+    var o = i(5),
+        r = i(4),
+        s = i(36),
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
+                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e.addChild(e._bg), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy", {
-                get: function () {
-                    return this._enemy
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n, o) {
-                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
-            }, e.prototype.show = function (t) {
-                var e = new o.TweenTask;
-                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
-                    null != t && t()
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1), this._text1 = new r.TextBox(18, 16774898), this._text1.text = "FRIEND FLEET AREA", this._text1.position.set(-582, 300), this._text1.rotation = -Math.PI / 2, this._bg.addChild(this._text1), this._text2 = new r.TextBox(18, 16774898), this._text2.text = "ENEMY FLEET AREA", this._text2.position.set(578, -234), this._text2.rotation = Math.PI / 2, this._bg.addChild(this._text2)
+            }, e.prototype.show = function () {
+                var t = this;
+                createjs.Tween.get(this._bg.scale).to({
+                    y: 1
+                }, 300).call(function () {
+                    t.emit("complete")
                 })
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
+                this.removeChildren(), this._text1.destroy(), this._text2.destroy()
             }, e
         }(PIXI.Container);
-    e.LayerDeckInfo = a
+    e.LayerBG = a
 }

@@ -19,26 +19,47 @@ const function1058 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(15),
-        a = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o._expiredFlag = !1, o
+    var o = i(58),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._icons = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "expiredFlag", {
-                get: function () {
-                    return this._expiredFlag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._expiredFlag = s.ObjUtil.getBoolean(this._raw_data, "api_expired_flag"), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0; t < this._icons.length; t++) {
+                    this._icons[t].visible = !1
+                }
+            }, e.prototype.update = function (t) {
+                var e = [];
+                if (null != t) {
+                    var i = t.getSlotitems();
+                    i = i.concat(t.getSlotitemEx());
+                    for (var n = 0, o = i; n < o.length; n++) {
+                        var r = o[n];
+                        if (null != r) {
+                            var s = r.equipType;
+                            if (24 == s) {
+                                355 != r.mstID && e.push(r)
+                            } else 46 == s && e.push(r)
+                        }
+                    }
+                }
+                this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e];
+                    if (e >= t.length) i.visible = !1;
+                    else {
+                        var n = t[e].equipType;
+                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(64) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
+                    }
+                }
             }, e
-        }(r.APIBase);
-    e.ExpeditionStartAPI = a
+        }(PIXI.Container);
+    e.CompSupportBoatCount = r
 }

@@ -27,11 +27,11 @@ const function911 = function (t, e, i) {
         l = i(912),
         u = i(80),
         c = i(913),
-        h = i(350),
+        h = i(348),
         p = i(915),
         d = i(916),
         f = i(917),
-        y = i(351),
+        y = i(349),
         m = i(919),
         g = i(924);
     d.RewardAnimationMultiSlot;

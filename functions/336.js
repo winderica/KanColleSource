@@ -20,27 +20,17 @@ const function336 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 30, 45), e.clickArea.y = -e.clickArea.height / 2 + e.slotIconDelete.height / 2, e.clickArea.endFill(), e.clickArea.renderable = !1, e.addChild(e.clickArea, e.slotIconDelete), e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (t) {
-                    case 1:
-                        this.texture = o.SUPPLY_MAIN.getTexture(20);
-                        break;
-                    case 2:
-                        this.texture = o.SUPPLY_MAIN.getTexture(21);
-                        break;
-                    case 3:
-                        this.texture = o.SUPPLY_MAIN.getTexture(22);
-                        break;
-                    case 0:
-                        this.texture = PIXI.Texture.EMPTY
-                }
-            }, e.prototype.dispose = function () {
-                this.memShipId = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.off(r.EventType.CLICK), this.clickArea.clear(), this.slotIconDelete = null, this.clickArea = null, this.onClick = null
             }, e
-        }(PIXI.Sprite);
-    e.SupplyCheckBox = r
+        }(PIXI.Container);
+    e.DetachButton = s
 }

@@ -19,33 +19,30 @@ const function372 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !0, i._overed = !1, i._onMouseOver = function () {
-                    i._overed = !0, i._updateTexture()
-                }, i._onMouseOut = function () {
-                    i._overed = !1, i._updateTexture()
-                }, i._onClick = function () {
-                    null != i._cb && 1 == i._btn.buttonMode && i._cb()
-                }, i._cb = e, i._btn = new PIXI.Sprite, i.addChild(i._btn), i._btn.interactive = !0, i
+    var o = i(41),
+        r = i(236),
+        s = i(1015),
+        a = i(1018),
+        _ = i(360),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                n._onMouseOver = function (t) {
+                    n._strategy_map.update(t)
+                }, n._onMouseOut = function (t) {};
+                var r = o.SALLY_EVENT.getTexture(4),
+                    _ = new PIXI.Sprite(r);
+                return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                set: function (t) {
-                    this._enabled != t && (this._enabled = t, 1 == this._enabled ? this.activate() : this.deactivate(), this._updateTexture())
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._updateTexture()
-            }, e.prototype.activate = function () {
-                1 != this._btn.buttonMode && 0 != this._enabled && (this._btn.buttonMode = !0, this._btn.on(o.EventType.MOUSEOVER, this._onMouseOver), this._btn.on(o.EventType.MOUSEOUT, this._onMouseOut), this._btn.on(o.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._btn.buttonMode = !1, this._btn.off(o.EventType.MOUSEOVER, this._onMouseOver), this._btn.off(o.EventType.MOUSEOUT, this._onMouseOut), this._btn.off(o.EventType.CLICK, this._onClick)
+            return n(e, t), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e);
+                var i = e[this.offset].mst_id;
+                this._strategy_map.update(i), this._airunitbtn.initialize()
+            }, e.prototype.updateAirUnitEnabled = function (e) {
+                t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb = null
-            }, e.prototype._updateTexture = function () {}, e
-        }(PIXI.Container);
-    e.BtnGoBase = r
+                t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose(), _.EventOperationVoice.killVoice()
+            }, e
+        }(r.LayoutBase);
+    e.EventLayoutBase = l
 }

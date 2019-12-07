@@ -19,103 +19,54 @@ const function1480 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(6),
-        s = i(16),
-        a = function (t) {
+    var o = i(253),
+        r = i(16),
+        s = function (t) {
             function e() {
                 return t.call(this) || this
             }
-            return n(e, t), e.prototype.showCenter = function (t) {
-                var e = this,
-                    i = new _(t),
-                    n = o.default.width / 2,
-                    s = o.default.height / 2;
-                i.position.set(n, s), i.bg.scale.y = 0, i.text.x += 150, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({
-                    y: 1
-                }, 300).wait(1150).to({
-                    y: 0
-                }, 300).call(function () {
-                    e.removeChild(i), e.emit("complete")
-                }), createjs.Tween.get(i.text).wait(300).to({
-                    x: 90,
+            return n(e, t), e.prototype.show = function (t, e) {
+                void 0 === e && (e = null), this.hide(), this._current = new o.PhaseTitle, this._current.y = 16, this._current.alpha = 0, this._current.initialize(8 == t);
+                var i = this._getTexture(t);
+                this._current.update(i), this._current.activate(), null != e ? e.addChild(this._current) : this.addChild(this._current), createjs.Tween.get(this._current).to({
                     alpha: 1
-                }, 300).to({
-                    x: -90
-                }, 350).call(function () {
-                    e.emit("showed")
-                }).to({
-                    x: -150,
-                    alpha: 0
-                }, 500)
-            }, e.prototype.showTop = function (t) {
-                var e = this,
-                    i = new _(t),
-                    n = o.default.width / 2;
-                i.position.set(n, 117), i.bg.scale.y = 0, i.text.x = -n + i.text.width / 2 - 195, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({
-                    y: 1
-                }, 300).wait(1450).to({
-                    y: 0
-                }, 300).call(function () {
-                    e.removeChild(i), e.emit("complete")
-                }), createjs.Tween.get(i.text).wait(250).to({
-                    alpha: 1
-                }, 100).to({
-                    x: -n + i.text.width / 2
-                }, 200).to({
-                    x: -n + i.text.width / 2 + 90
-                }, 750).call(function () {
-                    e.emit("showed")
-                }).to({
-                    x: 10,
-                    alpha: 0
-                }, 350), createjs.Tween.get(i.subText).wait(750).call(function () {
-                    i.subText.position.set(0, 110), i.subText.visible = !0
-                }).wait(700).to({
-                    x: -n,
-                    alpha: 0
-                }, 300)
+                }, 800)
+            }, e.prototype.hide = function (t) {
+                if (void 0 === t && (t = null), null == this._current) null != t && t();
+                else {
+                    var e = this._current;
+                    this._current = null, createjs.Tween.get(e).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        e.deactivate();
+                        var i = e.parent;
+                        null != i && i.removeChild(e), e.dispose(), null != t && t()
+                    })
+                }
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case 0:
+                        return r.BATTLE_MAIN.getTexture(129);
+                    case 1:
+                        return r.BATTLE_MAIN.getTexture(125);
+                    case 2:
+                        return r.BATTLE_MAIN.getTexture(130);
+                    case 3:
+                        return r.BATTLE_MAIN.getTexture(128);
+                    case 4:
+                        return r.BATTLE_MAIN.getTexture(124);
+                    case 5:
+                        return r.BATTLE_MAIN.getTexture(123);
+                    case 6:
+                        return r.BATTLE_MAIN.getTexture(127);
+                    case 7:
+                        return r.BATTLE_MAIN.getTexture(126);
+                    case 8:
+                        return r.BATTLE_MAIN.getTexture(131);
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
             }, e
         }(PIXI.Container);
-    e.LayerInfo = a;
-    var _ = function (t) {
-        function e(e) {
-            var i, n, o, r = t.call(this) || this;
-            i = 4 == e || 3 == e ? PIXI.Texture.fromFrame("battle_telop_mes_bg_e") : PIXI.Texture.fromFrame("battle_telop_mes_bg_f"), n = r._getTextTextureNo(e), o = 1 == e || 2 == e ? s.BATTLE_MAIN.getTexture(64) : 4 == e || 3 == e ? s.BATTLE_MAIN.getTexture(65) : PIXI.Texture.EMPTY, r._bg = new PIXI.Container;
-            var a = new PIXI.Sprite(i);
-            return a.x = -Math.round(a.width / 2), a.y = -Math.round(a.height / 2), r._bg.addChild(a), r._text = new PIXI.Sprite(n), r._text.anchor.set(.5), r._subText = new PIXI.Sprite(o), r._subText.anchor.set(.5), r._subText.visible = !1, r.addChild(r._bg), r.addChild(r._text), r.addChild(r._subText), r
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "subText", {
-            get: function () {
-                return this._subText
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype._getTextTextureNo = function (t) {
-            var e = -1;
-            if (0 == t) e = 68;
-            else if (1 == t) e = 72;
-            else if (2 == t) e = 73;
-            else if (4 == t) e = 75;
-            else if (3 == t) e = 74;
-            else if (5 == t) e = 66;
-            else {
-                if (6 != t) return PIXI.Texture.EMPTY;
-                e = 67
-            }
-            return s.BATTLE_MAIN.getTexture(e)
-        }, e
-    }(PIXI.Container)
+    e.LayerTitle = s
 }

@@ -24,9 +24,9 @@ const function165 = function (t, e, i) {
         s = i(704),
         a = i(705),
         _ = i(706),
-        l = i(324),
-        u = i(325),
-        c = i(326);
+        l = i(322),
+        u = i(323),
+        c = i(324);
     ! function (t) {
         function e() {
             switch (r.MAMIYA_IRAKO_SEASON) {

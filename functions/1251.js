@@ -8,35 +8,52 @@ const function1251 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "no", {
+            return Object.defineProperty(t.prototype, "offset", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "no")
+                    return this._o.hasOwnProperty("x") || this._o.hasOwnProperty("y") ? new PIXI.Point(n.ObjUtil.getNumber(this._o, "x"), n.ObjUtil.getNumber(this._o, "y")) : null
                 },
                 enumerable: !0,
                 configurable: !0
             }), Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "type")
+                    switch (n.ObjUtil.getString(this._o, "type")) {
+                        case "R":
+                            return 2;
+                        case "L":
+                            return 6;
+                        case "T":
+                            return 0;
+                        case "B":
+                            return 4;
+                        case "RT":
+                        case "TR":
+                            return 1;
+                        case "RB":
+                        case "BR":
+                            return 3;
+                        case "LT":
+                        case "TL":
+                            return 7;
+                        case "LB":
+                        case "BL":
+                            return 5
+                    }
+                    return 1
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "from", {
+            }), Object.defineProperty(t.prototype, "beak", {
                 get: function () {
-                    var t = n.ObjUtil.getNumber(this._o, "from"),
-                        e = new PIXI.Point;
-                    return e.x = n.ObjUtil.getNumber(t, "x"), e.y = n.ObjUtil.getNumber(t, "y"), e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "to", {
-                get: function () {
-                    var t = n.ObjUtil.getNumber(this._o, "to"),
-                        e = new PIXI.Point;
-                    return e.x = n.ObjUtil.getNumber(t, "x"), e.y = n.ObjUtil.getNumber(t, "y"), e
+                    switch (n.ObjUtil.getString(this._o, "beak")) {
+                        case "s":
+                        case "straight":
+                            return 1
+                    }
+                    return 0
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.AirRaidData = o
+    e.BranchBalloonData = o
 }

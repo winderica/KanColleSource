@@ -19,169 +19,58 @@ const function1279 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(2),
-        a = i(18),
-        _ = i(12),
-        l = i(13),
-        u = i(19),
-        c = i(437),
-        h = function (t) {
-            function e(e, i, n) {
+    var o = i(0),
+        r = i(2),
+        s = i(1280),
+        a = i(1281),
+        _ = i(13),
+        l = i(23),
+        u = i(122),
+        c = function (t) {
+            function e(e, i, n, o) {
                 var r = t.call(this) || this;
-                return r._selected_formation = 1, r._showText = function () {
-                    var t = r._telopContainer.text;
-                    t.position.set(750, o.default.height / 2), t.alpha = 0, t.texture = u.MAP_COMMON.getTexture(115), createjs.Tween.get(t).to({
-                        x: 630,
-                        alpha: 1
-                    }, 500).to({
-                        x: 585
-                    }, 500).call(r._formationSelect), createjs.Tween.get(r._chara).to({
-                        alpha: 1
-                    }, 500);
-                    var e = r._view.shutter;
-                    e.alpha = 0, e.close(0), createjs.Tween.get(e).to({
-                        alpha: 1
-                    }, 400)
-                }, r._formationSelect = function () {
-                    var t = r._deck.getCount(),
-                        e = Math.max(6, t);
-                    if (r._layer.boxes.initialize(t, r._onSelectFormation, e), r._layer.boxes.alpha = 0, r._layer.boxes.count <= 1 || r._isLongRange) {
-                        var i = r._telopContainer.bg;
-                        createjs.Tween.get(i).wait(150).to({
-                            alpha: 0,
-                            scaleY: 0
-                        }, 100).call(r._showText2);
-                        var n = r._telopContainer.text;
-                        createjs.Tween.get(n).to({
-                            x: 555,
-                            alpha: 0
-                        }, 100)
+                return r._selectFormation = function () {
+                    if (0 == r._model.deck_f.type || r._model.map_info.isNightStart()) {
+                        var t = new s.TaskFormationSelect(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
+                        t.start(function () {
+                            r._fadeoutBGM(t.selected_formation)
+                        })
                     } else {
-                        r._layer.fade.show(200);
-                        var i = r._telopContainer.bg;
-                        createjs.Tween.get(i).wait(150).to({
-                            alpha: 0,
-                            scaleY: 0
-                        }, 100);
-                        var n = r._telopContainer.text;
-                        createjs.Tween.get(n).to({
-                            x: 555,
-                            alpha: 0
-                        }, 100), createjs.Tween.get(r._layer.boxes).to({
-                            alpha: 1
-                        }, 300).call(function () {
-                            r._layer.boxes.activate(), r._view.message_box.text = "\u9663\u5f62\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+                        var e = new a.TaskFormationSelectCombined(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
+                        e.start(function () {
+                            r._fadeoutBGM(e.selected_formation)
                         })
                     }
-                }, r._onSelectFormation = function (t) {
-                    r._selected_formation = t, r._layer.boxes.deactivate(), createjs.Tween.get(r._layer.boxes).to({
-                        alpha: 0
-                    }, 200), r._layer.fade.hide(200, r._showText2)
-                }, r._showText2 = function () {
-                    var t = r._telopContainer.bg,
-                        e = r._telopContainer.text;
-                    e.position.set(o.default.width / 2, o.default.height / 2), e.texture = u.MAP_COMMON.getTexture(114), createjs.Tween.get(t).to({
-                        alpha: 1,
-                        scaleY: 1
-                    }, 200).wait(950).to({
-                        alpha: 0,
-                        scaleY: 0
-                    }, 200), createjs.Tween.get(e).wait(150).to({
-                        alpha: 1
-                    }, 100).wait(200).to({
-                        x: 570
-                    }, 300).to({
-                        x: 450,
-                        alpha: 0
-                    }, 400), createjs.Tween.get(r._layer.chara).wait(950).to({
-                        x: -75,
-                        alpha: 0
-                    }, 600), createjs.Tween.get(r._view.map).wait(950).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        r._view.map.ship_icon.stopWave(), r._preEnd()
-                    }), createjs.Tween.get(r._view.upper).wait(950).to({
-                        alpha: 0
-                    }, 600), createjs.Tween.get(r._view.gauge_layer).wait(950).to({
-                        alpha: 0
-                    }, 600), createjs.Tween.get(r).wait(750).call(function () {
-                        r._view.message_box.deactivate()
-                    })
-                }, r._view = e, r._deck = i, r._isLongRange = n, r
+                }, r._scene = e, r._model = i, r._battle_cls = n, r._battle_result_cls = o, r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_formation", {
-                get: function () {
-                    return this._selected_formation
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._layer = new p, this._view.universal_layer.addChild(this._layer), this._telopContainer = new d, this._view.top_layer.addChild(this._telopContainer), this._readyForFlagship()
-            }, e.prototype._readyForFlagship = function () {
-                var t = this,
-                    e = this._deck.ships[0],
-                    i = e.mst_id,
-                    n = e.isDamaged();
-                this._chara = new PIXI.Sprite;
-                var o = r.default.model.ship_graph.get(i).getMapOffset(n);
-                this._chara.position.set(-80 + o.x, -93 + o.y), this._chara.alpha = 0, this._layer.chara.addChild(this._chara), (new l.ShipLoader).add(i, n, "full").load(function () {
-                    t._chara.texture = r.default.resources.getShip(i, n, "full"), t._showTelopBG()
+            return n(e, t), e.prototype._start = function () {
+                this._scene.view.map.ship_icon.startWaveRed(this._selectFormation)
+            }, e.prototype._fadeoutBGM = function (t) {
+                var e = this;
+                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
+                    e._startBattle(t)
+                })) : this._startBattle(t)
+            }, e.prototype._startBattle = function (t) {
+                var e = this;
+                this._model.deck_f.formation = t;
+                var i = new this._battle_cls;
+                i.initialize(this._model), this._scene.addChild(i), i.once("complete", function () {
+                    e._startBattleResult(i, e._model)
+                }), i.start()
+            }, e.prototype._startBattleResult = function (t, e) {
+                var i = this,
+                    n = new this._battle_result_cls;
+                n.initialize(), n.shutter.close(0), this._scene.addChild(n), this._scene.removeChild(t), t.dispose(), n.once("complete", function () {
+                    _.ShipLoader.clearMemoryCache(), l.SlotLoader.clearMemoryCache(), u.Plane.clearMemoryCache(), i._completeBattleResult(n)
+                }), n.start(e)
+            }, e.prototype._completeBattleResult = function (t) {
+                var e = this;
+                createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    e._scene.removeChild(t), t.dispose(), e._endTask()
                 })
-            }, e.prototype._showTelopBG = function () {
-                var t = this._telopContainer.bg;
-                t.position.set(o.default.width / 2, o.default.height / 2), t.scaleY = 0, t.alpha = 0, t.texture = u.MAP_COMMON.getTexture(112), createjs.Tween.get(t).to({
-                    alpha: 1,
-                    scaleY: 1
-                }, 500).call(this._showText)
-            }, e.prototype._preEnd = function () {
-                this._view.universal_layer.removeChild(this._layer), this._view = null, this._deck = null, this._chara = null, this._layer = null, this._isLongRange = null, this._endTask()
             }, e
-        }(s.TaskBase);
-    e.TaskFormationSelect = h;
-    var p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._fade = new a.FadeBox(.6), e._fade.hide(0), e._chara = new PIXI.Sprite, e._boxes = new c.FormationBoxContainer, e.addChild(e._fade), e.addChild(e._chara), e.addChild(e._boxes), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "fade", {
-                get: function () {
-                    return this._fade
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "boxes", {
-                get: function () {
-                    return this._boxes
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(PIXI.Container),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new _.Sprite, e._bg.anchor.set(.5), e._text = new PIXI.Sprite, e._text.anchor.set(.5), e.addChild(e._bg), e.addChild(e._text), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return this._text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(PIXI.Container)
+        }(r.TaskBase);
+    e.CellTaskBattle = c
 }

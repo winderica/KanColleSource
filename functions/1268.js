@@ -22,80 +22,52 @@ const function1268 = function (t, e, i) {
     var o = i(2),
         r = i(6),
         s = i(19),
-        a = i(1269),
-        _ = i(1),
-        l = function (t) {
+        a = i(1),
+        _ = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._onSelect = function (t) {
-                    n._scene.user_select.supply_on_the_sea = 1 == t ? 1 : 0, n._hideConfirmDialog(t)
+                    n._scene.user_select.ration = 1 == t ? 1 : 0, n._hideConfirmDialog()
                 }, n._scene = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this._model.sortie.getNextCell();
-                this._data = t.getReplenishmentData(), null != this._data ? this._showConfirmDialog() : (this._scene.user_select.supply_on_the_sea = -1, this._endTask())
+                1 == this._model.sortie.getNextCell().isUsableRation() ? this._showConfirmDialog() : (this._scene.user_select.ration = -1, this._endTask())
             }, e.prototype._showConfirmDialog = function () {
                 var t = this,
                     e = this._model.sortie.now_cell_no,
-                    i = this._scene.resInfo.getReplenishConfirmOffsets(e),
+                    i = this._scene.resInfo.getRationConfirmOffset(e),
                     n = this._scene.view.map.ship_icon;
-                this._confirm = new u(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
+                this._confirm = new l(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
                     y: n.y,
                     alpha: 1
                 }, 300).call(function () {
                     t._confirm.activate()
                 })
-            }, e.prototype._hideConfirmDialog = function (t) {
-                var e = this;
+            }, e.prototype._hideConfirmDialog = function () {
+                var t = this;
                 this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
                     alpha: 0
                 }, 200), createjs.Tween.get(this._confirm.btn_no).to({
                     alpha: 0
                 }, 200);
-                var i = this._confirm.y;
+                var e = this._confirm.y;
                 createjs.Tween.get(this._confirm).wait(200).to({
-                    y: i,
+                    y: e,
                     alpha: 0
                 }, 300).call(function () {
-                    e._scene.view.universal_layer.removeChild(e._confirm), e._confirm.dispose(), 1 == t ? e._startSupplyOnTheSea() : e._endTask()
+                    t._scene.view.universal_layer.removeChild(t._confirm), t._confirm.dispose(), t._endTask()
                 })
-            }, e.prototype._startSupplyOnTheSea = function () {
-                this._updateData()
-            }, e.prototype._updateData = function () {
-                this._getShips(this._data.num_of_use);
-                this._effect()
-            }, e.prototype._effect = function () {
-                var t = this;
-                new a.TaskReplenishmentEffect(this._scene, this._model, this._data).start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._getShips = function (t) {
-                var e = [],
-                    i = this._model.deck_f.ships_main,
-                    n = this._model.deck_f.ships_sub,
-                    o = i.slice().reverse();
-                null != n && (o = o.concat(n.slice().reverse()));
-                for (var r = 0, s = o; r < s.length; r++) {
-                    var a = s[r];
-                    if (null != a && (!(a.hp_now <= 0) && 1 != a.isTaihi())) {
-                        var _ = void 0;
-                        do {
-                            if (_ = a.useReplenishment(), 1 == _ && e.push(a), t == e.length) return e
-                        } while (1 == _)
-                    }
-                }
-                return e
             }, e
         }(o.TaskBase);
-    e.TaskConfirmReplenishment = l;
-    var u = function (t) {
+    e.TaskConfirmRation = _;
+    var l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 if (n._onClickYes = function () {
                         null != n._cb_onSelect && n._cb_onSelect(!0)
                     }, n._onClickNo = function () {
                         null != n._cb_onSelect && n._cb_onSelect(!1)
-                    }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new c(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new c(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e) {
+                    }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new u(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new u(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e) {
                     if (null != e.box) {
                         var o = e.box;
                         n._box.x += o.x, n._box.y += o.y, n._beak.x += o.x, n._beak.y += o.y
@@ -124,7 +96,7 @@ const function1268 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._box.texture = s.MAP_COMMON.getTexture(77), this._beak.texture = s.MAP_COMMON.getTexture(76);
+                this._box.texture = s.MAP_COMMON.getTexture(75), this._beak.texture = s.MAP_COMMON.getTexture(76);
                 var t = s.MAP_COMMON.getTexture(102),
                     e = s.MAP_COMMON.getTexture(104);
                 this._btn_yes.initialize(t, e), t = s.MAP_COMMON.getTexture(84), e = s.MAP_COMMON.getTexture(85), this._btn_no.initialize(t, e)
@@ -136,7 +108,7 @@ const function1268 = function (t, e, i) {
                 this._btn_yes.dispose(), this._btn_no.dispose()
             }, e
         }(PIXI.Container),
-        c = function (t) {
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._onMouseOver = function () {
@@ -150,9 +122,9 @@ const function1268 = function (t, e, i) {
             return n(e, t), e.prototype.initialize = function (t, e) {
                 this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
             }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(_.EventType.MOUSEOVER, this._onMouseOver), this.on(_.EventType.MOUSEOUT, this._onMouseOut), this.on(_.EventType.CLICK, this._onClick))
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(_.EventType.MOUSEOVER, this._onMouseOver), this.off(_.EventType.MOUSEOUT, this._onMouseOut), this.off(_.EventType.CLICK, this._onClick)
+                this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
                 this.deactivate()
             }, e

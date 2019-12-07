@@ -19,81 +19,135 @@ const function1496 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._combined = i, n._tasks = [], n
+    var o = i(0),
+        r = i(1),
+        s = i(2),
+        a = i(29),
+        _ = i(20),
+        l = i(38),
+        u = i(8),
+        c = i(59),
+        h = i(13),
+        p = i(1497),
+        d = i(1498),
+        f = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._showComponent()
-            }, e.prototype._showComponent = function () {
-                for (var t = this._scene.data.getLevelupInfoList(this._combined), e = this._scene.view.layer_banner.info_f.items, i = this._scene.data.getShipExp(this._combined), n = [], o = 0; o < e.length; o++) {
-                    var r = e[o],
-                        a = o < i.length ? i[o] : 0;
-                    if (!(a < 0)) {
-                        var _ = t[o],
-                            l = new s(r, a, _);
-                        n.push(l), this._tasks.push(l)
-                    }
+                this._loadMVPImage()
+            }, e.prototype._loadMVPImage = function () {
+                var t = this,
+                    e = this._scene.data.battle_model.deck_f.ships,
+                    i = null,
+                    n = null,
+                    o = this._scene.data.getMvpIndex(!1);
+                if (o >= 0 && o < e.length && (i = e[o]), o = this._scene.data.getMvpIndex(!0), o >= 0 && o + 6 < e.length && (n = e[o + 6]), null == i && null == n) this._initMove();
+                else {
+                    var r = new h.ShipLoader;
+                    null != i && r.add(i.mst_id, i.isDamaged(), "full"), null != n && r.add(n.mst_id, n.isDamaged(), "full"), r.load(function () {
+                        t._showMVP(i)
+                    })
                 }
-                0 == n.length ? this._endTask() : this._startTasks(n)
-            }, e.prototype._startTasks = function (t) {
-                for (var e = this, i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (t) {
-                        t.start(function () {
-                            var i = e._tasks.indexOf(t);
-                            e._tasks.splice(i, 1), 0 == e._tasks.length && e._endTask()
-                        })
-                    }(o)
+            }, e.prototype._showMVP = function (t) {
+                var e = this;
+                this._scene.view.layer_banner.banners_f.getBanner(t.index).createShowMVPCoinTween();
+                var i = t.mst_id,
+                    n = t.isDamaged(),
+                    r = o.default.resources.getShip(i, n, "full"),
+                    s = o.default.model.ship_graph.get(i).getBattleOffset(n);
+                this._scene.view.layer_mvp.createShowTween(r, s, 500).call(function () {
+                    e._playVoice(i)
+                }), this._initMove()
+            }, e.prototype._playVoice = function (t) {
+                var e = this._scene.data.battle_result_rank;
+                "S" != e && "A" != e && "B" != e || o.default.sound.voice.play(t.toString(), 23)
+            }, e.prototype._initMove = function () {
+                var t = this;
+                this._scene.view.layer_deck_info.friend.createHideGaugeTweens(-54), createjs.Tween.get(this._scene.view.layer_banner.info_f).wait(200).to({
+                    x: 87
+                }, 500), createjs.Tween.get(this._scene.view.layer_banner.banners_f).wait(200).to({
+                    x: 294
+                }, 500).call(function () {
+                    t._showPanel()
+                })
+            }, e.prototype._showPanel = function () {
+                var t = this,
+                    e = this._scene.data.base_exp,
+                    i = this._scene.data.getShipExp(!1),
+                    n = this._scene.data.battle_model.isPractice(),
+                    o = this._scene.data.battle_model.deck_f.isYugeki(),
+                    r = this._scene.view.panel_exp;
+                r.initialize(e, i, n, o), r.alpha = 0, r.visible = !0, createjs.Tween.get(r).to({
+                    x: 591,
+                    alpha: 1
+                }, 300).call(function () {
+                    t._showLevelup()
+                })
+            }, e.prototype._showLevelup = function () {
+                var t = this;
+                new p.TaskShowLevelup(this._scene, !1).start(function () {
+                    t._showExtraReward()
+                })
+            }, e.prototype._showExtraReward = function () {
+                var t = this,
+                    e = new a.SerialTask;
+                e.add(new d.TaskShowExtraResults(this._scene)), e.add(new l.WaitTask(500)), e.start(function () {
+                    1 == t._scene.data.battle_model.deck_f.isCombined() ? t._showNextGearButton() : t._endTask()
+                })
+            }, e.prototype._showNextGearButton = function () {
+                var t = this,
+                    e = new c.GearBtnNext;
+                e.position.set(1130, 648), e.initialize(), e.activate(), this._scene.view.addChild(e);
+                var i = new u.AreaBox(0);
+                i.buttonMode = !0, this._scene.view.addChild(i), i.once(r.EventType.CLICK, function () {
+                    e.deactivate(), t._scene.view.removeChild(e), t._scene.view.removeChild(i), t._hideMainDeckBanners()
+                })
+            }, e.prototype._hideMainDeckBanners = function () {
+                var t = this,
+                    e = new _.TweenTask,
+                    i = this._scene.view.layer_banner.banners_f.createHideTweens(0),
+                    n = i.length;
+                e.addTweens(i), i = this._scene.view.layer_banner.info_f.createHideTweens(0), e.addTweens(i);
+                var o = 100 * (n - 1) + 200;
+                i = this._scene.view.panel_exp.createHideShipExpTweens(300, o - 300), e.addTweens(i), e.addTween(this._scene.view.layer_mvp.createHideTween(300, o - 300)), e.addTween(this._scene.view.layer_deck_info.friend.createHideDeckNameTween(o - 200, 200)), e.start(function () {
+                    t._showSubDeckBanners()
+                })
+            }, e.prototype._showSubDeckBanners = function () {
+                var t = this,
+                    e = new _.TweenTask,
+                    i = this._scene.data.battle_model.deck_f.ships_sub;
+                this._scene.view.layer_banner.banners_f.initialize(i), this._scene.view.layer_banner.info_f.initialize(i);
+                var n = this._scene.view.layer_banner.banners_f.createShowTweens(0),
+                    r = n.length;
+                e.addTweens(n), n = this._scene.view.layer_banner.info_f.createShowTweens(0), e.addTweens(n);
+                var s = 100 * (r - 1) + 200,
+                    a = this._scene.data.getShipExp(!0);
+                n = this._scene.view.panel_exp.createShowShipExpTweens(a, 300, s - 300), e.addTweens(n);
+                var l = this._scene.data.getMvpIndex(!0);
+                if (l >= 0) {
+                    var u = i[l],
+                        c = u.mst_id,
+                        h = u.isDamaged(),
+                        p = o.default.resources.getShip(c, h, "full"),
+                        d = o.default.model.ship_graph.get(c).getBattleOffset(h);
+                    e.addTween(this._scene.view.layer_mvp.createShowTween(p, d, 300, s - 300).call(function () {
+                        t._playVoice(c)
+                    }));
+                    var f = this._scene.view.layer_banner.banners_f.getBanner(l);
+                    e.addTween(f.createShowMVPCoinTween())
                 }
+                var y = this._scene.data.deck_name_f2;
+                e.addTween(this._scene.view.layer_deck_info.friend.createShowDeckNameTween(y, s - 200, 200)), e.start(function () {
+                    t._showLevelupCombined()
+                })
+            }, e.prototype._showLevelupCombined = function () {
+                var t = this;
+                new p.TaskShowLevelup(this._scene, !0).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(o.TaskBase);
-    e.TaskShowLevelup = r;
-    var s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            o._onChange = function (t) {
-                if (null != o._banner_info) {
-                    var e = t.target.target.value;
-                    e >= o._borders[0] && (o._borders.shift(), o._banner_info.levelup());
-                    var i = -1;
-                    o._borders.length > 0 && (i = o._borders[0] - e), o._banner_info.up_to_the_next_level.update(i)
-                }
-            }, o._banner_info = e, o._exp = i, null != n && n.length > 1 ? o._initial_value = n[0] : o._initial_value = -1, o._borders = new Array;
-            for (var r = 1; r < n.length; r++) o._borders.push(n[r]);
-            return o
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._initial_value < 0 ? this._endTask() : this._init()
-        }, e.prototype._init = function () {
-            var t = this,
-                e = this._banner_info.up_to_the_next_level;
-            e.alpha = 0, e.x -= 15;
-            var i = this._borders[0] - this._initial_value;
-            e.initialize(i), createjs.Tween.get(e).to({
-                x: e.x + 15,
-                alpha: 1
-            }, 500).call(function () {
-                e.showExpText(), t._completedShow()
-            })
-        }, e.prototype._completedShow = function () {
-            var t = this,
-                e = this._borders[this._borders.length - 1] - this._initial_value - this._exp,
-                i = this._initial_value + this._exp,
-                n = {
-                    value: this._initial_value
-                };
-            createjs.Tween.get(n, {
-                onChange: this._onChange
-            }).to({
-                value: i
-            }, 2e3).call(function () {
-                i === t._borders[0] && t._banner_info.levelup(), t._banner_info.up_to_the_next_level.update(e), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._banner_info = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase)
+        }(s.TaskBase);
+    e.TaskExp = f
 }

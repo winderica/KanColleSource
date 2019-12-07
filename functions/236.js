@@ -51,6 +51,11 @@ const function236 = function (t, e, i) {
                 var o = n[i];
                 if (o.mst_id == e) return void o.updateGauge(t)
             }
+        }, e.prototype.updateThumbnail = function (t) {
+            for (var e = t.mst_id, i = 0, n = this._maps; i < n.length; i++) {
+                var o = n[i];
+                if (o.mst_id == e) return void o.updateThumbnail(t)
+            }
         }, e.prototype.activate = function () {
             for (var t = 0, e = this._maps; t < e.length; t++) {
                 e[t].activate()

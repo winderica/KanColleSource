@@ -22,7 +22,7 @@ const function743 = function (t, e, i) {
     var o = i(0),
         r = i(1),
         s = i(8),
-        a = i(322),
+        a = i(320),
         _ = [];
     a.ShipAreaPosition.forEach(function (t) {
         _.push([t[0] + a.ShipOffsetPosition[0], t[1] + a.ShipOffsetPosition[1]])

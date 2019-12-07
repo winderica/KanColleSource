@@ -19,29 +19,44 @@ const function1473 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1474),
+    var o = i(16),
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
+                return e.anchor.set(.5), e.alpha = 0, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
-                get: function () {
-                    return this._rader_f
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "rader_e", {
-                get: function () {
-                    return this._rader_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
-            }, e.prototype.resetChildren = function () {
-                this.addChild(this._rader_f), this.addChild(this._rader_e)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.BATTLE_MAIN.getTexture(110)
+            }, e.prototype.play = function () {
+                var t = this,
+                    e = {
+                        a: 0,
+                        r: 255,
+                        g: 255,
+                        b: 255
+                    },
+                    i = function (e) {
+                        var i = e.target.target;
+                        t.alpha = i.a;
+                        var n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
+                        t.tint = n
+                    };
+                createjs.Tween.get(e, {
+                    onChange: i
+                }).to({
+                    a: 1
+                }, 100).to({
+                    r: 128
+                }, 100).to({
+                    r: 255,
+                    g: 192,
+                    b: 192
+                }, 100).to({
+                    a: 0
+                }, 100).call(function () {
+                    null != t.parent && t.parent.removeChild(t)
+                })
             }, e
-        }(PIXI.Container);
-    e.RaderLayer = r
+        }(PIXI.Sprite);
+    e.Shield = r
 }

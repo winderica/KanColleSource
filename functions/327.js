@@ -19,38 +19,28 @@ const function327 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(328),
-        s = i(84),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.empties = new Array, e.banners = new Array;
-                for (var i = 0; i < 6; i++) {
-                    var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(19)),
-                        s = new r.LongShipBanner,
-                        a = 76 * i;
-                    n.y = a, s.y = a, e.empties.push(n), e.banners.push(s), e.addChild(n, s)
+    var o = i(56),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this,
+                    n = null,
+                    r = null;
+                switch (e) {
+                    case 1:
+                        n = o.ORGANIZE_MAIN.getTexture(55), r = o.ORGANIZE_MAIN.getTexture(56);
+                        break;
+                    case 2:
+                        n = o.ORGANIZE_MAIN.getTexture(51), r = o.ORGANIZE_MAIN.getTexture(52)
                 }
-                return e
+                return i.txt_txt1 = new PIXI.Sprite(n), i.txt_txt2 = new PIXI.Sprite(r), i.txt_txt2.anchor.set(1, 1), i.txt_txt2.position.set(540, 42), i.addChild(i.txt_txt1, i.txt_txt2), i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                s.TaskLoadShipResource.abortBy(this);
-                for (var t = 0; t < this.empties.length; t++) this.empties[t].texture = PIXI.Texture.EMPTY, this.empties[t] = null;
-                this.empties = null;
-                for (var t = 0; t < this.banners.length; t++) this.banners[t].dispose(), this.banners[t] = null;
-                this.banners = null, this.removeChildren()
-            }, e.prototype.update = function (t, e) {
-                s.TaskLoadShipResource.abortBy(this);
-                for (var i = 0; i < 6; i++) {
-                    var n = this.banners[i],
-                        o = this.empties[i];
-                    if (n.visible = !1, o.visible = !0, i < t.length) {
-                        var r = t[i];
-                        null != r && (n.update(i, r, e), n.visible = !0, o.visible = !1)
-                    }
-                }
+            return n(e, t), e.prototype.hideTxt2 = function () {
+                this.txt_txt2.visible = !1
+            }, e.prototype.showTxt2 = function () {
+                this.txt_txt2.visible = !0
+            }, e.prototype.dispose = function () {
+                this.txt_txt1 = null, this.txt_txt2 = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.LongShipBannerContainer = a
+    e.PresetTitle = r
 }

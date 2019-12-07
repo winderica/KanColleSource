@@ -56,18 +56,23 @@ const function442 = function (t, e, i) {
                     })
                 }
             }, e.prototype._createLabel = function () {
-                for (var t = this._mapInfo.labels, e = [], i = 0, n = t; i < n.length; i++) {
-                    var o = n[i],
-                        r = _.MapUtil.toResKey(this._map_id),
-                        s = "map" + r + "_" + o.img,
-                        a = PIXI.Texture.fromFrame(s);
-                    e.push({
-                        texture: a,
-                        x: o.x,
-                        y: o.y
-                    })
+                var t = this._mapInfo.labels,
+                    e = t.pop();
+                if (null != e) {
+                    for (var i = [], n = 0, o = e; n < o.length; n++) {
+                        var r = o[n],
+                            s = _.MapUtil.toResKey(this._map_id),
+                            a = "map" + s + "_" + r.img,
+                            l = PIXI.Texture.fromFrame(a);
+                        i.push({
+                            texture: l,
+                            x: r.x,
+                            y: r.y
+                        })
+                    }
+                    this._view.map.bg.addLabels(i)
                 }
-                this._view.map.bg.addLabels(e), this._createSpots()
+                this._createSpots()
             }, e.prototype._createSpots = function () {
                 for (var t = this._mapInfo.spots, e = this._from; e < t.length; e++) {
                     var i = t[e].no;

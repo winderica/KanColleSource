@@ -19,99 +19,67 @@ const function1397 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(155),
-        s = i(16),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e.addChild(e._bg), e._message = new u, e.addChild(e._message), e._banner_top = new _, e.addChild(e._banner_top), e._banner_bottom = new _, e.addChild(e._banner_bottom), e._particles = new l, e.addChild(e._particles), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return this._message
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "banner_top", {
-                get: function () {
-                    return this._banner_top
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "banner_bottom", {
-                get: function () {
-                    return this._banner_bottom
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "particles", {
-                get: function () {
-                    return this._particles
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = r.COMMON_EXPEDITION.getTexture(10), this._message.initialize(s.BATTLE_MAIN.getTexture(30)), this._particles.initialize()
-            }, e.prototype.dispose = function () {
-                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
-            }, e
-        }(PIXI.Container);
-    e.SupportDeckCutin = a;
-    var _ = function (t) {
-            function e() {
-                return t.call(this) || this
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren()
-            }, e
-        }(PIXI.Container),
+    var o = i(0),
+        r = i(22),
+        s = i(6),
+        a = i(378),
+        _ = i(39),
         l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+            function e(e, i, n, s, _, l, u, c) {
+                var h = t.call(this, e, i, s, l, u, c) || this;
+                h._onCallAttackEffect = function () {
+                    var t = h._getDamage(h._defender),
+                        e = h._defenderBanner.getGlobalPos(!0),
+                        i = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                        n = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
+                        o = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                        s = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
+                    createjs.Tween.get(null).call(function () {
+                        h._defenderBanner.moveAtDamage(h._shield), h._scene.view.layer_explosion.playDamageExplosion(e.x, e.y, t)
+                    }).wait(150).call(function () {
+                        h._scene.view.layer_explosion.playExplosionSmall(e.x + i, e.y + n)
+                    }).wait(100).call(function () {
+                        h._scene.view.layer_explosion.playExplosionSmall(e.x + o, e.y + s, function () {
+                            h._attack(h._attackerBanner, h._defenderBanner)
+                        })
+                    })
+                }, h._finallize = function () {
+                    h._cutin.dispose(), h._cutin = null, h._attackerBanner = null, h._defenderBanner = null, h._endTask()
+                };
+                var p, d, f = h._slot.mstID,
+                    y = o.default.model.slot.getMst(_),
+                    m = y.mstID,
+                    g = new a.CutinZRK(i, f, m),
+                    v = i.friend,
+                    b = i.index,
+                    w = n.index;
+                return v ? (p = e.view.bannerGroupLayer.getBanner(!0, b), d = e.view.bannerGroupLayer.getBanner(!1, w)) : (p = e.view.bannerGroupLayer.getBanner(!1, b), d = e.view.bannerGroupLayer.getBanner(!0, w)), g.onCallAttackEffect = h._onCallAttackEffect, g.onCallAttackVoice = h._playVoice, h._attackerBanner = p, h._defenderBanner = d, h._cutin = g, h._defender = n, h._debug_slot_mst_id3 = _, h
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._particles = new Array;
-                for (var t in this.XPOS) {
-                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
-                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.getPreloadTask().start(function () {
+                    t._completePreload()
+                })
+            }, e.prototype._playVoice = function () {
+                if (this._attacker.friend) {
+                    var t = this._attacker.mst_id;
+                    o.default.sound.voice.play(t.toString(), 16)
                 }
-            }, e.prototype.startAnim = function () {
-                if (null == this._tweens) {
-                    this._tweens = [];
-                    for (var t = 0; t < this._particles.length; t++) {
-                        var e = this._particles[t],
-                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
-                                x: 1,
-                                y: 1
-                            }, 100).to({
-                                x: 0,
-                                y: 0
-                            }, 100);
-                        this._tweens.push(i)
-                    }
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tweens; t < e.length; t++) {
-                    e[t].setPaused(!0)
-                }
-                this._tweens = null, this._particles = null, this.removeChildren()
+            }, e.prototype._log = function (t) {}, e.prototype._completePreload = function () {
+                this._attackerBanner.moveFront(), this._defenderBanner.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
+            }, e.prototype._attack = function (t, e) {
+                var i = this;
+                s.SE.play("102"), t.attack(function () {
+                    i._damageEffect(t, e)
+                })
+            }, e.prototype._damageEffect = function (t, e) {
+                var i = this;
+                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+                var n = this._getDamage(this._defender);
+                this._playExplosion(e, n), this._playDamageEffect(t, e, this._defender, n, this._hit, function () {
+                    return i._finallize()
+                })
             }, e
-        }(PIXI.Container),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
-            }, e
-        }(PIXI.Container)
+        }(_.PhaseAttackBase);
+    e.PhaseZRK = l
 }

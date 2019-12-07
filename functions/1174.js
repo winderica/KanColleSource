@@ -19,78 +19,80 @@ const function1174 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(110),
-        a = i(1175),
-        _ = i(1176),
-        l = i(1178),
-        u = i(1179),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onSelect = function (t) {
-                    r.SE.play("239"), n._now_selected = t;
-                    var e = o.default.model.useItem.getCount(52);
-                    n._detail.update(t, e), n._exchange_btn.enabled = n._getExchangeBtnEnabled(t, e)
-                }, n._onBack = function () {
-                    n._now_selected = null, null != n._cb_onBack && n._cb_onBack()
-                }, n._onExchange = function () {
-                    null != n._cb_onExchange && n._cb_onExchange(n._now_selected)
-                }, n._cb_onBack = e, n._cb_onExchange = i, n._header = new h, n._header.position.set(648, 147), n.addChild(n._header), n._list = new a.FShopListPanel(n._onSelect), n._list.position.set(187, 183), n.addChild(n._list), n._detail = new _.FShopDetailPanel, n._detail.position.set(643, 213), n.addChild(n._detail), n._back_btn = new l.BackBtn, n._back_btn.position.set(202, 654), n.addChild(n._back_btn), n._exchange_btn = new u.ExchangeBtn, n._exchange_btn.position.set(666, 643), n.addChild(n._exchange_btn), n
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._update(!0), null != i._cb_onMouseOver && i._cb_onMouseOver(i._type)
+                }, i._onMouseOut = function () {
+                    i._update(!1), null != i._cb_onMouseOut && i._cb_onMouseOut(i._type)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._type)
+                }, i._type = e, i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._type = t, this._list.initialize(), this._detail.initialize(), this._back_btn.initialize(this._onBack), this._exchange_btn.initialize(this._onExchange), this.update()
-            }, e.prototype.update = function () {
-                this._header.update(this._type);
-                var t = o.default.model.furniture.getOnSaleList(this._type);
-                this._list.update(t), this._detail.update(null, 0), this._exchange_btn.enabled = !1
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._cb_onMouseOver = t, this._cb_onMouseOut = e, this._cb_onClick = i, this._update(!1)
             }, e.prototype.activate = function () {
-                this._list.activate(), this._back_btn.activate(), this._exchange_btn.activate()
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._update(!1))
             }, e.prototype.deactivate = function () {
-                this._list.deactivate(), this._back_btn.deactivate(), this._exchange_btn.deactivate()
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
-                this._list.dispose(), this._detail.dispose(), this._back_btn.dispose(), this._exchange_btn.dispose(), this._cb_onBack = null, this._cb_onExchange = null
-            }, e.prototype._getExchangeBtnEnabled = function (t, e) {
-                if (1 == t.has()) return !1;
-                var i = o.default.model.useItem.getCount(44);
-                if (i < t.price) {
-                    if (1 != t.isHighGrade()) return !1;
-                    if (i < t.getDiscountPrice() || e < 1) return !1
+                this.deactivate()
+            }, e.prototype._update = function (t) {
+                this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
+            }, e.prototype._getTexture = function () {
+                var t;
+                switch (this._type) {
+                    case 0:
+                        t = 25;
+                        break;
+                    case 1:
+                        t = 27;
+                        break;
+                    case 2:
+                        t = 29;
+                        break;
+                    case 3:
+                        t = 31;
+                        break;
+                    case 4:
+                        t = 33;
+                        break;
+                    case 5:
+                        t = 35;
+                        break;
+                    default:
+                        return PIXI.Texture.EMPTY
                 }
-                return !(1 == t.isNeedCraftsman() && e < 1)
+                return o.ITEM_FSHOP.getTexture(t)
+            }, e.prototype._getTextureOn = function () {
+                var t;
+                switch (this._type) {
+                    case 0:
+                        t = 26;
+                        break;
+                    case 1:
+                        t = 28;
+                        break;
+                    case 2:
+                        t = 30;
+                        break;
+                    case 3:
+                        t = 32;
+                        break;
+                    case 4:
+                        t = 34;
+                        break;
+                    case 5:
+                        t = 36;
+                        break;
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
+                return o.ITEM_FSHOP.getTexture(t)
             }, e
-        }(PIXI.Container);
-    e.FShopListView = c;
-    var h = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.update = function (t) {
-            var e;
-            switch (t) {
-                case 0:
-                    e = 45;
-                    break;
-                case 1:
-                    e = 46;
-                    break;
-                case 2:
-                    e = 47;
-                    break;
-                case 3:
-                    e = 48;
-                    break;
-                case 4:
-                    e = 49;
-                    break;
-                case 5:
-                    e = 50;
-                    break;
-                default:
-                    return void(this.texture = PIXI.Texture.EMPTY)
-            }
-            this.texture = s.ITEM_FSHOP.getTexture(e)
-        }, e
-    }(PIXI.Sprite)
+        }(PIXI.Sprite);
+    e.FurnitureTypeBtn = s
 }
