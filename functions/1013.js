@@ -19,19 +19,19 @@ const function1013 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(234),
-        r = i(236),
-        s = function (t) {
-            function e(e, i, n) {
-                for (var r = t.call(this, e) || this, s = 0; s < 4; s++) {
-                    var a = new o.MapThumbnail(4, i, n, null, null),
-                        _ = s % 2 == 0 ? 188 : 689,
-                        l = s < 2 ? 207 : 422;
-                    a.position.set(_, l), r.addChild(a), r._maps.push(a)
-                }
-                return r
+    var o = i(52),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._content = new PIXI.Sprite, e.addChild(e._content), e.visible = !1, e
             }
-            return n(e, t), e
-        }(r.LayoutBase);
-    e.LayoutMap4 = s
+            return n(e, t), e.prototype.show = function (t) {
+                void 0 === t && (t = 0), this._content.y = 0;
+                var e = -1;
+                0 == t ? (e = 31, this._content.y = 8) : 1 == t ? e = 26 : 2 == t ? e = 25 : 3 == t ? e = 24 : 4 == t && (e = 23), this._content.texture = e < 0 ? PIXI.Texture.EMPTY : o.SALLY_SORTIE.getTexture(e), this._content.x = -Math.floor(this._content.width / 2), this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
+            }, e
+        }(PIXI.Container);
+    e.ClearBadge = r
 }

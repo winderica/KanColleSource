@@ -19,45 +19,48 @@ const function1297 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(62),
-        s = i(19),
+    var o = i(24),
+        r = i(19),
+        s = i(1298),
         a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._type = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._numset = new s.NumericalDisplaySet, i.addChild(i._numset), i._numset.visible = !1, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(112), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(117), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(119) : s.MAP_COMMON.getTexture(118)
-            }, e.prototype.playAnimation = function (t) {
-                this._animation1(t)
-            }, e.prototype._animation1 = function (t) {
-                var e = this,
-                    i = new o.TweenTask;
-                i.addTween(createjs.Tween.get(this._bg).to({
-                    alpha: 1,
-                    scaleY: 1
-                }, 500)), i.addTween(createjs.Tween.get(this._txt1).wait(300).to({
-                    x: 30,
-                    alpha: 1
-                }, 700)), i.addTween(createjs.Tween.get(this._txt2).wait(300).to({
-                    alpha: 1
-                }, 700)), i.start(function () {
-                    e._animation2(t)
-                })
-            }, e.prototype._animation2 = function (t) {
-                var e = new o.TweenTask;
-                e.addTween(createjs.Tween.get(this._bg).wait(1200).to({
-                    scaleY: 0
-                }, 200)), e.addTween(createjs.Tween.get(this._txt1).wait(800).to({
-                    x: -40,
-                    alpha: 0
-                }, 300)), e.addTween(createjs.Tween.get(this._txt2).wait(1100).to({
-                    alpha: 0
-                }, 100)), e.start(function () {
-                    null != t && t()
-                })
-            }, e
-        }(PIXI.Container);
-    e.AirRaidTelop = a
+            return n(e, t), e
+        }(o.Container);
+    e.LandingBalloonBase = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(52), this._img.position.set(-5, -92)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(53), this._img.position.set(-45, -105)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(54), this._img.position.set(-86, -92))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 8 - Math.round(this._numset.width / 2), this._numset.y = -36, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -33 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType1 = _;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(56), this._img.position.set(0, -45)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(57), this._img.position.set(-29, 0)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(58), this._img.position.set(-63, 0))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 24 - Math.round(this._numset.width / 2), this._numset.y = 84, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -12 - Math.round(this._numset.width / 2), this._numset.y = 83, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType2 = l;
+    var u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(60), this._img.position.set(-15, -101)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(61), this._img.position.set(-87, -93)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(62), this._img.position.set(-99, -12))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = -35 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -47 - Math.round(this._numset.width / 2), this._numset.y = 57, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType3 = u
 }

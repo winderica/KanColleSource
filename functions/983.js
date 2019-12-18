@@ -19,31 +19,41 @@ const function983 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(9),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
+    var o = i(2),
+        r = i(984),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    i._dialog.interactive = !1, i._dialog.buttonMode = !1, i._close()
+                }, i._layer = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._model.getGaugeNum(),
-                    i = this._model.gauge_type,
-                    n = this._model.gauge_max,
-                    r = this._model.gauge_now,
-                    s = this._raw_data;
-                if (null != s) {
-                    if (s.hasOwnProperty("api_maphp")) {
-                        var a = s.api_maphp;
-                        a.hasOwnProperty("api_gauge_num") && (e = a.api_gauge_num), a.hasOwnProperty("api_gauge_type") && (i = a.api_gauge_type), 1 == a.hasOwnProperty("api_max_maphp") && (n = a.api_max_maphp), 1 == a.hasOwnProperty("api_now_maphp") && (r = a.api_now_maphp)
-                    }
-                    this._model.changeOperation(this._selected, e, i, n, r);
-                    var _ = o.ObjUtil.getNumArray(s, "api_sally_flag");
-                    _ && this._model.changeAllowedDeckType(_), t.prototype._completedEnd.call(this)
-                }
+            return n(e, t), e.prototype._start = function () {
+                this._dialog = new r.IntroAlertDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.initialize(), this._open()
+            }, e.prototype._open = function () {
+                var t = this;
+                this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({
+                    alpha: 1
+                }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({
+                    scaleY: 1
+                }, 250).call(function () {
+                    t._wait()
+                })
+            }, e.prototype._wait = function () {
+                this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(s.EventType.CLICK, this._onClick)
+            }, e.prototype._close = function () {
+                var t = this;
+                createjs.Tween.get(this._dialog.chara).to({
+                    alpha: 0
+                }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({
+                    scaleY: 0
+                }, 150).call(function () {
+                    t._layer.removeChild(t._dialog), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(r.APIBase);
-    e.APIOperationChange = s
+        }(o.TaskBase);
+    e.ShowIntroAlertDialogTask = a
 }

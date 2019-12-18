@@ -20,82 +20,36 @@ const function1369 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(12),
+        r = i(24),
         s = i(16),
         a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._type = i, o._plane = n, o
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke = new _, i._smoke.position.set(69, 45), i
             }
             return n(e, t), e.prototype._start = function () {
-                null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
-            }, e.prototype._animSanshiki = function () {
                 var t = this,
-                    e = new _(5);
-                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), t._endTask()
+                    e = this._smoke.x - 105,
+                    i = this._smoke.y - 9;
+                createjs.Tween.get(this._smoke).call(function () {
+                    t._layer.addChild(t._smoke)
+                }).to({
+                    x: e,
+                    y: i,
+                    alpha: 0,
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 500).call(function () {
+                    t._layer.removeChild(t._smoke), t._endTask()
                 })
-            }, e.prototype._animKoukaku = function () {
-                var t = this,
-                    e = new _(2);
-                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), t._endTask()
-                })
-            }, e.prototype._animFunshin = function () {
-                var t = this,
-                    e = new _(3);
-                e.position.set(0, -15), this._plane.addChild(e);
-                var i = new _(3);
-                i.position.set(-15, 0), this._plane.addChild(i);
-                var n = new _(3);
-                n.position.set(23, 0), this._plane.addChild(n), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700), createjs.Tween.get(i).wait(100).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700), createjs.Tween.get(n).wait(200).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), i.parent.removeChild(i), n.parent.removeChild(n), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._type = null, this._plane = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskAirWarAntiAircraftExplosion = a;
+    e.AnimAntiAircraftKoukaku = a;
     var _ = function (t) {
-        function e(e) {
-            var i, n = t.call(this) || this;
-            return 5 == e ? (i = 148, n.anchor.set(.5, .91)) : 2 == e ? (i = 149, n.anchor.set(.5, .85)) : 3 == e && (i = 148, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(149)), e._img.position.set(-44, -63), e.addChild(e._img), e
         }
         return n(e, t), e
-    }(r.Sprite)
+    }(r.Container)
 }

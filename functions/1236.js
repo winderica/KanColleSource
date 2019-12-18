@@ -19,92 +19,59 @@ const function1236 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(13),
-        a = i(435),
-        _ = i(437),
+    var o = i(2),
+        r = i(247),
+        s = i(434),
+        a = i(1239),
+        _ = i(1242),
         l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._selected_formation = 1, n._onSelectFormation = function (t) {
-                    n._selected_formation = t, n._view.boxes.deactivate(), n._view.message_box.text = "", createjs.Tween.get(n._view.message_box).to({
-                        alpha: 0
-                    }, 300), createjs.Tween.get(n._view.chara).to({
-                        alpha: 0
-                    }, 300), createjs.Tween.get(n._view.boxes).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        n._preEnd()
-                    })
-                }, n._parent = e, n._deck = i, n
+                return n._scene = e, n._option = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_formation", {
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
                 get: function () {
-                    return this._selected_formation
+                    return this._model
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype._start = function () {
-                this._view = new u, this._parent.addChild(this._view), this._readyForFormationBox()
-            }, e.prototype._readyForFormationBox = function () {
-                var t = this._deck.getCount();
-                this._view.boxes.initialize(t, this._onSelectFormation, 6), this._view.boxes.alpha = 0, this._view.boxes.count <= 1 ? this._preEnd() : this._readyForFlagship()
-            }, e.prototype._readyForFlagship = function () {
-                var t = this,
-                    e = this._deck.ships[0],
-                    i = e.mst_id,
-                    n = e.isDamaged(),
-                    r = o.default.model.ship_graph.get(i).getMapOffset(n);
-                this._view.chara.position.set(-80 + r.x, -93 + r.y), this._view.chara.alpha = 0, (new s.ShipLoader).add(i, n, "full").load(function () {
-                    t._view.chara.texture = o.default.resources.getShip(i, n, "full"), t._showMessageBox()
-                })
-            }, e.prototype._showMessageBox = function () {
                 var t = this;
-                this._view.message_box.initialize(), this._view.message_box.activate(function () {
-                    t._showFlagShip()
-                })
-            }, e.prototype._showFlagShip = function () {
+                this._model = new r.BattleSceneModel(!0), this._model.updateDeckData(this._option.deck_f, this._option.deck_e), this._scene.battle.initialize(this._model), this._scene.view.shutter.once("closed", function () {
+                    t._formationSelect()
+                }), this._scene.view.shutter.close(400)
+            }, e.prototype._formationSelect = function () {
                 var t = this,
-                    e = this._view.chara.x;
-                this._view.chara.x += 75, createjs.Tween.get(this._view.chara).to({
-                    alpha: 1,
-                    x: e
-                }, 300), createjs.Tween.get(this._view.boxes).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    t._view.boxes.activate(), t._view.message_box.text = "\u9663\u5f62\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+                    e = new a.TaskFormationSelect(this._scene, this._option.deck_f);
+                e.start(function () {
+                    t._option.deck_f.formation = e.selected_formation, t._insert()
                 })
-            }, e.prototype._preEnd = function () {
-                this._parent.removeChild(this._view), this._view.dispose(), this._view = null, this._parent = null, this._deck = null, this._endTask()
+            }, e.prototype._insert = function () {
+                var t = this;
+                this._scene.battle.bg.setDay(function () {
+                    createjs.Tween.get(t._scene.view).to({
+                        alpha: 0
+                    }, 300), t._scene.battle.shutter2.open(0), createjs.Tween.get(t._scene.battle).to({
+                        alpha: 1
+                    }, 300), new s.SallyAnimationTask(t._scene).start(function () {
+                        t._cutin()
+                    })
+                })
+            }, e.prototype._cutin = function () {
+                var t = this,
+                    e = this._option.deck_f.ships,
+                    i = this._option.deck_f.medal_num,
+                    n = this._option.deck_e.ships,
+                    o = this._option.deck_e.medal_num,
+                    r = new _.StartAnimationTask(this._scene, e, i, n, o);
+                r.preload(function () {
+                    r.start(function () {
+                        t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._option = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskFormationSelect = l;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._chara = new PIXI.Sprite, e._boxes = new _.FormationBoxContainer, e._message_box = new a.CompMessageBox, e.addChild(e._chara), e.addChild(e._boxes), e.addChild(e._message_box), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "chara", {
-            get: function () {
-                return this._chara
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "boxes", {
-            get: function () {
-                return this._boxes
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "message_box", {
-            get: function () {
-                return this._message_box
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._boxes.dispose(), this._message_box.dispose()
-        }, e
-    }(PIXI.Container)
+        }(o.TaskBase);
+    e.TaskMain = l
 }

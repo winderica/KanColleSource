@@ -21,10 +21,14 @@ const function612 = function (t, e, i) {
     });
     var o = i(0),
         r = i(1),
-        s = function (t) {
+        s = i(17),
+        a = i(613),
+        _ = i(615),
+        l = i(14),
+        u = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._timer = -1, n._flg = !0, n.dispose = function () {
+                return n._friendlyActive = !1, n._timer = -1, n._flg = !0, n.dispose = function () {
                     n._stopAnimation(), n.interactive = n.buttonMode = !1, n.off(r.EventType.MOUSEOVER, n._onOver), n.off(r.EventType.MOUSEOUT, n._onOut), n.off(r.EventType.CLICK, n._onClick)
                 }, n._startAnimation = function () {
                     null != n._texture_light && n._timer < 0 && (n._timer = setInterval(n._onTimer, 1500))
@@ -37,14 +41,41 @@ const function612 = function (t, e, i) {
                 }, n._onTimer = function () {
                     1 == n._flg ? n.texture = n._texture_light : n.texture = n._texture_normal, n._flg = !n._flg
                 }, n._onClick = function () {
-                    22 != n._type && o.default.scene.change(n._type, n._model)
+                    if (22 != n._type) o.default.scene.change(n._type, n._model);
+                    else {
+                        if (0 !== o.default.scene.now) return;
+                        if (n._friendlyActive) return;
+                        if (!s.FRIENDLY) return;
+                        var t = "block" === l.EditTextBoxUtil.visible,
+                            e = function () {
+                                o.default.view.clickGuard = !0, createjs.Tween.get(i).to({
+                                    alpha: 0
+                                }, 100).call(function () {
+                                    o.default.view.overLayer.removeChild(i), i.dispose(), o.default.view.clickGuard = !1, n._friendlyActive = !1, t && l.EditTextBoxUtil.setVisibility(!0)
+                                })
+                            },
+                            i = new a.FriendlyRequest;
+                        n._friendlyActive = !0, i.start(function (t, i) {
+                            if (t !== o.default.friendlyRequest.flg || i !== o.default.friendlyRequest.type) {
+                                new _.SetFriendlyRequestAPI(t, i).start(function () {
+                                    o.default.friendlyRequest.setData(t, i), e()
+                                })
+                            } else e()
+                        }), i.alpha = 0, o.default.view.overLayer.addChild(i), createjs.Tween.get(i).call(function () {
+                            t && l.EditTextBoxUtil.setVisibility(!1)
+                        }).to({
+                            alpha: 1
+                        }, 100)
+                    }
                 }, n._type = e, n._model = i, n
             }
             return n(e, t), e.prototype.setUp = function (t, e, i, n) {
-                void 0 === n && (n = PIXI.Texture.EMPTY), this._texture_normal = t, this._texture_on = e, this._texture_light = i, this._onOut()
+                void 0 === n && (n = PIXI.Texture.EMPTY), this._texture_normal = t, this._texture_on = e, this._texture_light = i, this._onOut(), s.FRIENDLY && (this._texture_disabled_on = n, this._texture_use_button = e)
+            }, e.prototype.friendlyButtonMode = function (t) {
+                this.buttonMode = t, this._texture_on = t ? this._texture_use_button : this._texture_disabled_on
             }, e.prototype.initialize = function (t, e, i, n) {
-                void 0 === n && (n = PIXI.Texture.EMPTY), this.setUp(t, e, i, n), this.interactive = this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onOver), this.on(r.EventType.MOUSEOUT, this._onOut), 22 != this._type && this.on(r.EventType.CLICK, this._onClick)
+                void 0 === n && (n = PIXI.Texture.EMPTY), this.setUp(t, e, i, n), this.interactive = this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onOver), this.on(r.EventType.MOUSEOUT, this._onOut), 22 != this._type ? this.on(r.EventType.CLICK, this._onClick) : s.FRIENDLY && this.on(r.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Sprite);
-    e.UpperBtn = s
+    e.UpperBtn = u
 }

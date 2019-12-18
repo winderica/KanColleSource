@@ -23,37 +23,11 @@ const function962 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+                return e._bg = new PIXI.Sprite, e._bg.position.set(11, 0), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(0, 20), e.addChild(e._icon), e
             }
             return n(e, t), e.prototype.update = function (t) {
-                var e;
-                switch (t) {
-                    case 1:
-                        e = 98;
-                        break;
-                    case 2:
-                        e = 99;
-                        break;
-                    case 3:
-                        e = 100;
-                        break;
-                    case 4:
-                        e = 101;
-                        break;
-                    case 5:
-                        e = 102;
-                        break;
-                    case 6:
-                        e = 103;
-                        break;
-                    case 7:
-                        e = 104;
-                        break;
-                    default:
-                        return void(this.visible = !1)
-                }
-                this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
+                3 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(37), this._icon.texture = o.SALLY_AIRUNIT.getTexture(43), this.visible = !0) : 2 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(36), this._icon.texture = o.SALLY_AIRUNIT.getTexture(42), this.visible = !0) : this.visible = !1
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelItemSkillLevelIcon = r
+    e.AirUnitPanelItemFatigueIcon = r
 }

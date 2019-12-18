@@ -1,65 +1,80 @@
 const function1058 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(58),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._icons = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new PIXI.Sprite;
-                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
-                }
-                return e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0; t < this._icons.length; t++) {
-                    this._icons[t].visible = !1
-                }
-            }, e.prototype.update = function (t) {
-                var e = [];
-                if (null != t) {
-                    var i = t.getSlotitems();
-                    i = i.concat(t.getSlotitemEx());
-                    for (var n = 0, o = i; n < o.length; n++) {
-                        var r = o[n];
-                        if (null != r) {
-                            var s = r.equipType;
-                            if (24 == s) {
-                                355 != r.mstID && e.push(r)
-                            } else 46 == s && e.push(r)
-                        }
+    var n = i(0),
+        o = function () {
+            function t() {}
+            return t.prototype.check = function (t, e, i) {
+                void 0 === i && (i = !1);
+                var o = n.default.model.expedition.get(t);
+                if (null == o || null == e) return {
+                    result: !1,
+                    reason: 0
+                };
+                var r = e.getCount();
+                if (0 == r) return {
+                    result: !1,
+                    reason: 31
+                };
+                if (r > 6) return {
+                    result: !1,
+                    reason: 36
+                };
+                if (e.isCombined_Main() || e.isCombined_Sub()) return {
+                    result: !1,
+                    reason: 22
+                };
+                if (1 == o.reset_type) {
+                    var s = n.default.model.expedition.getLimitTime(1),
+                        a = Date.now() + 60 * o.time * 1e3;
+                    if (1 == i || a > 1e3 * s) return {
+                        result: !1,
+                        reason: 50
                     }
                 }
-                this._update(e)
-            }, e.prototype._update = function (t) {
-                for (var e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e];
-                    if (e >= t.length) i.visible = !1;
-                    else {
-                        var n = t[e].equipType;
-                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(64) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
+                var _ = e.getShipList(),
+                    l = o.isSupport();
+                if (l) {
+                    for (var u = 0, c = 0, h = _; c < h.length; c++) {
+                        var p = h[c];
+                        null != p && (2 == p.shipTypeID && u++)
+                    }
+                    if (u < 2) return {
+                        result: !1,
+                        reason: 13
                     }
                 }
-            }, e
-        }(PIXI.Container);
-    e.CompSupportBoatCount = r
+                if (null != e.expedition) return {
+                    result: !1,
+                    reason: 30
+                };
+                for (var d = n.default.model.ndock.getShipMemIDs(), f = !1, y = !1, m = !0, g = 0, v = _; g < v.length; g++) {
+                    var p = v[g];
+                    null != p && (d.indexOf(p.memID) >= 0 && (f = !0), (p.fuelNow <= 0 || p.ammoNow <= 0) && (y = !0), (p.fuelNow < p.fuelMax || p.ammoNow < p.ammoMax) && (m = !1))
+                }
+                if (f) return {
+                    result: !1,
+                    reason: 1
+                };
+                if (l && 0 == m) return {
+                    result: !1,
+                    reason: 14
+                };
+                if (y) return {
+                    result: !1,
+                    reason: 2
+                };
+                var b = _[0].getDamageType();
+                return 25 == b || 0 == b ? {
+                    result: !1,
+                    reason: 3
+                } : {
+                    result: !0,
+                    reason: 0
+                }
+            }, t
+        }();
+    e.ExpeditionCondition = o
 }

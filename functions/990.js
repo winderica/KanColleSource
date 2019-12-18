@@ -19,63 +19,46 @@ const function990 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(52),
-        a = i(361),
-        _ = i(991),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
-                    null != i._cb && i._cb(t.area_id)
-                }, i._cb = e, i._btns = new Array;
-                for (var n = [0, 96, 191, 383, 478, 574, 287], o = 0; o < n.length; o++) {
-                    var r = new a.AreaIconBtn(o + 1);
-                    r.position.set(n[o], 0), i._btns.push(r)
-                }
-                return i
+    var o = i(2),
+        r = i(991),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._cancel = !0, n._waitClick = function () {
+                    n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
+                }, n._onNo = function () {
+                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
+                }, n._onYes = function () {
+                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
+                }, n._layer = e, n._model = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                if (1 != this._initialized) {
-                    this._initialized = !0;
-                    var t = new PIXI.Sprite(s.SALLY_SORTIE.getTexture(32));
-                    if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
-                        if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
-                            var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
-                            e.position.set(875, -9), this._btns.push(e)
-                        }
-                    }
-                    for (var i = 0, n = this._btns; i < n.length; i++) {
-                        var e = n[i];
-                        e.initialize(this._onSelectArea), this.addChild(e)
-                    }
-                }
-            }, e.prototype.update = function (t) {
-                for (var e = 0, i = this._btns; e < i.length; e++) {
-                    var n = i[e],
-                        o = n.area_id == t;
-                    n.selected = o, o ? n.deactivate() : n.activate()
-                }
-            }, e.prototype.activate = function () {
-                if (0 == this._activated) {
-                    for (var t = 0, e = this._btns; t < e.length; t++) {
-                        e[t].activate()
-                    }
-                    this._activated = !0
-                }
-            }, e.prototype.deactivate = function () {
-                this._activated = !1;
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                this._cb = null, this.removeChildren();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._btns = null
+            return n(e, t), Object.defineProperty(e.prototype, "cancel", {
+                get: function () {
+                    return this._cancel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
+            }, e.prototype._openDialog = function () {
+                var t = this;
+                this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
+                    createjs.Tween.get(t._dialog.bg).to({
+                        alpha: 1
+                    }, 300).call(t._waitClick)
+                })
+            }, e.prototype._closeDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._dialog.fade.hide(100, function () {
+                        t._layer.removeChild(t._dialog), t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.CompAreaIcons = l
+        }(o.TaskBase);
+    e.ChangeConfirmTask = s
 }

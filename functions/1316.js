@@ -19,74 +19,55 @@ const function1316 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(17),
-        s = i(4),
-        a = i(31),
-        _ = i(41),
-        l = i(19),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+    var o = i(6),
+        r = i(1317),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClick = function (t) {
+                    n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
+                }, n._onDoubleClick = function (t) {
+                    var e = n._selected_spot_no.lastIndexOf(t); - 1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
+                }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "icon", {
-                get: function () {
-                    return this._icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return this._text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = l.MAP_COMMON.getTexture(25)
-            }, e.prototype.update = function (t, e) {
-                void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
-            }, e.prototype._update = function (t, e) {
-                void 0 === e && (e = "");
-                var i;
-                switch (t) {
-                    case 1:
-                        i = a.SALLY_COMMON.getTexture(1);
-                        break;
-                    case 2:
-                        i = a.SALLY_COMMON.getTexture(3);
-                        break;
-                    case 3:
-                        i = a.SALLY_COMMON.getTexture(5);
-                        break;
-                    case 4:
-                        i = a.SALLY_COMMON.getTexture(9);
-                        break;
-                    case 5:
-                        i = a.SALLY_COMMON.getTexture(11);
-                        break;
-                    case 6:
-                        i = a.SALLY_COMMON.getTexture(13);
-                        break;
-                    case 7:
-                        i = a.SALLY_COMMON.getTexture(7);
-                        break;
-                    default:
-                        i = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._clear(), e = this._dedupeCells(e);
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n],
+                        a = s.no,
+                        _ = i.getCellInfo(a);
+                    if (!(_.distance <= 0)) {
+                        var l = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
+                        l.initialize(a, _, t), l.x = s.x + s.point.x, l.y = s.y + s.point.y, this.addChild(l), this._points[a] = l
+                    }
                 }
-                this._icon.texture = i, this._text.text = e
-            }, e.prototype._updateForEventMap = function (t) {
-                void 0 === t && (t = "");
-                this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
+            }, e.prototype.update = function () {
+                var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
+                    e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
+                for (var i in this._points) {
+                    var n = this._points[i];
+                    n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
+                }
+            }, e.prototype.dispose = function () {
+                this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
+            }, e.prototype._clear = function () {
+                for (var t in this._points) this._points[t].dispose();
+                this.removeChildren(), this._points = []
+            }, e.prototype._dedupeCells = function (t) {
+                for (var e = [], i = t.concat(); i.length > 0;) {
+                    for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
+                        var a = s[r],
+                            _ = n.x - a.x,
+                            l = n.y - a.y;
+                        if (Math.sqrt(_ * _ + l * l) <= 10) {
+                            o = !0;
+                            break
+                        }
+                    }
+                    0 == o && e.push(n)
+                }
+                return e
             }, e
         }(PIXI.Container);
-    e.CompUpperBar = u
+    e.AirUnitAppointmentLayer = s
 }

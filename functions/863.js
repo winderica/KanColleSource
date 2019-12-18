@@ -19,31 +19,21 @@ const function863 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onMouseOver = function () {
-                    e.popup.visible = !0
-                }, e._onMouseOut = function () {
-                    e.popup.visible = !1
-                }, e._onClick = function () {
-                    e.hasKey ? e.onClick(e.memDockId) : r.SE.play("248")
-                };
-                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(11)),
-                    n = new PIXI.Sprite;
-                n.position.set(462, -24), e.addChild(i, n);
-                var a = o.REPAIR_MAIN.getTexture(25),
-                    _ = o.REPAIR_MAIN.getTexture(24);
-                return e.background = i, e.background.addListener(s.EventType.MOUSEOVER, e._onMouseOver), e.background.addListener(s.EventType.MOUSEOUT, e._onMouseOut), e.background.addListener(s.EventType.CLICK, e._onClick), e.popup = n, e.huki_r_01 = _, e.huki_r_02 = a, e
+    var o = i(0),
+        r = i(9),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_nyukyo/speedchange", i.api_ndock_id = e, i
             }
-            return n(e, t), e.prototype.update = function (t, e, i) {
-                this.popup.texture = PIXI.Texture.EMPTY, this.popup.visible = !1, this.popup.texture = this.huki_r_01, this.hasKey = i, i && (this.popup.texture = this.huki_r_02), this.background.interactive = this.background.buttonMode = !1, e && (this.background.interactive = this.background.buttonMode = !0), this.memDockId = t
-            }, e.prototype.dispose = function () {
-                this.removeChild(this.background), this.removeChild(this.popup), this.background.removeAllListeners(s.EventType.MOUSEOVER), this.background.removeAllListeners(s.EventType.MOUSEOUT), this.background.removeAllListeners(s.EventType.CLICK), this.background.interactive = this.background.buttonMode = !1, this.background.texture = PIXI.Texture.EMPTY, this.popup.texture = PIXI.Texture.EMPTY, this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.huki_r_01 = null, this.huki_r_02 = null, this.background = null, this.popup = null, this.memDockId = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_ndock_id = this.api_ndock_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.useItem.get(1),
+                    i = o.default.model.ndock.get(this.api_ndock_id),
+                    n = o.default.model.ship.get(i.shipMemID);
+                n.__updateNowHp__(n.hpMax), n.__updateNDockTime__(0), n.__updateNDockItem__([0, 0]), n.tired < 40 && n.__updateCond__(40), i.__updateCompleteTime__(0), i.__updateShipId__(-1), i.__updateState__(0), e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.ExtensionDock = a
+        }(r.APIBase);
+    e.SpeedChangeAPI = s
 }

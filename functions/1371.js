@@ -20,28 +20,38 @@ const function1371 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(13),
-        s = i(23),
+        r = i(62),
+        s = i(16),
         a = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._ship_mst_id = e, s._damaged = i, s._plane1 = n, s._plane2 = o, s._plane3 = r, s
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadShipImage()
-            }, e.prototype._loadShipImage = function () {
-                var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._ship_mst_id, this._damaged, "full"), e.load(function () {
-                    t._loadPlaneImage()
-                })
-            }, e.prototype._loadPlaneImage = function () {
-                var t = this,
-                    e = new s.SlotLoader;
-                this._plane1 > 0 && e.add(this._plane1, "item_up"), this._plane2 > 0 && e.add(this._plane2, "item_up"), this._plane3 > 0 && e.add(this._plane3, "item_up"), e.load(function () {
-                    t._endTask()
+                var t = this;
+                this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
+                    alpha: 1
+                }, 100).to({
+                    x: this._smoke1.x - 4,
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({
+                    alpha: 1
+                }, 100).to({
+                    x: this._smoke2.x - 4,
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 700);
+                var e = [s.BATTLE_MAIN.getTexture(86), s.BATTLE_MAIN.getTexture(87), s.BATTLE_MAIN.getTexture(88), s.BATTLE_MAIN.getTexture(89), s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107)],
+                    i = new PIXI.extras.AnimatedSprite(e);
+                i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
+                    i.play(), i.onComplete = function () {
+                        i.onComplete = null, t._layer.removeChild(i), t._endTask()
+                    }
                 })
             }, e
         }(o.TaskBase);
-    e.PreloadCutinFunnel = a
+    e.AnimAntiAircraftSanshikidan2 = a
 }

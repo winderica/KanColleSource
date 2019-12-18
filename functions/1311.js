@@ -19,52 +19,15 @@ const function1311 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
-                    null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
+    var o = i(11),
+        r = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_map/start_air_base", o._airunit1 = e, o._airunit2 = i, o._airunit3 = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "complete", {
-                get: function () {
-                    return this._complete
-                },
-                set: function (t) {
-                    this._complete = t, this.buttonMode = t, this._update()
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
-            }, e.prototype.update = function (t) {
-                this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
-            }, e.prototype.dispose = function () {
-                this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._update = function () {
-                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(180), this._img.position.set(0, 0);
-                else {
-                    switch (this._airunit_id) {
-                        case 0:
-                            this._img.texture = o.MAP_COMMON.getTexture(176);
-                            break;
-                        case 1:
-                            this._img.texture = o.MAP_COMMON.getTexture(177);
-                            break;
-                        case 2:
-                            this._img.texture = o.MAP_COMMON.getTexture(178);
-                            break;
-                        case 3:
-                            this._img.texture = o.MAP_COMMON.getTexture(179);
-                            break;
-                        default:
-                            this._img.texture = PIXI.Texture.EMPTY
-                    }
-                    this._img.position.set(11, 9)
-                }
+            return n(e, t), e.prototype._connect = function () {
+                null != this._airunit1 && this._airunit1.length > 0 && (this._post_data.api_strike_point_1 = this._airunit1.join(",")), null != this._airunit2 && this._airunit2.length > 0 && (this._post_data.api_strike_point_2 = this._airunit2.join(",")), null != this._airunit3 && this._airunit3.length > 0 && (this._post_data.api_strike_point_3 = this._airunit3.join(",")), t.prototype._connect.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitAppointmentTitle = s
+        }(o.APIBase);
+    e.AirUnitGoAPI = r
 }

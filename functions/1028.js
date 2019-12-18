@@ -19,35 +19,80 @@ const function1028 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(53),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
-                    i._updateState(!0)
-                }, i._onMouseOut = function () {
-                    i._updateState(!1)
-                }, i._onClick = function () {
-                    null != i._cb && 1 == i._btn.interactive && (o.SE.play("231"), i.deactivate(), i._updateState(!0), i._cb(i._type))
-                }, i._cb = e, i
+    var o = i(37),
+        r = i(1029),
+        s = i(1030),
+        a = i(1032),
+        _ = i(1046),
+        l = i(1047),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e, i) || this;
+                n._timer_id = 0, n._onChangeMatching = function (t) {
+                    new l.TaskChangeMatching(t, n).start()
+                }, n._sub_title = new _.CompSubTitle, n._sub_title.position.set(202, 204), n._rivals = new Array;
+                for (var o = 0; o < 5; o++) {
+                    var r = new a.CompRivalDeck;
+                    r.position.set(211, 267 + 82 * o), n._rivals.push(r)
+                }
+                return n._matching_btns = new s.CompMatchingSelectBtns(n._onChangeMatching), n._matching_btns.position.set(460, 669), n
             }
-            return n(e, t), e.prototype.setSelected = function (t) {
-                this._selected = t, 1 == this._selected && 1 == this._activated && this.deactivate(), this._updateState(t)
-            }, e.prototype.initialize = function (t) {
-                this._type = t;
-                var e, i;
-                0 == t ? (e = 3, i = 4) : 1 == t ? (e = 5, i = 6) : (e = 7, i = 8), this._btn = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(e)), this._btn_on = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(i)), this._btn_on.position.set(-6, -7), this.addChild(this._btn), this.addChild(this._btn_on), this._updateState(!1)
+            return n(e, t), Object.defineProperty(e.prototype, "rivals", {
+                get: function () {
+                    return this._rivals
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "matching_btns", {
+                get: function () {
+                    return this._matching_btns
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                t.prototype.initialize.call(this), this._sub_title.initialize(), this.addChild(this._sub_title);
+                for (var e = 0, i = this._rivals; e < i.length; e++) {
+                    var n = i[e];
+                    n.initialize(), this.addChild(n)
+                }
+                this._matching_btns.initialize(), this.addChild(this._matching_btns)
+            }, e.prototype.update = function (t) {
+                o.TaskLoadShipResource.abortBy(this), this._sub_title.update(t.matching_type);
+                for (var e = t.rivals, i = 0; i < this._rivals.length; i++) {
+                    var n = this._rivals[i];
+                    e.length <= i ? n.visible = !1 : (n.update(e[i]), n.visible = !0)
+                }
+                this._selected_matching_type = t.matching_type_next;
+                var r = t.remain_time;
+                this._startTimer(1e3 * r), this._matching_btns.update(r > 0, t.matching_type_next)
+            }, e.prototype.updateMatchingState = function (t, e) {
+                this._selected_matching_type = e, this._matching_btns.update(t, e), this._matching_btns.activate()
             }, e.prototype.activate = function () {
-                0 == this._activated && 0 == this._selected && (this._btn.interactive = this._btn.buttonMode = !0, this._btn.on(s.EventType.MOUSEOVER, this._onMouseOver), this._btn.on(s.EventType.MOUSEOUT, this._onMouseOut), this._btn.on(s.EventType.CLICK, this._onClick))
+                t.prototype.activate.call(this);
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].activate()
+                }
+                this._matching_btns.activate()
             }, e.prototype.deactivate = function () {
-                this._btn.interactive = this._btn.buttonMode = !1, this._btn.off(s.EventType.MOUSEOVER, this._onMouseOver), this._btn.off(s.EventType.MOUSEOUT, this._onMouseOut), this._btn.off(s.EventType.CLICK, this._onClick)
+                t.prototype.deactivate.call(this);
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].deactivate()
+                }
+                this._matching_btns.deactivate(), o.TaskLoadShipResource.abortBy(this)
             }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype._updateState = function (t) {
-                1 == t ? (this._btn.alpha = 0, this._btn_on.visible = !0) : (this._btn.alpha = 1, this._btn_on.visible = !1)
+                t.prototype.dispose.call(this), this._sub_title.dispose();
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].dispose()
+                }
+                this._matching_btns.dispose(), this._stopTimer()
+            }, e.prototype._startTimer = function (t) {
+                var e = this;
+                this._stopTimer(), t > 0 && (this._timer_id = setTimeout(function () {
+                    e.updateMatchingState(!1, e._selected_matching_type), e._timer_id = 0
+                }, t))
+            }, e.prototype._stopTimer = function () {
+                this._timer_id > 0 && clearTimeout(this._timer_id), this._timer_id = 0
             }, e
-        }(PIXI.Container);
-    e.BtnMatchingSelect = a
+        }(r.ViewMainBase);
+    e.ViewMain = u
 }

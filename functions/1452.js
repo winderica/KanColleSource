@@ -1,58 +1,52 @@
 const function1452 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(476),
-        s = i(475),
-        a = i(477),
-        _ = i(1453),
-        l = i(1454),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._o = e, i._raw = new l.RawNightBattleData(e), i._common = new a.BattleCommonModel(e), i
+    var n = i(7),
+        o = function () {
+            function t(t) {
+                this._o = t
             }
-            return n(e, t), Object.defineProperty(e.prototype, "phase", {
-                get: function () {
-                    return "night"
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "raw", {
-                get: function () {
-                    return this._raw
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getAllyAttack = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_friendly_info"),
-                    e = o.ObjUtil.getObject(this._o, "api_friendly_battle");
-                return null == t || null == e ? null : new _.AllyAttackModel(t, e)
-            }, e.prototype.getRation = function () {
-                return this._raw.ration
-            }, e.prototype.getRationCombined = function () {
-                return this._raw.ration_combined
-            }, e.prototype.getDayRecord = function () {
-                return 1 == this.raw.hasDayBattle() ? new s.BattleRecordDay(this._o) : null
-            }, e
-        }(r.BattleRecord);
-    e.BattleRecordNight = u
+            return t.prototype.getAttackTo_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_frai");
+                return null == e || e.length <= t ? -1 : e[t]
+            }, t.prototype.getDamage_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
+                return null == e || e.length <= t ? 0 : Math.floor(e[t])
+            }, t.prototype.isShield_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
+                return !(null == e || e.length <= t) && e[t] % 1 != 0
+            }, t.prototype.getHitType_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fcl");
+                return null == e || e.length <= t ? 0 : e[t]
+            }, t.prototype.hasShield_f = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_fdam");
+                if (null == t) return !1;
+                for (var e = 0, i = t; e < i.length; e++) {
+                    if (i[e] % 1 != 0) return !0
+                }
+                return !1
+            }, t.prototype.getAttackTo_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_erai");
+                return null == e || e.length <= t ? -1 : e[t]
+            }, t.prototype.getDamage_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_eydam");
+                return null == e || e.length <= t ? 0 : e[t]
+            }, t.prototype.isShield_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
+                return !(null == e || e.length <= t) && e[t] % 1 != 0
+            }, t.prototype.getHitType_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_ecl");
+                return null == e || e.length <= t ? 0 : e[t]
+            }, t.prototype.hasShield_e = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_edam");
+                if (null == t) return !1;
+                for (var e = 0, i = t; e < i.length; e++) {
+                    if (i[e] % 1 != 0) return !0
+                }
+                return !1
+            }, t
+        }();
+    e.RaigekiData = o
 }

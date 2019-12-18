@@ -20,40 +20,26 @@ const function861 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(13),
-        a = i(14),
-        _ = i(862),
-        l = i(343),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._updateNDock = function () {
-                    (new l.NDockAPI).start(i._loadAtlas)
-                }, i._loadAtlas = function () {
-                    var t = new a.UIImageLoader("repair");
-                    t.add("repair_main.json"), t.load(i._loadShipBanner)
-                }, i._loadShipBanner = function () {
-                    var t = o.default.model.ndock.getShipMemIDs();
-                    if (0 < t.length) {
-                        for (var e = new s.ShipLoader, n = 0; n < t.length; n++) {
-                            var r = t[n],
-                                a = o.default.model.ship.get(r);
-                            e.add(a.mstID, a.isDamaged(), "banner")
-                        }
-                        e.load(function () {
-                            i._onCompleteLoad()
-                        })
-                    } else i._onCompleteLoad()
-                }, i._onCompleteLoad = function () {
-                    var t = o.default.model.ndock.getAll(),
-                        e = new _.MainView(t);
-                    i.repairScene.start(e), i.repairScene.updateNDocks(t), i.repairScene.startNDockTimer(), i._endTask()
-                }, i.repairScene = e, i
+        r = i(9),
+        s = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o.MINIMUM_TIME = 6e4, o._url = "api_req_nyukyo/start", o.api_ship_id = i, o.api_ndock_id = e, o.api_highspeed = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._updateNDock()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_highspeed = this.api_highspeed ? 1 : 0, this._post_data.api_ndock_id = this.api_ndock_id, this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.ship.get(this.api_ship_id),
+                    i = o.default.model.useItem.get(31),
+                    n = o.default.model.useItem.get(33);
+                if (i.__setCount__(i.count - e.getRepairFuel()), n.__setCount__(n.count - e.getRepairSteel()), this.api_highspeed) {
+                    var r = o.default.model.useItem.get(1);
+                    r.__setCount__(r.count - 1), this.immediateRepair(e)
+                } else e.getRepairTime() <= this.MINIMUM_TIME && this.immediateRepair(e);
+                t.prototype._completedEnd.call(this)
+            }, e.prototype.immediateRepair = function (t) {
+                t.__updateNowHp__(t.hpMax), t.__updateNDockTime__(0), t.__updateNDockItem__([0, 0]), t.tired < 40 && t.__updateCond__(40)
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = u
+        }(r.APIBase);
+    e.StartAPI = s
 }

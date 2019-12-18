@@ -19,25 +19,29 @@ const function964 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(356),
-        s = i(966),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e) || this;
-                return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
+    var o = i(26),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._txt = new PIXI.Sprite, e._txt.position.set(23, 23), e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.position.set(11, 9), e._txt_on.alpha = 0, e.addChild(e._txt_on), e
             }
-            return n(e, t), e.prototype.initialize = function (e) {
-                t.prototype.initialize.call(this, e), this._btn_extend.initialize()
-            }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._btn_extend.activate()
-            }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._btn_extend.deactivate()
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_AIRUNIT.getTexture(65), this._txt.texture = o.SALLY_AIRUNIT.getTexture(128), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(129)
+            }, e.prototype.update = function (t) {
+                this.visible = t, 1 == t ? this._activate() : this._deactivate()
             }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._btn_extend.dispose()
-            }, e.prototype.updateExtendBtn = function (t, e) {
-                this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
+                this._deactivate()
+            }, e.prototype._activate = function () {
+                null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 800).to({
+                    alpha: 0
+                }, 400))
+            }, e.prototype._deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
             }, e
-        }(r.AirUnitPanelTabContainer);
-    e.AirUnitPanelTabContainerWithExtend = a
+        }(PIXI.Sprite);
+    e.AirUnitPanelItemRelocationLayer = r
 }

@@ -1,39 +1,70 @@
 const function1446 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(186),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this, e) || this;
-                return i._initPlaneFrom(), i
+    var n = i(0),
+        o = function () {
+            function t(t, e, i, n) {
+                void 0 === i && (i = null), void 0 === n && (n = null), this._offset_x = 0, this._offset_y = 0, this._type = t, this._mst_id = e, this._name = n, this._stype = i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "seiku", {
+            return Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    var t = this._stage1;
-                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_disp_seiku")
+                    return this._type
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e
-        }(r.AirWarDataBase);
-    e.AirWarData = s
+            }), Object.defineProperty(t.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "voice_id", {
+                get: function () {
+                    return this._voice_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    if (null != this._name) return this._name;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "stype", {
+                get: function () {
+                    if (null != this._stype) return this._stype;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.shipTypeName
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offset_x", {
+                get: function () {
+                    return this._offset_x
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offset_y", {
+                get: function () {
+                    return this._offset_y
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.setMessage = function (t, e) {
+                return this._voice_id = t, this._message = e, this
+            }, t.prototype.setOffset = function (t, e) {
+                return this._offset_x = t, this._offset_y = e, this
+            }, t
+        }();
+    e.BossModel = o
 }

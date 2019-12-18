@@ -20,26 +20,26 @@ const function894 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(1),
+        r = i(895),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e.limitShip = !1, e.limitSlot = !1, e._onClick = function () {
-                    0 == (e.limitShip || e.limitSlot) && e.onClick()
-                }, e._onMouseOver = function () {
-                    e.popup.visible = !1, e.limitShip ? e.popup.visible = !0 : e.limitSlot && (e.popup.visible = !0)
-                }, e._onMouseOut = function () {
-                    e.popup.visible = !1
-                }, e.popup = new PIXI.Sprite, e.buttonSprite = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(41)), e.popup.visible = !1;
-                var i = Math.floor(100 - e.buttonSprite.width / 2),
-                    n = Math.floor(50 - e.buttonSprite.height / 2);
-                return e.area = new PIXI.Graphics, e.area.beginFill(0, 0), e.area.drawRect(-i, -n, 200, 100), e.area.endFill(), e.area.interactive = e.area.buttonMode = !0, e.area.on(r.EventType.CLICK, e._onClick), e.area.on(r.EventType.MOUSEOVER, e._onMouseOver), e.area.on(r.EventType.MOUSEOUT, e._onMouseOut), e.addChild(e.area, e.buttonSprite, e.popup), e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(46));
+                return e.ship = new r.LargeBuildShip, e.ship.position.set(22, 13), i.position.set(12, 82), e.addChild(i, e.ship), e
             }
-            return n(e, t), e.prototype.updateCondition = function (t, e) {
-                this.popup.visible = !1, t ? (this.popup.texture = o.ARSENAL_MAIN.getTexture(2), this.popup.position.set(-61, -90)) : e && (this.popup.texture = o.ARSENAL_MAIN.getTexture(68), this.popup.position.set(49, -33)), this.limitShip = t, this.limitSlot = e
+            return n(e, t), e.prototype.updatePhaseMax = function (t) {
+                this.phaseMax = t
+            }, e.prototype.update = function (t) {
+                if (0 == t) this.ship.update(0);
+                else {
+                    var e = Math.floor(this.phaseMax * t);
+                    0 == e && (e = 1), this.ship.update(e)
+                }
+            }, e.prototype.forceComplete = function () {
+                this.ship.update(this.phaseMax)
             }, e.prototype.dispose = function () {
-                this.area.off(r.EventType.CLICK), this.area.off(r.EventType.MOUSEOVER), this.area.off(r.EventType.MOUSEOUT), this.onClick = null, this.popup = null, this.buttonSprite = null, this.limitShip = null, this.limitSlot = null, this.area = null, this.removeChildren()
+                this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.SelectButton = s
+    e.LargeBuildStage = s
 }

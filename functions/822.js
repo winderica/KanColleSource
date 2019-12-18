@@ -1,52 +1,60 @@
 const function822 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(15),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(13)),
-                    n = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(24));
-                n.position.set(204, 23);
-                var a = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(15));
-                a.position.set(164, 143);
-                var _ = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(16));
-                _.position.set(21, 101);
-                var l = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(17));
-                l.position.set(21, 143);
-                var u = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(18));
-                u.position.set(162, 101), e.addChild(i, n, a, _, l, u), e._unknown = new PIXI.Sprite, e._unknown.position.set(27, 18), e.addChild(e._unknown), e._containerName = new PIXI.Container, e._textName = new o.TextBox(36, 4999235), e._textName.position.set(11, 8);
-                var c = s.CreateRect.gradientLeftToRight(200, 55, .9, .97);
-                e._textName.mask = c, e._containerName.addChild(e._textName, c), e.addChild(e._containerName), e._textShipType = new o.TextBox(22, 4999235), e._textShipType.position.set(14, 60), e.addChild(e._textShipType), e._textLevel = new o.TextBox(29, 4999235), e._textLevel.position.set(231, 16), e.addChild(e._textLevel);
-                return e._textKaryoku = new o.TextBox(24, 4999235), e._textKaryoku.position.set(141, 99), e._textKaryoku.anchor.x = 1, e.addChild(e._textKaryoku), e._textRaiso = new o.TextBox(24, 4999235), e._textRaiso.position.set(141, 142), e._textRaiso.anchor.x = 1, e.addChild(e._textRaiso), e._textTaiku = new o.TextBox(24, 4999235), e._textTaiku.position.set(284, 99), e._textTaiku.anchor.x = 1, e.addChild(e._textTaiku), e._textSouko = new o.TextBox(24, 4999235), e._textSouko.position.set(284, 142), e._textSouko.anchor.x = 1, e.addChild(e._textSouko), e
+    var n = i(0),
+        o = function () {
+            function t(t, e) {
+                void 0 === e && (e = null), this._require = t, this._count = null != e ? e : {
+                    ammo: n.default.model.useItem.getCount(32),
+                    steel: n.default.model.useItem.getCount(33),
+                    devkit: n.default.model.useItem.getCount(3),
+                    buildkit: n.default.model.useItem.getCount(2),
+                    blueprint: n.default.model.useItem.getCount(58),
+                    catapult: n.default.model.useItem.getCount(65),
+                    battlereport: n.default.model.useItem.getCount(78),
+                    newhokohesosizai: n.default.model.useItem.getCount(75),
+                    newkokuhesosizai: n.default.model.useItem.getCount(77)
+                }
             }
-            return n(e, t), e.prototype.update = function (t, e, i) {
-                void 0 === e && (e = null), void 0 === i && (i = null), this._textLevel.text = t.toString(), null == e || "" == e ? (this._unknown.texture = r.REMODEL_GRADEUP.getTexture(32), this._unknown.visible = !0, this._textName.visible = !1, this._textShipType.visible = !1) : (this._unknown.visible = !1, this._containerName.cacheAsBitmap = !1, this._textName.text = e, this._containerName.cacheAsBitmap = !0, this._textName.visible = !0, this._textShipType.text = i, this._textShipType.visible = !0)
-            }, e.prototype.updateStatus = function (t, e, i, n) {
-                void 0 === t && (t = -1), void 0 === e && (e = -1), void 0 === i && (i = -1), void 0 === n && (n = -1), this._textKaryoku.text = t >= 0 ? t.toString() : "??", this._textRaiso.text = e >= 0 ? e.toString() : "??", this._textTaiku.text = i >= 0 ? i.toString() : "??", this._textSouko.text = n >= 0 ? n.toString() : "??"
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._containerName.cacheAsBitmap = !1, this._containerName.removeChildren(), this._textName.destroy(), this._textShipType.destroy(), this._textLevel.destroy(), this._textKaryoku.destroy(), this._textRaiso.destroy(), this._textTaiku.destroy(), this._textSouko.destroy(), this._unknown = null, this._containerName = null, this._textName = null, this._textShipType = null, this._textLevel = null, this._textKaryoku = null, this._textRaiso = null, this._textTaiku = null, this._textSouko = null
-            }, e
-        }(PIXI.Container);
-    e.KaizoDetailShipPanel = a
+            return t.prototype.getCount = function (t) {
+                return this._get(t, this._count)
+            }, t.prototype.getRequire = function (t) {
+                return this._get(t, this._require)
+            }, t.prototype.validate = function (t) {
+                var e = this.getCount(t),
+                    i = this.getRequire(t);
+                if (e < i) {
+                    n.default.model.useItem.get(t);
+                    return !1
+                }
+                return !0
+            }, t.prototype.validateAll = function () {
+                return this.validate(32) && this.validate(33) && this.validate(3) && this.validate(2) && this.validate(58) && this.validate(65) && this.validate(78) && this.validate(75) && this.validate(77)
+            }, t.prototype._get = function (t, e) {
+                switch (t) {
+                    case 32:
+                        return e.ammo;
+                    case 33:
+                        return e.steel;
+                    case 3:
+                        return e.devkit;
+                    case 2:
+                        return e.buildkit;
+                    case 58:
+                        return e.blueprint;
+                    case 65:
+                        return e.catapult;
+                    case 78:
+                        return e.battlereport;
+                    case 75:
+                        return e.newhokohesosizai;
+                    case 77:
+                        return e.newkokuhesosizai
+                }
+                return 0
+            }, t
+        }();
+    e.KaizoValidateModel = o
 }

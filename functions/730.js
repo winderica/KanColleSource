@@ -1,43 +1,65 @@
 const function730 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
-        o = i(0),
-        r = i(731),
-        s = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "maxNum", {
-                get: function () {
-                    return this.api_max_num
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.setData = function (t) {
-                var e = n.ObjUtil.getObject(t, "api_deck", {}),
-                    i = t.api_max_num;
-                this.api_max_num = i, this.api_deck = e
-            }, t.prototype.updateData = function (t) {
-                var e = n.ObjUtil.getNumber(t, "api_preset_no");
-                this.api_deck[e.toString()] = t
-            }, t.prototype.getPresetDeckData = function (t) {
-                if (t > this.maxNum) return null;
-                var e = t.toString(),
-                    i = this.api_deck[e];
-                return new r.PresetModel(t, i)
-            }, t.prototype.getPresetDeckDataList = function () {
-                for (var t = new Array, e = 1; e <= this.maxNum; e++) {
-                    var i = this.getPresetDeckData(e);
-                    i.getRealShipCount() > 0 && t.push(i)
-                }
-                return t
-            }, t.prototype.__updateByPresetExpanded__ = function (t) {
-                if (this.maxNum + 1 != t) return void o.default.view.showError("Invalid preset_expand.");
-                this.api_deck[t.toString()] = null, this.api_max_num = t
-            }, t.prototype.__deletePresetDeckData__ = function (t) {
-                delete this.api_deck[t.toString()], this.api_deck[t.toString()] = null
-            }, t
-        }();
-    e.PresetListModel = s
+    var o = i(0),
+        r = i(2),
+        s = i(731),
+        a = i(136),
+        _ = i(21),
+        l = i(56),
+        u = i(312),
+        c = i(732),
+        h = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._loadPreset = function () {
+                    var t = new c.PresetDeckAPI;
+                    t.start(function () {
+                        var e = t.result;
+                        i.organizeScene.preInitialize(e), i._endTask()
+                    })
+                }, i.organizeScene = e, i
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._loadResource()
+            }, e.prototype._loadResource = function () {
+                var t = this;
+                (new s.TaskLoadResourcesOrganize).start(function () {
+                    t._uploadToGPU_common()
+                })
+            }, e.prototype._uploadToGPU_common = function () {
+                var t = this;
+                o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
+                        t._uploadToGPU_organize()
+                    })
+                })
+            }, e.prototype._uploadToGPU_organize = function () {
+                var t = this;
+                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
+                        t._loadPreset()
+                    })
+                })
+            }, e
+        }(r.TaskBase);
+    e.PreInitializeTask = h
 }

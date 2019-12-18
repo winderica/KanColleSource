@@ -19,23 +19,38 @@ const function1330 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+        return n(e, t), e.prototype.isDisplaying = function () {
+            return null != this._enemy
+        }, e.prototype.show = function (t, e) {
+            void 0 === e && (e = null), null != this._enemy && this.hide(), this._enemy = t;
+            var i = t.y;
+            t.y += 30, t.alpha = 0, this.addChild(t), t.startAnimation();
+            var n = createjs.Tween.get(t);
+            n.to({
+                y: i,
+                alpha: 1
+            }, 500), n.wait(600), null != e && n.call(e)
+        }, e.prototype.hide = function (t) {
+            var e = this;
+            if (void 0 === t && (t = null), null == this._enemy) null != t && t();
+            else {
+                var i = this._enemy;
+                this._enemy = null;
+                var n = createjs.Tween.get(i);
+                n.to({
+                    y: i.y + 30,
+                    alpha: 0
+                }, 1e3), n.call(function () {
+                    e.removeChild(i), i.stopAnimation(), null != t && t()
+                })
             }
-            return n(e, t), e.prototype.create = function (t) {
-                null != this._airbase && null != this._airbase.parent && this._airbase.parent.removeChild(this._airbase), this._airbase = new PIXI.Sprite, this._airbase.texture = o.MAP_COMMON.getTexture(83), this._airbase.x = t.x - this._airbase.width / 2, this._airbase.y = t.y - this._airbase.height / 2, this.addChild(this._airbase)
-            }, e.prototype.shake = function () {
-                var t = this;
-                if (null != this._airbase)
-                    for (var e = this._airbase.x, i = createjs.Tween.get(this._airbase), n = 0; n < 60; n++) ! function (n) {
-                        i.wait(50), i.call(function () {
-                            Math.random();
-                            t._airbase.x = n % 2 == 0 ? e + (Math.random() + .5) : e - (Math.random() + .5)
-                        })
-                    }(n)
-            }, e
-        }(PIXI.Container);
-    e.AirBaseLayer = r
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._enemy && this._enemy.dispose(), this._enemy = null
+        }, e
+    }(PIXI.Container);
+    e.MapEnemyLayer = o
 }

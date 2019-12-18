@@ -19,35 +19,17 @@ const function1075 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(384),
+    var o = i(11),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._eye_open_flag = !0, e._disposed = !1, e._onUpdate = function () {}, e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_member/updatecomment", n._comment = e, n._cmt_id = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._update()
-            }, e.prototype.activate = function () {
-                this._startWaiting()
-            }, e.prototype.deactivate = function () {
-                this._stopWaiting()
-            }, e.prototype.dispose = function () {
-                this._disposed = !0, this._t.setPaused(!0), this._t = null, this.deactivate()
-            }, e.prototype._update = function () {
-                1 == this._eye_open_flag ? this.texture = o.RECORD_MINI.getTexture(0) : this.texture = o.RECORD_MINI.getTexture(1)
-            }, e.prototype._startWaiting = function () {
-                var t = this;
-                if (null == this._t && !this._disposed) {
-                    var e = 0;
-                    e = 1 == this._eye_open_flag ? 3e3 * Math.random() + 1e4 : 200 * Math.random() + 100, this._t = createjs.Tween.get(null, {
-                        onChange: this._onUpdate
-                    }).wait(e).call(function () {
-                        t._eye_open_flag = !t._eye_open_flag, t._update(), t._t = null, t._startWaiting()
-                    })
-                }
-            }, e.prototype._stopWaiting = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_cmt = this._comment, "" != this._cmt_id && (this._post_data.api_cmt_id = this._cmt_id), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.RecordMiniChara = r
+        }(o.APIBase);
+    e.RecordUpdateCommentAPI = r
 }

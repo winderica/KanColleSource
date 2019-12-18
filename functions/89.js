@@ -7,7 +7,7 @@ const function89 = function (t, e, i) {
         o = i(137),
         r = i(28),
         s = i(0),
-        a = i(786);
+        a = i(789);
     ! function (t) {
         function e(t, e) {
             var i = s.default.model.ship_upgrade.getRequiredLevel(t);

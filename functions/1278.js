@@ -19,74 +19,37 @@ const function1278 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(250),
-        s = i(12),
+    var o = i(9),
+        r = i(7),
+        s = i(0),
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._txt_repair_complete = new s.Sprite, e._fairy_completed = new s.Sprite, e
+                return e._url = "api_req_map/anchorage_repair", e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "white", {
+            return n(e, t), Object.defineProperty(e.prototype, "used_ship", {
                 get: function () {
-                    return this._white
+                    return this._used_ship
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "txt_repair_complete", {
+            }), Object.defineProperty(e.prototype, "repair_ships", {
                 get: function () {
-                    return this._txt_repair_complete
+                    return this._repair_ships
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "fairy_complete", {
-                get: function () {
-                    return this._fairy_completed
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "pattern", {
-                get: function () {
-                    return this._pattern
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initilize = function () {
-                this._white = new PIXI.Graphics, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, o.default.width, o.default.height), this._white.endFill(), this._txt_repair_complete = new PIXI.Sprite(r.MAP_ANCHORAGE_REPAIR.getTexture(15)), this._txt_repair_complete.position.set(o.default.width / 2 - this._txt_repair_complete.width / 2, o.default.height / 2 - this._txt_repair_complete.height / 2);
-                var t = this._getFairyPattern();
-                this._pattern = t.pattern, this._fairy_completed = new PIXI.Sprite(r.MAP_ANCHORAGE_REPAIR.getTexture(t.textureId)), this._fairy_completed.scale.set(.65), this._fairy_completed.anchor.set(.5), this._fairy_completed.position.set(t.position.x, t.position.y), this.addChild(this._white, this._txt_repair_complete, this._fairy_completed), this.alpha = 0
-            }, e.prototype._getFairyPattern = function () {
-                var t = [{
-                    pattern: 0,
-                    textureId: 3,
-                    position: {
-                        x: 1100,
-                        y: 710
-                    }
-                }, {
-                    pattern: 1,
-                    textureId: 4,
-                    position: {
-                        x: 336,
-                        y: -350
-                    }
-                }, {
-                    pattern: 2,
-                    textureId: 5,
-                    position: {
-                        x: 1080,
-                        y: 590
-                    }
-                }, {
-                    pattern: 3,
-                    textureId: 6,
-                    position: {
-                        x: 1080,
-                        y: 590
-                    }
-                }];
-                return t[Math.floor(Math.random() * t.length)]
+            }), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._used_ship = r.ObjUtil.getNumber(this._raw_data, "api_used_ship");
+                for (var e = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    s.default.model.ship.updateData(o)
+                }
+                var a = r.ObjUtil.getNumArray(this._raw_data, "api_repair_ships");
+                this._repair_ships = a, t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.AnchorageRepairCompleteLayer = a
+        }(o.APIBase);
+    e.APIAnchorageRepair = a
 }

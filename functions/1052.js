@@ -19,55 +19,35 @@ const function1052 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
-                    i._update(!0)
-                }, i._onMouseOut = function () {
-                    i._update(!1)
-                }, i._onClick = function () {
-                    null != i.onClick && i.onClick(i._area_id)
-                }, i._area_id = e, i._light = new PIXI.Sprite, i.addChild(i._light), i
+    var o = i(1053),
+        r = i(58),
+        s = i(31),
+        a = function (t) {
+            function e() {
+                for (var e = t.call(this) || this, i = new Array, n = 47, a = 0; a < 8; a++) {
+                    var _ = new o.ExpeditionListItem;
+                    _.x = 8, _.y = n, i.push(_), n += 45
+                }
+                var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(90));
+                l.position.y = -1;
+                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(18));
+                u.anchor.set(0, .5), u.position.set(40, 20);
+                var c = new PIXI.Sprite(s.SALLY_COMMON.getTexture(51));
+                return c.addChild(u), c.position.set(-20, -90), i.forEach(function (t) {
+                    e.addChild(t)
+                }), e.addChild(l), e.addChild(c), e._listItems = i, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "area_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "items", {
                 get: function () {
-                    return this._area_id
+                    return this._listItems
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "selected", {
-                get: function () {
-                    return this._selected
-                },
-                set: function (t) {
-                    this._selected = t, 1 == this._selected ? this.deactivate() : this.activate(), this._update(!1)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EVENT.getTexture(2), this._light.texture = o.SALLY_EVENT.getTexture(3), this._update(!1)
-            }, e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this.interactive = this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this._stopTween(), this.deactivate(), this.onClick = null
-            }, e.prototype._update = function (t) {
-                this.selected || t ? (this._light.visible = !0, this._stopTween()) : this._startTween()
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._light.alpha = 1, this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 0
-                }, 700).to({
-                    alpha: 1
-                }, 700))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._listItems.forEach(function (t) {
+                    return t.dispose()
+                }), this._listItems.length = 0, this._listItems = null
             }, e
-        }(PIXI.Sprite);
-    e.ExpeditionEventAreaIconBtn = s
+        }(PIXI.Container);
+    e.ExpeditionList = a
 }

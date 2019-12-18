@@ -19,84 +19,34 @@ const function1469 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = function (t) {
+    var o = i(16),
+        r = i(1470),
+        s = i(1471),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._friend = !1, e._combined = !1, e.visible = !1, e
+                return e._gauge_bg = new PIXI.Sprite, e._gauge = new s.BannerHPBar, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "combined", {
-                set: function (t) {
-                    this._combined = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._friend = t, this._combined = e
-            }, e.prototype.show = function (t, e) {
-                void 0 === t && (t = 16711680), void 0 === e && (e = .5), this._draw(t, e), this.alpha = 1, this.visible = !0
-            }, e.prototype.playDamageAnimation = function () {
-                var t = this;
-                this._stop(), this.alpha = 0, this.visible = !0, this._draw(16711680, .5), this._t = createjs.Tween.get(this).to({
+            return n(e, t), e.prototype.initialize = function (t, e, i, n, r) {
+                this._index = i, this._friend = n, this._gauge_bg.texture = o.BATTLE_MAIN.getTexture(45), n ? (this._gauge_bg.x = 240, this._gauge.x = 240) : (this._gauge_bg.x = -10, this._gauge.x = -10, this._frame.x = -15), this._frame.texture = this._getTexture(i, n, r), this.updateHp(t, e)
+            }, e.prototype.updateHp = function (t, e) {
+                this._gauge.draw(t / e)
+            }, e.prototype.getAnimationTween = function (t) {
+                var e = this,
+                    i = this._frame.texture,
+                    n = new PIXI.Sprite(i);
+                return n.x = this._frame.x, n.y = this._frame.y, this.addChild(n), this._frame.texture = this._getTexture1(this._index, this._friend), this._frame.alpha = 0, createjs.Tween.get(this._frame).wait(t).to({
                     alpha: 1
-                }, 300).to({
-                    alpha: 0
-                }, 500).call(function () {
-                    t.visible = !1, t._t = null
+                }, 600).call(function () {
+                    e.removeChild(n)
                 })
-            }, e.prototype.playShieldAnimation = function () {
-                var t = this;
-                this._stop(), this._draw(16777088, 0), this.alpha = 1, this.visible = !0;
-                var e = {
-                        r: 255,
-                        g: 255,
-                        b: 128,
-                        a: 0
-                    },
-                    i = function (e) {
-                        var i = e.target.target,
-                            n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                        t._draw(n, i.a)
-                    };
-                this._t = createjs.Tween.get(e, {
-                    onChange: i
-                }).to({
-                    a: .75
-                }, 233).to({
-                    r: 128,
-                    g: 255,
-                    b: 255
-                }, 100).to({
-                    r: 255,
-                    g: 192,
-                    b: 192
-                }, 100).to({
-                    r: 255,
-                    g: 255,
-                    b: 255
-                }, 166).call(function () {
-                    t.visible = !1, t._t = null
-                })
-            }, e.prototype._stop = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype._draw = function (t, e) {
-                if (this.clear(), this._combined)
-                    if (this._friend) {
-                        for (var i = o.BannerSize.W / 5 * 2 - Math.ceil(e / .025), n = i; n < o.BannerSize.W / 5 * 2; n++) {
-                            var r = Math.min(.025 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                        this.beginFill(t, e), this.drawRect(o.BannerSize.W / 5 * 2, 0, o.BannerSize.W - o.BannerSize.W / 5 * 2, o.BannerSize.H), this.endFill()
-                    } else {
-                        var i = o.BannerSize.W / 5 * 3;
-                        this.beginFill(t, e), this.drawRect(0, 0, i, o.BannerSize.H), this.endFill();
-                        for (var n = i; n < o.BannerSize.W; n++) {
-                            var r = Math.min(1 - .05 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                    }
-                else this.beginFill(t, e), this.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), this.endFill()
+            }, e.prototype._getTexture = function (t, e, i) {
+                return 0 == i ? this._getTexture1(t, e) : this._getTexture2(t, e)
+            }, e.prototype._getTexture1 = function (t, e) {
+                return e ? 0 == t ? o.BATTLE_MAIN.getTexture(46) : o.BATTLE_MAIN.getTexture(47) : 0 == t ? o.BATTLE_MAIN.getTexture(43) : o.BATTLE_MAIN.getTexture(44)
+            }, e.prototype._getTexture2 = function (t, e) {
+                return e ? 0 == t ? r.BATTLE_MAIN2.getTexture(2) : r.BATTLE_MAIN2.getTexture(3) : 0 == t ? r.BATTLE_MAIN2.getTexture(0) : r.BATTLE_MAIN2.getTexture(1)
             }, e
-        }(PIXI.Graphics);
-    e.BannerOverlay = r
+        }(PIXI.Container);
+    e.BannerFrame = a
 }

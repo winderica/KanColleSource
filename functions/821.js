@@ -20,26 +20,19 @@ const function821 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(4),
-        s = i(37),
-        a = i(3),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(10));
-                i.position.set(2, 2), e.addChild(i), e._shipCanvas = new PIXI.Sprite, e.addChild(e._shipCanvas), e._levelText = new r.TextBox(66, 16777215), e._levelText.position.set(809, 89), e.addChild(e._levelText);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(11));
-                n.position.set(0, 3), e.addChild(n);
-                var o = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(12));
-                return o.position.set(705, 95), e.addChild(o), e._nameText = new r.TextBox(39, 16777215), e._nameText.anchor.x = 1, e._nameText.position.set(969, 17), e.addChild(e._nameText), e
+        r = i(9),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ship_mem_id = e, i._url = "api_req_kaisou/remodeling", i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                var e = t.mstID,
-                    i = t.isDamaged();
-                1 == o.default.resources.isLoadedShip(e, i, "remodel") ? this._shipCanvas.texture = o.default.resources.getShip(e, i, "remodel") : (this._shipCanvas.texture = PIXI.Texture.EMPTY, new s.TaskLoadShipResource("remodel", this._shipCanvas, e, i).start()), this._levelText.text = t.level.toString(), this._nameText.text = t.shipTypeName + " " + t.name
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._levelText.destroy(), this._nameText.destroy(), this._shipCanvas = null, this._levelText = null, this._nameText = null
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this._ship_mem_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e, i = o.default.model.ship.get(this._ship_mem_id).mstID,
+                    n = o.default.model.ship_upgrade.getRequires(i);
+                e = o.default.model.useItem.get(32), e.__setCount__(e.count - n.ammo), e = o.default.model.useItem.get(33), e.__setCount__(e.count - n.steel), e = o.default.model.useItem.get(3), e.__setCount__(e.count - n.devkit), e = o.default.model.useItem.get(2), e.__setCount__(e.count - n.buildkit), e = o.default.model.useItem.get(58), e.__setCount__(e.count - n.blueprint), e = o.default.model.useItem.get(65), e.__setCount__(e.count - n.catapult), e = o.default.model.useItem.get(78), e.__setCount__(e.count - n.battlereport), e = o.default.model.useItem.get(75), e.__setCount__(e.count - n.newhokohesosizai), e = o.default.model.useItem.get(77), e.__setCount__(e.count - n.newkokuhesosizai), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.KaizoDetailHeader = _
+        }(r.APIBase);
+    e.RemodelingAPI = s
 }

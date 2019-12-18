@@ -19,37 +19,49 @@ const function1275 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(7),
-        s = i(0),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_req_map/anchorage_repair", e
+    var o = i(2),
+        r = i(12),
+        s = i(6),
+        a = i(19),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "used_ship", {
-                get: function () {
-                    return this._used_ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "repair_ships", {
-                get: function () {
-                    return this._repair_ships
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._used_ship = r.ObjUtil.getNumber(this._raw_data, "api_used_ship");
-                for (var e = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    s.default.model.ship.updateData(o)
-                }
-                var a = r.ObjUtil.getNumArray(this._raw_data, "api_repair_ships");
-                this._repair_ships = a, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(142)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(143)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(144)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
+            }, e.prototype._anim = function () {
+                var t = this;
+                s.SE.play("213"), createjs.Tween.get(this._img1).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img2).wait(133).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img3).wait(266).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.3,
+                    scaleY: 1.3,
+                    alpha: 0
+                }, 300).wait(300).call(function () {
+                    t._layer.removeChild(t._img1), t._layer.removeChild(t._img2), t._layer.removeChild(t._img3), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.APIAnchorageRepair = a
+        }(o.TaskBase);
+    e.TaskReplenishmentBuff = _
 }

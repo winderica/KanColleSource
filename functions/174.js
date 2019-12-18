@@ -11,6 +11,6 @@ const function174 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1122);
+    var o = i(1125);
     e.getPayitemIcon = n
 }

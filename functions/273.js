@@ -22,7 +22,8 @@ const function273 = function (t, e, i) {
     var o = i(0),
         r = i(2),
         s = i(154),
-        a = function (t) {
+        a = i(17),
+        _ = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._before = e, o._after = i, o._model = n, o
@@ -68,10 +69,10 @@ const function273 = function (t, e, i) {
                     t._change()
                 })
             }, e.prototype._change = function () {
-                if (o.default.view.portMain.playChangeAnimation(this._after), 0 == this._after) o.default.view.portMain.setContent(null), o.default.view.portMain.update(0), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null);
+                if (o.default.view.portMain.playChangeAnimation(this._after), 0 == this._after) o.default.view.portMain.setContent(null), o.default.view.portMain.update(0), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null), a.FRIENDLY && o.default.view.portMain.upperBar.friendlyBtn.friendlyButtonMode(!0);
                 else {
                     var t = e.__factory__(this._after);
-                    33 == this._after || 32 == this._after ? (o.default.view.portMain.setContent(null), o.default.view.portMain.visible = !1, o.default.view.mapLayer.setContent(t)) : (o.default.view.portMain.setContent(t), o.default.view.portMain.update(this._after), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null))
+                    33 == this._after || 32 == this._after ? (o.default.view.portMain.setContent(null), o.default.view.portMain.visible = !1, o.default.view.mapLayer.setContent(t)) : (o.default.view.portMain.setContent(t), o.default.view.portMain.update(this._after), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null), a.FRIENDLY && o.default.view.portMain.upperBar.friendlyBtn.friendlyButtonMode(!1))
                 }
                 this._doPreInitialize()
             }, e.prototype._doPreInitialize = function () {
@@ -101,5 +102,5 @@ const function273 = function (t, e, i) {
                 return 23 == t || 23 == e ? o.default.view.fadeLayer : 25 == t || 25 == e ? o.default.view.fadeLayer : 33 == t || 33 == e ? o.default.view.fadeLayer : 32 == t || 32 == e ? o.default.view.fadeLayer : o.default.view.portMain.fadeLayer
             }, e
         }(r.TaskBase);
-    e.TaskSceneChange = a
+    e.TaskSceneChange = _
 }

@@ -1,84 +1,726 @@
 const function820 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(114),
-        s = i(3),
-        a = i(3),
-        _ = i(338),
-        l = i(88),
-        u = i(821),
-        c = i(822),
-        h = i(823),
-        p = i(824),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClickStart = function () {
-                    null != e._cb_onStart && e._cb_onStart()
-                }, e._onClickCancel = function () {
-                    null != e._cb_onCancel && e._cb_onCancel()
-                };
-                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(27));
-                n.position.set(275, 194), e.addChild(n);
-                var d = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(25));
-                d.position.set(653, 194), e.addChild(d), e._shipPanelBefore = new c.KaizoDetailShipPanel, e._shipPanelBefore.position.set(35, 218), e.addChild(e._shipPanelBefore), e._shipPanelAfter = new c.KaizoDetailShipPanel, e._shipPanelAfter.position.set(408, 218), e.addChild(e._shipPanelAfter);
-                var f = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(30));
-                f.position.set(32, 416), e.addChild(f);
-                var y = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(28));
-                y.position.set(413, 418), e.addChild(y);
-                var m = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(31));
-                m.position.set(32, 471), e.addChild(m);
-                var g = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(29));
-                g.position.set(413, 473), e.addChild(g);
-                e._textAmmoNow = new o.TextBox(24, 4999235), e._textAmmoNow.anchor.x = 1, e._textAmmoNow.position.set(330, 414), e.addChild(e._textAmmoNow), e._textAmmoNeed = new o.TextBox(24, 4999235), e._textAmmoNeed.anchor.x = 1, e._textAmmoNeed.position.set(700, 414), e.addChild(e._textAmmoNeed), e._textSteelNow = new o.TextBox(24, 4999235), e._textSteelNow.anchor.x = 1, e._textSteelNow.position.set(330, 469), e.addChild(e._textSteelNow), e._textSteelNeed = new o.TextBox(24, 4999235), e._textSteelNeed.anchor.x = 1, e._textSteelNeed.position.set(700, 469), e.addChild(e._textSteelNeed), e._cancelBtn = new _.CancelButton, e._cancelBtn.position.set(516, 507), e._cancelBtn.initialize(e._onClickCancel), e.addChild(e._cancelBtn), e._startBtn = new p.KaizoStartButton, e._startBtn.position.set(732, 489), e._startBtn.initialize(e._onClickStart), e.addChild(e._startBtn);
-                var v = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(26));
-                return v.position.set(720, 446), e.addChild(v), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(14)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new u.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new l.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(2), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
+    var n = i(5),
+        o = i(0),
+        r = i(37),
+        s = i(34),
+        a = i(169),
+        _ = i(130),
+        l = i(8),
+        u = i(3),
+        c = i(89),
+        h = i(821),
+        p = i(168),
+        d = i(822),
+        f = i(823),
+        y = i(828),
+        m = i(829),
+        g = i(830),
+        v = i(832),
+        b = i(49),
+        w = i(15),
+        x = i(833),
+        I = i(835),
+        T = function () {
+            function t(t) {
+                var e = this;
+                this._onCancel = function () {
+                    e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard);
+                    var t = b.UISettings.DIALOG_FADETIME;
+                    e._kaizoDetailBG.width = n.default.width, createjs.Tween.get(e._kaizoDetailBG).to({
+                        alpha: 0
+                    }, t), createjs.Tween.get(e._kaizoDetail).to({
+                        x: n.default.width
+                    }, t).call(function () {
+                        r.TaskLoadShipResource.abortBy(e._kaizoDetail), e._container.removeChild(e._kaizoDetailBG), e._container.removeChild(e._kaizoDetail), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, null != e._cb_onComplete && e._cb_onComplete()
+                    })
+                }, this._onStart = function () {
+                    var t = o.default.model.ship.get(e._ship_memid),
+                        i = o.default.model.ship_upgrade.getNextID(t.mstID);
+                    if (c.RemodelUtil.isSpKaizo(t.mstID)) {
+                        var n = new w.UIImageLoader("common");
+                        n.add("system_bg5.png", "sp_kaizo_frame"), n.load(function () {
+                            e._spKaizoConfirm = new m.SpKaizoConfirm, e._spKaizoConfirm.activate(e._onSpConfirmYES, e._onSpConfirmNo), e._spKaizoConfirm.visible = !1, o.default.view.overLayer.addChild(e._spKaizoConfirm), e._spKaizoIntro = new v.SpKaizoIntro, e._spKaizoIntro.play([t.mstID, i], function () {
+                                e._spKaizoConfirm.visible = !0;
+                                var i = o.default.model.ship_upgrade.getRequires(t.mstID),
+                                    n = e._setRequireObjects(i);
+                                e._spKaizoConfirm.update(t, n)
+                            }, function () {
+                                e._spKaizoIntro.visible = !1, o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null
+                            }), o.default.view.overLayer.addChild(e._spKaizoIntro), e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("106")
+                        })
+                    } else {
+                        var r = b.UISettings.DIALOG_FADETIME;
+                        e._kaizoConfirmBG = new l.AreaBox(1), e._kaizoConfirmBG.alpha = 0, e._kaizoConfirm = new y.KaizoConfirm, e._kaizoConfirm.activate(e._onConfirmYES, e._onConfirmNo);
+                        var s = o.default.model.ship_upgrade.getRequires(t.mstID);
+                        e._kaizoConfirm.update(t, s.ammo, s.steel), e._kaizoConfirm.alpha = 0, o.default.view.overLayer.addChild(e._kaizoConfirmBG), o.default.view.overLayer.addChild(e._kaizoConfirm), e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("106"), createjs.Tween.get(e._kaizoConfirmBG).to({
+                            alpha: 1
+                        }, r), createjs.Tween.get(e._kaizoConfirm).to({
+                            alpha: 1
+                        }, r).call(function () {
+                            o.default.view.overLayer.removeChild(e._clickGuard), e._container.visible = !1, e._clickGuard = null
+                        })
+                    }
+                }, this._onConfirmNo = function () {
+                    var t = b.UISettings.DIALOG_FADETIME;
+                    e._container.visible = !0, e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), createjs.Tween.get(e._kaizoConfirmBG).to({
+                        alpha: 0
+                    }, t), createjs.Tween.get(e._kaizoConfirm).to({
+                        alpha: 0
+                    }, t).call(function () {
+                        o.default.view.overLayer.removeChild(e._kaizoConfirmBG), o.default.view.overLayer.removeChild(e._kaizoConfirm), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null
+                    })
+                }, this._onSpConfirmNo = function () {
+                    var t = b.UISettings.DIALOG_FADETIME;
+                    e._container.visible = !0, e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), createjs.Tween.get(e._spKaizoConfirm).to({
+                        alpha: 0
+                    }, t).call(function () {
+                        o.default.view.overLayer.removeChild(e._spKaizoConfirm), o.default.view.overLayer.removeChild(e._spKaizoIntro), e._spKaizoConfirm.dispose(), e._spKaizoIntro.dispose(), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null
+                    })
+                }, this._onConfirmYES = function () {
+                    e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("215"), (new s.APIConnector).add(new h.RemodelingAPI(e._ship_memid)).add(new p.Ship3API(e._ship_memid)).add(new a.MaterialAPI).add(new _.UserSlotItemAPI).start(e._onCompleteAPI)
+                }, this._onSpConfirmYES = function () {
+                    e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("215"), (new s.APIConnector).add(new h.RemodelingAPI(e._ship_memid)).add(new p.Ship3API(e._ship_memid)).add(new a.MaterialAPI).add(new _.UserSlotItemAPI).start(e._onSpCompleteAPI)
+                }, this._onCompleteAPI = function () {
+                    var t = new g.KaizoAnimationMain,
+                        i = o.default.model.ship.get(e._ship_memid),
+                        n = i.mstID,
+                        r = i.isDamaged(),
+                        s = o.default.model.ship_graph.get(n).getCenterOffset(r);
+                    t.preload(n, r, s, function () {
+                        e._onCompleteResources(t)
+                    })
+                }, this._onSpCompleteAPI = function () {
+                    var t = o.default.model.ship.get(e._ship_memid),
+                        i = t.mstID,
+                        n = new I.SpecialRemodelStartInitializer(i);
+                    n.onComplete = function () {
+                        n.dispose(), e._onCompleteResourceLoad()
+                    }, n.start()
+                }, this._container = t
             }
-            return n(e, t), e.prototype.activate = function (t, e) {
-                this._cb_onStart = t, this._cb_onCancel = e
-            }, e.prototype.update = function (t, e, i, n) {
-                this._shipPanelBefore.update(t.level, t.name, t.shipTypeName), this._shipPanelBefore.updateStatus(t.karyoku, t.raisou, t.taiku, t.soukou), this._shipPanelAfter.update(t.level), this._shipPanelAfter.updateStatus(), this._textAmmoNow.text = e.getCount(32).toString(), this._textSteelNow.text = e.getCount(33).toString(), this._textAmmoNeed.text = e.getRequire(32).toString(), this._textSteelNeed.text = e.getRequire(33).toString(), this._header.update(t), this._startBtn.update(!1), e.validateAll() && 1 == i && 1 == n && this._startBtn.update(!0);
-                var o = e.getRequire(58),
-                    r = e.getRequire(65),
-                    s = e.getRequire(78),
-                    a = e.getRequire(75),
-                    _ = e.getRequire(77),
-                    l = e.getRequire(3),
-                    u = e.getRequire(2),
-                    c = !1;
-                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), c = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), c = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), c = !0) : 0 == e.validate(77) ? (this._alertPanel.showAlertLackOfItem(77, _), c = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), c = !0) : o > 0 && r > 0 && s > 0 && _ > 0 ? this._alertPanel.showMessageFourItems(58, o, 65, r, 78, s, 77, _, l, u) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, l, u) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, l, u) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, l, u) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, l, u) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, l, u) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, l, u) : l > 0 || u > 0 ? this._alertPanel.showMessageKits(l, u) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == c) {
-                    var h = e.validate(32),
-                        p = e.validate(33),
-                        d = !(u > 0) || e.validate(2),
-                        f = !(l > 0) || e.validate(3),
-                        y = h && p,
-                        m = d && f;
-                    0 == y && 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u53ca\u3073\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == n && (this._alertOverLimit.visible = !0)
+            return t.prototype.start = function (t, e, i) {
+                var r = this;
+                if (null == this._kaizoDetail) {
+                    this._ship_memid = t, this._cb_onUpdateShip = e, this._cb_onComplete = i, this._kaizoDetailBG = new l.AreaBox(.5), this._kaizoDetailBG.alpha = 0, this._container.addChild(this._kaizoDetailBG), this._kaizoDetail = new f.KaizoDetail;
+                    var s = o.default.model.ship.get(t),
+                        a = o.default.model.ship_upgrade.getRequires(s.mstID),
+                        _ = new d.KaizoValidateModel(a),
+                        u = c.RemodelUtil.canKaizo(s.mstID, s.level),
+                        h = !0;
+                    o.default.model.basic.slotMax - o.default.model.slot.num < 4 && (h = !1), this._kaizoDetail.update(s, _, u, h), this._kaizoDetail.position.set(n.default.width, 143), this._kaizoDetail.activate(this._onStart, this._onCancel), this._container.addChild(this._kaizoDetail), this._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(this._clickGuard);
+                    var p = b.UISettings.DIALOG_FADETIME;
+                    createjs.Tween.get(this._kaizoDetailBG).to({
+                        alpha: 1
+                    }, p), createjs.Tween.get(this._kaizoDetail).to({
+                        x: 204
+                    }, p).call(function () {
+                        r._kaizoDetailBG.width = 240, o.default.view.overLayer.removeChild(r._clickGuard), r._clickGuard = null
+                    })
                 }
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._shipPanelBefore.dispose(), this._shipPanelAfter.dispose(), this._cancelBtn.dispose(), this._startBtn.dispose(), this._arrow.dispose(), this._alertPanel.dispose(), this._header.dispose(), this._titleBar.dispose(), this._textAmmoNow.destroy(), this._textSteelNow.destroy(), this._textAmmoNeed.destroy(), this._textSteelNeed.destroy(), this._alertMessage.destroy(), this._cb_onStart = null, this._cb_onCancel = null, this._shipPanelBefore = null, this._shipPanelAfter = null, this._textAmmoNow = null, this._textAmmoNeed = null, this._textSteelNow = null, this._textSteelNeed = null, this._cancelBtn = null, this._startBtn = null, this._arrow = null, this._alertPanel = null, this._alertMessage = null, this._alertOverLimit = null, this._header = null, this._titleBar = null
-            }, e
-        }(PIXI.Container);
-    e.KaizoDetail = d
+            }, t.prototype._onCompleteResourceLoad = function () {
+                var t = this;
+                null != this._cb_onUpdateShip && this._cb_onUpdateShip(), this._container.removeChild(this._kaizoDetailBG), this._container.removeChild(this._kaizoDetail), o.default.view.overLayer.removeChild(this._spKaizoConfirm), o.default.view.overLayer.removeChild(this._spKaizoIntro), this._spKaizoConfirm.dispose(), this._spKaizoIntro.dispose();
+                var e = o.default.model.ship.get(this._ship_memid),
+                    i = e.mstID,
+                    n = new x.SpecialRemodelStartStage(o.default.resources.getUIImage("vignette_frame"), o.default.resources.getShip(i, !1, "full_x2"), o.default.resources.getShip(i, !1, "text_class"), o.default.resources.getShip(i, !1, "text_name"));
+                o.default.view.overLayer.addChild(n);
+                var r = this._genAnimationKeys(i),
+                    s = new I.SpecialRemodelStart(i, n, r);
+                s.onComplete = function () {
+                    o.default.view.overLayer.removeChild(n), s.dispose(), n.dispose(), o.default.view.portMain.updateInfo(), o.default.view.overLayer.removeChild(t._clickGuard), t._clickGuard = null
+                }, s.play()
+            }, t.prototype._genAnimationKeys = function (t) {
+                switch (t) {
+                    case 591:
+                        return [{
+                                type: 2,
+                                position: {
+                                    x: 1139.72,
+                                    y: 571.86
+                                },
+                                scale: 1.95,
+                                alpha: 1
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 1520.31,
+                                    y: 382.35
+                                },
+                                scale: 1.2,
+                                duration: 1e3,
+                                easing: 23
+                            }, {
+                                type: 1,
+                                duration: 266.6
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 197.51,
+                                    y: -601.3100000000001
+                                },
+                                scale: 1.12
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 373.59000000000003,
+                                    y: -109.56
+                                },
+                                scale: 1.53,
+                                duration: 1e3,
+                                easing: 23
+                            }, {
+                                type: 1,
+                                duration: 266.6
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 377.89,
+                                    y: 991.62
+                                },
+                                scale: 1.6400000000000001
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 19.650000000000002,
+                                    y: 588.19
+                                },
+                                scale: .76,
+                                duration: 1e3,
+                                easing: 23
+                            }, {
+                                type: 1,
+                                duration: 366.6
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 1343.45,
+                                    y: 1086.55
+                                },
+                                scale: 1.81
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 1642.73,
+                                    y: 1378.14
+                                },
+                                scale: 2.5500000000000003,
+                                duration: 366.6,
+                                easing: 9
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: -418.49,
+                                    y: 2637.33
+                                },
+                                scale: 2.5500000000000003,
+                                duration: 766.6,
+                                easing: 21
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: -508.41,
+                                    y: 2918.19
+                                },
+                                scale: 2.86,
+                                alpha: 1,
+                                duration: 133.3,
+                                easing: 21
+                            },
+                            [{
+                                type: 2,
+                                position: {
+                                    x: 638.62,
+                                    y: 1081.06
+                                },
+                                scale: 1.04
+                            }, {
+                                type: 3,
+                                position: {
+                                    x: 12,
+                                    y: 12
+                                },
+                                alpha: 1
+                            }, {
+                                type: 4,
+                                position: {
+                                    x: 12,
+                                    y: 488
+                                },
+                                alpha: 1
+                            }, {
+                                type: 6
+                            }], {
+                                type: 2,
+                                position: {
+                                    x: 632.7,
+                                    y: 1031.75
+                                },
+                                scale: .87,
+                                duration: 1500,
+                                easing: 9
+                            }
+                        ];
+                    case 594:
+                        return [{
+                                type: 2,
+                                position: {
+                                    x: 787.58,
+                                    y: 323.13
+                                },
+                                scale: 2.45,
+                                alpha: 1,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 809.33,
+                                    y: -1038.46
+                                },
+                                scale: 1.6300000000000001,
+                                duration: 1100,
+                                easing: 23
+                            }, {
+                                type: 1,
+                                duration: .2666
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: -269.77,
+                                    y: -778.12
+                                },
+                                scale: 1.3900000000000001,
+                                easing: 23
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 243.54,
+                                    y: 427.74
+                                },
+                                scale: 1.18,
+                                duration: 2660,
+                                easing: 23
+                            }, {
+                                type: 1,
+                                duration: 366.6
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 769.99,
+                                    y: 2651.54
+                                },
+                                scale: 3.15,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 1459.1200000000001,
+                                    y: 2450.6
+                                },
+                                scale: 2.82,
+                                duration: 833.33,
+                                easing: 23
+                            }, {
+                                type: 1,
+                                duration: 433.33
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: -18.900000000000002,
+                                    y: 1503.88
+                                },
+                                scale: 1.880000000000001,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: -109.78,
+                                    y: 1634.48
+                                },
+                                scale: 2.14,
+                                duration: 466.67,
+                                easing: 9
+                            }, {
+                                type: 1,
+                                duration: 166.67000000000002
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 1168.45,
+                                    y: 1799.54
+                                },
+                                scale: 2.14,
+                                duration: 366.67,
+                                easing: 22
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 2466.18,
+                                    y: -836.4200000000001
+                                },
+                                scale: 2.4,
+                                duration: 1300,
+                                easing: 23
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 2709.4,
+                                    y: -1054.2
+                                },
+                                scale: 2.66,
+                                duration: 200,
+                                easing: 7
+                            }, {
+                                type: 1,
+                                duration: 133.33
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 700.29,
+                                    y: 1814.98
+                                },
+                                scale: 1.94,
+                                easing: 0
+                            },
+                            [{
+                                type: 2,
+                                position: {
+                                    x: 663.33,
+                                    y: 818.4200000000001
+                                },
+                                scale: .68,
+                                duration: 1166.67,
+                                easing: 9
+                            }, {
+                                type: 3,
+                                position: {
+                                    x: 12,
+                                    y: 12
+                                },
+                                alpha: 1,
+                                easing: 0
+                            }, {
+                                type: 4,
+                                position: {
+                                    x: 12,
+                                    y: 489
+                                },
+                                alpha: 1,
+                                easing: 0
+                            }, {
+                                type: 6
+                            }]
+                        ];
+                    case 599:
+                        return [{
+                                type: 2,
+                                position: {
+                                    x: 2291.35,
+                                    y: -648.85
+                                },
+                                scale: 2.31,
+                                alpha: 1,
+                                duration: 0,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 1083.74,
+                                    y: 1922.63
+                                },
+                                scale: 2.31,
+                                alpha: 1,
+                                duration: 1100,
+                                easing: 11
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 544.71,
+                                    y: 690.66
+                                },
+                                scale: 1.54,
+                                alpha: 1,
+                                duration: 1266.67,
+                                easing: 11
+                            }, {
+                                type: 1,
+                                duration: 166.67000000000002
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 365.36,
+                                    y: 22.84
+                                },
+                                scale: 1.12,
+                                alpha: 1,
+                                duration: 666.67,
+                                easing: 11
+                            }, {
+                                type: 1,
+                                duration: 333.33
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 546.61,
+                                    y: 1233.77
+                                },
+                                scale: 1.44,
+                                alpha: 1,
+                                duration: 3033.33,
+                                easing: 23
+                            },
+                            [{
+                                type: 4,
+                                position: {
+                                    x: 12,
+                                    y: 489
+                                },
+                                alpha: 0
+                            }, {
+                                type: 3,
+                                position: {
+                                    x: 12,
+                                    y: 12
+                                },
+                                alpha: 0
+                            }],
+                            [{
+                                type: 2,
+                                position: {
+                                    x: 658.17,
+                                    y: 839.71
+                                },
+                                scale: .71,
+                                alpha: 1,
+                                duration: 1166.67,
+                                easing: 9
+                            }, {
+                                type: 3,
+                                position: {
+                                    x: 12,
+                                    y: 12
+                                },
+                                alpha: 1,
+                                duration: 1166.67,
+                                easing: 0
+                            }, {
+                                type: 4,
+                                position: {
+                                    x: 12,
+                                    y: 489
+                                },
+                                alpha: 1,
+                                duration: 1166.67,
+                                easing: 0
+                            }, {
+                                type: 6
+                            }]
+                        ];
+                    case 587:
+                        return [{
+                                type: 2,
+                                position: {
+                                    x: 114.81,
+                                    y: 2408.4500000000003
+                                },
+                                scale: 3.27,
+                                alpha: 0
+                            }, {
+                                type: 6
+                            }, {
+                                type: 2,
+                                alpha: 1,
+                                duration: 233.333333,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 99.7,
+                                    y: 979.6700000000001
+                                },
+                                scale: 1.41,
+                                duration: 766.666667,
+                                easing: 10
+                            }, {
+                                type: 2,
+                                duration: 766.666667,
+                                position: {
+                                    x: 95.48,
+                                    y: 946.87
+                                },
+                                scale: 1.34,
+                                alpha: 0,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: -97.55,
+                                    y: 401.49
+                                },
+                                scale: 1.67
+                            }, {
+                                type: 2,
+                                duration: 233.333333,
+                                alpha: 1,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 277.79,
+                                    y: 237.12
+                                },
+                                scale: .85,
+                                duration: 566.666667,
+                                easing: 10
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 300,
+                                    y: 190.2734375
+                                },
+                                scale: .85,
+                                alpha: 0,
+                                duration: 1333.33333,
+                                easing: 0
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 899.02,
+                                    y: -56.800000000000004
+                                },
+                                scale: 1.99,
+                                duration: 0,
+                                alpha: 1,
+                                easing: 10
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 565.8000000000001,
+                                    y: 966.01
+                                },
+                                scale: 1.33,
+                                duration: 1033.33333,
+                                easing: 10
+                            },
+                            [{
+                                    type: 2,
+                                    position: {
+                                        x: 487.97,
+                                        y: 935
+                                    },
+                                    scale: 1.25,
+                                    duration: 1466.66667,
+                                    alpha: 0,
+                                    easing: 0
+                                },
+                                [{
+                                    type: 1,
+                                    duration: 500
+                                }, {
+                                    type: 5,
+                                    duration: 633.333333,
+                                    color: 13622263,
+                                    easing: 0
+                                }]
+                            ], {
+                                type: 2,
+                                position: {
+                                    x: 700,
+                                    y: 1276.5
+                                },
+                                scale: 1.25
+                            }, {
+                                type: 2,
+                                duration: 533.333333,
+                                alpha: 1,
+                                easing: 9,
+                                position: {
+                                    x: 750,
+                                    y: 1242.5390625
+                                },
+                                scale: 1.25
+                            }, {
+                                type: 1,
+                                duration: 233.333333
+                            }, {
+                                type: 2,
+                                position: {
+                                    x: 800,
+                                    y: 689.42
+                                },
+                                scale: .68,
+                                duration: 933.333333,
+                                easing: 9
+                            }, {
+                                type: 4,
+                                position: {
+                                    x: 8,
+                                    y: 8
+                                },
+                                alpha: 0
+                            }, {
+                                type: 3,
+                                position: {
+                                    x: 8,
+                                    y: 257
+                                },
+                                alpha: 0
+                            },
+                            [{
+                                type: 4,
+                                duration: 733.333333,
+                                alpha: 1,
+                                easing: 0
+                            }, {
+                                type: 3,
+                                duration: 733.333333,
+                                alpha: 1,
+                                easing: 0
+                            }]
+                        ]
+                }
+                return []
+            }, t.prototype._onCompleteResources = function (t) {
+                var e = this;
+                null != this._cb_onUpdateShip && this._cb_onUpdateShip(), this._container.removeChild(this._kaizoDetailBG), this._container.removeChild(this._kaizoDetail), o.default.view.overLayer.removeChild(this._kaizoConfirmBG), o.default.view.overLayer.removeChild(this._kaizoConfirm), o.default.view.overLayer.addChild(t), t.play(function () {
+                    o.default.view.portMain.updateInfo(), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, o.default.view.overLayer.removeChild(t), t.dispose(), e._container.visible = !0, null != e._cb_onComplete && e._cb_onComplete()
+                })
+            }, t.prototype._setRequireObjects = function (t) {
+                var e = [];
+                return t.ammo > 0 && e.push({
+                    id: 32,
+                    count: "\xd7" + t.ammo
+                }), t.steel > 0 && e.push({
+                    id: 33,
+                    count: "\xd7" + t.steel
+                }), t.devkit > 0 && e.push({
+                    id: 3,
+                    count: "\xd7" + t.devkit
+                }), t.buildkit > 0 && e.push({
+                    id: 2,
+                    count: "\xd7" + t.buildkit
+                }), t.newhokohesosizai > 0 && e.push({
+                    id: 75,
+                    count: "\xd7" + t.newhokohesosizai
+                }), t.newkokuhesosizai > 0 && e.push({
+                    id: 77,
+                    count: "\xd7" + t.newkokuhesosizai
+                }), t.battlereport > 0 && e.push({
+                    id: 78,
+                    count: "\xd7" + t.battlereport
+                }), t.catapult > 0 && e.push({
+                    id: 65,
+                    count: "\xd7" + t.catapult
+                }), t.blueprint > 0 && e.push({
+                    id: 58,
+                    count: "\xd7" + t.blueprint + "\u679a"
+                }), e
+            }, t.prototype.dispose = function () {
+                this._container = null, this._kaizoDetailBG = null, this._kaizoDetail.dispose(), this._kaizoDetail = null, null != this._kaizoConfirm && (this._kaizoConfirm.dispose(), this._kaizoConfirm = null), this._cb_onUpdateShip = null, this._cb_onComplete = null, this._clickGuard = null
+            }, t
+        }();
+    e.TaskKaizo = T
 }

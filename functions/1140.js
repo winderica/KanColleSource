@@ -19,25 +19,61 @@ const function1140 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
+    var o = i(0),
+        r = i(92),
         s = i(33),
-        a = function (t) {
+        a = i(93),
+        _ = i(1141),
+        l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._message1 = new o.TextBox(22, 1381651), n._message1.position.set(92, 81), n.addChild(n._message1), n._message2 = new o.TextBox(22, 1381651), n._message2.position.set(92, 111), n.addChild(n._message2), n._icon = new PIXI.Sprite, n._icon.position.set(152, 165), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(129, 267), n.addChild(n._btn_yes), n._btn_back = new s.BtnBase(-1, i), n._btn_back.position.set(279, 267), n.addChild(n._btn_back), n
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(10), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 264 - this._message1.width / 2, this._message2.text = "\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f", this._message2.x = 264 - this._message2.width / 2, 11 == t ? this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(7) : 13 == t ? this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(6) : 12 == t && (this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(8));
-                var e = r.ITEM_ILIST_PRESENTBOX.getTexture(2);
-                this._btn_yes.initialize(e), e = r.ITEM_ILIST_PRESENTBOX.getTexture(1), this._btn_back.initialize(e)
-            }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_back.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_back.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
+            return n(e, t), e.prototype._start = function () {
+                this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new _.PresentBoxUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
+                })
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
+                    s = n.result;
+                n.start(function () {
+                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = this._layer,
+                    o = new a.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new r.UseItemUseAPI(e, !0, i),
+                            s = n.result;
+                        n.start(function () {
+                            t._result = s, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.ConfirmView = a
+        }(s.TaskWithResult);
+    e.TaskUsePresentBox = l
 }

@@ -19,21 +19,47 @@ const function1097 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
+    var o = i(1),
+        r = i(133),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._karyoku = e._createTextBox(85), e._raisou = e._createTextBox(124), e._taiku = e._createTextBox(163), e._kaihi = e._createTextBox(202), e._taikyu = e._createTextBox(241), e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._activated = !1, n._onMouseOver = function () {
+                    n._update(!0)
+                }, n._onMouseOut = function () {
+                    n._update(!1)
+                }, n._onClick = function () {
+                    null != n._cb_onClick && null != n._cb_onChange && (n._cb_onClick(), n._cb_onChange(n._mode, 0))
+                }, n._mode = 1, n._cb_onChange = i, n._cb_onClick = e, n.interactive = !0, n
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy(), this._karyoku = null, this._raisou = null, this._taiku = null, this._kaihi = null, this._taikyu = null
-            }, e.prototype.initialize = function (t) {
-                this.texture = r.ALBUM_MAIN.getTexture(104), this._karyoku.text = t.karyoku.toString(), this._karyoku.x = 487 - Math.floor(this._karyoku.width / 2), this._raisou.text = t.raisou.toString(), this._raisou.x = 487 - Math.floor(this._raisou.width / 2), this._taiku.text = t.taiku.toString(), this._taiku.x = 487 - Math.floor(this._taiku.width / 2), this._kaihi.text = t.kaihi.toString(), this._kaihi.x = 487 - Math.floor(this._kaihi.width / 2), this._taikyu.text = t.taikyu.toString(), this._taikyu.x = 487 - Math.floor(this._taikyu.width / 2)
-            }, e.prototype._createTextBox = function (t) {
-                var e = new o.TextBox(23, 16777215);
-                return e.y = t - 3, this.addChild(e), e
+            return n(e, t), Object.defineProperty(e.prototype, "mode", {
+                get: function () {
+                    return this._mode
+                },
+                set: function (t) {
+                    this._mode = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._ship_texture_cache = r.ALBUM_MAIN.getTexture(24), this._ship_texture_on_cache = r.ALBUM_MAIN.getTexture(25), this._slot_texture_cache = r.ALBUM_MAIN.getTexture(22), this._slot_texture_on_cache = r.ALBUM_MAIN.getTexture(23), this._update(!1)
+            }, e.prototype.update = function (t) {
+                this._update(t)
+            }, e.prototype.activate = function () {
+                1 != this._activated && (this._activated = !0, this._activate())
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._slot_texture_cache = null, this._slot_texture_on_cache = null, this._ship_texture_cache = null, this._ship_texture_on_cache = null, this._cb_onChange = null, this._cb_onClick = null
+            }, e.prototype.addOnceClickEvent = function () {
+                this.once(o.EventType.CLICK, this._onClick)
+            }, e.prototype._update = function (t) {
+                1 == t ? 1 == this._mode ? this.texture = this._slot_texture_on_cache : this.texture = this._ship_texture_on_cache : 1 == this._mode ? this.texture = this._slot_texture_cache : this.texture = this._ship_texture_cache
+            }, e.prototype._activate = function () {
+                this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.once(o.EventType.CLICK, this._onClick)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Sprite);
-    e.ShipDetailStatusBox = s
+    e.AlbumModeSwitchBtn = s
 }

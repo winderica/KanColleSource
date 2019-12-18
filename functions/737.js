@@ -19,32 +19,19 @@ const function737 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(330),
-        r = i(1),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick()
-                }, e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
+    var o = i(0),
+        r = i(2),
+        s = i(219),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeAllListeners(r.EventType.CLICK), this.onClick = null
-            }, e.prototype.update = function (t) {
-                switch (t) {
-                    case 1:
-                        this.texture = o.ORGANIZE_FILTER.getTexture(6);
-                        break;
-                    case 4:
-                        this.texture = o.ORGANIZE_FILTER.getTexture(7);
-                        break;
-                    case 3:
-                        this.texture = o.ORGANIZE_FILTER.getTexture(8);
-                        break;
-                    case 2:
-                        this.texture = o.ORGANIZE_FILTER.getTexture(9)
-                }
+            return n(e, t), e.prototype._start = function () {
+                s.OrganizeSceneMemory.pageIndex = 0, s.OrganizeSceneMemory.filterStatus = o.default.model.basic.getFilterStatusOrganizeList(), s.OrganizeSceneMemory.japanese = o.default.model.basic.isJapaneseOrganizeList(), this._scene.initialize(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.ShipSortButton = s
+        }(r.TaskBase);
+    e.InitializeTask = a
 }

@@ -19,37 +19,49 @@ const function1168 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(1169),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._result = !1, e._api = null, e._retry_count = 0, e
+    var o = i(0),
+        r = i(4),
+        s = i(135),
+        a = i(91),
+        _ = i(410),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOn = function (t, e) {
+                    i._description.x = 0 == t ? 202 : 1 == t ? 535 : 865, i._description.text = e.replace(/<br>/g, "\n")
+                }, i._onMouseOff = function () {
+                    i._description.text = ""
+                }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(18, 16777215), i._description.y = 217, i.addChild(i._description), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(500).call(function () {
-                    t._check()
-                })
-            }, e.prototype._check = function () {
-                var t = this;
-                this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                    t._checked()
-                })
-            }, e.prototype._checked = function () {
-                var t = this;
-                2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._check()
-                })
-            }, e.prototype._endTask = function () {
-                this._api = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(29));
+                t.position.set(186, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(13)), t.position.set(184, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(28)), t.position.set(516, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(17)), t.position.set(516, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(27)), t.position.set(846, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(15)), t.position.set(846, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(25)), t.position.set(1176, 144), this._bg_layer.addChild(t), this._icons = [];
+                for (var e = 0; e < 12; e++) {
+                    var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
+                    i.x = 204 + 330 * Math.floor(e / 4) + e % 2 * 150, i.y = 289 + (Math.floor(e % 4) <= 1 ? 0 : 180), i.initialize(Math.floor(e / 4)), this.addChild(i), this._icons.push(i)
+                }
+            }, e.prototype.update = function () {
+                for (var t = o.default.model.payitem.getOrder(0), e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e],
+                        n = t[e],
+                        r = o.default.model.payitem.getData(n);
+                    i.update(r)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._description.destroy(), this._cb_onSelect = null
             }, e
-        }(o.TaskBase);
-    e.TaskPayCheck = s
+        }(a.ViewBase);
+    e.NormalItemShopMain = l
 }

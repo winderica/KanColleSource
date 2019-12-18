@@ -23,22 +23,28 @@ const function1407 = function (t, e, i) {
         r = i(2),
         s = i(1408),
         a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._banner = e, n._large = i, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._banner = e, i
             }
             return n(e, t), e.prototype._start = function () {
+                var t = this;
                 if (null == this._banner) return void this._endTask();
-                this._effect()
-            }, e.prototype._effect = function () {
+                this._banner.moveFront(function () {
+                    t._antiAircraft()
+                })
+            }, e.prototype._antiAircraft = function () {
                 var t = this,
-                    e = new s.SearchLight;
-                e.initialize(this._large), 1 == this._banner.friend ? e.x = o.BannerSize.W + 15 : (e.x = -15, e.scale.x = -1), e.y = o.BannerSize.H / 2, this._banner.addChild(e), e.getAnimationTask().start(function () {
-                    t._banner.removeChild(e), t._endTask()
+                    e = this._banner.friend,
+                    i = new s.AntiAircraftFire;
+                i.initialize(), i.x = e ? o.BannerSize.W : 0, i.rotation = (e ? -60 : 240) / 180 * Math.PI, this._banner.addChild(i), i.getAnimationTask().start(function () {
+                    t._banner.removeChild(i), t._banner.moveDefault(), t._banner.once("complete_moveDefault", function () {
+                        t._endTask()
+                    })
                 })
             }, e.prototype._endTask = function () {
                 this._banner = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskSearchLightAnimation = a
+    e.TaskBannerFlareFire = a
 }

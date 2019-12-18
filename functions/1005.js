@@ -19,32 +19,28 @@ const function1005 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = i(41),
+    var o = i(31),
+        r = i(1),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._content = new PIXI.Sprite, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
+                return e._onMouseOver = function () {
+                    e.texture = o.SALLY_COMMON.getTexture(20)
+                }, e._onMouseOut = function () {
+                    e.texture = o.SALLY_COMMON.getTexture(18)
+                }, e._onClick = function () {
+                    e.emit("dicision")
+                }, e.interactive = !0, e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                0 == t ? (this._light.visible = !1, this._content.position.set(141, 341), this._content.texture = o.SALLY_SORTIE.getTexture(14)) : (this._content.position.set(488, 353), this._content.texture = r.SALLY_EVENT.getTexture(7), this._light.texture = r.SALLY_EVENT.getTexture(8), this._light.position.set(this._content.x - 23, this._content.y - 20), this._light.visible = !0)
-            }, e.prototype.show = function () {
-                this._activate(), this.visible = !0
-            }, e.prototype.hide = function () {
-                this._deactivate(), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && 0 != this._light.visible && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 800).to({
-                    alpha: 0
-                }, 800))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_COMMON.getTexture(18)
+            }, e.prototype.activate = function () {
+                0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._setTextture = function (t) {
+                this.texture = t
             }, e
-        }(PIXI.Container);
-    e.BtnBack = s
+        }(PIXI.Sprite);
+    e.BtnDicision = s
 }

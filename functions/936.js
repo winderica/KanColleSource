@@ -1,109 +1,62 @@
 const function936 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "matching_type", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_create_kind", 2)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "matching_type_next", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_selected_kind", 2)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "rivals", {
-                get: function () {
-                    return this._rivals
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "remain_time", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_entry_limit", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.setData = function (t) {
-                this._o = t, this._rivals = new Array;
-                var e = n.ObjUtil.getObjectArray(this._o, "api_list");
-                if (null == e) this._rivals = [];
-                else
-                    for (var i = 0, o = e; i < o.length; i++) {
-                        var s = o[i],
-                            a = new r(s);
-                        this._rivals.push(a)
-                    }
-            }, t
-        }();
-    e.PracticeAPIModel = o;
-    var r = function () {
-        function t(t) {
-            this._o = t
-        }
-        return Object.defineProperty(t.prototype, "id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_enemy_id")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return n.ObjUtil.getString(this._o, "api_enemy_name")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "level", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_enemy_level")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "rank_name", {
-            get: function () {
-                return n.ObjUtil.getString(this._o, "api_enemy_rank")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "flag", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_enemy_flag")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "flagShipMstID", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_enemy_flag_ship")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "comment", {
-            get: function () {
-                return n.ObjUtil.getString(this._o, "api_enemy_comment")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "state", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_state")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "medal_num", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_medals")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.isNoBattle = function () {
-            return 0 == this.state
-        }, t
-    }();
-    e.RivalModel = r
+    var o = i(2),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._selected = null, i._onClickSortie = function () {
+                    i._removeEventListeners(), i._selected = i._topView.btn_sortie, i._hideTween()
+                }, i._onClickPractice = function () {
+                    i._removeEventListeners(), i._selected = i._topView.btn_practice, i._hideTween()
+                }, i._onClickExpedition = function () {
+                    i._removeEventListeners(), i._selected = i._topView.btn_expedition, i._hideTween()
+                }, i._scene = e, i._topView = e.viewTop, i._tweens = new Array, i
+            }
+            return n(e, t), e.prototype.cancel = function () {
+                this._removeEventListeners();
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null
+            }, e.prototype._start = function () {
+                this._topView.btn_sortie.on(r.EventType.CLICK, this._onClickSortie), this._topView.btn_practice.on(r.EventType.CLICK, this._onClickPractice), this._topView.btn_expedition.on(r.EventType.CLICK, this._onClickExpedition)
+            }, e.prototype._removeEventListeners = function () {
+                this._topView.btn_sortie.off(r.EventType.CLICK, this._onClickSortie), this._topView.btn_practice.off(r.EventType.CLICK, this._onClickPractice), this._topView.btn_expedition.off(r.EventType.CLICK, this._onClickExpedition)
+            }, e.prototype._hideTween = function () {
+                var t = this,
+                    e = this._topView.btn_sortie;
+                e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300)), e = this._topView.btn_practice, e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300)), e = this._topView.btn_expedition, e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300)), this._tweens[this._tweens.length - 1].call(function () {
+                    t._selected == t._topView.btn_sortie ? t._scene.openView(0) : t._selected == t._topView.btn_practice ? t._scene.openView(1) : t._selected == t._topView.btn_expedition && t._scene.openView(2), t._endTask()
+                })
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._scene = null, this._topView = null, this._selected = null, this._tweens = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase);
+    e.TaskTop = s
 }

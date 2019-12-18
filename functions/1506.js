@@ -19,166 +19,55 @@ const function1506 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(17),
-        a = i(1),
-        _ = i(2),
-        l = i(24),
-        u = i(8),
-        c = i(59),
-        h = i(55),
-        p = i(13),
-        d = i(1507),
-        f = i(1508),
-        y = i(1509),
-        m = i(1510),
-        g = i(1511),
-        v = i(1512),
-        b = i(439),
-        w = i(14),
-        x = function (t) {
-            function e(e, i, n, o, r, s) {
-                var a = t.call(this) || this;
-                return a._shutter = e, a._area_id = i, a._map_no = n, a._ship_mst_id = o, a._ship_damaged = r, a._file_suffix = s, a
-            }
-            return n(e, t), e.prototype._start = function () {
-                this._area_id == s.EVENT_AREA_ID ? this._hideEnemy() : this._endTask()
-            }, e.prototype._hideEnemy = function () {
-                var t = this,
-                    e = this._mapscene;
-                if (e instanceof b.MapScene == 0) return void this._endTask();
-                e.view.map.enemy_layer.hide(function () {
-                    e.view.map.plane_layer.hideAll(), t._loadShipResources()
-                })
-            }, e.prototype._loadShipResources = function () {
-                var t = this,
-                    e = new p.ShipLoader;
-                e.add(this._ship_mst_id, this._ship_damaged, "full"), e.load(function () {
-                    t._openShutter()
-                })
-            }, e.prototype._openShutter = function () {
-                var t = this,
-                    e = this._mapscene;
-                e.view.shutter.alpha = 0, e.view.map.alpha = 1, e.view.upper.alpha = 1, createjs.Tween.get(null).wait(1300).call(function () {
-                    t._shutter.open(), t._shutter.once("opened", function () {
-                        t._showShip()
-                    })
-                })
-            }, e.prototype._showShip = function () {
-                var t = this,
-                    e = new PIXI.Sprite;
-                e.texture = r.default.resources.getShip(this._ship_mst_id, this._ship_damaged, "full");
-                var i = r.default.model.ship_graph.get(this._ship_mst_id).getMapOffset(this._ship_damaged);
-                e.x = -80 + i.x, e.y = -93 + i.y, e.scale.set(1.15), e.alpha = 0;
-                var n = r.default.view.getNowScene();
-                n.view.chara_layer.addChild(e), createjs.Tween.get(e).to({
-                    alpha: 1
-                }, 300).wait(2e3).to({
-                    x: e.x - 45,
-                    alpha: 0
-                }, 1500).call(function () {
-                    n.view.chara_layer.removeChild(e)
-                });
-                var s = h.MapUtil.toMapID(this._area_id, this._map_no),
-                    a = new I,
-                    _ = new l.Container;
-                a.update(s, this._file_suffix, function () {
-                    a.alpha = 0, _.scale.set(2), _.position.set(o.default.width / 2, o.default.height / 2), _.addChild(a), n.view.chara_layer.addChild(_), createjs.Tween.get(_).wait(3e3).to({
-                        scaleX: 1,
-                        scaleY: 1
-                    }, 700, createjs.Ease.bounceOut).call(function () {
-                        t._waitClick(_)
-                    }), createjs.Tween.get(a).wait(3e3).to({
+    var o = i(6),
+        r = i(10),
+        s = i(36),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._anim2 = function () {
+                    o.SE.play("222"), e._t = createjs.Tween.get(e._message).to({
+                        x: 38,
                         alpha: 1
-                    }, 600, createjs.Ease.circOut)
-                })
-            }, e.prototype._waitClick = function (t) {
-                var e = this,
-                    i = new u.AreaBox(0);
-                i.buttonMode = !0;
-                var n = new c.GearBtnNext;
-                n.position.set(1140, 660), n.initialize(), n.activate(), i.addChild(n), this._mapscene.view.addChild(i), i.once(a.EventType.CLICK, function () {
-                    e._mapscene.view.removeChild(i), n.dispose(), e._removeRed(t)
-                })
-            }, e.prototype._removeRed = function (t) {
-                var e = this;
-                this._mapscene.view.map.bg.mapAnime && this._mapscene.view.map.bg.mapAnime.hide();
-                var i = this._mapscene.view.map.bg.getBGLayer("red");
-                createjs.Tween.get(i).to({
-                    alpha: 0
-                }, 3e3).call(function () {
-                    e._hideTelop(t)
-                })
-            }, e.prototype._hideTelop = function (t) {
-                var e = this;
-                createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._mapscene.view.chara_layer.removeChild(t), e._closeShutter()
-                })
-            }, e.prototype._closeShutter = function () {
-                var t = this;
-                this._shutter.close(), this._shutter.once("closed", function () {
-                    t._mapscene.view.shutter.alpha = 1, t._mapscene.view.map.alpha = 0, t._mapscene.view.upper.alpha = 0, t._endTask()
-                })
-            }, Object.defineProperty(e.prototype, "_mapscene", {
-                get: function () {
-                    var t = r.default.view.getNowScene();
-                    return t instanceof b.MapScene ? t : null
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(_.TaskBase);
-    e.TaskEventClear = x;
-    var I = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img1 = new PIXI.Sprite, e.addChild(e._img1), e._img2 = new PIXI.Sprite, e.addChild(e._img2), e
-        }
-        return n(e, t), e.prototype.update = function (t, e, i) {
-            var n = this;
-            switch (t) {
-                case 461:
-                    var o = new w.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e1_" + e + ".json"), o.load(function () {
-                        n._img1.texture = d.BATTLE_RESULT_EVENT_E1_IKEPJTHJNUXEBZUK.getTexture(0), n._img2.texture = d.BATTLE_RESULT_EVENT_E1_IKEPJTHJNUXEBZUK.getTexture(1), i()
-                    }), this._img1.position.set(-349, -135), this._img2.position.set(-439, -47);
-                    break;
-                case 462:
-                    var o = new w.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e2_" + e + ".json"), o.load(function () {
-                        n._img1.texture = f.BATTLE_RESULT_EVENT_E2_MBFSBJGMRYMECYRS.getTexture(0), n._img2.texture = f.BATTLE_RESULT_EVENT_E2_MBFSBJGMRYMECYRS.getTexture(1), i()
-                    }), this._img1.position.set(-413, -158), this._img2.position.set(-413, 5);
-                    break;
-                case 463:
-                    var o = new w.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e3_" + e + ".json"), o.load(function () {
-                        n._img1.texture = y.BATTLE_RESULT_EVENT_E3_EMWEISWFMPTZTMUZ.getTexture(0), n._img2.texture = y.BATTLE_RESULT_EVENT_E3_EMWEISWFMPTZTMUZ.getTexture(1), i()
-                    }), this._img1.position.set(-452, -135), this._img2.position.set(-431, -48);
-                    break;
-                case 464:
-                    var o = new w.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e4_" + e + ".json"), o.load(function () {
-                        n._img1.texture = m.BATTLE_RESULT_EVENT_E4_RYSXZUGNKAHFMTBX.getTexture(0), n._img2.texture = m.BATTLE_RESULT_EVENT_E4_RYSXZUGNKAHFMTBX.getTexture(1), i()
-                    }), this._img1.position.set(-499, -155), this._img2.position.set(-499, 7);
-                    break;
-                case 465:
-                    var o = new w.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e5_" + e + ".json"), o.load(function () {
-                        n._img1.texture = g.BATTLE_RESULT_EVENT_E5_KURFPZXREHRYMAAD.getTexture(0), n._img2.texture = g.BATTLE_RESULT_EVENT_E5_KURFPZXREHRYMAAD.getTexture(1), i()
-                    }), this._img1.position.set(-500, -135), this._img2.position.set(-435, -48);
-                    break;
-                case 466:
-                    var o = new w.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e6_" + e + ".json"), o.load(function () {
-                        n._img1.texture = v.BATTLE_RESULT_EVENT_E6_RXABZKUAIPDUCFXH.getTexture(0), n._img2.texture = v.BATTLE_RESULT_EVENT_E6_RXABZKUAIPDUCFXH.getTexture(1), i()
-                    }), this._img1.position.set(-523, -155), this._img2.position.set(-520, 7);
-                    break;
-                default:
-                    this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY, i()
+                    }, 200).to({
+                        x: 0
+                    }, 66).wait(700).to({
+                        x: -38
+                    }, 66).to({
+                        x: -132,
+                        alpha: 0
+                    }, 200).call(function () {
+                        e._t = null, e.emit("complete")
+                    })
+                }, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.alpha = 0, e._message = new PIXI.Sprite, e._message.anchor.set(.5), e._message.alpha = 0, e._message.x = 132, e.addChild(e._bg), e.addChild(e._message), e
             }
-        }, e
-    }(PIXI.Container)
+            return n(e, t), e.prototype.initializeForShip = function (t) {
+                void 0 === t && (t = !1), this._bg.texture = r.COMMON_MISC.getTexture(120);
+                var e = 31;
+                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(e), 1 == t && (this._message.y = -30, e = 25, this._sub_message = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(e)), this._sub_message.anchor.set(.5), this._sub_message.position.y = 80, this._message.addChild(this._sub_message))
+            }, e.prototype.initializeForSlot = function () {
+                this._bg.texture = r.COMMON_MISC.getTexture(120);
+                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(26)
+            }, e.prototype.initializeForUseitem = function (t) {
+                this._bg.texture = r.COMMON_MISC.getTexture(120);
+                var e = -1;
+                60 == t ? e = 27 : 62 == t ? e = 28 : 68 == t || 93 == t || (72 == t ? e = 30 : 85 != t && 86 != t && 87 != t && 88 != t || (e = 21)), this._message.texture = -1 == e ? PIXI.Texture.EMPTY : s.BATTLE_RESULT_MAIN.getTexture(e)
+            }, e.prototype.dispose = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype.play = function () {
+                var t = this;
+                if (null == this._t) {
+                    var e = s.BATTLE_RESULT_MAIN.getTexture(24),
+                        i = new PIXI.Sprite(e);
+                    i.anchor.set(.5), i.alpha = 0, this.addChild(i), this._t = createjs.Tween.get(i).to({
+                        alpha: 1
+                    }, 200).call(function () {
+                        t._bg.alpha = 1
+                    }).to({
+                        alpha: 0
+                    }, 266).call(this._anim2)
+                }
+            }, e
+        }(PIXI.Container);
+    e.BonusTelop = a
 }

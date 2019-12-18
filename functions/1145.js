@@ -19,61 +19,30 @@ const function1145 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(92),
-        s = i(33),
-        a = i(93),
-        _ = i(1146),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
-                }, n._layer = e, n._target = i, n
+    var o = i(33),
+        r = i(1146),
+        s = i(1147),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._count = 0, i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(i._onSelectFromConfirm), i._confirm_view.position.set(215, 206), i.addChild(i._confirm_view), i._confirm_view.initialize(i._count), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(215, 206), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                this._dialog = new _.HishimochiUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
-                    s = n.result;
-                n.start(function () {
-                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = this._layer,
-                    o = new a.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new r.UseItemUseAPI(e, !0, i),
-                            s = n.result;
-                        n.start(function () {
-                            t._result = s, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize(t)
+            }, e.prototype.activate = function () {
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
+            }, e.prototype.deactivate = function () {
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
+            }, e.prototype.dispose = function () {
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseHishimochi = l
+        }(o.DialogBase);
+    e.KouMedalUseDialog = a
 }

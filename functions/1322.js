@@ -19,53 +19,52 @@ const function1322 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(62),
-        s = i(1323),
-        a = function (t) {
+    var o = i(19),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e._extraLayer = [], e
+                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "extraLayerLast", {
-                get: function () {
-                    return this._extraLayer[this._extraLayer.length - 1]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "mapAnime", {
-                get: function () {
-                    return this._mapAnime
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._mapAnime && this._mapAnime.dispose()
-            }, e.prototype.addBGLayer = function (t, e) {
-                var i = new PIXI.Sprite(t);
-                if (null != e && e.length > 0) {
-                    if (1 == this._bgDic.hasOwnProperty(e)) {
-                        var n = this._bgDic[e];
-                        null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
-                    }
-                    this._bgDic[e] = i
-                }
-                i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
-            }, e.prototype.getBGLayer = function (t) {
-                return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
-            }, e.prototype.addLabels = function (t) {
-                if (0 != t.length) {
-                    var e = new PIXI.Container;
-                    this._extraLayer.push(e), this.addChild(e);
-                    for (var i = 0, n = t; i < n.length; i++) {
-                        var o = n[i],
-                            s = new r.CenteringSprite(o.texture);
-                        s.x = o.x + Math.round(s.width / 2), s.y = o.y + Math.round(s.height / 2), e.addChild(s)
-                    }
-                }
-            }, e.prototype.setMapAnime = function () {
-                this._mapAnime = new s.MapAnime, this._mapAnime.position.set(899, 370), this._bgLayer.addChildAt(this._mapAnime, 2), this._mapAnime.startAnimation()
+            return n(e, t), e.prototype.update = function (t) {
+                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
+            }, e.prototype.activate = function () {
+                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
+                    loop: !0
+                }).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
+                    loop: !0
+                }).wait(500).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
+                    loop: !0
+                }).wait(500).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400))
+            }, e.prototype.deactivate = function () {
+                this._stopTween()
+            }, e.prototype.dispose = function () {
+                this._stopTween()
+            }, e.prototype._stopTween = function () {
+                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
+                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
             }, e
         }(PIXI.Container);
-    e.MapBackGround = a
+    e.CompShipWave = r
 }

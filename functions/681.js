@@ -19,117 +19,220 @@ const function681 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(0),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClickDeckFlag = function (t) {
-                    e.onClickDeckFlag(t)
-                }, e.interactiveDeckFlag_1 = new _, e.interactiveDeckFlag_2 = new _, e.interactiveDeckFlag_3 = new _, e.interactiveDeckFlag_4 = new _;
-                var i = new l,
-                    n = new l,
-                    s = new l,
-                    a = new l;
-                return i.x = e.interactiveDeckFlag_1.x = 0, n.x = e.interactiveDeckFlag_2.x = 45, s.x = e.interactiveDeckFlag_3.x = 90, a.x = e.interactiveDeckFlag_4.x = 135, e.interactiveDeckFlag_1.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_2.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_3.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_4.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_1.update(1), e.interactiveDeckFlag_2.update(2), e.interactiveDeckFlag_3.update(3), e.interactiveDeckFlag_4.update(4), i.update(1), n.update(2), s.update(3), a.update(4), e.addChild(i, n, s, a, e.interactiveDeckFlag_1, e.interactiveDeckFlag_2, e.interactiveDeckFlag_3, e.interactiveDeckFlag_4), r.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(o.COMMON_MISC.getTexture(186)), e.icon3rdUnit.position.set(77, -22), e.addChild(e.icon3rdUnit)), e
+    var o = i(0),
+        r = i(17),
+        s = i(161),
+        a = i(111),
+        _ = i(34),
+        l = i(69),
+        u = i(6),
+        c = i(682),
+        h = i(683),
+        p = i(684),
+        d = i(685),
+        f = i(686),
+        y = i(696),
+        m = i(217),
+        g = i(218),
+        v = i(698),
+        b = i(699),
+        w = i(703),
+        x = i(704),
+        I = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i.SLOT_MAX = 6, i._shipInDeckOrigin = 0, i.onClickBreakCombined = function () {
+                    var t = new g.CombinedAPI(0);
+                    o.default.view.clickGuard = !0, t.start(function () {
+                        i.update(), o.default.view.clickGuard = !1
+                    })
+                }, i._onClickArrow = function (t) {
+                    i.shipInDeckOrigin += t, i.ShipSlotLayer.update(i.deckID, i.shipInDeckOrigin)
+                }, i._onClickChangeDeckName = function () {
+                    i.changeDeckName(i._deckID)
+                }, i._onClickMamiyaIrako = function () {
+                    i.editNameArea.writable = !1;
+                    var t = o.default.view.overLayer,
+                        e = o.default.view.getNowScene(),
+                        n = new x.TaskMamiyaIrako(t, e);
+                    n.onWhiteOut = function () {
+                        i.update()
+                    }, n.onComplete = function () {
+                        n.dispose(), i.editNameArea.writable = !0
+                    }, n.start(i.deckID)
+                }, i.editNameArea = new d.EditNameArea, i.editNameArea.writable = !1, i.editNameArea.onClickUpdate = i._onClickChangeDeckName, i.deckSelector = new p.DeckSelector, i.deckSelector.onClickDeckFlag = e, i.sweetsButton = new y.SweetsButton, i.breakDeckView = new h.BreakDeckView, i.shipSlotLayer = new f.ShipSlotLayer, i.addChild(i.deckSelector), r.COMBINABLE && (i.combineGuideView = new c.CombineGuideView(function (t) {
+                    i.onDragAndDropCombineTrigger(t)
+                }), i.breakCombineView = new a.CombinedView(!0), i.breakCombineView.onClick = i.onClickBreakCombined, i.breakCombineView.activate(), i.addChild(i.combineGuideView), i.addChild(i.breakCombineView)), i.addChild(i.editNameArea), i.addChild(i.shipSlotLayer), i.addChild(i.breakDeckView), i.addChild(i.sweetsButton), i.addChild(i.shipSlotLayer.ArrowTopButton), i.addChild(i.shipSlotLayer.ArrowBottomButton), i
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-                this.interactiveDeckFlag_1.visible = !1, this.interactiveDeckFlag_2.visible = !1, this.interactiveDeckFlag_3.visible = !1, this.interactiveDeckFlag_4.visible = !1, t && (this.interactiveDeckFlag_1.visible = !0), e && (this.interactiveDeckFlag_2.visible = !0), i && (this.interactiveDeckFlag_3.visible = !0), n && (this.interactiveDeckFlag_4.visible = !0)
-            }, e.prototype.update = function (t) {
-                switch (this.interactiveDeckFlag_1.normal(), this.interactiveDeckFlag_2.normal(), this.interactiveDeckFlag_3.normal(), this.interactiveDeckFlag_4.normal(), t) {
+            return n(e, t), Object.defineProperty(e.prototype, "deckID", {
+                get: function () {
+                    return this._deckID
+                },
+                set: function (t) {
+                    this._deckID = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipInDeckOrigin", {
+                get: function () {
+                    return this._shipInDeckOrigin
+                },
+                set: function (t) {
+                    this._shipInDeckOrigin = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipSlotDisplayLength", {
+                get: function () {
+                    for (var t = 0, e = 0, i = this.ShipSlotLayer.ShipSlots.length; e < i; e++) {
+                        !0 === this.ShipSlotLayer.ShipSlots[e].visible && t++
+                    }
+                    return t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "EditNameArea", {
+                get: function () {
+                    return this.editNameArea
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "SweetsButton", {
+                get: function () {
+                    return this.sweetsButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ShipSlotLayer", {
+                get: function () {
+                    return this.shipSlotLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "CombineGuideView", {
+                get: function () {
+                    return this.combineGuideView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.deckSelector.dispose(), this.deckSelector = null, this.editNameArea.dispose(), this.editNameArea = null, this.sweetsButton.dispose(), this.sweetsButton = null, this.shipSlotLayer.dispose(), this.shipSlotLayer = null, this.breakDeckView.dispose(), this.breakDeckView = null, r.COMBINABLE && (this.combineGuideView.dispose(), this.combineGuideView = null, this.breakCombineView.dispose(), this.breakCombineView = null), this.removeChildren()
+            }, e.prototype.init = function (t) {
+                this.editNameArea.position.set(694, 150), this.sweetsButton.position.set(465, 157), this.breakDeckView.position.set(570, 162), this.sweetsButton.onClick = this._onClickMamiyaIrako, this.breakDeckView.onClick = t;
+                var e = o.default.model.deck.getAll();
+                this.deckSelector.initialize(0 < e.length, 1 < e.length, 2 < e.length, 3 < e.length), this.deckSelector.position.set(177, 165), r.COMBINABLE && (this.combineGuideView.position.set(222, 165), this.breakCombineView.position.set(170, 155)), this.shipSlotLayer.initArrow(this._onClickArrow)
+            }, e.prototype.show = function (t) {
+                switch (this.visible = !0, t) {
+                    case 0:
+                        if (this.shipSlotLayer.show(), this.shipSlotLayer.ArrowTopButton.visible = !1, this.shipSlotLayer.ArrowBottomButton.visible = !1, this.breakDeckView.visible = !0, this.updateMamiyaIrako(this._deckID), r.COMBINABLE) {
+                            var e = o.default.model.deck.isCombined();
+                            e && (this.breakCombineView.visible = !0, this.breakCombineView.interactiveChildren = !0)
+                        }
+                        break;
                     case 1:
-                        this.interactiveDeckFlag_1.hover();
-                        break;
                     case 2:
-                        this.interactiveDeckFlag_2.hover();
-                        break;
-                    case 3:
-                        this.interactiveDeckFlag_3.hover();
-                        break;
-                    case 4:
-                        this.interactiveDeckFlag_4.hover()
+                        if (r.COMBINABLE) {
+                            var e = o.default.model.deck.isCombined();
+                            e && (this.breakCombineView.visible = !0, this.breakCombineView.interactiveChildren = !1)
+                        }
                 }
-            }, e.prototype.dispose = function () {
-                this.interactiveDeckFlag_1.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_2.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_3.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_4.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_1.dispose(), this.interactiveDeckFlag_2.dispose(), this.interactiveDeckFlag_3.dispose(), this.interactiveDeckFlag_4.dispose(), this.onClickDeckFlag = null, this.interactiveDeckFlag_1 = null, this.interactiveDeckFlag_2 = null, this.interactiveDeckFlag_3 = null, this.interactiveDeckFlag_4 = null, this.icon3rdUnit = null, this.removeChildren()
+            }, e.prototype.hide = function () {
+                this.visible = !1, this.shipSlotLayer.hide(), this.sweetsButton.visible = !1, this.shipSlotLayer.ArrowTopButton.visible = !1, this.shipSlotLayer.ArrowBottomButton.visible = !1, this.breakDeckView.visible = !1, r.COMBINABLE && (this.combineGuideView.visible = !1, this.breakCombineView.visible = !1)
+            }, e.prototype.updateDeck = function (t) {
+                this._deckID = t, this.update()
+            }, e.prototype.update = function () {
+                var t = o.default.model.deck.get(this._deckID),
+                    e = null != t.expedition,
+                    i = t.getCount();
+                this.deckSelector.update(this._deckID), this.shipSlotLayer.update(this._deckID, this._shipInDeckOrigin), this.updateMamiyaIrako(this._deckID), this.updateDeckBreakView(i, e), r.COMBINABLE && this.updateCombineGuide(this._deckID), this.EditNameArea.reload(t.name)
+            }, e.prototype.updateMamiyaIrako = function (t) {
+                var e = o.default.model.deck.get(t),
+                    i = e.getCount(),
+                    n = o.default.model.useItem.get(54).count,
+                    r = o.default.model.useItem.get(59).count,
+                    s = n + r;
+                if (this.sweetsButton.visible = !1, 0 < s) {
+                    var a = !1;
+                    e.getShipList().some(function (t) {
+                        if (t && (a = t.tired < 40)) return !0
+                    }), this.sweetsButton.update(n, r, i, a), this.sweetsButton.visible = !0
+                }
+            }, e.prototype.updateDeckBreakView = function (t, e) {
+                var i = 0 == e,
+                    n = 1 < t,
+                    o = n && i;
+                this.breakDeckView.update(o)
+            }, e.prototype.updateCombineGuide = function (t) {
+                var e = o.default.model.deck.isCombined();
+                if (this.combineGuideView.visible = !1, this.breakCombineView.visible = !1, this.combineGuideView.interactiveChildren = !1, e) this.breakCombineView.visible = !0;
+                else if (2 == t) {
+                    this.combineGuideView.visible = !0;
+                    var i = o.default.model.deck.get(t),
+                        n = 0 < i.getCount(),
+                        r = null == i.expedition,
+                        s = n && r;
+                    s && (this.combineGuideView.interactiveChildren = !0)
+                }
+            }, e.prototype.updateDeckSelector = function (t) {
+                this._deckID = t;
+                var e = o.default.model.deck.get(t);
+                this.editNameArea.reload(e.name), this.deckSelector.update(t)
+            }, e.prototype.changeDeckName = function (t) {
+                var e = this;
+                o.default.view.clickGuard = !0, this.editNameArea.writable = !1;
+                var i = this.editNameArea.text,
+                    n = "http://" + o.default.settings.osapi_root,
+                    r = function (s) {
+                        if (window.removeEventListener("message", r), s.origin == n) {
+                            var a = s.data;
+                            new v.UpdateDeckNameAPI(t, i, a).start(function () {
+                                o.default.model.deck.get(t).updateName(i, a), u.SE.play("246"), e.editNameArea.writable = !0, o.default.view.clickGuard = !1
+                            })
+                        }
+                    };
+                window.addEventListener("message", r);
+                try {
+                    window.parent.postMessage(s.PostMessageType.DECK_NAME + "\t" + i, n)
+                } catch (t) {
+                    this.editNameArea.writable = !0, o.default.view.clickGuard = !1
+                }
+            }, e.prototype.onBreakDeck = function (t, e) {
+                var i = this,
+                    n = o.default.model.deck.get(t).getShipList();
+                o.default.view.clickGuard = !0;
+                var r = new _.APIConnector;
+                r.add(new m.ChangeAPI(!1, t, 0, -2)), 10 == o.default.model.basic.getTutorialProgress() && r.add(new l.UpdateTutorialAPI(20)), r.start(function () {
+                    for (var r = o.default.model.deck.get(t).getShipList(), s = Array(), a = 0; a < i.shipSlotLayer.ShipSlots.length; a++) {
+                        var _ = a + i._shipInDeckOrigin;
+                        null != n[_] && null == r[_] && s.push(a)
+                    }
+                    if (0 < s.length) {
+                        for (var a = 0; a < i.shipSlotLayer.ShipSlots.length; a++)
+                            if (-1 != s.indexOf(a)) {
+                                var l = i.shipSlotLayer.ShipSlots[a],
+                                    u = function () {};
+                                s.indexOf(a) == s.length - 1 && (u = e), l.closeAnimation(u)
+                            }
+                    } else e()
+                })
+            }, e.prototype.onDragAndDropCombineTrigger = function (t) {
+                var e = this;
+                this.combineGuideView.hideOn(), this.editNameArea.writable = !1;
+                var i = new w.CombineDragging({
+                    x: this.deckSelector.x,
+                    y: this.deckSelector.y
+                }, t.data.global, function (t) {
+                    if (o.default.view.overLayer.removeChild(i), e.combineGuideView.showOn(), t) {
+                        var n = new b.TaskCombineTypeSelect(o.default.view.overLayer);
+                        n.onCombined = function () {
+                            e.update()
+                        }, n.onComplete = function () {
+                            n.dispose(), e.editNameArea.writable = !0
+                        }, n.start()
+                    } else e.editNameArea.writable = !0
+                });
+                o.default.view.overLayer.addChild(i)
             }, e
         }(PIXI.Container);
-    e.DeckSelector = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onClick = function () {
-                e.onClick(e.memDeckId)
-            }, e.addListener(s.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.onClick = null, this.memDeckId = null, this._onClick = null, this.removeAllListeners(s.EventType.CLICK), this.removeChildren()
-        }, e.prototype.update = function (t) {
-            this.memDeckId = t
-        }, e.prototype.hover = function () {
-            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "on"));
-            this.texture = t
-        }, e.prototype.normal = function () {
-            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "off"));
-            this.texture = t
-        }, e
-    }(PIXI.Sprite);
-    e.InteractiveDeckFlag = _;
-    var l = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-        return n(e, t), e.prototype.update = function (t) {
-            this.texture = o.COMMON_MISC.getTexture(u.getResourceId(t, "no")), this.memDeckId = t
-        }, e
-    }(PIXI.Sprite);
-    e.DisableDeckFlag = l;
-    var u;
-    ! function (t) {
-        function e(t, e) {
-            switch (t) {
-                case 1:
-                    switch (e) {
-                        case "no":
-                            return 72;
-                        case "on":
-                            return 74;
-                        case "off":
-                            return 73
-                    }
-                    break;
-                case 2:
-                    switch (e) {
-                        case "no":
-                            return 75;
-                        case "on":
-                            return 77;
-                        case "off":
-                            return 76
-                    }
-                    break;
-                case 3:
-                    switch (e) {
-                        case "no":
-                            return 78;
-                        case "on":
-                            return 80;
-                        case "off":
-                            return 79
-                    }
-                    break;
-                case 4:
-                    switch (e) {
-                        case "no":
-                            return 81;
-                        case "on":
-                            return 83;
-                        case "off":
-                            return 82
-                    }
-            }
-            return -1
-        }
-        t.getResourceId = e
-    }(u || (u = {}))
+    e.DeckLayer = I
 }

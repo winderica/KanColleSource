@@ -19,54 +19,66 @@ const function1480 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(253),
-        r = i(16),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(248),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._friend = e, i._points = [], i
             }
-            return n(e, t), e.prototype.show = function (t, e) {
-                void 0 === e && (e = null), this.hide(), this._current = new o.PhaseTitle, this._current.y = 16, this._current.alpha = 0, this._current.initialize(8 == t);
-                var i = this._getTexture(t);
-                this._current.update(i), this._current.activate(), null != e ? e.addChild(this._current) : this.addChild(this._current), createjs.Tween.get(this._current).to({
-                    alpha: 1
-                }, 800)
-            }, e.prototype.hide = function (t) {
-                if (void 0 === t && (t = null), null == this._current) null != t && t();
-                else {
-                    var e = this._current;
-                    this._current = null, createjs.Tween.get(e).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        e.deactivate();
-                        var i = e.parent;
-                        null != i && i.removeChild(e), e.dispose(), null != t && t()
-                    })
-                }
-            }, e.prototype._getTexture = function (t) {
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                if (this._clearPoints(), e <= 0) return !1;
+                var i;
                 switch (t) {
-                    case 0:
-                        return r.BATTLE_MAIN.getTexture(129);
-                    case 1:
-                        return r.BATTLE_MAIN.getTexture(125);
-                    case 2:
-                        return r.BATTLE_MAIN.getTexture(130);
-                    case 3:
-                        return r.BATTLE_MAIN.getTexture(128);
-                    case 4:
-                        return r.BATTLE_MAIN.getTexture(124);
-                    case 5:
-                        return r.BATTLE_MAIN.getTexture(123);
-                    case 6:
-                        return r.BATTLE_MAIN.getTexture(127);
-                    case 7:
-                        return r.BATTLE_MAIN.getTexture(126);
-                    case 8:
-                        return r.BATTLE_MAIN.getTexture(131);
-                    default:
-                        return PIXI.Texture.EMPTY
+                    case 11:
+                        i = this._get11Points(e);
+                        break;
+                    case 12:
+                        i = this._get12Points(e);
+                        break;
+                    case 13:
+                        i = this._get13Points(e);
+                        break;
+                    case 14:
+                        i = this._get14Points(e)
                 }
+                if (null == i) return !1;
+                for (var n = 0; n < i.length; n++) {
+                    var r = new o.FormationPoint,
+                        s = i[n];
+                    r.position.set(s.x, s.y), r.initializeForCombinedSub(this._friend), r.visible = !1, this.addChild(r), this._points.push(r)
+                }
+                return !0
+            }, e.prototype.show = function (t) {
+                void 0 === t && (t = 100);
+                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
+                    var o = n[i];
+                    ! function (i) {
+                        e.wait(t), e.call(function () {
+                            i.visible = !0
+                        })
+                    }(o)
+                }
+            }, e.prototype.dispose = function () {
+                this._clearPoints()
+            }, e.prototype._clearPoints = function () {
+                for (var t = 0, e = this._points; t < e.length; t++) {
+                    var i = e[t];
+                    this.removeChild(i)
+                }
+                this._points = []
+            }, e.prototype._get11Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(38, -12)), t > 1 && e.push(new PIXI.Point(23, -35)), t > 2 && e.push(new PIXI.Point(23, 12)), t > 3 && e.push(new PIXI.Point(8, -57)), t > 4 && e.push(new PIXI.Point(8, 35)), t > 5 && e.push(new PIXI.Point(0, -12)), e
+            }, e.prototype._get12Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(17, -12)), t > 2 && e.push(new PIXI.Point(36, -38)), t > 3 && e.push(new PIXI.Point(36, 15)), t > 4 && e.push(new PIXI.Point(-3, -21)), t > 5 && e.push(new PIXI.Point(-3, 0)), e
+            }, e.prototype._get13Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(36, -12)), t > 1 && e.push(new PIXI.Point(11, -54)), t > 2 && e.push(new PIXI.Point(11, 33)), t > 3 && e.push(new PIXI.Point(-32, -54)), t > 4 && e.push(new PIXI.Point(-32, 33)), t > 5 && e.push(new PIXI.Point(-57, -12)), e
+            }, e.prototype._get14Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(26, -38)), t > 2 && e.push(new PIXI.Point(26, 15)), t > 3 && e.push(new PIXI.Point(26, -12)), t > 4 && e.push(new PIXI.Point(9, -21)), t > 5 && e.push(new PIXI.Point(9, 0)), e
             }, e
         }(PIXI.Container);
-    e.LayerTitle = s
+    e.FormationPointsCombinedSub = r
 }

@@ -19,35 +19,27 @@ const function998 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(80),
-        s = i(31),
-        a = i(1),
-        _ = function (t) {
+    var o = i(31),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._flg = !1, e._overed = !1, e._updateTexture = function () {
-                    e._flg = !e._flg, 1 == e._flg || 1 == e._overed ? e._icon.texture = s.SALLY_COMMON.getTexture(42) : e._icon.texture = s.SALLY_COMMON.getTexture(41)
-                }, e._onMouseOver = function () {
-                    e._overed = !0, e._updateTexture(), e._over.visible = !0
-                }, e._onMouseOut = function () {
-                    e._overed = !1, e._updateTexture(), e._over.visible = !1
-                }, e._onClick = function () {
-                    o.default.scene.change(24, new r.ItemSceneModel)
-                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(30, -55), e._over.visible = !1, e._icon.interactive = !0, e
+                return e._bg = new PIXI.Sprite, e._label = new PIXI.Sprite, e._n001 = new PIXI.Sprite, e._n010 = new PIXI.Sprite, e._n100 = new PIXI.Sprite, e.addChild(e._bg), e.addChild(e._label), e.addChild(e._n001), e.addChild(e._n010), e.addChild(e._n100), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._icon.texture = s.SALLY_COMMON.getTexture(41), this._over.texture = s.SALLY_COMMON.getTexture(44), this.addChild(this._over), this.addChild(this._icon)
-            }, e.prototype.activate = function () {
-                var t = this;
-                null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).wait(300).call(function () {
-                    t._updateTexture()
-                }))
-            }, e.prototype.deactivate = function () {
-                this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
+                this._bg.texture = o.SALLY_COMMON.getTexture(29), this._label.texture = o.SALLY_COMMON.getTexture(34), this._n001.position.set(44, 3), this._n010.position.set(33, 3), this._n100.position.set(23, 3)
+            }, e.prototype.update = function (t) {
+                if (null == t) this.visible = !1;
+                else {
+                    var e = t.level;
+                    e = Math.max(0, e), e = Math.min(999, e);
+                    var i = Math.floor(e / 100),
+                        n = e % 100,
+                        r = Math.floor(n / 10),
+                        s = n % 10,
+                        a = [59, 60, 61, 62, 63, 64, 65, 66, 67, 68];
+                    e < 10 ? (this._bg.scale.x = .866, this._bg.position.x = 17, this._label.position.set(23, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.visible = !1, this._n100.visible = !1) : e < 100 ? (this._bg.scale.x = 1.067, this._bg.position.x = 8, this._label.position.set(12, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n010.visible = !0, this._n100.visible = !1) : (this._bg.scale.x = 1.233, this._bg.position.x = 0, this._label.position.set(3, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n100.texture = o.SALLY_COMMON.getTexture(a[i]), this._n010.visible = !0, this._n100.visible = !0), this.visible = !0
+                }
             }, e
         }(PIXI.Container);
-    e.BtnShop = _
+    e.CompBannerLevel = r
 }

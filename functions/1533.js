@@ -19,54 +19,36 @@ const function1533 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(20),
         r = i(1534),
-        s = i(1537),
-        a = i(1539),
-        _ = function (t) {
+        s = i(1535),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._banners_f = new r.BannerSet, e._banners_f.position.set(348, 216), e._info_f = new s.BannerInfoFriendCanvas, e._info_f.position.set(141, 216), e._banners_e = new r.BannerSet, e._banners_e.position.set(614, 216), e._info_e = new a.BannerInfoEnemyCanvas, e._info_e.position.set(867, 216), e.addChild(e._banners_f), e.addChild(e._banners_e), e.addChild(e._info_f), e.addChild(e._info_e), e
+                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "banners_f", {
+            return n(e, t), Object.defineProperty(e.prototype, "friend", {
                 get: function () {
-                    return this._banners_f
+                    return this._friend
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "info_f", {
+            }), Object.defineProperty(e.prototype, "enemy", {
                 get: function () {
-                    return this._info_f
+                    return this._enemy
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "banners_e", {
-                get: function () {
-                    return this._banners_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "info_e", {
-                get: function () {
-                    return this._info_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._banners_f.dispose(), this._banners_f = null, this._info_f.dispose(), this._info_f = null, this._banners_e.dispose(), this._banners_e = null, this._info_e.dispose(), this._info_e = null
-            }, e.prototype.createSlideOutEnemyTweens = function (t, e) {
-                var i = this,
-                    n = o.default.width - this._banners_e.x;
-                return [createjs.Tween.get(this._banners_e).wait(e).to({
-                    x: this._banners_e.x + n
-                }, t).call(function () {
-                    i._banners_e.dispose()
-                }), createjs.Tween.get(this._info_e).wait(e).to({
-                    x: this._info_e.x + n
-                }, t).call(function () {
-                    i._info_e.dispose()
-                })]
+            }), e.prototype.initialize = function (t, e, i, n, o) {
+                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
+            }, e.prototype.show = function (t) {
+                var e = new o.TweenTask;
+                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
+                    null != t && t()
+                })
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
             }, e
         }(PIXI.Container);
-    e.LayerBanner = _
+    e.LayerDeckInfo = a
 }

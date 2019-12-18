@@ -19,54 +19,66 @@ const function1479 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(235),
-        s = i(6),
-        a = i(177),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._now = 0, e._max = 0, e._animation_gauge = !1, e._ready_for_explode = !1, e._animation_explode = !1, e._exploded = !1, e._playExplosion = function (t, i) {
-                    var n = new a.Explosion;
-                    n.position.set(e._gauge.x + t, e._gauge.y + i), e.addChild(n), s.SE.play("102"), n.play(function () {
-                        e.removeChild(n)
-                    })
-                }, e._onCompleteAnimation = function () {
-                    e._animation_gauge = !1, 1 == e._ready_for_explode && (e._ready_for_explode = !1, e.explode())
-                }, e
+    var o = i(248),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._friend = e, i._points = [], i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "now", {
-                get: function () {
-                    return this._now
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.hasGauge = function () {
-                return null != this._gauge
-            }, e.prototype.isExploded = function () {
-                return this._exploded
-            }, e.prototype.isAnimation = function () {
-                return this._animation_gauge || this._animation_explode
-            }, e.prototype.show = function (t, e, i, n) {
-                var s = this;
-                this._now = e, this._max = i, this._gauge = new r.GaugeHorizontal, this._gauge.initialize(t), this._gauge.x = o.default.width - this._gauge.width, this._gauge.y = -15, this._gauge.alpha = 0, this.addChild(this._gauge), createjs.Tween.get(this._gauge).to({
-                    y: 0,
-                    alpha: 1
-                }, 300).call(function () {
-                    s._gauge.update(e, i, function () {}), null != n && n()
-                })
-            }, e.prototype.update = function (t) {
-                0 != this.hasGauge() && (this._animation_gauge = !0, this._now = t, this._gauge.update(t, this._max, this._onCompleteAnimation))
-            }, e.prototype.explode = function () {
-                var t = this;
-                if (0 != this.hasGauge() && !(this._now > 0)) return 1 == this._animation_gauge ? void(this._ready_for_explode = !0) : void(1 != this._ready_for_explode && 1 != this._animation_explode && 1 != this._exploded && (this._animation_explode = !0, createjs.Tween.get(null).call(this._playExplosion, [107, 20]).wait(250).call(this._playExplosion, [209, 57]).call(function () {
-                    createjs.Tween.get(t._gauge).to({
-                        alpha: 0
-                    }, 350).call(function () {
-                        t.removeChild(t._gauge), t._gauge = null, t._animation_explode = !1, t._exploded = !0
-                    })
-                }).wait(100).call(this._playExplosion, [309, 24])))
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                if (this._clearPoints(), e <= 0) return !1;
+                var n;
+                switch (t) {
+                    case 11:
+                        n = this._get11Points(e);
+                        break;
+                    case 12:
+                        n = this._get12Points(e);
+                        break;
+                    case 13:
+                        n = this._get13Points(e);
+                        break;
+                    case 14:
+                        n = this._get14Points(e)
+                }
+                if (null == n) return !1;
+                for (var r = 0; r < n.length; r++) {
+                    var s = new o.FormationPoint,
+                        a = n[r];
+                    s.position.set(a.x, a.y), s.initializeForCombinedMain(this._friend, i), s.visible = !1, this.addChild(s), this._points.push(s)
+                }
+                return !0
+            }, e.prototype.show = function (t) {
+                void 0 === t && (t = 100);
+                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
+                    var o = n[i];
+                    ! function (i) {
+                        e.wait(t), e.call(function () {
+                            i.visible = !0
+                        })
+                    }(o)
+                }
+            }, e.prototype.dispose = function () {
+                this._clearPoints()
+            }, e.prototype._clearPoints = function () {
+                for (var t = 0, e = this._points; t < e.length; t++) {
+                    var i = e[t];
+                    this.removeChild(i)
+                }
+                this._points = []
+            }, e.prototype._get11Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-24, -20)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -20)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-24, -44)), t > 5 && e.push(new PIXI.Point(-24, 26)), e
+            }, e.prototype._get12Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-24, -21)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -21)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-63, -21)), t > 5 && e.push(new PIXI.Point(-63, 0)), e
+            }, e.prototype._get13Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-12, -21)), t > 1 && e.push(new PIXI.Point(-12, 0)), t > 2 && e.push(new PIXI.Point(-32, -21)), t > 3 && e.push(new PIXI.Point(-32, 0)), t > 4 && e.push(new PIXI.Point(11, -21)), t > 5 && e.push(new PIXI.Point(11, 0)), e
+            }, e.prototype._get14Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-45, -21)), t > 1 && e.push(new PIXI.Point(-45, 0)), t > 2 && e.push(new PIXI.Point(-63, -21)), t > 3 && e.push(new PIXI.Point(-63, 0)), t > 4 && e.push(new PIXI.Point(-9, -12)), t > 5 && e.push(new PIXI.Point(-27, -12)), e
             }, e
         }(PIXI.Container);
-    e.LayerGauge = _
+    e.FormationPointsCombinedMain = r
 }

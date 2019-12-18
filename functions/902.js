@@ -19,26 +19,51 @@ const function902 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(0),
+    var o = i(35),
+        r = i(1),
         s = function (t) {
-            function e(e, i, n, o, r, s, a, _) {
-                var l = t.call(this) || this;
-                return l._url = "api_req_kousyou/createship", l.api_kdock_id = e, l.api_large_flag = i, l.api_item1_fuel = n, l.api_item2_ammo = o, l.api_item3_steel = r, l.api_item4_baux = s, l.api_item5_devkit = a, l.api_highspeed = _, l
+            function e() {
+                var e = t.call(this) || this;
+                return e._state = !1, e.animationParams = {
+                    progress: 0
+                }, e._onClick = function () {
+                    null != e.tween && e.tween.setPaused(!0), e.tween = null;
+                    var t = 0;
+                    switch (e._state) {
+                        case !1:
+                            e._state = !0, t = 0;
+                            break;
+                        case !0:
+                            e._state = !1, t = 1
+                    }
+                    var i = createjs.Tween.get(e.animationParams);
+                    i.to({
+                        progress: t
+                    }, 300).on("change", function () {
+                        .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 3 + 103 * e.animationParams.progress
+                    }), i.play(null), e.tween = i
+                }, e.toggle = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(150)), e.background_off = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(151)), e.background_on = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(153)), e.background_off.on(r.EventType.CLICK, e._onClick), e.toggle.position.set(106, 0), e.addChild(e.background_off, e.background_on, e.toggle), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_large_flag = this.api_large_flag, this._post_data.api_item1 = this.api_item1_fuel, this._post_data.api_item2 = this.api_item2_ammo, this._post_data.api_item3 = this.api_item3_steel, this._post_data.api_item4 = this.api_item4_baux, this._post_data.api_item5 = this.api_item5_devkit, this._post_data.api_highspeed = this.api_highspeed, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = r.default.model.useItem.get(31),
-                    i = r.default.model.useItem.get(32),
-                    n = r.default.model.useItem.get(33),
-                    o = r.default.model.useItem.get(34),
-                    s = r.default.model.useItem.get(3),
-                    a = r.default.model.useItem.get(2);
-                e.__setCount__(e.count - this.api_item1_fuel), i.__setCount__(i.count - this.api_item2_ammo), n.__setCount__(n.count - this.api_item3_steel), o.__setCount__(o.count - this.api_item4_baux), s.__setCount__(s.count - this.api_item5_devkit);
-                var _ = 0;
-                1 == this.api_highspeed && (_ = 1 == this.api_large_flag ? 10 : 1), a.__setCount__(a.count - _), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "state", {
+                get: function () {
+                    return this._state
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.update = function (t) {
+                null != this.tween && this.tween.setPaused(!0), this.tween = null, this._state = !1, this.toggle.position.set(106, 0), this.background_off.interactive = this.background_off.buttonMode = !!t, this.background_on.visible = !1, this.animationParams.progress = 1
+            }, e.prototype.changeToggleState = function (t) {
+                switch (null != this.tween && this.tween.setPaused(!0), this.tween = null, this.toggle.x = 3, this.background_on.visible = !1, t) {
+                    case !0:
+                        this.toggle.x = 3, this.animationParams.progress = 0, this.background_on.visible = !0;
+                        break;
+                    case !1:
+                        this.toggle.x = 106, this.animationParams.progress = 1, this.background_on.visible = !1
+                }
+                this._state = t
+            }, e.prototype.dispose = function () {
+                null != this.tween && this.tween.setPaused(!0), this.removeChildren(), this.background_off = null, this.background_on = null, this.toggle = null, this.tween = null
             }, e
-        }(o.APIBase);
-    e.CreateShipAPI = s
+        }(PIXI.Container);
+    e.HighSpeedToggle = s
 }

@@ -19,18 +19,31 @@ const function1136 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(33),
-        s = i(405),
-        a = i(406),
+    var o = i(33),
+        r = i(1137),
+        s = i(1138),
+        a = i(1139),
         _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._bg = new PIXI.Sprite, n._bg.position.set(-106, 37), n.addChild(n._bg), n._message = new PIXI.Sprite, n._message.position.set(282, 74), n.addChild(n._message), n._icon = new a.MedalIcon, n._icon.position.set(358, 152), n.addChild(n._icon), n._btn_yes = new r.BtnBase(e, i), n._btn_yes.position.set(241, 251), n.addChild(n._btn_yes), n._btn_no = new r.BtnBase(-1, i), n._btn_no.position.set(451, 251), n.addChild(n._btn_no), n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._count = 0, i._onSelectFromTop = function (t) {
+                    if (-1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else null != i._confirm_view && (null != i._confirm_view.parent && i._confirm_view.parent.removeChild(i._confirm_view), i._confirm_view.dispose(), i._confirm_view = null), 1 == t ? (i._confirm_view = new a.ConfirmRemodelPlanView(1, i._onSelectFromConfirm), i._confirm_view.position.set(220, 171)) : 0 == t ? (i._confirm_view = new s.ConfirmView(0, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)) : 2 == t && (i._confirm_view = new s.ConfirmView(2, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)), i._confirm_view.initialize(i._count), i.addChild(i._confirm_view), i._top_view.visible = !1
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._confirm_view && i._confirm_view.dispose(), null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(225, 208), i.addChild(i._top_view), i
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this._bg.texture = o.ITEM_ILIST_MEDAL.getTexture(8), this._message.texture = o.ITEM_ILIST_MEDAL.getTexture(9), this._initialize(t, 4)
+                this._count = t, this._top_view.initialize(t)
+            }, e.prototype.activate = function () {
+                this._top_view.activate()
+            }, e.prototype.deactivate = function () {
+                this._top_view.deactivate()
+            }, e.prototype.dispose = function () {
+                this._top_view.dispose()
             }, e
-        }(s.ConfirmViewBase);
-    e.ConfirmRemodelPlanView = _
+        }(o.DialogBase);
+    e.MedalUseDialog = _
 }

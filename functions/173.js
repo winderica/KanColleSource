@@ -5,5 +5,5 @@ const function173 = function (t, e, i) {
         }),
         function (t) {
             for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-        }(i(1079))
+        }(i(1082))
 }
