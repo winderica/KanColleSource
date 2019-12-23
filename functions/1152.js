@@ -49,13 +49,13 @@ const function1152 = function (t, e, i) {
                 }, n._layer = e, n._candidates = [new a.SelectableRewardModel({
                     api_no: 51,
                     api_kind: 12,
-                    api_mst_id: 238,
+                    api_mst_id: 126,
                     api_slotitem_level: 0,
                     api_count: 1
                 }), new a.SelectableRewardModel({
                     api_no: 52,
                     api_kind: 12,
-                    api_mst_id: 82,
+                    api_mst_id: 238,
                     api_slotitem_level: 0,
                     api_count: 1
                 }), new a.SelectableRewardModel({
@@ -63,7 +63,7 @@ const function1152 = function (t, e, i) {
                     api_kind: 13,
                     api_mst_id: 4,
                     api_slotitem_level: 0,
-                    api_count: 5
+                    api_count: 6
                 })], n._target = i, n
             }
             return n(e, t), e.prototype._start = function () {
