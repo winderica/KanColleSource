@@ -23,7 +23,7 @@ const function13 = function (t, e, i) {
                         return ""
                 }
             }, t.getPath = function (e, i, _) {
-                "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : "banner2_g" == _ ? i = !0 : "banner3_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && (i = !1);
+                "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : "banner2_g" == _ ? i = !0 : "banner3_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && [1587, 1588, 1589, 1590].indexOf(e) < 0 && (i = !1);
                 var l = _ + (i ? "_dmg" : ""),
                     u = "ship_" + l,
                     c = s.SuffixUtil.create(e, u),

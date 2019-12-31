@@ -28,29 +28,31 @@ const function1156 = function (t, e, i) {
             return n(e, t), e.prototype.initialize = function () {
                 this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
             }, e.prototype.update = function (t) {
-                88 == t ? this._num.position.set(25, 19) : this._num.position.set(29, 15), this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
+                88 == t || 10 == t ? this._num.position.set(25, 19) : this._num.position.set(29, 15), this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
             }, e.prototype._getNumImage = function (t) {
                 switch (t) {
                     case 1:
                         return o.COMMON_SELECTABLE_REWARD.getTexture(25);
                     case 2:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
-                    case 3:
                         return o.COMMON_SELECTABLE_REWARD.getTexture(27);
-                    case 4:
+                    case 3:
                         return o.COMMON_SELECTABLE_REWARD.getTexture(28);
-                    case 5:
+                    case 4:
                         return o.COMMON_SELECTABLE_REWARD.getTexture(29);
-                    case 6:
+                    case 5:
                         return o.COMMON_SELECTABLE_REWARD.getTexture(30);
-                    case 7:
+                    case 6:
                         return o.COMMON_SELECTABLE_REWARD.getTexture(31);
-                    case 8:
+                    case 7:
                         return o.COMMON_SELECTABLE_REWARD.getTexture(32);
+                    case 8:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(33);
                     case 9:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(34);
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(35);
+                    case 10:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
                     case 88:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(33)
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(34)
                 }
                 return PIXI.Texture.EMPTY
             }, e

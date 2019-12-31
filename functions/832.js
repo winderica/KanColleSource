@@ -44,11 +44,11 @@ const function832 = function (t, e, i) {
                     n = new s.UIImageLoader("remodel");
                 n.add("bg/vignette_frame.png", "vignette_frame"), n.load(function () {
                     var n = new a.ShipLoader;
-                    n.add(t[0], !1, "full"), n.add(t[1], !1, "full"), n.load(function () {
-                        i.bgGrad.texture = o.default.resources.getUIImage("vignette_frame"), i.ship.texture = o.default.resources.getShip(t[0], !1, "full"), i.silhouette.texture = o.default.resources.getShip(t[1], !1, "full"), i.silhouette.tint = 0;
+                    n.add(t[0], !1, "full"), n.add(t[1], !1, "full_x2"), n.load(function () {
+                        i.bgGrad.texture = o.default.resources.getUIImage("vignette_frame"), i.ship.texture = o.default.resources.getShip(t[0], !1, "full"), i.silhouette.texture = o.default.resources.getShip(t[1], !1, "full_x2"), i.silhouette.tint = 0;
                         var n = o.default.model.ship_graph.get(t[0]).getCenterOffset(!1),
                             r = o.default.model.ship_graph.get(t[1]).getCenterOffset(!1);
-                        i.ship.x = 330 + n.x, i.ship.y = n.y - 50, i.silhouette.x = 330 + r.x, i.silhouette.y = r.y - 50, e()
+                        i.ship.x = 330 + n.x, i.ship.y = n.y - 50, i.silhouette.scale.set(.5), i.silhouette.x = 330 + r.x, i.silhouette.y = r.y - 50, e()
                     })
                 })
             }, e.prototype.anim1 = function () {
