@@ -19,37 +19,49 @@ const function1369 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(24),
-        s = i(16),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i._smoke = new _, i._smoke.position.set(69, 45), i
+    var o = i(283),
+        r = i(1370),
+        s = i(1379),
+        a = i(1473),
+        _ = i(1486),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._smoke.x - 105,
-                    i = this._smoke.y - 9;
-                createjs.Tween.get(this._smoke).call(function () {
-                    t._layer.addChild(t._smoke)
-                }).to({
-                    x: e,
-                    y: i,
-                    alpha: 0,
-                    scaleX: 1.5,
-                    scaleY: 1.5
-                }, 500).call(function () {
-                    t._layer.removeChild(t._smoke), t._endTask()
+            return n(e, t), Object.defineProperty(e.prototype, "data", {
+                get: function () {
+                    return this._data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
+            }, e.prototype.dispose = function () {
+                this._view.dispose(), t.prototype.dispose.call(this)
+            }, e.prototype.start = function () {
+                var t = this;
+                new r.TaskInit(this).start(function () {
+                    t._main()
                 })
+            }, e.prototype._main = function () {
+                var t = this;
+                new s.TaskMain(this).start(function () {
+                    t._end()
+                })
+            }, e.prototype._end = function () {
+                var t = this.data.model.deck_f.ships,
+                    e = this.data.model.deck_e.ships;
+                this.data.model.ship_info.add(t, e);
+                var i = (new Date).getTime();
+                this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
             }, e
-        }(o.TaskBase);
-    e.AnimAntiAircraftKoukaku = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(149)), e._img.position.set(-44, -63), e.addChild(e._img), e
-        }
-        return n(e, t), e
-    }(r.Container)
+        }(o.BattleSceneBase);
+    e.BattleScene = u
 }

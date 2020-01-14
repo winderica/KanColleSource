@@ -19,106 +19,72 @@ const function368 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(31),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._animation_progress = 0, e._model = new a, e._karyoku = new o.TextBox(22, 1949120), e._raisou = new o.TextBox(22, 1949120), e._taiku = new o.TextBox(22, 1949120), e._kaihi = new o.TextBox(22, 1949120), e._taikyu = new o.TextBox(22, 1949120), e._g = new PIXI.Graphics, e._karyoku.anchor.set(.5, 0), e._raisou.anchor.set(.5, 0), e._taiku.anchor.set(.5, 0), e._kaihi.anchor.set(.5, 0), e._taikyu.anchor.set(.5, 0), e._karyoku.position.set(209, 81), e._raisou.position.set(345, 231), e._taiku.position.set(336, 393), e._kaihi.position.set(93, 393), e._taikyu.position.set(30, 228), e._g.position.set(186, 269), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(r.SALLY_COMMON.getTexture(48)),
-                    e = new PIXI.Sprite(r.SALLY_COMMON.getTexture(49)),
-                    i = new PIXI.Sprite(r.SALLY_COMMON.getTexture(49)),
-                    n = new PIXI.Sprite(r.SALLY_COMMON.getTexture(50)),
-                    o = new PIXI.Sprite(r.SALLY_COMMON.getTexture(43));
-                t.position.set(0, 44), e.position.set(281, 0), n.position.set(95, 0), o.position.set(0, 44), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(o), this.addChild(this._karyoku), this.addChild(this._raisou), this.addChild(this._taiku), this.addChild(this._kaihi), this.addChild(this._taikyu), this.addChild(this._g)
-            }, e.prototype.update = function (t) {
-                if (null == t) return void this._clearDraw();
-                this._model.update(t), this._karyoku.text = this._model.karyoku.toString(), this._raisou.text = this._model.raisou.toString(), this._taiku.text = this._model.taiku.toString(), this._kaihi.text = this._model.kaihi.toString(), this._taikyu.text = this._model.taikyu.toString(), this._startAnimation()
-            }, e.prototype.dispose = function () {
-                this._stopAnimation(), this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy()
-            }, e.prototype._startAnimation = function () {
-                var t = this;
-                this._stopAnimation(), this._animation_progress = 0, this._animation = createjs.Tween.get(this).to({
-                    animation_progress: 1
-                }, 500).call(function () {
-                    t._animation = null, t._animation_progress = 0
-                })
-            }, e.prototype._clearDraw = function () {
-                this._stopAnimation(), this._g.clear(), this._karyoku.text = "", this._raisou.text = "", this._taiku.text = "", this._kaihi.text = "", this._taikyu.text = ""
-            }, e.prototype._stopAnimation = function () {
-                null != this._animation && (this._animation.setPaused(!0), this._animation = null)
-            }, Object.defineProperty(e.prototype, "animation_progress", {
-                get: function () {
-                    return this._animation_progress
-                },
-                set: function (t) {
-                    this._animation_progress = t, this._draw(this._animation_progress)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._draw = function (t) {
-                var e = [(this._model.karyoku > 350 ? 350 : this._model.karyoku) * t, (this._model.raisou > 350 ? 350 : this._model.raisou) * t, (this._model.taiku > 350 ? 350 : this._model.taiku) * t, (this._model.kaihi > 350 ? 350 : this._model.kaihi) * t, (this._model.taikyu > 350 ? 350 : this._model.taikyu) * t],
-                    i = e.map(function (t, e, i) {
-                        var n = (72 * e - 90) / 180 * Math.PI;
-                        return [142 * t / 350 * Math.cos(n), 142 * t / 350 * Math.sin(n)]
-                    });
-                this._g.clear(), this._g.lineStyle(1, 16774898), this._g.beginFill(1949120), this._g.moveTo(i[0][0], i[0][1]);
-                for (var n = 0; n < 5; n++) {
-                    var o = (n + 1) % 5;
-                    i[n][0] == i[o][0] && i[n][1] == i[o][1] || this._g.lineTo(i[o][0], i[o][1])
+    var o = i(0),
+        r = i(2),
+        s = i(335),
+        a = i(8),
+        _ = i(1024),
+        u = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this) || this;
+                r._ships = e, r._rader = i, r._onUpdate = n, r._fuel = 0, r._ammo = 0;
+                for (var s = 0; s < e.length; s++) {
+                    var a = e[s];
+                    null != a && (r._fuel += a.getFuelForSupply(), r._ammo += a.getAmmoForSupply())
                 }
-                this._g.endFill()
-            }, e
-        }(PIXI.Container);
-    e.Rader = s;
-    var a = function () {
-        function t() {
-            this._karyoku = 0, this._raisou = 0, this._taiku = 0, this._kaihi = 0, this._taikyu = 0
-        }
-        return Object.defineProperty(t.prototype, "karyoku", {
-            get: function () {
-                return this._karyoku
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "raisou", {
-            get: function () {
-                return this._raisou
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "taiku", {
-            get: function () {
-                return this._taiku
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "kaihi", {
-            get: function () {
-                return this._kaihi
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "taikyu", {
-            get: function () {
-                return this._taikyu
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.update = function (t) {
-            for (var e = 0, i = 0, n = 0, o = 0, r = 0, s = 0, a = 0, _ = t; a < _.length; a++) {
-                var l = _[a];
-                null != l && (e += l.karyoku, i += l.raisou, n += l.taiku, o += l.kaihi, r += l.hpMax, s++)
+                var _ = o.default.model.useItem.getCount(31),
+                    u = o.default.model.useItem.getCount(32);
+                return r._fuelActive = r._fuel > 0 && r._fuel <= _, r._ammoActive = r._ammo > 0 && r._ammo <= u, r
             }
-            this._karyoku = this._getParam(e, s), this._raisou = this._getParam(i, s), this._taiku = this._getParam(n, s), this._kaihi = this._getParam(o, s), this._taikyu = this._getParam(r, s)
-        }, t.prototype._getParam = function (t, e) {
-            if (e <= 0) return 0;
-            var i = Math.round(t / e);
-            if (1 == e) return i;
-            var n = Math.sqrt(e - 1);
-            return n *= i, i + Math.round(n)
-        }, t
-    }()
+            return n(e, t), e.prototype._start = function () {
+                this._clickGuard = new a.AreaBox(0), o.default.view.overLayer.addChild(this._clickGuard), this._hideRader()
+            }, e.prototype._hideRader = function () {
+                var t = this;
+                createjs.Tween.get(this._rader.scale).to({
+                    x: 0,
+                    y: 0
+                }, 300, createjs.Ease.quadIn).call(function () {
+                    t._showSupplyAnimationBox()
+                })
+            }, e.prototype._showSupplyAnimationBox = function () {
+                var t = this;
+                this._box = new _.TempSupplyBox, this._box.initialize(), this._box.x = 360, this._box.y = 120, this._box.alpha = 0;
+                var e = this._rader.parent;
+                null != e && e.addChild(this._box), this._box.update(this._fuel, this._ammo), createjs.Tween.get(this._box).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._playSupplyAnimation()
+                })
+            }, e.prototype._playSupplyAnimation = function () {
+                var t = this;
+                this._box.play(this._fuelActive, this._ammoActive, function () {
+                    1 == t._fuelActive && (t._fuel = 0), 1 == t._ammoActive && (t._ammo = 0), t._box.update(t._fuel, t._ammo), t._connectionAPI()
+                })
+            }, e.prototype._getSupplyType = function () {
+                return 1 == this._fuelActive ? 1 == this._ammoActive ? 3 : 1 : 1 == this._ammoActive ? 2 : 0
+            }, e.prototype._connectionAPI = function () {
+                for (var t = this, e = this._getSupplyType(), i = [], n = 0; n < this._ships.length; n++) {
+                    var o = this._ships[n];
+                    null != o && i.push(o.memID)
+                }
+                new s.ChargeAPI(e, i, !1).start(function () {
+                    createjs.Tween.get(t._box).to({
+                        alpha: 0
+                    }, 500).call(function () {
+                        t._reShowRader()
+                    })
+                })
+            }, e.prototype._reShowRader = function () {
+                var t = this;
+                null != this._onUpdate && this._onUpdate(), null != this._box.parent && this._box.parent.removeChild(this._box), createjs.Tween.get(this._rader.scale).to({
+                    x: 1,
+                    y: 1
+                }, 300, createjs.Ease.quadOut).call(function () {
+                    null != t._clickGuard.parent && t._clickGuard.parent.removeChild(t._clickGuard), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._ships = null, this._rader = null, this._onUpdate = null, this._clickGuard = null, this._box && this._box.dispose(), this._box = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.TaskTemporarySupply = u
 }

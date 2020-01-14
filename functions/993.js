@@ -19,63 +19,58 @@ const function993 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(52),
-        a = i(361),
-        _ = i(994),
-        l = function (t) {
+    var o = i(26),
+        r = i(1),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
-                    null != i._cb && i._cb(t.area_id)
-                }, i._cb = e, i._btns = new Array;
-                for (var n = [0, 96, 191, 383, 478, 574, 287], o = 0; o < n.length; o++) {
-                    var r = new a.AreaIconBtn(o + 1);
-                    r.position.set(n[o], 0), i._btns.push(r)
-                }
-                return i
+                return i._activated = !1, i._selected = !1, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._airunit_id)
+                }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i._label.position.set(8, 11), i.addChild(i._label), i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                if (1 != this._initialized) {
-                    this._initialized = !0;
-                    var t = new PIXI.Sprite(s.SALLY_SORTIE.getTexture(32));
-                    if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
-                        if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
-                            var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
-                            e.position.set(875, -9), this._btns.push(e)
-                        }
-                    }
-                    for (var i = 0, n = this._btns; i < n.length; i++) {
-                        var e = n[i];
-                        e.initialize(this._onSelectArea), this.addChild(e)
-                    }
+            return n(e, t), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), 1 == this.visible && this.update())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "airunit_id", {
+                get: function () {
+                    return this._airunit_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                if (this._airunit_id = t, t > e) return void(this.visible = !1);
+                if (1 == e && 1 == t) this._label.texture = o.SALLY_AIRUNIT.getTexture(119);
+                else switch (t) {
+                    case 1:
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(120);
+                        break;
+                    case 2:
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(121);
+                        break;
+                    case 3:
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(122);
+                        break;
+                    default:
+                        this._label.texture = PIXI.Texture.EMPTY
                 }
-            }, e.prototype.update = function (t) {
-                for (var e = 0, i = this._btns; e < i.length; e++) {
-                    var n = i[e],
-                        o = n.area_id == t;
-                    n.selected = o, o ? n.deactivate() : n.activate()
-                }
+                this.update(), this.visible = !0
+            }, e.prototype.update = function () {
+                1 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(125) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(124)
             }, e.prototype.activate = function () {
-                if (0 == this._activated) {
-                    for (var t = 0, e = this._btns; t < e.length; t++) {
-                        e[t].activate()
-                    }
-                    this._activated = !0
-                }
+                this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                this._activated = !1;
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this._cb = null, this.removeChildren();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._btns = null
+                this._deactivate(), this._cb_onClick = null
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Container);
-    e.CompAreaIcons = l
+    e.AirUnitPanelTab = s
 }

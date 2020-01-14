@@ -19,34 +19,24 @@ const function792 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(3),
         r = i(1),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClick = function () {
+                return e._onMouseOver = function () {
+                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(14), e.onMouseOver())
+                }, e._onMouseOut = function () {
+                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(12), e.onMouseOut())
+                }, e._onClick = function () {
                     e.onClick()
-                };
-                return e.beginFill(0, .5), e.drawRect(0, 103, o.default.width, o.default.height - 103), e.endFill(), e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e
+                }, e.texture = o.SUPPLY_MAIN.getTexture(13), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.clear(), this.off(r.EventType.CLICK), this.onClick = null, this.removeChildren()
+                this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null
+            }, e.prototype.updateClickable = function (t) {
+                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(12) : o.SUPPLY_MAIN.getTexture(13)
             }, e
-        }(PIXI.Graphics);
-    e.BackArea = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClickLeft = function () {
-                e.onClickLeft()
-            }, e._onClickRight = function () {
-                e.onClickRight()
-            }, e.leftArea = new PIXI.Graphics, e.rightArea = new PIXI.Graphics;
-            return e.leftArea.beginFill(0, .5), e.leftArea.drawRect(0, 103, 501, o.default.height - 103), e.leftArea.endFill(), e.rightArea.beginFill(0, .5), e.rightArea.drawRect(0, 103, o.default.width - 501, o.default.height - 103), e.rightArea.endFill(), e.rightArea.x = 501, e.leftArea.interactive = e.leftArea.buttonMode = !0, e.rightArea.interactive = e.rightArea.buttonMode = !0, e.leftArea.on(r.EventType.CLICK, e._onClickLeft), e.rightArea.on(r.EventType.CLICK, e._onClickRight), e.addChild(e.leftArea, e.rightArea), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.leftArea.clear(), this.rightArea.clear(), this.leftArea.off(r.EventType.CLICK), this.rightArea.off(r.EventType.CLICK), this.onClickLeft = null, this.onClickLeft = null, this.leftArea = null, this.rightArea = null, this.removeChildren()
-        }, e
-    }(PIXI.Container);
-    e.DoubleBackArea = a
+        }(PIXI.Sprite);
+    e.SupplyAllButton2 = s
 }

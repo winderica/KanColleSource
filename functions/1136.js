@@ -19,31 +19,48 @@ const function1136 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(1137),
-        s = i(1138),
-        a = i(1139),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._count = 0, i._onSelectFromTop = function (t) {
-                    if (-1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else null != i._confirm_view && (null != i._confirm_view.parent && i._confirm_view.parent.removeChild(i._confirm_view), i._confirm_view.dispose(), i._confirm_view = null), 1 == t ? (i._confirm_view = new a.ConfirmRemodelPlanView(1, i._onSelectFromConfirm), i._confirm_view.position.set(220, 171)) : 0 == t ? (i._confirm_view = new s.ConfirmView(0, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)) : 2 == t && (i._confirm_view = new s.ConfirmView(2, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)), i._confirm_view.initialize(i._count), i.addChild(i._confirm_view), i._top_view.visible = !1
-                }, i._onSelectFromConfirm = function (t) {
-                    null != i._confirm_view && i._confirm_view.dispose(), null != i._cb_onResult && i._cb_onResult(t)
-                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(225, 208), i.addChild(i._top_view), i
+    var o = i(11),
+        r = i(23),
+        s = i(43),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onClose = function () {
+                    o._panel.deactivate(), o._hideFade()
+                }, o._layer = e, o._model = i, o._mainView = n, o
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._count = t, this._top_view.initialize(t)
-            }, e.prototype.activate = function () {
-                this._top_view.activate()
-            }, e.prototype.deactivate = function () {
-                this._top_view.deactivate()
-            }, e.prototype.dispose = function () {
-                this._top_view.dispose()
+            return n(e, t), e.prototype._start = function () {
+                this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+            }, e.prototype._loadImages = function () {
+                var t = this,
+                    e = this._model.mst_ids,
+                    i = new r.SlotLoader;
+                i.add(e[0], "statustop_item");
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n];
+                    i.add(s, "card"), i.add(s, "item_up"), i.add(s, "item_on"), i.add(s, "item_character")
+                }
+                i.load(function () {
+                    t._showPanel()
+                })
+            }, e.prototype._showPanel = function () {
+                var t = this,
+                    e = new s.SlotDetailPanel(this._onClose);
+                this._panel = e, e.initialize(this._model), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    e.activate(), t._mainView.visible = !1
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._mainView.visible = !0, createjs.Tween.get(this._panel).to({
+                    alpha: 0
+                }, 300), this._layer.hide(500, function () {
+                    t._layer.visible = !1, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
             }, e
-        }(o.DialogBase);
-    e.MedalUseDialog = _
+        }(o.TaskBase);
+    e.TaskShowSlotDetail = a
 }

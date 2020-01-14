@@ -19,44 +19,20 @@ const function1274 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(29),
-        s = i(19),
-        a = i(1275),
-        _ = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._buff = function () {
-                    for (var t = o._scene.view.map.ship_icon.under, e = new r.SerialTask, i = 0; i < o._buff_count; i++) e.add(new a.TaskReplenishmentBuff(t));
-                    e.start(o._hideBalloon)
-                }, o._hideBalloon = function () {
-                    var t = o._balloon.y + 23;
-                    createjs.Tween.get(o._balloon).to({
-                        y: t,
-                        alpha: 0
-                    }, 100).call(function () {
-                        o._balloon.parent.removeChild(o._balloon), o._endTask()
-                    })
-                }, o._scene = e, o._buff_count = i, o._offset = n, o
+    var o = i(4),
+        r = i(146),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._bg = new PIXI.Sprite, e._name_txt = new o.TextBox(20, 16774898);
+                var i = new PIXI.Graphics;
+                return i.beginFill(0), i.drawRect(0, 0, 264, 26), i.endFill(), e._name_txt.addChild(i), e._name_txt.mask = i, e._name_txt.position.set(20, 3), e._lvlabel_txt = new o.TextBox(20, 16774898), e._lvlabel_txt.position.set(351, 5), e._lvlabel_txt.text = "Lv", e._lv_txt = new o.TextBox(24, 16774898), e._lv_txt.anchor.set(1, 0), e._lv_txt.position.set(423, 0), e.addChild(e._bg), e.addChild(e._name_txt), e.addChild(e._lvlabel_txt), e.addChild(e._lv_txt), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showBalloon()
-            }, e.prototype._showBalloon = function () {
-                var t = this._scene.view.map.ship_icon;
-                this._balloon = new l, this._balloon.initialize(), this._balloon.x = t.x + 21, this._balloon.y = t.y - 6, this._balloon.alpha = 0, null != this._offset && (this._balloon.x += this._offset.x, this._balloon.y += this._offset.y), this._scene.view.universal_layer.addChild(this._balloon), createjs.Tween.get(this._balloon).wait(200).to({
-                    y: this._balloon.y - 23,
-                    alpha: 1
-                }, 100).wait(200).call(this._buff)
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this._bg.texture = r.PRAC_MAIN.getTexture(2), this._name_txt.text = t + " " + e, this._lv_txt.text = i.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy()
             }, e
-        }(o.TaskBase);
-    e.TaskReplenishmentBalloonEffect = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = s.MAP_COMMON.getTexture(49), this._icon.texture = s.MAP_COMMON.getTexture(78), this._label.texture = s.MAP_COMMON.getTexture(182)
-        }, e
-    }(PIXI.Container)
+        }(PIXI.Container);
+    e.ShipElement = s
 }

@@ -19,48 +19,75 @@ const function1111 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(23),
-        s = i(42),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._onClose = function () {
-                    o._panel.deactivate(), o._hideFade()
-                }, o._layer = e, o._model = i, o._mainView = n, o
+    var o = i(14),
+        r = i(75),
+        s = function (t) {
+            function e(e) {
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
-            }, e.prototype._loadImages = function () {
-                var t = this,
-                    e = this._model.mst_ids,
-                    i = new r.SlotLoader;
-                i.add(e[0], "statustop_item");
-                for (var n = 0, o = e; n < o.length; n++) {
-                    var s = o[n];
-                    i.add(s, "card"), i.add(s, "item_up"), i.add(s, "item_on"), i.add(s, "item_character")
+            return n(e, t), Object.defineProperty(e.prototype, "sType", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_stype")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_sinfo")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "karyoku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houg")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raisou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_raig")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taiku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_tyku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kaihi", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_kaih")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taikyu", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_taik")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.hasTaiha = function (t) {
+                var e = this.mst_ids.indexOf(t);
+                if (e < 0) return !1;
+                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 1) && 1 == i[1])
+            }, e.prototype.isMarriage = function (t) {
+                var e = this.mst_ids.indexOf(t);
+                if (e < 0) return !1;
+                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 2) && 1 == i[2])
+            }, e.prototype.hasMarriage = function () {
+                var t = o.ObjUtil.getObjectArray(this._o, "api_state");
+                if (null == t) return !1;
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e];
+                    if (!(null == n || n.length <= 2) && 1 == n[2]) return !0
                 }
-                i.load(function () {
-                    t._showPanel()
-                })
-            }, e.prototype._showPanel = function () {
-                var t = this,
-                    e = new s.SlotDetailPanel(this._onClose);
-                this._panel = e, e.initialize(this._model), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).to({
-                    alpha: 1
-                }, 500).call(function () {
-                    e.activate(), t._mainView.visible = !1
-                })
-            }, e.prototype._hideFade = function () {
-                var t = this;
-                this._mainView.visible = !0, createjs.Tween.get(this._panel).to({
-                    alpha: 0
-                }, 300), this._layer.hide(500, function () {
-                    t._layer.visible = !1, t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
+                return !1
+            }, e.prototype.extraVoices = function () {
+                return o.ObjUtil.getObjectArray(this._o, "api_q_voice_info")
             }, e
-        }(o.TaskBase);
-    e.TaskShowSlotDetail = a
+        }(r.AlbumModelBase);
+    e.AlbumShipModel = s
 }

@@ -19,17 +19,32 @@ const function88 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(10),
         r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._text = new PIXI.Sprite, e._text.y = 11, e.addChild(e._text), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this.texture = o.COMMON_MAIN.getTexture(64), this._text.texture = t, this._text.x = e
+            return n(e, t), e.prototype.update = function (t) {
+                switch (t[0]) {
+                    case 1:
+                        var e = t[1];
+                        this.texture = 0 == e ? o.COMMON_MISC.getTexture(71) : o.COMMON_MISC.getTexture(74);
+                        break;
+                    case 2:
+                        this.texture = o.COMMON_MISC.getTexture(77);
+                        break;
+                    case 3:
+                        this.texture = o.COMMON_MISC.getTexture(80);
+                        break;
+                    case 4:
+                        this.texture = o.COMMON_MISC.getTexture(83);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy(), this._text = null
+                this.texture = PIXI.Texture.EMPTY
             }, e
         }(PIXI.Sprite);
-    e.TitleBar = r
+    e.ShipInDeckFlag = r
 }

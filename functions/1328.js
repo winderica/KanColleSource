@@ -19,37 +19,45 @@ const function1328 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1329),
-        r = function (t) {
+    var o = i(20),
+        r = i(63),
+        s = i(19),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._spots = {}, e._flags = {}, e
+                return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
             }
-            return n(e, t), e.prototype.addSpot = function (t) {
-                this._spots[t.no] = t, this.addChild(t)
-            }, e.prototype.addFlag = function (t, e, i) {
-                var n = new o.LandingFlag;
-                n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
-            }, e.prototype.getAllSpots = function () {
-                var t = [];
-                for (var e in this._spots) {
-                    var i = this._spots[e];
-                    t.push(i)
-                }
-                return t
-            }, e.prototype.getSpot = function (t) {
-                var e = t.toString();
-                return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
-            }, e.prototype.getFlag = function (t) {
-                var e = t.toString();
-                return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
-            }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t in this._spots) {
-                    this._spots[t].dispose()
-                }
-                this._spots = null
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(112), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(117), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(119) : s.MAP_COMMON.getTexture(118)
+            }, e.prototype.playAnimation = function (t) {
+                this._animation1(t)
+            }, e.prototype._animation1 = function (t) {
+                var e = this,
+                    i = new o.TweenTask;
+                i.addTween(createjs.Tween.get(this._bg).to({
+                    alpha: 1,
+                    scaleY: 1
+                }, 500)), i.addTween(createjs.Tween.get(this._txt1).wait(300).to({
+                    x: 30,
+                    alpha: 1
+                }, 700)), i.addTween(createjs.Tween.get(this._txt2).wait(300).to({
+                    alpha: 1
+                }, 700)), i.start(function () {
+                    e._animation2(t)
+                })
+            }, e.prototype._animation2 = function (t) {
+                var e = new o.TweenTask;
+                e.addTween(createjs.Tween.get(this._bg).wait(1200).to({
+                    scaleY: 0
+                }, 200)), e.addTween(createjs.Tween.get(this._txt1).wait(800).to({
+                    x: -40,
+                    alpha: 0
+                }, 300)), e.addTween(createjs.Tween.get(this._txt2).wait(1100).to({
+                    alpha: 0
+                }, 100)), e.start(function () {
+                    null != t && t()
+                })
             }, e
         }(PIXI.Container);
-    e.MapSpotLayer = r
+    e.AirRaidTelop = a
 }

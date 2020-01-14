@@ -19,115 +19,114 @@ const function1464 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1465),
-        r = function (t) {
+    var o = i(78),
+        r = i(1465),
+        s = i(96),
+        a = i(97),
+        _ = i(98),
+        u = i(65),
+        l = i(105),
+        c = i(101),
+        h = i(100),
+        p = i(102),
+        d = i(99),
+        f = i(103),
+        y = i(79),
+        m = i(104),
+        g = function (t) {
             function e(e, i) {
-                var n = t.call(this) || this;
-                return n._entered = !1, n._friend = e, n._combined = i, n
+                var n = t.call(this, e, !1) || this;
+                return n._record = i, n
             }
-            return n(e, t), e.prototype.isEntered = function () {
-                return this._entered
-            }, e.prototype.getBannerNum = function () {
-                return null == this._banners ? 0 : this._banners.length
-            }, e.prototype.hasBanner = function () {
-                return this.getBannerNum() > 0
-            }, e.prototype.initialize = function (t) {
-                if (this._banners = [], null != t)
-                    for (var e = 0; e < t.length; e++) {
-                        var i = t[e];
-                        if (null != i) {
-                            var n = i.mst_id,
-                                r = i.hp_now,
-                                s = i.hp_max,
-                                a = i.isTaihi(),
-                                _ = 0 == i.speed,
-                                l = new o.Banner(e, this._friend, this._combined);
-                            l.initialize(n, r, s, a, _), this._banners.push(l), this.addChild(l)
-                        }
-                    }
-            }, e.prototype.dispose = function () {
-                if (null != this._banners)
-                    for (var t = 0, e = this._banners; t < e.length; t++) {
-                        var i = e[t];
-                        i.dispose()
-                    }
-            }, e.prototype.getBanner = function (t) {
-                return null == this._banners ? null : t >= this._banners.length ? null : this._banners[t]
-            }, e.prototype.isContains = function (t) {
-                return null != this._banners && this._banners.indexOf(t) >= 0
-            }, e.prototype.enter = function () {
-                if (1 != this._entered && 0 != this.hasBanner()) {
-                    this._entered = !0;
-                    for (var t = 0, e = this._banners; t < e.length; t++) {
-                        var i = e[t];
-                        null != i && (0 == this._combined ? i.enter() : i.enterCombined())
-                    }
-                }
-            }, e.prototype.createEnterTweens = function () {
-                var t = [];
-                if (1 == this._entered) return t;
-                if (0 == this.hasBanner()) return t;
-                this._entered = !0;
-                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = 0 == this._combined ? o.createEnterTween(e) : o.createEnterTweenCombined(e);
-                        null != r && (t.push(r), e += 100)
-                    }
-                }
-                return t
-            }, e.prototype.createSakutekiTweens = function () {
-                var t = [];
-                if (1 == this._entered) return t;
-                if (0 == this.hasBanner()) return t;
-                this._entered = !0;
-                for (var e = 0, i = this._banners; e < i.length; e++) {
-                    var n = i[e];
-                    if (null != n) {
-                        var o = n.createEnterTweenBySakuteki();
-                        null != o && t.push(o)
-                    }
-                }
-                return t
-            }, e.prototype.createExitTweens = function () {
-                var t = [];
-                if (0 == this._entered) return t;
-                if (this._entered = !1, 0 == this.hasBanner()) return t;
-                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = o.createMainDeckExitTween(e);
-                        t.push(r), e += 100
-                    }
-                }
-                return t
-            }, e.prototype.createExitTweensUpward = function () {
-                var t = [];
-                if (0 == this._entered) return t;
-                if (this._entered = !1, 0 == this.hasBanner()) return t;
-                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = o.createSubDeckExitTween(e, !1);
-                        t.push(r), e += 100
-                    }
-                }
-                return t
-            }, e.prototype.createExitTweensUpDown = function () {
-                var t = [];
-                if (0 == this._entered) return t;
-                if (this._entered = !1, 0 == this.hasBanner()) return t;
-                for (var e = [], i = 0; i < this._banners.length; i++) {
-                    var n = this._banners[i];
-                    null != n && 0 != n.entered && e.push(n)
-                }
-                for (var o = 0; e.length > 0;) {
-                    var r = e.shift(),
-                        s = r.createSubDeckExitTween(o, !1);
-                    t.push(s), 0 != e.length && (r = e.pop(), s = r.createSubDeckExitTween(o, !0), t.push(s), o += 100)
-                }
-                return t
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this.scene.bg.setDay(function () {
+                    t._shutterOpen()
+                })
+            }, e.prototype._shutterOpen = function () {
+                var t = this,
+                    e = this.scene.view;
+                1 == e.shutter.isOpened() ? this._jetAirUnit() : createjs.Tween.get(null).wait(3e3).call(function () {
+                    e.shutter.once("opened", function () {
+                        t._moveBanner()
+                    }), e.shutter.open()
+                })
+            }, e.prototype._moveBanner = function () {
+                var t = this;
+                new r.TaskMoveBannerDay(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new s.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new a.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new _.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new l.PhaseSupport(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new u.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new c.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new p.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new d.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new m.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.BannerGroup = r
+        }(o.PhaseCombatBase);
+    e.PhaseDayFromNight = g
 }

@@ -19,22 +19,30 @@ const function670 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
-                return i.position.set(195, 10), e.conBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(14)), e.titBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.titBg.addChild(i), e.addChild(e.conBg), e.addChild(e.titBg), e
+    var o = i(0),
+        r = i(13),
+        s = i(49),
+        a = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.conBg = null, this.titBg = null, this.removeChildren()
-            }, e.prototype.init = function () {
-                this.conBg.position.set(148, 145), this.titBg.position.set(0, 105)
-            }, e.prototype.show = function () {
-                this.visible = !0
-            }, e.prototype.hide = function () {
-                this.visible = !1
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                var t = this,
+                    e = this.model.mst_id,
+                    i = new r.ShipLoader;
+                i.add(e, !1, "card"), i.load(function () {
+                    var i = o.default.resources.getShip(e, !1, "card");
+                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
+                })
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._card), this._card = null
             }, e
-        }(PIXI.Container);
-    e.BackgroundLayer = r
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogShip = a
 }

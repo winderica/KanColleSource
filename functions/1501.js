@@ -19,83 +19,34 @@ const function1501 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(27),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(16),
+        r = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.ParallelTask;
-                e.add(new _(this._scene)), e.add(new l(this._scene)), e.add(new u(this._scene)), e.start(function () {
-                    t._endTask()
+            return n(e, t), e.prototype.showSanshiki = function (t, e) {
+                var i = this,
+                    n = o.BATTLE_MAIN.getTexture(137),
+                    r = new PIXI.Sprite(n);
+                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
+                    alpha: 1
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    i.removeChild(r)
                 })
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase);
-    e.TaskShowExtraResults = a;
-    var _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.data.extra_war_results;
-                if (e > 0) {
-                    var i = this._scene.view.panel_exp.extra_result.extra_war_result;
-                    i.update(e), i.alpha = 0, i.visible = !0, createjs.Tween.get(i).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.data.extra_useitem_mst_id;
-                if (e > 0) {
-                    var i = o.default.resources.getUseitem(e, 0),
-                        n = this._scene.view.panel_exp.extra_result.useitem_icon;
-                    n.texture = i, n.alpha = 0, n.visible = !0, createjs.Tween.get(n).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (1 == this._scene.data.extra_result) {
-                    var e = this._scene.view.panel_exp.extra_result.map_incentive;
-                    e.alpha = 0, e.visible = !0, createjs.Tween.get(e).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase)
+            }, e.prototype.showDanmaku = function (t, e) {
+                var i = this,
+                    n = o.BATTLE_MAIN.getTexture(134),
+                    r = new PIXI.Sprite(n);
+                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
+                    alpha: 1
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    i.removeChild(r)
+                })
+            }, e.prototype.dispose = function () {}, e
+        }(PIXI.Container);
+    e.BannerInfoLayer = r
 }

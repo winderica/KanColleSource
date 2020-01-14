@@ -19,32 +19,37 @@ const function1397 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
+    var o = i(2),
+        r = i(24),
+        s = i(16),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke = new _, i._smoke.position.set(69, 45), i
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._smoke.x - 105,
+                    i = this._smoke.y - 9;
+                createjs.Tween.get(this._smoke).call(function () {
+                    t._layer.addChild(t._smoke)
+                }).to({
+                    x: e,
+                    y: i,
+                    alpha: 0,
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 500).call(function () {
+                    t._layer.removeChild(t._smoke), t._endTask()
+                })
+            }, e
+        }(o.TaskBase);
+    e.AnimAntiAircraftKoukaku = a;
+    var _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._chara = [];
-            for (var i = 0; i < 2; i++) {
-                var n = new PIXI.Container;
-                e._chara.push(n), e.addChild(n)
-            }
-            return e._explosion = new PIXI.Container, e.addChild(e._explosion), e
+            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(149)), e._img.position.set(-44, -63), e.addChild(e._img), e
         }
-        return n(e, t), Object.defineProperty(e.prototype, "chara", {
-            get: function () {
-                return this._chara
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "explosion", {
-            get: function () {
-                return this._explosion
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.dispose = function () {
-            for (var t = 0; t < 2; t++) this._chara[t].removeChildren(), this._chara[t] = null;
-            this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
-        }, e
-    }(PIXI.Container);
-    e.CutinMutsuAttackCanvas = o
+        return n(e, t), e
+    }(r.Container)
 }

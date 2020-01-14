@@ -1,52 +1,40 @@
 const function66 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    ! function (t) {
-        function e(t) {
-            return 1 * Math.sin(t / 1 * (Math.PI / 2)) + 0
-        }
-
-        function i(t, e, i, n, o) {
-            void 0 === o && (o = null);
-            for (var r = new Array, s = n / 100, a = n / s, _ = 0; _ < s; _++) {
-                var l = a * (_ + 1) / n;
-                null != o && (l = o(l)), r.push({
-                    x: (1 - l) * (1 - l) * t.x + 2 * (1 - l) * l * e.x + l * l * i.x,
-                    y: (1 - l) * (1 - l) * t.y + 2 * (1 - l) * l * e.y + l * l * i.y,
-                    t: a
-                })
+    var o = i(16),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._setPosition = function (t, i) {
+                    e._content.position.set(t, i)
+                }, e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return r
-        }
-
-        function n(t, e, i, n, o) {
-            for (var r = new Array, s = o / 100, a = o / s, _ = 0; _ < s; _++) {
-                var l = a * (_ + 1) / o;
-                r.push({
-                    x: (1 - l) * (1 - l) * (1 - l) * t.x + 3 * (1 - l) * (1 - l) * l * e.x + 3 * (1 - l) * l * l * i.x + l * l * l * n.x,
-                    y: (1 - l) * (1 - l) * (1 - l) * t.y + 3 * (1 - l) * (1 - l) * l * e.y + 3 * (1 - l) * l * l * i.y + l * l * l * n.y,
-                    t: a
-                })
-            }
-            return r
-        }
-
-        function o(e, i, n, o, r, s, a) {
-            for (var _ = t.create3BezierPoints(i, n, o, r, s), l = createjs.Tween.get(e, a), u = 0, c = _; u < c.length; u++) {
-                var h = c[u];
-                l.to({
-                    x: h.x,
-                    y: h.y
-                }, h.t)
-            }
-            return l
-        }
-
-        function r(t, e, i, n, o, r, s, a) {
-            void 0 === r && (r = 16711680), void 0 === s && (s = 65280), void 0 === a && (a = 255), t.lineStyle(1, r, .3), t.moveTo(e.x, e.y), t.bezierCurveTo(i.x, i.y, n.x, n.y, o.x, o.y), t.lineStyle(1, s, .3), t.moveTo(e.x, e.y), t.lineTo(i.x, i.y), t.lineStyle(1, a, .3), t.moveTo(o.x, o.y), t.lineTo(n.x, n.y), t.lineStyle(), t.beginFill(s, .3), t.drawCircle(i.x, i.y, 10), t.endFill(), t.beginFill(a, .3), t.drawCircle(n.x, n.y, 10), t.endFill()
-        }
-        t.signOut = e, t.create2BezierPoints = i, t.create3BezierPoints = n, t.create3BezierTween = o, t.draw3BezierLine = r
-    }(e.TweenUtil || (e.TweenUtil = {}))
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121));
+                this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.x = -1, t.x = 2 * t.width, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.y = -1, t.y = 2 * t.height, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(121)), t.scale.x = -1, t.scale.y = -1, t.x = 2 * t.width, t.y = 2 * t.height, this._content.addChild(t)
+            }, e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._content), this._t.loop = !0, this._t.call(this._setPosition, [0, 0]).wait(33), this._t.call(this._setPosition, [2, 5]).wait(33), this._t.call(this._setPosition, [-5, 0]).wait(33), this._t.call(this._setPosition, [3, 8]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, -2]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, 5]).wait(33), this._t.call(this._setPosition, [-5, 9]).wait(33), this._t.call(this._setPosition, [5, 0]).wait(33), this._t.call(this._setPosition, [2, 6]).wait(33), this._t.call(this._setPosition, [0, -5]).wait(33), this._t.call(this._setPosition, [5, 3]).wait(33), this._t.call(this._setPosition, [5, -3]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e
+        }(PIXI.Container);
+    e.IntensiveLines = r
 }

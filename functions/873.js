@@ -1,37 +1,20 @@
 const function873 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(0),
-        s = function (t) {
-            function e(e) {
-                return t.call(this) || this
+    var n = i(0),
+        o = function () {
+            function t(t) {
+                this._memID = -1, this._counter = 0, this._playList = t
             }
-            return n(e, t), e.prototype._start = function () {
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                r.default.sound.bgm.play(102), this._startScene()
-            }, e.prototype._startScene = function () {
-                this._endTask()
-            }, e
-        }(o.TaskBase);
-    e.InitializeTask = s
+            return t.prototype.play = function (t) {
+                var e = this._voiceIndex(t),
+                    i = n.default.model.ship.get(t).mstID;
+                n.default.sound.voice.play(i.toString(), this._playList[e])
+            }, t.prototype._voiceIndex = function (t) {
+                return this._memID !== t ? (this._memID = t, this._counter = 0, 0) : ++this._counter % this._playList.length
+            }, t
+        }();
+    e.ShipVoice = o
 }

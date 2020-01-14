@@ -19,20 +19,29 @@ const function1530 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = function (t) {
+    var o = i(2),
+        r = i(1531),
+        s = i(1535),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._disposeView()
-            }, e.prototype._disposeView = function () {
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                o.default.sound.voice.stopAll(), o.default.sound.voice.setNumOfMultiPlay(1), this._endTask()
+                this._normalBonus()
+            }, e.prototype._normalBonus = function () {
+                var t = this;
+                new r.TaskNormalBonus(this._scene).start(function () {
+                    t._scene.view.dispose(), t._mapBonus()
+                })
+            }, e.prototype._mapBonus = function () {
+                var t = this,
+                    e = this._scene.layer_bonus,
+                    i = this._scene.data.getMapBonus();
+                new s.TaskEventBonus(e, i).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(r.TaskBase);
-    e.TaskEnd = s
+        }(o.TaskBase);
+    e.PhaseBonus = a
 }

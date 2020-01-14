@@ -21,20 +21,54 @@ const function1090 = function (t, e, i) {
     });
     var o = i(0),
         r = i(11),
-        s = i(173),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._view = i, n
+        s = i(1091),
+        a = i(1093),
+        _ = i(1094),
+        u = i(1101),
+        l = i(1104),
+        c = i(1105),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._dispose = function () {
+                    null != e._viewTop && (e.removeChild(e._viewTop), e._viewTop.dispose(), e._viewTop = null, e._viewInfo.dispose(), e._viewInfo = null, e._viewRanking.dispose(), e._viewRanking = null), null != e._topTask && e._topTask.cancel(), null != e._viewSub && (e.removeChild(e._viewSub), e._viewSub.dispose(), e._viewSub = null)
+                }, e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = s.AlbumConst.BGM_ID_FOR_SHIP;
-                o.default.sound.bgm.play(t), this._startScene()
-            }, e.prototype._startScene = function () {
-                this._view.activate(), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._view = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+                get: function () {
+                    return this._viewTop
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "viewInfo", {
+                get: function () {
+                    return this._viewInfo
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "viewRanking", {
+                get: function () {
+                    return this._viewRanking
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPreInitializeTask = function (t) {
+                return new s.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new s.InitializeTask(this)
+            }, e.prototype.getPreFinalizeTask = function () {
+                return new a.PreFinalizeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                return new a.FinalizeTask(this._dispose)
+            }, e.prototype.initialize = function () {
+                this._viewTop = new u.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewInfo = new l.ViewInfo, this._viewInfo.initialize(), this.addChild(this._viewInfo), this._viewRanking = new c.ViewRanking, this._viewRanking.initialize(), this._viewRanking.visible = !1, this.addChild(this._viewRanking)
+            }, e.prototype.startTopTask = function () {
+                var t = this,
+                    e = o.default.model.deck.get(1).getShipList()[0].mstID;
+                o.default.sound.voice.play(e.toString(), 8), this._topTask = new _.TaskTop(this), this._topTask.start(function () {
+                    t._topTask = null
+                })
             }, e
-        }(r.TaskBase);
-    e.TaskSceneInitialize = a
+        }(r.SceneBase);
+    e.RecordScene = h
 }

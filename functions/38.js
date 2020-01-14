@@ -1,36 +1,9 @@
 const function38 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._time = 0, i._time = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(this._time).call(function () {
-                    t._endTask()
-                })
-            }, e
-        }(o.TaskBase);
-    e.WaitTask = r
+    ! function (t) {
+        t[t._01_SYOUKOUKEI = 1] = "_01_SYOUKOUKEI", t[t._02_TYUKOUKEI = 2] = "_02_TYUKOUKEI", t[t._03_DAIKOUKEI = 3] = "_03_DAIKOUKEI", t[t._04_HUKUHOU = 4] = "_04_HUKUHOU", t[t._05_GYORAI = 5] = "_05_GYORAI", t[t._06_KANJO_SENTOUKI = 6] = "_06_KANJO_SENTOUKI", t[t._07_KANJO_BAKUGEKIKI = 7] = "_07_KANJO_BAKUGEKIKI", t[t._08_KANJO_KOUGEKIKI = 8] = "_08_KANJO_KOUGEKIKI", t[t._09_KANJO_TEISATSUKI = 9] = "_09_KANJO_TEISATSUKI", t[t._10_SUIJO_TEISATSUKI = 10] = "_10_SUIJO_TEISATSUKI", t[t._11_SUIJO_BAKUGEKIKI = 11] = "_11_SUIJO_BAKUGEKIKI", t[t._12_DENTAN_S = 12] = "_12_DENTAN_S", t[t._13_DENTAN_L = 13] = "_13_DENTAN_L", t[t._14_SONAR = 14] = "_14_SONAR", t[t._15_BAKURAI = 15] = "_15_BAKURAI", t[t._16_TUIKA_SOUKOU = 16] = "_16_TUIKA_SOUKOU", t[t._17_KIKANBU_KYOUKA = 17] = "_17_KIKANBU_KYOUKA", t[t._18_SANSHIKI_DAN = 18] = "_18_SANSHIKI_DAN", t[t._19_TAIKAN_KYOUKA = 19] = "_19_TAIKAN_KYOUKA", t[t._20_VT_SINKAN = 20] = "_20_VT_SINKAN", t[t._21_TAIKU_KIJU = 21] = "_21_TAIKU_KIJU", t[t._22_TOKUSYU_SENKOUTEI = 22] = "_22_TOKUSYU_SENKOUTEI", t[t._23_OUKYU_SYUURI = 23] = "_23_OUKYU_SYUURI", t[t._24_JOURIKUYOU_SHUTEI = 24] = "_24_JOURIKUYOU_SHUTEI", t[t._25_AUTOGYRO = 25] = "_25_AUTOGYRO", t[t._26_TAISEN_SHOKAIKI = 26] = "_26_TAISEN_SHOKAIKI", t[t._27_TUIKA_SOUKOU_TYUUGATA = 27] = "_27_TUIKA_SOUKOU_TYUUGATA", t[t._28_TUIKA_SOUKOU_OGATA = 28] = "_28_TUIKA_SOUKOU_OGATA", t[t._29_TANSHOTO = 29] = "_29_TANSHOTO", t[t._30_KANI_YUSOUBUZAI = 30] = "_30_KANI_YUSOUBUZAI", t[t._31_KANTEI_SYUURI_SISETU = 31] = "_31_KANTEI_SYUURI_SISETU", t[t._32_SENSUIKAN_GYORAI = 32] = "_32_SENSUIKAN_GYORAI", t[t._33_SYOUMEI_DAN = 33] = "_33_SYOUMEI_DAN", t[t._34_SIREIBU_SISETU = 34] = "_34_SIREIBU_SISETU", t[t._35_KOUKUU_YOUIN = 35] = "_35_KOUKUU_YOUIN", t[t._36_KOUSYA_SOUCHI = 36] = "_36_KOUSYA_SOUCHI", t[t._37_TAICHI_ROCKET = 37] = "_37_TAICHI_ROCKET", t[t._38_DAIKOUKEI = 38] = "_38_DAIKOUKEI", t[t._39_SUIJOKAN_YOUIN = 39] = "_39_SUIJOKAN_YOUIN", t[t._40_OGATA_SONAR = 40] = "_40_OGATA_SONAR", t[t._41_OGATA_HIKOUTEI = 41] = "_41_OGATA_HIKOUTEI", t[t._42_LARGE_TANSHOTO = 42] = "_42_LARGE_TANSHOTO", t[t._43_SENTO_RYOSYOKU = 43] = "_43_SENTO_RYOSYOKU", t[t._44_HOKYU_BUSSHI = 44] = "_44_HOKYU_BUSSHI", t[t._45_SUIJO_SENTOUKI = 45] = "_45_SUIJO_SENTOUKI", t[t._46_TOKUGATA_UCHIBITEI = 46] = "_46_TOKUGATA_UCHIBITEI", t[t._47_RIKUJO_KOUGEKIKI = 47] = "_47_RIKUJO_KOUGEKIKI", t[t._48_KYOKUCHI_SENTOUKI = 48] = "_48_KYOKUCHI_SENTOUKI", t[t._49_RIKUJO_TEISATSUKI = 49] = "_49_RIKUJO_TEISATSUKI", t[t._50_YUSO_KIZAI = 50] = "_50_YUSO_KIZAI", t[t._51_SENSUIKAN_SOUBI = 51] = "_51_SENSUIKAN_SOUBI", t[t._56_FUNSHIKI_SENTOUKI = 56] = "_56_FUNSHIKI_SENTOUKI", t[t._57_FUNSHIKI_BAKUGEKIKI = 57] = "_57_FUNSHIKI_BAKUGEKIKI", t[t._58_FUNSHIKI_KOUGEKIKI = 58] = "_58_FUNSHIKI_KOUGEKIKI", t[t._59_FUNSHIKI_TEISATSUKI = 59] = "_59_FUNSHIKI_TEISATSUKI", t[t._93_DENTAN_L = 93] = "_93_DENTAN_L", t[t._94_KANJO_TEISATSUKI = 94] = "_94_KANJO_TEISATSUKI"
+    }(e.EquipType || (e.EquipType = {}))
 }

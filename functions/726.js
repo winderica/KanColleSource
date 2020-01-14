@@ -21,89 +21,82 @@ const function726 = function (t, e, i) {
     });
     var o = i(3),
         r = i(4),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClick = function () {
-                    i.onClick(i._presetId)
-                }, i._onMouseOut = function (t) {
-                    i.onMouseOut(i._index, t)
-                }, i._index = e;
-                var n = o.ORGANIZE_MAIN.getTexture(36),
-                    a = o.ORGANIZE_MAIN.getTexture(40),
-                    _ = o.ORGANIZE_MAIN.getTexture(12),
-                    l = o.ORGANIZE_MAIN.getTexture(13);
-                i._background = new PIXI.Sprite(n);
-                var u = new PIXI.Sprite(a);
-                return i.textMessage = new r.TextBox(16, "red"), i._positiveButton = new PIXI.Sprite(_), i.negativeButton = new PIXI.Sprite(l), u.position.set(279, -13), i.textMessage.position.set(13, 9), i._positiveButton.position.set(237, 42), i.negativeButton.position.set(237, 42), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i._positiveButton.visible = !1, i.negativeButton.visible = !1, i.addChild(i._background, u, i.textMessage, i.negativeButton, i._positiveButton), i._background.anchor.set(.5, 0), i._background.x = 285, i.textMessage.anchor.set(.5, 0), i
+        s = i(33),
+        a = i(1),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._onClickYES = function () {
+                    e.onClickYES()
+                }, e._onClickNO = function () {
+                    e.onClickNO()
+                };
+                var i = new PIXI.Container;
+                i.position.set(69, 153), e.firstShipInDeckBanners = new Array;
+                for (var n = 0; n < 6; n++) {
+                    var _ = new s.ShipBanner;
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.firstShipInDeckBanners.push(_), i.addChild(_)
+                }
+                var u = new PIXI.Container;
+                u.position.set(678, 153), e.secondShipInDeckBanners = new Array;
+                for (var n = 0; n < 6; n++) {
+                    var _ = new s.ShipBanner;
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), u.addChild(_)
+                }
+                e.background = new PIXI.Sprite;
+                var l = o.ORGANIZE_MAIN.getTexture(15);
+                e.buttonOrganize = new PIXI.Sprite(l);
+                var c = o.ORGANIZE_MAIN.getTexture(8);
+                return e.buttonBack = new PIXI.Sprite(c), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(18, 16777215), e.secondDeckName = new r.TextBox(18, 16777215), e.firstDeckName.position.set(60, 122), e.secondDeckName.position.set(667, 122), e.buttonOrganize.position.set(300, 420), e.buttonBack.position.set(480, 420), e.buttonOrganize.interactive = e.buttonOrganize.buttonMode = !0, e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonOrganize.addListener(a.EventType.CLICK, e._onClickYES), e.buttonBack.addListener(a.EventType.CLICK, e._onClickNO), e.addChild(e.background, e.message, e.buttonOrganize, e.buttonBack, e.firstDeckName, e.secondDeckName, i, u), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "index", {
-                get: function () {
-                    return this._index
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "background", {
-                get: function () {
-                    return this._background
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "positiveButton", {
-                get: function () {
-                    return this._positiveButton
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._positiveButton.off(s.EventType.CLICK), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.textMessage = null, this.negativeButton = null, this._index = null, this._background = null, this._positiveButton = null, this._presetId = null
-            }, e.prototype.update = function (t, e, i) {
-                this._positiveButton.visible = !1, this.negativeButton.visible = !1, i ? this._positiveButton.visible = !0 : this.negativeButton.visible = !0, this.textMessage.text = e, this._background.width = this.textMessage.width + 9, this._background.x = 285, 285 < this._background.width / 2 && (this._background.x = Math.floor(this._background.width / 2 - 285 + 285)), this.textMessage.x = this.background.x, this.positiveButton.x = Math.floor(this.background.x - this.positiveButton.width / 2), this.negativeButton.x = Math.floor(this.background.x - this.negativeButton.width / 2), this._presetId = t
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this.firstShipInDeckBanners.length; t++) this.firstShipInDeckBanners[t].dispose(), this.firstShipInDeckBanners[t] = null;
+                for (var t = 0; t < this.secondShipInDeckBanners.length; t++) this.secondShipInDeckBanners[t].dispose(), this.secondShipInDeckBanners[t] = null;
+                this.firstDeckName.destroy(), this.secondDeckName.destroy(), this.onClickYES = null, this.onClickNO = null, this.background = null, this.buttonOrganize = null, this.buttonBack = null, this.message = null, this.firstDeckName = null, this.secondDeckName = null, this.firstShipInDeckBanners = null, this.secondShipInDeckBanners = null
+            }, e.prototype.updateFirstDeck = function (t) {
+                this.firstDeckName.text = t.name;
+                for (var e = t.getShipList(), i = 0; i < e.length; i++) {
+                    var n = this.firstShipInDeckBanners[i],
+                        o = e[i];
+                    n.visible = !1, o && (n.update(o, !1), n.visible = !0)
+                }
+            }, e.prototype.updateSecondDeck = function (t) {
+                this.secondDeckName.text = t.name;
+                for (var e = null != t.expedition, i = t.getShipList(), n = 0; n < i.length; n++) {
+                    var o = this.secondShipInDeckBanners[n],
+                        r = i[n];
+                    o.visible = !1, r && (o.update(r, e), o.visible = !0)
+                }
+            }, e.prototype.updateCombineDeck = function (t, e) {
+                this.updateFirstDeck(t), this.updateSecondDeck(e)
+            }, e.prototype.updateViewType = function (t) {
+                switch (t) {
+                    case 1:
+                        this.initKidoView();
+                        break;
+                    case 2:
+                        this.initSuijoView();
+                        break;
+                    case 3:
+                        this.initYusoView()
+                }
+            }, e.prototype.initKidoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(13);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(14);
+                this.message.texture = e, this.message.position.set(213, 49)
+            }, e.prototype.initSuijoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(19);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(20);
+                this.message.texture = e, this.message.position.set(213, 49)
+            }, e.prototype.initYusoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(22);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(23);
+                this.message.texture = e, this.message.position.set(183, 49)
             }, e
         }(PIXI.Container);
-    e.PresetAlertOrganizedPopup = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i._presetId)
-            }, i._onMouseOut = function (t) {
-                i.onMouseOut(i._index, t)
-            }, i._onMouseOver = function (t) {
-                i.onMouseOver(i._index, t)
-            }, i._index = e;
-            var n = o.ORGANIZE_MAIN.getTexture(37),
-                a = o.ORGANIZE_MAIN.getTexture(40),
-                _ = o.ORGANIZE_MAIN.getTexture(13),
-                l = o.ORGANIZE_MAIN.getTexture(11);
-            i._background = new PIXI.Sprite(n);
-            var u = new PIXI.Sprite(a);
-            return i.textMessage = new r.TextBox(18, "red"), i._negativeButton = new PIXI.Sprite(_), i._positiveButton = new PIXI.Sprite(l), i.textMessage.text = "\u65e2\u306b\u5b58\u5728\u3057\u306a\u3044\u8266\u5a18\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059\u3002", u.position.set(160, -12), i.textMessage.position.set(10, 10), i._negativeButton.position.set(18, 39), i._positiveButton.position.set(34, 39), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._positiveButton.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._negativeButton.visible = !1, i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i.addChild(i._background, u, i.textMessage, i._negativeButton, i._positiveButton), i
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "index", {
-            get: function () {
-                return this._index
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "background", {
-            get: function () {
-                return this._background
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "positiveButton", {
-            get: function () {
-                return this._positiveButton
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.dispose = function () {
-            this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.CLICK), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.onMouseOver = null, this.textMessage = null, this._positiveButton = null, this._negativeButton = null, this._background = null, this._index = null, this._presetId = null, this.removeChildren()
-        }, e.prototype.update = function (t, e) {
-            this._presetId = t, this._positiveButton.visible = !1, this._negativeButton.visible = !1, e ? this._positiveButton.visible = !0 : this._negativeButton.visible = !0
-        }, e
-    }(PIXI.Container);
-    e.PresetAlertLostPopup = _
+    e.CombineConfirmDialog = _
 }

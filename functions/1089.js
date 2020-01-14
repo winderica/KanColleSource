@@ -19,34 +19,22 @@ const function1089 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(173),
-        s = i(385),
-        a = i(386),
-        _ = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._model = i, r._view = n, r._onBack = o, r
+    var o = i(0),
+        r = i(9),
+        s = i(7),
+        a = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                (new a.TaskLoadResources).start(function () {
-                    t._initView()
-                })
-            }, e.prototype._initView = function () {
-                this._view.initialize(this._onBack), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this;
-                new s.AlbumAPI(1, 0, this._model).start(function () {
-                    t._showImage()
-                })
-            }, e.prototype._showImage = function () {
-                var t = r.AlbumConst.COUNT_INPAGE,
-                    e = this._model.getData(1, 0, t);
-                this._view.content.update(1, 0, e), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._model = null, this._view = null, this._onBack = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.deck.get(this._deck_id).expedition,
+                    i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
+                null == i || e.__update__(i), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskScenePreInitialize = _
+        }(r.APIBase);
+    e.ExpeditionCancelAPI = a
 }

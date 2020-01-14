@@ -20,30 +20,92 @@ const function588 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(4),
+        r = i(1),
         s = i(192),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._coin = o.default.model.useItem.getCount(44), i._furnitureJukeBoxBGMLineModel = e, i
+        a = i(281),
+        _ = i(191),
+        u = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "btn_kagu", {
-                get: function () {
-                    return this._btn_kagu
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_back3", {
-                get: function () {
-                    return this._btn_back3
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.init = function () {
-                this._pop_jukeboxbg2 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(18)), this._pop_jukeboxbg2.position.set(301, 232), this.addChild(this._pop_jukeboxbg2), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._jukebox_icon_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(10)), this._jukebox_icon_bgm.position.set(469, 305), this.addChild(this._jukebox_icon_bgm)), this._bgm_name = new r.TextBox(17, 4473924), this._bgm_name.position.set(658, 301), this._bgm_name.text = this._furnitureJukeBoxBGMLineModel.api_name + "", this.addChild(this._bgm_name), this._bgm_coin_price = new r.TextBox(17, 4473924), this._bgm_coin_price.position.set(746, 340), this._bgm_coin_price.anchor.set(1, 0), this._bgm_coin_price.text = this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_price), this._bgm_coin_now = new r.TextBox(17, 4473924), this._bgm_coin_now.position.set(746, 379), this._bgm_coin_now.anchor.set(1, 0), this._bgm_coin_now.text = this._coin + "", this.addChild(this._bgm_coin_now), this._coin < this._furnitureJukeBoxBGMLineModel.api_use_coin ? (this._bgm_coin_now.style.fill = 14483456, this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(3)), this._btn_kagu.interactive = !1) : (this._arrow_mini = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(0)), this._arrow_mini.position.set(751, 385), this.addChild(this._arrow_mini), this._bgm_coin_after = new r.TextBox(17, 4473924), this._bgm_coin_after.position.set(836, 379), this._bgm_coin_after.anchor.set(1, 0), this._bgm_coin_after.text = this._coin - this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_after), this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(2)), this._btn_kagu.interactive = this._btn_kagu.buttonMode = !0), this._btn_kagu.position.set(370, 412), this.addChild(this._btn_kagu), this._btn_back3 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(1)), this._btn_back3.interactive = this._btn_back3.buttonMode = !0, this._btn_back3.position.set(689, 412), this.addChild(this._btn_back3)
-            }, e.prototype.discard = function () {
-                this.removeChildren(), this._bgm_name.destroy(), this._bgm_coin_price.destroy(), this._bgm_coin_now.destroy(), this._bgm_coin_after && this._bgm_coin_after.destroy()
+            return n(e, t), e.prototype.initialize = function () {
+                var t = o.default.resources.getUIImage("title_bg2");
+                this._bg = new PIXI.Sprite(t), this._container = new PIXI.Container, this._container.alpha = 0, this._logo = new PIXI.Sprite(_.TITLE_MAIN.getTexture(3)), this._logo.anchor.set(.5, .5), this._logo.position.set(942, 273), this._kira = new a.KiraLayer, this._kira.position.set(765, 114), this._kira.initialize(), this._btn = new l, this._btn.initialize(), this._btn.position.set(914, 755), this._btn.alpha = 0, this.addChild(this._bg), this._container.addChild(this._logo), this._container.addChild(this._kira), this._container.addChild(this._btn), this.addChild(this._container)
+            }, e.prototype.dispose = function () {
+                this._kira.dispose(), this._btn.dispose()
+            }, e.prototype.showTween = function (t) {
+                var e = this;
+                createjs.Tween.get(this._container).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    e._showTween2(t)
+                })
+            }, e.prototype.waitClickTween = function (t) {
+                var e = this;
+                this._btn.interactive = this._btn.buttonMode = !0, this._btn.once(r.EventType.CLICK, function () {
+                    e._btn.interactive = e._btn.buttonMode = !1, createjs.Tween.get(e._btn).to({
+                        alpha: 0
+                    }, 200), t()
+                })
+            }, e.prototype._showTween2 = function (t) {
+                var e = this;
+                createjs.Tween.get(this._btn).to({
+                    y: 605,
+                    alpha: 1
+                }, 1e3).wait(800).call(function () {
+                    e._showTween3(t)
+                })
+            }, e.prototype._showTween3 = function (t) {
+                var e = this;
+                createjs.Tween.get(this._btn.scale).to({
+                    x: 1.1,
+                    y: 1.1
+                }, 100).call(function () {
+                    e._btn.disabled = !1
+                }).to({
+                    x: 1,
+                    y: 1
+                }, 100).call(function () {
+                    var i = new s.WorldTextImage;
+                    i.anchor.set(.5, .5), i.position.set(912, 684), e.addChild(i), i.load("title"), t()
+                })
             }, e
         }(PIXI.Container);
-    e.JukeBoxConfirm = a
+    e.TitleView2 = u;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._disabled = !0, e._onMouseOver = function () {
+                e.setTexture(7)
+            }, e._onMouseOut = function () {
+                e.setTexture(e._base_texture_no)
+            }, e._onMouseDown = function () {
+                e.setTexture(5)
+            }, e._onMouseUp = function () {
+                e.setTexture(e._base_texture_no)
+            }, e.anchor.set(.5, .5), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "disabled", {
+            get: function () {
+                return this._disabled
+            },
+            set: function (t) {
+                this._disabled = t, this.setTexture(this._base_texture_no)
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = _.TITLE_MAIN.getTexture(this._base_texture_no), this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.MOUSEDOWN, this._onMouseDown), this.on(r.EventType.CLICK, this._onMouseUp)
+        }, e.prototype.dispose = function () {
+            this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.MOUSEDOWN, this._onMouseDown), this.off(r.EventType.CLICK, this._onMouseUp)
+        }, Object.defineProperty(e.prototype, "_base_texture_no", {
+            get: function () {
+                return this._disabled ? 6 : 4
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.setTexture = function (t) {
+            this.texture = _.TITLE_MAIN.getTexture(t)
+        }, e
+    }(PIXI.Sprite)
 }

@@ -22,13 +22,16 @@ const function1262 = function (t, e, i) {
     var o = i(2),
         r = i(15),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._scene.view.dispose(), r.UIImageLoader.clearMemoryCache("map"), this._endTask()
+                var t = this,
+                    e = new r.UIImageLoader("prac");
+                e.add("prac_main.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(o.TaskBase);
-    e.TaskFinalize = s
+    e.TaskLoadResourcesPractice = s
 }

@@ -19,42 +19,15 @@ const function404 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1129),
-        s = i(33),
-        a = i(243),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._target = i, n
+    var o = i(31),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, 0)),
-                    n = i.result;
-                i.start(function () {
-                    1 == n.hasCaution() ? t._confirm() : (t._result = n, t._endTask())
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._layer,
-                    n = new a.TaskItemOverflowConfirm(i);
-                n.start(function () {
-                    if (1 == n.result) {
-                        var i = new r.UseItemUseAPI(e, !0, 0),
-                            o = i.result;
-                        i.start(function () {
-                            t._result = o, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._update = function (t) {
+                0 == this._enabled ? this.texture = r.ITEM_COMMON.getTexture(1) : this.texture = 0 == t ? r.ITEM_COMMON.getTexture(0) : r.ITEM_COMMON.getTexture(2)
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseNormalItem = _
+        }(o.BtnBase);
+    e.BackBtn = s
 }

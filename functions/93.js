@@ -19,18 +19,16 @@ const function93 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(18),
-        s = i(134),
-        a = i(1),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._result = !1, i._onYes = function () {
-                    i._result = !0, i._dialog.btn_no.off(a.EventType.CLICK, i._onNo), i._hideDialog()
-                }, i._onNo = function () {
-                    i._dialog.btn_yes.off(a.EventType.CLICK, i._onYes), i._hideDialog()
-                }, i._layer = e, i
+    var o = i(7),
+        r = i(9),
+        s = i(205),
+        a = i(155),
+        _ = i(129),
+        u = i(154),
+        l = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_member/itemuse", o._result = new h, o._mst_id = e, o._force = i, o._exchange_type = n, o
             }
             return n(e, t), Object.defineProperty(e.prototype, "result", {
                 get: function () {
@@ -38,51 +36,94 @@ const function93 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                var t = this;
-                this._fade = new r.FadeBox(.2), this._fade.hide(0), this._layer.addChild(this._fade), this._fade.show(200, function () {
-                    t._showDialog()
-                })
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                this._dialog = new l, this._dialog.position.set(219, 207), this._dialog.alpha = 0, this._fade.addChild(this._dialog), this._dialog.initialize(), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    t._waitSelect()
-                })
-            }, e.prototype._waitSelect = function () {
-                this._dialog.btn_yes.once(a.EventType.CLICK, this._onYes), this._dialog.btn_no.once(a.EventType.CLICK, this._onNo)
-            }, e.prototype._hideDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._fade).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(t._fade), t._fade = null, t._dialog = null, t._endTask()
-                })
+            }), e.prototype._connect = function () {
+                this._post_data.api_useitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, this._exchange_type > 0 && (this._post_data.api_exchange_type = this._exchange_type), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskItemOverflowConfirm = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._btn_yes = new PIXI.Sprite, e._btn_yes.position.set(203, 216), e._btn_yes.interactive = !0, e._btn_yes.buttonMode = !0, e.addChild(e._btn_yes), e._btn_no = new PIXI.Sprite, e._btn_no.position.set(419, 216), e._btn_no.interactive = !0, e._btn_no.buttonMode = !0, e.addChild(e._btn_no), e
+        }(r.APIBase);
+    e.UseItemUseAPI = l;
+    var c = function () {
+        function t() {
+            this._has_material_reward = !1, this._has_slotitem_reward = !1, this._has_coin_reward = !1, this._has_useitem_reward = !1, this._has_furniture_reward = !1, this._rewards = null
         }
-        return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
+        return Object.defineProperty(t.prototype, "rewards", {
             get: function () {
-                return this._btn_yes
+                return this._rewards
             },
             enumerable: !0,
             configurable: !0
-        }), Object.defineProperty(e.prototype, "btn_no", {
+        }), Object.defineProperty(t.prototype, "cautionFlg", {
             get: function () {
-                return this._btn_no
+                return o.ObjUtil.getNumber(this._o, "api_caution_flag")
             },
             enumerable: !0,
             configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = s.ITEM_ILIST.getTexture(34), this._btn_yes.texture = s.ITEM_ILIST.getTexture(9), this._btn_no.texture = s.ITEM_ILIST.getTexture(3)
+        }), t.prototype.hasCaution = function () {
+            return this.cautionFlg >= 1
+        }, t.prototype.hasMaterialReward = function () {
+            return this._has_material_reward
+        }, t.prototype.hasSlotitemReward = function () {
+            return this._has_slotitem_reward
+        }, t.prototype.hasCoinReward = function () {
+            return this._has_coin_reward
+        }, t.prototype.hasUseitemReward = function () {
+            return this._has_useitem_reward
+        }, t.prototype.hasFurnitureReward = function () {
+            return this._has_furniture_reward
+        }, t.prototype.getSlotitemObjects = function () {
+            var t = [];
+            if (null != this._o && this._o.hasOwnProperty("api_getitem")) {
+                var e = o.ObjUtil.getObjectArray(this._o, "api_getitem");
+                if (null != e)
+                    for (var i = 0, n = e; i < n.length; i++) {
+                        var r = n[i],
+                            s = o.ObjUtil.getObject(r, "api_slotitem");
+                        t.push(s)
+                    }
+            }
+            return t
+        }, t
+    }();
+    e.UseItemUseResult = c;
+    var h = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.setData = function (t) {
+            this._o = t, this._rewards = [], this._initMaterialReward(), this._initRewardItem()
+        }, e.prototype._initRewardItem = function () {
+            var t = o.ObjUtil.getObjectArray(this._o, "api_getitem");
+            if (null != t)
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        r = o.ObjUtil.getNumber(n, "api_usemst"),
+                        l = o.ObjUtil.getNumber(n, "api_mst_id"),
+                        c = o.ObjUtil.getNumber(n, "api_getcount");
+                    if (0 != c)
+                        if (2 == r) {
+                            this._has_slotitem_reward = !0;
+                            for (var h = 0; h < c; h++) this._rewards.push(new a.RewardModelSlotitem(l, 1))
+                        } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
+                    else if (6 == r)
+                        if (10 == l || 11 == l || 12 == l) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
+                        else {
+                            this._has_useitem_reward = !0;
+                            for (var h = 0; h < c; h++) this._rewards.push(new _.RewardModelUseitem(l, 1))
+                        }
+                    else 1 == r && (this._has_furniture_reward = !0, this._rewards.push(new u.RewardModelFurniture(l)))
+                }
+        }, e.prototype._initMaterialReward = function () {
+            var t = o.ObjUtil.getNumArray(this._o, "api_material");
+            if (null != t)
+                for (var e = [31, 32, 33, 34, 2, 1, 3, 4], i = null, n = 0; n < t.length; n++) {
+                    var r = t[n];
+                    if (!(r <= 0)) {
+                        null == i && (this._has_material_reward = !0, i = new s.RewardModelMultiUseitem, this.rewards.push(i));
+                        var a = e[n];
+                        i.add(a, r)
+                    }
+                }
         }, e
-    }(PIXI.Sprite)
+    }(c)
 }

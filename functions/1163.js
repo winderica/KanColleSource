@@ -19,45 +19,18 @@ const function1163 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(7),
-        s = function (t) {
+    var o = i(3),
+        r = i(27),
+        s = i(409),
+        a = i(410),
+        _ = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._url = "api_req_member/payitemuse", n._result = new _, n._mst_id = e, n._force = i, n
+                return n._bg = new PIXI.Sprite, n._bg.position.set(-106, 37), n.addChild(n._bg), n._message = new PIXI.Sprite, n._message.position.set(282, 74), n.addChild(n._message), n._icon = new a.MedalIcon, n._icon.position.set(358, 152), n.addChild(n._icon), n._btn_yes = new r.BtnBase(e, i), n._btn_yes.position.set(241, 251), n.addChild(n._btn_yes), n._btn_no = new r.BtnBase(-1, i), n._btn_no.position.set(451, 251), n.addChild(n._btn_no), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_payitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._bg.texture = o.ITEM_ILIST_MEDAL.getTexture(8), this._message.texture = o.ITEM_ILIST_MEDAL.getTexture(9), this._initialize(t, 4)
             }, e
-        }(o.APIBase);
-    e.PurchasedItemPickupAPI = s;
-    var a = function () {
-        function t() {}
-        return Object.defineProperty(t.prototype, "cautionFlg", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_caution_flag")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.hasCaution = function () {
-            return this.cautionFlg >= 1
-        }, t
-    }();
-    e.PurchasedItemPickupResult = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
-        }, e
-    }(a)
+        }(s.ConfirmViewBase);
+    e.ConfirmRemodelPlanView = _
 }

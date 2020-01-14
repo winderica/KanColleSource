@@ -19,102 +19,84 @@ const function1204 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(119),
-        r = i(1),
-        s = function (t) {
+    var o = i(4),
+        r = i(3),
+        s = i(1205),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._tabs = [], i._createTab(0, e), i._createTab(9, e), i._createTab(1, e), i._createTab(2, e), i._createTab(3, e), i._createTab(4, e), i._createTab(5, e), i
+                i._onBtnMouseOver = function (t) {
+                    i._illust.update(t)
+                }, i._onBtnMouseOut = function (t) {
+                    i._illust.update()
+                }, i._onBtnClick = function (t) {
+                    null != i._cb_onSelect && i._cb_onSelect(t)
+                }, i._cb_onSelect = e, i._header = new PIXI.Sprite, i._header.position.set(561, 169), i.addChild(i._header), i._illust = new _, i._illust.position.set(387, 210), i.addChild(i._illust), i._footer = new o.TextBox(16, 0), i._footer.position.set(670, 679), i._footer.text = "\u5bb6\u5177\u30b3\u30a4\u30f3\u306f\u9060\u5f81\u306a\u3069\u3067\u5165\u624b\u3067\u304d\u307e\u3059\u3002", i.addChild(i._footer), i._btns = [];
+                for (var n = [1, 0, 5, 2, 3, 4], r = 0; r < n.length; r++) {
+                    var a = n[r],
+                        u = new s.FurnitureTypeBtn(a);
+                    u.x = 204, u.y = 241 + 70 * r, i.addChild(u), i._btns.push(u)
+                }
+                return i
             }
-            return n(e, t), e.prototype._createTab = function (t, e) {
-                var i = new a(t, e);
-                i.y = 43 * this._tabs.length, this.addChild(i), this._tabs.push(i)
-            }, e.prototype.initialize = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].initialize()
+            return n(e, t), e.prototype.initialize = function () {
+                this._header.texture = r.ITEM_FSHOP.getTexture(51), this._illust.initiatize();
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].initialize(this._onBtnMouseOver, this._onBtnMouseOut, this._onBtnClick)
                 }
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                for (var t = 0, e = this._btns; t < e.length; t++) {
                     e[t].activate()
                 }
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                this._illust.update();
+                for (var t = 0, e = this._btns; t < e.length; t++) {
                     e[t].deactivate()
                 }
-            }, e.prototype.update = function (t) {
-                for (var e = 0, i = this._tabs; e < i.length; e++) {
-                    var n = i[e];
-                    n.selected = n.type == t
-                }
             }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                this.removeChildren(), this._footer.destroy();
+                for (var t = 0, e = this._btns; t < e.length; t++) {
                     e[t].dispose()
                 }
+                this._cb_onSelect = null
             }, e
         }(PIXI.Container);
-    e.TabContainer = s;
-    var a = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._activated = !1, n._selected = !1, n._onClick = function () {
-                null != n._cb_onChange && n._cb_onChange(n._type)
-            }, n._type = e, n._cb_onChange = i, n.interactive = !0, n
+    e.FurnitureShopMainView = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._over = new PIXI.Sprite, e.addChild(e._over), e
         }
-        return n(e, t), Object.defineProperty(e.prototype, "type", {
-            get: function () {
-                return this._type
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "selected", {
-            get: function () {
-                return this._selected
-            },
-            set: function (t) {
-                this._selected != t && (this._selected = t, 1 == this._selected && 1 == this._activated ? this._deactivate() : 0 == this._selected && 1 == this._activated && this._activate(), this._update())
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function () {
-            this._update()
-        }, e.prototype.activate = function () {
-            this._activated = !0, 1 != this._selected && this._activate()
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, this._deactivate()
-        }, e.prototype.dispose = function () {
-            this._deactivate(), this._cb_onChange = null
-        }, e.prototype._activate = function () {
-            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype._deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype._update = function () {
-            0 == this._selected ? this.texture = this._getTexture() : this.texture = this._getTextureOn()
-        }, e.prototype._getTexture = function () {
-            var t;
-            if (0 == this._type) t = 20;
-            else if (1 == this._type) t = 24;
-            else if (2 == this._type) t = 26;
-            else if (3 == this._type) t = 28;
-            else if (4 == this._type) t = 30;
-            else if (5 == this._type) t = 32;
+        return n(e, t), e.prototype.initiatize = function () {
+            this.texture = r.ITEM_FSHOP.getTexture(38)
+        }, e.prototype.update = function (t) {
+            if (void 0 === t && (t = -1), -1 == t) this._over.visible = !1;
             else {
-                if (9 != this._type) return PIXI.Texture.EMPTY;
-                t = 22
+                var e = void 0;
+                switch (t) {
+                    case 0:
+                        e = 39, this._over.position.set(16, 258);
+                        break;
+                    case 1:
+                        e = 40, this._over.position.set(16, 16);
+                        break;
+                    case 2:
+                        e = 41, this._over.position.set(196, 15);
+                        break;
+                    case 3:
+                        e = 42, this._over.position.set(16, 16);
+                        break;
+                    case 4:
+                        e = 43, this._over.position.set(577, 16);
+                        break;
+                    case 5:
+                        e = 44, this._over.position.set(39, 114);
+                        break;
+                    default:
+                        return void(this._over.visible = !1)
+                }
+                this._over.texture = r.ITEM_FSHOP.getTexture(e), this._over.visible = !0
             }
-            return o.DUTY_COMMON.getTexture(t)
-        }, e.prototype._getTextureOn = function () {
-            var t;
-            if (0 == this._type) t = 21;
-            else if (1 == this._type) t = 25;
-            else if (2 == this._type) t = 27;
-            else if (3 == this._type) t = 29;
-            else if (4 == this._type) t = 31;
-            else if (5 == this._type) t = 33;
-            else {
-                if (9 != this._type) return PIXI.Texture.EMPTY;
-                t = 23
-            }
-            return o.DUTY_COMMON.getTexture(t)
         }, e
     }(PIXI.Sprite)
 }

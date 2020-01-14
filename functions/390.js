@@ -19,69 +19,49 @@ const function390 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(0),
         r = i(1),
-        s = function (t) {
+        s = i(4),
+        a = i(3),
+        _ = i(43),
+        u = i(43),
+        l = i(43),
+        c = i(43),
+        h = i(43),
+        p = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._offset = 0, i._activated = !1, i._selected = !1, i._onClick = function () {
-                    null != i._cb_onChange && i._cb_onChange(i._offset)
-                }, i._cb_onChange = e, i._dash = new PIXI.Sprite, i._dash.position.set(75, 28), i.addChild(i._dash), i._from = new a, i._from.position.set(24, 22), i.addChild(i._from), i._to = new a, i._to.position.set(95, 22), i.addChild(i._to), i.interactive = !0, i
+                return i._onClose = function () {
+                    null != i._cb_onClose && i._cb_onClose()
+                }, i._cb_onClose = e, i._title = new d, i._title.position.set(39, 45), i.addChild(i._title), i._message = new s.TextBox(23, 5523516), i._message.position.set(106, 138), i._message.style.breakWords = !0, i._message.style.wordWrap = !0, i._message.style.wordWrapWidth = 585, i._message.style.lineHeight = 34.5, i.addChild(i._message), i._statusBox = new _.ShipDetailStatusBox, i._statusBox.position.set(107, 354), i.addChild(i._statusBox), i._stype = new l.EngStypeView, i._stype.position.set(873, 37), i.addChild(i._stype), i._rader = new c.RaderGraph, i._rader.position.set(255, 513), i.addChild(i._rader), i._content = new h.ShipDetailContent, i._content.position.set(706, 33), i.addChild(i._content), i._close_btn = new PIXI.Sprite, i._close_btn.position.set(1111, 30), i._close_btn.interactive = !0, i.addChild(i._close_btn), i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected", {
-                get: function () {
-                    return this._selected
-                },
-                set: function (t) {
-                    this._selected != t && (this._selected = t, 1 == this._selected ? this._deactivate() : 1 == this._activated && this._activate(), this.update(this._offset))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._setBGTexture(), this._from.update(0, this._selected), this._to.update(0, this._selected)
-            }, e.prototype.update = function (t) {
-                this._offset = t, this._setBGTexture(), this._from.update(t + 1, this._selected), this._to.update(t + 10, this._selected)
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(98);
+                var i = t.no,
+                    n = t.mst_ids[0];
+                this._title.initialize(i, n), this._message.text = t.message.replace(/<br>/g, "\n").replace(/\u2019/g, "'"), this._statusBox.initialize(t);
+                var o = t.sType;
+                this._stype.update(n, o), this._rader.update(null), this._content.initialize(t, e), this._close_btn.texture = a.ALBUM_MAIN.getTexture(21)
+            }, e.prototype.preactivate = function () {
+                this._content.preactivate()
             }, e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this._activate())
+                1 != this.buttonMode && (this.buttonMode = !0, this._rader.update(this._model), this._content.activate(), this.on(r.EventType.CLICK, this._onClose))
             }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClose), this._content.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._from.dispose(), this._to.dispose(), this._dash = null, this._from = null, this._to = null, this._cb_onChange = null
-            }, e.prototype._setBGTexture = function () {
-                0 == this._selected ? (this.texture = o.ALBUM_MAIN.getTexture(105), this._dash.texture = o.ALBUM_MAIN.getTexture(26)) : (this.texture = o.ALBUM_MAIN.getTexture(106), this._dash.texture = o.ALBUM_MAIN.getTexture(27))
-            }, e.prototype._activate = function () {
-                1 != this._selected && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+                this.removeChildren(), this.deactivate(), this._title.dispose(), this._stype.dispose(), this._rader.dispose(), this._content.dispose(), this._statusBox.dispose(), this._message.destroy(), this._model = null, this._title = null, this._message = null, this._statusBox = null, this._stype = null, this._rader = null, this._content = null, this._close_btn = null, this._cb_onClose = null
             }, e
         }(PIXI.Sprite);
-    e.Pager = s;
-    var a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._n100 = new _, e.addChild(e._n100), e._n010 = new _, e._n010.x = 15, e.addChild(e._n010), e._n001 = new _, e._n001.x = 30, e.addChild(e._n001), e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
-            }, e.prototype.update = function (t, e) {
-                if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY;
-                else {
-                    this._n100.update(Math.floor(t / 100), e);
-                    var i = t % 100;
-                    this._n010.update(Math.floor(i / 10), e), i = t % 10, this._n001.update(i, e)
-                }
-            }, e
-        }(PIXI.Sprite),
-        _ = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype.update = function (t, e) {
-                if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY;
-                else {
-                    var i = void 0;
-                    i = 0 == e ? [48, 50, 52, 54, 56, 58, 60, 62, 64, 66][t] : [49, 51, 53, 55, 57, 59, 61, 63, 65, 67][t], this.texture = o.ALBUM_MAIN.getTexture(i)
-                }
-            }, e
-        }(PIXI.Sprite)
+    e.ShipDetailPanel = p;
+    var d = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._nums = new u.DetailPanelNumbers, e._nums.position.set(60, 36), e.addChild(e._nums), e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._nums.dispose(), this._nums = null, this._img = null
+        }, e.prototype.initialize = function (t, e) {
+            this.texture = a.ALBUM_MAIN.getTexture(97), this._nums.update(t), this._img.texture = o.default.resources.getShip(e, !1, "album_status")
+        }, e
+    }(PIXI.Sprite)
 }

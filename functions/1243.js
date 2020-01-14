@@ -19,37 +19,44 @@ const function1243 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(11),
         r = i(1244),
-        s = i(1247),
-        a = function (t) {
+        s = i(1246),
+        a = i(1247),
+        _ = i(1254),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._enemy = new r.Panel(!1), e._enemy.position.set(o.default.width / 2, 0), e.addChild(e._enemy), e._friend = new r.Panel(!0), e.addChild(e._friend), e._upper = new s.PracticeTitleBar, e._upper.position.set(38, 56), e._upper.alpha = 0, e.addChild(e._upper), e
+                return e._dispose = function () {
+                    null != e._topTask && (e._topTask.dispose(), e._topTask = null), null != e._viewList && (e._viewList.dispose(), e._viewList = null), null != e._viewTop && (e._viewTop.dispose(), e._viewTop = null)
+                }, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enemy", {
+            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
                 get: function () {
-                    return this._enemy
+                    return this._viewTop
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "friend", {
+            }), Object.defineProperty(e.prototype, "viewList", {
                 get: function () {
-                    return this._friend
+                    return this._viewList
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "upper", {
-                get: function () {
-                    return this._upper
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._friend.initialize(t, e), this._enemy.initialize(i, n), this._upper.initialize("\u6f14\u7fd2")
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._enemy.dispose(), this._friend.dispose(), this._upper.dispose()
+            }), e.prototype.getPreInitializeTask = function (t) {
+                return new r.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new r.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                return new s.TaskItemSceneFinalize(this._dispose)
+            }, e.prototype.initialize = function () {
+                this._viewTop = new _.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewList = new _.ViewSlotitemList, this._viewList.initialize(), this._viewList.position.set(1219, 102), this.addChild(this._viewList)
+            }, e.prototype.startTopTask = function () {
+                var t = this;
+                this._topTask = new a.TaskTop(this), this._topTask.start(function () {
+                    t._topTask = null
+                })
             }, e
-        }(PIXI.Container);
-    e.PracticeAnimMainView = a
+        }(o.SceneBase);
+    e.RevampScene = u
 }

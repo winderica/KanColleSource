@@ -19,53 +19,55 @@ const function1404 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(20),
-        s = i(2),
-        a = i(1405),
-        _ = i(1412),
-        l = i(473),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = i(5),
+        r = i(2),
+        s = i(452),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
-            }, e.prototype._opening = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = this._scene.view.layer_cutin,
-                    n = new _.PhaseAllyOpening(this._model, e, i);
-                n.preload(function () {
-                    e.addAllyBannerGroup(t._model.ships), n.start(function () {
-                        t._light()
-                    })
-                })
-            }, e.prototype._light = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.ally;
-                new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
-                    t._hougeki()
-                })
-            }, e.prototype._hougeki = function () {
-                var t = this,
-                    e = this._model.getHougekiData(),
-                    i = this._model.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new l.PhaseHougeki(this._scene, e, i, n).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = new o.SerialTask;
-                i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
-                    e.removeAllyBannerGroup(), t._endTask()
+                var t = this;
+                this._telop = new _, this._telop.x = o.default.width / 2, this._telop.y = o.default.height / 2, this._telop.bg.scale.y = 0, this._telop.text.x = 150, this._telop.text.alpha = 0, this._layer.addChild(this._telop), createjs.Tween.get(this._telop.text).wait(300).to({
+                    x: 90,
+                    alpha: 1
+                }, 300).to({
+                    x: -90
+                }, 350).to({
+                    x: -150,
+                    alpha: 0
+                }, 500), createjs.Tween.get(this._telop.bg.scale).to({
+                    y: 1
+                }, 300).wait(1150).to({
+                    y: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._telop), t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskBase);
-    e.PhaseAllyAttack = u
+        }(r.TaskBase);
+    e.TaskAirUnitAttackStartTelop = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._bg = new PIXI.Container;
+            var i = PIXI.Sprite.fromFrame("battle_telop_mes_bg_f");
+            return i.x = -Math.round(i.width / 2), i.y = -Math.round(i.height / 2), e._bg.addChild(i), e.addChild(e._bg), e._text = new PIXI.Sprite(s.BATTLE_AIRUNIT.getTexture(0)), e._text.anchor.set(.5), e.addChild(e._text), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e
+    }(PIXI.Container)
 }

@@ -3,233 +3,51 @@ const function712 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(5),
-        r = i(17),
-        s = i(15),
-        a = i(6),
-        _ = i(713),
-        l = i(322),
-        u = i(323),
-        c = i(324),
-        h = i(165),
-        p = function () {
+    var n = i(5),
+        o = i(0),
+        r = i(1),
+        s = i(29),
+        a = i(8),
+        _ = i(37),
+        u = i(6),
+        l = i(713),
+        c = function () {
             function t(t) {
                 var e = this;
-                switch (this._gScale = .5, this.endUpdate = function () {
-                    e.hide(), null != e._callback && e._callback()
-                }, this._OrganizeView = t, this._mainLayer = new PIXI.Container, r.MAMIYA_IRAKO_SEASON) {
-                    case 2:
-                        this._kiraPos_m = [new PIXI.Point(586, 40), new PIXI.Point(544, 100), new PIXI.Point(652, 114), new PIXI.Point(534, 234), new PIXI.Point(613, 276), new PIXI.Point(681, 241), new PIXI.Point(534, 366), new PIXI.Point(652, 378), new PIXI.Point(562, 439), new PIXI.Point(667, 474), new PIXI.Point(526, 544), new PIXI.Point(573, 690)], this._kiraPos_i = [new PIXI.Point(550, 66), new PIXI.Point(504, 82), new PIXI.Point(615, 127), new PIXI.Point(453, 226), new PIXI.Point(570, 261), new PIXI.Point(669, 207), new PIXI.Point(528, 348), new PIXI.Point(708, 375), new PIXI.Point(570, 463), new PIXI.Point(643, 556), new PIXI.Point(544, 589), new PIXI.Point(520, 693)], this._gScale = .5;
-                        break;
-                    case 4:
-                        this._kiraPos_m = [new PIXI.Point(615, 30), new PIXI.Point(544, 100), new PIXI.Point(652, 114), new PIXI.Point(534, 234), new PIXI.Point(613, 276), new PIXI.Point(681, 241), new PIXI.Point(534, 366), new PIXI.Point(652, 378), new PIXI.Point(562, 439), new PIXI.Point(622, 474), new PIXI.Point(555, 544), new PIXI.Point(600, 690)], this._kiraPos_i = [new PIXI.Point(550, 66), new PIXI.Point(504, 82), new PIXI.Point(615, 127), new PIXI.Point(453, 226), new PIXI.Point(570, 261), new PIXI.Point(669, 207), new PIXI.Point(543, 348), new PIXI.Point(633, 375), new PIXI.Point(570, 463), new PIXI.Point(465, 556), new PIXI.Point(559, 589), new PIXI.Point(580, 693)], this._gScale = .5;
-                        break;
-                    default:
-                        this._kiraPos_m = [new PIXI.Point(586, 40), new PIXI.Point(544, 100), new PIXI.Point(652, 114), new PIXI.Point(534, 234), new PIXI.Point(613, 276), new PIXI.Point(681, 241), new PIXI.Point(534, 366), new PIXI.Point(652, 378), new PIXI.Point(502, 439), new PIXI.Point(628, 474), new PIXI.Point(526, 544), new PIXI.Point(543, 675)], this._kiraPos_i = [new PIXI.Point(550, 66), new PIXI.Point(504, 82), new PIXI.Point(615, 127), new PIXI.Point(453, 226), new PIXI.Point(570, 261), new PIXI.Point(669, 207), new PIXI.Point(498, 348), new PIXI.Point(693, 375), new PIXI.Point(492, 463), new PIXI.Point(583, 556), new PIXI.Point(499, 589), new PIXI.Point(415, 693)], this._gScale = .5
-                }
+                this._onClickBack = function () {
+                    e.onClickBack()
+                }, this.mainView = t, this.dialogBackground = new a.AreaBox(.5), this.shipDetailView = new l.ShipDetailView
             }
-            return Object.defineProperty(t.prototype, "mainLayer", {
-                get: function () {
-                    return this._mainLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.dispose = function () {
-                this._mainLayer.removeChildren(0, this._mainLayer.children.length), this._mainLayer = null, this._callback = null, this._gScale = null, this._kiraPos_m = null, this._kiraPos_i = null, this._get_flash = null, this._white = null, this._txt_supply = null, this._kirakira = null, this._ship = null
-            }, t.prototype.preLoad = function (t) {
-                var e = this,
-                    i = new s.UIImageLoader("organize");
-                i.add("organize_mamiya_animation_common.json"), i.load(function () {
-                    n.default.settings.renderer.plugins.prepare.upload(_.ORGANIZE_MAMIYA_ANIMATION_COMMON.getTexture(0).baseTexture, function () {
-                        var i = new s.UIImageLoader("organize");
-                        switch (r.MAMIYA_IRAKO_SEASON) {
-                            case 2:
-                                i.add("organize_mamiya_animation_xmas.json");
-                                break;
-                            case 4:
-                                i.add("organize_mamiya_animation_summer.json");
-                                break;
-                            default:
-                                i.add("organize_mamiya_animation_default.json")
-                        }
-                        i.load(function () {
-                            var i;
-                            switch (r.MAMIYA_IRAKO_SEASON) {
-                                case 2:
-                                    i = u.ORGANIZE_MAMIYA_ANIMATION_XMAS.getTexture(0).baseTexture;
-                                    break;
-                                case 4:
-                                    i = c.ORGANIZE_MAMIYA_ANIMATION_SUMMER.getTexture(0).baseTexture;
-                                    break;
-                                default:
-                                    i = l.ORGANIZE_MAMIYA_ANIMATION_DEFAULT.getTexture(0).baseTexture
-                            }
-                            n.default.settings.renderer.plugins.prepare.upload(i, function () {
-                                e._get_flash = new PIXI.Sprite(_.ORGANIZE_MAMIYA_ANIMATION_COMMON.getTexture(0)), e._get_flash.visible = !1, e._get_flash.anchor.set(.5), e._get_flash.position.set(o.default.width / 2, o.default.height / 2), e._white = new PIXI.Graphics, e._white.visible = !1, e._white.beginFill(16777215, 1), e._white.drawRect(0, 0, o.default.width, o.default.height), e._white.endFill(), e._txt_supply = new PIXI.Sprite(_.ORGANIZE_MAMIYA_ANIMATION_COMMON.getTexture(2)), e._txt_supply.visible = !1, e._txt_supply.anchor.set(.5), e._ship = [];
-                                var i = new PIXI.Sprite(h.OrganizeConst.getMamiyaOption().res_mamiya);
-                                i.visible = !1, i.anchor.set(.5), e._ship.push(i);
-                                var n = new PIXI.Sprite(h.OrganizeConst.getMamiyaOption().res_irako);
-                                n.visible = !1, n.anchor.set(.5), e._ship.push(n), e._kirakira = [];
-                                for (var r = 0; r < h.OrganizeConst.MAMIYA_MAX_EFFECT; r++) {
-                                    var s = new PIXI.Sprite(_.ORGANIZE_MAMIYA_ANIMATION_COMMON.getTexture(1));
-                                    s.anchor.set(.5), e._kirakira.push(s)
-                                }
-                                e._mainLayer.addChild(e._get_flash, e._white, e._ship[0], e._ship[1], e._txt_supply);
-                                for (var r = 0; r < h.OrganizeConst.MAMIYA_MAX_EFFECT; r++) e._kirakira[r].visible = !1, e._mainLayer.addChild(e._kirakira[r]);
-                                null != t && t()
-                            })
-                        })
-                    })
-                })
-            }, t.prototype.play = function (t, e, i) {
-                var n = this;
-                this._txt_supply.position.set(1600, 487), this._ship[0].position.set(600, 1100), this._ship[1].position.set(600, 1100), this._ship[0].alpha = 0, this._ship[1].alpha = 0, this._ship[0].scale.set(3), this._ship[1].scale.set(3), this._white.alpha = 0, this._get_flash.alpha = 0, this._get_flash.scale.set(.3);
-                for (var o = 0; o < h.OrganizeConst.MAMIYA_MAX_EFFECT; o++) this._kirakira[o].scale.set(0);
-                var r = function () {
-                    switch (t) {
-                        case 1:
-                            h.OrganizeConst.getMamiyaOption().playVoiceAnimationMamiya();
-                            break;
-                        case 2:
-                            h.OrganizeConst.getMamiyaOption().playVoiceAnimationIrako();
-                            break;
-                        case 3:
-                            h.OrganizeConst.getMamiyaOption().playVoiceAnimationMamiyaIrako()
-                    }
-                };
-                this._callback = i;
-                var s, _, l;
-                switch (t) {
-                    case 1:
-                    case 2:
-                        s = function () {
-                            n._ship[t - 1].visible = !0, createjs.Tween.get(n._ship[t - 1].scale).wait(400).to({
-                                x: n._gScale,
-                                y: n._gScale
-                            }, 500), createjs.Tween.get(n._ship[t - 1]).wait(400).to({
-                                y: 360,
-                                alpha: 1
-                            }, 500)
-                        }, _ = function () {
-                            for (var e = 0; e < h.OrganizeConst.MAMIYA_MAX_EFFECT / 2; e++) {
-                                var i = 1 == t ? n._kiraPos_m[e] : n._kiraPos_i[e];
-                                n._kirakira[e].position.set(i.x, i.y), n._kirakira[e].visible = !0, createjs.Tween.get(n._kirakira[e].scale).wait(100 * e).to({
-                                    x: 1,
-                                    y: 1
-                                }, 200).to({
-                                    x: 0,
-                                    y: 0
-                                }, 200)
-                            }
-                        }, l = function () {
-                            for (var e = 0; e < h.OrganizeConst.MAMIYA_MAX_EFFECT / 2; e++) n._kirakira[e].visible = !1;
-                            createjs.Tween.get(n._ship[t - 1].scale).to({
-                                x: 3,
-                                y: 3
-                            }, 1e3), createjs.Tween.get(n._ship[t - 1]).to({
-                                x: 600,
-                                y: 1100,
-                                alpha: 0
-                            }, 1e3).set({
-                                visible: !1
-                            })
-                        };
-                        break;
-                    case 3:
-                        this._ship[0].visible = !0, this._ship[1].visible = !0, this._ship[0].position.set(25, 1100), this._ship[1].position.set(1275, 1100), s = function () {
-                            createjs.Tween.get(n._ship[0].scale).wait(400).to({
-                                x: n._gScale,
-                                y: n._gScale
-                            }, 500), createjs.Tween.get(n._ship[1].scale).wait(400).to({
-                                x: n._gScale,
-                                y: n._gScale
-                            }, 500), createjs.Tween.get(n._ship[0]).wait(400).to({
-                                x: 420,
-                                y: 360,
-                                alpha: 1
-                            }, 500), createjs.Tween.get(n._ship[1]).wait(400).to({
-                                x: 780,
-                                y: 360,
-                                alpha: 1
-                            }, 500)
-                        }, _ = function () {
-                            for (var t = 0; t < h.OrganizeConst.MAMIYA_MAX_EFFECT / 2; t++) n._kirakira[t].position.set(n._kiraPos_m[t].x - 195, n._kiraPos_m[t].y), n._kirakira[t].visible = !0, createjs.Tween.get(n._kirakira[t].scale).wait(100 * t).to({
-                                x: 1,
-                                y: 1
-                            }, 200).to({
-                                x: 0,
-                                y: 0
-                            }, 200);
-                            for (var t = h.OrganizeConst.MAMIYA_MAX_EFFECT / 2; t < h.OrganizeConst.MAMIYA_MAX_EFFECT; t++) n._kirakira[t].position.set(n._kiraPos_i[t - 12].x + 195, n._kiraPos_i[t - 12].y), n._kirakira[t].visible = !0, createjs.Tween.get(n._kirakira[t].scale).wait(100 * (t - 12)).to({
-                                x: 1,
-                                y: 1
-                            }, 200).to({
-                                x: 0,
-                                y: 0
-                            }, 200)
-                        }, l = function () {
-                            for (var t = 0; t < h.OrganizeConst.MAMIYA_MAX_EFFECT / 2; t++) n._kirakira[t].visible = !1;
-                            createjs.Tween.get(n._ship[0].scale).to({
-                                x: 3,
-                                y: 3
-                            }, 1e3), createjs.Tween.get(n._ship[0]).to({
-                                x: 25,
-                                y: 1100,
-                                alpha: 0
-                            }, 1e3).set({
-                                visible: !1
-                            }), createjs.Tween.get(n._ship[1].scale).to({
-                                x: 3,
-                                y: 3
-                            }, 1e3), createjs.Tween.get(n._ship[1]).to({
-                                x: 1275,
-                                y: 1100,
-                                alpha: 0
-                            }, 1e3).set({
-                                visible: !1
-                            })
-                        }
+            return t.prototype.start = function (t) {
+                var e = o.default.model.ship.get(t),
+                    i = o.default.model.ship.getMst(e.mstID),
+                    a = s.ShipUtil.isMaxGradeUp(e, i, !1),
+                    _ = o.default.model.deck.isInDeck(e.memID);
+                this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBack);
+                var l = !1;
+                if (_) {
+                    l = null != o.default.model.deck.get(_[0]).expedition
                 }
-                createjs.Tween.get(null).call(function () {
-                    n._get_flash.visible = !0, createjs.Tween.get(n._get_flash.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 500), createjs.Tween.get(n._get_flash).to({
-                        alpha: 1
-                    }, 500), createjs.Tween.get(n._white).wait(400).set({
-                        visible: !0
-                    }).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        n._OrganizeView.visible = !1, n._get_flash.visible = !1, a.SE.play("229"), createjs.Tween.get(n._txt_supply).wait(100).set({
-                            visible: !0
-                        }).to({
-                            x: 680
-                        }, 600, createjs.Ease.sineOut).to({
-                            x: 570
-                        }, 733)
-                    })
-                }).wait(2133).call(function () {
-                    createjs.Tween.get(n._txt_supply).to({
-                        x: -400
-                    }, 700, createjs.Ease.sineIn).set({
-                        visible: !1
-                    }).call(function () {
-                        r()
-                    }), s()
-                }).wait(1e3).call(function () {
-                    _()
-                }).wait(h.OrganizeConst.MAMIYA_EFFECT_WAIT).call(function () {
-                    n._white.alpha = 1, null != e && e(), l(), n._OrganizeView.visible = !0, createjs.Tween.get(n._white).to({
-                        alpha: 0
-                    }, 1e3).set({
-                        visible: !1
-                    })
-                }).wait(1e3).call(this.endUpdate)
-            }, t.prototype.hide = function () {
-                this._mainLayer.removeChildren(0, this._mainLayer.children.length)
+                this.shipDetailView.updateBox1(e.name, e.level, e.hpNow, e.hpMax, e.starNum, a), this.shipDetailView.updateBox2(e, e.getSlotitems()), this.shipDetailView.updateBox3(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this.shipDetailView.updateBox4(e, e.getSlotitemEx(), e.isExtraSlot()), this.shipDetailView.updateBox5(e, l), this.shipDetailView.position.set(n.default.width, 141), this.mainView.addChild(this.dialogBackground, this.shipDetailView), o.default.view.clickGuard = !0, u.SE.play("249");
+                createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 1
+                }, 125), createjs.Tween.get(this.shipDetailView).to({
+                    x: 471
+                }, 125).call(function () {
+                    o.default.sound.voice.playAtRandom(e.mstID.toString(), [2, 3], [50, 50]), o.default.view.clickGuard = !1
+                })
+            }, t.prototype.hide = function (t) {
+                _.TaskLoadShipResource.abortBy(this.shipDetailView), o.default.view.clickGuard = !0;
+                createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 0
+                }, 125), createjs.Tween.get(this.shipDetailView).to({
+                    x: n.default.width
+                }, 125).call(function () {
+                    o.default.view.clickGuard = !1, t()
+                })
+            }, t.prototype.dispose = function () {
+                this.dialogBackground.off(r.EventType.CLICK, this._onClickBack), this.shipDetailView.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipDetailView), this.onClickBack = null, this.dialogBackground = null, this.mainView = null, this.shipDetailView = null
             }, t
         }();
-    e.TaskAnimationMamiyaIrako = p
+    e.TaskShipDetail = c
 }

@@ -19,25 +19,65 @@ const function1551 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(5),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._name = new o.TextBox(24, 1949120), e._name.anchor.set(0, 0), e._name.position.set(r.default.width / 2, 48), e._name.alpha = 0, e.addChild(e._name), e
+    var o = i(0),
+        r = i(11),
+        s = i(70),
+        a = i(8),
+        _ = i(31),
+        u = i(1552),
+        l = i(1),
+        c = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._name.text = t, this._name.position.x = r.default.width / 2 - Math.floor(this._name.width / 2)
-            }, e.prototype.show = function () {
-                var t = this;
-                createjs.Tween.get(this._name).to({
-                    alpha: 1
-                }, 100).call(function () {
-                    t.emit("complete")
+            return n(e, t), e.prototype._start = function () {
+                var t = this._scene.data.getLandingData();
+                t.isLandingMap() ? this._loadResources(t) : this._endTask()
+            }, e.prototype._loadResources = function (t) {
+                var e = this,
+                    i = o.default.resources.gauge.createLoaderHorizontal(),
+                    n = this._scene.data.battle_model.map_info.area_id,
+                    r = this._scene.data.battle_model.map_info.map_no,
+                    a = this._scene.data.battle_model.stage,
+                    _ = s.GaugeSetModel.createKey(n, r, a);
+                i.add(_);
+                i.load(function () {
+                    var i = o.default.resources.gauge.getGaugeInfo(_),
+                        n = null;
+                    e._showDialog(t, i, n)
                 })
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy()
+            }, e.prototype._showDialog = function (t, e, i) {
+                var n = this,
+                    o = new u.ResultDialog(t, e, i);
+                o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({
+                    alpha: 1
+                }, 300).wait(500).call(function () {
+                    o.startAnimation(function () {
+                        n._hideDialog(o)
+                    })
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._scene.view.removeChild(t), t.dispose(), e._wait()
+                })
+            }, e.prototype._wait = function () {
+                var t = this;
+                createjs.Tween.get(null).wait(500).call(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                var e = this,
+                    i = new _.GearBtnNext;
+                i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
+                var n = new a.AreaBox(0);
+                n.buttonMode = !0, this._scene.view.addChild(n), n.once(l.EventType.CLICK, function () {
+                    i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
+                })
             }, e
-        }(PIXI.Container);
-    e.LayerMapName = s
+        }(r.TaskBase);
+    e.PhaseTransportResult = c
 }

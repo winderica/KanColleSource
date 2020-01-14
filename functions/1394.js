@@ -19,139 +19,79 @@ const function1394 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
+    var o = i(28),
+        r = i(39),
         s = i(2),
-        a = i(12),
-        _ = i(16),
-        l = i(13),
-        u = i(1395),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._preAnim = function () {
-                    for (var t = 0; t < i._canvas.chara.length; t++) i._canvas.chara[t].alpha = 0;
-                    i._nagato.texture = r.default.resources.getShip(i._attackers[0].mst_id, !1, "special"), i._nagato.position.set(-240, 160), i._nagato.alpha = 0;
-                    for (var t = 0; t < i._attackers.length; t++) {
-                        var e = i._attackers[t].mst_id,
-                            n = 0 != t && i._attackers[t].isDamaged();
-                        if (0 == t) {
-                            i._ships[t].texture = r.default.resources.getShip(e, n, "full");
-                            var s = r.default.model.ship_graph.get(e).getBattleOffset(n);
-                            i._ships[t].position.set(s.x, s.y), i._canvas.chara[t].position.set(-1e3, -134)
-                        } else if (1 == t && 573 == i._attackers[t].mst_id && 0 == n) i._ships[t].texture = r.default.resources.getShip(e, !1, "special"), i._ships[t].position.set(67, 138), i._canvas.chara[t].position.set(-800, 0);
-                        else {
-                            i._ships[t].texture = r.default.resources.getShip(e, n, "full");
-                            var a = r.default.model.ship_graph.get(e).getFaceRect(n);
-                            i._ships[t].position.set(o.default.width / 2 - (a.x + a.width / 2), o.default.height / 2 - (a.y + a.height / 2)), i._canvas.chara[t].position.set(0 - i._ships[t].width, -108)
-                        }
-                        i._canvas.chara[t].addChild(i._ships[t])
-                    }
-                    i._canvas.chara[0].addChild(i._nagato), i._anim1()
-                }, i._anim2 = function () {
-                    createjs.Tween.get(null).wait(500).call(function () {
-                        createjs.Tween.get(i._ships[0]).to({
-                            alpha: 0
-                        }, 400), createjs.Tween.get(i._nagato).to({
-                            alpha: 1
-                        }, 400);
-                        var t = i._createSmoke(77, 1068, 440);
-                        i._canvas.explosion.addChild(t), t.createTweens(700, null);
-                        var e = i._createSmoke(78, 930, 616);
-                        i._canvas.explosion.addChild(e), e.createTweens(800, null);
-                        var n = i._createSmoke(76, 65, 506);
-                        i._canvas.explosion.addChild(n), n.createTweens(900, i._anim3)
-                    })
-                }, i._anim3 = function () {
-                    createjs.Tween.get(i._canvas.chara[0]).wait(400).to({
-                        x: -10,
-                        alpha: 1
-                    }, 300), createjs.Tween.get(i._canvas.chara[1]).wait(450).to({
-                        x: -455,
-                        alpha: 1
-                    }, 400).call(function () {
-                        i._anim4()
-                    })
-                }, i._anim4 = function () {
-                    createjs.Tween.get(i._canvas.chara[0]).wait(500).call(function () {
-                        createjs.Tween.get(i._canvas.chara[0]).to({
-                            alpha: 0
-                        }, 500), createjs.Tween.get(i._canvas.chara[1]).to({
-                            alpha: 0
-                        }, 500)
-                    }).wait(600).call(function () {
-                        i._endTask()
-                    })
-                }, i._attackers = e, i._canvas = new u.CutinNagatoAttackCanvas, i._view = new PIXI.Container, i.view.addChild(i._canvas), i._nagato = new PIXI.Sprite, i._ships = [];
-                for (var n = 0; n < i._attackers.length; n++) i._ships.push(new PIXI.Sprite);
-                return i._preload_task = new h(e), i
+        a = i(16),
+        _ = i(1395),
+        u = i(1396),
+        l = i(1397),
+        c = i(1398),
+        h = i(1399),
+        p = i(1400),
+        d = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._scene = e, s._ship = i, s._damage = n, s._type = o, s._plane = r, s
             }
-            return n(e, t), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPreloadTask = function () {
-                return this._preload_task
-            }, e.prototype._start = function () {
-                var t = this;
-                this._preload_task.start(function () {
-                    t._preAnim()
-                })
-            }, e.prototype._anim1 = function () {
-                for (var t = 0; t < this._canvas.chara.length; t++) this._canvas.chara[t].alpha = 0;
-                this._attackers.length >= 2 && 573 == this._attackers[1].mst_id ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 902) : this._attackers.length >= 2 && (81 == this._attackers[1].mst_id || 276 == this._attackers[1].mst_id) ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 901) : this._attackers.length >= 2 && "\u30cd\u30eb\u30bd\u30f3" == this._attackers[1].yomi ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 903) : r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 900), createjs.Tween.get(this._canvas.chara[0]).to({
-                    x: -159,
-                    alpha: 1
-                }, 600).call(this._anim2)
-            }, e.prototype._createSmoke = function (t, e, i) {
-                var n = new p;
-                return n.initialize(t), n.x = e, n.y = i, n
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = 500 * Math.random();
+                this._banner = this._scene.view.bannerGroupLayer.getBanner(this._ship);
+                var i = null;
+                if (1 == this._type) i = new r.WaitTask(500);
+                else if (3 == this._type) i = new _.AnimAntiAircraftFunshin(this._banner);
+                else if (2 == this._type) i = new l.AnimAntiAircraftKoukaku(this._banner);
+                else if (5 == this._type) {
+                    var n = new o.ParallelTask;
+                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new h.AnimAntiAircraftSanshikidan2(this._banner)), i = n
+                } else if (4 == this._type) i = new u.AnimAntiAircraftFunshinKai2(this._banner);
+                else if (6 == this._type) {
+                    var n = new o.ParallelTask;
+                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new u.AnimAntiAircraftFunshinKai2(this._banner)), i = n
+                }
+                if (null == i ? this._endTask() : (this._banner.moveFront(), this._createGuns(), this._banner.addChild(this._gun1), this._banner.addChild(this._gun2), this._gun1.activate(), this._gun2.activate(), this._planeExplosion(), createjs.Tween.get(null).wait(e).call(function () {
+                        i.start(function () {
+                            t._endTask()
+                        })
+                    })), Math.floor(this._damage) <= 0 && (4 == this._type || 6 == this._type)) {
+                    var s = this._banner.getGlobalPos(!1);
+                    this._scene.view.bannerInfoLayer.showDanmaku(s, e)
+                } else if (5 == this._type || 6 == this._type) {
+                    var s = this._banner.getGlobalPos(!1);
+                    this._scene.view.bannerInfoLayer.showSanshiki(s, e)
+                }
+            }, e.prototype._planeExplosion = function () {
+                var t = this._scene,
+                    e = this._type,
+                    i = this._plane;
+                new p.TaskAirWarAntiAircraftExplosion(t, e, i).start()
             }, e.prototype._endTask = function () {
-                this._canvas.dispose(), this._view.removeChildren(), null != this._view.parent && this._view.parent.removeChild(this._view), this._attackers = null, this._view = null, this._canvas = null, this._ships = null, this._nagato = null, this._preload_task = null, t.prototype._endTask.call(this)
+                null != this._gun1 && (null != this._gun1.parent && this._gun1.parent.removeChild(this._gun1), this._gun1.deactivate()), null != this._gun2 && (null != this._gun2.parent && this._gun2.parent.removeChild(this._gun2), this._gun2.deactivate()), this._scene = null, this._ship = null, this._type = null, this._banner.moveDefault(), this._banner = null, this._gun1 = null, this._gun2 = null, t.prototype._endTask.call(this)
+            }, e.prototype._createGuns = function () {
+                this._gun1 = new f, this._gun1.position.set(26, 20), this._gun1.rotation = (45 * -Math.random() - 30) / 180 * Math.PI, this._gun2 = new f, this._gun2.position.set(35, 30), this._gun2.rotation = (45 * -Math.random() - 30) / 180 * Math.PI
             }, e
         }(s.TaskBase);
-    e.CutinNagatoAttack = c;
-    var h = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._attackers = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._loadShipImage()
-        }, e.prototype._loadShipImage = function () {
-            var t = this,
-                e = new l.ShipLoader;
-            e.add(this._attackers[0].mst_id, !1, "full"), e.add(this._attackers[0].mst_id, !1, "special");
-            for (var i = 1; i < this._attackers.length; i++) {
-                var n = this._attackers[i].isDamaged();
-                1 == i && 573 == this._attackers[i].mst_id && 0 == n ? e.add(this._attackers[i].mst_id, n, "special") : e.add(this._attackers[i].mst_id, n, "full")
-            }
-            e.load(function () {
-                t._endTask()
-            })
-        }, e
-    }(s.TaskBase);
-    e.PreloadCutinNagatoAttack = h;
-    var p = function (t) {
+    e.TaskAirWarAntiAircraft = d;
+    var f = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._img = new a.Sprite, e._img.anchor.set(.35, .8), e._img.scale.set(0), e.addChild(e._img), e
+            var e = t.call(this) || this,
+                i = a.BATTLE_MAIN.getTexture(122);
+            return e._content = new PIXI.Sprite(i), e._content.anchor.set(0, .5), e.addChild(e._content), e
         }
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._img.texture = _.BATTLE_MAIN.getTexture(t)
-        }, e.prototype.createTweens = function (t, e) {
-            createjs.Tween.get(this._img).wait(t).to({
-                scaleX: 1.2,
-                scaleY: 1.2
-            }, 300).to({
-                scaleX: 1.5,
-                scaleY: 1.5,
-                alpha: 0
-            }, 600).call(function () {
-                e && e()
-            })
+        return n(e, t), e.prototype.activate = function () {
+            var t = this;
+            null == this._t && (this._t = createjs.Tween.get(this._content, {
+                loop: !0
+            }).call(function () {
+                t._content.visible = !0, t._content.position.set(0, 0)
+            }).wait(33).call(function () {
+                t._content.position.set(30, 0)
+            }).wait(33).call(function () {
+                t._content.visible = !1
+            }).wait(33))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
     }(PIXI.Container)
 }

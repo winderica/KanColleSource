@@ -19,39 +19,53 @@ const function896 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
+    var o = i(347),
+        r = i(3),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.limitShip = !1, e.limitSlot = !1, e.animation = {
-                    progress: 0
-                }, e._onClick = function () {
-                    0 == (e.limitShip || e.limitSlot) && e.onClick(e.kDockId)
-                }, e._onMouseOver = function () {
-                    e.popup.visible = !1, e.limitShip ? e.popup.visible = !0 : e.limitSlot && (e.popup.visible = !0)
-                }, e._onMouseOut = function () {
-                    e.popup.visible = !1
-                }, e.popup = new PIXI.Sprite, e.buttonSprite = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(40)), e.popup.visible = !1;
-                var i = Math.floor(100 - e.buttonSprite.width / 2),
-                    n = Math.floor(50 - e.buttonSprite.height / 2);
-                return e.area = new PIXI.Graphics, e.area.beginFill(0, 0), e.area.drawRect(-i, -n, 200, 100), e.area.endFill(), e.area.interactive = e.area.buttonMode = !0, e.area.on(r.EventType.CLICK, e._onClick), e.area.on(r.EventType.MOUSEOVER, e._onMouseOver), e.area.on(r.EventType.MOUSEOUT, e._onMouseOut), e.tween = createjs.Tween.get(e.animation, {
-                    loop: !0
-                }).to({
-                    progress: 0
-                }).to({
-                    progress: 1
-                }, 750, createjs.Ease.quintOut).to({
-                    progress: 0
-                }, 850, createjs.Ease.quintIn), e.tween.addEventListener("change", function () {
-                    e.buttonSprite.alpha = .2 + .8 * e.animation.progress
-                }), e.addChild(e.area, e.buttonSprite, e.popup), e
+                e._materialList = {
+                    fuel: r.REPAIR_MAIN.getTexture(26),
+                    steel: r.REPAIR_MAIN.getTexture(27),
+                    bucket: r.REPAIR_MAIN.getTexture(28)
+                }, e._wire = new o.Wire, e._wire.rotation = Math.PI / 180 * 90, e.WIRE_WIDTH = e._wire.width;
+                var i = new PIXI.Sprite(r.REPAIR_MAIN.getTexture(13));
+                return e._material = new PIXI.Sprite, e._handContainer = new PIXI.Container, e._handContainer.position.set(-Math.floor(i.width / 2 + e._wire.height / 2), e.WIRE_WIDTH), e.initialize(), e._handContainer.addChild(i, e._material), e.addChild(e._wire, e._handContainer), e
             }
-            return n(e, t), e.prototype.updateCondition = function (t, e) {
-                this.popup.visible = !1, t ? (this.popup.texture = o.ARSENAL_MAIN.getTexture(1), this.popup.position.set(-118, -72)) : e && (this.popup.texture = o.ARSENAL_MAIN.getTexture(69), this.popup.position.set(49, -33)), this.limitShip = t, this.limitSlot = e
+            return n(e, t), e.prototype.initialize = function () {
+                this.randomMaterial(), this.update(.3)
+            }, e.prototype.randomMaterial = function () {
+                var t = 50 < 100 * Math.random();
+                this._material.texture = t ? this._materialList.fuel : this._materialList.steel, this._material.position.set(-7, 3), this._material.visible = !0
+            }, e.prototype.bucketMaterial = function () {
+                this._material.texture = this._materialList.bucket, this._material.position.set(-18, 0), this._material.visible = !0
+            }, e.prototype.hideMaterial = function () {
+                this._material.texture = PIXI.Texture.EMPTY, this._material.visible = !1
+            }, e.prototype.update = function (t) {
+                var e = this.WIRE_WIDTH * (1 - t);
+                this._wire.width = e, this._handContainer.y = e - 3
+            }, Object.defineProperty(e.prototype, "obj", {
+                get: function () {
+                    return {
+                        wire: this._wire,
+                        container: this._handContainer
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPosition = function (t) {
+                var e = this.WIRE_WIDTH * (1 - t);
+                return {
+                    wire: {
+                        width: e
+                    },
+                    container: {
+                        y: e - 3
+                    }
+                }
             }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this.tween.target), this.area.off(r.EventType.CLICK), this.area.off(r.EventType.MOUSEOVER), this.area.off(r.EventType.MOUSEOUT), this.tween = null, this.onClick = null, this.popup = null, this.buttonSprite = null, this.kDockId = null, this.limitShip = null, this.limitSlot = null, this.animation = null, this.tween = null, this.area = null, this.removeChildren()
+                this._wire.dispose(), this._handContainer.removeChildren(), this._wire = null, this._handContainer = null, this._material = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.GetButton = s
+    e.WireHand = s
 }

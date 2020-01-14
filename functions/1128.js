@@ -19,92 +19,56 @@ const function1128 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(18),
-        a = i(34),
-        _ = i(169),
-        l = i(131),
-        u = i(106),
-        c = i(160),
-        h = i(201),
-        p = i(6),
-        d = i(404),
-        f = i(1133),
-        y = i(1135),
-        m = i(1140),
-        g = i(1144),
-        v = i(1148),
-        b = i(1152),
-        w = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._target = i, n
+    var o = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._progress = 0, e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "progress", {
+            get: function () {
+                return this._progress
+            },
+            set: function (t) {
+                this._progress = t, this._draw(this._progress)
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.update = function (t) {
+            if (this._model = t, null == t) return void this._clear();
+            this._startAnimation()
+        }, e.prototype.dispose = function () {
+            this._stopAnimation()
+        }, e.prototype._clear = function () {
+            this._stopAnimation(), this.clear()
+        }, e.prototype._startAnimation = function () {
+            var t = this;
+            this._stopAnimation(), this._progress = 0, this._t = createjs.Tween.get(this).to({
+                progress: 1
+            }, 1e3).call(function () {
+                t._t = null, t._progress = 0
+            })
+        }, e.prototype._stopAnimation = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype._draw = function (t) {
+            var e = [(this._model.karyoku > 100 ? 100 : this._model.karyoku) * t, (this._model.raisou > 100 ? 100 : this._model.raisou) * t, (this._model.taiku > 100 ? 100 : this._model.taiku) * t, (this._model.kaihi > 100 ? 100 : this._model.kaihi) * t, (this._model.taikyu > 100 ? 100 : this._model.taikyu) * t],
+                i = e.map(function (t, e, i) {
+                    var n = (72 * e - 90) / 180 * Math.PI;
+                    return [95 * t / 100 * Math.cos(n), 95 * t / 100 * Math.sin(n)]
+                });
+            this.clear(), this.lineStyle(1.4, 16774898), this.beginFill(1949120), this.moveTo(i[0][0], i[0][1]);
+            for (var n = 0; n < 5; n++) {
+                var o = (n + 1) % 5;
+                i[n][0] == i[o][0] && i[n][1] == i[o][1] || this.lineTo(i[o][0], i[o][1])
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return null != this._api_result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                if (null == this._target) return void this._endTask();
-                this._fade = new s.FadeBox(.6), this._fade.hide(0), this._startTask()
-            }, e.prototype._startTask = function () {
-                var t, e = this._target.mstID;
-                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target);
-                else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target);
-                else if (60 == e) t = new m.TaskUsePresentBox(this._fade, this._target);
-                else if (61 == e) t = new g.TaskUseKouMedal(this._fade, this._target);
-                else if (62 == e) t = new v.TaskUseHishimochi(this._fade, this._target);
-                else if (63 == e) {
-                    var i = o.default.model.const.quest_max,
-                        n = o.default.model.basic.getDutyExecutableCount();
-                    n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
-                } else 68 == e || 72 == e || (80 == e ? t = new b.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || 90 == e || 93 == e || (t = new d.TaskUseNormalItem(this._fade, this._target)));
-                null != t ? this._showFade(t) : this._endTask()
-            }, e.prototype._showFade = function (t) {
-                var e = this;
-                this._layer.addChild(this._fade), this._fade.show(200, function () {
-                    t.start(function () {
-                        e._api_result = t.result, e._updateData()
-                    })
-                })
-            }, e.prototype._updateData = function () {
-                var t = this;
-                if (null == this._api_result) return void this._hideFade();
-                if (63 == this._target.mstID) {
-                    var e = o.default.model.basic.getDutyExecutableCount();
-                    o.default.model.basic.setDutyExcutableCount(e + 1)
-                } else if (68 == this._target.mstID || 93 == this._target.mstID) {
-                    var i = o.default.model.deck.get(1).getShipModel(0);
-                    o.default.sound.voice.play(i.mstID.toString(), 26)
-                }
-                var n = new a.APIConnector;
-                if (n.add(new u.UseItemAPI), this._api_result.hasMaterialReward() && n.add(new _.MaterialAPI), this._api_result.hasCoinReward() && n.add(new c.UserDataAPI), this._api_result.hasSlotitemReward()) {
-                    var r = this._api_result.getSlotitemObjects();
-                    o.default.model.slot.addMemData(r), n.add(new l.UnsetSlotAPI)
-                }
-                n.start(function () {
-                    o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo(), t._showReward()
-                })
-            }, e.prototype._showReward = function () {
-                var t = this;
-                if (null == this._api_result) return void this._hideFade();
-                var e = this._api_result.rewards;
-                if (null == e || 0 == e.length) return void this._hideFade();
-                var i = o.default.view.overLayer;
-                new h.TaskReward(i, e).start(function () {
-                    t._hideFade()
-                })
-            }, e.prototype._hideFade = function () {
-                var t = this;
-                this._fade.hide(150, function () {
-                    t._layer.removeChild(t._fade), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, this._fade = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase);
-    e.TaskUseItem = w
+            this.endFill()
+        }, e
+    }(PIXI.Graphics);
+    e.RaderGraph = o;
+    var r = function () {
+        function t() {
+            this.karyoku = 0, this.raisou = 0, this.taiku = 0, this.kaihi = 0, this.taikyu = 0
+        }
+        return t
+    }();
+    e.RaderGraphModel = r
 }

@@ -19,26 +19,24 @@ const function1410 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = i(2),
-        s = i(1411),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._banner = e, n._large = i, n
+    var o = i(463),
+        r = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                if (null == this._banner) return void this._endTask();
-                this._effect()
-            }, e.prototype._effect = function () {
+            return n(e, t), e.prototype._resume = function () {
                 var t = this,
-                    e = new s.SearchLight;
-                e.initialize(this._large), 1 == this._banner.friend ? e.x = o.BannerSize.W + 15 : (e.x = -15, e.scale.x = -1), e.y = o.BannerSize.H / 2, this._banner.addChild(e), e.getAnimationTask().start(function () {
-                    t._banner.removeChild(e), t._endTask()
+                    e = this._base_pos,
+                    i = this._friend ? 1 : -1;
+                createjs.Tween.get(this._view.chara).call(function () {
+                    t._view.emit("attack"), t._shipFlash.play()
+                }).wait(135).wait(200).to({
+                    x: e.x + 78 * i,
+                    alpha: 0
+                }, 466).call(function () {
+                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
                 })
-            }, e.prototype._endTask = function () {
-                this._banner = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskSearchLightAnimation = a
+        }(o.CutinDouble1);
+    e.CutinDouble3 = r
 }

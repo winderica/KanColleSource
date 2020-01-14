@@ -20,41 +20,15 @@ const function933 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(17),
-        s = i(2),
-        a = i(934),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+        r = i(9),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/kdock", e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this,
-                    e = o.default.model.map.getArea(r.EVENT_AREA_ID),
-                    i = null != e;
-                new a.TaskLoadResourcesSally(i).start(function () {
-                    t._showTopView()
-                })
-            }, e.prototype._showTopView = function () {
-                var t = o.default.model.deck.num > 1;
-                this._scene.initialize(t), this._scene = null, this._endTask()
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.kdock.__setData__(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(s.TaskBase);
-    e.PreInitializeTask = _;
-    var l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(103), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._scene.startTopTask(), this._endTask()
-        }, e
-    }(s.TaskBase);
-    e.InitializeTask = l
+        }(r.APIBase);
+    e.KDockAPI = s
 }

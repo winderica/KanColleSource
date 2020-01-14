@@ -19,27 +19,24 @@ const function872 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
+    var o = i(1),
+        r = i(8),
+        s = i(33),
+        a = i(73),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onMouseOver = function () {
-                    e.buttonCardSelect.alpha = 1
-                }, e._onMouseOut = function () {
-                    e.buttonCardSelect.alpha = 0
-                }, e._onClick = function () {
-                    e.onClick(e.memDockId)
-                };
-                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(10)),
-                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(1));
-                return n.position.set(60, 30), n.addListener(r.EventType.MOUSEOVER, e._onMouseOver), n.addListener(r.EventType.MOUSEOUT, e._onMouseOut), n.addListener(r.EventType.CLICK, e._onClick), n.interactive = n.buttonMode = !0, n.alpha = 0, e.addChild(i, n), e.buttonCardSelect = n, e.background = i, e
+                return e._onClick = function () {
+                    e.onClick(e.index, e.memId)
+                }, e.shipBanner = new s.ShipBanner, e.emptyShipBanner = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(18)), e.clickArea = new r.AreaBox(0, 0, 240, 60), e.clickArea.buttonMode = !0, e.clickArea.on(o.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this.memDockId = t
-            }, e.prototype.dispose = function () {
-                this.onClick = null, this.background.texture = PIXI.Texture.EMPTY, this.buttonCardSelect.texture = PIXI.Texture.EMPTY, this.buttonCardSelect.removeAllListeners(r.EventType.MOUSEOVER), this.buttonCardSelect.removeAllListeners(r.EventType.MOUSEOUT), this.buttonCardSelect.removeAllListeners(r.EventType.CLICK), this.background = null, this.buttonCardSelect = null, this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.shipBanner.dispose(), this.clickArea.off(o.EventType.CLICK, this._onClick), this.onClick = null, this.shipBanner = null, this.emptyShipBanner = null, this.index = null, this.memId = null, this.clickArea = null
+            }, e.prototype.update = function (t, e, i) {
+                this.removeChildren(), this.shipBanner.update(e, i), this.memId = e.memID, this.index = t, this.addChild(this.shipBanner, this.clickArea)
+            }, e.prototype.empty = function () {
+                this.removeChildren(), this.addChild(this.emptyShipBanner)
             }, e
         }(PIXI.Container);
-    e.EmptyDock = s
+    e.ShipSlot = _
 }

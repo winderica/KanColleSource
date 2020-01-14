@@ -5,12 +5,8 @@ const function136 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            try {
-                return PIXI.Texture.fromFrame("common_icon_weapon_id_" + t)
-            } catch (t) {
-                return PIXI.Texture.EMPTY
-            }
+            return PIXI.Texture.fromFrame("album_main_" + t)
         }
-        t.getTextureFromMstID = e
-    }(e.COMMON_ICON_WEAPON || (e.COMMON_ICON_WEAPON = {}))
+        t.getTexture = e
+    }(e.ALBUM_MAIN || (e.ALBUM_MAIN = {}))
 }

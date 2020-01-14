@@ -19,31 +19,29 @@ const function1326 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1327),
+    var o = i(254),
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._frame = 0, e._sprite = new PIXI.Sprite(o.MAP_EVENT_ANIME.getTexture(e._frame)), e.addChild(e._sprite), e
+                return e._imgs = [], e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.stopAnimation(), this.removeChildren(), this._sprite = null, this._frame = null
-            }, e.prototype.startAnimation = function () {
-                var t = this;
-                this._tween = createjs.Tween.get(null), this._tween.loop = !0, this._tween.wait(250).call(function () {
-                    t._onUpdate()
-                })
-            }, e.prototype.stopAnimation = function () {
-                this._tween && (this._tween.setPaused(!0), this._tween = null, this._sprite.alpha = 0)
-            }, e.prototype.hide = function () {
-                var t = this;
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t.stopAnimation()
-                })
-            }, e.prototype._onUpdate = function () {
-                this._frame >= 29 ? this._frame = 0 : this._frame++, this._sprite.texture = o.MAP_EVENT_ANIME.getTexture(this._frame)
+            return n(e, t), e.prototype.update = function (t) {
+                if (this._imgs = [], t <= 0) {
+                    var e = new o.NumericalDisplay(0);
+                    this.addChild(e), this._imgs.push(e)
+                } else
+                    for (; t > 0;) {
+                        var i = t % 10,
+                            e = new o.NumericalDisplay(i);
+                        this.addChild(e), this._imgs.push(e), t = Math.floor(t / 10)
+                    }
+                var n = new o.NumericalDisplay(-1);
+                this.addChild(n), this._imgs.push(n), this._imgs = this._imgs.reverse();
+                for (var r = 0, s = 0, a = this._imgs; s < a.length; s++) {
+                    var _ = a[s];
+                    _.x = r, r += _.width
+                }
             }, e
         }(PIXI.Container);
-    e.MapAnime = r
+    e.NumericalDisplaySet = r
 }

@@ -19,59 +19,58 @@ const function1310 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(6),
+    var o = i(0),
+        r = i(2),
         s = i(1311),
         a = i(1312),
-        _ = i(1316),
-        l = function (t) {
-            function e(e, i, n, o, s, a) {
-                var _ = t.call(this) || this;
-                return _._selected_spot_no_1 = null, _._selected_spot_no_2 = null, _._selected_spot_no_3 = null, _._onChange = function () {
-                    _._point_layer.update(), 2 == _._selected_spot_no.length ? (_._panel.title.complete = !0, _._panel.cancel_btn.visible = !0) : 1 == _._selected_spot_no.length ? (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !0) : (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !1)
-                }, _._onFixed = function () {
-                    switch (_._current_target.id) {
-                        case 1:
-                            _._selected_spot_no_1 = _._selected_spot_no.concat();
-                            break;
-                        case 2:
-                            _._selected_spot_no_2 = _._selected_spot_no.concat();
-                            break;
-                        case 3:
-                            _._selected_spot_no_3 = _._selected_spot_no.concat()
+        _ = i(13),
+        u = i(23),
+        l = i(123),
+        c = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._selectFormation = function () {
+                    if (0 == r._model.deck_f.type || r._model.map_info.isNightStart()) {
+                        var t = new s.TaskFormationSelect(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
+                        t.start(function () {
+                            r._fadeoutBGM(t.selected_formation)
+                        })
+                    } else {
+                        var e = new a.TaskFormationSelectCombined(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
+                        e.start(function () {
+                            r._fadeoutBGM(e.selected_formation)
+                        })
                     }
-                    r.SE.play("227");
-                    var t = _._airunits.indexOf(_._current_target);
-                    t == _._airunits.length - 1 ? _._endTask() : (_._current_target = _._airunits[t + 1], _._onCancel(), _._panel.update(_._current_target.id), _._initializePoints())
-                }, _._onCancel = function () {
-                    for (; _._selected_spot_no.length > 0;) _._selected_spot_no.pop();
-                    _._point_layer.update(), _._panel.title.complete = !1, _._panel.cancel_btn.visible = !1
-                }, _._layer = e, _._area_id = i, _._airunits_all = n, _._airunits = o, _._model = s, _._map = a, _
+                }, r._scene = e, r._model = i, r._battle_cls = n, r._battle_result_cls = o, r
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._current_target = this._airunits[0], this._selected_spot_no = [], this._point_layer = new _.AirUnitAppointmentLayer(this._selected_spot_no, this._onChange), this._layer.addChild(this._point_layer), this._panel = new a.AirUnitPanelSet(this._onFixed, this._onCancel), this._panel.x = -375, this._layer.addChild(this._panel);
-                var e = this._area_id;
-                this._panel.initialize(e, this._airunits_all), this._panel.update(this._current_target.id), createjs.Tween.get(this._panel).to({
-                    x: 0
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    t._panel.activate(), t._initializePoints()
-                })
-            }, e.prototype._initializePoints = function () {
-                var t = this._current_target.distance,
-                    e = this._model.sortie,
-                    i = this._map.spotLayer.getAllSpots();
-                this._point_layer.initialize(t, i, e)
-            }, e.prototype._endTask = function () {
+                this._scene.view.map.ship_icon.startWaveRed(this._selectFormation)
+            }, e.prototype._fadeoutBGM = function (t) {
                 var e = this;
-                this._layer.removeChild(this._point_layer), this._point_layer.dispose(), this._panel.deactivate(), createjs.Tween.get(this._panel).to({
-                    x: -450
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    e._layer.removeChild(e._panel), e._panel.dispose(), new s.AirUnitGoAPI(e._selected_spot_no_1, e._selected_spot_no_2, e._selected_spot_no_3).start(function () {
-                        t.prototype._endTask.call(e)
-                    })
+                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
+                    e._startBattle(t)
+                })) : this._startBattle(t)
+            }, e.prototype._startBattle = function (t) {
+                var e = this;
+                this._model.deck_f.formation = t;
+                var i = new this._battle_cls;
+                i.initialize(this._model), this._scene.addChild(i), i.once("complete", function () {
+                    e._startBattleResult(i, e._model)
+                }), i.start()
+            }, e.prototype._startBattleResult = function (t, e) {
+                var i = this,
+                    n = new this._battle_result_cls;
+                n.initialize(), n.shutter.close(0), this._scene.addChild(n), this._scene.removeChild(t), t.dispose(), n.once("complete", function () {
+                    _.ShipLoader.clearMemoryCache(), u.SlotLoader.clearMemoryCache(), l.Plane.clearMemoryCache(), i._completeBattleResult(n)
+                }), n.start(e)
+            }, e.prototype._completeBattleResult = function (t) {
+                var e = this;
+                createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    e._scene.removeChild(t), t.dispose(), e._endTask()
                 })
             }, e
-        }(o.TaskBase);
-    e.TaskAirUnitAppointment = l
+        }(r.TaskBase);
+    e.CellTaskBattle = c
 }

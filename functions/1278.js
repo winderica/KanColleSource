@@ -19,37 +19,27 @@ const function1278 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(7),
-        s = i(0),
+    var o = i(0),
+        r = i(9),
+        s = i(7),
         a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_req_map/anchorage_repair", e
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._url = "api_get_member/ship_deck", r._deck_ids = e, r._area_id = i, r._map_no = n, r._cell_no = o, r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "used_ship", {
-                get: function () {
-                    return this._used_ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "repair_ships", {
-                get: function () {
-                    return this._repair_ships
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_rid = this._deck_ids.join(","), t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                this._used_ship = r.ObjUtil.getNumber(this._raw_data, "api_used_ship");
-                for (var e = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    s.default.model.ship.updateData(o)
+                for (var e = s.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"), i = 0, n = e; i < n.length; i++) {
+                    var r = n[i];
+                    o.default.model.deck.updateData(r)
                 }
-                var a = r.ObjUtil.getNumArray(this._raw_data, "api_repair_ships");
-                this._repair_ships = a, t.prototype._completedEnd.call(this)
+                for (var a = s.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), _ = 0, u = a; _ < u.length; _++) {
+                    var r = u[_];
+                    o.default.model.ship.updateData(r)
+                }
+                t.prototype._completedEnd.call(this)
             }, e
-        }(o.APIBase);
-    e.APIAnchorageRepair = a
+        }(r.APIBase);
+    e.APIShipDeck = a
 }

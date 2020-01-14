@@ -19,44 +19,28 @@ const function936 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._selected = null, i._onClickSortie = function () {
-                    i._removeEventListeners(), i._selected = i._topView.btn_sortie, i._hideTween()
-                }, i._onClickPractice = function () {
-                    i._removeEventListeners(), i._selected = i._topView.btn_practice, i._hideTween()
-                }, i._onClickExpedition = function () {
-                    i._removeEventListeners(), i._selected = i._topView.btn_expedition, i._hideTween()
-                }, i._scene = e, i._topView = e.viewTop, i._tweens = new Array, i
+    var o = i(5),
+        r = i(0),
+        s = i(13),
+        a = i(230),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._stype_name = "", e._ship_name = "", e
             }
-            return n(e, t), e.prototype.cancel = function () {
-                this._removeEventListeners();
-                for (var t = 0, e = this._tweens; t < e.length; t++) {
-                    e[t].setPaused(!0)
-                }
-                this._tweens = null
-            }, e.prototype._start = function () {
-                this._topView.btn_sortie.on(r.EventType.CLICK, this._onClickSortie), this._topView.btn_practice.on(r.EventType.CLICK, this._onClickPractice), this._topView.btn_expedition.on(r.EventType.CLICK, this._onClickExpedition)
-            }, e.prototype._removeEventListeners = function () {
-                this._topView.btn_sortie.off(r.EventType.CLICK, this._onClickSortie), this._topView.btn_practice.off(r.EventType.CLICK, this._onClickPractice), this._topView.btn_expedition.off(r.EventType.CLICK, this._onClickExpedition)
-            }, e.prototype._hideTween = function () {
-                var t = this,
-                    e = this._topView.btn_sortie;
-                e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
-                    alpha: 0
-                }, 300)), e = this._topView.btn_practice, e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
-                    alpha: 0
-                }, 300)), e = this._topView.btn_expedition, e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
-                    alpha: 0
-                }, 300)), this._tweens[this._tweens.length - 1].call(function () {
-                    t._selected == t._topView.btn_sortie ? t._scene.openView(0) : t._selected == t._topView.btn_practice ? t._scene.openView(1) : t._selected == t._topView.btn_expedition && t._scene.openView(2), t._endTask()
+            return n(e, t), e.prototype.preloadFromMst = function (t, e) {
+                var i = r.default.model.ship_graph.get(t.mstID).getCenterOffset(!1);
+                this.preload(t.mstID, t.name, t.shipTypeName, t.message_text, t.rarity, i, e)
+            }, e.prototype.preload = function (t, e, i, n, a, _, u) {
+                var l = this;
+                this._mst_id = t, this._ship_name = e, this._stype_name = i, this._message = n, (new s.ShipLoader).add(t, !1, "full").load(function () {
+                    l._target.texture = r.default.resources.getShip(t, !1, "full"), l._target.x = o.default.width / 2 - 379 + _.x, l._target.y = o.default.height / 2 - 418 + _.y, l._rarityBG.initiailzeForShip(a, function () {
+                        l._messageBox.initializeForShip(l._stype_name, l._ship_name, l._message), null != u && u()
+                    })
                 })
-            }, e.prototype._endTask = function (e) {
-                void 0 === e && (e = !1), this._scene = null, this._topView = null, this._selected = null, this._tweens = null, t.prototype._endTask.call(this)
+            }, e.prototype._03_waitClick = function () {
+                r.default.sound.voice.play(this._mst_id.toString(), 1), t.prototype._03_waitClick.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskTop = s
+        }(a.RewardAnimation);
+    e.RewardAnimationShip = _
 }

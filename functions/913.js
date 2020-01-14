@@ -23,15 +23,44 @@ const function913 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.bg_0 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_1 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_0.position.set(0, 102), e.bg_1.position.set(529, 102);
-                var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(8));
-                i.anchor.set(0, .5), i.position.set(198, e.bg_0.height / 2 - 4);
-                var n = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(4));
-                return n.anchor.set(0, .5), n.position.set(19, e.bg_0.height / 2 - 4), e.bg_0.addChild(i), e.bg_1.addChild(n), e.addChild(e.bg_0), e.addChild(e.bg_1), e
+                e.STAR = 5, e.SHOOTING_STAR_DISTANCE = 45;
+                var i = Math.random();
+                e.stars = [], e.starTables = new Array;
+                for (var n = 0; n < e.STAR; n++) {
+                    var r = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(143));
+                    r.anchor.set(.5, .5), r.alpha = 0, r.position.set(0, 0);
+                    var s = Math.sin(Math.PI / 180 * (360 * i)),
+                        a = Math.cos(Math.PI / 180 * (360 * i)),
+                        _ = {
+                            x: 0,
+                            y: 0
+                        };
+                    _.x = s, _.y = a, e.stars.push(r), e.starTables.push(_), e.addChild(r)
+                }
+                return e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.bg_0.removeChildren(), this.bg_1.removeChildren(), this.removeChildren(), this.bg_0 = null, this.bg_1 = null
+            return n(e, t), e.prototype.updateStarPosition = function () {
+                for (var t = 0; t < this.stars.length; t++) {
+                    var e = Math.PI / 180 * (360 * Math.random()),
+                        i = Math.sin(e),
+                        n = Math.cos(e);
+                    this.starTables[t].x = i, this.starTables[t].y = n
+                }
+            }, e.prototype.updateAlpha = function (t) {
+                void 0 === t && (t = 0);
+                for (var e = 0; e < this.stars.length; e++) {
+                    this.stars[e].alpha = t
+                }
+            }, e.prototype.updateAnimation = function (t) {
+                for (var e = Math.PI / 180 * (180 * t), i = 0; i < this.stars.length; i++) {
+                    var n = this.stars[i],
+                        o = this.starTables[i];
+                    n.rotation = e, n.position.set(o.x * this.SHOOTING_STAR_DISTANCE * t, o.y * this.SHOOTING_STAR_DISTANCE * t)
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0; t < this.stars.length; t++) this.stars[t] = null;
+                this.starTables = null, this.stars = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.TopBarLayer = r
+    e.GreenStarParticle = r
 }

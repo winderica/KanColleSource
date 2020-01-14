@@ -19,138 +19,93 @@ const function901 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(1),
-        a = i(49),
-        _ = i(8),
-        l = i(116),
-        u = i(4),
-        c = i(21),
-        h = i(35),
-        p = i(90),
-        d = i(902),
-        f = i(345),
-        y = i(347),
-        m = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onMouseOutKenzoOff = function () {
-                    i.huki1.visible = !1
-                }, i._onMouseOverKenzoOff = function () {
-                    i.huki1.visible = !0
-                }, i._onChangeValue = function () {
-                    var t = i.fuel,
-                        e = i.ammo,
-                        n = i.steel,
-                        o = i.bauxite,
-                        r = i.devKit,
-                        s = i.buildKit;
-                    p.Util.BuildValidation(t, e, n, o, r, s) ? i.update(!0) : i.update(!1)
-                }, i._onClickShop = function () {
-                    i._cb_onGoToShop()
-                }, i._onClickLarge = function () {
-                    i._cb_onGoToLargeBuild()
-                }, i._onClickBuild = function () {
-                    i._cb_onComplete(!0)
-                }, i._onClickBack = function () {
-                    i._cb_onComplete(!1)
-                }, i.mainView = e;
-                var n = new PIXI.Sprite(c.COMMON_MAIN.getTexture(12));
-                n.interactive = !0, i.addChild(n), i.configureMaterialView_fuel = new f.MaterialAmountView(31, 30, 999), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 30, 999), i.configureMaterialView_steel = new f.MaterialAmountView(33, 30, 999), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 30, 999), i.highSpeedToggle = new d.HighSpeedToggle, i.btn_great_off = new l.SimpleButton(h.ARSENAL_MAIN.getTexture(18), h.ARSENAL_MAIN.getTexture(18)), i.btn_kenzo = new l.SimpleButton(h.ARSENAL_MAIN.getTexture(31), h.ARSENAL_MAIN.getTexture(33));
-                var r = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(32)),
-                    m = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(139)),
-                    g = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(159)),
-                    v = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(155)),
-                    b = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(74)),
-                    w = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(73));
-                i.huki1 = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(66)), i.textDevKitBefore = new u.TextBox(24, 5523516), i.textDevKitAfter = new u.TextBox(24, 5523516), i.shopButton = new y.ShopButton, i.textDevKitBefore.anchor.x = 1, i.textDevKitAfter.anchor.x = 0, r.position.set(532, 486), i.btn_kenzo.position.set(532, 486), i.textDevKitBefore.position.set(591, 438), i.textDevKitAfter.position.set(619, 438), i.configureMaterialView_fuel.position.set(60, 33), i.configureMaterialView_ammo.position.set(60, 228), i.configureMaterialView_steel.position.set(402, 33), i.configureMaterialView_bauxite.position.set(402, 228), i.highSpeedToggle.position.set(207, 435), b.position.set(394, 441), w.position.set(594, 442), m.position.set(60, 426), g.position.set(424, 442), v.position.set(78, 439), i.btn_great_off.position.set(60, 492), i.huki1.position.set(84, 441), i.shopButton.position.set(473, 496), i.configureMaterialView_fuel.onChangeValue = i._onChangeValue, i.configureMaterialView_ammo.onChangeValue = i._onChangeValue, i.configureMaterialView_steel.onChangeValue = i._onChangeValue, i.configureMaterialView_bauxite.onChangeValue = i._onChangeValue, i.shopButton.onClick = i._onClickShop, i.btn_kenzo.on(s.EventType.CLICK, i._onClickBuild), i.btn_great_off.onMouseOut = i._onMouseOutKenzoOff, i.btn_great_off.onMouseOver = i._onMouseOverKenzoOff, i.huki1.visible = !1, i.shopButton.play(), i.addChild(i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, m, r, i.btn_great_off, g, v, b, w, i.highSpeedToggle, i.textDevKitBefore, i.textDevKitAfter, i.btn_kenzo), i.btn_great = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(17)), i.btn_great.interactive = !0, i.btn_great.buttonMode = !0, i.btn_great.position.set(60, 492), i.addChild(i.btn_great), i.addChild(i.huki1, i.shopButton);
-                var x = new PIXI.Sprite(c.COMMON_MAIN.getTexture(64)),
-                    I = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(5));
-                i.position.set(1200, 139), i.addChild(x), I.anchor.set(0, .5), I.position.set(22, Math.floor(x.height / 2 - 4)), x.addChild(I), x.position.set(0, -37), x.addChild(I);
-                return i.dialogBackground = new _.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = o.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.btn_great.on(s.EventType.CLICK, i._onClickLarge), i.dialogBackground.on(s.EventType.CLICK, i._onClickBack), i
+    var o = i(0),
+        r = i(48),
+        s = i(15),
+        a = i(902),
+        _ = i(903),
+        u = i(116),
+        l = i(229),
+        c = i(938),
+        h = i(939),
+        p = i(116),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.arsenalTimerKey = {}, e.updateCondition = function (t, i, n) {
+                    e.menuLayer.hasLimitOver = n, e.dockLayer.updateCondition(t, i, n)
+                }, e.onChangeArsenalTimer = function () {
+                    if (e.dockLayer.ArsenalTimerMode == u.ArsenalTimerMode.WaitComplete) {
+                        var t = Date.now();
+                        o.default.model.kdock.getAll().forEach(function (i) {
+                            if (2 == i.state || 2 == e.dockLayer.getKDockView(i.id).state) {
+                                if (i.complete_time < t) {
+                                    e.dockLayer.hideHighSpeedButton(i.id);
+                                    i.__complete__(), e.dockLayer.complete(i.id), e.dockLayer.forceComplete(i.id, i.isLargeBuild())
+                                } else e.dockLayer.notifyTime(i.id, t)
+                            }
+                        })
+                    }
+                }, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "fuel", {
-                get: function () {
-                    return this.configureMaterialView_fuel.value
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ammo", {
-                get: function () {
-                    return this.configureMaterialView_ammo.value
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "steel", {
-                get: function () {
-                    return this.configureMaterialView_steel.value
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "bauxite", {
-                get: function () {
-                    return this.configureMaterialView_bauxite.value
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "buildKit", {
-                get: function () {
-                    return 1 == this.highSpeedToggle.state ? 1 : 0
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "devKit", {
-                get: function () {
-                    return 1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.btn_great.off(s.EventType.CLICK, this._onClickLarge), this.dialogBackground.off(s.EventType.CLICK, this._onClickBack), this._cb_onComplete = null, this._cb_onGoToLargeBuild = null, this._cb_onGoToShop = null, this.highSpeedToggle.dispose(), this.configureMaterialView_fuel.dispose(), this.configureMaterialView_ammo.dispose(), this.configureMaterialView_steel.dispose(), this.configureMaterialView_bauxite.dispose(), this.btn_great_off.dispose(), this.btn_kenzo.dispose(), this.shopButton.dispose(), this.textDevKitBefore.destroy(), this.textDevKitAfter.destroy(), this.configureMaterialView_fuel.onChangeValue = this._onChangeValue = null, this.configureMaterialView_ammo.onChangeValue = this._onChangeValue = null, this.configureMaterialView_steel.onChangeValue = this._onChangeValue = null, this.configureMaterialView_bauxite.onChangeValue = this._onChangeValue = null, this.shopButton.onClick = this._onClickShop = null, this.btn_kenzo.onClick = this._onClickBuild = null, this.highSpeedToggle = null, this.configureMaterialView_fuel = null, this.configureMaterialView_ammo = null, this.configureMaterialView_steel = null, this.configureMaterialView_bauxite = null, this.textDevKitBefore = null, this.textDevKitAfter = null, this.btn_great = null, this.btn_kenzo = null, this.shopButton = null, this.btn_great_off.onClick = this.btn_great_off.onMouseOut = this.btn_great_off.onMouseOver = null, this.btn_great_off = null, this.huki1 = null, this.dialogBackground = null
-            }, e.prototype.play = function (t, e, i, n, o, s, a) {
-                var _ = this;
-                this._cb_onComplete = o, this._cb_onGoToLargeBuild = s, this._cb_onGoToShop = a;
-                var l = r.default.model.useItem.get(31).count,
-                    u = r.default.model.useItem.get(32).count,
-                    c = r.default.model.useItem.get(33).count,
-                    h = r.default.model.useItem.get(34).count,
-                    d = r.default.model.useItem.get(3).count,
-                    f = r.default.model.useItem.get(2).count,
-                    y = p.Util.BuildValidation(e.fuel, e.ammo, e.steel, e.baux, 1, e.buildKit),
-                    m = 0 < f;
-                if (this.configureMaterialView_fuel.setAvail(l), this.configureMaterialView_ammo.setAvail(u), this.configureMaterialView_steel.setAvail(c), this.configureMaterialView_bauxite.setAvail(h), this.textDevKitBefore.text = d.toString(), this.textDevKitAfter.style.fill = 12467003, this.textDevKitAfter.text = "0", 0 <= d - 1 && (this.textDevKitAfter.style.fill = 5523516, this.textDevKitAfter.text = (d - 1).toString()), this.btn_great_off.visible = !1, this.btn_great.visible = !1, n ? this.btn_great.visible = !0 : this.btn_great_off.visible = !0, this.configureMaterialView_fuel.updateValue(e.fuel), this.configureMaterialView_ammo.updateValue(e.ammo), this.configureMaterialView_steel.updateValue(e.steel), this.configureMaterialView_bauxite.updateValue(e.baux), this.highSpeedToggle.changeToggleState(0 < f), this.highSpeedToggle.update(m), 0 == m && this.highSpeedToggle.changeToggleState(!1), this.update(y), i) {
-                    r.default.view.clickGuard = !0;
-                    var g = {
-                            progress: 0
-                        },
-                        v = createjs.Tween.get(g).to({
-                            progress: 1
-                        }, 200).call(function () {
-                            _.x = 412, v.removeAllEventListeners("change"), _.dialogBackground.width = 444, r.default.view.clickGuard = !1
-                        });
-                    v.addEventListener("change", function () {
-                        _.x = 1200 - 788 * g.progress, _.dialogBackground.alpha = g.progress
-                    }), v.play(null)
-                } else this.x = 412;
-                this.kDockId = t
-            }, e.prototype.hide = function (t) {
-                var e = this;
-                this.dialogBackground.width = o.default.width;
-                var i = {
-                        progress: 0
-                    },
-                    n = createjs.Tween.get(i);
-                n.to({
-                    progress: 1
-                }, 200).call(function () {
-                    e.x = 1200, n.removeAllEventListeners("change"), createjs.Tween.removeTweens(n.target), t()
-                }), n.addEventListener("change", function () {
-                    e.x = 412 + 788 * i.progress, e.dialogBackground.alpha = 1 - i.progress
-                }), n.play(null)
-            }, e.prototype.update = function (t) {
-                this.btn_kenzo.visible = !!t
+            return n(e, t), e.prototype.start = function () {
+                var t = o.default.model.kdock.getAll();
+                this.menuLayer = new h.MenuLayer, this.menuLayer.onUpdateCondition = this.updateCondition, this.dockLayer = new p.DockLayer, this.dockLayer.position.set(528, 177), this.dockLayer.onUpdateCondition = this.updateCondition, this.topBarLayer = new c.TopBarLayer;
+                for (var e = l.ArsenalUtil.developLimit(), i = !1, n = 0; n < t.length; n++) {
+                    var r = t[n];
+                    switch (this.updateCondition(r.id, e.forShip, e.forSlot), this.dockLayer.hideHighSpeedButton(r.id), r.state) {
+                        case 2:
+                            var s = o.default.model.ship.getMst(r.ship_mst_id),
+                                a = s.build_time,
+                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
+                                u = Date.now(),
+                                d = r.isLargeBuild(),
+                                f = r.complete_time,
+                                y = !1;
+                            y = d ? 9 < o.default.model.useItem.get(2).count : 0 < o.default.model.useItem.get(2).count;
+                            var m = .5 < Math.random(),
+                                g = .5 < Math.random() || 0 == m;
+                            this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, m, g, a, f, u, _);
+                            break;
+                        case -1:
+                            if (0 == i) {
+                                var v = 0 < o.default.model.useItem.get(49).count,
+                                    b = !0;
+                                this.dockLayer.noDock(r.id, b, v)
+                            } else {
+                                var b = !1,
+                                    v = !1;
+                                this.dockLayer.noDock(r.id, b, v)
+                            }
+                            i = !0;
+                            break;
+                        case 3:
+                            var m = .5 < Math.random(),
+                                g = .5 < Math.random() || 0 == m;
+                            this.dockLayer.updateMotivation(r.id, m, g);
+                            var s = o.default.model.ship.getMst(r.ship_mst_id),
+                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
+                                w = r.isLargeBuild();
+                            this.dockLayer.completed(r.id, _, w);
+                            break;
+                        case 0:
+                            this.dockLayer.standby(r.id)
+                    }
+                }
+                l.ArsenalUtil.playVoiceOnBuildComplete();
+                var x = createjs.Tween.get(this.arsenalTimerKey, {
+                    loop: !0
+                }).wait(500);
+                x.addEventListener("change", this.onChangeArsenalTimer), this.addChild(this.dockLayer, this.menuLayer, this.topBarLayer), this.arsenalTimer = x
+            }, e.prototype.getPreInitializeTask = function (t) {
+                return new _.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new a.InitializeTask
+            }, e.prototype.getFinalizeTask = function () {
+                return this.dispose(), s.UIImageLoader.clearMemoryCache("arsenal"), null
+            }, e.prototype.dispose = function () {
+                createjs.Tween.removeTweens(this.arsenalTimer.target), this.topBarLayer.dispose(), this.menuLayer.dispose(), this.dockLayer.dispose(), this.menuLayer = null, this.dockLayer = null, this.arsenalTimerKey = null, this.arsenalTimer = null, this.topBarLayer = null, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.MaterialAmountContainerShip = m
+        }(r.SceneBase);
+    e.ArsenalScene = d
 }

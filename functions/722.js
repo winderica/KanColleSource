@@ -19,18 +19,31 @@ const function722 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(0),
-        s = function (t) {
-            function e(e) {
-                void 0 === e && (e = !1);
-                var i = t.call(this) || this;
-                return i.OPEN_KEY_ITEMID = 49, i._url = "api_req_hensei/preset_expand", i
-            }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = r.default.model.useItem.get(this.OPEN_KEY_ITEMID);
-                e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
-            }, e
-        }(o.APIBase);
-    e.PresetExpandAPI = s
+    var o = function (t) {
+        function e() {
+            var e = t.call(this) || this,
+                i = [5.5, 5.15],
+                n = [
+                    [9.1, 0],
+                    [7.25, 0],
+                    [4.6, 4.1],
+                    [1.95, 0],
+                    [.05, 0],
+                    [3.55, 5.25],
+                    [0, 10.4],
+                    [1.85, 10.4],
+                    [4.5, 6.3],
+                    [7.25, 10.4],
+                    [9.15, 10.4],
+                    [5.5, 5.15]
+                ];
+            return e.beginFill(4999235, 1), e.moveTo(i[0], i[1]), n.forEach(function (t) {
+                e.lineTo(t[0], t[1])
+            }), e.endFill(), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.clear()
+        }, e
+    }(PIXI.Graphics);
+    e.CrossCharacter = o
 }

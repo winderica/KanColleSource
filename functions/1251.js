@@ -1,182 +1,82 @@
 const function1251 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(1252),
-        o = function () {
-            function t() {
-                this._data = []
+    var o = i(0),
+        r = i(11),
+        s = i(427),
+        a = i(34),
+        _ = i(134),
+        u = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_kousyou/remodel_slot", o._result = new l, o._list = e, o._post_data.api_id = e.id, o._post_data.api_slot_id = i, o._post_data.api_certain_flag = n, o
             }
-            return Object.defineProperty(t.prototype, "backgrounds", {
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
                 get: function () {
-                    if (null == this._backgrounds) {
-                        this._backgrounds = [];
-                        for (var t = 0, e = this._data; t < e.length; t++) {
-                            var i = e[t];
-                            (n = this._backgrounds).push.apply(n, i.backgrounds)
-                        }
-                    }
-                    return this._backgrounds;
-                    var n
+                    return this._result
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "labels", {
-                get: function () {
-                    if (null == this._labels) {
-                        this._labels = [];
-                        for (var t = 0, e = this._data; t < e.length; t++) {
-                            var i = e[t],
-                                n = [];
-                            n.push.apply(n, i.labels), n.length > 0 && this._labels.push(n)
-                        }
-                    }
-                    return this._labels
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "spots", {
-                get: function () {
-                    if (null == this._spots) {
-                        this._spots = [];
-                        for (var t = 0, e = this._data; t < e.length; t++) {
-                            var i = e[t];
-                            (n = this._spots).push.apply(n, i.spots)
-                        }
-                    }
-                    return this._spots;
-                    var n
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.add = function (t) {
-                var e = new n.MapInfoModel(t);
-                this._data.push(e), this._backgrounds = null, this._labels = null, this._spots = null, this._airraids = null, this._recce = null
-            }, t.prototype.getSpot = function (t) {
-                for (var e = 0, i = this.spots; e < i.length; e++) {
-                    var n = i[e];
-                    if (n.no == t) return n
-                }
-                return null
-            }, t.prototype.getEnemyOption = function (t) {
-                for (var e = this.getSameSpotData(t), i = e.map(function (t, e, i) {
-                        return t.no
-                    }), n = 0, o = this._data; n < o.length; n++)
-                    for (var r = o[n], s = r.enemies, a = 0, _ = s; a < _.length; a++) {
-                        var l = _[a];
-                        if (i.indexOf(l.no) >= 0) return l
-                    }
-                return null
-            }, t.prototype.getAirRaidOption = function (t) {
-                if (null == this._airraids) {
-                    this._airraids = [];
-                    for (var e = 0, i = this._data; e < i.length; e++) {
-                        var n = i[e];
-                        (p = this._airraids).push.apply(p, n.airraids)
+            }), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                if (this._result.update(this._raw_data), 1 == this._result.isSuccess()) {
+                    var e = this._result.target_slotitem_memid;
+                    if (o.default.model.slot.get(e).__updateObject__(this._result.getItemObject()), this._result.isChanged()) {
+                        var i = new a.APIConnector;
+                        i.add(new _.UnsetSlotAPI), i.start()
                     }
                 }
-                for (var o = 0, r = this._airraids; o < r.length; o++) {
-                    var s = r[o];
-                    if (s.no == t) return s
+                for (var n = this._result.use_slotitem_memids, r = 0, s = n; r < s.length; r++) {
+                    var u = s[r];
+                    o.default.model.slot.delete(u)
                 }
-                for (var a = this.getSameSpotData(t), _ = 0, l = a; _ < l.length; _++) {
-                    var u = l[_];
-                    if (u.no != t)
-                        for (var c = 0, h = this._airraids; c < h.length; c++) {
-                            var s = h[c];
-                            if (s.no == u.no) return s
-                        }
+                var l = this._list.req_useitem_num;
+                if (l > 0 && 1 == this._result.isSuccess()) {
+                    var c = this._list.req_useitem_id,
+                        h = o.default.model.useItem.get(c),
+                        p = h.count;
+                    h.__setCount__(p - l)
                 }
-                return null;
-                var p
-            }, t.prototype.getAirBaseRaidOption = function () {
-                for (var t = 0, e = this._data; t < e.length; t++) {
-                    var i = e[t],
-                        n = i.airbaseraid;
-                    if (null != n) return n
+                var d = this._list.req_useitem_num2;
+                if (d > 0 && 1 == this._result.isSuccess()) {
+                    var f = this._list.req_useitem_id2,
+                        y = o.default.model.useItem.get(f),
+                        p = y.count;
+                    y.__setCount__(p - d)
                 }
-                return null
-            }, t.prototype.getAirBasePos = function () {
-                for (var t = 0, e = this._data; t < e.length; t++) {
-                    var i = e[t],
-                        n = i.airbase;
-                    if (null != n) return n
-                }
-                return null
-            }, t.prototype.getShipDirection = function (t) {
-                var e = this.getSpot(t);
-                return null == e ? 0 : e.direction
-            }, t.prototype.getControlPoint = function (t) {
-                var e = this.getSpot(t);
-                return null == e ? null : e.controll_point
-            }, t.prototype.getBranchOption = function (t) {
-                var e = this.getSpot(t);
-                if (null != e.branch) return e.branch;
-                for (var i = this.getSameSpotData(t), n = 0, o = i; n < o.length; n++) {
-                    var r = o[n];
-                    if (r != e && null != r.branch) return r.branch
-                }
-                return null
-            }, t.prototype.getAnchorageRepairConfirmOffsets = function (t) {
-                var e = this.getSpot(t);
-                return null == e ? null : e.repair_confirm_offsets
-            }, t.prototype.getReplenishConfirmOffsets = function (t) {
-                var e = this.getSpot(t);
-                return null == e ? null : e.replenish_confirm_offsets
-            }, t.prototype.getRationConfirmOffset = function (t) {
-                var e = this.getSpot(t);
-                return null == e ? null : e.ration_confirm_offset
-            }, t.prototype.getAirReconnaissancePoint = function (t) {
-                if (null == this._recce) {
-                    this._recce = [];
-                    for (var e = 0, i = this._data; e < i.length; e++) {
-                        var n = i[e];
-                        (c = this._recce).push.apply(c, n.recce)
-                    }
-                }
-                for (var o = 0, r = this._recce; o < r.length; o++) {
-                    var s = r[o];
-                    if (s.no == t) return new PIXI.Point(s.x, s.y)
-                }
-                for (var a = this.getSameSpotData(t), _ = a.map(function (t, e, i) {
-                        return t.no
-                    }), l = 0, u = this._recce; l < u.length; l++) {
-                    var s = u[l];
-                    if (_.indexOf(s.no) >= 0) return new PIXI.Point(s.x, s.y)
-                }
-                return null;
-                var c
-            }, t.prototype.hasAirReconnaissancePoint = function () {
-                if (null == this._recce) {
-                    this._recce = [];
-                    for (var t = 0, e = this._data; t < e.length; t++) {
-                        var i = e[t];
-                        (n = this._recce).push.apply(n, i.recce)
-                    }
-                }
-                return this._recce.length > 0;
-                var n
-            }, t.prototype.getLandingBalloonType = function (t) {
-                var e = this.getSpot(t);
-                return null == e ? 0 : null == e.landing ? 0 : e.landing.type
-            }, t.prototype.getSameSpotData = function (t) {
-                for (var e = [], i = this.spots, n = null, o = 0, r = i; o < r.length; o++) {
-                    var s = r[o];
-                    if (s.no == t) {
-                        n = s;
-                        break
-                    }
-                }
-                if (null == n) return e;
-                for (var a = 0, _ = i; a < _.length; a++) {
-                    var s = _[a];
-                    s.x == n.x && s.y == n.y && e.push(s)
-                }
-                return e.sort(function (t, e) {
-                    return t.no < e.no ? -1 : t.no > e.no ? 1 : 0
-                })
-            }, t
-        }();
-    e.MapResourceInfo = o
+                var m = this._result.after_materials;
+                this._updateMaterialCount(31, m[0]), this._updateMaterialCount(32, m[1]), this._updateMaterialCount(33, m[2]), this._updateMaterialCount(34, m[3]), this._updateMaterialCount(2, m[4]), this._updateMaterialCount(1, m[5]), this._updateMaterialCount(3, m[6]), this._updateMaterialCount(4, m[7]), t.prototype._completedEnd.call(this)
+            }, e.prototype._updateMaterialCount = function (t, e) {
+                var i = o.default.model.useItem.get(t);
+                null != i && i.__setCount__(e)
+            }, e
+        }(r.APIBase);
+    e.RevampRemodelSlotAPI = u;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.update = function (t) {
+            this._o = t
+        }, e
+    }(s.RevampRemodelSlotModel)
 }

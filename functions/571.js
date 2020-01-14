@@ -1,181 +1,128 @@
 const function571 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(572),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._tween = null, e._shogo_anime = [
-                    [{
-                        texture: 0,
-                        time: 100
-                    }, {
-                        texture: 4,
-                        time: 100
-                    }, {
-                        texture: 13,
-                        time: 100
-                    }, {
-                        texture: 14,
-                        time: 200
-                    }, {
-                        texture: 13,
-                        time: 100
-                    }, {
-                        texture: 4,
-                        time: 100
-                    }, {
-                        texture: 0,
-                        time: 500
-                    }, {
-                        texture: 15,
-                        time: 100
-                    }, {
-                        texture: 16,
-                        time: 100
-                    }, {
-                        texture: 17,
-                        time: 100
-                    }, {
-                        texture: 18,
-                        time: 100
-                    }, {
-                        texture: 19,
-                        time: 100
-                    }, {
-                        texture: 20,
-                        time: 100
-                    }, {
-                        texture: 5,
-                        time: 100
-                    }, {
-                        texture: 6,
-                        time: 100
-                    }, {
-                        texture: 7,
-                        time: 100
-                    }, {
-                        texture: 8,
-                        time: 100
-                    }, {
-                        texture: 9,
-                        time: 100
-                    }, {
-                        texture: 10,
-                        time: 100
-                    }, {
-                        texture: 11,
-                        time: 100
-                    }, {
-                        texture: 12,
-                        time: 100
-                    }, {
-                        texture: 0,
-                        time: 5400
-                    }],
-                    [{
-                        texture: 0,
-                        time: 100
-                    }, {
-                        texture: 21,
-                        time: 100
-                    }, {
-                        texture: 22,
-                        time: 100
-                    }, {
-                        texture: 23,
-                        time: 200
-                    }, {
-                        texture: 22,
-                        time: 100
-                    }, {
-                        texture: 21,
-                        time: 100
-                    }, {
-                        texture: 0,
-                        time: 500
-                    }, {
-                        texture: 24,
-                        time: 100
-                    }, {
-                        texture: 25,
-                        time: 100
-                    }, {
-                        texture: 26,
-                        time: 100
-                    }, {
-                        texture: 27,
-                        time: 100
-                    }, {
-                        texture: 25,
-                        time: 100
-                    }, {
-                        texture: 24,
-                        time: 100
-                    }, {
-                        texture: 0,
-                        time: 6200
-                    }],
-                    [{
-                        texture: 0,
-                        time: 100
-                    }, {
-                        texture: 1,
-                        time: 100
-                    }, {
-                        texture: 2,
-                        time: 100
-                    }, {
-                        texture: 3,
-                        time: 200
-                    }, {
-                        texture: 2,
-                        time: 100
-                    }, {
-                        texture: 1,
-                        time: 100
-                    }, {
-                        texture: 0,
-                        time: 7300
-                    }],
-                    [{
-                        texture: 0,
-                        time: 0
-                    }]
-                ], e._NowPlaying = !1, e
+    var n = i(269),
+        o = i(572),
+        r = function () {
+            function t() {
+                this._KEY_VOL_BGM = "vol_bgm", this._KEY_VOL_SE = "vol_se", this._KEY_VOL_VOICE = "vol_voice", this._KEY_V_BELEFT = "v_be_left", this._KEY_V_DUTY = "v_duty"
             }
-            return n(e, t), e.prototype.startAnimation = function (t, e) {
-                this._shogo_type = e, null != this._shogo && this._shogo.position.set(t.x, t.y), this._NowPlaying || (this._NowPlaying = !0, this._shogo_anime_frm = 0, this._shogo = new PIXI.Sprite, this._shogo.texture = o.COMMON_SHOGO.getTexture(this._shogo_anime[this._shogo_type][this._shogo_anime_frm].texture), this._shogo.position.set(t.x, t.y), this.addChild(this._shogo), 0 != this._shogo_anime[this._shogo_type][0].time && this._animate())
-            }, e.prototype.stopAnimation = function () {
-                this._NowPlaying && -1 != this._shogo_type && (null != this._tween && this._tween.pause(null), this._NowPlaying = !1, this.removeChild(this._shogo), this._shogo = null, this._tween = null)
-            }, e.prototype._animate = function () {
+            return Object.defineProperty(t.prototype, "vol_bgm", {
+                get: function () {
+                    return this._vol_bgm
+                },
+                set: function (t) {
+                    this._vol_bgm = Math.min(100, Math.max(0, Math.round(t)))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "vol_se", {
+                get: function () {
+                    return this._vol_se
+                },
+                set: function (t) {
+                    this._vol_se = Math.min(100, Math.max(0, Math.round(t)))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "vol_voice", {
+                get: function () {
+                    return this._vol_voice
+                },
+                set: function (t) {
+                    this._vol_voice = Math.min(100, Math.max(0, Math.round(t)))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "voice_be_left", {
+                get: function () {
+                    return this._voice_be_left
+                },
+                set: function (t) {
+                    this._voice_be_left = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "voice_duty", {
+                get: function () {
+                    return this._voice_duty
+                },
+                set: function (t) {
+                    this._voice_duty = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "post_data", {
+                set: function (t) {
+                    this._post_data = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "__vol_bgm__", {
+                get: function () {
+                    return this._getNumValue(this._KEY_VOL_BGM, 30)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "__vol_se__", {
+                get: function () {
+                    return this._getNumValue(this._KEY_VOL_SE, 40)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "__vol_voice__", {
+                get: function () {
+                    return this._getNumValue(this._KEY_VOL_VOICE, 60)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "__v_beleft__", {
+                get: function () {
+                    return this._getBoolValue(this._KEY_V_BELEFT, !0)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "__v_duty__", {
+                get: function () {
+                    return this._getBoolValue(this._KEY_V_DUTY, !0)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_log_string", {
+                get: function () {
+                    return "bgm:" + this.vol_bgm + " se:" + this.vol_se + " voice:" + this.vol_voice + " \u653e\u7f6e:" + this._voice_be_left + " \u4efb\u52d9:" + this._voice_duty
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.initialize = function () {
                 var t = this;
-                if (0 != this._NowPlaying) {
-                    var e = this._shogo_anime[this._shogo_type][this._shogo_anime_frm].time,
-                        i = this._shogo_anime[this._shogo_type][this._shogo_anime_frm].texture;
-                    ++this._shogo_anime_frm == this._shogo_anime[this._shogo_type].length && (this._shogo_anime_frm = 0), this._shogo.texture = o.COMMON_SHOGO.getTexture(i), this._tween = createjs.Tween.get(this._shogo.texture).wait(e).call(function () {
-                        t._tween = null, t._animate()
-                    })
+                if ([this._KEY_VOL_BGM, this._KEY_VOL_SE, this._KEY_VOL_VOICE, this._KEY_V_BELEFT, this._KEY_V_DUTY].some(function (t) {
+                        return 1 == n.CookieUtil.hasItem(t)
+                    })) {
+                    this.vol_bgm = this.__vol_bgm__, this.vol_se = this.__vol_se__, this.vol_voice = this.__vol_voice__, this.voice_be_left = this.__v_beleft__, this.voice_duty = this.__v_duty__;
+                    var e = [o.OptionUtil.format(this._KEY_VOL_BGM, this.vol_bgm.toString()), o.OptionUtil.format(this._KEY_VOL_SE, this.vol_se.toString()), o.OptionUtil.format(this._KEY_VOL_VOICE, this.vol_voice.toString()), o.OptionUtil.format(this._KEY_V_BELEFT, this.voice_be_left ? "1" : "0"), o.OptionUtil.format(this._KEY_V_DUTY, this.voice_duty ? "1" : "0")].join(";");
+                    o.OptionUtil.save(e)
+                } else o.OptionUtil.load(function () {
+                    t.vol_bgm = o.OptionUtil.getNumValue(t._KEY_VOL_BGM, t._post_data, 30), t.vol_se = o.OptionUtil.getNumValue(t._KEY_VOL_SE, t._post_data, 40), t.vol_voice = o.OptionUtil.getNumValue(t._KEY_VOL_VOICE, t._post_data, 60), t.voice_be_left = o.OptionUtil.getBoolValue(t._KEY_V_BELEFT, t._post_data, !0), t.voice_duty = o.OptionUtil.getBoolValue(t._KEY_V_DUTY, t._post_data, !0)
+                })
+            }, t.prototype.save = function () {
+                var t = this.__vol_bgm__;
+                t != this.vol_bgm && n.CookieUtil.setItem(this._KEY_VOL_BGM, this.vol_bgm.toString(), 1 / 0), t = this.__vol_se__, t != this.vol_se && n.CookieUtil.setItem(this._KEY_VOL_SE, this.vol_se.toString(), 1 / 0), (t = this.__vol_voice__) != this.vol_voice && n.CookieUtil.setItem(this._KEY_VOL_VOICE, this.vol_voice.toString(), 1 / 0);
+                var e = this.__v_beleft__;
+                e != this.voice_be_left && n.CookieUtil.setItem(this._KEY_V_BELEFT, this.voice_be_left ? "1" : "0", 1 / 0), (e = this.__v_duty__) != this.voice_duty && n.CookieUtil.setItem(this._KEY_V_DUTY, this.voice_duty ? "1" : "0", 1 / 0);
+                var i = [o.OptionUtil.format(this._KEY_VOL_BGM, this.vol_bgm.toString()), o.OptionUtil.format(this._KEY_VOL_SE, this.vol_se.toString()), o.OptionUtil.format(this._KEY_VOL_VOICE, this.vol_voice.toString()), o.OptionUtil.format(this._KEY_V_BELEFT, this.voice_be_left ? "1" : "0"), o.OptionUtil.format(this._KEY_V_DUTY, this.voice_duty ? "1" : "0")].join(";");
+                o.OptionUtil.save(i)
+            }, t.prototype._getNumValue = function (t, e) {
+                if (1 == n.CookieUtil.hasItem(t)) {
+                    var i = parseInt(n.CookieUtil.getItem(t));
+                    if (0 == isNaN(i)) return i
                 }
-            }, e
-        }(PIXI.Container);
-    e.Shogo = r
+                return e
+            }, t.prototype._getBoolValue = function (t, e) {
+                return 1 == n.CookieUtil.hasItem(t) ? "1" == n.CookieUtil.getItem(t) : e
+            }, t
+        }();
+    e.OptionModel = r
 }

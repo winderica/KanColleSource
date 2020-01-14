@@ -1,104 +1,78 @@
 const function1478 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(438),
-        s = i(1479),
-        a = i(1480),
-        _ = i(16),
-        l = i(1481),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._wave1 = new o.Sprite, i._wave1.anchor.set(.5), i._wave1.scale.set(0), i._wave2 = new o.Sprite, i._wave2.anchor.set(.5), i._wave2.scale.set(0), i._bg = new o.Sprite, i._bg.anchor.set(.5), i._bg.scale.set(0), i._points = new PIXI.Sprite, i._longRange = new PIXI.Container, i._longRange.position.set(-100, -85), i._touch_plane = new l.TouchPlane(e), i.addChild(i._wave1), i.addChild(i._wave2), i.addChild(i._bg), i.addChild(i._points), i.addChild(i._longRange), i.addChild(i._touch_plane), i
+    var n = i(7),
+        o = function () {
+            function t(t, e, i) {
+                this._friend = t, this._o = {};
+                for (var n in e) {
+                    var o = e[n];
+                    this._o[n] = [];
+                    for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
+                    for (; this._o[n].length < 6;) this._o[n].push(0)
+                }
+                if (null != i)
+                    for (var n in i) {
+                        var o = i[n];
+                        if (null != o) {
+                            0 == this._o.hasOwnProperty(n) && (this._o = [0, 0, 0, 0, 0, 0]);
+                            for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
+                            for (; this._o[n].length < 12;) this._o[n].push(0)
+                        }
+                    }
             }
-            return n(e, t), Object.defineProperty(e.prototype, "touch_plane", {
+            return Object.defineProperty(t.prototype, "friend", {
                 get: function () {
-                    return this._touch_plane
+                    return this._friend
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function () {
-                this._wave1.texture = _.BATTLE_MAIN.getTexture(84), this._wave2.texture = _.BATTLE_MAIN.getTexture(84), this._bg.texture = _.BATTLE_MAIN.getTexture(83)
-            }, e.prototype.show = function (t, e, i, n, o) {
-                null != this._lader_tweens && (this._lader_tweens.setPaused(!0), this._lader_tweens.removeAllEventListeners(), this._lader_tweens = null, this._longRange.removeChildren()), 0 == e ? this._show(t, i, o) : this._showCombined(t, e, i, n, o)
-            }, e.prototype.wave = function () {
-                var t = this;
-                null == this._wave_tweens && 0 != this._bg.scale.x && (this._wave_tweens = new Array(2), this._wave_tweens[0] = createjs.Tween.get(this._wave1).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 800).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2,
-                    alpha: 0
-                }, 200).call(function () {
-                    t._wave1.scale.set(0), t._wave1.alpha = 1
-                }), this._wave_tweens[1] = createjs.Tween.get(this._wave2).wait(400).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 800).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2,
-                    alpha: 0
-                }, 200).call(function () {
-                    t._wave2.scale.set(0), t._wave2.alpha = 1, t._wave_tweens = null
-                }))
-            }, e.prototype._show = function (t, e, i) {
-                var n = this,
-                    o = createjs.Tween.get(this._bg);
-                o.to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 800), i && o.call(function () {
-                    n.showLongRangeRader()
-                }), e <= 0 || o.call(function () {
-                    var i = new r.FormationPoints(n._friend);
-                    i.scale.set(.65), i.initialize(t, e), n._points.addChild(i), 1 == n._friend && (i.rotation = Math.PI), i.show()
-                })
-            }, e.prototype._showCombined = function (t, e, i, n, o) {
-                var r = this,
-                    _ = createjs.Tween.get(this._bg);
-                _.to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 800), o && _.call(function () {
-                    r.showLongRangeRader()
-                }), i <= 0 || _.call(function () {
-                    var o = new s.FormationPointsCombinedMain(r._friend);
-                    o.initialize(t, i, e), r._points.addChild(o);
-                    var _ = new a.FormationPointsCombinedSub(r._friend);
-                    _.initialize(t, n), r._points.addChild(_), 0 == r._friend && (o.rotation = Math.PI, _.rotation = Math.PI), o.show(), _.show()
-                })
-            }, e.prototype.showLongRangeRader = function () {
-                var t = new o.Sprite;
-                t.texture = _.BATTLE_MAIN.getTexture(81);
-                var e = new o.Sprite;
-                e.texture = _.BATTLE_MAIN.getTexture(82), e.alpha = 0, this._longRange.addChild(e, t), this._longRange.alpha = 0, createjs.Tween.get(this._longRange).to({
-                    alpha: 1
-                }, 800), this._lader_tweens = createjs.Tween.get(e), this._lader_tweens.loop = !0, this._lader_tweens.to({
-                    alpha: 1
-                }, 500).to({
-                    alpha: 0
-                }, 500)
-            }, e
-        }(PIXI.Container);
-    e.Rader = u
+            }), t.prototype.hasDamage = function () {
+                var t = this._friend ? "api_fdam" : "api_edam";
+                return this._hasDamage(this._o, t)
+            }, t.prototype._hasDamage = function (t, e) {
+                var i = n.ObjUtil.getNumArray(t, e);
+                if (null != i)
+                    for (var o = 0, r = i; o < r.length; o++) {
+                        var s = r[o];
+                        if (s > 0) return !0
+                    }
+                return !1
+            }, t.prototype.beBombed = function () {
+                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
+                    e = n.ObjUtil.getNumArray(this._o, t);
+                if (null == e) return !1;
+                for (var i = Math.min(e.length, 6), o = 0; o < i; o++)
+                    if (e[o] > 0) return !0;
+                return !1
+            }, t.prototype.beBombedCombined = function () {
+                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
+                    e = n.ObjUtil.getNumArray(this._o, t);
+                if (null == e) return !1;
+                for (var i = 6; i < e.length; i++)
+                    if (e[i] > 0) return !0;
+                return !1
+            }, t.prototype.getDamage = function (t) {
+                var e = this._friend ? "api_fdam" : "api_edam",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return null == i || i.length <= t ? 0 : Math.floor(i[t])
+            }, t.prototype.getBak = function (t) {
+                var e = this._friend ? "api_fbak_flag" : "api_ebak_flag",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return !(null == i || i.length <= t) && 1 == i[t]
+            }, t.prototype.getRai = function (t) {
+                var e = this._friend ? "api_frai_flag" : "api_erai_flag",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return !(null == i || i.length <= t) && 1 == i[t]
+            }, t.prototype.getHitType = function (t) {
+                var e = this._friend ? "api_fcl_flag" : "api_ecl_flag",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return null == i || i.length <= t ? 0 : i[t] + 1
+            }, t.prototype.isShield = function (t) {
+                return this.getDamage(t) % 1 != 0
+            }, t
+        }();
+    e.AirWarStage3Model = o
 }

@@ -19,22 +19,44 @@ const function961 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(26),
+    var o = i(2),
+        r = i(1),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._img = [];
-                var i = new PIXI.Sprite;
-                return e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(0, 27), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 0), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 27), e.addChild(i), e._img.push(i), e._kadou = new o.TextBox(24, 0), e._kadou.y = -5, e.addChild(e._kadou), e._teisu = new o.TextBox(24, 0), e._teisu.y = 21, e.addChild(e._teisu), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._selected = null, i._onClickSortie = function () {
+                    i._removeEventListeners(), i._selected = i._topView.btn_sortie, i._hideTween()
+                }, i._onClickPractice = function () {
+                    i._removeEventListeners(), i._selected = i._topView.btn_practice, i._hideTween()
+                }, i._onClickExpedition = function () {
+                    i._removeEventListeners(), i._selected = i._topView.btn_expedition, i._hideTween()
+                }, i._scene = e, i._topView = e.viewTop, i._tweens = new Array, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img[0].texture = r.SALLY_AIRUNIT.getTexture(135), this._img[1].texture = r.SALLY_AIRUNIT.getTexture(143), this._img[2].texture = r.SALLY_AIRUNIT.getTexture(136), this._img[3].texture = r.SALLY_AIRUNIT.getTexture(136)
-            }, e.prototype.update = function (t, e) {
-                this._kadou.text = t.toString(), this._kadou.x = 72 - this._kadou.width, this._teisu.text = e.toString(), this._teisu.x = 72 - this._teisu.width
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._img = null, this._kadou.destroy(), this._kadou = null, this._teisu.destroy(), this._teisu = null
+            return n(e, t), e.prototype.cancel = function () {
+                this._removeEventListeners();
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null
+            }, e.prototype._start = function () {
+                this._topView.btn_sortie.on(r.EventType.CLICK, this._onClickSortie), this._topView.btn_practice.on(r.EventType.CLICK, this._onClickPractice), this._topView.btn_expedition.on(r.EventType.CLICK, this._onClickExpedition)
+            }, e.prototype._removeEventListeners = function () {
+                this._topView.btn_sortie.off(r.EventType.CLICK, this._onClickSortie), this._topView.btn_practice.off(r.EventType.CLICK, this._onClickPractice), this._topView.btn_expedition.off(r.EventType.CLICK, this._onClickExpedition)
+            }, e.prototype._hideTween = function () {
+                var t = this,
+                    e = this._topView.btn_sortie;
+                e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300)), e = this._topView.btn_practice, e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300)), e = this._topView.btn_expedition, e != this._selected && this._tweens.push(createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300)), this._tweens[this._tweens.length - 1].call(function () {
+                    t._selected == t._topView.btn_sortie ? t._scene.openView(0) : t._selected == t._topView.btn_practice ? t._scene.openView(1) : t._selected == t._topView.btn_expedition && t._scene.openView(2), t._endTask()
+                })
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._scene = null, this._topView = null, this._selected = null, this._tweens = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelItemDetailInfoPanel = s
+        }(o.TaskBase);
+    e.TaskTop = s
 }

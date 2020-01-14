@@ -19,45 +19,26 @@ const function627 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(307),
-        s = i(630),
-        a = i(48),
-        _ = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+    var o = i(10),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                this._showDialog()
-            }, e.prototype._showContent = function () {
-                var t = this,
-                    e = new r.ModelChangeModelEdit;
-                e.setItemFrom(73, !0), e.setItemTobe(-1);
-                var i = this.model.message1,
-                    n = this.model.message2;
-                e.setMessage(i, n), e.addMeltInto([{
-                    id: 31,
-                    type: 6
-                }], 1, 1), e.addMeltInto([{
-                    id: 34,
-                    type: 6
-                }], 2, 1);
-                var a = o.default.view.overLayer;
-                new s.AirunitBaseOpenTask(a, e).start(function () {
-                    t._showContentComplete()
-                })
-            }, e.prototype._showDialog = function () {
-                this._showContent()
-            }, e.prototype._removeContent = function () {}, e.prototype._showContentComplete = function () {
-                var t = o.default.model.useItem.get(73);
-                t.__setCount__(t.count - 1), this._removeContent(), this._endTask()
+            return n(e, t), e.prototype.update = function (t) {
+                if (this.clear(), t < 20) {
+                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(36)),
+                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(113));
+                    i.x = Math.floor(e.width - i.width / 2 - 3), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
+                } else if (t < 30) {
+                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(35)),
+                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(112));
+                    i.x = Math.floor(e.width - i.width / 2), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
+                }
+            }, e.prototype.clear = function () {
+                this.removeChildren()
+            }, e.prototype.dispose = function () {
+                this.clear()
             }, e
-        }(a.TaskRewardDialogBase);
-    e.TaskRewardDialogAirUnit = _
+        }(PIXI.Container);
+    e.BannerTired = r
 }

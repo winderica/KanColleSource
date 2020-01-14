@@ -1,40 +1,54 @@
 const function564 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(8),
-        r = i(565),
-        s = function (t) {
-            function e() {
-                var e = t.call(this, 1, 0) || this;
-                return e._pukapuka = new r.Pukapuka, e._pukapuka.position.set(600, 360), e.addChild(e._pukapuka), e
+    var n = i(17),
+        o = i(80),
+        r = i(13),
+        s = i(23),
+        a = i(15),
+        _ = i(69),
+        u = i(565),
+        l = i(10),
+        c = i(275),
+        h = function () {
+            function t() {
+                this._gauge = new u.GaugeRManager
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._pukapuka.initialize()
-            }, e.prototype.activate = function () {
-                this._pukapuka.activate()
-            }, e.prototype.deactivate = function () {
-                this._pukapuka.deactivate()
-            }, e.prototype.dispose = function () {
-                this._pukapuka.dispose()
-            }, e
-        }(o.AreaBox);
-    e.PukapukaLayer = s
+            return Object.defineProperty(t.prototype, "gauge", {
+                get: function () {
+                    return this._gauge
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getUIImage = function (t, e) {
+                var i;
+                if (void 0 === e) i = t;
+                else {
+                    var n = t,
+                        o = e;
+                    i = a.UIImageLoader.getPath(n, o)
+                }
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t.prototype.isLoadedShip = function (t, e, i) {
+                var n = r.ShipLoader.getPath(t, e, i);
+                return PIXI.utils.TextureCache[n]
+            }, t.prototype.getShip = function (t, e, i) {
+                var n, o = r.ShipLoader.getPath(t, e, i);
+                return n = PIXI.utils.TextureCache[o] ? PIXI.utils.TextureCache[o] : PIXI.Texture.EMPTY, "banner" == i && n == PIXI.Texture.EMPTY && (n = l.COMMON_MISC.getTexture(2)), n
+            }, t.prototype.getSlotitem = function (t, e) {
+                "item_up" == e && (1 == n.ITEMUP_REPLACE.hasOwnProperty(t.toString()) ? t = n.ITEMUP_REPLACE[t] : t > 500 && (t -= 500));
+                var i = s.SlotLoader.getPath(t, e);
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t.prototype.getUseitem = function (t, e) {
+                if (0 == e) return c.COMMON_ITEMICONS.getTextureFromMstID(t);
+                var i = _.UseitemLoader.getPath(t, e);
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t.prototype.getFurniture = function (t, e) {
+                var i = o.FurnitureLoader.getPath(t, e);
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t
+        }();
+    e.ResourceManager = h
 }

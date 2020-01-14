@@ -19,87 +19,76 @@ const function351 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(3),
-        s = i(30),
-        a = function (t) {
+    var o = i(5),
+        r = i(8),
+        s = i(212),
+        a = i(24),
+        _ = i(12),
+        u = i(3),
+        l = i(935),
+        c = i(1),
+        h = function (t) {
             function e(e, i) {
-                void 0 === e && (e = 240), void 0 === i && (i = 60);
+                void 0 === i && (i = !1);
                 var n = t.call(this) || this;
-                n._mokuTextureList = [], n._mokuArea = [], n._mokuTween = [], n._materialTextureList = [], n._materialArea = [], n._materialTween = [];
-                var a = new PIXI.Container;
-                n._materialTextureList = [o.COMMON_MISC.getTexture(86), o.COMMON_MISC.getTexture(87), o.COMMON_MISC.getTexture(88), o.COMMON_MISC.getTexture(89)];
-                for (var _ = 0; _ < 5; _++) {
-                    var l = new s.Sprite;
-                    l.alpha = 0, a.addChild(l), n._materialArea.push(l)
-                }
-                var u = new PIXI.Container;
-                n._mokuTextureList = [r.ARSENAL_MAIN.getTexture(123), r.ARSENAL_MAIN.getTexture(124)];
-                for (var c = 0; c < 20; c++) {
-                    var l = new s.Sprite;
-                    l.alpha = 0, l.anchor.set(.5, .5), u.addChild(l), n._mokuArea.push(l)
-                }
-                return n.RANGE = {
-                    width: e,
-                    height: i
-                }, n.addChild(a, u), n
+                n._clickGuard = new r.AreaBox(0), n.addChild(n._clickGuard), n._bg = new s.GetBG, n._card = new a.Container;
+                var o = new PIXI.Sprite(u.ARSENAL_ANIMATION.getTexture(4));
+                return o.width = 393, o.height = e, o.x = -o.width / 2, o.y = -o.height / 2, n._card.addChild(o), n._bigflash = new _.Sprite(u.ARSENAL_ANIMATION.getTexture(0)), n._particles = new l.ScatterCircleParticle, n._white = new r.AreaBox(1, 16777215), n._skip = i, n
             }
-            return n(e, t), e.prototype.play = function (t) {
-                void 0 === t && (t = 5), this._stop(), this._mokuAnimation(), this._materialAnimation(t)
-            }, e.prototype._stop = function () {
-                for (var t = 0, e = this._mokuTween.length; t < e; t++) createjs.Tween.removeTweens(this._mokuTween[t]), this._mokuTween[t] = null;
-                for (var i = 0, n = this._materialTween.length; i < n; i++) this._materialTween[i].removeAllEventListeners("change"), createjs.Tween.removeTweens(this._materialTween[i]), this._materialTween[i] = null
-            }, e.prototype._mokuAnimation = function () {
-                for (var t = 0, e = this._mokuArea.length; t < e; t++) {
-                    var i = this._mokuArea[t],
-                        n = 2 * Math.random() >> 0;
-                    i.texture = this._mokuTextureList[n];
-                    var o = .75 * (.4 * Math.random() + .6);
-                    i.x = Math.random() * this.RANGE.width, i.y = Math.random() * this.RANGE.height, i.alpha = 0, this._mokuTween[t] = createjs.Tween.get(i, {
-                        loop: !0
-                    }).wait(100 * t).to({
-                        alpha: 0,
-                        scaleX: o,
-                        scaleY: o
-                    }).to({
-                        alpha: 1,
-                        scaleX: 0,
-                        scaleY: 0
-                    }, 600, createjs.Ease.linear).play(null)
+            return n(e, t), e.prototype.preload = function (t) {
+                this._bg.initiailzeGetBG1(function () {
+                    null != t && t()
+                })
+            }, e.prototype.play = function (t) {
+                var e = this;
+                if (this._cb_onComplete = t, this._skip) {
+                    var i = new r.AreaBox(0);
+                    i.buttonMode = !0, this.addChild(i), i.once(c.EventType.CLICK, function () {
+                        null != e._cb_onComplete && e._cb_onComplete()
+                    })
                 }
-            }, e.prototype._materialAnimation = function (t) {
-                for (var e = this, i = this, n = 0, o = this._materialArea.length; n < o; n++) ! function (n, o) {
-                    var r = i._materialArea[n];
-                    if (r.alpha = 0, i._materialTween[n] = null, n > t) return "continue";
-                    var s = {
-                            progress: 0
-                        },
-                        a = createjs.Tween.get(s, {
-                            loop: !0
-                        }).wait(1e3 * n).call(function () {
-                            var t = 4 * Math.random() >> 0;
-                            r.texture = e._materialTextureList[t];
-                            var i = 30 / createjs.Ticker.framerate,
-                                n = Math.random() * e.RANGE.width,
-                                o = Math.random() * e.RANGE.height,
-                                _ = 1.999 * Math.random() * Math.PI,
-                                l = .4 * Math.random() + .6,
-                                u = 8 * l * Math.cos(_),
-                                c = 8 * l * Math.sin(_) - 8,
-                                h = function () {
-                                    r.x += u * i, r.y += c * i, r.alpha = 1 - s.progress, c += .7 * i
-                                };
-                            r.alpha = 1, r.position.set(n, o), a.addEventListener("change", h)
-                        }).to({
-                            progress: 1
-                        }, 600).call(function () {
-                            a.removeAllEventListeners("change")
-                        }).play(null);
-                    i._materialTween[n] = a
-                }(n)
+                this._bg.alpha = 0, this.addChild(this._bg), createjs.Tween.get(this._bg).to({
+                    alpha: 1
+                }, 100).call(function () {
+                    e._01_flyCard()
+                })
+            }, e.prototype._01_flyCard = function () {
+                var t = this;
+                null != this._card && (this._card.position.set(o.default.width / 2, o.default.height / 2 + 540), this._card.alpha = 0, this._card.scale.set(0), this.addChild(this._card), createjs.Tween.get(this._card).to({
+                    y: o.default.height / 2 - 660,
+                    scaleX: .57,
+                    scaleY: .57,
+                    alpha: 1
+                }, 700).to({
+                    y: o.default.height / 2,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 500).call(function () {
+                    t._01_light()
+                }))
+            }, e.prototype._01_light = function () {
+                var t = this;
+                null != this._bigflash && (this._bigflash.x = o.default.width / 2, this._bigflash.y = o.default.height / 2, this._bigflash.scale.set(0), this._bigflash.anchor.set(.5, .5), this.addChild(this._bigflash), createjs.Tween.get(this._bigflash).to({
+                    scaleX: 3.3,
+                    scaleY: 3.3
+                }, 300).to({
+                    scaleX: 2,
+                    scaleY: 2
+                }, 1700), createjs.Tween.get(null).wait(1500).call(function () {
+                    null != t._particles && (t._particles.x = o.default.width / 2, t._particles.y = o.default.height / 2, t.addChild(t._particles), t._particles.play())
+                }).wait(2e3).call(function () {
+                    t._02_whiteIn()
+                }))
+            }, e.prototype._02_whiteIn = function () {
+                var t = this;
+                null != this._white && (this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    null != t._cb_onComplete && t._cb_onComplete()
+                }))
             }, e.prototype.dispose = function () {
-                this._stop(), this.removeChildren()
+                this._cb_onComplete = null, this.removeChildren(), this._clickGuard = null, this._bg = null, this._card = null, this._bigflash = null, this._particles = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.DisassemblyAnimation = a
+    e.ReceiveAnimation = h
 }

@@ -19,23 +19,18 @@ const function723 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
+    var o = i(0),
+        r = i(11),
+        s = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
-                return o._url = "api_req_hensei/preset_register", o.deckId = e, o.presetNo = i, o.name = n, o
+                return o._url = "api_req_member/updatedeckname", o.api_deck_id = e, o.api_name = i, o.api_name_id = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this.deckId, this._post_data.api_preset_no = this.presetNo, this._post_data.api_name = this.name, this._post_data.api_name_id = "", t.prototype._connect.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_id = this.api_deck_id, this._post_data.api_name = this.api_name, this._post_data.api_name_id = this.api_name_id, t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                this._result = this._raw_data, t.prototype._completedEnd.call(this)
+                o.default.model.deck.get(this.api_deck_id).updateName(this.api_name, this.api_name_id), t.prototype._completedEnd.call(this)
             }, e
-        }(o.APIBase);
-    e.PresetRegisterAPI = r
+        }(r.APIBase);
+    e.UpdateDeckNameAPI = s
 }

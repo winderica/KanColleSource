@@ -19,22 +19,30 @@ const function1173 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(14),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._result = -1, e._url = "api_dmm_payment/paycheck", e
+    var o = i(27),
+        r = i(1174),
+        s = i(1175),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._completedEnd = function () {
-                this._result = r.ObjUtil.getNumber(this._raw_data, "api_check_value", -1), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this._top_view.initialize()
+            }, e.prototype.activate = function () {
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
+            }, e.prototype.deactivate = function () {
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
+            }, e.prototype.dispose = function () {
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(o.APIBase);
-    e.PayCheckAPI = s
+        }(o.DialogBase);
+    e.HishimochiUseDialog = a
 }

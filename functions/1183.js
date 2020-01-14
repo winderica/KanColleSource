@@ -19,15 +19,23 @@ const function1183 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(3),
-        s = function (t) {
+    var o = i(0),
+        r = i(76),
+        s = i(144),
+        a = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._update = function (t) {
-                0 == this._enabled ? this.texture = r.ITEM_FSHOP.getTexture(17) : this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(16) : r.ITEM_FSHOP.getTexture(18)
+            return n(e, t), e.prototype._initialize = function () {
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(6);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getSlotitem(e, "card"),
+                    n = new PIXI.Sprite(i),
+                    s = Math.min(195 / n.width, 195 / n.height);
+                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(o.BtnBase);
-    e.ExchangeBtn = s
+        }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogSlotitemBtn = a
 }

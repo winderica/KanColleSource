@@ -19,34 +19,37 @@ const function1009 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(52),
-        s = i(41),
-        a = i(1010),
-        _ = function (t) {
+    var o = i(12),
+        r = i(42),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._content = new PIXI.Sprite, e._light = new PIXI.Sprite, e._light.alpha = 0, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
+                return e._board = new a, e._board.position.set(726, 346), e._chara = new PIXI.Sprite, e._chara.position.set(17, 74), e.addChild(e._board), e.addChild(e._chara), e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                t == o.EVENT_AREA_ID ? e < 3 ? (this._content.position.set(1029, 329), this._content.texture = s.SALLY_EVENT.getTexture(14), this._light.texture = s.SALLY_EVENT.getTexture(18), this._light.position.set(1028, 329), this._light.alpha = 0) : 3 == e ? (this._content.position.set(1029, 329), this._content.texture = a.SALLY_EVENT_S.getTexture(0), this._light.texture = a.SALLY_EVENT_S.getTexture(2), this._light.position.set(1029, 329), this._light.alpha = 0) : (this._content.position.set(1029, 329), this._content.texture = a.SALLY_EVENT_S.getTexture(1), this._light.texture = a.SALLY_EVENT_S.getTexture(2), this._light.position.set(1029, 329), this._light.alpha = 0) : (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0)
-            }, e.prototype.show = function () {
-                this._activate(), this.visible = !0
-            }, e.prototype.hide = function () {
-                this._deactivate(), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 1500).to({
-                    alpha: 0
-                }, 800))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            return n(e, t), Object.defineProperty(e.prototype, "board", {
+                get: function () {
+                    return this._board
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara", {
+                get: function () {
+                    return this._chara
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(29)
             }, e
         }(PIXI.Container);
-    e.BtnNext = _
+    e.IntroAlertDialog = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-345, -215), this._content.texture = r.SALLY_EVENT.getTexture(45)
+        }, e
+    }(o.Sprite)
 }

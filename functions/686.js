@@ -19,92 +19,47 @@ const function686 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(687),
-        s = i(113),
-        a = i(693),
-        _ = i(320),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.SLOT_MAX = 6, e.shipSlots = [];
-                for (var i = 0; i < e.SLOT_MAX; i++) {
-                    var n = new a.ShipSlot(i),
-                        o = _.ShipOffsetPosition[0] + _.ShipAreaPosition[i][0],
-                        r = _.ShipOffsetPosition[1] + _.ShipAreaPosition[i][1];
-                    n.position.set(o, r), e.shipSlots.push(n)
-                }
-                return e.arrowTopButton = new s.ArrowButton(!1), e.arrowBottomButton = new s.ArrowButton(!0), e.addChild(e.shipSlots[1], e.shipSlots[3], e.shipSlots[5], e.shipSlots[0], e.shipSlots[2], e.shipSlots[4]), e
+    var o = i(83),
+        r = i(5),
+        s = i(110),
+        a = i(1),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ev = e, i._isInsideScene = !0, i._onNextClick = function () {
+                    i._isInsideScene ? (i._isInsideScene = !1, i._nextScene()) : i._ev.emit("tutorial-next-scene")
+                }, i._onToggleNextBtn = function (t) {
+                    var e = i._getEventTextureKey(t.type);
+                    i._btnNext.texture = i._btnNextImage[e]
+                }, i._getEventTextureKey = function (t) {
+                    return t == a.EventType.MOUSEOVER ? "hover" : "def"
+                }, i.alpha = 0, i._miniImage = [o.TUTORIAL_MAIN.getTexture(13), o.TUTORIAL_MAIN.getTexture(14)], i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "ShipSlots", {
-                get: function () {
-                    return this.shipSlots
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ArrowTopButton", {
-                get: function () {
-                    return this.arrowTopButton
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ArrowBottomButton", {
-                get: function () {
-                    return this.arrowBottomButton
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0; t < this.shipSlots.length; t++) this.shipSlots[t].dispose(), this.shipSlots[t] = null;
-                this.shipSlots = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.taskShipDetail && this.taskShipDetail.dispose(), this.taskShipDetail = null
-            }, e.prototype.init = function (t, e, i) {
-                this.shipSlots.forEach(function (n) {
-                    n.activate(t, e, i)
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(24));
+                t.position.set(175, 116), this._mini = new PIXI.Sprite(this._miniImage[0]), this._mini.position.set(35, 428), this._btnNextImage = {
+                    def: o.TUTORIAL_MAIN.getTexture(1),
+                    hover: o.TUTORIAL_MAIN.getTexture(2)
+                }, this._btnNext = new PIXI.Sprite(this._btnNextImage.def), this._btnNext.name = "next", this._btnNext.anchor.set(.5, 0), this._btnNext.position.set(r.default.width / 2, r.default.height - this._btnNext.height - 20), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(a.EventType.MOUSEOVER, this._onToggleNextBtn).on(a.EventType.MOUSEOUT, this._onToggleNextBtn).on(a.EventType.CLICK, this._onNextClick), this.addChild(t, this._mini, this._btnNext), this._ev.emit("tutorial-scene-start")
+            }, e.prototype.start = function () {
+                var t = this;
+                this.alpha = 1;
+                var e = 0;
+                this._miniImageTween = createjs.Tween.get(null, {
+                    loop: !0
+                }).wait(200).call(function () {
+                    e++, t._mini.texture = t._miniImage[e % 2]
+                }), this._ev.emit("tutorial-play-voice", "tutorial", "026_a", function () {
+                    t._ev.emit("tutorial-play-voice", "tutorial", "027")
                 })
-            }, e.prototype.initArrow = function (t) {
-                this.arrowTopButton.position.set(686, 220), this.arrowBottomButton.position.set(683, 663), this.arrowTopButton.initialize(function () {
-                    t && t(-2)
-                }), this.arrowBottomButton.initialize(function () {
-                    t && t(2)
-                })
-            }, e.prototype.show = function () {
-                this.visible = !0
-            }, e.prototype.hide = function () {
-                this.visible = !1
-            }, e.prototype.update = function (t, e) {
-                for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
-                    var _ = this.shipSlots[a],
-                        l = a + e,
-                        u = i.getShipModel(l);
-                    if (_.visible = !1, u) _.visible = !0, _.update(l, u, n), _.open();
-                    else if (l < s) {
-                        var c = r < s,
-                            h = l == r,
-                            p = 0 == n,
-                            d = p && c && h;
-                        _.visible = !0, _.updateEmpty(l, d), _.close()
-                    }
-                }
-                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
-            }, e.prototype.shutterAnimation = function (t, e, i) {
-                var n = this.shipSlots[t];
-                n.closeAnimation(function () {
-                    e && e(), n.close();
-                    createjs.Tween.get(null).wait(100).call(function () {
-                        n.openAnimation(function () {
-                            i && i()
-                        }, 200)
-                    })
-                }, 200)
-            }, e.prototype.onShipDetail = function (t, e, i) {
-                var n = this;
-                this.taskShipDetail = new r.TaskShipDetail(e), this.taskShipDetail.onClickBack = function () {
-                    n.taskShipDetail.hide(function () {
-                        n.taskShipDetail.dispose(), n.taskShipDetail = null, i && i()
-                    })
-                }, this.taskShipDetail.start(t)
+            }, e.prototype._nextScene = function () {
+                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(18));
+                t.position.set(280, 472), t.alpha = 0, this.addChild(t), createjs.Tween.get(t).to({
+                    alpha: 1
+                }, 400, createjs.Ease.linear), this._ev.emit("tutorial-play-voice", "tutorial", "028")
+            }, e.prototype.dispose = function () {
+                this.alpha = 0, this._btnNext.interactive = !1, this._btnNext.buttonMode = !1, this._btnNext.off(a.EventType.MOUSEOVER, this._onToggleNextBtn).off(a.EventType.MOUSEOUT, this._onToggleNextBtn).off(a.EventType.CLICK, this._onNextClick), createjs.Tween.removeTweens(this._miniImageTween), this._ev.emit("tutorial-remove-scene")
             }, e
-        }(PIXI.Container);
-    e.ShipSlotLayer = l
+        }(s.SceneBase);
+    e.SceneExplain2 = _
 }

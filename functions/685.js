@@ -19,55 +19,49 @@ const function685 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(57),
-        s = i(14),
-        a = i(4),
+    var o = i(83),
+        r = i(5),
+        s = i(110),
+        a = i(1),
         _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClickUpdate = function () {
-                    e.onClickUpdate(), e.baseText = e._mirrorText.text, e._onKeyDown()
-                }, e._onKeyDown = function () {
-                    var t = s.EditTextBoxUtil.text;
-                    e._mirrorText.text = t;
-                    var i = s.EditTextBoxUtil.validation(t, e.baseText);
-                    e.__updateButton__(i, e._editable)
-                };
-                var i = o.ORGANIZE_MAIN.getTexture(27),
-                    n = o.ORGANIZE_MAIN.getTexture(57),
-                    _ = o.ORGANIZE_MAIN.getTexture(58),
-                    l = o.ORGANIZE_MAIN.getTexture(59),
-                    u = new PIXI.Sprite(i);
-                return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, l), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(u.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(u.width, 1), e.addChild(u, e.editButton, e.updateButton, e._mirrorText), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ev = e, i._isInsideScene = !0, i._onNextClick = function () {
+                    i._isInsideScene ? (i._isInsideScene = !1, i._nextScene()) : i._ev.emit("tutorial-next-scene")
+                }, i._onToggleNextBtn = function (t) {
+                    var e = i._getEventTextureKey(t.type);
+                    i._btnNext.texture = i._btnNextImage[e]
+                }, i._getEventTextureKey = function (t) {
+                    return t == a.EventType.MOUSEOVER ? "hover" : "def"
+                }, i.alpha = 0, i._miniImage = [o.TUTORIAL_MAIN.getTexture(11), o.TUTORIAL_MAIN.getTexture(12)], i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return s.EditTextBoxUtil.text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.__updateButton__ = function (t, e) {
-                this.updateButton.interactive = !1, this.editButton.visible = !1, this.updateButton.visible = !1, t && e ? (this.updateButton.reset(), this.updateButton.interactive = !0, this.editButton.visible = !1, this.updateButton.visible = !0) : e && (this.editButton.visible = !0)
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(23));
+                t.position.set(175, 116), this._mini = new PIXI.Sprite(this._miniImage[0]), this._mini.position.set(984, 437), this._btnNextImage = {
+                    def: o.TUTORIAL_MAIN.getTexture(1),
+                    hover: o.TUTORIAL_MAIN.getTexture(2)
+                }, this._btnNext = new PIXI.Sprite(this._btnNextImage.def), this._btnNext.name = "next", this._btnNext.anchor.set(.5, 0), this._btnNext.position.set(r.default.width / 2, r.default.height - this._btnNext.height - 20), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(a.EventType.MOUSEOVER, this._onToggleNextBtn).on(a.EventType.MOUSEOUT, this._onToggleNextBtn).on(a.EventType.CLICK, this._onNextClick), this.alpha = 0, this.addChild(t, this._mini, this._btnNext), this._ev.emit("tutorial-scene-start")
+            }, e.prototype.start = function () {
+                var t = this;
+                createjs.Tween.get(this).to({
+                    alpha: 1
+                }, 200, createjs.Ease.linear);
+                var e = 0;
+                this._miniImageTween = createjs.Tween.get(null, {
+                    loop: !0
+                }).wait(400).call(function () {
+                    e++, t._mini.texture = t._miniImage[e % 2]
+                }), this._ev.emit("tutorial-play-voice", "tutorial", "023_a", function () {
+                    t._ev.emit("tutorial-play-voice", "tutorial", "024")
+                })
+            }, e.prototype._nextScene = function () {
+                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(17));
+                t.position.set(495, 400), t.alpha = 0, this.addChild(t), this._ev.emit("tutorial-play-voice", "tutorial", "025"), createjs.Tween.get(t).to({
+                    alpha: 1
+                }, 400, createjs.Ease.linear)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.updateButton.dispose(), this._mirrorText.destroy(), this.onClickUpdate = null, this.updateButton = null, this.editButton = null, this.baseText = null, this._mirrorText = null, this._editable = null
-            }, e.prototype.reload = function (t) {
-                this.baseText = this._mirrorText.text = s.EditTextBoxUtil.text = t;
-                var e = s.EditTextBoxUtil.validation(t, this.baseText);
-                this.__updateButton__(e, this._editable)
-            }, Object.defineProperty(e.prototype, "writable", {
-                set: function (t) {
-                    s.EditTextBoxUtil.setVisibility(t), this._mirrorText.visible = !t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "editable", {
-                set: function (t) {
-                    this.editButton.visible = this._editable = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(PIXI.Container);
-    e.EditNameArea = _
+                this.alpha = 0, this._btnNext.interactive = !1, this._btnNext.buttonMode = !1, this._btnNext.off(a.EventType.MOUSEOVER, this._onToggleNextBtn).off(a.EventType.MOUSEOUT, this._onToggleNextBtn).off(a.EventType.CLICK, this._onNextClick), createjs.Tween.removeTweens(this._miniImageTween), this._ev.emit("tutorial-remove-scene")
+            }, e
+        }(s.SceneBase);
+    e.SceneExplain1 = _
 }

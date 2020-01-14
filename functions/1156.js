@@ -19,43 +19,38 @@ const function1156 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(74),
+    var o = i(1),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._num = new PIXI.Sprite, e.addChild(e._num), e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._activated = !1, n._enabled = !0, n._onClick = function () {
+                    null != n._cb_onClick && n._cb_onClick(n._target)
+                }, n._target = e, n._cb_onClick = i, n.interactive = !0, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
-            }, e.prototype.update = function (t) {
-                88 == t || 10 == t ? this._num.position.set(25, 19) : this._num.position.set(29, 15), this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
-            }, e.prototype._getNumImage = function (t) {
-                switch (t) {
-                    case 1:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
-                    case 2:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
-                    case 3:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
-                    case 4:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
-                    case 5:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
-                    case 6:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
-                    case 7:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(32);
-                    case 8:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(33);
-                    case 9:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(35);
-                    case 10:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
-                    case 88:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(34)
-                }
-                return PIXI.Texture.EMPTY
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                set: function (t) {
+                    this._enabled != t && (this._enabled = t, 1 == this._enabled ? 1 == this._activated && this._activate() : 1 == this._activated && this._deactivate(), this._update())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                void 0 === e && (e = null), this._t = t, this._t_off = null == e ? t : e, this._update()
+            }, e.prototype.activate = function () {
+                1 != this._activated && (this._activated = !0, 0 != this._enabled && this._activate())
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null, this._t = null, this._t_off = null
+            }, e.prototype._update = function () {
+                0 == this._enabled ? this.texture = this._t_off : this.texture = this._t
+            }, e.prototype._activate = function () {
+                this.buttonMode = !0, this.once(o.EventType.CLICK, this._onClick)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Sprite);
-    e.RewardSelectDialogCount = r
+    e.BtnBase = r
 }

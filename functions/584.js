@@ -1,25 +1,44 @@
 const function584 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = i(585),
-        r = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "list", {
-                get: function () {
-                    return this._list
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.SetAll = function (t) {
-                var e = Object.keys(t).map(function (e) {
-                    return t[e]
-                });
-                this._list = new Array(e.length);
-                for (var i = 0; i < e.length; i++) this._list[i] = new o.FurnitureJukeBoxBGMLineModel, this._list[i].api_id = n.ObjUtil.getNumber(e[i], "api_id"), this._list[i].api_name = n.ObjUtil.getString(e[i], "api_name"), this._list[i].api_description = n.ObjUtil.getString(e[i], "api_description"), this._list[i].api_bgm_id = n.ObjUtil.getNumber(e[i], "api_bgm_id"), this._list[i].api_use_coin = n.ObjUtil.getNumber(e[i], "api_use_coin"), this._list[i].api_bgm_flag = n.ObjUtil.getNumber(e[i], "api_bgm_flag"), this._list[i].api_loops = n.ObjUtil.getNumber(e[i], "api_loops"), this._list[i].isLoaded = !0
-            }, t
-        }();
-    e.FurnitureJukeBoxBGMModel = r
+    var o = i(0),
+        r = i(9),
+        s = i(7),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/require_info", e
+            }
+            return n(e, t), e.prototype._completedEnd = function () {
+                var e = o.default.model.basic;
+                e.setUserData(s.ObjUtil.getObject(this._raw_data, "api_basic")), e.setExtraSupplyFlag(s.ObjUtil.getNumArray(this._raw_data, "api_extra_supply"));
+                var i = s.ObjUtil.getObject(this._raw_data, "api_oss_setting"),
+                    n = s.ObjUtil.getNumArray(i, "api_oss_items", []),
+                    r = 0 == s.ObjUtil.getNumber(i, "api_language_type");
+                e.updateOrganizeListSetting(n.map(function (t) {
+                    return 1 == t
+                }), r), e.setUISkinID(s.ObjUtil.getNumber(this._raw_data, "api_skin_id"));
+                var a = s.ObjUtil.getNumber(this._raw_data, "api_position_id");
+                e.setFlagShipPosIDSvr(a), e.setFlagShipPosIDCli(a), o.default.model.slot.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_slot_item")), o.default.model.slot.setUnsetData(s.ObjUtil.getObject(this._raw_data, "api_unsetslot")), o.default.model.useItem.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_useitem")), o.default.model.furniture.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_furniture")), o.default.model.kdock.__setData__(s.ObjUtil.getObjectArray(this._raw_data, "api_kdock")), t.prototype._completedEnd.call(this)
+            }, e
+        }(r.APIBase);
+    e.RequireInfoAPI = a
 }

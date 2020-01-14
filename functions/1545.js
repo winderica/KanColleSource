@@ -19,43 +19,46 @@ const function1545 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(36),
-        r = function (t) {
+    var o = i(12),
+        r = i(1546),
+        s = i(489),
+        a = function (t) {
             function e() {
-                return t.call(this) || this
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.show = function () {
-                this.hide(), this._current = new s, this._current.y = 17, this._current.alpha = 0, this._current.activate(), this.addChild(this._current), createjs.Tween.get(this._current).to({
-                    alpha: 1
-                }, 800)
-            }, e.prototype.hide = function () {
-                var t = this;
-                if (null != this._current) {
-                    var e = this._current;
-                    this._current = null, createjs.Tween.get(e).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        e.deactivate(), t.removeChild(e)
-                    })
+            return n(e, t), e.prototype._initializeBGStampLineImages = function () {
+                this._BGStampLineVisible = !0
+            }, e.prototype._initializeMapImages = function () {
+                this._maps = [];
+                for (var t = 0; t < 4; t++) {
+                    var e = new PIXI.Sprite;
+                    e.texture = [r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(2), r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(3), r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(4), r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(5)][t], e.x = 163 + 225.5 * t, e.y = 114, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
                 }
-            }, e.prototype.dispose = function () {
-                this.hide()
+            }, e.prototype._createMapShowTweens = function () {
+                return this.__createMapShowTweens(700)
+            }, e.prototype._initializeStampImages = function () {
+                this._stamps = [];
+                for (var t = 0; t < 3; t++) {
+                    var e = new o.Sprite;
+                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(0), e.x = 318 + 227 * t, e.y = 267, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
+                }
+            }, e.prototype._createStampShowTweens = function () {
+                return this.__createStampShowTweens(700)
+            }, e.prototype._showText = function () {
+                this.__showText(new _)
+            }, e.prototype._createStampLast = function () {
+                var t = r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(1),
+                    e = new o.Sprite(t);
+                return e.anchor.set(.5), e.position.set(1061, 338), e.alpha = 0, e
             }, e
-        }(PIXI.Container);
-    e.LayerTitle = r;
-    var s = function (t) {
+        }(s.TaskEventEndingBase);
+    e.TaskEventEnding1 = a;
+    var _ = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(65)), e._gear = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(66)), e._gear.anchor.set(.5), e._gear.position.set(32, 45), e._text = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(67)), e._text.position.set(60, 23), e.addChild(e._bg), e.addChild(e._gear), e.addChild(e._text), e
+            return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._gear, {
-                loop: !0
-            }).to({
-                rotation: 2 * Math.PI
-            }, 6e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+        return n(e, t), e.prototype.initialize = function () {
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(6), this._text1.position.set(152, 297), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(7), this._text2.position.set(338, 508), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_AZMHUHUHISGHNCHJ.getTexture(9), this._text3.position.set(436, 571)
         }, e
-    }(PIXI.Container)
+    }(s.TextsBase)
 }

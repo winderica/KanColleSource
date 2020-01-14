@@ -19,65 +19,92 @@ const function711 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(56),
-        s = i(165),
-        a = i(57),
-        _ = i(17),
-        l = function (t) {
+    var o = i(0),
+        r = i(712),
+        s = i(114),
+        a = i(718),
+        _ = i(323),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickYES = function () {
-                    e.onClickYES()
-                }, e._onClickNO = function () {
-                    e.onClickNO()
-                }, e.message = new PIXI.Sprite;
-                var i = r.ORGANIZE_MAIN.getTexture(26),
-                    n = r.ORGANIZE_MAIN.getTexture(20);
-                return e.buttonYes = new a.SimpleButton(i, i), e.buttonNo = new a.SimpleButton(n, n), e.textMamiyaCount = new o.TextBox(25, 5523516), e.textIrakoCount = new o.TextBox(25, 5523516), e.buttonYes.onClick = e._onClickYES, e.buttonNo.onClick = e._onClickNO, e.addChild(e.message, e.buttonYes, e.buttonNo, e.textMamiyaCount, e.textIrakoCount), e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.buttonYes.dispose(), this.buttonNo.dispose(), this.textMamiyaCount.destroy(), this.textIrakoCount.destroy(), this.onClickYES = null, this.onClickNO = null, this.message = null, this.buttonYes = null, this.buttonNo = null, this.textMamiyaCount = null, this.textIrakoCount = null
-            }, e.prototype.update = function (t, e, i) {
-                switch (this.textMamiyaCount.text = e + " \u2192 " + (e - 1), this.textIrakoCount.text = i + " \u2192 " + (i - 1), this.textIrakoCount.visible = this.textMamiyaCount.visible = !1, t) {
-                    case 2:
-                        switch (s.OrganizeConst.getMamiyaOption().playVoiceDialogIrako(), this.message.texture = s.OrganizeConst.getMamiyaOption().res_info5, this.message.position.set(219, 87), this.buttonYes.position.set(763, 471), this.buttonNo.position.set(540, 471), this.textIrakoCount.visible = !0, this.textIrakoCount.position.set(747, 362), _.MAMIYA_IRAKO_SEASON) {
-                            case 4:
-                                this.textIrakoCount.position.set(747, 362);
-                                break;
-                            case 2:
-                                this.textIrakoCount.position.set(747, 353);
-                                break;
-                            default:
-                                this.textIrakoCount.position.set(747, 348)
-                        }
-                        break;
-                    case 1:
-                        switch (s.OrganizeConst.getMamiyaOption().playVoiceDialogMamiya(), this.message.texture = s.OrganizeConst.getMamiyaOption().res_info3, this.message.position.set(219, 87), this.buttonYes.position.set(763, 471), this.buttonNo.position.set(538, 471), this.textMamiyaCount.visible = !0, _.MAMIYA_IRAKO_SEASON) {
-                            case 4:
-                                this.textMamiyaCount.position.set(747, 354);
-                                break;
-                            case 2:
-                                this.textMamiyaCount.position.set(747, 357);
-                                break;
-                            default:
-                                this.textMamiyaCount.position.set(747, 340)
-                        }
-                        break;
-                    case 3:
-                        switch (s.OrganizeConst.getMamiyaOption().playVoiceDialogMamiyaIrako(), this.message.texture = s.OrganizeConst.getMamiyaOption().res_info6, this.message.position.set(63, 72), this.buttonYes.position.set(630, 471), this.buttonNo.position.set(405, 471), _.MAMIYA_IRAKO_SEASON) {
-                            case 4:
-                                this.textMamiyaCount.position.set(427, 345), this.textIrakoCount.position.set(654, 345);
-                                break;
-                            case 2:
-                                this.textMamiyaCount.position.set(468, 342), this.textIrakoCount.position.set(694, 342);
-                                break;
-                            default:
-                                this.textMamiyaCount.position.set(487, 340), this.textIrakoCount.position.set(715, 340)
-                        }
-                        this.textMamiyaCount.visible = !0, this.textIrakoCount.visible = !0
+                e.SLOT_MAX = 6, e.shipSlots = [];
+                for (var i = 0; i < e.SLOT_MAX; i++) {
+                    var n = new a.ShipSlot(i),
+                        o = _.ShipOffsetPosition[0] + _.ShipAreaPosition[i][0],
+                        r = _.ShipOffsetPosition[1] + _.ShipAreaPosition[i][1];
+                    n.position.set(o, r), e.shipSlots.push(n)
                 }
+                return e.arrowTopButton = new s.ArrowButton(!1), e.arrowBottomButton = new s.ArrowButton(!0), e.addChild(e.shipSlots[1], e.shipSlots[3], e.shipSlots[5], e.shipSlots[0], e.shipSlots[2], e.shipSlots[4]), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "ShipSlots", {
+                get: function () {
+                    return this.shipSlots
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ArrowTopButton", {
+                get: function () {
+                    return this.arrowTopButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ArrowBottomButton", {
+                get: function () {
+                    return this.arrowBottomButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this.shipSlots.length; t++) this.shipSlots[t].dispose(), this.shipSlots[t] = null;
+                this.shipSlots = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.taskShipDetail && this.taskShipDetail.dispose(), this.taskShipDetail = null
+            }, e.prototype.init = function (t, e, i) {
+                this.shipSlots.forEach(function (n) {
+                    n.activate(t, e, i)
+                })
+            }, e.prototype.initArrow = function (t) {
+                this.arrowTopButton.position.set(686, 220), this.arrowBottomButton.position.set(683, 663), this.arrowTopButton.initialize(function () {
+                    t && t(-2)
+                }), this.arrowBottomButton.initialize(function () {
+                    t && t(2)
+                })
+            }, e.prototype.show = function () {
+                this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
+            }, e.prototype.update = function (t, e) {
+                for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
+                    var _ = this.shipSlots[a],
+                        u = a + e,
+                        l = i.getShipModel(u);
+                    if (_.visible = !1, l) _.visible = !0, _.update(u, l, n), _.open();
+                    else if (u < s) {
+                        var c = r < s,
+                            h = u == r,
+                            p = 0 == n,
+                            d = p && c && h;
+                        _.visible = !0, _.updateEmpty(u, d), _.close()
+                    }
+                }
+                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
+            }, e.prototype.shutterAnimation = function (t, e, i) {
+                var n = this.shipSlots[t];
+                n.closeAnimation(function () {
+                    e && e(), n.close();
+                    createjs.Tween.get(null).wait(100).call(function () {
+                        n.openAnimation(function () {
+                            i && i()
+                        }, 200)
+                    })
+                }, 200)
+            }, e.prototype.onShipDetail = function (t, e, i) {
+                var n = this;
+                this.taskShipDetail = new r.TaskShipDetail(e), this.taskShipDetail.onClickBack = function () {
+                    n.taskShipDetail.hide(function () {
+                        n.taskShipDetail.dispose(), n.taskShipDetail = null, i && i()
+                    })
+                }, this.taskShipDetail.start(t)
             }, e
         }(PIXI.Container);
-    e.UseSweetConfirm = l
+    e.ShipSlotLayer = u
 }

@@ -19,23 +19,19 @@ const function1154 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(74),
-        s = i(141),
-        a = function (t) {
+    var o = i(11),
+        r = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = null !== t && t.apply(this, arguments) || this;
+                return e._result = null, e
             }
-            return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(5);
-                var t = new PIXI.Graphics;
-                t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-                var e = this._candidate.mst_id,
-                    i = o.default.resources.getFurniture(e, "reward"),
-                    n = new PIXI.Sprite(i),
-                    s = Math.min(195 / n.width, 195 / n.height);
-                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
-            }, e
-        }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogFurnitureBtn = a
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(o.TaskBase);
+    e.TaskWithResult = r
 }

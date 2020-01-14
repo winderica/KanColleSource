@@ -19,40 +19,28 @@ const function1268 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            n._ropeLength = 0, n._animation_count = 0, n._texture = e, n._points = [];
-            var o = e.orig.width;
-            n._ropeLength = o / i;
-            for (var r = 0; r < i; r++) {
-                var s = new PIXI.Point;
-                s.x = r * (e.height / (i - 1)), s.y = e.width / 2, n._points.push(s)
+    var o = i(145),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._interval_id = 0, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._hand = new PIXI.Sprite, e._hand.anchor.set(.5, .5), e._light = new PIXI.Sprite, e._light.anchor.set(.5, .5), e.addChild(e._bg), e.addChild(e._hand), e.addChild(e._light), e
             }
-            var a = new PIXI.mesh.Rope(e, n._points),
-                _ = e.frame,
-                l = PIXI.GroupD8.isVertical(2) ? e.frame.height : e.frame.width,
-                u = PIXI.GroupD8.isVertical(2) ? e.frame.width : e.frame.height,
-                c = new PIXI.Rectangle(_.x, _.y, l, u),
-                h = new PIXI.Rectangle(0, 0, l, u),
-                p = new PIXI.Texture(e.baseTexture, _, c, h, 2);
-            return a = new PIXI.mesh.Rope(p, n._points), a.rotation = Math.PI / 2, a.x = a.height, n.addChild(a), n
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.stopAnimation(), this.removeChildren(), this._texture = null, this._points = null, this._ropeLength = null, this._animation_count = null
-        }, e.prototype.startAnimation = function () {
-            var t = this;
-            this._tween = createjs.Tween.get(this), this._tween.loop = !0, this._tween.wait(40).call(function () {
-                t._onUpdate()
-            })
-        }, e.prototype.stopAnimation = function () {
-            this._tween && (this._tween.setPaused(!0), this._tween = null)
-        }, e.prototype._onUpdate = function () {
-            this._animation_count += .05;
-            for (var t = 0; t < this._points.length; t++) {
-                this._points[t].y = this._texture.width / 2 + 5 * Math.cos(.3 * t + this._animation_count)
-            }
-        }, e
-    }(PIXI.Container);
-    e.MapEnemy = o
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.texture = o.SALLY_MAP_PARTS.getTexture(15), this._hand.texture = o.SALLY_MAP_PARTS.getTexture(17), this._light.texture = o.SALLY_MAP_PARTS.getTexture(16)
+            }, e.prototype.activate = function () {
+                this._startMove()
+            }, e.prototype.deactivate = function () {
+                this._stopMove()
+            }, e.prototype.dispose = function () {
+                this._stopMove()
+            }, e.prototype._startMove = function () {
+                var t = this;
+                0 == this._interval_id && (this._interval_id = setInterval(function () {
+                    t._hand.rotation = (4 * Math.random() - 2) / 180 * Math.PI
+                }, 30))
+            }, e.prototype._stopMove = function () {
+                0 != this._interval_id && clearInterval(this._interval_id), this._interval_id = 0
+            }, e
+        }(PIXI.Container);
+    e.CompCompass = r
 }

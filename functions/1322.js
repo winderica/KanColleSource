@@ -19,52 +19,45 @@ const function1322 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = function (t) {
+    var o = i(0),
+        r = i(8),
+        s = i(61),
+        a = i(82),
+        _ = i(213),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
+                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
-            }, e.prototype.activate = function () {
-                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
-                    loop: !0
-                }).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
-                    loop: !0
-                }).wait(500).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
-                    loop: !0
-                }).wait(500).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400))
-            }, e.prototype.deactivate = function () {
-                this._stopTween()
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
             }, e.prototype.dispose = function () {
-                this._stopTween()
-            }, e.prototype._stopTween = function () {
-                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
-                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
+                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.CompShipWave = r
+    e.BonusUseItem = u
 }

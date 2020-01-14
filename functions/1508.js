@@ -19,52 +19,66 @@ const function1508 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1509),
-        s = i(1516),
-        a = i(1521),
-        _ = function (t) {
+    var o = i(251),
+        r = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._scene = e, i
+                return i._friend = e, i._points = [], i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._mapClear()
-            }, e.prototype._mapClear = function () {
-                var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.shutter,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.battle_model.deck_f.ships[0],
-                        s = o.mst_id,
-                        a = o.isDamaged(),
-                        _ = this._scene.data.getClearMapSuffix();
-                    new r.TaskEventClear(e, i, n, s, a, _).start(function () {
-                        t._ending()
-                    })
-                } else this._ending()
-            }, e.prototype._ending = function () {
-                var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.layer_bonus,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.getClearOperationSuffix();
-                    new s.TaskEventEnding(e, i, n, o).start(function () {
-                        t._mapOpen()
-                    })
-                } else this._mapOpen()
-            }, e.prototype._mapOpen = function () {
-                var t = this,
-                    e = this._scene.data.getOpenedMapIDs();
-                if (e.length > 0) {
-                    var i = this._scene.layer_bonus;
-                    new a.TaskMapOpen(i, e).start(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                if (this._clearPoints(), e <= 0) return !1;
+                var i;
+                switch (t) {
+                    case 11:
+                        i = this._get11Points(e);
+                        break;
+                    case 12:
+                        i = this._get12Points(e);
+                        break;
+                    case 13:
+                        i = this._get13Points(e);
+                        break;
+                    case 14:
+                        i = this._get14Points(e)
+                }
+                if (null == i) return !1;
+                for (var n = 0; n < i.length; n++) {
+                    var r = new o.FormationPoint,
+                        s = i[n];
+                    r.position.set(s.x, s.y), r.initializeForCombinedSub(this._friend), r.visible = !1, this.addChild(r), this._points.push(r)
+                }
+                return !0
+            }, e.prototype.show = function (t) {
+                void 0 === t && (t = 100);
+                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
+                    var o = n[i];
+                    ! function (i) {
+                        e.wait(t), e.call(function () {
+                            i.visible = !0
+                        })
+                    }(o)
+                }
+            }, e.prototype.dispose = function () {
+                this._clearPoints()
+            }, e.prototype._clearPoints = function () {
+                for (var t = 0, e = this._points; t < e.length; t++) {
+                    var i = e[t];
+                    this.removeChild(i)
+                }
+                this._points = []
+            }, e.prototype._get11Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(38, -12)), t > 1 && e.push(new PIXI.Point(23, -35)), t > 2 && e.push(new PIXI.Point(23, 12)), t > 3 && e.push(new PIXI.Point(8, -57)), t > 4 && e.push(new PIXI.Point(8, 35)), t > 5 && e.push(new PIXI.Point(0, -12)), e
+            }, e.prototype._get12Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(17, -12)), t > 2 && e.push(new PIXI.Point(36, -38)), t > 3 && e.push(new PIXI.Point(36, 15)), t > 4 && e.push(new PIXI.Point(-3, -21)), t > 5 && e.push(new PIXI.Point(-3, 0)), e
+            }, e.prototype._get13Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(36, -12)), t > 1 && e.push(new PIXI.Point(11, -54)), t > 2 && e.push(new PIXI.Point(11, 33)), t > 3 && e.push(new PIXI.Point(-32, -54)), t > 4 && e.push(new PIXI.Point(-32, 33)), t > 5 && e.push(new PIXI.Point(-57, -12)), e
+            }, e.prototype._get14Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(26, -38)), t > 2 && e.push(new PIXI.Point(26, 15)), t > 3 && e.push(new PIXI.Point(26, -12)), t > 4 && e.push(new PIXI.Point(9, -21)), t > 5 && e.push(new PIXI.Point(9, 0)), e
             }, e
-        }(o.TaskBase);
-    e.PhaseClear = _
+        }(PIXI.Container);
+    e.FormationPointsCombinedSub = r
 }

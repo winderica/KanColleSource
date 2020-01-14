@@ -19,60 +19,21 @@ const function1377 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(54),
+    var o = i(9),
+        r = i(147),
         s = function (t) {
             function e(e, i) {
+                void 0 === i && (i = !1);
                 var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n._damage_cutin = new r.PhaseDamageCutin(e), n
+                return n._url = "api_req_practice/battle", n._data = e, n._debug = i, n
             }
-            return n(e, t), e.prototype._createAttackData_f = function () {
-                return this._createAttackData(this._scene.data.model.deck_f.ships, this._scene.data.model.deck_e.ships)
-            }, e.prototype._createAttackData_e = function () {
-                return this._createAttackData(this._scene.data.model.deck_e.ships, this._scene.data.model.deck_f.ships)
-            }, e.prototype._createAttackData = function (t, e) {
-                for (var i = new Array, n = 0; n < t.length; n++) {
-                    var o = t[n];
-                    if (null != o) {
-                        var r = o.friend ? this._data.getAttackTo_f(n) : this._data.getAttackTo_e(n);
-                        if (!(r < 0)) {
-                            var s = {
-                                attacker: o,
-                                defender: e[r],
-                                damage: o.friend ? this._data.getDamage_f(n) : this._data.getDamage_e(n),
-                                hit: o.friend ? this._data.getHitType_f(n) : this._data.getHitType_e(n),
-                                shield: o.friend ? this._data.isShield_f(n) : this._data.isShield_e(n)
-                            };
-                            i.push(s)
-                        }
-                    }
-                }
-                return i
-            }, e.prototype._shootBase = function (t, e, i) {
-                var n = this._scene.view.bannerGroupLayer.getBanner(t.attacker),
-                    o = this._scene.view.bannerGroupLayer.getBanner(t.defender),
-                    r = n.getGlobalPos(!0),
-                    s = o.getGlobalPos(!0);
-                this._scene.view.layer_torpedo.playTorpedo(r, s, e, function () {
-                    null != i && i()
-                })
-            }, e.prototype._damageBase = function (t, e) {
-                1 == this._scene.data.model.isPractice() && (e.damage = Math.min(e.damage, t.hp_now - 1));
-                var i = this._scene.view.bannerGroupLayer.getBanner(t),
-                    n = i.getGlobalPos(!0);
-                this._scene.view.layer_torpedo.playTorpedoWaterColumn(i), this._scene.view.layer_explosion.playDamageExplosion(n.x, n.y, e.damage), i.moveAtDamage(e.shield)
-            }, e.prototype._showDamageBase = function (t, e) {
-                for (var i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = e[o.index];
-                        if (null != r) {
-                            var s = this._scene.view.bannerGroupLayer.getBanner(o);
-                            this._scene.view.layer_damage.showAtBanner(s, r.damage, r.hit), this._damage_cutin.causeDamage(o, r.damage), s.updateHp(o.hp_now)
-                        }
-                    }
-                }
+            return n(e, t), e.prototype._connect = function () {
+                var e = this._data.model.deck_f,
+                    i = this._data.model.deck_e;
+                this._post_data.api_deck_id = e.id, this._post_data.api_formation_id = e.formation, this._post_data.api_enemy_id = i.id, 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.PhaseRaigekiBase = s
+        }(o.APIBase);
+    e.APIPracticeStart = s
 }

@@ -19,24 +19,41 @@ const function999 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(167),
-        s = i(167),
-        a = i(31),
-        _ = function (t) {
+    var o = i(26),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._fuelTitle = new PIXI.Sprite, e.addChild(e._fuelTitle), e._ammoTitle = new PIXI.Sprite, e._ammoTitle.x = 141, e.addChild(e._ammoTitle), e._fuelBox = new r.FuelContainer, e._fuelBox.y = 126, e.addChild(e._fuelBox), e._ammoBox = new s.AmmoContainer, e._ammoBox.x = 141, e._ammoBox.y = 126, e.addChild(e._ammoBox), e._fuelText = new o.TextBox(28, 4999235), e._fuelText.y = 84, e.addChild(e._fuelText), e._ammoText = new o.TextBox(28, 4999235), e._ammoText.y = 84, e.addChild(e._ammoText), e
+                return e.texture = PIXI.Texture.EMPTY, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._fuelTitle.texture = a.SALLY_COMMON.getTexture(17), this._ammoTitle.texture = a.SALLY_COMMON.getTexture(16)
-            }, e.prototype.update = function (t, e) {
-                this._fuelText.text = t.toString(), this._fuelText.x = 128 - this._fuelText.width, this._ammoText.text = e.toString(), this._ammoText.x = 269 - this._ammoText.width, this._fuelBox.update(t), this._ammoBox.update(e)
-            }, e.prototype.play = function (t, e, i) {
-                1 == t ? (this._fuelBox.playSupply(i), 1 == e && this._ammoBox.playSupply(function () {})) : 1 == e ? this._ammoBox.playSupply(i) : i()
+            return n(e, t), e.prototype.update = function (t) {
+                switch (t) {
+                    case 1:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(91);
+                        break;
+                    case 2:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(92);
+                        break;
+                    case 3:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(93);
+                        break;
+                    case 4:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(94);
+                        break;
+                    case 5:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(95);
+                        break;
+                    case 6:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(96);
+                        break;
+                    case 7:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(97);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._fuelBox.dispose(), this._ammoBox.dispose(), this._fuelText.destroy(), this._ammoText.destroy()
+                this.texture = PIXI.Texture.EMPTY
             }, e
-        }(PIXI.Container);
-    e.TempSupplyBox = _
+        }(PIXI.Sprite);
+    e.AirPlaneSkillLevel = r
 }

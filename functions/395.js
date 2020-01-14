@@ -19,39 +19,54 @@ const function395 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    i._update(!0)
-                }, i._onMouseOut = function () {
-                    i._update(!1)
-                }, i._onClick = function (t) {
-                    null != i._cb_onClick && i._cb_onClick(t)
-                }, i._bg = new PIXI.Sprite, i._bg.position.set(-12, -12), i.addChild(i._bg), i._icon = new o.Sprite, i._icon.position.set(18.5, 18.5), i._icon.anchor.set(.5), i._icon.scale.set(.5), i.addChild(i._icon), i._t = createjs.Tween.get(i._icon, {
-                    loop: !0
-                }).to({
-                    scaleX: .8,
-                    scaleY: .8
-                }, 1e3).to({
-                    scaleX: .5,
-                    scaleY: .5
-                }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i.interactive = !0, i
+    var o = i(1),
+        r = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._activated = !1, o._selected = !1, o._onMouseOver = function () {
+                    o._update(!0)
+                }, o._onMouseOut = function () {
+                    o._update(!1)
+                }, o._onClick = function () {
+                    null != o._cb_onChange && o._cb_onChange(o._mode, o._no)
+                }, o._mode = e, o._no = i, o._cb_onChange = n, o.interactive = !0, o
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._icon.texture = r.ALBUM_MAIN.getTexture(9), this._update(!1)
+            return n(e, t), Object.defineProperty(e.prototype, "mode", {
+                get: function () {
+                    return this._mode
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "no", {
+                get: function () {
+                    return this._no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, 1 == this._selected ? this._deactivate() : 1 == this._activated && this._activate(), this._update(!1))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                this._texture_cache = t, this._texture_on_cache = e, this._update(!1)
             }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick))
+                1 != this._activated && (this._activated = !0, this._activate())
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._bg = null, this._icon = null, this._t = null, this._cb_onClick = null
+                this.deactivate(), this._texture_cache = null, this._texture_on_cache = null, this._cb_onChange = null
             }, e.prototype._update = function (t) {
-                0 == t ? (this._bg.texture = r.ALBUM_MAIN.getTexture(2), this._icon.visible = !0, this._t.setPaused(!1)) : (this._bg.texture = r.ALBUM_MAIN.getTexture(10), this._icon.visible = !1, this._t.setPaused(!0))
+                1 == this._selected || 1 == t ? this.texture = this._texture_on_cache : this.texture = this._texture_cache
+            }, e.prototype._activate = function () {
+                1 != this._selected && (this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick))
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
             }, e
-        }(PIXI.Container);
-    e.MovieBtn = a
+        }(PIXI.Sprite);
+    e.TabBtn = r
 }

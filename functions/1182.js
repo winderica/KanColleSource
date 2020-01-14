@@ -19,15 +19,29 @@ const function1182 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(3),
+    var o = i(0),
+        r = i(144),
         s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = null !== t && t.apply(this, arguments) || this;
+                return e._onMouseOver = function () {
+                    e._canvas.scale.set(1.05)
+                }, e._onMouseOut = function () {
+                    e._canvas.scale.set(1)
+                }, e
             }
-            return n(e, t), e.prototype._update = function (t) {
-                this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(19) : r.ITEM_FSHOP.getTexture(20)
+            return n(e, t), e.prototype.load = function (t) {
+                t()
+            }, e.prototype._initialize = function () {
+                this._icon.visible = !1;
+                this._canvas.x = 101, this._canvas.y = 119, this._canvas.scale.set(1);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, .1), t.drawRoundedRect(-86, -119, 172, 238, 16), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getShip(e, !1, "reward_card"),
+                    n = new PIXI.Sprite(i);
+                n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(o.BtnBase);
-    e.BackBtn = s
+        }(r.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogShipBtnUI5 = s
 }

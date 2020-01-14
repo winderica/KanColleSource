@@ -24,22 +24,22 @@ const function897 = function (t, e, i) {
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.limitShip = !1, e.limitSlot = !1, e._onClick = function () {
-                    0 == (e.limitShip || e.limitSlot) && e.onClick()
-                }, e._onMouseOver = function () {
-                    e.popup.visible = !1, e.limitShip ? e.popup.visible = !0 : e.limitSlot && (e.popup.visible = !0)
+                e._onMouseOver = function () {
+                    e.buttonCardSelect.alpha = 1
                 }, e._onMouseOut = function () {
-                    e.popup.visible = !1
-                }, e.popup = new PIXI.Sprite, e.buttonSprite = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(41)), e.popup.visible = !1;
-                var i = Math.floor(100 - e.buttonSprite.width / 2),
-                    n = Math.floor(50 - e.buttonSprite.height / 2);
-                return e.area = new PIXI.Graphics, e.area.beginFill(0, 0), e.area.drawRect(-i, -n, 200, 100), e.area.endFill(), e.area.interactive = e.area.buttonMode = !0, e.area.on(r.EventType.CLICK, e._onClick), e.area.on(r.EventType.MOUSEOVER, e._onMouseOver), e.area.on(r.EventType.MOUSEOUT, e._onMouseOut), e.addChild(e.area, e.buttonSprite, e.popup), e
+                    e.buttonCardSelect.alpha = 0
+                }, e._onClick = function () {
+                    e.onClick(e.memDockId)
+                };
+                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(10)),
+                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(1));
+                return n.position.set(60, 30), n.addListener(r.EventType.MOUSEOVER, e._onMouseOver), n.addListener(r.EventType.MOUSEOUT, e._onMouseOut), n.addListener(r.EventType.CLICK, e._onClick), n.interactive = n.buttonMode = !0, n.alpha = 0, e.addChild(i, n), e.buttonCardSelect = n, e.background = i, e
             }
-            return n(e, t), e.prototype.updateCondition = function (t, e) {
-                this.popup.visible = !1, t ? (this.popup.texture = o.ARSENAL_MAIN.getTexture(2), this.popup.position.set(-61, -90)) : e && (this.popup.texture = o.ARSENAL_MAIN.getTexture(68), this.popup.position.set(49, -33)), this.limitShip = t, this.limitSlot = e
+            return n(e, t), e.prototype.update = function (t) {
+                this.memDockId = t
             }, e.prototype.dispose = function () {
-                this.area.off(r.EventType.CLICK), this.area.off(r.EventType.MOUSEOVER), this.area.off(r.EventType.MOUSEOUT), this.onClick = null, this.popup = null, this.buttonSprite = null, this.limitShip = null, this.limitSlot = null, this.area = null, this.removeChildren()
+                this.onClick = null, this.background.texture = PIXI.Texture.EMPTY, this.buttonCardSelect.texture = PIXI.Texture.EMPTY, this.buttonCardSelect.removeAllListeners(r.EventType.MOUSEOVER), this.buttonCardSelect.removeAllListeners(r.EventType.MOUSEOUT), this.buttonCardSelect.removeAllListeners(r.EventType.CLICK), this.background = null, this.buttonCardSelect = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.SelectButton = s
+    e.EmptyDock = s
 }

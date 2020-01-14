@@ -19,35 +19,35 @@ const function1031 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(53),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
-                    i._updateState(!0)
-                }, i._onMouseOut = function () {
-                    i._updateState(!1)
-                }, i._onClick = function () {
-                    null != i._cb && 1 == i._btn.interactive && (o.SE.play("231"), i.deactivate(), i._updateState(!0), i._cb(i._type))
-                }, i._cb = e, i
+    var o = i(0),
+        r = i(81),
+        s = i(32),
+        a = i(1),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._flg = !1, e._overed = !1, e._updateTexture = function () {
+                    e._flg = !e._flg, 1 == e._flg || 1 == e._overed ? e._icon.texture = s.SALLY_COMMON.getTexture(42) : e._icon.texture = s.SALLY_COMMON.getTexture(41)
+                }, e._onMouseOver = function () {
+                    e._overed = !0, e._updateTexture(), e._over.visible = !0
+                }, e._onMouseOut = function () {
+                    e._overed = !1, e._updateTexture(), e._over.visible = !1
+                }, e._onClick = function () {
+                    o.default.scene.change(24, new r.ItemSceneModel)
+                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(-187, -40), e._over.visible = !1, e._icon.interactive = !0, e
             }
-            return n(e, t), e.prototype.setSelected = function (t) {
-                this._selected = t, 1 == this._selected && 1 == this._activated && this.deactivate(), this._updateState(t)
-            }, e.prototype.initialize = function (t) {
-                this._type = t;
-                var e, i;
-                0 == t ? (e = 3, i = 4) : 1 == t ? (e = 5, i = 6) : (e = 7, i = 8), this._btn = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(e)), this._btn_on = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(i)), this._btn_on.position.set(-6, -7), this.addChild(this._btn), this.addChild(this._btn_on), this._updateState(!1)
+            return n(e, t), e.prototype.initialize = function () {
+                this._icon.texture = s.SALLY_COMMON.getTexture(41), this._over.texture = s.SALLY_COMMON.getTexture(45), this.addChild(this._over), this.addChild(this._icon)
             }, e.prototype.activate = function () {
-                0 == this._activated && 0 == this._selected && (this._btn.interactive = this._btn.buttonMode = !0, this._btn.on(s.EventType.MOUSEOVER, this._onMouseOver), this._btn.on(s.EventType.MOUSEOUT, this._onMouseOut), this._btn.on(s.EventType.CLICK, this._onClick))
+                var t = this;
+                null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, {
+                    loop: !0
+                }).wait(300).call(function () {
+                    t._updateTexture()
+                }))
             }, e.prototype.deactivate = function () {
-                this._btn.interactive = this._btn.buttonMode = !1, this._btn.off(s.EventType.MOUSEOVER, this._onMouseOver), this._btn.off(s.EventType.MOUSEOUT, this._onMouseOut), this._btn.off(s.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype._updateState = function (t) {
-                1 == t ? (this._btn.alpha = 0, this._btn_on.visible = !0) : (this._btn.alpha = 1, this._btn_on.visible = !1)
+                this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
             }, e
         }(PIXI.Container);
-    e.BtnMatchingSelect = a
+    e.BtnShop2 = _
 }

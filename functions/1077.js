@@ -19,50 +19,35 @@ const function1077 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(384),
-        r = function (t) {
+    var o = i(1078),
+        r = i(59),
+        s = i(32),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._particle = new Array;
-                for (var i = [0, 4, 16], n = [0, 24, 16], o = 0; o < i.length; o++) {
-                    var r = new s;
-                    r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
+                for (var e = t.call(this) || this, i = new Array, n = 47, a = 0; a < 8; a++) {
+                    var _ = new o.ExpeditionListItem;
+                    _.x = 8, _.y = n, i.push(_), n += 45
                 }
-                return e
+                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(90));
+                u.position.y = -1;
+                var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(18));
+                l.anchor.set(0, .5), l.position.set(40, 20);
+                var c = new PIXI.Sprite(s.SALLY_COMMON.getTexture(51));
+                return c.addChild(l), c.position.set(-20, -90), i.forEach(function (t) {
+                    e.addChild(t)
+                }), e.addChild(u), e.addChild(c), e._listItems = i, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._particle; t < e.length; t++) {
-                    var i = e[t];
-                    i.initialize(), i.startAnim()
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._particle; t < e.length; t++) {
-                    e[t].stopAnim()
-                }
-                this._particle = null
+            return n(e, t), Object.defineProperty(e.prototype, "items", {
+                get: function () {
+                    return this._listItems
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._listItems.forEach(function (t) {
+                    return t.dispose()
+                }), this._listItems.length = 0, this._listItems = null
             }, e
         }(PIXI.Container);
-    e.RecordKiraLayer = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.alpha = 0, e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.RECORD_MINI.getTexture(2)
-        }, e.prototype.startAnim = function () {
-            this._anim()
-        }, e.prototype.stopAnim = function () {
-            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-        }, e.prototype._anim = function () {
-            var t = this;
-            this._tween = createjs.Tween.get(this).wait(1e3 * Math.random() + 1e3).to({
-                alpha: 1
-            }, 150).to({
-                alpha: 0
-            }, 150).call(function () {
-                t._tween = null, t._anim()
-            })
-        }, e
-    }(PIXI.Sprite)
+    e.ExpeditionList = a
 }

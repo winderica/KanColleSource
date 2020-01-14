@@ -20,35 +20,21 @@ const function1115 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(80),
-        a = i(241),
-        _ = i(1116),
-        l = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._purchasedItems = e, o._scene_model = i, o._delegate_initialize = n, o
+        r = i(11),
+        s = i(175),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._view = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new _.TaskLoadResources).start(function () {
-                    if (null != t._delegate_initialize) {
-                        o.default.model.useItem.updateCount();
-                        var e = 0;
-                        t._scene_model instanceof s.ItemSceneModel && (e = t._scene_model.subtype), t._delegate_initialize(e)
-                    }
-                    t._connectAPI()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this;
-                new a.PayItemAPI(this._purchasedItems).start(function () {
-                    t._endTask()
-                })
+                var t = s.AlbumConst.BGM_ID_FOR_SHIP;
+                o.default.sound.bgm.play(t), this._startScene()
+            }, e.prototype._startScene = function () {
+                this._view.activate(), this._endTask()
             }, e.prototype._endTask = function () {
-                this._purchasedItems = null, this._scene_model = null, this._delegate_initialize = null, t.prototype._endTask.call(this)
+                this._view = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskItemScenePreInitialize = l
+    e.TaskSceneInitialize = a
 }

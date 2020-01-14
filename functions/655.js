@@ -19,43 +19,52 @@ const function655 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(8),
-        r = i(158),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    0 != i._btn.buttonMode && null != i._cb && i._cb()
-                }, i._cb = e, i._layer = new o.AreaBox(.2), i._bg = new PIXI.Sprite, i._btn = new PIXI.Sprite, i.addChild(i._layer), i.addChild(i._bg), i.addChild(i._btn), i
+    var o = i(10),
+        r = i(8),
+        s = i(31),
+        a = i(31),
+        _ = i(311),
+        u = i(208),
+        l = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer", {
-                get: function () {
-                    return this._layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn", {
-                get: function () {
-                    return this._btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = r.PORT_MAIN.getTexture(18), this._bg.position.set(340, 273), this._btn.texture = r.PORT_MAIN.getTexture(1), this._btn.position.set(517, 450), this._btn.interactive = !0
-            }, e.prototype.activate = function () {
-                0 == this._btn.buttonMode && (this._btn.buttonMode = !0, this._btn.on(s.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._btn.buttonMode = !1, this._btn.off(s.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb = null
+            return n(e, t), e.prototype._initBG = function () {
+                var t = this;
+                this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
+                    t._animation()
+                })
+            }, e.prototype._createItemTobe = function (t, e) {
+                var i = o.COMMON_MISC.getTexture(49),
+                    n = new u.CenteringSprite(i);
+                return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
+            }, e.prototype._change = function () {
+                var e = this;
+                t.prototype._change.call(this);
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
+                i.x = -i.width / 2, i.y = -i.height / 2;
+                var n = new a.Container;
+                n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
+                    scaleX: 3.3,
+                    scaleY: 3.3,
+                    alpha: 1
+                }, 350).to({
+                    scaleX: 5,
+                    scaleY: 5
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(n)
+                });
+                var s = new r.AreaBox(1, 16777215);
+                s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({
+                    alpha: 1
+                }, 500).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(s)
+                })
             }, e
-        }(PIXI.Container);
-    e.CompCombinedAlert = a
+        }(_.ModelChangeTask);
+    e.AirunitBaseOpenTask = l
 }

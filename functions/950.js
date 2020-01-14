@@ -3,32 +3,18 @@ const function950 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t) {
-                this._o = t
-            }
-            return Object.defineProperty(t.prototype, "type", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_usemst")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_getcount")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "icon_id", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_icon_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getUseitemMstID = function () {
-                return 4 == this.type ? [-1, 31, 32, 33, 34, 2, 1, 3, 4][this.icon_id] : 5 == this.type ? this.icon_id : 0
-            }, t
-        }();
-    e.DropItemModel = o
+    ! function (t) {
+        t.HOKAN = {
+            text: "\u88c5\u5099\u304c\u3042\u308b\u5834\u5408\u3001\u5009\u5eab\u306b\u4fdd\u7ba1\u3055\u308c\u307e\u3059\u3002",
+            color: 3564704,
+            x: 40
+        }, t.KAITAI = {
+            text: "\u88c5\u5099\u304c\u3042\u308b\u5834\u5408\u3001\u540c\u6642\u306b\u89e3\u4f53\u3055\u308c\u307e\u3059\u3002",
+            color: 12467003,
+            x: 105
+        }
+    }(e.DisassemblyTypeMessage || (e.DisassemblyTypeMessage = {}));
+    ! function (t) {
+        t.HOKAN = "hokan", t.KAITAI = "kaitai", t.BTN = "btn"
+    }(e.DisassemblyTypeName || (e.DisassemblyTypeName = {}))
 }

@@ -19,20 +19,23 @@ const function831 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
+    var o = i(4),
+        r = i(135),
+        s = i(832),
+        a = i(14),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(0));
-                e.addChild(i);
-                var n = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(1));
-                e.addChild(n);
-                var r = new PIXI.Graphics;
-                return r.beginFill(16711935, .5), r.drawRect(-i.width / 2, -i.height / 2, i.width, i.height), r.endFill(), r.position.set(i.width / 2, i.height / 2), e.addChild(r), e.mask = r, e
+                    i = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(21));
+                e.textType = new o.TextBox(21, 16777215), e.textName = new o.TextBox(36, 16777215), e.textLevel = new o.TextBox(65, 16777215), e.starRate = new s.StarRate;
+                var n = a.CreateRect.gradientLeftToRight(220, 50, .65, .9);
+                return e.containerName = new PIXI.Container, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.textType.position.set(18, 8), e.containerName.position.set(18, 36), e.textLevel.position.set(230, 89), e.starRate.position.set(15, 165), e.textLevel.anchor.x = 1, e.addChild(i, e.textType, e.containerName, e.textLevel, e.starRate), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.mask = null
+            return n(e, t), e.prototype.update = function (t, e, i, n) {
+                this.containerName.cacheAsBitmap = !1, this.textType.text = t, this.textName.text = e, this.textLevel.text = "" + i, this.starRate.update(n), this.containerName.cacheAsBitmap = !0
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.starRate.dispose(), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textType = null, this.textName = null, this.textLevel = null, this.starRate = null, this.containerName = null
             }, e
         }(PIXI.Container);
-    e.CutinBar = r
+    e.ShipInfoBox = _
 }

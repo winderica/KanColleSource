@@ -19,49 +19,44 @@ const function1550 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(36),
-        s = function (t) {
+    var o = i(17),
+        r = i(24),
+        s = i(32),
+        a = i(42),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._extra_war_result = new a, e._extra_war_result.position.set(227, 177), e._extra_war_result.visible = !1, e.addChild(e._extra_war_result), e._useitem_icon = new PIXI.Sprite, e._useitem_icon.position.set(324, 290), e._useitem_icon.visible = !1, e.addChild(e._useitem_icon), e._map_incentive = new PIXI.Sprite, e._map_incentive.position.set(270, 525), e._map_incentive.visible = !1, e.addChild(e._map_incentive), e
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "extra_war_result", {
-                get: function () {
-                    return this._extra_war_result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "useitem_icon", {
-                get: function () {
-                    return this._useitem_icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "map_incentive", {
-                get: function () {
-                    return this._map_incentive
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._extra_war_result.initialize(), this._map_incentive.texture = r.BATTLE_RESULT_MAIN.getTexture(77)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._extra_war_result.dispose()
+            return n(e, t), e.prototype.initialize = function (t) {
+                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
+                else switch (t) {
+                    case 1:
+                        this._img.texture = s.SALLY_COMMON.getTexture(1);
+                        break;
+                    case 2:
+                        this._img.texture = s.SALLY_COMMON.getTexture(3);
+                        break;
+                    case 3:
+                        this._img.texture = s.SALLY_COMMON.getTexture(5);
+                        break;
+                    case 4:
+                        this._img.texture = s.SALLY_COMMON.getTexture(9);
+                        break;
+                    case 5:
+                        this._img.texture = s.SALLY_COMMON.getTexture(11);
+                        break;
+                    case 6:
+                        this._img.texture = s.SALLY_COMMON.getTexture(13);
+                        break;
+                    case 7:
+                        this._img.texture = s.SALLY_COMMON.getTexture(7);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
+                }
+                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e
-        }(PIXI.Container);
-    e.ExtraResultPanel = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._title = new PIXI.Sprite, e.addChild(e._title), e._plus = new PIXI.Sprite, e._plus.position.set(153, 47), e.addChild(e._plus), e._label = new o.TextBox(28, 16777215), e._label.anchor.x = 1, e._label.position.set(267, 36), e.addChild(e._label), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._title.texture = r.BATTLE_RESULT_MAIN.getTexture(87), this._plus.texture = r.BATTLE_RESULT_MAIN.getTexture(86)
-        }, e.prototype.update = function (t) {
-            this._label.text = t.toString()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._label.destroy()
-        }, e
-    }(PIXI.Container)
+        }(r.Container);
+    e.AreaIcon = _
 }

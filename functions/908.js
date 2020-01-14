@@ -20,15 +20,29 @@ const function908 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(9),
-        s = function (t) {
+        r = i(50),
+        s = i(8),
+        a = i(909),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/kdock", e
+                var e = t.call(this, .9) || this;
+                return e.alpha = 0, e
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.kdock.__setData__(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.show = function (t, e, i) {
+                this.removeChildren(), this.highSpeedConfirmView = new a.HighSpeedConfirmView(i), this.highSpeedConfirmView.update(t, e), this.highSpeedConfirmView.position.set(91, 70), this.addChild(this.highSpeedConfirmView), o.default.view.clickGuard = !0, createjs.Tween.get(this).to({
+                    alpha: 1
+                }, r.UISettings.DIALOG_FADETIME).call(function () {
+                    o.default.view.clickGuard = !1
+                })
+            }, e.prototype.hide = function (t) {
+                createjs.Tween.get(this).to({
+                    alpha: 0
+                }, r.UISettings.DIALOG_FADETIME).call(function () {
+                    t()
+                })
+            }, e.prototype.dispose = function () {
+                createjs.Tween.removeTweens(this), this.removeChildren(), this.highSpeedConfirmView.dispose(), this.highSpeedConfirmView = null
             }, e
-        }(r.APIBase);
-    e.KDockAPI = s
+        }(s.AreaBox);
+    e.HighSpeedConfirmContainer = _
 }

@@ -19,61 +19,16 @@ const function208 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(209),
-        r = i(24),
-        s = i(12),
-        a = i(649),
-        _ = i(10),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg_light = new o.GetBG, e._bg_dark = new o.GetBG, e._particle = new a.BonusInsertParticle, e._card = new u, e._flash = new s.Sprite, e._flash.anchor.set(.5), e._flash.scale.set(0), e.addChild(e._bg_light), e.addChild(e._bg_dark), e.addChild(e._particle), e.addChild(e._card), e.addChild(e._flash), e
+    var o = i(31),
+        r = function (t) {
+            function e(e) {
+                void 0 === e && (e = null);
+                var i = t.call(this) || this;
+                return i._img = new PIXI.Sprite, i.addChild(i._img), null != e && i.update(e), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg_dark", {
-                get: function () {
-                    return this._bg_dark
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "particle", {
-                get: function () {
-                    return this._particle
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "card", {
-                get: function () {
-                    return this._card
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "flash", {
-                get: function () {
-                    return this._flash
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.preload = function (t) {
-                var e = this;
-                this._bg_light.initiailzeGetBG1(function () {
-                    e._bg_dark.initiailzeGetBG2(function () {
-                        null != t && t()
-                    })
-                })
-            }, e.prototype.initialize = function (t) {
-                this._card.initialize(t), this._flash.texture = _.COMMON_MISC.getTexture(68)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._bg_light = null, this._bg_dark = null, this._particle.dispose(), this._particle = null, this._card = null, this._flash = null
+            return n(e, t), e.prototype.update = function (t) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e
-        }(PIXI.Container);
-    e.BonusInsert = l;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._content = new PIXI.Sprite, e._content.anchor.set(.5), e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._content.texture = _.COMMON_MISC.getTexture(67), 3 != t && (this._content.scale.y = .7)
-        }, e
-    }(r.Container)
+        }(o.Container);
+    e.CenteringSprite = r
 }

@@ -20,7 +20,7 @@ const function1216 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
+        r = i(11),
         s = i(1217),
         a = function (t) {
             function e(e) {
@@ -47,13 +47,9 @@ const function1216 = function (t, e, i) {
         return n(e, t), e.prototype._start = function () {
             this._playBGM()
         }, e.prototype._playBGM = function () {
-            var t = this._getBGMID();
-            o.default.sound.bgm.play(t), this._startScene()
+            o.default.sound.bgm.play(104), this._startScene()
         }, e.prototype._startScene = function () {
             this._endTask()
-        }, e.prototype._getBGMID = function () {
-            var t = o.default.model.deck.get(1).getShipModel(1);
-            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
         }, e
     }(r.TaskBase);
     e.InitializeTask = _

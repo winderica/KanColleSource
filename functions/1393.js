@@ -19,32 +19,38 @@ const function1393 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._chara = [];
-            for (var i = 0; i < 3; i++) {
-                var n = new PIXI.Container;
-                e._chara.push(n), e.addChild(n)
+    var o = i(5),
+        r = i(452),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return e._explosion = new PIXI.Container, e.addChild(e._explosion), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "chara", {
-            get: function () {
-                return this._chara
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "explosion", {
-            get: function () {
-                return this._explosion
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function (t) {}, e.prototype.dispose = function () {
-            for (var t = 0; t < 3; t++) this._chara[t].removeChildren(), this._chara[t] = null;
-            this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
-        }, e
-    }(PIXI.Container);
-    e.CutinNelsonTouchCanvas = o
+            return n(e, t), e.prototype._initialize = function (t, e) {
+                if (0 == e) this._img.texture = r.BATTLE_AIRUNIT.getTexture(3);
+                else {
+                    var i = e / t;
+                    if (i < .25) this._img.texture = r.BATTLE_AIRUNIT.getTexture(2);
+                    else {
+                        if (!(i < .4)) return this._img.texture = PIXI.Texture.EMPTY, !1;
+                        this._img.texture = r.BATTLE_AIRUNIT.getTexture(1)
+                    }
+                }
+                return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
+            }, e.prototype.play = function (t, e, i, n) {
+                var r = this;
+                return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
+                    x: o.default.width / 2 + 12,
+                    alpha: 1
+                }, 300).to({
+                    x: o.default.width / 2 - 12
+                }, 1500).to({
+                    x: o.default.width / 2 - 24,
+                    alpha: 0
+                }, 300).call(function () {
+                    t.removeChild(r), null != n && n()
+                })))
+            }, e
+        }(PIXI.Container);
+    e.AirUnitAttackResultTelop = s
 }

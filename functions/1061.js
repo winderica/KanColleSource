@@ -19,47 +19,25 @@ const function1061 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(58),
+    var o = i(202),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._icons = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new PIXI.Sprite;
-                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
-                }
-                return e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._deck_f = e, n._deck_e = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0; t < this._icons.length; t++) {
-                    this._icons[t].visible = !1
-                }
-            }, e.prototype.update = function (t) {
-                var e = [];
-                if (null != t) {
-                    var i = t.getSlotitems();
-                    i = i.concat(t.getSlotitemEx());
-                    for (var n = 0, o = i; n < o.length; n++) {
-                        var r = o[n];
-                        if (null != r) {
-                            var s = r.equipType;
-                            if (24 == s) {
-                                355 != r.mstID && e.push(r)
-                            } else 46 == s && e.push(r)
-                        }
-                    }
-                }
-                this._update(e)
-            }, e.prototype._update = function (t) {
-                for (var e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e];
-                    if (e >= t.length) i.visible = !1;
-                    else {
-                        var n = t[e].equipType;
-                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(64) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
-                    }
-                }
-            }, e
-        }(PIXI.Container);
-    e.CompSupportBoatCount = r
+            return n(e, t), Object.defineProperty(e.prototype, "deck_f", {
+                get: function () {
+                    return this._deck_f
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "deck_e", {
+                get: function () {
+                    return this._deck_e
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(o.SceneModel);
+    e.PracticeSceneModel = r
 }

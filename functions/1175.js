@@ -19,41 +19,25 @@ const function1175 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(110),
-        a = i(91),
-        _ = i(1176),
-        l = i(1178),
-        u = i(1184),
-        c = i(1185),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onSelect = function (t) {
-                    r.SE.play("240"), null == e._sub_view && (e._sub_view = new l.FShopListView(e._onUnSelect, e._onExchange), e.addChild(e._sub_view)), e._sub_view.initialize(t), e._sub_view.activate(), e._sub_view.visible = !0, e._main_view.deactivate(), e._main_view.visible = !1
-                }, e._onUnSelect = function () {
-                    e._main_view.activate(), e._main_view.visible = !0, e._sub_view.deactivate(), e._sub_view.visible = !1
-                }, e._onExchange = function (t) {
-                    var i = o.default.view.overLayer,
-                        n = new c.TaskExchange(i, t);
-                    n.start(function () {
-                        1 == n.result && (e.update(), null != e._sub_view && 1 == e._sub_view.visible && e._sub_view.update())
-                    })
-                }, e._header = new PIXI.Sprite, e._header.position.set(0, 102), e.addChild(e._header), e._main_view = new _.FurnitureShopMainView(e._onSelect), e.addChild(e._main_view), e._coin = new u.CoinBox, e._coin.position.set(984, 640), e.addChild(e._coin), e
+    var o = i(4),
+        r = i(3),
+        s = i(27),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._message = new o.TextBox(22, 1381651), n._message.position.set(123, 77), n.addChild(n._message), n._icon = new PIXI.Sprite, n._icon.position.set(152, 144), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(129, 260), n.addChild(n._btn_yes), n._btn_back = new s.BtnBase(-1, i), n._btn_back.position.set(279, 260), n.addChild(n._btn_back), n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_FSHOP.getTexture(55), this._main_view.initialize(), this._coin.initialize(), this.update()
-            }, e.prototype.update = function () {
-                var t = o.default.model.useItem.getCount(44);
-                this._coin.update(t)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(10), this._message.text = "\u300c\u83f1\u9905\u300d\u3092\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f", 21 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(7) : 23 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(6) : 22 == t && (this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(8));
+                var e = r.ITEM_ILIST_HISHIMOCHI.getTexture(2);
+                this._btn_yes.initialize(e), e = r.ITEM_ILIST_HISHIMOCHI.getTexture(1), this._btn_back.initialize(e)
             }, e.prototype.activate = function () {
-                1 == this._main_view.visible && this._main_view.activate()
+                this._btn_yes.activate(), this._btn_back.activate()
             }, e.prototype.deactivate = function () {
-                this._main_view.deactivate(), this._main_view.visible = !0, null != this._sub_view && (this._sub_view.visible = !1)
+                this._btn_yes.deactivate(), this._btn_back.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._main_view.dispose(), null != this._sub_view && this._sub_view.dispose(), this._coin.dispose()
+                this.removeChildren(), this._message.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
             }, e
-        }(a.ViewBase);
-    e.FurnitureShopMain = h
+        }(PIXI.Sprite);
+    e.ConfirmView = a
 }

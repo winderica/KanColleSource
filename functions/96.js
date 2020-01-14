@@ -19,33 +19,56 @@ const function96 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(451),
-        r = i(64),
-        s = i(1375),
-        a = function (t) {
+    var o = i(30),
+        r = i(39),
+        s = i(257),
+        a = i(258),
+        _ = i(64),
+        u = i(1392),
+        l = i(186),
+        c = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._data = this._record.raw.air_war_jet, 0 == this._hasPhase() ? this._endTask() : this._preload()
-            }, e.prototype._cutin = function (t, e) {
-                var i = this,
-                    n = new o.CutinFunnel;
-                n.addCutinFromModel(t, !0), n.addCutinFromModel(e, !0);
-                var r = n.view;
-                n.preload_task.start(function () {
-                    i._scene.view.layer_cutin.addChild(r), n.start(function () {
-                        i._scene.view.layer_cutin.removeChild(r), i._showTouchPlane()
-                    })
-                })
-            }, e.prototype._main = function () {
+                this._data = this._record.raw.air_unit_jet, null == this._data ? this._endTask() : this._preload()
+            }, e.prototype._preload = function () {
                 var t = this,
-                    e = this._scene.data.model.deck_f.ships,
-                    i = this._scene.data.model.deck_e.ships;
-                new s.TaskAirWarJet(this._scene, this._data, e, i, this._damage_cutin, this._aaCutin).start(function () {
-                    t._endTask()
+                    e = this._data.getTaikuShipIndex(),
+                    i = this._scene.data.model.deck_f.ships[e];
+                if (null != i) {
+                    var n = i.mst_id,
+                        o = i.isDamaged(),
+                        r = this._data.getTaikuSlotMstIDs();
+                    this._aaCutin = new a.CutinAntiAircraft(n, o, r), this._aaCutin.preload(function () {
+                        t._enterEnemy()
+                    })
+                } else this._enterEnemy()
+            }, e.prototype._enterEnemy = function () {
+                var t = this,
+                    e = new o.SerialTask;
+                e.add(new _.PhaseEnemyEnter(this._scene, this._record)), e.add(new r.WaitTask(600)), e.start(function () {
+                    t._showTouchPlane()
                 })
+            }, e.prototype._showTouchPlane = function () {
+                var t = this,
+                    e = this._data,
+                    i = e.getTouchPlaneFriend(),
+                    n = e.getTouchPlaneEnemy();
+                new l.TaskShowTouchPlane(this._scene, i, n).start(function () {
+                    t._animation(e)
+                })
+            }, e.prototype._animation = function (t) {
+                var e = this,
+                    i = this._scene.data.model.deck_f.ships,
+                    n = this._scene.data.model.deck_e.ships;
+                new u.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
+                    e._afterAnimetion()
+                })
+            }, e.prototype._afterAnimetion = function () {
+                var t = this._scene.view.raderLayer;
+                t.rader_e.touch_plane.hide(), t.rader_f.touch_plane.hide(), this._endTask()
             }, e
-        }(r.PhaseAirWar);
-    e.PhaseAirWarJet = a
+        }(s.PhaseAirBase);
+    e.PhaseAirUnitJet = c
 }

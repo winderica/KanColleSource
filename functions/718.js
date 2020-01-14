@@ -19,79 +19,57 @@ const function718 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(2),
-        a = i(22),
-        _ = i(32),
-        l = i(288),
-        u = function (t) {
+    var o = i(3),
+        r = i(719),
+        s = i(720),
+        a = i(219),
+        _ = i(58),
+        u = i(1),
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._deck_id = e, i
+                i._onMouseDown = function () {
+                    i.onDragging(i.slotPosition, i.memShipId)
+                }, i.___onMouseDown = function (t) {
+                    i.onMouseDown(i.slotPosition, i.slotNo, i.memShipId)
+                }, i._onClickChange = function () {
+                    i.onClickChange(i.slotPosition, i.slotNo)
+                }, i._onClickDetail = function () {
+                    i.onClickDetail(i.memShipId)
+                }, i.shipSlotShutter = new s.ShipSlotShutter, i.shipInfo = new r.ShipInfo, i.deckIndexEmblem = new a.DeckIndexEmblem;
+                var n = o.ORGANIZE_MAIN.getTexture(23),
+                    l = o.ORGANIZE_MAIN.getTexture(24),
+                    c = o.ORGANIZE_MAIN.getTexture(25),
+                    h = o.ORGANIZE_MAIN.getTexture(9),
+                    p = o.ORGANIZE_MAIN.getTexture(10);
+                return i.disableChangeButton = new PIXI.Sprite(n), i.changeButton = new _.SimpleButton(l, c), i.detailButton = new _.SimpleButton(h, p), i.shipBannerDragArea = new PIXI.Graphics, i.shipBannerDragArea.beginFill(0, 0), i.shipBannerDragArea.drawRect(0, 0, 240, 60), i.shipBannerDragArea.endFill(), i.shipBannerDragArea.position.set(245, 18), i.shipBannerDragArea.interactive = !0, i.shipBannerDragArea.buttonMode = !0, i.shipBannerDragArea.renderable = !1, i.shipBannerDragArea.on(u.EventType.MOUSEDOWN, i._onMouseDown), i.changeButton.onClick = i._onClickChange, i.detailButton.onClick = i._onClickDetail, i.disableChangeButton.position.set(379, 103), i.changeButton.position.set(379, 103), i.detailButton.position.set(250, 103), i.deckIndexEmblem.position.set(-15, 0), i.slotPosition = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                r.default.view.clickGuard = !0, this._cutin = new l.ExpeditionCutin, this._cutin.initialize(!0), this._loadShipRespirces()
-            }, e.prototype._loadShipRespirces = function () {
-                this._anim()
-            }, e.prototype._anim = function () {
-                var t = this,
-                    e = r.default.model.deck.get(this._deck_id),
-                    i = e.getShipList();
-                this._createShipContainerU(i), this._createShipContainerB(i), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, r.default.view.overLayer.addChild(this._cutin), createjs.Tween.get(this._cutin.bg.scale).to({
-                    y: 2
-                }, 300).wait(1500).to({
-                    y: 0
-                }, 300).call(function () {
-                    t._endTask()
-                }), createjs.Tween.get(this._cutin.message).wait(400).to({
-                    x: 660
-                }, 400).to({
-                    x: 525
-                }, 800).to({
-                    x: 420,
-                    alpha: 0
-                }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({
-                    alpha: 1
-                }, 100).to({
-                    x: 600 - this._cutin.banner_top.width / 2
-                }, 800, createjs.Ease.cubicInOut).to({
-                    x: o.default.width - this._cutin.banner_top.width,
-                    alpha: 0
-                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({
-                    alpha: 1
-                }, 100).to({
-                    x: 600 - this._cutin.banner_bottom.width / 2
-                }, 800, createjs.Ease.cubicInOut).to({
-                    x: 0,
-                    alpha: 0
-                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
-                    t._cutin.particles.startAnim()
-                })
-            }, e.prototype._createShipContainerU = function (t) {
-                var e, i = t[0],
-                    n = t[2],
-                    o = t[4];
-                e = null == n ? [i] : null == o ? [n, i] : [n, i, o];
-                for (var r = 0; r < e.length; r++) {
-                    var s = e[r],
-                        l = new _.ShipBanner;
-                    l.update(s, !0), l.position.x = a.BannerSize.W * r, this._cutin.banner_top.addChild(l)
-                }
-            }, e.prototype._createShipContainerB = function (t) {
-                var e, i = t[1],
-                    n = t[3],
-                    o = t[5],
-                    r = t[6];
-                e = null == o ? null == n ? null == i ? [] : [i] : [i, n] : null == r ? [o, i, n] : [o, i, n, r];
-                for (var s = 0; s < e.length; s++) {
-                    var l = e[s],
-                        u = new _.ShipBanner;
-                    u.update(l, !0), u.position.x = a.BannerSize.W * s, this._cutin.banner_bottom.addChild(u)
-                }
-            }, e.prototype._endTask = function (e) {
-                void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.activate = function (t, e, i) {
+                this.deactivate(), this.onDragging = t, this.onClickChange = e, this.onClickDetail = i
+            }, e.prototype.deactivate = function () {
+                this.onDragging = null, this.onClickChange = null, this.onClickDetail = null
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.shipBannerDragArea.off(u.EventType.MOUSEDOWN, this._onMouseDown), this.shipSlotShutter.dispose(), this.shipInfo.dispose(), this.deckIndexEmblem.dispose(), this.changeButton.dispose(), this.shipSlotShutter = null, this.shipInfo = null, this.deckIndexEmblem = null, this.changeButton = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i) {
+                this.removeChildren();
+                var n = e.memID;
+                this.shipInfo.update(e, i), this.deckIndexEmblem.update(t), i ? this.addChild(this.shipInfo, this.deckIndexEmblem, this.disableChangeButton, this.detailButton, this.shipSlotShutter) : this.addChild(this.shipInfo, this.deckIndexEmblem, this.changeButton, this.detailButton, this.shipBannerDragArea, this.shipSlotShutter), this.memShipId = n, this.slotNo = t
+            }, e.prototype.close = function () {
+                this.shipSlotShutter.close(), this.deckIndexEmblem.visible = !1
+            }, e.prototype.closeAnimation = function (t, e) {
+                void 0 === e && (e = 250), this.deckIndexEmblem.visible = !1, this.shipSlotShutter.closeAnimation(function () {
+                    t()
+                }, e)
+            }, e.prototype.open = function () {
+                this.deckIndexEmblem.visible = !0, this.shipSlotShutter.open()
+            }, e.prototype.openAnimation = function (t, e) {
+                var i = this;
+                void 0 === e && (e = 250), this.shipSlotShutter.openAnimation(function () {
+                    i.deckIndexEmblem.visible = !0, t()
+                }, e)
+            }, e.prototype.updateEmpty = function (t, e) {
+                this.removeChildren(), this.memShipId = null, this.slotNo = t, e ? this.addChild(this.shipSlotShutter, this.changeButton) : this.addChild(this.shipSlotShutter)
             }, e
-        }(s.TaskBase);
-    e.TaskExpeditionStartCutin = u
+        }(PIXI.Container);
+    e.ShipSlot = l
 }

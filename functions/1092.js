@@ -19,29 +19,21 @@ const function1092 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(13),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._mst_id = e, n._target = i, n
+    var o = i(2),
+        r = i(15),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.cancel = function () {
-                this._target = null
-            }, e.prototype._start = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
                 var t = this,
-                    e = new s.ShipLoader;
-                e.add(this._mst_id, !1, "card"), e.load(function () {
-                    if (null != t._target) {
-                        var e = o.default.resources.getShip(t._mst_id, !1, "card");
-                        t._target.texture = e
-                    }
+                    e = new r.UIImageLoader("record");
+                e.add("record_parts.json").add("record_mini.json").add("record_menu.json"), e.load(function () {
                     t._endTask()
                 })
-            }, e.prototype._endTask = function () {
-                this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskShowShipCard = a
+        }(o.TaskBase);
+    e.TaskLoadResources = s
 }

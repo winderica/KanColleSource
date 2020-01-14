@@ -20,107 +20,56 @@ const function1273 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(27),
-        a = i(38),
-        _ = i(13),
-        l = i(1274),
+        r = i(174),
+        s = i(4),
+        a = i(146),
+        _ = i(1274),
         u = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._playVoiceFrom = function () {
-                    o._scene.view.message_box.text = "\u8266\u968a\u306b\u6d0b\u4e0a\u88dc\u7d66\u3092\u884c\u3044\u307e\u3059\u3002";
-                    var t = new s.ParallelTask;
-                    t.add(new a.WaitTask(1e3)), t.add(new c(o._ship_from.mst_id, 26)), t.start(function () {
-                        o._showShipTo()
-                    })
-                }, o._playVoiceTo = function () {
-                    var t = new s.ParallelTask;
-                    t.add(new a.WaitTask(2e3)), t.add(new c(o._ship_to.mst_id, 27)), t.start(function () {
-                        o._hideShips()
-                    })
-                }, o._scene = e, o._model = i, o._data = n, o
+            function e(e) {
+                var i = t.call(this) || this;
+                i._friend = e, i._chara = new PIXI.Sprite, i.addChild(i._chara), i._bg = new PIXI.Sprite, i._bg.x = e ? 0 : 95, i._bg.y = 368, i.addChild(i._bg), i._stype_txt = new s.TextBox(21, 16774898);
+                var n = new PIXI.Graphics;
+                return n.beginFill(0).drawRect(0, 0, 126, 27).endFill(), i._stype_txt.addChild(n), i._stype_txt.mask = n, i._stype_txt.x = e ? 6 : 168, i._stype_txt.y = 476, i.addChild(i._stype_txt), i._name_txt = new s.TextBox(39, 16774898), n = new PIXI.Graphics, n.beginFill(0).drawRect(0, 0, 204, 45).endFill(), i._name_txt.addChild(n), i._name_txt.mask = n, i._name_txt.x = e ? 143 : 303, i._name_txt.y = 465, i.addChild(i._name_txt), i._lvlabel_txt = new s.TextBox(27, 16774898), i._lvlabel_txt.text = "Lv", i._lvlabel_txt.x = e ? 351 : 512, i._lvlabel_txt.y = 474, i.addChild(i._lvlabel_txt), i._lv_txt = new s.TextBox(28, 16774898), i._lv_txt.x = e ? 383 : 543, i._lv_txt.y = 473, i.addChild(i._lv_txt), i._elementLayer = new PIXI.Container, i.addChild(i._elementLayer), i._medal = new r.MedalIcon, i._medal.alpha = 0, i._medal.x = e ? 440 : 108, i._medal.y = 533, i.addChild(i._medal), i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadShipResource()
-            }, e.prototype._loadShipResource = function () {
-                var t = this;
-                this._ship_from = this._getShip(this._data.ship_mem_id), this._ship_to = this._getShip(this._data.ship_mem_id_supplied);
-                var e = new _.ShipLoader;
-                e.add(this._ship_from.mst_id, this._ship_from.isDamaged(), "full"), null != this._ship_to && e.add(this._ship_to.mst_id, this._ship_to.isDamaged(), "full"), e.load(function () {
-                    t._anim()
-                })
-            }, e.prototype._anim = function () {
-                var t = this,
-                    e = this._ship_from.mst_id,
-                    i = this._ship_from.isDamaged(),
-                    n = o.default.resources.getShip(e, i, "full");
-                this._ship_from_sprite = new PIXI.Sprite(n);
-                var r = o.default.model.ship_graph.get(e).getMapOffset(i);
-                this._ship_from_x = -80 + r.x, this._ship_from_sprite.x = this._ship_from_x - 300, this._ship_from_sprite.y = -93 + r.y, this._ship_from_sprite.alpha = 0, this._scene.view.chara_layer.addChild(this._ship_from_sprite), createjs.Tween.get(this._ship_from_sprite).to({
-                    x: this._ship_from_x,
-                    alpha: 1
-                }, 750, createjs.Ease.quadInOut), createjs.Tween.get(null).wait(450).call(function () {
-                    t._playVoiceFrom()
-                })
-            }, e.prototype._showShipTo = function () {
-                var t = this;
-                if (null == this._ship_to) createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._hideShips()
-                });
-                else {
-                    var e = this._ship_to.mst_id,
-                        i = this._ship_to.isDamaged(),
-                        n = o.default.resources.getShip(e, i, "full");
-                    this._ship_to_sprite = new PIXI.Sprite(n);
-                    var r = o.default.model.ship_graph.get(e).getMapOffset(i);
-                    this._ship_to_x = 520 + r.x, this._ship_to_sprite.x = this._ship_to_x + 300, this._ship_to_sprite.y = -93 + r.y, this._ship_to_sprite.alpha = 0, this._scene.view.chara_layer.addChild(this._ship_to_sprite), createjs.Tween.get(this._ship_to_sprite).to({
-                        x: this._ship_to_x,
-                        alpha: 1
-                    }, 750, createjs.Ease.quadInOut), createjs.Tween.get(null).wait(450).call(function () {
-                        t._playVoiceTo()
-                    })
+            return n(e, t), Object.defineProperty(e.prototype, "medal", {
+                get: function () {
+                    return this._medal
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "elements", {
+                get: function () {
+                    return this._elements
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                this._friend ? this._bg.texture = a.PRAC_MAIN.getTexture(1) : this._bg.texture = a.PRAC_MAIN.getTexture(0);
+                var i = t[0],
+                    n = i.mst_id,
+                    r = i.isDamaged(),
+                    s = o.default.model.ship_graph.get(n),
+                    _ = null == s ? new PIXI.Point : s.getLeftOffset(r);
+                this._friend || (_.x += 90), this._chara.position.set(_.x - 150, _.y - 60), this._chara.texture = o.default.resources.getShip(n, r, "full"), this._stype_txt.text = i.stype_name, this._name_txt.text = i.name, this._lv_txt.text = i.level.toString(), this._initializeElements(t), e > 0 && (this._medal.initialize(), this._medal.update(e, 9466926))
+            }, e.prototype.dispose = function () {
+                if (this.removeChildren(), this._stype_txt.destroy(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy(), this._medal.dispose(), null != this._elements)
+                    for (var t = 0, e = this._elements; t < e.length; t++) {
+                        var i = e[t];
+                        i.dispose()
+                    }
+            }, e.prototype._initializeElements = function (t) {
+                this._elements = [];
+                for (var e = 1; e < t.length; e++) {
+                    var i = t[e];
+                    if (null == i) return;
+                    var n = new _.ShipElement;
+                    n.alpha = 0, n.x = this._friend ? -101 : 273, n.y = 530 + 38 * (e - 1);
+                    var o = i.stype_name,
+                        r = i.name,
+                        s = i.level;
+                    n.update(o, r, s), this._elements.push(n), this._elementLayer.addChild(n)
                 }
-            }, e.prototype._hideShips = function () {
-                var t = this;
-                createjs.Tween.get(this._ship_from_sprite).to({
-                    x: this._ship_from_x - 300,
-                    alpha: 0
-                }, 300, createjs.Ease.sineIn).call(function () {
-                    t._shipIconEffect()
-                }), null != this._ship_to && createjs.Tween.get(this._ship_to_sprite).to({
-                    x: this._ship_to_x + 300,
-                    alpha: 0
-                }, 300, createjs.Ease.sineIn)
-            }, e.prototype._shipIconEffect = function () {
-                var t = this,
-                    e = this._data.num_of_use,
-                    i = this._model.sortie.now_cell_no,
-                    n = this._scene.resInfo.getReplenishConfirmOffsets(i),
-                    o = null != n ? n.bln : null;
-                new l.TaskReplenishmentBalloonEffect(this._scene, e, o).start(function () {
-                    t._scene.view.message_box.text = "", createjs.Tween.get(null).wait(500).call(function () {
-                        t._endTask()
-                    })
-                })
-            }, e.prototype._getShip = function (t) {
-                for (var e = this._model.deck_f.ships, i = 0, n = e; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o && o.mem_id == t) return o
-                }
-                return null
             }, e
-        }(r.TaskBase);
-    e.TaskReplenishmentEffect = u;
-    var c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onVoiceEnd = function () {
-                n._endTask()
-            }, n._mst_id = e, n._voice_id = i, n
-        }
-        return n(e, t), e.prototype._start = function () {
-            o.default.option.vol_voice <= 0 ? this._endTask() : o.default.sound.voice.play(this._mst_id.toString(), this._voice_id, this._onVoiceEnd)
-        }, e
-    }(r.TaskBase)
+        }(PIXI.Container);
+    e.Content = u
 }

@@ -1,41 +1,44 @@
 const function852 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(49),
-        r = function () {
-            function t(t, e, i) {
-                var n = this;
-                this._onClickYES = function () {
-                    n.onComplete(!0)
-                }, this._onClickNO = function () {
-                    n.onComplete(!1)
-                }, i.interactive = !0, i.alpha = 0, e.alpha = 0, e.x = Math.floor(600 - e.width / 2), e.y = Math.floor(360 - e.height / 2 + 27), e.onClickYES = this._onClickYES, e.onClickNO = this._onClickNO, t.addChild(i, e), this.mainView = t, this.background = i, this.useRepairConfirmView = e
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onMouseOver = function () {
+                    e.texture = e._textureOn
+                }, e._onMouseOut = function () {
+                    e.texture = e._textureOff
+                }, e._onClick = function () {
+                    null != e._cb_onClick && e._cb_onClick()
+                }, e._textureNone = o.REMODEL_GRADEUP.getTexture(5), e._textureOff = o.REMODEL_GRADEUP.getTexture(6), e._textureOn = o.REMODEL_GRADEUP.getTexture(7), e.texture = e._textureNone, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
             }
-            return t.prototype.dispose = function () {
-                this.mainView.removeChild(this.background), this.mainView.removeChild(this.useRepairConfirmView), this.useRepairConfirmView = null, this.background = null, this.mainView = null, this._onClickYES = this._onClickNO = null
-            }, t.prototype.start = function (t, e) {
-                n.default.view.clickGuard = !0;
-                var i = n.default.model.ship.get(t);
-                this.useRepairConfirmView.update(i, e), this.background.alpha = 0, this.useRepairConfirmView.alpha = 0;
-                var r = o.UISettings.DIALOG_FADETIME,
-                    s = {
-                        alpha: 1
-                    };
-                createjs.Tween.get(this.background).to(s, r), createjs.Tween.get(this.useRepairConfirmView).to(s, r).call(function () {
-                    n.default.view.clickGuard = !1
-                })
-            }, t.prototype.hide = function (t) {
-                var e = o.UISettings.DIALOG_FADETIME,
-                    i = {
-                        alpha: 0
-                    };
-                createjs.Tween.get(this.background).to(i, e), createjs.Tween.get(this.useRepairConfirmView).to(i, e).call(function () {
-                    n.default.view.clickGuard = !1, t()
-                })
-            }, t
-        }();
-    e.PhaseRepairConfirm = r
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._cb_onClick = t
+            }, e.prototype.update = function (t) {
+                1 == t ? (this.texture = this._textureOff, this.interactive = this.buttonMode = !0) : (this.texture = this._textureNone, this.interactive = this.buttonMode = !1)
+            }, e.prototype.dispose = function () {
+                this._textureNone = null, this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
+            }, e
+        }(PIXI.Sprite);
+    e.KaizoStartButton = s
 }

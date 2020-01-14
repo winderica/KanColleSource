@@ -19,39 +19,83 @@ const function752 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(0),
         r = i(1),
-        s = i(8),
-        a = i(0),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._canMouseOver = !1, e._onMouseOver = function () {
-                    e._canMouseOver = !0, e.onMouseOver(), e._supplyAllOn.alpha = 1, e._clickArea.interactive = e._clickArea.buttonMode = !0
-                }, e._onMouseOut = function () {
-                    e.onMouseOut(), e._supplyAllOn.alpha = 0, e._clickArea.interactive = e._clickArea.buttonMode = !1
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e._onTouchDown = function () {
-                    e._canMouseOver || (e._touchActivate(), e.onMouseOver(), e._supplyAllOn.alpha = 1)
-                }, e._touchActivate = function () {
-                    e._guardLayer = new s.AreaBox(0), e._touchArea = new s.AreaBox(0, 0, e._clickArea.width, e._clickArea.height), e._touchArea.hitArea = new PIXI.Rectangle(0, 0, e._clickArea.width, e._clickArea.height);
-                    var t = e._clickArea.getGlobalPosition();
-                    e._touchArea.position.set(t.x, t.y), e._guardLayer.addChild(e._touchArea), a.default.view.overLayer.addChild(e._guardLayer), e._guardLayer.on(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.on(r.EventType.MOUSEUP, e._onTouchUp)
-                }, e._onTouchMove = function (t) {
-                    var i = t.data.getLocalPosition(e._touchArea);
-                    1 === e._supplyAllOn.alpha && !1 === e._touchArea.hitArea.contains(i.x, i.y) && (e.onMouseOut(), e._supplyAllOn.alpha = 0)
-                }, e._onTouchUp = function () {
-                    1 === e._supplyAllOn.alpha && e.onClick(), e._touchDeactivate()
-                }, e._touchDeactivate = function () {
-                    e._guardLayer.off(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.off(r.EventType.MOUSEUP, e._onTouchUp), e._guardLayer.removeChildren(), e._touchArea = null, a.default.view.overLayer.removeChild(e._guardLayer), e._guardLayer = null
-                }, e._supplyAllOff = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(29)), e._supplyAllOn = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(30)), e._clickArea = new PIXI.Graphics, e._clickArea.beginFill(0, 0), e._clickArea.drawRect(0, 0, 62, 62), e._clickArea.endFill(), e._supplyAllOn.position.set(-26, -26), e._clickArea.position.set(-15, -15), e.addChild(e._supplyAllOff, e._supplyAllOn, e._clickArea), e._supplyAllOff.on(r.EventType.MOUSEOVER, e._onMouseOver), e._supplyAllOff.on(r.EventType.MOUSEDOWN, e._onTouchDown), e._clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e._clickArea.on(r.EventType.CLICK, e._onClick), e
+        s = i(4),
+        a = i(37),
+        _ = i(57),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i.HEIGHT = 76, i.problem = !1, i.isOver = !1, i._onMouseOver = function (t) {
+                    i.isOver = !0, i.onMouseOver && i.onMouseOver(i.index, t)
+                }, i._onMouseOut = function (t) {
+                    i.isOver = !1, i.onMouseOut && i.onMouseOut(i.index, t)
+                }, i._onClickExpand = function () {
+                    0 == i.problem && i.onClickExpand(i.presetId)
+                }, i.index = e, i.frame_bg = new PIXI.Sprite(_.ORGANIZE_MAIN.getTexture(29)), i.frame_bg.buttonMode = !1, i.frame_bg.interactive = !0, i.frame_bg.addListener(r.EventType.MOUSEOUT, i._onMouseOut), i.frame_bg.addListener(r.EventType.MOUSEOVER, i._onMouseOver), i.addChild(i.frame_bg);
+                var n = _.ORGANIZE_MAIN.getTexture(33);
+                return i.presetFocuse = new PIXI.Sprite(n), i.presetFocuse.visible = !1, i.presetFocuse.x = -6, i.presetFocuse.y = -3, i.addChild(i.presetFocuse), i.shipBanner = new PIXI.Sprite, i.shipBanner.position.set(307, 7), i.deckName = new s.TextBox(21, 5523516), i.deckName.position.set(3, 4), i.deckCount = new s.TextBox(21, 5523516), i.deckCount.position.set(1, 36), i.addChild(i.shipBanner), i.addChild(i.deckName), i.addChild(i.deckCount), i.textureMouseOver = _.ORGANIZE_MAIN.getTexture(3), i.textureMouseOut = _.ORGANIZE_MAIN.getTexture(2), i.expandButton = new PIXI.Sprite(i.textureMouseOut), i.expandButton.interactive = i.expandButton.buttonMode = !0, i.expandButton.position.set(250, 36), i.expandButton.addListener(r.EventType.CLICK, i._onClickExpand), i.expandButton.addListener(r.EventType.MOUSEOUT, i._onMouseOut), i.expandButton.addListener(r.EventType.MOUSEOVER, i._onMouseOver), i.addChild(i.expandButton), i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._supplyAllOff.texture = PIXI.Texture.EMPTY, this._supplyAllOn.texture = PIXI.Texture.EMPTY, this._clickArea.clear(), this._supplyAllOff.off(r.EventType.MOUSEOVER, this._onMouseOver), this._supplyAllOff.off(r.EventType.MOUSEDOWN, this._onTouchDown), this._clickArea.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickArea.off(r.EventType.CLICK, this._onClick), this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null, this._supplyAllOff = null, this._supplyAllOn = null, this._clickArea = null, this._guardLayer = null, this._touchArea = null, this.removeChildren()
-            }, e.prototype.updateClickable = function (t) {
-                this._clickArea.interactive = this._clickArea.buttonMode = !1, this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !1, this._supplyAllOn.alpha = 0, this._clickArea.visible = !1, t && (this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !0, this._clickArea.visible = !0)
+            return n(e, t), Object.defineProperty(e.prototype, "PresetId", {
+                get: function () {
+                    return this.presetId
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "IsOver", {
+                get: function () {
+                    return this.isOver
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "FrameBg", {
+                get: function () {
+                    return this.frame_bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ExpandButton", {
+                get: function () {
+                    return this.expandButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this.deckName.destroy(), this.deckCount.destroy(), this.onMouseOver = null, this.onMouseOut = null, this.onClickExpand = null, this.frame_bg = null, this.shipBanner = null, this.deckName = null, this.deckCount = null, this.presetFocuse = null, this.textureMouseOver = null, this.textureMouseOut = null, this.expandButton = null, this.index = null, this.presetId = null, this.problem = null, this.isOver = null
+            }, e.prototype.focus = function () {
+                this.expandButton.texture = this.problem ? this.textureMouseOver : this.textureMouseOut, this.presetFocuse.visible = !0
+            }, e.prototype.removeFocus = function () {
+                this.expandButton.texture = this.textureMouseOut, this.presetFocuse.visible = !1
+            }, e.prototype.hideFocus = function () {
+                this.expandButton.texture = this.textureMouseOut, this.presetFocuse.visible = !1
+            }, e.prototype.update = function (t, e, i, n, r) {
+                var s = null != i;
+                this.shipBanner.visible = !1, this.deckName.visible = !1, this.deckCount.visible = !1, this.expandButton.visible = !1, this.frame_bg.visible = !1;
+                var a = !1;
+                if (s) {
+                    this.presetId = i.presetID, this.frame_bg.visible = !0;
+                    var _ = 0 == i.getShipCount(),
+                        u = i.hasLostShip(),
+                        l = i.hasOtherDeckShip(t);
+                    if (!_) {
+                        i.getShipsAfterExpanded(t).length;
+                        u ? a = !0 : l && (a = !0), this.updateShip(i), this.shipBanner.visible = !0, this.deckName.visible = !0, this.deckCount.visible = !0
+                    }
+                    var c = 0 < i.getShipCount();
+                    this.updateButton(i.presetID, n, r, c, a);
+                    var h = o.default.model.deck.get(t);
+                    this.expandButton.visible = !h.expedition
+                }
+            }, e.prototype.updateShip = function (t) {
+                this.deckName.text = t.deckName;
+                var e = t.getFrontShip();
+                new a.TaskLoadShipResource("banner", this.shipBanner, e.mstID, e.isDamaged()).start();
+                var i = t.getShipCount();
+                this.deckCount.text = i + "\u96bb \u7de8\u6210"
+            }, e.prototype.updateButton = function (t, e, i, n, o) {
+                this.expandButton.visible = !1, this.expandButton.visible = !e || !i, this.presetId = t, this.problem = o
             }, e
         }(PIXI.Container);
-    e.SupplyAllButton = _
+    e.PresetExpansionSlot = u
 }

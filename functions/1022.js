@@ -19,23 +19,45 @@ const function1022 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
-        r = i(371),
-        s = function (t) {
+    var o = i(32),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._fuel = new a, this._ammo = new _, this._fuel.initialize(), this._ammo.initialize(), this._ammo.position.set(38, 0), this.addChild(this._fuel), this.addChild(this._ammo)
+            }, e.prototype.update = function (t) {
+                null == t ? this.visible = !1 : (this.visible = !0, this._fuel.update(t.fuelNow / t.fuelMax), this._ammo.update(t.ammoNow / t.ammoMax))
+            }, e
+        }(PIXI.Container);
+    e.CompLackAlerts = r;
+    var s = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(this._getTexture());
+                this._alert = new PIXI.Sprite, t.position.set(-14, -14), this._alert.position.set(0, -11), this.addChild(t), this.addChild(this._alert)
+            }, e.prototype.update = function (t) {
+                t <= .5 ? (this._alert.texture = o.SALLY_COMMON.getTexture(33), this.visible = !0) : t < 1 ? (this._alert.texture = o.SALLY_COMMON.getTexture(32), this.visible = !0) : this.visible = !1
+            }, e.prototype._getTexture = function () {
+                return null
+            }, e
+        }(PIXI.Container),
+        a = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._getBlackTexture = function () {
-                switch (this._type) {
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(33);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(32)
-                }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._setPositions = function () {
-                1 == this._type ? (this._key.position.set(216, 104), this._cloud.position.set(230, 137), this._text.position.set(230, 174)) : 2 == this._type ? (this._key.position.set(311, 42), this._cloud.position.set(332, 81), this._text.position.set(333, 152)) : 3 == this._type ? (this._black.position.set(-3, -2), this._key.position.set(311, 11), this._cloud.position.set(332, 56), this._text.position.set(339, 117)) : 4 == this._type && (this._key.position.set(311, 8), this._cloud.position.set(332, 51), this._text.position.set(333, 60))
+            return n(e, t), e.prototype._getTexture = function () {
+                return o.SALLY_COMMON.getTexture(30)
             }, e
-        }(r.MapThumbnailLocked);
-    e.EventMapThumbnailLocked = s
+        }(s),
+        _ = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype._getTexture = function () {
+                return o.SALLY_COMMON.getTexture(31)
+            }, e
+        }(s)
 }

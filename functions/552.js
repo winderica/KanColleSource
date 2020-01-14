@@ -1,3 +1,6 @@
 const function552 = function (t, e, i) {
-    t.exports = i(553)
+    "use strict";
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    })
 }

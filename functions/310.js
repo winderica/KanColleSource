@@ -19,37 +19,43 @@ const function310 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(82),
-        s = i(5),
-        a = i(108),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._ImageManager = e, n._ev = i;
-                var _ = new PIXI.Sprite(n._ImageManager.use(a.IMAGE_FILE.MSG_BOX));
-                n.btn = new PIXI.Container;
-                var l = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(3));
-                return l.anchor.set(.5, .5), n._btnOuter = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(4)), n._btnOuter.anchor.set(.5, .5), n.btn.addChild(l, n._btnOuter), n.btn.width = n._btnOuter.width, n.btn.height = n._btnOuter.height, n.btn.position.set(s.default.width - Math.floor(n._btnOuter.width / 2) - 20, 170), n.message = new o.TextBox(27, 16777215), n.message.text = "", n.message.position.set(250, 85), n.position.set(0, 465), n.addChild(_, n.message, n.btn), n
+    var o = i(653),
+        r = i(654),
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.start = function () {
-                createjs.Tween.get(this._btnOuter, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 6e3, createjs.Ease.linear)
-            }, e.prototype.flashText = function (t, e) {
-                var i = this;
-                void 0 === e && (e = 40);
-                var n = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(e).call(function () {
-                    var e = t.substr(0, 1);
-                    " " == i.message.text ? i.message.text = e : i.message.text += e, t = t.substr(1), 0 == t.length && (n.setPaused(!0), n = null)
-                })
-            }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this._btnOuter)
+            return n(e, t), e.prototype.setItemFrom = function (t, e) {
+                return void 0 === e && (e = !1), this._mst_id_from = t, this._type_from = 1 == e ? 6 : 2, this
+            }, e.prototype.setItemTobe = function (t, e) {
+                return void 0 === e && (e = !1), this._mst_id_tobe = t, this._type_tobe = 1 == e ? 6 : 2, this
+            }, e.prototype.setMessage = function (t, e) {
+                return this._message1 = t, this._message2 = e, this
+            }, e.prototype.addMeltIntoSlotitem = function (t, e, i) {
+                void 0 === i && (i = -1);
+                for (var n = new o.ModelChangeMeltIntoModel(e, 0), r = 0, s = t; r < s.length; r++) {
+                    var a = s[r];
+                    i > 0 ? n.addItem(a, 2, i) : n.addItem(a, 2)
+                }
+                return this._melt_into_items.push(n), this
+            }, e.prototype.addMeltIntoUseitem = function (t, e, i) {
+                void 0 === i && (i = -1);
+                for (var n = new o.ModelChangeMeltIntoModel(e, 1), r = 0, s = t; r < s.length; r++) {
+                    var a = s[r];
+                    i > 0 ? n.addItem(a, 6, i) : n.addItem(a, 6)
+                }
+                return this._melt_into_items.push(n), this
+            }, e.prototype.addMeltIntoTojoin = function (t, e) {
+                void 0 === t && (t = 70), void 0 === e && (e = 2);
+                var i = new o.ModelChangeMeltIntoModel(e, 2);
+                return i.addItem(t, 6), this._melt_into_items.push(i), this
+            }, e.prototype.addMeltInto = function (t, e, i) {
+                for (var n = new o.ModelChangeMeltIntoModel(e, i), r = 0, s = t; r < s.length; r++) {
+                    var a = s[r];
+                    a.size > 0 ? n.addItem(a.id, a.type, a.size) : n.addItem(a.id, a.type)
+                }
+                return this._melt_into_items.push(n), this
             }, e
-        }(PIXI.Container);
-    e.MessageBoxView = _
+        }(r.ModelChangeModel);
+    e.ModelChangeModelEdit = s
 }

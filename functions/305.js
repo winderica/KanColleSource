@@ -19,19 +19,12 @@ const function305 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(46),
+    var o = i(47),
         r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._value = e, i
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "value", {
-                get: function () {
-                    return this._value
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
+            return n(e, t), e
         }(o.RewardModel);
-    e.RewardModelWarResult = r
+    e.RewardModelLargeBuild = r
 }

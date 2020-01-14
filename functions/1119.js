@@ -19,47 +19,49 @@ const function1119 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(11),
-        a = i(8),
-        _ = i(3),
-        l = i(1),
-        u = i(242),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClose = function () {
-                    i._dialog.btn.buttonMode = !1, createjs.Tween.get(i._chara).to({
-                        x: o.default.width
-                    }, 300), createjs.Tween.get(i._dialog).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        i._layer.removeChild(i._bg), i._layer.removeChild(i._chara), i._layer.removeChild(i._dialog), i._endTask()
-                    })
-                }, i._layer = e, i
+    var o = i(2),
+        r = i(13),
+        s = i(390),
+        a = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._onClose = function () {
+                    r._panel.deactivate(), r._hideFade()
+                }, r._layer = e, r._model = i, r._option = n, r._mainView = o, r
             }
             return n(e, t), e.prototype._start = function () {
-                this._bg = new a.AreaBox(0), this._layer.addChild(this._bg);
-                var t = PIXI.Sprite.fromFrame(u.POSTER_KEY_2),
-                    e = u.getPosterOffsetPurchased();
-                null != e && (t.x = e.x, t.y = e.y), this._chara = new PIXI.Sprite, this._chara.addChild(t), this._chara.position.set(681, 3), this._layer.addChild(this._chara), this._dialog = new h, this._dialog.initialize(), this._dialog.position.set(219, 207), this._layer.addChild(this._dialog), r.default.sound.voice.playAtRandom("9999", [316, 317], [60, 40]), this._dialog.btn.buttonMode = !0, this._dialog.btn.once(l.EventType.CLICK, this._onClose)
+                this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+            }, e.prototype._loadImages = function () {
+                var t = this,
+                    e = this._model.mst_ids,
+                    i = new r.ShipLoader;
+                i.add(e[0], !1, "album_status");
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n],
+                        a = i.getSpecificAlbumImageLoadList(s);
+                    1 == i.needCard(a.typeList) && i.add(s, !1, "card"), 1 == i.needCharaFull(a.typeList) && i.add(s, !1, "character_full"), 1 == i.needCharaUp(a.typeList) && i.add(s, !1, "character_up"), 1 == this._model.hasTaiha(s) && (null == a.typeList ? (i.add(s, !0, "character_full"), i.add(s, !0, "character_up")) : a.hasTaiha && (i.add(s, !0, "character_full"), i.add(s, !0, "character_up")))
+                }
+                i.load(function () {
+                    t._showPanel()
+                })
+            }, e.prototype._showPanel = function () {
+                var t = this,
+                    e = new s.ShipDetailPanel(this._onClose);
+                this._panel = e, e.initialize(this._model, this._option), e.alpha = 0, this._layer.addChild(e), e.preactivate(), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    e.activate(), t._mainView.visible = !1
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._mainView.visible = !0, createjs.Tween.get(this._panel).to({
+                    alpha: 0
+                }, 300), this._layer.hide(500, function () {
+                    t._layer.visible = !1, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, this._option = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskBase);
-    e.TaskPurchased = c;
-    var h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._btn = new PIXI.Sprite, e._btn.position.set(291, 201), e._btn.interactive = !0, e.addChild(e._btn), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "btn", {
-            get: function () {
-                return this._btn
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = _.ITEM_COMMON.getTexture(4), this._btn.texture = _.ITEM_COMMON.getTexture(3)
-        }, e
-    }(PIXI.Sprite)
+        }(o.TaskBase);
+    e.TaskShowShipDetail = a
 }

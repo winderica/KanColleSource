@@ -19,52 +19,69 @@ const function1368 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(62),
-        s = i(16),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(309, 32), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(297, 5), i._smoke3 = new r.CenteringSprite, i._smoke3.position.set(272, 47), i
+    var o = i(0),
+        r = i(4),
+        s = i(33),
+        a = i(256),
+        _ = i(29),
+        u = i(19),
+        l = i(448),
+        c = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClickTaihi = function () {
+                    null != n._cb_onYes && n._cb_onYes()
+                }, n._onClickTaihiSezu = function () {
+                    null != n._cb_onNo && n._cb_onNo()
+                }, n._cb_onYes = e, n._cb_onNo = i, n._taihi = new h(n._onClickTaihi), n._taihi.position.set(438, 563), n.addChild(n._taihi), n._taihisezu = new p(n._onClickTaihiSezu), n._taihisezu.position.set(771, 563), n.addChild(n._taihisezu), n._ship_target = new s.ShipBanner, n._ship_target.position.set(344, 255), n.addChild(n._ship_target), n._ship_towing = new s.ShipBanner, n._ship_towing.position.set(344, 330), n.addChild(n._ship_towing), n._txt1 = new PIXI.Sprite, n._txt1.position.set(584, 258), n.addChild(n._txt1), n._txt2 = new PIXI.Sprite, n._txt2.position.set(123, 333), n.addChild(n._txt2), n._txt3 = new PIXI.Sprite, n._txt3.position.set(584, 333), n.addChild(n._txt3), n._ship_name = new r.TextBox(27, 16777215), n._ship_name.y = 258, n.addChild(n._ship_name), n._ship_level = new r.TextBox(18, 16777215), n._ship_level.y = 258, n.addChild(n._ship_level), n._ship_hp = new r.TextBox(18, 16777215), n._ship_hp.y = 291, n.addChild(n._ship_hp), n._title = new a.PhaseTitle, n._title.y = 17, n.addChild(n._title), n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = s.BATTLE_MAIN.getTexture(36);
-                this._smoke1.texture = e, this._smoke2.texture = e, this._smoke3.texture = e, this._smoke1.scale.set(.5), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
-                    alpha: .7,
-                    scaleX: .7,
-                    scaleY: .7
-                }, 100).to({
-                    x: this._smoke1.x - 12,
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 600).call(function () {
-                    t._layer.removeChild(t._smoke1)
-                }), this._smoke2.scale.set(.5), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(100).to({
-                    alpha: .7,
-                    scaleX: .7,
-                    scaleY: .7
-                }, 100).to({
-                    x: this._smoke2.x - 12,
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 600).call(function () {
-                    t._layer.removeChild(t._smoke2)
-                }), this._smoke3.scale.set(.5), this._smoke3.alpha = 0, this._layer.addChild(this._smoke3), createjs.Tween.get(this._smoke3).wait(300).to({
-                    alpha: .7,
-                    scaleX: .7,
-                    scaleY: .7
-                }, 100).to({
-                    x: this._smoke3.x - 12,
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 600).call(function () {
-                    t._layer.removeChild(t._smoke3), t._endTask()
-                })
+            return n(e, t), e.prototype.initialize = function () {
+                this._taihi.initialize(), this._taihisezu.initialize(), this._txt1.texture = u.MAP_COMMON.getTexture(169), this._txt2.texture = u.MAP_COMMON.getTexture(170), this._txt3.texture = u.MAP_COMMON.getTexture(171), this._title.initialize(!1), this._title.update(u.MAP_COMMON.getTexture(111)), this._title.activate()
+            }, e.prototype.updateTargetShipBanner = function (t, e, i, n, r) {
+                var s = "",
+                    a = o.default.model.ship.getMst(t);
+                null != a && (s = a.name);
+                var u = _.ShipUtil.isDamaged(n, r),
+                    l = _.ShipUtil.getDamageType(n, r);
+                this._ship_target.updateImage(t, u);
+                if (this._ship_target.updateIcon(!1, !1, l), this._ship_target.updateRing(i), this._ship_name.text = s, this._ship_name.x = 240 - this._ship_name.width, this._ship_name.x < 30) {
+                    this._ship_name.x = 30;
+                    var c = new PIXI.Graphics;
+                    c.beginFill(16711680, .5), c.drawRect(0, 0, 210, 33), c.endFill(), this._ship_name.addChild(c), this._ship_name.mask = c
+                }
+                this._ship_level.text = "Lv " + e, this._ship_level.x = 338 - this._ship_level.width, this._ship_hp.text = n + "/" + r, this._ship_hp.x = 338 - this._ship_hp.width
+            }, e.prototype.updateTowingShipBanner = function (t, e, i, n) {
+                var o = _.ShipUtil.isDamaged(i, n),
+                    r = _.ShipUtil.getDamageType(i, n);
+                this._ship_towing.updateImage(t, o);
+                this._ship_towing.updateIcon(!1, !1, r), this._ship_towing.updateRing(e)
+            }, e.prototype.activate = function () {
+                this._taihi.activate(), this._taihisezu.activate()
+            }, e.prototype.deactivate = function () {
+                this._taihi.deactivate(), this._taihisezu.deactivate()
+            }, e.prototype.dispose = function () {
+                this._taihi.dispose(), this._taihisezu.dispose(), this._title.dispose(), this._cb_onYes = null, this._cb_onNo = null
             }, e
-        }(o.TaskBase);
-    e.AnimAntiAircraftFunshinKai2 = a
+        }(PIXI.Container);
+    e.EscapeGoeiView = c;
+    var h = function (t) {
+            function e(e) {
+                return t.call(this, !1, e) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._initialize(0)
+            }, e.prototype._setTexture = function (t) {
+                this._btn.texture = 1 == t ? u.MAP_COMMON.getTexture(14) : u.MAP_COMMON.getTexture(13), this._btn.x = -Math.round(this._btn.width / 2), this._btn.y = -Math.round(this._btn.height / 2)
+            }, e
+        }(l.WaveBtnBase),
+        p = function (t) {
+            function e(e) {
+                return t.call(this, !0, e) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._initialize(-3)
+            }, e.prototype._setTexture = function (t) {
+                this._btn.texture = 1 == t ? u.MAP_COMMON.getTexture(12) : u.MAP_COMMON.getTexture(11), this._btn.x = -Math.round(this._btn.width / 2), this._btn.y = -Math.round(this._btn.height / 2)
+            }, e
+        }(l.WaveBtnBase)
 }

@@ -1,347 +1,82 @@
 const function790 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(45),
-        s = i(34),
-        a = i(337),
-        _ = i(85),
-        l = i(6),
-        u = i(139),
-        c = i(51),
-        h = i(138),
-        p = i(89),
-        d = i(791),
-        f = i(792),
-        y = i(793),
-        m = i(794),
-        g = i(795),
-        v = i(168),
-        b = i(801),
-        w = i(221),
-        x = i(222),
-        I = function () {
-            function t(t, e) {
-                var i = this;
-                this.slotInShipChangeConfirm = null, this._excludeList = [], this._onClickBackArea = function () {
-                    o.default.view.clickGuard = !0, i.backArea.width = n.default.width;
-                    createjs.Tween.get(i.backArea).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(i.slotItemList).to({
-                        x: n.default.width
-                    }, 125), createjs.Tween.get(i.shipDetail).to({
-                        x: 468
-                    }, 125).call(function () {
-                        i.mainView.removeChild(i.slotItemList), i.mainView.removeChild(i.backArea), o.default.view.clickGuard = !1, i.onComplete()
-                    })
-                }, this._onClickDoubleBackAreaLeft = function () {
-                    _.TaskLoadSlotResource.abortBy(i.changeConfirm), i.doubleBackArea.width = n.default.width, o.default.view.clickGuard = !0, createjs.Tween.get(i.changeConfirm).to({
-                        x: n.default.width
-                    }, 62);
-                    createjs.Tween.get(i.doubleBackArea).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(i.backArea).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(i.shipDetail).to({
-                        x: 468
-                    }, 125), createjs.Tween.get(i.slotItemList).to({
-                        x: n.default.width
-                    }, 125).call(function () {
-                        i.mainView.removeChild(i.slotItemList), i.mainView.removeChild(i.changeConfirm), i.mainView.removeChild(i.doubleBackArea), i.mainView.removeChild(i.backArea), o.default.view.clickGuard = !1
-                    })
-                }, this._onClickDoubleBackAreaRight = function () {
-                    _.TaskLoadSlotResource.abortBy(i.changeConfirm), i.doubleBackArea.width = n.default.width, o.default.view.clickGuard = !0;
-                    createjs.Tween.get(i.doubleBackArea).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(i.changeConfirm).to({
-                        x: n.default.width
-                    }, 125).call(function () {
-                        i.mainView.removeChild(i.changeConfirm), i.mainView.removeChild(i.doubleBackArea), o.default.view.clickGuard = !1
-                    })
-                }, this._onClickChangeButton = function () {
-                    switch (_.TaskLoadSlotResource.abortBy(i.changeConfirm), i.mode) {
-                        case h.SlotListMode.SET:
-                            var t = i.memSlotItemId,
-                                e = o.default.model.ship.get(i.setList[1]["" + t]),
-                                r = o.default.model.ship.get(i.memShipId),
-                                a = o.default.model.slot.get(t);
-                            return i.changeConfrimFromOtherShip.update(e, r, a), i.changeConfrimFromOtherShip.position.set(225, 188), i.changeConfrimFromOtherShip.activate(), o.default.view.clickGuard = !0, i.slotInShipChangeConfirm = new m.SlotInShipChangeConfirm(i.changeConfrimFromOtherShip), o.default.view.overLayer.addChild(i.slotInShipChangeConfirm), void i.slotInShipChangeConfirm.show(function () {
-                                o.default.view.clickGuard = !1
-                            });
-                        case h.SlotListMode.UNSET:
-                            ;
-                            o.default.view.clickGuard = !0;
-                            var l = void 0;
-                            l = i.isEditExtraSlot ? new x.SlotSetExAPI(i.memShipId, i.memSlotItemId) : new w.SlotSetAPI(i.memShipId, i.memSlotItemId, i.slotIndex);
-                            var u = new s.APIConnector,
-                                c = new v.Ship3API(i.memShipId);
-                            u.add(l).add(c).start(function () {
-                                i.isEditExtraSlot || o.default.view.portMain.updateInfo(), i.onUpdateSlotItem(), createjs.Tween.get(i.backArea).to({
-                                    alpha: 0
-                                }, 125), createjs.Tween.get(i.slotItemList).to({
-                                    x: n.default.width
-                                }, 125), createjs.Tween.get(i.changeConfirm).to({
-                                    x: n.default.width
-                                }, 125), createjs.Tween.get(i.doubleBackArea).to({
-                                    alpha: 0
-                                }, 125), createjs.Tween.get(i.shipDetail).to({
-                                    x: 468
-                                }, 125).call(function () {
-                                    i.mainView.removeChild(i.slotItemList), i.mainView.removeChild(i.changeConfirm), i.mainView.removeChild(i.doubleBackArea), i.mainView.removeChild(i.backArea), o.default.view.clickGuard = !1, i.onComplete()
-                                })
-                            }), i.shipVoice.play(i.memShipId)
-                    }
-                }, this._onClickYesOtherShipChange = function () {
-                    o.default.view.clickGuard = !0, i.slotInShipChangeConfirm.hide(function () {
-                        i.changeConfrimFromOtherShip.deactivate(), i.slotInShipChangeConfirm.dispose(), o.default.view.overLayer.removeChild(i.slotInShipChangeConfirm);
-                        for (var t = i.slotIndex, e = i.memShipId, r = i.isEditExtraSlot ? 1 : 0, s = i.memSlotItemId, a = i.setList[1]["" + s], _ = -1, l = 0, u = o.default.model.ship.get(a), c = u.getSlotitems(), h = 0; h < c.length; h++) {
-                            var p = c[h];
-                            if (p && p.memID == s) {
-                                _ = h;
-                                break
-                            }
-                        }
-                        if (-1 == _) {
-                            var d = u.getSlotitemEx();
-                            null != d && d.memID == s && (_ = 0, l = 1)
-                        }
-                        new b.SlotDepriveAPI(_, r, l, a, t, e).start(function () {
-                            o.default.view.portMain.updateInfo(), i.onUpdateSlotItem(), createjs.Tween.get(i.doubleBackArea).to({
-                                alpha: 0
-                            }, 125), createjs.Tween.get(i.backArea).to({
-                                alpha: 0
-                            }, 125), createjs.Tween.get(i.changeConfirm).to({
-                                x: n.default.width
-                            }, 125), createjs.Tween.get(i.slotItemList).to({
-                                x: n.default.width
-                            }, 125), createjs.Tween.get(i.shipDetail).to({
-                                x: 468
-                            }, 125).call(function () {
-                                i.mainView.removeChild(i.backArea), i.mainView.removeChild(i.doubleBackArea), i.mainView.removeChild(i.changeConfirm), i.mainView.removeChild(i.slotItemList), o.default.view.clickGuard = !1
-                            })
-                        }), i.shipVoice.play(i.memShipId)
-                    })
-                }, this._onClickNoOtherShipChange = function () {
-                    o.default.view.clickGuard = !0, i.slotInShipChangeConfirm.hide(function () {
-                        i.changeConfrimFromOtherShip.deactivate(), i.slotInShipChangeConfirm.dispose(), o.default.view.overLayer.removeChild(i.slotInShipChangeConfirm), o.default.view.clickGuard = !1
-                    })
-                }, this._onChangeFilterKeyType = function (t) {
-                    i._updateSource_(i.mode, t), i.slotItemList.slotItemFilterView.hideFilterListImmidiate(), i._changePage_(0)
-                }, this._onClickChangeListSwitch = function () {
-                    switch (l.SE.play("219"), i.mode) {
-                        case h.SlotListMode.UNSET:
-                            i._initSetList_(i.memShipId, i.isEditExtraSlot, i.slotIndex), i._updateSource_(h.SlotListMode.SET, 0), i._changePage_(0);
+    var o = i(3),
+        r = i(1),
+        s = i(791),
+        a = i(792),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.fuel = !1, e.ammo = !1, e._onClickFuel = function () {
+                    e.onClickFuel()
+                }, e._onClickAmmo = function () {
+                    e.onClickAmmo()
+                }, e._onClickAll = function () {
+                    e.onClickAll()
+                }, e._onMouseOverAll2 = function () {
+                    e.onMouseOverAll2()
+                }, e._onMouseOutAll2 = function () {
+                    e.onMouseOutAll2()
+                }, e._onClickAll2 = function () {
+                    e.onClickAll2()
+                }, e._onClickBaux = function () {
+                    e.onClickBaux()
+                }, e._onMouseOver = function (t) {
+                    switch (e.buttonFuel.texture = e.btn_2_fuel_off, e.fuel && (e.buttonFuel.texture = e.btn_2_fuel), e.buttonAmmo.texture = e.btn_2_ammo_off, e.ammo && (e.buttonAmmo.texture = e.btn_2_ammo), e.buttonAll.texture = e.btn_2_all, t.target) {
+                        case e.buttonAll:
+                            e.buttonFuel.texture = e.btn_2_fuel_on, e.buttonAmmo.texture = e.btn_2_ammo_on, e.buttonAll.texture = e.btn_2_all_on;
                             break;
-                        case h.SlotListMode.SET:
-                            i._updateSource_(h.SlotListMode.UNSET, 0), i._changePage_(0);
+                        case e.buttonAmmo:
+                            e.buttonAmmo.texture = e.btn_2_ammo_on;
                             break;
-                        default:
-                            throw Error("unsupported X( " + i.mode)
+                        case e.buttonFuel:
+                            e.buttonFuel.texture = e.btn_2_fuel_on
                     }
-                }, this._onClickListItem = function (t, e) {
-                    i.mainView.addChild(i.doubleBackArea), i.mainView.addChild(i.changeConfirm), i.changeConfirm.position.set(n.default.width, 141), i.doubleBackArea.alpha = 0;
-                    var r = o.default.model.ship.get(i.memShipId),
-                        s = -1 == i.slotIndex ? r.getSlotitemEx() : r.getSlotitems()[i.slotIndex],
-                        a = o.default.model.slot.get(e);
-                    i.changeConfirm.update(s, a), o.default.view.clickGuard = !0, i.memSlotItemId = e, createjs.Tween.get(i.doubleBackArea).to({
-                        alpha: 1
-                    }, 125), createjs.Tween.get(i.changeConfirm).to({
-                        x: 873
-                    }, 125).call(function () {
-                        i.doubleBackArea.width = 912, o.default.view.clickGuard = !1
-                    })
-                }, this._onClickLock = function (t, e) {
-                    var n = new a.SlotItemLockAPI(e);
-                    o.default.view.clickGuard = !0;
-                    var r = function () {
-                        var n = o.default.model.slot.get(e);
-                        n.isLocked() ? l.SE.play("242") : l.SE.play("255");
-                        var r = null;
-                        i.mode == h.SlotListMode.SET && (r = 15 == u.SceneMemory.slotItemFilter ? o.default.model.ship.get(i.setList_all[1][n.memID.toString()]) : o.default.model.ship.get(i.setList[1][n.memID.toString()])), i._updateListItem_(t, n, r), o.default.view.clickGuard = !1
-                    };
-                    n.start(r)
-                }, this._onChangePage = function (t) {
-                    u.SceneMemory.slotItemPage != t && i._changePage_(t)
-                }, this.slotItemList = new g.SlotItemList, this.changeConfirm = new y.ChangeConfirm, this.changeConfrimFromOtherShip = new d.ChangeConfirmFromOtherShip, this.backArea = new f.BackArea, this.doubleBackArea = new f.DoubleBackArea, this.slotItemList.pagerView.onChangePage = this._onChangePage, this.slotItemList.onClick = this._onClickListItem, this.slotItemList.onClickLock = this._onClickLock, this.backArea.onClick = this._onClickBackArea, this.doubleBackArea.onClickLeft = this._onClickDoubleBackAreaLeft, this.doubleBackArea.onClickRight = this._onClickDoubleBackAreaRight, this.changeConfirm.onClick = this._onClickChangeButton, this.changeConfrimFromOtherShip.onClickYes = this._onClickYesOtherShipChange, this.changeConfrimFromOtherShip.onClickNo = this._onClickNoOtherShipChange, this.slotItemList.slotItemFilterView.onClick = this._onChangeFilterKeyType, this.slotItemList.changeListSwitch.onClick = this._onClickChangeListSwitch, this.shipDetail = e, this.mainView = t
+                }, e._onMouseOut = function (t) {
+                    null == t.target && (e.buttonFuel.texture = e.btn_2_fuel_off, e.buttonAmmo.texture = e.btn_2_ammo_off, e.buttonAll.texture = e.btn_2_all_off, e.fuel && (e.buttonFuel.texture = e.btn_2_fuel), e.ammo && (e.buttonAmmo.texture = e.btn_2_ammo), (e.fuel || e.ammo) && (e.buttonAll.texture = e.btn_2_all))
+                }, e.SupplyAircraftButton = new s.SupplyAircraftButton, e.SupplyAircraftButton.position.set(-3, -44), e.supplyAllButton2 = new a.SupplyAllButton2, e.supplyAllButton2.position.set(142, -44);
+                var i = o.SUPPLY_MAIN.getTexture(10),
+                    n = o.SUPPLY_MAIN.getTexture(9),
+                    _ = o.SUPPLY_MAIN.getTexture(11),
+                    u = o.SUPPLY_MAIN.getTexture(4),
+                    l = o.SUPPLY_MAIN.getTexture(3),
+                    c = o.SUPPLY_MAIN.getTexture(5),
+                    h = o.SUPPLY_MAIN.getTexture(7),
+                    p = o.SUPPLY_MAIN.getTexture(6),
+                    d = o.SUPPLY_MAIN.getTexture(8),
+                    f = new PIXI.Sprite(i),
+                    y = new PIXI.Sprite(h),
+                    m = new PIXI.Sprite(u);
+                return f.position.set(0, 0), m.position.set(61, 0), y.position.set(217, 0), f.addListener(r.EventType.CLICK, e._onClickFuel), f.addListener(r.EventType.MOUSEOVER, e._onMouseOver), f.addListener(r.EventType.MOUSEOUT, e._onMouseOut), y.addListener(r.EventType.CLICK, e._onClickAmmo), y.addListener(r.EventType.MOUSEOVER, e._onMouseOver), y.addListener(r.EventType.MOUSEOUT, e._onMouseOut), m.addListener(r.EventType.CLICK, e._onClickAll), m.addListener(r.EventType.MOUSEOVER, e._onMouseOver), m.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e.SupplyAircraftButton.onClick = e._onClickBaux, e.supplyAllButton2.onMouseOver = e._onMouseOverAll2, e.supplyAllButton2.onMouseOut = e._onMouseOutAll2, e.supplyAllButton2.onClick = e._onClickAll2, e.addChild(e.SupplyAircraftButton, e.supplyAllButton2, f, m, y), e.buttonAll = m, e.buttonAmmo = y, e.buttonFuel = f, e.btn_2_fuel_off = i, e.btn_2_fuel = n, e.btn_2_fuel_on = _, e.btn_2_ammo_off = h, e.btn_2_ammo = p, e.btn_2_ammo_on = d, e.btn_2_all_off = u, e.btn_2_all = l, e.btn_2_all_on = c, e
             }
-            return t.prototype.dispose = function () {
-                this._onChangePage = null, this._onClickListItem = null, this._onClickLock = null, this.backArea.onClick = this._onClickBackArea = null, this.doubleBackArea.onClickLeft = this._onClickDoubleBackAreaLeft = null, this.doubleBackArea.onClickRight = this._onClickDoubleBackAreaRight = null, this.changeConfirm.onClick = this._onClickChangeButton = null, this.changeConfrimFromOtherShip.onClickYes = this._onClickYesOtherShipChange = null, this.changeConfrimFromOtherShip.onClickNo = this._onClickNoOtherShipChange = null, this._onChangeFilterKeyType = null, this._onClickChangeListSwitch = null, this.slotItemList && this.slotItemList.dispose(), this.changeConfirm && this.changeConfirm.dispose(), this.changeConfrimFromOtherShip && this.changeConfrimFromOtherShip.dispose(), this.backArea && this.backArea.dispose(), this.doubleBackArea && this.doubleBackArea.dispose(), this.onUpdateSlotItem = null, this.onComplete = null, this.memSlotItemId = null, this.memShipId = null, this.slotIndex = null, this.mainView = null, this.shipDetail = null, this.changeConfirm = null, this.backArea = null, this.doubleBackArea = null, this.slotItemList = null, this.sourceSlotItems = null, this.unsetList = null, this.sortieSlotItems = null, this.setList = null, this.mode = null, this.changeConfrimFromOtherShip = null, this.slotInShipChangeConfirm = null
-            }, t.prototype._updateSource_ = function (t, e) {
-                var i = this._genSource_(t, e);
-                this._updateMode_(t), this._updateFilter_(e), this._updatePager_(i), this.sourceSlotItems = i
-            }, t.prototype._changePage_ = function (t) {
-                var e = this.sourceSlotItems.slice(t * c.RemodelConst.ITEM_NUM, t * c.RemodelConst.ITEM_NUM + c.RemodelConst.ITEM_NUM);
-                if (this.slotItemList.clear(), 0 == e.length) this.slotItemList.visibleEmptyText();
-                else
-                    for (var i = 0; i < e.length; i++) {
-                        var n = e[i],
-                            r = null;
-                        this.mode == h.SlotListMode.SET && (r = 15 == u.SceneMemory.slotItemFilter ? o.default.model.ship.get(this.setList_all[1][n.memID.toString()]) : o.default.model.ship.get(this.setList[1][n.memID.toString()])), this._updateListItem_(i, n, r)
-                    }
-                this.slotItemList.pagerView.changePage(t), u.SceneMemory.slotItemPage = t
-            }, t.prototype._updateListItem_ = function (t, e, i) {
-                var n = null,
-                    r = !1,
-                    s = null,
-                    a = !1,
-                    _ = !1;
-                i ? (n = o.default.model.deck.isInDeck(i.memID)) && (s = o.default.model.deck.get(n[0]), null != s.expedition && (r = !0)) : -1 != this.sortieSlotItems.indexOf(e) && (a = !0);
-                var l, u = o.default.model.ship.get(this.memShipId);
-                this.isEditExtraSlot || (l = o.default.model.equip.get(u.mstID), (-1 == l.equip_type.indexOf(e.equipTypeSp) || this._excludeList.indexOf(e.equipTypeSp) > -1) && (_ = !0), 392 == u.mstID && 11 == e.equipType && 194 != e.mstID && (_ = !0)), this.slotItemList.update(t, e, i, n, r, a, _)
-            }, t.prototype.start = function (t, e, i) {
-                var r = this;
-                o.default.view.clickGuard = !0;
-                var s = -1 == e;
-                this.shipVoice = i, this._excludeList = this._excludeEquipList(t, e, s), this._initUnSetList_(t, e, s), this._initSortieSlotItems_(), this.mode = u.SceneMemory.listMode, this.slotIndex = e, this.memShipId = t, this.isEditExtraSlot = s, this.mode == h.SlotListMode.SET && this._initSetList_(this.memShipId, this.isEditExtraSlot, this.slotIndex), this._updateSlotItemFilter_(s), this._updateSource_(this.mode, u.SceneMemory.slotItemFilter);
-                var a = Math.ceil(this.sourceSlotItems.length / c.RemodelConst.ITEM_NUM);
-                a <= u.SceneMemory.slotItemPage && (u.SceneMemory.slotItemPage = a - 1, u.SceneMemory.slotItemPage < 0 && (u.SceneMemory.slotItemPage = 0)), this._changePage_(u.SceneMemory.slotItemPage), this.slotItemList.position.set(n.default.width, 141), this.backArea.alpha = 0, this.mainView.addChild(this.backArea), this.mainView.addChild(this.slotItemList), createjs.Tween.get(this.slotItemList).to({
-                    x: 501
-                }, 125), createjs.Tween.get(this.backArea).to({
-                    alpha: 1
-                }, 125), createjs.Tween.get(this.shipDetail).to({
-                    x: 147
-                }, 125).call(function () {
-                    r.backArea.width = 538, o.default.view.clickGuard = !1
-                })
-            }, t.prototype._updateSlotItemFilter_ = function (t) {
-                this.slotItemList.slotItemFilterView.visible = !1, 0 == t && (this.slotItemList.slotItemFilterView.visible = !0)
-            }, t.prototype._initSortieSlotItems_ = function () {
-                if (!this.sortieSlotItems) {
-                    var t = o.default.model.slot.createUnsetList([47, 48, 49]);
-                    this.sortieSlotItems = t
-                }
-            }, t.prototype._initUnSetList_ = function (t, e, i) {
-                var n = this;
-                if (!this.unsetList) {
-                    var r, s, a = o.default.model.ship.get(t),
-                        _ = [];
-                    if (i) r = p.RemodelUtil.createUnSetListEx(a.mstID, a.shipTypeID);
-                    else {
-                        var l = o.default.model.equip.get(a.mstID),
-                            u = void 0;
-                        u = this._excludeList.length > 0 ? l.equip_type.filter(function (t) {
-                            return -1 === n._excludeList.indexOf(t)
-                        }) : l.equip_type, r = o.default.model.slot.createUnsetList(u, null, a.mstID), s = o.default.model.slot.createUnsetList_unType(l.equip_type, a.mstID), _ = o.default.model.slot.createUnsetList(l.equip_type, null, a.mstID)
-                    }
-                    this.unsetList = r, this.unsetList_all = _.concat(s)
-                }
-            }, t.prototype._initSetList_ = function (t, e, i) {
-                var n = this;
-                if (!this.setList) {
-                    var r, s, a = o.default.model.ship.get(t),
-                        _ = {},
-                        l = new Array;
-                    if (e ? r = p.RemodelUtil.createSetListEx(a.memID, a.mstID, a.shipTypeID) : (s = o.default.model.equip.get(a.mstID), r = o.default.model.slot.createSetList(s.equip_type, null, -1, a.mstID)), r[0] = r[0].filter(function (t) {
-                            var e = r[1][t.memID] == a.memID;
-                            return e && delete r[1][t.memID], 0 == e
-                        }), !e) {
-                        for (var u = 0; u < r[0].length; u++) l.push(r[0][u]);
-                        for (var c in r[1]) {
-                            var h = parseInt(c);
-                            _[h] = r[1][c]
-                        }
-                        var d = void 0;
-                        d = o.default.model.slot.createSetList_unType(s.equip_type);
-                        for (var u = 0; u < d[0].length; u++) l.push(d[0][u]);
-                        for (var c in d[1]) {
-                            var h = parseInt(c);
-                            _[h] = d[1][c]
-                        }
-                        this.setList_all = [l, _]
-                    }
-                    392 == a.mstID && (r[0] = r[0].filter(function (t) {
-                        return 11 != t.equipType || 194 == t.mstID
-                    })), this._excludeList.length > 0 && (r[0] = r[0].filter(function (t) {
-                        return -1 === n._excludeList.indexOf(t.equipType)
-                    })), this.setList = r
-                }
-            }, t.prototype._excludeEquipList = function (t, e, i) {
-                if (i) return [];
-                var n = o.default.model.ship.get(t);
-                return (553 === n.mstID || 554 === n.mstID) && e >= 2 ? [2, 3] : []
-            }, t.prototype._updateMode_ = function (t) {
-                switch (this.slotItemList.inUseMarker.visible = !1, t) {
-                    case h.SlotListMode.SET:
-                        this.slotItemList.listHeader.update(this.slotItemList.listHeader.TYPE_SET), this.slotItemList.changeListSwitch.update(this.slotItemList.changeListSwitch.TYPE_EQUIPS_OTHER), this.slotItemList.inUseMarker.visible = !0;
-                        break;
-                    case h.SlotListMode.UNSET:
-                        this.slotItemList.listHeader.update(this.slotItemList.listHeader.TYPE_UNSET), this.slotItemList.changeListSwitch.update(this.slotItemList.changeListSwitch.TYPE_UNEQUIPS)
-                }
-                this.mode = t, u.SceneMemory.listMode = t
-            }, t.prototype._genSource_ = function (t, e) {
-                switch (t) {
-                    case h.SlotListMode.SET:
-                        return 15 == e ? this._genFilterSlotItems_(t, e, this.setList_all[0]) : this._genFilterSlotItems_(t, e, this.setList[0]);
-                    case h.SlotListMode.UNSET:
-                        return 15 == e ? this._genFilterSlotItems_(t, e, this.unsetList_all) : this._genFilterSlotItems_(t, e, this.unsetList)
-                }
-                throw new Error("unsupported XO")
-            }, t.prototype._updatePager_ = function (t) {
-                var e = p.RemodelUtil.calcPageCount(t.length);
-                this.slotItemList.pagerView.init(e)
-            }, t.prototype._updateFilter_ = function (t) {
-                this.slotItemList.slotItemFilterView.updateFilterType(t), u.SceneMemory.slotItemFilter = t
-            }, t.prototype._genFilterSlotItems_ = function (t, e, i) {
-                if (0 == e || 15 == e) return r.SlotUtil.sort(i, 0), i;
-                if (13 == e) return r.SlotUtil.sort(i, 1), i;
-                if (14 == e) return r.SlotUtil.sort(i, 2), i;
-                var n = i;
-                t != h.SlotListMode.UNSET || 11 != e && 12 != e || (n = i.concat(this.sortieSlotItems));
-                var o;
-                switch (e) {
-                    case 1:
-                        o = r.SlotUtil.filter(n, 1);
-                        break;
-                    case 2:
-                        o = r.SlotUtil.filter(n, 2);
-                        break;
-                    case 3:
-                        o = r.SlotUtil.filter(n, 3);
-                        break;
-                    case 4:
-                        o = r.SlotUtil.filter(n, 4);
-                        break;
-                    case 5:
-                        o = r.SlotUtil.filter(n, 5);
-                        break;
-                    case 6:
-                        o = r.SlotUtil.filter(n, 6);
-                        break;
-                    case 7:
-                        o = r.SlotUtil.filter(n, 7);
-                        break;
-                    case 8:
-                        o = r.SlotUtil.filter(n, 8);
-                        break;
-                    case 9:
-                        o = r.SlotUtil.filter(n, 9);
-                        break;
-                    case 10:
-                        o = r.SlotUtil.filter(n, 10);
-                        break;
-                    case 11:
-                        o = r.SlotUtil.filter(n, 11);
-                        break;
-                    case 12:
-                        o = r.SlotUtil.filter(n, 12)
-                }
-                return r.SlotUtil.sort(o, 0), o
-            }, t.prototype._show_ = function () {
-                var t = this;
-                o.default.view.clickGuard = !0;
-                this.slotItemList.position.set(n.default.width, 141), this.backArea.alpha = 0, this.mainView.addChild(this.backArea), this.mainView.addChild(this.slotItemList), createjs.Tween.get(this.slotItemList).to({
-                    x: 501
-                }, 125), createjs.Tween.get(this.backArea).to({
-                    alpha: 1
-                }, 125), createjs.Tween.get(this.shipDetail).to({
-                    x: 147
-                }, 125).call(function () {
-                    t.backArea.width = 538, o.default.view.clickGuard = !1
-                })
-            }, t
-        }();
-    e.TaskChoiceSlotItem = I
+            return n(e, t), e.prototype.dispose = function () {
+                this.buttonAll.texture = PIXI.Texture.EMPTY, this.buttonAmmo.texture = PIXI.Texture.EMPTY, this.buttonFuel.texture = PIXI.Texture.EMPTY, this.buttonAll.removeAllListeners(r.EventType.CLICK), this.buttonAll.removeAllListeners(r.EventType.MOUSEOVER), this.buttonAll.removeAllListeners(r.EventType.MOUSEOUT), this.buttonFuel.removeAllListeners(r.EventType.CLICK), this.buttonFuel.removeAllListeners(r.EventType.MOUSEOVER), this.buttonFuel.removeAllListeners(r.EventType.MOUSEOUT), this.buttonAmmo.removeAllListeners(r.EventType.CLICK), this.buttonAmmo.removeAllListeners(r.EventType.MOUSEOVER), this.buttonAmmo.removeAllListeners(r.EventType.MOUSEOUT), this.onClickAll = this._onClickAll = null, this.onClickAmmo = this._onClickAmmo = null, this.onClickFuel = this._onClickFuel = null, this._onMouseOut = this._onMouseOver = null, this.btn_2_fuel_off = null, this.btn_2_all_off = null, this.btn_2_ammo_off = null, this.btn_2_fuel_on = null, this.btn_2_all_on = null, this.btn_2_ammo_on = null, this.btn_2_fuel = null, this.btn_2_all = null, this.btn_2_ammo = null, this.buttonAll = null, this.buttonFuel = null, this.buttonAmmo = null, this.removeChildren()
+            }, e.prototype.update = function (t, e) {
+                this.buttonFuel.interactive = !1, this.buttonFuel.buttonMode = !1, this.buttonAmmo.interactive = !1, this.buttonAmmo.buttonMode = !1, this.buttonAll.interactive = !1, this.buttonAll.buttonMode = !1, this.buttonAll.texture = this.btn_2_all_off, this.buttonAmmo.texture = this.btn_2_ammo_off, this.buttonFuel.texture = this.btn_2_fuel_off, t && (this.buttonFuel.interactive = !0, this.buttonFuel.buttonMode = !0, this.buttonFuel.texture = this.btn_2_fuel), e && (this.buttonAmmo.interactive = !0, this.buttonAmmo.buttonMode = !0, this.buttonAmmo.texture = this.btn_2_ammo), (t || e) && (this.buttonAll.interactive = !0, this.buttonAll.buttonMode = !0, this.buttonAll.texture = this.btn_2_all), this.fuel = t, this.ammo = e
+            }, e.prototype.updateButton = function (t, e) {
+                this.SupplyAircraftButton.updateClickable(t), this.supplyAllButton2.updateClickable(e)
+            }, e.prototype.outSideFocus = function (t, e) {
+                this.buttonFuel.texture = this.btn_2_fuel_off, this.buttonAmmo.texture = this.btn_2_ammo_off, this.buttonAll.texture = this.btn_2_all_off, t && e ? (this.buttonFuel.texture = this.btn_2_fuel_on, this.buttonAmmo.texture = this.btn_2_ammo_on, this.buttonAll.texture = this.btn_2_all_on) : t ? this.buttonFuel.texture = this.btn_2_fuel_on : e && (this.buttonAmmo.texture = this.btn_2_ammo_on)
+            }, e
+        }(PIXI.Container);
+    e.SupplyTypeSelectButton = _
 }

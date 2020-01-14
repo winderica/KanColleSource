@@ -19,29 +19,27 @@ const function1093 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(23),
+    var o = i(11),
+        r = i(14),
+        s = i(15),
         a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._mst_id = e, n._target = i, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._view = e, i
             }
-            return n(e, t), e.prototype.cancel = function () {
-                this._target = null
-            }, e.prototype._start = function () {
-                var t = this,
-                    e = new s.SlotLoader;
-                e.add(this._mst_id, "card"), e.load(function () {
-                    if (null != t._target) {
-                        var e = o.default.resources.getSlotitem(t._mst_id, "card");
-                        t._target.texture = e
-                    }
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._view = null, r.EditTextBoxUtil.setVisibility(!1), this._endTask()
             }, e
-        }(r.TaskBase);
-    e.TaskShowSlotCard = a
+        }(o.TaskBase);
+    e.PreFinalizeTask = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene_dispose_delegate = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._view = null, s.UIImageLoader.clearMemoryCache("record"), this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = _
 }

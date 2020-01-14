@@ -20,36 +20,39 @@ const function640 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(309),
-        s = i(4),
-        a = i(78),
-        _ = i(48),
-        l = function (t) {
+        r = i(1),
+        s = i(17),
+        a = function (t) {
             function e(e, i) {
-                return t.call(this, e, i) || this
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = this,
-                    e = this.model.mst_id,
-                    i = this.model.name,
-                    n = new a.FurnitureLoader;
-                n.add(e, "reward"), n.load(function () {
-                    var n = o.default.model.furniture.getData(e);
-                    if (null != n) {
-                        var a = (n.type, o.default.resources.getFurniture(e, "reward"));
-                        t._thumb = new r.FurnitureThumbnail(!0), t._thumb.position.set(-123, -187), t._thumb.initialize(), t._thumb.update(a), t._dialog.container.addChild(t._thumb), t._text = new s.TextBox(25, 16774898), t._text.text = i, t._text.x = -Math.round(t._text.width / 2), t._text.y = 124, t._dialog.container.addChild(t._text)
+                var n = t.call(this) || this;
+                return n._friendlyActive = !1, n._timer = -1, n._flg = !0, n.dispose = function () {
+                    n._stopAnimation(), n.interactive = n.buttonMode = !1, n.off(r.EventType.MOUSEOVER, n._onOver), n.off(r.EventType.MOUSEOUT, n._onOut), n.off(r.EventType.CLICK, n._onClick)
+                }, n._startAnimation = function () {
+                    null != n._texture_light && n._timer < 0 && (n._timer = setInterval(n._onTimer, 1500))
+                }, n._stopAnimation = function () {
+                    n._timer >= 0 && (clearInterval(n._timer), n._timer = -1)
+                }, n._onOver = function () {
+                    n._stopAnimation(), n.texture = n._texture_on
+                }, n._onOut = function () {
+                    n.texture = n._texture_normal, n._startAnimation()
+                }, n._onTimer = function () {
+                    1 == n._flg ? n.texture = n._texture_light : n.texture = n._texture_normal, n._flg = !n._flg
+                }, n._onClick = function () {
+                    if (22 != n._type) o.default.scene.change(n._type, n._model);
+                    else {
+                        if (0 !== o.default.scene.now) return;
+                        if (n._friendlyActive) return;
+                        if (!s.FRIENDLY) return
                     }
-                    t._showDialog()
-                })
-            }, e.prototype._removeContent = function () {
-                null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && (null != this._text.parent && this._text.parent.removeChild(this._text), this._text.destroy()), this._text = null
+                }, n._type = e, n._model = i, n
+            }
+            return n(e, t), e.prototype.setUp = function (t, e, i, n) {
+                void 0 === n && (n = PIXI.Texture.EMPTY), this._texture_normal = t, this._texture_on = e, this._texture_light = i, this._onOut(), s.FRIENDLY && (this._texture_disabled_on = n, this._texture_use_button = e)
+            }, e.prototype.friendlyButtonMode = function (t) {
+                this.buttonMode = t, this._texture_on = t ? this._texture_use_button : this._texture_disabled_on
+            }, e.prototype.initialize = function (t, e, i, n) {
+                void 0 === n && (n = PIXI.Texture.EMPTY), this.setUp(t, e, i, n), this.interactive = this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onOver), this.on(r.EventType.MOUSEOUT, this._onOut), 22 != this._type ? this.on(r.EventType.CLICK, this._onClick) : s.FRIENDLY && this.on(r.EventType.CLICK, this._onClick)
             }, e
-        }(_.TaskRewardDialogBase);
-    e.TaskRewardDialogFurniture = l
+        }(PIXI.Sprite);
+    e.UpperBtn = a
 }

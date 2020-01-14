@@ -19,41 +19,29 @@ const function343 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._url = "api_get_member/ndock", e
+                e._light = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(3)), e._light.position.set(600, 195), e._light.anchor.set(.5, .5), e.addChild(e._light), e._light_place = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(4)), e._light_place.position.set(600, 360), e._light_place.anchor.set(.5, .5), e.addChild(e._light_place);
+                var i = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(2));
+                return i.position.set(509, 276), e.addChild(i), e
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = o.default.model.ndock.get(1),
-                    i = o.default.model.ndock.get(2),
-                    n = o.default.model.ndock.get(3),
-                    r = o.default.model.ndock.get(4);
-                o.default.model.ndock.setData(this._raw_data);
-                var s = o.default.model.ndock.get(1),
-                    a = o.default.model.ndock.get(2),
-                    _ = o.default.model.ndock.get(3),
-                    l = o.default.model.ndock.get(4);
-                if (1 == e.state && 0 == s.state) {
-                    var u = o.default.model.ship.get(e.shipMemID);
-                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
-                }
-                if (1 == i.state && 0 == a.state) {
-                    var u = o.default.model.ship.get(i.shipMemID);
-                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
-                }
-                if (1 == n.state && 0 == _.state) {
-                    var u = o.default.model.ship.get(n.shipMemID);
-                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
-                }
-                if (1 == r.state && 0 == l.state) {
-                    var u = o.default.model.ship.get(r.shipMemID);
-                    u.__updateNowHp__(u.hpMax), u.__updateNDockTime__(0), u.__updateNDockItem__([0, 0]), u.tired < 40 && u.__updateCond__(40)
-                }
-                t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "light", {
+                get: function () {
+                    return this._light
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "light_place", {
+                get: function () {
+                    return this._light_place
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._light = null, this._light_place = null
             }, e
-        }(r.APIBase);
-    e.NDockAPI = s
+        }(PIXI.Container);
+    e.FailedPenguin = r
 }

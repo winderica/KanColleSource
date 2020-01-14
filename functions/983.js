@@ -19,41 +19,17 @@ const function983 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(984),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    i._dialog.interactive = !1, i._dialog.buttonMode = !1, i._close()
-                }, i._layer = e, i
+    var o = i(9),
+        r = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_air_corps/change_name", o._area_id = e, o._airunit_id = i, o._changed_name = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._dialog = new r.IntroAlertDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.initialize(), this._open()
-            }, e.prototype._open = function () {
-                var t = this;
-                this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({
-                    scaleY: 1
-                }, 250).call(function () {
-                    t._wait()
-                })
-            }, e.prototype._wait = function () {
-                this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(s.EventType.CLICK, this._onClick)
-            }, e.prototype._close = function () {
-                var t = this;
-                createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 0
-                }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({
-                    scaleY: 0
-                }, 150).call(function () {
-                    t._layer.removeChild(t._dialog), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._dialog = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_area_id = this._area_id, this._post_data.api_base_id = this._airunit_id, this._post_data.api_name = this._changed_name, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.ShowIntroAlertDialogTask = a
+        }(o.APIBase);
+    e.AirUnitChangeNameAPI = r
 }

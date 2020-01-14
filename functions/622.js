@@ -19,44 +19,43 @@ const function622 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(295),
-        a = i(296),
-        _ = i(297),
-        l = i(298),
-        u = i(159),
-        c = i(1),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mouse_down = !1, i._cb_onRelateOpen = null, i._cb_onRelateClose = null, i._onMouseOver = function () {
-                    i._mouse_down = !1, i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._showWaves(), i._description.show(), null != i._cb_onRelateOpen && i._cb_onRelateOpen()
-                }, i._onMouseOut = function () {
-                    i._mouse_down = !1, i._bg_on.visible = !1, i._bg_on.deactivate(), i._img.visible = !0, i._img_on.visible = !1, i._setScale(1), i._hideWaves(), i._description.hide(), null != i._cb_onRelateClose && i._cb_onRelateClose()
-                }, i._onMouseDown = function () {
-                    i._mouse_down = !0, i._bg_on.visible = !0, i._bg_on.deactivate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(.9), i._hideWaves(), i._description.hide()
-                }, i._onMouseUp = function () {
-                    i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(1), i._showWaves(), i._description.show(), 1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
-                }, i._type = e, i._bg_on = new s.RingMenuBtnBgOn, i.addChild(i._bg_on), i._img = new _.RingMenuBtnImg, i.addChild(i._img), i._img_on = new l.RingMenuBtnImgOn, i.addChild(i._img_on), i._waves = new u.RingMenuWaves, i._description = new a.RingMenuBtnDescription, i.addChild(i._description), i._hit_area = new PIXI.Graphics, i._hit_area.beginFill(0, 0), i._hit_area.drawCircle(0, 0, 71), i._hit_area.endFill(), i.addChild(i._hit_area), i._hit_area.interactive = !0, i
+    var o = i(8),
+        r = i(4),
+        s = i(623),
+        a = i(34),
+        _ = i(289),
+        u = i(624),
+        l = i(107),
+        c = i(290),
+        h = i(161),
+        p = i(629),
+        d = i(1),
+        f = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._initialized = !1, e._activated = !1, e._onClick = function () {
+                    var t = new s.ExpeditionResultModel,
+                        i = new u.ExpeditionResultAPI(e._deck_id, t);
+                    (new a.APIConnector).add(i).add(new _.PortAPI).add(new l.UseItemAPI).start(function () {
+                        e._showExpeditionCutin(t)
+                    })
+                }, e._showExpeditionCutin = function (t) {
+                    new c.TaskExpeditionEndCutin(e._deck_id, t).start(function () {
+                        e._showExpeditionResult(t)
+                    })
+                }, e._showExpeditionResult = function (t) {
+                    new p.TaskExpeditionResultShow(e._deck_id, t).start()
+                }, e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                void 0 === t && (t = null), void 0 === e && (e = null), this._cb_onRelateOpen = t, this._cb_onRelateClose = e, this._bg_on.initialize(), this._img.initialize(this._type), this._img_on.initialize(this._type), this._waves.initialize(), this._description.initialize(this._type), this._onMouseOut()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._deck_id = t, 0 == this._initialized && (this._bg = new o.AreaBox(0, 16711680), this.addChild(this._bg), this._balloon = new PIXI.Sprite(h.PORT_MAIN.getTexture(0)), this._balloon.position.set(726, 6), this.addChild(this._balloon), this._message = new r.TextBox(20, 1949120), this._message.position.set(810, 30), this._message.text = "\u9060\u5f81\u304b\u3089\u623b\u3063\u3066\u6765\u307e\u3057\u305f\u3002", this.addChild(this._message)), this._initialized = !0
             }, e.prototype.activate = function () {
-                1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(c.EventType.MOUSEUP, this._onMouseUp))
-            }, e.prototype.deactivate = function () {
-                this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(c.EventType.MOUSEUP, this._onMouseUp), this._onMouseOut()
-            }, e.prototype.interactiveApply = function (t) {
-                this._hit_area.interactive = t
+                0 == this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(d.EventType.CLICK, this._onClick))
+            }, e.prototype.deactive = function () {
+                this.interactive = this.buttonMode = !1, this.off(d.EventType.CLICK, this._onClick), this._activated = !1
             }, e.prototype.dispose = function () {
-                this._cb_onRelateOpen = null, this._cb_onRelateClose = null, this.deactivate(), this._hideWaves(), this._bg_on.dispose()
-            }, e.prototype._showWaves = function () {
-                null == this._waves.parent && (this.addChild(this._waves), this._waves.startAnimation())
-            }, e.prototype._hideWaves = function () {
-                null != this._waves.parent && (this.removeChild(this._waves), this._waves.stopAnimation())
-            }, e.prototype._setScale = function (t) {
-                this._bg_on.scale.set(t), this._img.scale.set(t), this._img_on.scale.set(t)
+                this.deactive(), this._initialized = !1, this.removeChildren(), this._bg = null, this._balloon = null, this._message && this._message.destroy(), this._message = null
             }, e
         }(PIXI.Container);
-    e.RingMenuBtn = h
+    e.ExpeditionAlert = f
 }

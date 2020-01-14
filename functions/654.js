@@ -1,58 +1,75 @@
 const function654 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(655),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e._view.deactivate(), e._hideDialog()
-                }, e
+    var n = i(0),
+        o = function () {
+            function t() {
+                this._melt_into_items = []
             }
-            return n(e, t), e.prototype._start = function () {
-                o.default.model.deck.combined.type >= 0 ? this._endTask() : this._breakCombined()
-            }, e.prototype._breakCombined = function () {
-                o.default.model.deck.combined.__update__(0), this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this,
-                    e = o.default.view.overLayer;
-                this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({
-                    alpha: 1
-                }, 300), createjs.Tween.get(this._view.btn).wait(100).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    t._view.activate()
-                })
-            }, e.prototype._hideDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._view.btn).to({
-                    alpha: 0
-                }, 300), createjs.Tween.get(this._view.bg).wait(100).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._view.parent.removeChild(t._view), t._endTask()
-                })
-            }, e
-        }(r.TaskBase);
-    e.TaskCombinedAlert = a
+            return Object.defineProperty(t.prototype, "mst_id_from", {
+                get: function () {
+                    return this._mst_id_from
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "mst_id_tobe", {
+                get: function () {
+                    return this._mst_id_tobe
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "rarity_tobe", {
+                get: function () {
+                    if (1 == this.isUseitemTo()) return 0;
+                    var t = n.default.model.slot.getMst(this._mst_id_tobe);
+                    return null == t ? 0 : t.rarity
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message1", {
+                get: function () {
+                    return this._message1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message2", {
+                get: function () {
+                    return this._message2.replace(/<br>/, "\n")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "melt_into_items", {
+                get: function () {
+                    return this._melt_into_items
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isUseitemFrom = function () {
+                return 6 == this._type_from
+            }, t.prototype.isUseitemTo = function () {
+                return 6 == this._type_tobe
+            }, t.prototype.isNeedUpdateUserBasic = function () {
+                if (0 == this.isNeedUpdateUseitem()) return !1;
+                if (1 == this.isUseitemFrom() && 44 == this._mst_id_from) return !0;
+                if (1 == this.isUseitemTo() && 44 == this._mst_id_tobe) return !0;
+                for (var t = 0, e = this.melt_into_items; t < e.length; t++)
+                    for (var i = e[t], n = 0, o = i.items; n < o.length; n++) {
+                        var r = o[n];
+                        if (6 == r.type && 44 == r.id) return !0
+                    }
+                return !1
+            }, t.prototype.isNeedUpdateUseitem = function () {
+                if (1 == this.isUseitemFrom()) return !0;
+                if (1 == this.isUseitemTo()) return !0;
+                for (var t = 0, e = this.melt_into_items; t < e.length; t++)
+                    for (var i = e[t], n = 0, o = i.items; n < o.length; n++) {
+                        var r = o[n];
+                        if (6 == r.type) return !0
+                    }
+                return !1
+            }, t
+        }();
+    e.ModelChangeModel = o
 }

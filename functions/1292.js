@@ -19,38 +19,94 @@ const function1292 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(251),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.x = -11, e._bg.y = -128, e.addChild(e._bg), e._label1 = new PIXI.Sprite, e.addChild(e._label1), e._label2 = new PIXI.Sprite, e.addChild(e._label2), e._icon = new PIXI.Sprite, e._icon.anchor.x = 1, e._icon.position.set(44, -80), e.addChild(e._icon), e
+    var o = i(2),
+        r = i(67),
+        s = i(28),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n.TIME = 2e3, n._scene = e, n._model = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                switch (this._bg.texture = o.MAP_COMMON.getTexture(49), 2 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(183), this._label1.position.set(20, -117), this._label2.texture = o.MAP_COMMON.getTexture(185), this._label2.position.set(20, -41)) : 1 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(184), this._label1.position.set(24, -117), this._label2.texture = o.MAP_COMMON.getTexture(185), this._label2.position.set(20, -41)) : (this._label1.texture = o.MAP_COMMON.getTexture(186), this._label1.position.set(11, -86), this._label2.texture = PIXI.Texture.EMPTY), e) {
-                    case 2:
-                        this._icon.texture = o.MAP_COMMON.getTexture(79);
-                        break;
-                    case 4:
-                        this._icon.texture = o.MAP_COMMON.getTexture(80);
-                        break;
-                    case 7:
-                        this._icon.texture = o.MAP_COMMON.getTexture(81);
-                        break;
-                    default:
-                        this._icon.texture = PIXI.Texture.EMPTY
-                }
-                if (i > 0) {
-                    var n = Math.log(i) * Math.LOG10E + 1;
-                    n = Math.floor(n);
-                    for (var s = i, a = 0; a < n; a++) {
-                        var _ = new r.NumericalDisplay(s % 10);
-                        _.x = 77 + n / 2 * _.width - a * _.width, _.y = -60, this.addChild(_), s = Math.floor(s / 10)
+            return n(e, t), e.prototype._start = function () {
+                this._initialize()
+            }, e.prototype._initialize = function () {
+                var t = this,
+                    e = new s.ParallelTask,
+                    i = new _(this._scene, this._model, this.TIME);
+                e.add(i);
+                var n = new u(this._scene, this._model, this.TIME);
+                e.add(n), e.start(function () {
+                    t._setCellColor()
+                })
+            }, e.prototype._setCellColor = function () {
+                var t = this._model.sortie.getNextCell().no,
+                    e = this._scene.view.map.spotLayer.getSpot(t);
+                if (null != e) {
+                    e.showLine();
+                    for (var i = this._scene.resInfo.getSameSpotData(t), n = 0; n < i.length; n++) {
+                        var o = i[n].no;
+                        if (0 == n) {
+                            var r = this._model.sortie.getCellInfo(o);
+                            this._scene.view.map.spotLayer.getSpot(o).setColor(r.color)
+                        } else {
+                            this._scene.view.map.spotLayer.getSpot(o).setColor(0)
+                        }
                     }
-                    var l = new r.NumericalDisplay(-1);
-                    l.x = 77 - n / 2 * l.width, l.y = -60, this.addChild(l)
+                }
+                this._endTask()
+            }, e
+        }(o.TaskBase);
+    e.AnimShipMove = a;
+    var _ = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._model = i, o._time = n, o
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t, e = this,
+                    i = this._scene.view.map,
+                    n = i.ship_icon,
+                    o = this._model.sortie.now_cell_no,
+                    s = (i.spotLayer.getSpot(o), this._model.sortie.getNextCell().no),
+                    a = i.spotLayer.getSpot(s),
+                    _ = this._scene.resInfo.getControlPoint(s);
+                if (null == _) t = createjs.Tween.get(n), t.to({
+                    x: a.x,
+                    y: a.y
+                }, this._time);
+                else {
+                    var u = new PIXI.Point(n.x, n.y),
+                        l = new PIXI.Point(a.x, a.y),
+                        c = r.TweenUtil.create2BezierPoints(u, _, l, this._time);
+                    t = createjs.Tween.get(n);
+                    for (var h = 0, p = c; h < p.length; h++) {
+                        var d = p[h];
+                        t.to({
+                            x: d.x,
+                            y: d.y
+                        }, d.t)
+                    }
+                }
+                t.call(function () {
+                    e._endTask()
+                })
+            }, e
+        }(o.TaskBase),
+        u = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._model = i, o._time = n, o
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._model.sortie.getNextCell().no,
+                    i = this._scene.resInfo.getAirRaidOption(e);
+                if (null == i) this._endTask();
+                else {
+                    this._scene.view.map.plane_layer.show(e, i, 2e3, this._model.sortie.map_no, this._model.sortie.area_id, function () {
+                        t._endTask()
+                    })
                 }
             }, e
-        }(PIXI.Container);
-    e.AirReconnaissanceBalloon = s
+        }(o.TaskBase)
 }

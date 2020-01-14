@@ -19,54 +19,57 @@ const function486 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(10),
-        s = function (t) {
+    var o = i(5),
+        r = i(12),
+        s = i(36),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._particles = [], e
+                return e._timer_handle = -1, e._update = function () {
+                    for (var t = 0, i = e._particles; t < i.length; t++) {
+                        i[t].update()
+                    }
+                }, e
             }
-            return n(e, t), e.prototype.addParticle = function (t, e) {
-                var i = new a;
-                i.initialize(), i.position.set(t, e), this.addChild(i), this._particles.push(i)
-            }, e.prototype.startAnimation = function () {
-                for (var t = 0, e = this._particles; t < e.length; t++) {
-                    e[t].startAnimation()
-                }
-            }, e.prototype.stopAnimation = function () {
-                for (var t = 0, e = this._particles; t < e.length; t++) {
-                    e[t].stopAnimation()
-                }
+            return n(e, t), e.prototype.startKamihubuki = function (t) {
+                this.removeChildren(), this._particles = [];
+                for (var e = 0; e < t; e++) {
+                    var i = new _;
+                    i.initialize(), this.addChild(i), this._particles.push(i)
+                } - 1 == this._timer_handle && (this._timer_handle = setInterval(this._update, 1e3 / 30))
+            }, e.prototype.dispose = function () {
+                -1 != this._timer_handle && clearInterval(this._timer_handle), this.removeChildren(), this._particles = null
             }, e
         }(PIXI.Container);
-    e.ParticleLayer = s;
-    var a = function (t) {
+    e.KamihubukiLayer = a;
+    var _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._r_canvas = new PIXI.Container, e.addChild(e._r_canvas), e._img = new PIXI.Sprite, e._r_canvas.addChild(e._img), e
+            return e.anchor.set(.5), e
         }
         return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = r.COMMON_MISC.getTexture(115), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.scale.set(0)
-        }, e.prototype.startAnimation = function () {
-            var t = this;
-            if (null == this._anim) {
-                var e = 2e3 * Math.random();
-                this._anim = createjs.Tween.get(this).wait(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 200).call(function () {
-                    t._anim = null, t.startAnimation()
-                }), this.rotation = Math.random() * Math.PI * 2 - Math.PI;
-                var i = this.rotation + Math.random() * Math.PI / 10 - Math.PI / 5;
-                createjs.Tween.get(this._r_canvas).wait(e).to({
-                    rotation: i
-                }, 300)
+            this._initialize()
+        }, e.prototype.update = function () {
+            this.x = this._base_x + this._haba + Math.sin(this._rad), this.y += this._spdY, this.rotation += this._spdR, this._rad += this._spdX, this.y > o.default.height + 75 && this._initialize()
+        }, e.prototype._initialize = function () {
+            var t;
+            switch (Math.floor(5 * Math.random())) {
+                case 0:
+                    t = 15;
+                    break;
+                case 1:
+                    t = 16;
+                    break;
+                case 2:
+                    t = 17;
+                    break;
+                case 3:
+                    t = 18;
+                    break;
+                case 4:
+                    t = 19
             }
-        }, e.prototype.stopAnimation = function () {
-            null != this._anim && (this._anim.setPaused(!0), this._anim = null)
+            this.texture = s.BATTLE_RESULT_MAIN.getTexture(t), this.x = 1140 * Math.random() + 30, this.y = -150 - 150 * Math.random(), this.scale.set(.3 + .2 * Math.random()), this._base_x = this.x, this._rad = 0, this._haba = 45 * Math.random(), this._spdX = (15 * Math.random() + 1) / 100, this._spdY = 12 * Math.random() + 3, this._spdR = 2 * Math.random() / 180 * Math.PI
         }, e
-    }(o.Container)
+    }(r.Sprite)
 }

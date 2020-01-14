@@ -19,60 +19,90 @@ const function1135 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(92),
-        s = i(33),
-        a = i(93),
-        _ = i(1136),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._selected_exchange_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI(t)
-                }, n._layer = e, n._target = i, n
+    var o = i(130),
+        r = i(4),
+        s = i(3),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._items = [];
+                for (var i = 0; i < 6; i++) {
+                    var n = new _;
+                    n.x = i % 2 * 225, n.y = 39 * Math.floor(i / 2), e.addChild(n), e._items.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                this._dialog = new _.MedalUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this._items.length; t++) this._items[t].dispose(), this._items[t] = null;
+                this._items = null
+            }, e.prototype.update = function (t) {
+                var e = [];
+                this._addParamData(e, 0, t.soukou), this._addParamData(e, 1, t.karyoku), this._addParamData(e, 2, t.raisou), this._addParamData(e, 3, t.baku), this._addParamData(e, 4, t.taiku), this._addParamData(e, 5, t.taisen), this._addParamData(e, 6, t.meichu), this._addParamData(e, 7, t.kaihi), this._addParamData(e, 8, t.sakuteki), this._addParamData(e, 9, t.syatei);
+                for (var i = t.equipType, n = 0; n < this._items.length; n++)
+                    if (e.length <= n) this._items[n].visible = !1;
+                    else {
+                        var o = e[n];
+                        this._items[n].update(o.type, o.value, i), this._items[n].visible = !0
+                    }
+            }, e.prototype._addParamData = function (t, e, i) {
+                null != t && 0 != i && t.push({
+                    type: e,
+                    value: i
                 })
-            }, e.prototype._connectAPI = function (t) {
-                var e = this,
-                    i = this._target.mstID,
-                    n = (o.default.view.overLayer, new r.UseItemUseAPI(i, !1, t)),
-                    s = n.result;
-                n.start(function () {
-                    1 == s.hasCaution() ? e._hideDialog(!0) : (e._result = s, e._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._selected_exchange_type,
-                    n = this._layer,
-                    o = new a.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new r.UseItemUseAPI(e, !0, i),
-                            s = n.result;
-                        n.start(function () {
-                            t._result = s, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseMedal = l
+        }(PIXI.Container);
+    e.SlotParamsContainer = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._value_text = new r.TextBox(19, 16774898), e._value_text.position.set(189, 2), e._value_text.anchor.x = 1, e.addChild(e._value_text), e._value_img = new PIXI.Sprite, e._value_img.position.set(184, 13), e._value_img.anchor.set(1, .5), e.addChild(e._value_img), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._value_text.destroy(), this._value_text = null, this._value_img = null
+        }, e.prototype.update = function (t, e, i) {
+            if (this.texture = this._getTexture(t, i), 9 == t) {
+                this._value_text.visible = !1;
+                var n = [101, 102, 100, 99, 103][e];
+                this._value_img.texture = s.ALBUM_MAIN.getTexture(n), this._value_img.visible = !0
+            } else this._value_img.visible = !1, this._value_text.text = e > 0 ? "+" + e : e.toString(), this._value_text.visible = !0
+        }, e.prototype._getTexture = function (t, e) {
+            var i;
+            switch (t) {
+                case 0:
+                    i = 34;
+                    break;
+                case 1:
+                    i = 37;
+                    break;
+                case 2:
+                    i = 38;
+                    break;
+                case 3:
+                    i = 31;
+                    break;
+                case 4:
+                    i = 39;
+                    break;
+                case 5:
+                    i = 28;
+                    break;
+                case 6:
+                    i = e == o.EquipType._48_KYOKUCHI_SENTOUKI ? 32 : 30;
+                    break;
+                case 7:
+                    i = e == o.EquipType._48_KYOKUCHI_SENTOUKI ? 33 : 35;
+                    break;
+                case 8:
+                    i = 29;
+                    break;
+                case 9:
+                    i = 36;
+                    break;
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+            return s.ALBUM_MAIN.getTexture(i)
+        }, e
+    }(PIXI.Sprite)
 }

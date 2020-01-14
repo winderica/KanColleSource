@@ -1,42 +1,60 @@
 const function847 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(8),
-        s = i(32),
-        a = i(71),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick(e.index, e.memId)
-                }, e.shipBanner = new s.ShipBanner, e.emptyShipBanner = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(18)), e.clickArea = new r.AreaBox(0, 0, 240, 60), e.clickArea.buttonMode = !0, e.clickArea.on(o.EventType.CLICK, e._onClick), e
+    var n = i(0),
+        o = function () {
+            function t(t, e) {
+                void 0 === e && (e = null), this._require = t, this._count = null != e ? e : {
+                    ammo: n.default.model.useItem.getCount(32),
+                    steel: n.default.model.useItem.getCount(33),
+                    devkit: n.default.model.useItem.getCount(3),
+                    buildkit: n.default.model.useItem.getCount(2),
+                    blueprint: n.default.model.useItem.getCount(58),
+                    catapult: n.default.model.useItem.getCount(65),
+                    battlereport: n.default.model.useItem.getCount(78),
+                    newhokohesosizai: n.default.model.useItem.getCount(75),
+                    newkokuhesosizai: n.default.model.useItem.getCount(77)
+                }
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.shipBanner.dispose(), this.clickArea.off(o.EventType.CLICK, this._onClick), this.onClick = null, this.shipBanner = null, this.emptyShipBanner = null, this.index = null, this.memId = null, this.clickArea = null
-            }, e.prototype.update = function (t, e, i) {
-                this.removeChildren(), this.shipBanner.update(e, i), this.memId = e.memID, this.index = t, this.addChild(this.shipBanner, this.clickArea)
-            }, e.prototype.empty = function () {
-                this.removeChildren(), this.addChild(this.emptyShipBanner)
-            }, e
-        }(PIXI.Container);
-    e.ShipSlot = _
+            return t.prototype.getCount = function (t) {
+                return this._get(t, this._count)
+            }, t.prototype.getRequire = function (t) {
+                return this._get(t, this._require)
+            }, t.prototype.validate = function (t) {
+                var e = this.getCount(t),
+                    i = this.getRequire(t);
+                if (e < i) {
+                    n.default.model.useItem.get(t);
+                    return !1
+                }
+                return !0
+            }, t.prototype.validateAll = function () {
+                return this.validate(32) && this.validate(33) && this.validate(3) && this.validate(2) && this.validate(58) && this.validate(65) && this.validate(78) && this.validate(75) && this.validate(77)
+            }, t.prototype._get = function (t, e) {
+                switch (t) {
+                    case 32:
+                        return e.ammo;
+                    case 33:
+                        return e.steel;
+                    case 3:
+                        return e.devkit;
+                    case 2:
+                        return e.buildkit;
+                    case 58:
+                        return e.blueprint;
+                    case 65:
+                        return e.catapult;
+                    case 78:
+                        return e.battlereport;
+                    case 75:
+                        return e.newhokohesosizai;
+                    case 77:
+                        return e.newkokuhesosizai
+                }
+                return 0
+            }, t
+        }();
+    e.KaizoValidateModel = o
 }

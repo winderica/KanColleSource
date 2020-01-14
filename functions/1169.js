@@ -19,49 +19,30 @@ const function1169 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = i(135),
-        a = i(91),
-        _ = i(410),
-        l = function (t) {
+    var o = i(27),
+        r = i(1170),
+        s = i(1171),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onMouseOn = function (t, e) {
-                    i._description.text = e.replace(/<br>/g, "\n")
-                }, i._onMouseOff = function () {
-                    i._description.text = ""
-                }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(19, 16777215), i._description.position.set(219, 219), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 744, i.addChild(i._description), i
+                return i._count = 0, i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(i._onSelectFromConfirm), i._confirm_view.position.set(215, 206), i.addChild(i._confirm_view), i._confirm_view.initialize(i._count), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(215, 206), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(26));
-                t.position.set(172, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(30)), t.position.set(202, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(19)), t.position.set(202, 202), this._bg_layer.addChild(t), this._icons = [];
-                for (var e = 0; e < 14; e++) {
-                    var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
-                    i.x = 234 + 118 * Math.floor(e / 2), i.y = 288 + (0 == Math.floor(e % 2) ? 0 : 181), i.initialize(3), this.addChild(i), this._icons.push(i)
-                }
-            }, e.prototype.update = function () {
-                for (var t = o.default.model.payitem.getOrder(1), e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e],
-                        n = t[e],
-                        r = o.default.model.payitem.getData(n);
-                    i.update(r)
-                }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize(t)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].activate()
-                }
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._description.destroy(), this._cb_onSelect = null
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(a.ViewBase);
-    e.SpecialItemShopMain = l
+        }(o.DialogBase);
+    e.KouMedalUseDialog = a
 }

@@ -19,51 +19,27 @@ const function917 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(35),
-        r = i(1),
+    var o = i(918),
+        r = i(3),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._state = !1, e.animationParams = {
-                    progress: 0
-                }, e._onClick = function () {
-                    null != e.tween && e.tween.setPaused(!0), e.tween = null;
-                    var t = 0;
-                    switch (e._state) {
-                        case !1:
-                            e._state = !0, t = 0;
-                            break;
-                        case !0:
-                            e._state = !1, t = 1
-                    }
-                    var i = createjs.Tween.get(e.animationParams);
-                    i.to({
-                        progress: t
-                    }, 300).on("change", function () {
-                        .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 0 + 103 * e.animationParams.progress
-                    }), i.play(null), e.tween = i, null != e.click_cb && e.click_cb()
-                }, e.toggle = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(147)), e.background_off = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(152)), e.background_on = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(154)), e.background_off.on(r.EventType.CLICK, e._onClick), e.toggle.position.set(103, -4), e.addChild(e.background_off, e.background_on, e.toggle), e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(45));
+                return e.ship = new o.NormalBuildShip, i.position.set(57, 82), e.ship.position.set(69, 15), e.addChild(i, e.ship), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "state", {
-                get: function () {
-                    return this._state
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.update = function (t) {
-                null != this.tween && this.tween.setPaused(!0), this.tween = null, this._state = !1, this.toggle.position.set(103, -4), this.background_off.interactive = this.background_off.buttonMode = !!t, this.background_on.visible = !1, this.animationParams.progress = 1
-            }, e.prototype.changeToggleState = function (t) {
-                switch (null != this.tween && this.tween.setPaused(!0), this.tween = null, this.toggle.x = 0, this.background_on.visible = !1, t) {
-                    case !0:
-                        this.toggle.x = 0, this.animationParams.progress = 0, this.background_on.visible = !0;
-                        break;
-                    case !1:
-                        this.toggle.x = 103, this.animationParams.progress = 1, this.background_on.visible = !1
+            return n(e, t), e.prototype.update = function (t) {
+                if (t <= 0) this.ship.update(0);
+                else {
+                    var e = Math.floor(this.phaseMax * t);
+                    0 == e && (e = 1), this.ship.update(e)
                 }
-                this._state = t
+            }, e.prototype.updatePhaseMax = function (t) {
+                this.phaseMax = t
+            }, e.prototype.forceComplete = function () {
+                this.ship.update(this.phaseMax)
             }, e.prototype.dispose = function () {
-                null != this.tween && this.tween.setPaused(!0), this.removeChildren(), this.background_off = null, this.background_on = null, this.toggle = null, this.tween = null, this.click_cb = null
+                this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.MultipleDevelopToggle = s
+    e.NormalBuildStage = s
 }

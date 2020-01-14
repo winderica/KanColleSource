@@ -19,56 +19,35 @@ const function1103 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._progress = 0, e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "progress", {
-            get: function () {
-                return this._progress
-            },
-            set: function (t) {
-                this._progress = t, this._draw(this._progress)
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.update = function (t) {
-            if (this._model = t, null == t) return void this._clear();
-            this._startAnimation()
-        }, e.prototype.dispose = function () {
-            this._stopAnimation()
-        }, e.prototype._clear = function () {
-            this._stopAnimation(), this.clear()
-        }, e.prototype._startAnimation = function () {
-            var t = this;
-            this._stopAnimation(), this._progress = 0, this._t = createjs.Tween.get(this).to({
-                progress: 1
-            }, 1e3).call(function () {
-                t._t = null, t._progress = 0
-            })
-        }, e.prototype._stopAnimation = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype._draw = function (t) {
-            var e = [(this._model.karyoku > 100 ? 100 : this._model.karyoku) * t, (this._model.raisou > 100 ? 100 : this._model.raisou) * t, (this._model.taiku > 100 ? 100 : this._model.taiku) * t, (this._model.kaihi > 100 ? 100 : this._model.kaihi) * t, (this._model.taikyu > 100 ? 100 : this._model.taikyu) * t],
-                i = e.map(function (t, e, i) {
-                    var n = (72 * e - 90) / 180 * Math.PI;
-                    return [95 * t / 100 * Math.cos(n), 95 * t / 100 * Math.sin(n)]
-                });
-            this.clear(), this.lineStyle(1.4, 16774898), this.beginFill(1949120), this.moveTo(i[0][0], i[0][1]);
-            for (var n = 0; n < 5; n++) {
-                var o = (n + 1) % 5;
-                i[n][0] == i[o][0] && i[n][1] == i[o][1] || this.lineTo(i[o][0], i[o][1])
+    var o = i(387),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._eye_open_flag = !0, e._disposed = !1, e._onUpdate = function () {}, e
             }
-            this.endFill()
-        }, e
-    }(PIXI.Graphics);
-    e.RaderGraph = o;
-    var r = function () {
-        function t() {
-            this.karyoku = 0, this.raisou = 0, this.taiku = 0, this.kaihi = 0, this.taikyu = 0
-        }
-        return t
-    }();
-    e.RaderGraphModel = r
+            return n(e, t), e.prototype.initialize = function () {
+                this._update()
+            }, e.prototype.activate = function () {
+                this._startWaiting()
+            }, e.prototype.deactivate = function () {
+                this._stopWaiting()
+            }, e.prototype.dispose = function () {
+                this._disposed = !0, this._t.setPaused(!0), this._t = null, this.deactivate()
+            }, e.prototype._update = function () {
+                1 == this._eye_open_flag ? this.texture = o.RECORD_MINI.getTexture(0) : this.texture = o.RECORD_MINI.getTexture(1)
+            }, e.prototype._startWaiting = function () {
+                var t = this;
+                if (null == this._t && !this._disposed) {
+                    var e = 0;
+                    e = 1 == this._eye_open_flag ? 3e3 * Math.random() + 1e4 : 200 * Math.random() + 100, this._t = createjs.Tween.get(null, {
+                        onChange: this._onUpdate
+                    }).wait(e).call(function () {
+                        t._eye_open_flag = !t._eye_open_flag, t._update(), t._t = null, t._startWaiting()
+                    })
+                }
+            }, e.prototype._stopWaiting = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e
+        }(PIXI.Sprite);
+    e.RecordMiniChara = r
 }

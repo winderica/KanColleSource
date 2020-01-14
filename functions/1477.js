@@ -19,29 +19,21 @@ const function1477 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1478),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
+    var o = i(7),
+        r = i(189),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this, e) || this;
+                return i._initPlaneFrom(), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
+            return n(e, t), Object.defineProperty(e.prototype, "seiku", {
                 get: function () {
-                    return this._rader_f
+                    var t = this._stage1;
+                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_disp_seiku")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "rader_e", {
-                get: function () {
-                    return this._rader_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
-            }, e.prototype.resetChildren = function () {
-                this.addChild(this._rader_f), this.addChild(this._rader_e)
-            }, e
-        }(PIXI.Container);
-    e.RaderLayer = r
+            }), e
+        }(r.AirWarDataBase);
+    e.AirWarData = s
 }

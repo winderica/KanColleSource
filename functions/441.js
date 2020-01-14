@@ -19,35 +19,50 @@ const function441 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(13),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._ship_mst_id = i, o._ship_damaged = n, o
+    var o = i(1269),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.KEIKAIJIN = !1, e._count = 0, e._boxes = [];
+                for (var i = 0; i < (e.KEIKAIJIN ? 6 : 5); i++) {
+                    var n = new o.FormationBox(!0);
+                    e.addChild(n), e._boxes.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.ShipLoader;
-                e.add(this._ship_mst_id, this._ship_damaged, "full"), e.load(function () {
-                    t._loadComplete()
-                })
-            }, e.prototype._loadComplete = function () {
-                var t = this,
-                    e = o.default.resources.getShip(this._ship_mst_id, this._ship_damaged, "full"),
-                    i = PIXI.Sprite.from(e.baseTexture);
-                i.alpha = 0;
-                var n = o.default.model.ship_graph.get(this._ship_mst_id).getMapOffset(this._ship_damaged);
-                i.position.set(n.x - 80, n.y - 93), this._scene.view.chara_layer.addChild(i), createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 300).wait(700).to({
-                    alpha: 0,
-                    x: i.x - 75
-                }, 300).call(function () {
-                    t._scene.view.chara_layer.removeChild(i), t._endTask()
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                void 0 === i && (i = -1), i <= 0 && (i = t), this._count = 0;
+                for (var n = 0; n < this._boxes.length; n++) {
+                    var o = this._boxes[n];
+                    o.initialize(n + 1, t, e, i), 1 == o.enabled && this._count++
+                }
+                var r, s;
+                1 == this.KEIKAIJIN ? 6 == this._count ? (r = [581, 776, 974, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [680, 876, 1073, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [581, 776, 974, 683, 879], s = [92, 92, 92, 330, 330]);
+                for (var n = 0; n < this._boxes.length; n++) {
+                    var o = this._boxes[n],
+                        a = r[n],
+                        _ = s[n];
+                    o.position.set(a, _)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(r.TaskBase);
-    e.AnimFlagShip = a
+        }(PIXI.Container);
+    e.FormationBoxContainer = r
 }

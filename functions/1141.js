@@ -19,30 +19,42 @@ const function1141 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(1142),
-        s = i(1143),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onSelectFromTop = function (t) {
-                    if (i._top_view.deactivate(), -1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
-                }, i._onSelectFromConfirm = function (t) {
-                    null != i._cb_onResult && i._cb_onResult(t)
-                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
+    var o = i(0),
+        r = i(2),
+        s = i(15),
+        a = i(245),
+        _ = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._top_view.initialize()
-            }, e.prototype.activate = function () {
-                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
-            }, e.prototype.dispose = function () {
-                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
+                    t._load2()
+                })
+            }, e.prototype._load2 = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.add("item_ilist_setsubun.json"), e.load(function () {
+                    t._loadSkinResource()
+                })
+            }, e.prototype._loadSkinResource = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item"),
+                    i = o.default.model.basic.getUISkinID();
+                101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
+                    t._loadAkashiResoueces()
+                })
+            }, e.prototype._loadAkashiResoueces = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("akashi/" + a.POSTER_TYPE + "1.png", a.POSTER_KEY_1), e.add("akashi/" + a.POSTER_TYPE + "2.png", a.POSTER_KEY_2), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(o.DialogBase);
-    e.PresentBoxUseDialog = a
+        }(r.TaskBase);
+    e.TaskLoadResources = _
 }

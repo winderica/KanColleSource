@@ -19,21 +19,15 @@ const function798 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(9),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.btnSoubi3Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(17)), e.btnSoubi3 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(16)), e.btnSoubi3Light.position.set(-14, -14), e.btnSoubi3Light.alpha = 0, e.addChild(e.btnSoubi3Light, e.btnSoubi3), e.tween = createjs.Tween.get(e.btnSoubi3Light).to({
-                    alpha: 0
-                }).to({
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 1e3), e.tween.loop = !0, e.tween.play(null), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kaisou/unsetslot_all", i.api_id = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.tween.setPaused(!0), createjs.Tween.removeTweens(this.btnSoubi3Light), this.btnSoubi3 = null, this.btnSoubi3Light = null, this.tween = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
             }, e
-        }(PIXI.Container);
-    e.InUseMarker = r
+        }(o.APIBase);
+    e.UnsetSlotAll = r
 }

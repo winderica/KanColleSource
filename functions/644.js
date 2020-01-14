@@ -1,54 +1,42 @@
 const function644 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = i(48),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e, null) || this;
-                return n._models = i, n
+    var n = i(0),
+        o = function () {
+            function t(t) {
+                var e = this;
+                this._enabled_timeSignal = !1, this._timer_handle_timeSignal = -1, this._timer_handle_preload = -1, this._timer_handle_nextTimeSignal = -1, this._onEnd = function () {
+                    e._timerBeLeftVoice.enabled_byTimeSignal = !0
+                }, this._timerBeLeftVoice = t
             }
-            return n(e, t), e.prototype._createContent = function () {
-                this._icons = [], this._text = new r.TextBox(25, 16774898), this._dialog.container.addChild(this._text);
-                for (var t = "", e = 0, i = this._models.rewards; e < i.length; e++) {
-                    var n = i[e],
-                        s = o.default.resources.getUseitem(n.mst_id, 0),
-                        a = new PIXI.Sprite(s);
-                    a.y = -121, this._dialog.container.addChild(a), this._icons.push(a), t += n.name + "\xd7" + n.count + "\n"
+            return t.prototype.initialize = function (t) {
+                this._mst_id = t;
+                var e = n.default.model.ship.getMst(this._mst_id);
+                this._enabled_timeSignal = null != e && e.availableTimeSignalVoice, this.reset()
+            }, t.prototype.stop = function () {
+                -1 != this._timer_handle_timeSignal && (clearInterval(this._timer_handle_timeSignal), this._timer_handle_timeSignal = -1), -1 != this._timer_handle_preload && (clearInterval(this._timer_handle_preload), this._timer_handle_preload = -1), -1 != this._timer_handle_nextTimeSignal && (clearInterval(this._timer_handle_nextTimeSignal), this._timer_handle_nextTimeSignal = -1), this._timerBeLeftVoice.enabled_byTimeSignal = !0
+            }, t.prototype.reset = function () {
+                var t = this;
+                if (this.stop(), 0 != this._enabled_timeSignal) {
+                    var e = new Date,
+                        i = e.getMinutes(),
+                        n = e.getSeconds();
+                    this._voicehour = e.getHours(), this._INTERVAL_sec = 60 * (59 - i) + (59 - n), this._INTERVAL_sec < 3599 && ++this._voicehour > 23 && (this._voicehour = 0), this._timer_handle_timeSignal = setTimeout(function () {
+                        t._play()
+                    }, 1e3 * this._INTERVAL_sec), this._INTERVAL_sec > 1800 ? this._Preload_sec = parseInt(1500 * Math.random() + (this._INTERVAL_sec - 1800) + "") : this._INTERVAL_sec < 300 ? this._Preload_sec = 0 : this._Preload_sec = parseInt(Math.random() * (this._INTERVAL_sec - 300) + ""), this._timer_handle_preload = setTimeout(function () {
+                        t._preload()
+                    }, 1e3 * this._Preload_sec)
                 }
-                this._text.text = t, this._text.x = -Math.round(this._text.width / 2), this._models.rewards.length >= 6 ? this._text.y = -30 : 5 == this._models.rewards.length ? this._text.y = -15 : this._text.y = 0;
-                for (var _ = this._icons.length, l = [0, 0, 96, 75, 45, 30, 15][_], u = 75 * _ + l * (_ - 1), c = 0; c < _; c++) {
-                    var a = this._icons[c];
-                    a.x = -u / 2 + (75 + l) * c
-                }
-                this._showDialog()
-            }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._text), this._text.destroy(), this._text = null;
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    this._dialog.container.removeChild(i)
-                }
-                this._icons = null
-            }, e
-        }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogMultiUseitem = a
+            }, t.prototype._preload = function () {
+                n.default.sound.voice.preload(this._mst_id.toString(), this._voicehour + 30)
+            }, t.prototype._play = function () {
+                var t = this;
+                1 == this._enabled_timeSignal && (this._timerBeLeftVoice.enabled_byTimeSignal = !1, n.default.sound.voice.play(this._mst_id.toString(), this._voicehour + 30, this._onEnd), this._timer_handle_nextTimeSignal = setTimeout(function () {
+                    t.reset()
+                }, 61e3))
+            }, t
+        }();
+    e.TimeSignal = o
 }

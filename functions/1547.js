@@ -19,49 +19,46 @@ const function1547 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(36),
-        s = function (t) {
+    var o = i(12),
+        r = i(1548),
+        s = i(489),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._extra_war_result = new a, e._extra_war_result.position.set(227, 177), e._extra_war_result.visible = !1, e.addChild(e._extra_war_result), e._useitem_icon = new PIXI.Sprite, e._useitem_icon.position.set(324, 290), e._useitem_icon.visible = !1, e.addChild(e._useitem_icon), e._map_incentive = new PIXI.Sprite, e._map_incentive.position.set(270, 525), e._map_incentive.visible = !1, e.addChild(e._map_incentive), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "extra_war_result", {
-                get: function () {
-                    return this._extra_war_result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "useitem_icon", {
-                get: function () {
-                    return this._useitem_icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "map_incentive", {
-                get: function () {
-                    return this._map_incentive
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._extra_war_result.initialize(), this._map_incentive.texture = r.BATTLE_RESULT_MAIN.getTexture(77)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._extra_war_result.dispose()
+            return n(e, t), e.prototype._initializeBGStampLineImages = function () {
+                this._BGStampLineVisible = !0
+            }, e.prototype._initializeMapImages = function () {
+                this._maps = [];
+                for (var t = 0; t < 6; t++) {
+                    var e = new PIXI.Sprite;
+                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(4), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(5), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(6), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(7)][t], e.x = 36 + 180.5 * t, e.y = 101, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
+                }
+            }, e.prototype._createMapShowTweens = function () {
+                return this.__createMapShowTweens(700)
+            }, e.prototype._initializeStampImages = function () {
+                this._stamps = [];
+                for (var t = 0; t < 5; t++) {
+                    var e = new o.Sprite;
+                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(0), e.x = 158 + 180 * t, e.y = 231.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
+                }
+            }, e.prototype._createStampShowTweens = function () {
+                return this.__createStampShowTweens(700)
+            }, e.prototype._showText = function () {
+                this.__showText(new _)
+            }, e.prototype._createStampLast = function () {
+                var t = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(1),
+                    e = new o.Sprite(t);
+                return e.anchor.set(.5), e.position.set(1050, 314.5), e.alpha = 0, e
             }, e
-        }(PIXI.Container);
-    e.ExtraResultPanel = s;
-    var a = function (t) {
+        }(s.TaskEventEndingBase);
+    e.TaskEventEnding2 = a;
+    var _ = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._title = new PIXI.Sprite, e.addChild(e._title), e._plus = new PIXI.Sprite, e._plus.position.set(153, 47), e.addChild(e._plus), e._label = new o.TextBox(28, 16777215), e._label.anchor.x = 1, e._label.position.set(267, 36), e.addChild(e._label), e
+            return null !== t && t.apply(this, arguments) || this
         }
         return n(e, t), e.prototype.initialize = function () {
-            this._title.texture = r.BATTLE_RESULT_MAIN.getTexture(87), this._plus.texture = r.BATTLE_RESULT_MAIN.getTexture(86)
-        }, e.prototype.update = function (t) {
-            this._label.text = t.toString()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._label.destroy()
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(8), this._text1.position.set(114, 249), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(9), this._text2.position.set(243, 510)
         }, e
-    }(PIXI.Container)
+    }(s.TextsBase)
 }

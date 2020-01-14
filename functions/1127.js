@@ -19,30 +19,23 @@ const function1127 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(3),
-        s = function (t) {
+    var o = i(0),
+        r = i(17),
+        s = i(25),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._light.position.set(-22, -24), e.addChild(e._light), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._stopTween(), t.prototype.dispose.call(this)
-            }, e.prototype._update = function (t) {
-                0 == t ? (this.texture = r.ITEM_ILIST.getTexture(12), this._light.texture = r.ITEM_ILIST.getTexture(1)) : (this.texture = r.ITEM_ILIST.getTexture(13), this._light.texture = r.ITEM_ILIST.getTexture(2)), this._stopTween(), this._startTween()
-            }, e.prototype._activate = function () {
-                this._stopTween(), this._startTween(), t.prototype._activate.call(this)
-            }, e.prototype._startTween = function () {
-                this._light.alpha = 0, this._tween = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 3e3).to({
-                    alpha: 0
-                }, 3e3)
-            }, e.prototype._stopTween = function () {
-                null != this._tween && this._tween.setPaused(!0), this._tween = null
-            }, e
-        }(o.BtnBase);
-    e.UseBtn = s
+            return n(e, t), e.prototype.update = function (t, e) {
+                var i;
+                if (553 == t || 554 == t) i = o.default.settings.path_root + "resources/stype/etext/sp001.png?" + r.START_TIME;
+                else {
+                    8 == e ? e = 9 : 15 == e && (e = 22);
+                    var n = s.MathUtil.zeroPadding(e, 3);
+                    i = o.default.settings.path_root + "resources/stype/etext/" + n + ".png?" + r.START_TIME
+                }
+                this.texture = PIXI.Texture.fromImage(i)
+            }, e.prototype.dispose = function () {}, e
+        }(PIXI.Sprite);
+    e.EngStypeView = a
 }

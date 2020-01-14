@@ -19,27 +19,18 @@ const function1215 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
+    var o = i(48),
         r = i(1216),
         s = i(1218),
-        a = i(1219),
-        _ = i(1226),
-        l = function (t) {
+        a = i(1220),
+        _ = i(1223),
+        u = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._dispose = function () {
-                    null != e._topTask && (e._topTask.dispose(), e._topTask = null), null != e._viewList && (e._viewList.dispose(), e._viewList = null), null != e._viewTop && (e._viewTop.dispose(), e._viewTop = null)
-                }, e
+                return t.call(this) || this
             }
             return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
                 get: function () {
                     return this._viewTop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "viewList", {
-                get: function () {
-                    return this._viewList
                 },
                 enumerable: !0,
                 configurable: !0
@@ -48,15 +39,17 @@ const function1215 = function (t, e, i) {
             }, e.prototype.getInitializeTask = function (t) {
                 return new r.InitializeTask(this)
             }, e.prototype.getFinalizeTask = function () {
-                return new s.TaskItemSceneFinalize(this._dispose)
+                return new _.FinalizeTask(this)
             }, e.prototype.initialize = function () {
-                this._viewTop = new _.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewList = new _.ViewSlotitemList, this._viewList.initialize(), this._viewList.position.set(1219, 102), this.addChild(this._viewList)
+                this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
             }, e.prototype.startTopTask = function () {
                 var t = this;
-                this._topTask = new a.TaskTop(this), this._topTask.start(function () {
+                this._topTask = new s.TaskTop(this), this._topTask.start(function () {
                     t._topTask = null
                 })
+            }, e.prototype.dispose = function () {
+                null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
             }, e
         }(o.SceneBase);
-    e.RevampScene = l
+    e.InteriorScene = u
 }

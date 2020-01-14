@@ -19,86 +19,34 @@ const function932 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(47),
-        r = i(933),
-        s = i(935),
-        a = i(936),
-        _ = i(937),
-        l = i(938),
-        u = i(940),
-        c = i(941),
-        h = i(943),
-        p = i(1028),
-        d = i(1049),
-        f = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(0),
+        r = i(7),
+        s = i(9),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kousyou/getship", i.api_kdock_id = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+            return n(e, t), Object.defineProperty(e.prototype, "ship", {
                 get: function () {
-                    return this._viewTop
+                    return this._ship
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._expedition_available = t, this._viewTop = new c.ViewTop, this._viewTop.initialize(this._expedition_available), this.addChild(this._viewTop)
-            }, e.prototype.dispose = function () {
-                null != this._viewTop && (this.removeChild(this._viewTop), this._viewTop.dispose(), this._viewTop = null), null != this._topTask && this._topTask.cancel(), null != this._viewSub && (this.removeChild(this._viewSub), this._viewSub.dispose(), this._viewSub = null)
-            }, e.prototype.startTopTask = function () {
-                var t = this;
-                this._topTask = new a.TaskTop(this), this._topTask.start(function () {
-                    t._topTask = null
-                })
-            }, e.prototype.openView = function (t) {
-                var e = this,
-                    i = this._viewSub;
-                if (0 == t) {
-                    var n = new h.ViewMain(this._expedition_available, function (t) {
-                        e.openView(t)
-                    });
-                    (new _.MapInfoAPI).start(function () {
-                        n.initialize(), n.update(1), e._openView(n, i)
-                    })
-                } else if (1 == t) {
-                    var o = new p.ViewMain(this._expedition_available, function (t) {
-                            e.openView(t)
-                        }),
-                        r = new l.PracticeAPI;
-                    r.start(function () {
-                        o.initialize(), o.update(r.res_model), e._openView(o, i)
-                    })
-                } else if (2 == t) {
-                    var s = new d.ViewMain(this._expedition_available, function (t) {
-                        e.openView(t)
-                    });
-                    (new u.ExpeditionAPI).start(function () {
-                        s.initialize(), e._openView(s, i)
-                    })
-                }
-            }, e.prototype._removeTopView = function () {
-                null != this._viewTop && (this.removeChild(this._viewTop), this._viewTop = null)
-            }, e.prototype._openView = function (t, e) {
-                t.position.set(1200, 0), this.addChild(t), this._viewSub = t, this._openViewTween(t, e)
-            }, e.prototype._openViewTween = function (t, e) {
-                var i = this;
-                createjs.Tween.get(t).to({
-                    x: 0
-                }, 200).call(function () {
-                    i._removeTopView(), t.activate()
-                }), null != e && (e.deactivate(), createjs.Tween.get(e).wait(200).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e.dispose(), i.removeChild(e)
-                }))
-            }, e.prototype.getPreInitializeTask = function (t) {
-                return new r.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new r.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return new s.PreFinalizeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new s.FinalizeTask(this)
+            }), Object.defineProperty(e.prototype, "kDocks", {
+                get: function () {
+                    return this._kDocks
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_kdock_id = this.api_kdock_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.ObjUtil.getObject(this._raw_data, "api_ship");
+                this._ship = o.default.model.ship.updateData(e);
+                var i = r.ObjUtil.getObjectArray(this._raw_data, "api_slotitem");
+                o.default.model.slot.addMemData(i), this._kDocks = r.ObjUtil.getObjectArray(this._raw_data, "api_kdock"), t.prototype._completedEnd.call(this)
             }, e
-        }(o.SceneBase);
-    e.SallyScene = f
+        }(s.APIBase);
+    e.GetShipAPI = a
 }

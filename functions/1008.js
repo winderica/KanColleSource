@@ -19,32 +19,41 @@ const function1008 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = i(41),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._content = new PIXI.Sprite, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
+    var o = i(2),
+        r = i(1009),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    i._dialog.interactive = !1, i._dialog.buttonMode = !1, i._close()
+                }, i._layer = e, i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                0 == t ? (this._light.visible = !1, this._content.position.set(141, 341), this._content.texture = o.SALLY_SORTIE.getTexture(14)) : (this._content.position.set(488, 353), this._content.texture = r.SALLY_EVENT.getTexture(7), this._light.texture = r.SALLY_EVENT.getTexture(8), this._light.position.set(this._content.x - 23, this._content.y - 20), this._light.visible = !0)
-            }, e.prototype.show = function () {
-                this._activate(), this.visible = !0
-            }, e.prototype.hide = function () {
-                this._deactivate(), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && 0 != this._light.visible && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
+            return n(e, t), e.prototype._start = function () {
+                this._dialog = new r.IntroAlertDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.initialize(), this._open()
+            }, e.prototype._open = function () {
+                var t = this;
+                this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({
                     alpha: 1
-                }, 800).to({
+                }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({
+                    scaleY: 1
+                }, 250).call(function () {
+                    t._wait()
+                })
+            }, e.prototype._wait = function () {
+                this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(s.EventType.CLICK, this._onClick)
+            }, e.prototype._close = function () {
+                var t = this;
+                createjs.Tween.get(this._dialog.chara).to({
                     alpha: 0
-                }, 800))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+                }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({
+                    scaleY: 0
+                }, 150).call(function () {
+                    t._layer.removeChild(t._dialog), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.BtnBack = s
+        }(o.TaskBase);
+    e.ShowIntroAlertDialogTask = a
 }

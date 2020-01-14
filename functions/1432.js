@@ -19,40 +19,53 @@ const function1432 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(472),
-        r = function (t) {
+    var o = i(30),
+        r = i(20),
+        s = i(2),
+        a = i(1433),
+        _ = i(1440),
+        u = i(477),
+        l = function (t) {
             function e(e, i) {
-                return t.call(this, e, i) || this
+                var n = t.call(this) || this;
+                return n._scene = e, n._record = i, n
             }
-            return n(e, t), e.prototype._getShips_f = function () {
-                var t = this._scene.data.model.deck_f;
-                if (1 == t.isCombined()) {
-                    switch (this._record.common.getActiveDeckFriend()) {
-                        case 1:
-                            return t.ships_main;
-                        case 2:
-                            return t.ships_sub
-                    }
-                }
-                return t.ships
-            }, e.prototype._getShips_e = function () {
-                var t = this._scene.data.model.deck_e;
-                if (1 == t.isCombined()) {
-                    switch (this._record.common.getActiveDeckEnemy()) {
-                        case 1:
-                            return t.ships_main;
-                        case 2:
-                            return t.ships_sub
-                    }
-                }
-                return t.ships
-            }, e.prototype._getFlareBanner_f = function () {
-                var t = this._record.raw.getFlareLightFriend();
-                return this._scene.view.bannerGroupLayer.getBanner(!0, t)
-            }, e.prototype._getFlareBanner_e = function () {
-                var t = this._record.raw.getFlareLightEnemy();
-                return this._scene.view.bannerGroupLayer.getBanner(!1, t)
+            return n(e, t), e.prototype._start = function () {
+                this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
+            }, e.prototype._opening = function () {
+                var t = this,
+                    e = this._scene.view.bannerGroupLayer,
+                    i = this._scene.view.layer_cutin,
+                    n = new _.PhaseAllyOpening(this._model, e, i);
+                n.preload(function () {
+                    e.addAllyBannerGroup(t._model.ships), n.start(function () {
+                        t._light()
+                    })
+                })
+            }, e.prototype._light = function () {
+                var t = this,
+                    e = this._scene.view.bannerGroupLayer.ally;
+                new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
+                    t._hougeki()
+                })
+            }, e.prototype._hougeki = function () {
+                var t = this,
+                    e = this._model.getHougekiData(),
+                    i = this._model.ships,
+                    n = this._scene.data.model.deck_e.ships;
+                new u.PhaseHougeki(this._scene, e, i, n).start(function () {
+                    t._moveShips()
+                })
+            }, e.prototype._moveShips = function () {
+                var t = this,
+                    e = this._scene.view.bannerGroupLayer,
+                    i = new o.SerialTask;
+                i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
+                    e.removeAllyBannerGroup(), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
             }, e
-        }(o.PhaseLightingBase);
-    e.PhaseLighting = r
+        }(s.TaskBase);
+    e.PhaseAllyAttack = l
 }

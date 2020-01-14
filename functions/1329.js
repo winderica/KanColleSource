@@ -19,16 +19,36 @@ const function1329 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(24),
-        r = i(19),
-        s = function (t) {
+    var o = i(5),
+        r = i(63),
+        s = i(19),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+                return e._container = new PIXI.Container, e.addChild(e._container), e._bg = new r.CenteringSprite, e._bg.scale.x = 1.2, e._container.addChild(e._bg), e._txt = new r.CenteringSprite, e._container.addChild(e._txt), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = r.MAP_COMMON.getTexture(100), this._img.y = -39
+            return n(e, t), e.prototype.initialize = function (t) {
+                switch (t) {
+                    case 1:
+                        this._bg.texture = s.MAP_COMMON.getTexture(109), this._txt.texture = s.MAP_COMMON.getTexture(120);
+                        break;
+                    case 2:
+                        this._bg.texture = s.MAP_COMMON.getTexture(112), this._txt.texture = s.MAP_COMMON.getTexture(122);
+                        break;
+                    case 3:
+                        this._bg.texture = s.MAP_COMMON.getTexture(109), this._txt.texture = s.MAP_COMMON.getTexture(121);
+                        break;
+                    case 4:
+                        this._bg.texture = s.MAP_COMMON.getTexture(110), this._txt.texture = s.MAP_COMMON.getTexture(123)
+                }
+                this._container.y = -o.default.height / 2 - this._container.height
+            }, e.prototype.playAnimation = function (t, e) {
+                createjs.Tween.get(this._container).call(t).to({
+                    y: 0
+                }, 600, createjs.Ease.sineOut).wait(1e3).to({
+                    y: o.default.height / 2 + this.height
+                }, 600, createjs.Ease.sineIn).call(e)
             }, e
-        }(o.Container);
-    e.LandingFlag = s
+        }(PIXI.Container);
+    e.AirRaidResultTelop = a
 }

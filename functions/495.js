@@ -19,50 +19,72 @@ const function495 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(496),
-        r = i(497),
+    var o = i(0),
+        r = i(496),
         s = function () {
-            function t() {}
-            return t.prototype.getMst = function (t) {
-                return null == this._dic ? null : 0 == this._dic.hasOwnProperty(t.toString()) ? null : this._dic[t]
-            }, t.prototype.getMapBGM = function (t, e) {
-                var i = this._getMapBGMData(t, e);
-                return null == i ? 0 : i.mapBGMID
-            }, t.prototype.getCombatBGM = function (t, e, i, n) {
-                var o = this._getMapBGMData(t, e);
-                return null == o ? i ? 2 : 1 : o.getBGM(i, n)
-            }, t.prototype.isSameBGM = function (t, e, i) {
-                var n = this._getMapBGMData(t, e);
-                return null != n && n.getDayBGM(i) == n.getNightBGM(i)
-            }, t.prototype._getMapBGMData = function (t, e) {
-                var i = t.toString() + e.toString();
-                return 1 == this._dic_battle.hasOwnProperty(i) ? this._dic_battle[i] : null
+            function t() {
+                this._dic = {}
+            }
+            return t.prototype.getAirUnitList = function (t) {
+                var e = this;
+                return null == this._dic ? [] : void 0 === t ? Object.keys(this._dic).map(function (t) {
+                    return e._dic[parseInt(t)]
+                }).reduce(function (t, e) {
+                    return t.concat.apply(t, e)
+                }) : null == this._dic[t] ? [] : this._dic[t]
+            }, t.prototype.getAirUnit = function (t, e) {
+                var i = this.getAirUnitList(t);
+                if (null == i) return null;
+                for (var n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    if (r.id == e) return r
+                }
+                return null
+            }, t.prototype.getReadyAirUnitList = function (t) {
+                for (var e = [], i = this.getAirUnitList(t), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    1 == r.airUnitState && (0 != r.hasActiveSquadron() && e.push(r))
+                }
+                return e
             }, t
         }();
-    e.BGMMstModelHolder = s;
+    e.AirUnitModelHolder = s;
     var a = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.setMstBGMData = function (t) {
+        return n(e, t), e.prototype.setData = function (t) {
             if (this._dic = {}, null != t)
-                for (var e = 0; e < t.length; e++) {
-                    var i = new r.BGMMstModel(t[e]),
-                        n = i.mstID;
-                    n > 0 && (this._dic[n] = i)
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = new r.AirUnitModelEdit(n),
+                        s = o.area_id;
+                    null == this._dic[s] && (this._dic[s] = new Array), this._dic[s].push(o)
                 }
-        }, e.prototype.setMapBGMData = function (t) {
-            if (this._dic_battle = {}, null != t)
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e],
-                        n = new o.BattleBGMMstModel(i),
-                        r = n.mapID;
-                    if (r > 0) {
-                        var s = r.toString();
-                        this._dic_battle[s] = n
+        }, e.prototype.addData = function (t) {
+            if (null != this._dic) {
+                var e = new r.AirUnitModelEdit(t),
+                    i = e.area_id;
+                null == this._dic[i] && (this._dic[i] = new Array), this._dic[i].push(e)
+            }
+        }, e.prototype.updateData = function (t, e, i, n, r) {
+            var s = this.getAirUnit(t, e),
+                a = s.squadrons[i],
+                _ = a.state,
+                u = a.mem_id;
+            s.updateSquadronData(n, r);
+            var l = s.squadrons[i];
+            if (1 == l.state && o.default.model.slot.deleteUnsetData(l.mem_id), 1 == _) {
+                for (var c = !1, h = 0, p = s.squadrons; h < p.length; h++) {
+                    var d = p[h];
+                    if (1 == d.state && d.mem_id == u) {
+                        c = !0;
+                        break
                     }
                 }
+                0 == c && o.default.model.slot.addAirUnitRelocation(u)
+            }
         }, e
     }(s);
-    e.BGMMstModelHolderEdit = a
+    e.AirUnitModelHolderEdit = a
 }

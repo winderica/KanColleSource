@@ -19,35 +19,32 @@ const function1029 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = i(53),
-        s = i(230),
-        a = i(231),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._switch = new a.CompSwitchBtns(1, e, i), n._switch.position.set(807, 171), n
+    var o = i(0),
+        r = i(17),
+        s = i(14),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._area_id = -1, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.SALLY_COMMON.getTexture(27));
-                t.position.set(144, 168);
-                var e = new PIXI.Sprite(o.SALLY_COMMON.getTexture(51));
-                e.position.set(0, 102);
-                var i = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(0));
-                i.position.set(198, 112);
-                var n = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(31));
-                n.position.set(207, 177);
-                var s = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(15));
-                s.position.set(196, 228);
-                var a = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(27));
-                a.position.set(196, 228), this._switch.initialize(), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(s), this.addChild(a), this.addChild(this._switch)
-            }, e.prototype.activate = function () {
-                this._switch.activate()
-            }, e.prototype.deactivate = function () {
-                this._switch.deactivate()
+            return n(e, t), e.prototype.update = function (t, e) {
+                var i = this;
+                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
+                this._area_id = t;
+                var n = s.MathUtil.zeroPadding(t, 3),
+                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
+                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
+                else {
+                    var _ = new PIXI.loaders.Loader;
+                    _.add(a), _.load(function () {
+                        i._img.texture = _.resources[a].texture, null != e && e()
+                    })
+                }
+            }, e.prototype.clear = function () {
+                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._switch.dispose()
+                this.clear()
             }, e
-        }(s.ViewMainBase);
-    e.ViewMainBase = _
+        }(PIXI.Container);
+    e.AreaTextImage = a
 }

@@ -19,35 +19,24 @@ const function215 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(28),
-        r = i(3),
+    var o = i(0),
+        r = i(9),
         s = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e) {
+                void 0 === e && (e = 0);
+                var i = t.call(this) || this;
+                return i._mem_id = 0, i._mem_id = e, i._url = "api_get_member/ship2", i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.texture = PIXI.Texture.EMPTY
-            }, e.prototype.update = function (t) {
-                switch (o.ShipUtil.getSpeedType(t)) {
-                    case 4:
-                        this.texture = r.COMMON_MAIN.getTexture(60);
-                        break;
-                    case 3:
-                        this.texture = r.COMMON_MAIN.getTexture(56);
-                        break;
-                    case 2:
-                        this.texture = r.COMMON_MAIN.getTexture(53);
-                        break;
-                    case 1:
-                        this.texture = r.COMMON_MAIN.getTexture(54);
-                        break;
-                    case 0:
-                        this.texture = r.COMMON_MAIN.getTexture(59);
-                        break;
-                    default:
-                        this.texture = PIXI.Texture.EMPTY
-                }
+            return n(e, t), e.prototype._connect = function () {
+                this._mem_id > 0 && (this._post_data.api_shipid = this._mem_id), this._post_data.api_sort_key = 5, this._post_data.spi_sort_order = 2, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                if (this._mem_id > 0) {
+                    var e = this._raw_data,
+                        i = e[0];
+                    o.default.model.ship.updateData(i)
+                } else o.default.model.ship.setData(this._raw_data);
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.ShipSpeedImage = s
+        }(r.APIBase);
+    e.UserShipAPI = s
 }

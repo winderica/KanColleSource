@@ -19,34 +19,41 @@ const function1313 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    i._stopTween()
-                }, i._onMouseOut = function () {
-                    i._startTween()
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i._img.position.set(11, 11), i.addChild(i._img), i._over = new PIXI.Sprite, i.addChild(i._over), i.visible = !1, i.interactive = !0, i
+    var o = i(1314),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._count = 0, e._boxes = [], e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = o.MAP_COMMON.getTexture(1), this._over.texture = o.MAP_COMMON.getTexture(2), this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._startTween()
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._count = 0;
+                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
+                    var s = new o.FormationBoxCombined,
+                        a = [626, 873, 626, 873][r],
+                        _ = [96, 96, 302, 302][r];
+                    s.position.set(a, _);
+                    var u = n[r];
+                    s.initialize(t, u, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                this._stopTween(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._over.alpha = 1, this._t = createjs.Tween.get(this._over, {
-                    loop: !0
-                }).to({
-                    alpha: .1
-                }, 1e3).to({
-                    alpha: 1
-                }, 400))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._over.alpha = 1)
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
         }(PIXI.Container);
-    e.PanelCancelBtn = s
+    e.FormationBoxContainerCombined = r
 }

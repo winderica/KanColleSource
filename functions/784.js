@@ -20,23 +20,17 @@ const function784 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(1),
-        s = function (t) {
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick()
-                }, e._onMouseOver = function () {
-                    e.texture = e.texture_on
-                }, e._onMouseOut = function () {
-                    e.texture = e.texture_off
-                }, e.texture_on = o.REMODEL_MAIN.getTexture(5), e.texture_off = o.REMODEL_MAIN.getTexture(4), e.texture_none = o.REMODEL_MAIN.getTexture(3), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.interactive = e.buttonMode = !0, e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
+                e.headerMainBg = i;
+                var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
+                return e.headerMainText = n, n.position.set(195, 11), e.addChild(i, n), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this.texture = this.texture_none, this.interactive = this.buttonMode = !1, t && (this.texture = this.texture_off, this.interactive = this.buttonMode = !0)
-            }, e.prototype.dispose = function () {
-                this.off(r.EventType.CLICK), this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.onClick = null, this.texture_on = null, this.texture_off = null, this.texture_none = null, this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.headerMainBg.texture = PIXI.Texture.EMPTY, this.headerMainText.texture = PIXI.Texture.EMPTY, this.headerMainBg = null, this.headerMainText = null
             }, e
-        }(PIXI.Sprite);
-    e.KindaikaButton = s
+        }(PIXI.Container);
+    e.HeaderMain = r
 }

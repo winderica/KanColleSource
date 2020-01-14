@@ -19,22 +19,17 @@ const function761 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(4),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new r.TextBox(24, 5523516),
-                    n = new r.TextBox(24, 5523516),
-                    s = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(27)),
-                    a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(28));
-                return i.anchor.set(1, 0), n.anchor.set(1, 0), i.position.set(142, 8), n.position.set(300, 8), s.position.set(0, 0), a.position.set(158, 0), e.addChild(i, n, s, a), e.textFuel = i, e.textAmmo = n, e
+    var o = i(9),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_member/set_oss_condition", n._filter_status = e, n._japanese = i, n
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.textFuel.destroy(), this.textFuel = null, this.textAmmo.destroy(), this.textAmmo = null
-            }, e.prototype.update = function (t, e) {
-                this.textFuel.text = t.toString(), this.textAmmo.text = e.toString()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_language_type = this._japanese ? 0 : 1;
+                for (var e = 0; e < this._filter_status.length; e++) this._post_data["api_oss_items[" + e + "]"] = this._filter_status[e] ? 1 : 0;
+                t.prototype._connect.call(this)
             }, e
-        }(PIXI.Container);
-    e.MaterialCounterView = s
+        }(o.APIBase);
+    e.UpdateListStatusAPI = r
 }

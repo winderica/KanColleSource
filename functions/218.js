@@ -19,18 +19,35 @@ const function218 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
+    var o = i(29),
+        r = i(3),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_hensei/combined", i.api_combined_type = e, i
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_combined_type = this.api_combined_type, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                o.default.model.deck.combined.__update__(this.api_combined_type), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.texture = PIXI.Texture.EMPTY
+            }, e.prototype.update = function (t) {
+                switch (o.ShipUtil.getSpeedType(t)) {
+                    case 4:
+                        this.texture = r.COMMON_MAIN.getTexture(60);
+                        break;
+                    case 3:
+                        this.texture = r.COMMON_MAIN.getTexture(56);
+                        break;
+                    case 2:
+                        this.texture = r.COMMON_MAIN.getTexture(53);
+                        break;
+                    case 1:
+                        this.texture = r.COMMON_MAIN.getTexture(54);
+                        break;
+                    case 0:
+                        this.texture = r.COMMON_MAIN.getTexture(59);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
+                }
             }, e
-        }(r.APIBase);
-    e.CombinedAPI = s
+        }(PIXI.Sprite);
+    e.ShipSpeedImage = s
 }

@@ -19,23 +19,38 @@ const function328 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_hensei/preset_delete", i.presetNo = e, i
+    var o = i(3),
+        r = i(329),
+        s = i(85),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.empties = new Array, e.banners = new Array;
+                for (var i = 0; i < 6; i++) {
+                    var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(19)),
+                        s = new r.LongShipBanner,
+                        a = 76 * i;
+                    n.y = a, s.y = a, e.empties.push(n), e.banners.push(s), e.addChild(n, s)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_preset_no = this.presetNo, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result = this._raw_data, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                s.TaskLoadShipResource.abortBy(this);
+                for (var t = 0; t < this.empties.length; t++) this.empties[t].texture = PIXI.Texture.EMPTY, this.empties[t] = null;
+                this.empties = null;
+                for (var t = 0; t < this.banners.length; t++) this.banners[t].dispose(), this.banners[t] = null;
+                this.banners = null, this.removeChildren()
+            }, e.prototype.update = function (t, e) {
+                s.TaskLoadShipResource.abortBy(this);
+                for (var i = 0; i < 6; i++) {
+                    var n = this.banners[i],
+                        o = this.empties[i];
+                    if (n.visible = !1, o.visible = !0, i < t.length) {
+                        var r = t[i];
+                        null != r && (n.update(i, r, e), n.visible = !0, o.visible = !1)
+                    }
+                }
             }, e
-        }(o.APIBase);
-    e.PresetDeleteAPI = r
+        }(PIXI.Container);
+    e.LongShipBannerContainer = a
 }

@@ -19,37 +19,37 @@ const function1187 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(47),
-        r = i(1188),
-        s = i(1190),
-        a = i(1192),
-        _ = i(1195),
-        l = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(6),
+        r = i(27),
+        s = i(1188),
+        a = i(1189),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new a.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(327, 190), i.addChild(i._confirm_view), i._confirm_view.initialize(t, i._count), i._confirm_view.activate()
+                }, i._onSelectFromConfirm = function (t) {
+                    if (-1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._confirm_view.deactivate(), i._top_view.activate()
+                    } else {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t), o.SE.play("215")
+                    }
+                }, i._cb_onResult = e, i._top_view = new s.TopView(i._onSelectFromTop), i._top_view.position.set(293, 205), i.addChild(i._top_view), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
-                get: function () {
-                    return this._viewTop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPreInitializeTask = function (t) {
-                return new r.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new r.InitializeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new _.FinalizeTask(this)
-            }, e.prototype.initialize = function () {
-                this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
-            }, e.prototype.startTopTask = function () {
-                var t = this;
-                this._topTask = new s.TaskTop(this), this._topTask.start(function () {
-                    t._topTask = null
-                })
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize()
+            }, e.prototype.activate = function () {
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
+            }, e.prototype.deactivate = function () {
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
             }, e.prototype.dispose = function () {
-                null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(o.SceneBase);
-    e.InteriorScene = l
+        }(r.DialogBase);
+    e.SetsubunUseDialog = _
 }

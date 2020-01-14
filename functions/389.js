@@ -19,42 +19,21 @@ const function389 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(390),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i.PAGE_NUM = 7, i._pagers = [];
-                for (var n = 0; n < i.PAGE_NUM; n++) {
-                    var r = new o.Pager(e);
-                    r.x = 138 * n, i.addChild(r), i._pagers.push(r)
-                }
-                return i
+    var o = i(2),
+        r = i(15),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._pagers; t < e.length; t++) {
-                    e[t].initialize()
-                }
-            }, e.prototype.update = function (t, e) {
-                for (var i = 0; i < this._pagers.length; i++) {
-                    var n = this._pagers[i],
-                        o = t + 10 * i;
-                    n.update(o), n.selected = e >= o && e < o + 10
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._pagers; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._pagers; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._pagers; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._pagers = null
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("album");
+                e.add("album_main.json"), e.add("album_slot2.json"), e.add("album_slot3.json"), e.add("album_slot4.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.PagerContainer = r
+        }(o.TaskBase);
+    e.TaskLoadResources = s
 }

@@ -1,80 +1,63 @@
 const function1058 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = function () {
-            function t() {}
-            return t.prototype.check = function (t, e, i) {
-                void 0 === i && (i = !1);
-                var o = n.default.model.expedition.get(t);
-                if (null == o || null == e) return {
-                    result: !1,
-                    reason: 0
-                };
-                var r = e.getCount();
-                if (0 == r) return {
-                    result: !1,
-                    reason: 31
-                };
-                if (r > 6) return {
-                    result: !1,
-                    reason: 36
-                };
-                if (e.isCombined_Main() || e.isCombined_Sub()) return {
-                    result: !1,
-                    reason: 22
-                };
-                if (1 == o.reset_type) {
-                    var s = n.default.model.expedition.getLimitTime(1),
-                        a = Date.now() + 60 * o.time * 1e3;
-                    if (1 == i || a > 1e3 * s) return {
-                        result: !1,
-                        reason: 50
-                    }
-                }
-                var _ = e.getShipList(),
-                    l = o.isSupport();
-                if (l) {
-                    for (var u = 0, c = 0, h = _; c < h.length; c++) {
-                        var p = h[c];
-                        null != p && (2 == p.shipTypeID && u++)
-                    }
-                    if (u < 2) return {
-                        result: !1,
-                        reason: 13
-                    }
-                }
-                if (null != e.expedition) return {
-                    result: !1,
-                    reason: 30
-                };
-                for (var d = n.default.model.ndock.getShipMemIDs(), f = !1, y = !1, m = !0, g = 0, v = _; g < v.length; g++) {
-                    var p = v[g];
-                    null != p && (d.indexOf(p.memID) >= 0 && (f = !0), (p.fuelNow <= 0 || p.ammoNow <= 0) && (y = !0), (p.fuelNow < p.fuelMax || p.ammoNow < p.ammoMax) && (m = !1))
-                }
-                if (f) return {
-                    result: !1,
-                    reason: 1
-                };
-                if (l && 0 == m) return {
-                    result: !1,
-                    reason: 14
-                };
-                if (y) return {
-                    result: !1,
-                    reason: 2
-                };
-                var b = _[0].getDamageType();
-                return 25 == b || 0 == b ? {
-                    result: !1,
-                    reason: 3
-                } : {
-                    result: !0,
-                    reason: 0
-                }
-            }, t
-        }();
-    e.ExpeditionCondition = o
+    var o = i(0),
+        r = i(2),
+        s = i(18),
+        a = i(1059),
+        _ = i(1060),
+        u = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this) || this;
+                return r._hideDetailInfo = function () {
+                    r._detail.deactivate(), createjs.Tween.get(r._detail).to({
+                        alpha: 0
+                    }, 300), createjs.Tween.get(r._fade).wait(100).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        r._detail.dispose(), o.default.view.overLayer.removeChild(r._fade)
+                    })
+                }, r._rival_id = e, r._flag_type = i, r._medal_num = n, r
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._showFade()
+            }, e.prototype._showFade = function () {
+                this._fade = new s.FadeBox(1), this._fade.hide(0), o.default.view.overLayer.addChild(this._fade), this._fade.show(300), this._connectAPI()
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = new a.RivalDetailAPI(this._rival_id, this._flag_type, this._medal_num);
+                e.start(function () {
+                    t._showDetailInfo(e.res_model)
+                })
+            }, e.prototype._showDetailInfo = function (t) {
+                var e = this;
+                this._detail = new _.ContainerOverlay;
+                var i = o.default.model.deck.getIDs(),
+                    n = o.default.model.deck.isCombined();
+                this._detail.initialize(i, n), this._detail.update(t), this._detail.alpha = 0, this._fade.addChild(this._detail), createjs.Tween.get(this._detail).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    e._detail.once("close", e._hideDetailInfo), e._detail.activate()
+                })
+            }, e
+        }(r.TaskBase);
+    e.TaskDetailInfo = u
 }

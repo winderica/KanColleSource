@@ -19,52 +19,267 @@ const function1305 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(24),
-        r = i(19),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._container = new o.Container, e._img_container = new PIXI.Container, e._img = new PIXI.Sprite, e._img_container.addChild(e._img), e._container.addChild(e._img_container), e.addChild(e._container), e._container.scale.y = 0, e
+    var o = i(2),
+        r = i(6),
+        s = i(5),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._repairLayer = e, n._comepleteLayer = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                void 0 === i && (i = null), 0 == e ? this._initializeCurveBalloon(t) : this._initializeStraightBalloon(t), this._setPoint(t, e, i)
-            }, e.prototype.open = function (t) {
-                void 0 === t && (t = null), this._startTween();
-                var e = createjs.Tween.get(this._container);
-                e.wait(500), e.to({
-                    scaleY: 1
-                }, 300, createjs.Ease.backOut), null != t && e.call(t)
-            }, e.prototype.close = function (t) {
+            return n(e, t), e.prototype._start = function () {
+                this._preLoad()
+            }, e.prototype._preLoad = function () {
+                this._repairLayer.initilize(), this._comepleteLayer.initilize(), this._whiteInOut()
+            }, e.prototype._whiteInOut = function () {
+                var t = this;
+                createjs.Tween.get(this._repairLayer.white).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    t._repairLayer.bg.alpha = 1
+                }).wait(200).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._introAnim()
+                })
+            }, e.prototype._introAnim = function () {
+                var t = this,
+                    e = new createjs.Timeline([], {
+                        start: 0
+                    }, {
+                        paused: !0
+                    }),
+                    i = createjs.Tween.get(this._repairLayer.ship_layer).wait(300).to({
+                        x: 900,
+                        y: 230,
+                        alpha: 1
+                    }, 500);
+                e.addTween(i);
+                for (var n = 0; n < 3; n++) {
+                    var o = this._repairLayer.cranes.getChildAt(n),
+                        r = createjs.Tween.get(o).wait(600 - 300 * n).to({
+                            x: -68
+                        }, 300);
+                    e.addTween(r)
+                }
+                var s = createjs.Tween.get(this._repairLayer.fariy_worker).wait(400).to({
+                    y: 570,
+                    alpha: 1
+                }, 300);
+                e.addTween(s), createjs.Tween.get(null).call(function () {
+                    t._repairLayer.playTxtReparing(), e.gotoAndPlay("start")
+                }).wait(1200).call(function () {
+                    t._repairCnt = 1, t._repairAnim(0)
+                })
+            }, e.prototype._repairAnim = function (t) {
                 var e = this;
-                void 0 === t && (t = null);
-                var i = createjs.Tween.get(this._container);
-                i.wait(500), i.to({
-                    scaleY: 0
-                }, 300, createjs.Ease.backIn), i.call(function () {
-                    e._stopTween()
-                }), null != t && i.call(t)
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._img_container, {
-                    loop: !0
-                }).to({
-                    x: 0,
-                    y: 0
-                }, 0).to({
-                    x: 0,
-                    y: -9
-                }, 700, createjs.Ease.sineIn).to({
-                    x: 0,
-                    y: 0
-                }, 700, createjs.Ease.sineOut))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype._initializeCurveBalloon = function (t) {
-                1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(18), this._img.position.set(0, -92)) : 2 == t ? (this._img.texture = r.MAP_COMMON.getTexture(20), this._img.position.set(0, -54)) : 3 == t ? (this._img.texture = r.MAP_COMMON.getTexture(22), this._img.position.set(3, -6)) : 5 == t && (this._img.texture = r.MAP_COMMON.getTexture(23), this._img.position.set(-69, -3))
-            }, e.prototype._initializeStraightBalloon = function (t) {
-                0 == t ? (this._img.texture = r.MAP_COMMON.getTexture(19), this._img.position.set(-44, -105)) : 1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(21), this._img.position.set(0, -92)) : 2 == t && (this._img.texture = r.MAP_COMMON.getTexture(24), this._img.position.set(9, -45))
-            }, e.prototype._setPoint = function (t, e, i) {
-                void 0 === i && (i = null), null == i && (i = new PIXI.Point, 0 == e ? 0 == t || (1 == t ? i.set(21, -21) : 2 == t ? i.set(36, -2) : 3 == t ? i.set(27, 5) : 4 == t || 5 == t && i.set(-38, 0)) : 0 == t ? i.set(-5, -38) : 1 == t ? i.set(-14, -33) : 2 == t && i.set(39, -17)), this._container.x = i.x, this._container.y = i.y
+                createjs.Tween.get(null).call(function () {
+                    if (t <= 4) {
+                        var i = 3 * t,
+                            n = e._repairLayer.getBannerGroup([i, i + 1, i + 2]);
+                        if (!n.some(function (t) {
+                                return null != t
+                            })) return t++, void e._repairAnim(t);
+                        3 == e._repairCnt ? (createjs.Tween.get(e._repairLayer.fairy_cutin).set({
+                            visible: !0,
+                            alpha: 1
+                        }).to({
+                            x: 590
+                        }, 500).wait(300).to({
+                            alpha: 0
+                        }, 300), createjs.Tween.get(e._repairLayer.fairy_cutin.scale).wait(700).to({
+                            x: 1.1,
+                            y: 1.1
+                        }, 300), e._repairLayer.bg.setNight(function () {
+                            e._repairShipsAnim(t, n)
+                        })) : e._repairShipsAnim(t, n)
+                    } else e._repairFinish()
+                })
+            }, e.prototype._repairShipsAnim = function (t, e) {
+                var i = this,
+                    n = this._repair(e),
+                    o = this._FairiesAnim();
+                createjs.Tween.get(null).call(function () {
+                    n.gotoAndPlay("start"), o.gotoAndPlay("start")
+                }).wait(4e3).call(function () {
+                    i._repairCnt++, t++, i._repairAnim(t)
+                })
+            }, e.prototype._repairFinish = function () {
+                var t = this,
+                    e = new createjs.Timeline([], {
+                        start: 0
+                    }, {
+                        paused: !0
+                    });
+                e.addTween.apply(e, this._fadeOutReparingAnim().concat(this._fadeInRepairFinish())), createjs.Tween.get(null).wait(300).call(function () {
+                    t._repairLayer.stopTxtReparing(), e.gotoAndPlay("start")
+                }).wait(2e3).call(function () {
+                    createjs.Tween.get(t._comepleteLayer).to({
+                        alpha: 0
+                    }, 400).call(function () {
+                        t._endTask()
+                    })
+                })
+            }, e.prototype._repair = function (t) {
+                for (var e = new createjs.Timeline([], {
+                        start: 0
+                    }, {
+                        paused: !0
+                    }), i = 0; i < t.length; i++) ! function (i) {
+                    if (null == t[i]) return "continue";
+                    var n = t[i],
+                        o = 110 + 230 * i,
+                        r = 300 - 150 * i;
+                    n.position.set(100, o + 35);
+                    var s = createjs.Tween.get(n).wait(300).to({
+                        y: o,
+                        alpha: 1
+                    }, 400, createjs.Ease.getBackOut(1.2)).wait(200).to({
+                        x: 0
+                    }, 300, createjs.Ease.quintInOut).wait(200).call(function () {
+                        n.content.kira.play(), n.updateHp(n.hp_repaired, function () {
+                            n.content.kira.stop()
+                        })
+                    }).wait(1500 + r).to({
+                        x: 100,
+                        alpha: 0
+                    }, 200, createjs.Ease.cubicIn);
+                    e.addTween(s)
+                }(i);
+                var n = this._repairLayer.cranes.position.y,
+                    o = createjs.Tween.get(this._repairLayer.cranes).to({
+                        y: n + 10
+                    }, 100, createjs.Ease.cubicOut).to({
+                        y: n
+                    }, 300, createjs.Ease.cubicIn).wait(1e3).to({
+                        y: n + 10
+                    }, 500, createjs.Ease.cubicOut).to({
+                        y: n
+                    }, 400, createjs.Ease.cubicIn);
+                e.addTween(o);
+                var r = createjs.Tween.get(this._repairLayer.ship_layer).to({
+                    y: 240
+                }, 100, createjs.Ease.cubicOut).to({
+                    y: 230
+                }, 300, createjs.Ease.cubicIn).wait(1e3).to({
+                    y: 240
+                }, 500, createjs.Ease.cubicOut).to({
+                    y: 230
+                }, 400, createjs.Ease.cubicIn);
+                return e.addTween(r), e
+            }, e.prototype._FairiesAnim = function () {
+                var t = new createjs.Timeline([], {
+                    start: 0
+                }, {
+                    paused: !0
+                });
+                if (this._repairCnt <= 2) {
+                    var e = createjs.Tween.get(this._repairLayer.fariy_worker).call(function () {
+                        r.SE.play("230")
+                    }).to({
+                        y: 570
+                    }, 250).to({
+                        y: 585
+                    }, 150, createjs.Ease.cubicOut).to({
+                        y: 570
+                    }, 150, createjs.Ease.cubicIn).to({
+                        y: 585
+                    }, 150, createjs.Ease.cubicOut).to({
+                        y: 700
+                    }, 250, createjs.Ease.cubicIn);
+                    t.addTween(e)
+                } else {
+                    this._repairLayer.getLeftFairy();
+                    var i = s.default.height - this._repairLayer.fairy_left.height / 2 - 10,
+                        n = createjs.Tween.get(this._repairLayer.fairy_left).set({
+                            visible: !0
+                        }).to({
+                            alpha: 1
+                        }, 0).to({
+                            y: i
+                        }, 500, createjs.Ease.cubicOut).call(function () {
+                            return r.SE.play("264")
+                        }).wait(500).to({
+                            alpha: 0
+                        }, 300).to({
+                            y: s.default.height + this._repairLayer.fairy_left.height
+                        }),
+                        o = createjs.Tween.get(this._repairLayer.fairy_left.scale).wait(1e3).to({
+                            x: 1,
+                            y: 1
+                        }, 300).wait(100).to({
+                            x: .5,
+                            y: .5
+                        }, 0);
+                    t.addTween(n, o), this._repairLayer.getRightFairy();
+                    var a = s.default.width - this._repairLayer.fairy_right.width / 2 - 20,
+                        _ = createjs.Tween.get(this._repairLayer.fairy_right).wait(600).to({
+                            alpha: 1
+                        }, 0).to({
+                            x: a
+                        }, 500).wait(500).to({
+                            alpha: 0
+                        }, 300).to({
+                            x: s.default.width + this._repairLayer.fairy_right.width
+                        }),
+                        u = createjs.Tween.get(this._repairLayer.fairy_right.scale).wait(1600).to({
+                            x: 1,
+                            y: 1
+                        }, 500).wait(100).to({
+                            x: .5,
+                            y: .5
+                        }, 0);
+                    t.addTween(_, u)
+                }
+                return t
+            }, e.prototype._fadeOutReparingAnim = function () {
+                var t = [],
+                    e = createjs.Tween.get(this._repairLayer.ship_layer).to({
+                        x: 1200,
+                        y: 600,
+                        alpha: 0
+                    }, 500);
+                t.push(e);
+                var i = createjs.Tween.get(this._repairLayer.cranes).to({
+                    x: -350,
+                    alpha: 0
+                }, 500);
+                t.push(i);
+                var n = createjs.Tween.get(this._repairLayer).wait(400).to({
+                    alpha: 0
+                }, 400);
+                return t.push(n), t
+            }, e.prototype._fadeInRepairFinish = function () {
+                var t = [],
+                    e = createjs.Tween.get(this._comepleteLayer).set({
+                        visible: !0
+                    }).wait(200).to({
+                        alpha: 1
+                    }, 300);
+                if (t.push(e), 0 == this._comepleteLayer.pattern) {
+                    this._comepleteLayer.fairy_complete.pivot.set(this._comepleteLayer.fairy_complete.width - 40, this._comepleteLayer.fairy_complete.height - 10);
+                    var i = createjs.Tween.get(this._comepleteLayer.fairy_complete).to({
+                            alpha: 0
+                        }, 0).to({
+                            rotation: 90 * Math.PI / 180
+                        }, 0).wait(150).to({
+                            alpha: 1
+                        }, 200).to({
+                            rotation: 0 * Math.PI / 180
+                        }, 1200, createjs.Ease.quintOut),
+                        n = createjs.Tween.get(this._comepleteLayer.fairy_complete).wait(300).to({
+                            x: 900
+                        }, 1250, createjs.Ease.quadInOut);
+                    t.push(i, n)
+                }
+                if (1 == this._comepleteLayer.pattern) {
+                    var o = createjs.Tween.get(this._comepleteLayer.fairy_complete).to({
+                        y: 168
+                    }, 1200, createjs.Ease.bounceOut);
+                    t.push(o)
+                }
+                return t
             }, e
-        }(PIXI.Container);
-    e.BranchBalloon = s
+        }(o.TaskBase);
+    e.TaskAnchorageRepairAnimation = a
 }

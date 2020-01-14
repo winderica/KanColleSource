@@ -19,39 +19,46 @@ const function1015 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = createjs.Ticker.framerate;
-                return e._cloud1 = new s(3, 60 / i * .0035), e._cloud2 = new s(2, 60 / i * .0025), e._cloud3 = new s(0, 60 / i * .005), e._cloud1.anchor.set(.5, .5), e._cloud2.anchor.set(.5, .5), e._cloud3.anchor.set(.5, .5), e.addChild(e._cloud1), e.addChild(e._cloud2), e.addChild(e._cloud3), e
+    var o = i(2),
+        r = i(1016),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._cancel = !0, n._waitClick = function () {
+                    n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
+                }, n._onNo = function () {
+                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
+                }, n._onYes = function () {
+                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
+                }, n._layer = e, n._model = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._cloud1.texture = o.SALLY_SORTIE.getTexture(27), this._cloud2.texture = o.SALLY_SORTIE.getTexture(28), this._cloud3.texture = o.SALLY_SORTIE.getTexture(29)
-            }, e.prototype.activate = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "cancel", {
+                get: function () {
+                    return this._cancel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
+            }, e.prototype._openDialog = function () {
                 var t = this;
-                if (null == this._t) {
-                    var e = function (e) {
-                        t._cloud1.update(), t._cloud2.update(), t._cloud3.update()
-                    };
-                    this._t = createjs.Tween.get(this, {
-                        loop: !0,
-                        onChange: e
+                this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
+                    createjs.Tween.get(t._dialog.bg).to({
+                        alpha: 1
+                    }, 300).call(t._waitClick)
+                })
+            }, e.prototype._closeDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._dialog.fade.hide(100, function () {
+                        t._layer.removeChild(t._dialog), t._endTask()
                     })
-                }
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.MapThumbnailLockedCloud = r;
-    var s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._tmp = 150 * Math.random(), n._offset = e, n._speed = i, n
-        }
-        return n(e, t), e.prototype.update = function () {
-            var t = createjs.Ticker.framerate;
-            this.x = 90 * Math.cos(this._tmp + this._offset), this.y = 15 * Math.cos(.9 * this._tmp * (60 / t) + this._offset), this._tmp += this._speed
-        }, e
-    }(PIXI.Sprite)
+        }(o.TaskBase);
+    e.ChangeConfirmTask = s
 }

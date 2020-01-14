@@ -19,15 +19,20 @@ const function1212 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_quest/stop", i._duty_id = e, i
+    var o = i(4),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._text = new o.TextBox(28, 5010027), e._text.anchor.x = 1, e._text.position.set(174, 27), e.addChild(e._text), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = r.ITEM_FSHOP.getTexture(37), this.update(0)
+            }, e.prototype.update = function (t) {
+                t = Math.max(t, 0), this._text.text = t.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy()
             }, e
-        }(o.APIBase);
-    e.DutyCancelAPI = r
+        }(PIXI.Sprite);
+    e.CoinBox = s
 }

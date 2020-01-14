@@ -19,100 +19,63 @@ const function803 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(21),
-        r = i(338),
-        s = i(804),
-        a = i(805),
-        _ = i(806),
-        l = i(808),
-        u = i(809),
-        c = i(810),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.headerKindaika = new a.PowerUpHeader;
-                var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e._containerShipFull = new PIXI.Container;
-                var n = new PIXI.Graphics;
-                return e._shipFull = new PIXI.Sprite, e._containerShipFull.position.set(-1, -1), e._containerShipFull.mask = n, e._containerShipFull.addChild(e._shipFull, n), e._cancelButton = new r.CancelButton, e._shipInfoBox = new _.ShipInfoBox, e._karyokuBeforeAfterConfirm = new s.KaryokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm = new s.RaisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm = new s.SoukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm = new s.TaikuBeforeAfterConfirm, e._shipParameterChecker = new c.ShipParameterChecker, e._targetShipBox = new u.TargetShipBox, e._startButton = new l.StartButton, n.beginFill(0, 0), n.moveTo(0, 30), n.lineTo(30, 0), n.lineTo(1050, 0), n.lineTo(1050, 569), n.lineTo(29, 569), n.lineTo(0, 537), n.lineTo(0, 30), n.endFill(), n.renderable = !1, e._cancelButton.width = 198, e._cancelButton.height = 56, e._cancelButton.position.set(543, 498), e._startButton.position.set(755, 483), e._targetShipBox.position.set(534, 11), e._shipInfoBox.position.set(11, 334), e.headerKindaika.position.set(0, -41), e._shipParameterChecker.position.set(255, 343), e.addChild(i, e._containerShipFull, e._shipInfoBox, e._cancelButton, e._startButton, e._karyokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm, e._shipParameterChecker, e.headerKindaika, e._targetShipBox), e
+    var o = i(3),
+        r = i(0),
+        s = i(4),
+        a = i(29),
+        _ = i(3),
+        u = i(14),
+        l = i(1),
+        c = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onClickListItem = function (t, e) {
+                    i.onClick(e)
+                };
+                var n = o.COMMON_MAIN.getTexture(37);
+                i.otherShipListItems = new Array;
+                for (var r = 0; r < e; r++) {
+                    var s = new h(r);
+                    s.y = 45 * r, s.onClick = i._onClickListItem, i.otherShipListItems.push(s);
+                    var a = new PIXI.Sprite(n);
+                    a.y = 45 * r + 42, i.addChild(a, s)
+                }
+                return i.itemCount = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "shipFull", {
-                get: function () {
-                    return this._shipFull
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "containerShipFull", {
-                get: function () {
-                    return this._containerShipFull
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shipInfoBox", {
-                get: function () {
-                    return this._shipInfoBox
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "karyokuBeforeAfterConfirm", {
-                get: function () {
-                    return this._karyokuBeforeAfterConfirm
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "raisouBeforeAfterConfirm", {
-                get: function () {
-                    return this._raisouBeforeAfterConfirm
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "soukouBeforeAfterConfirm", {
-                get: function () {
-                    return this._soukouBeforeAfterConfirm
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "taikuBeforeAfterConfirm", {
-                get: function () {
-                    return this._taikuBeforeAfterConfirm
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shipParameterChecker", {
-                get: function () {
-                    return this._shipParameterChecker
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "targetShipBox", {
-                get: function () {
-                    return this._targetShipBox
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "startButton", {
-                get: function () {
-                    return this._startButton
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "cancelButton", {
-                get: function () {
-                    return this._cancelButton
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.SetPos_karyokuBeforeAfterConfirm = function (t) {
-                this._karyokuBeforeAfterConfirm.position.set(252, 26 - (t ? 3 : 0))
-            }, e.prototype.SetPos_raisouBeforeAfterConfirm = function (t) {
-                this._raisouBeforeAfterConfirm.position.set(252, 100 - (t ? 3 : 0))
-            }, e.prototype.SetPos_taikuBeforeAfterConfirm = function (t) {
-                this._taikuBeforeAfterConfirm.position.set(252, 170 - (t ? 3 : 0))
-            }, e.prototype.SetPos_soukouBeforeAfterConfirm = function (t) {
-                this._soukouBeforeAfterConfirm.position.set(252, 242 - (t ? 3 : 0))
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._containerShipFull.removeChildren(), this._containerShipFull.mask = null, this.headerKindaika.dispose(), this._shipInfoBox.dispose(), this._karyokuBeforeAfterConfirm.dispose(), this._raisouBeforeAfterConfirm.dispose(), this._soukouBeforeAfterConfirm.dispose(), this._taikuBeforeAfterConfirm.dispose(), this._shipParameterChecker.dispose(), this._targetShipBox.dispose(), this._startButton.dispose(), this._cancelButton.dispose(), this.headerKindaika = null, this._shipFull = null, this._containerShipFull = null, this._shipInfoBox = null, this._karyokuBeforeAfterConfirm = null, this._raisouBeforeAfterConfirm = null, this._soukouBeforeAfterConfirm = null, this._taikuBeforeAfterConfirm = null, this._shipParameterChecker = null, this._targetShipBox = null, this._startButton = null, this._cancelButton = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this.otherShipListItems.length; t++) this.otherShipListItems[t].dispose(), this.otherShipListItems[t] = null;
+                this.otherShipListItems = null, this.onClick = null
+            }, e.prototype.update = function (t) {
+                for (var e = 0; e < this.itemCount; e++) {
+                    var i = this.otherShipListItems[e];
+                    if (i.visible = !1, e < t.length) {
+                        var n = t[e];
+                        i.update(n), i.visible = !0
+                    }
+                }
             }, e
         }(PIXI.Container);
-    e.PowerUpEdit = h
+    e.OtherShipList = c;
+    var h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onClick = function () {
+                i.onClick(i.index, i.memId)
+            }, i._onMouseOver = function () {
+                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !0, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 16777215, i.textContainer.cacheAsBitmap = !0
+            }, i._onMouseOut = function () {
+                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !1, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 5523516, i.textContainer.cacheAsBitmap = !0
+            }, i.index = e;
+            var n = Math.floor(22.5) + 1;
+            i.clickArea = new PIXI.Graphics, i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, 268, 44), i.clickArea.endFill(), i.textContainer = new PIXI.Container, i.textType = new s.TextBox(18, 5523516), i.textName = new s.TextBox(20, 5523516), i.textLevel = new s.TextBox(19, 5523516), i.focus = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17)), i.focus.width = i.clickArea.width, i.focus.height = i.clickArea.height;
+            var r = u.CreateRect.gradientLeftToRight(210, 45, .88, .95);
+            return i.icon_max = new PIXI.Sprite(_.REMODEL_POWERUP.getTexture(32)), i.textContainer.mask = r, i.textType.anchor.set(0, 0), i.textType.position.set(6, Math.floor(n - i.textType.height / 2)), i.textName.anchor.set(0, 0), i.textName.position.y = Math.floor(n - i.textName.height / 2) + 0, i.textLevel.anchor.set(1, 0), i.textLevel.position.set(263, Math.floor(n - i.textLevel.height / 2)), i.icon_max.position.set(213, 3), i.focus.visible = !1, i.icon_max.visible = !1, i.textContainer.addChild(i.textType, i.textName, r), i.clickArea.on(l.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(l.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.on(l.EventType.CLICK, i._onClick), i.clickArea.interactive = i.clickArea.buttonMode = !0, i.addChild(i.clickArea, i.focus, i.textContainer, i.textLevel, i.icon_max), i
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.clickArea.off(l.EventType.MOUSEOVER), this.clickArea.off(l.EventType.MOUSEOUT), this.clickArea.off(l.EventType.CLICK), this.textContainer.cacheAsBitmap = !1, this.textContainer.removeChildren(), this.textName.destroy(), this.textType.destroy(), this.textLevel.destroy(), this.onClick = null, this.clickArea = null, this.focus = null, this.textContainer = null, this.textName = null, this.textType = null, this.textLevel = null, this.index = null, this.memId = null, this.icon_max = null
+        }, e.prototype.update = function (t) {
+            this.textContainer.cacheAsBitmap = !1, this.memId = t.memID, this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.icon_max.visible = !1, this.textLevel.visible = !1, a.ShipUtil.isMaxGradeUp(t, r.default.model.ship.getMst(t.mstID), !1) ? this.icon_max.visible = !0 : (this.textLevel.text = "Lv" + t.level, this.textLevel.visible = !0), this.textContainer.cacheAsBitmap = !0
+        }, e
+    }(PIXI.Container)
 }

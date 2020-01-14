@@ -19,98 +19,99 @@ const function1429 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(18),
-        a = i(13),
-        _ = i(23),
-        l = i(1430),
-        u = i(65),
-        c = i(44),
-        h = function (t) {
+    var o = i(5),
+        r = i(158),
+        s = i(16),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._view = new PIXI.Container, e
+                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e.addChild(e._bg), e._message = new l, e.addChild(e._message), e._banner_top = new _, e.addChild(e._banner_top), e._banner_bottom = new _, e.addChild(e._banner_bottom), e._particles = new u, e.addChild(e._particles), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "view", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._view
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.preload = function (t, e, i, n, o) {
-                var r = this;
-                this._attacker = t, this._slot1 = e, this._slot2 = i, this._slot3 = n;
-                var s = new a.ShipLoader,
-                    l = this._attacker.isDamaged(),
-                    u = this._attacker.mst_id;
-                (571 != u && 576 != u || 0 != l) && (541 != u && 573 != u || 0 != l) && (601 != u && 1496 != u || 0 != l) ? s.add(u, l, "full"): s.add(u, !1, "special"), s.load(function () {
-                    var t = null == r._slot1 ? 0 : r._slot1.mstID,
-                        e = null == r._slot2 ? 0 : r._slot2.mstID,
-                        i = null == r._slot3 ? 0 : r._slot3.mstID,
-                        n = new _.SlotLoader;
-                    t > 0 && (n.add(t, "item_up"), n.add(t, "btxt_flat")), e > 0 && (n.add(e, "item_up"), n.add(e, "btxt_flat")), i > 0 && (n.add(i, "item_up"), n.add(i, "btxt_flat")), n.load(function () {
-                        null != o && o()
-                    })
-                })
-            }, e.prototype._start = function () {
-                this._canvas = new l.CutinCanvasSpSSS, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
-            }, e.prototype._ready = function () {
-                var t, e, i = this._attacker.mst_id,
-                    n = this._attacker.isDamaged();
-                571 != i && 576 != i || 0 != n ? 541 == i && 0 == n ? (t = new PIXI.Point(-227, 165), e = "special") : 573 == i && 0 == n ? (t = new PIXI.Point(-115, 184), e = "special") : 601 != i && 1496 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (t = new PIXI.Point(-90, 87), e = "special") : (t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -150, this._canvas.chara.y = -87) : (this._canvas.chara.x = 173, this._canvas.chara.y = -64), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
-            }, e.prototype._anim1 = function () {
-                var t = this;
-                this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
-                    x: 48 + (this._attacker.friend ? 0 : 336),
-                    alpha: 1
-                }, 300), this._canvas.item1.show(400), this._canvas.item2.show(833), this._canvas.item3.show(1266);
-                var e = this._attacker.friend ? 75 : 1125;
-                createjs.Tween.get(this._canvas.name1).wait(400).to({
-                    x: e,
-                    alpha: 1
-                }, 200), createjs.Tween.get(this._canvas.name2).wait(833).to({
-                    x: e,
-                    alpha: 1
-                }, 200), createjs.Tween.get(this._canvas.name3).wait(1266).to({
-                    x: e,
-                    alpha: 1
-                }, 200).call(function () {
-                    t._anim2()
-                })
-            }, e.prototype._anim2 = function () {
-                var t = this;
-                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).wait(133).call(function () {
-                    t._shipFlash.play()
-                }).wait(200).call(function () {
-                    t._shipFlash.play()
-                }).wait(133).call(function () {
-                    t._anim3()
-                })
-            }, e.prototype._anim3 = function () {
-                var t = this,
-                    e = new u.IntensiveLines;
-                e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
-                    alpha: 1
-                }, 200);
-                var i = new s.FadeBox(1, 16777215);
-                i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 500).call(function () {
-                    t._anim4(e, i)
-                })
-            }, e.prototype._anim4 = function (t, e) {
-                var i = this;
-                this._canvas.dispose(), createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 300), createjs.Tween.get(e).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_top", {
+                get: function () {
+                    return this._banner_top
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_bottom", {
+                get: function () {
+                    return this._banner_bottom
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particles", {
+                get: function () {
+                    return this._particles
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = r.COMMON_EXPEDITION.getTexture(10), this._message.initialize(s.BATTLE_MAIN.getTexture(30)), this._particles.initialize()
+            }, e.prototype.dispose = function () {
+                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
             }, e
-        }(r.TaskBase);
-    e.CutinSpSSS = h
+        }(PIXI.Container);
+    e.SupportDeckCutin = a;
+    var _ = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._particles = new Array;
+                for (var t in this.XPOS) {
+                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
+                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
+                }
+            }, e.prototype.startAnim = function () {
+                if (null == this._tweens) {
+                    this._tweens = [];
+                    for (var t = 0; t < this._particles.length; t++) {
+                        var e = this._particles[t],
+                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
+                                x: 1,
+                                y: 1
+                            }, 100).to({
+                                x: 0,
+                                y: 0
+                            }, 100);
+                        this._tweens.push(i)
+                    }
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null, this._particles = null, this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            }, e
+        }(PIXI.Container)
 }

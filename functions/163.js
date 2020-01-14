@@ -19,41 +19,16 @@ const function163 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
+    var o = i(0),
+        r = i(9),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.texture = PIXI.Texture.EMPTY, e
+                return e._url = "api_get_member/basic", e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (t) {
-                    case 1:
-                        this.texture = o.COMMON_MISC.getTexture(174);
-                        break;
-                    case 2:
-                        this.texture = o.COMMON_MISC.getTexture(175);
-                        break;
-                    case 3:
-                        this.texture = o.COMMON_MISC.getTexture(176);
-                        break;
-                    case 4:
-                        this.texture = o.COMMON_MISC.getTexture(177);
-                        break;
-                    case 5:
-                        this.texture = o.COMMON_MISC.getTexture(178);
-                        break;
-                    case 6:
-                        this.texture = o.COMMON_MISC.getTexture(179);
-                        break;
-                    case 7:
-                        this.texture = o.COMMON_MISC.getTexture(180);
-                        break;
-                    default:
-                        this.texture = PIXI.Texture.EMPTY
-                }
-            }, e.prototype.dispose = function () {
-                this.texture = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.basic.setUserData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.AirPlaneLevel = r
+        }(r.APIBase);
+    e.UserDataAPI = s
 }

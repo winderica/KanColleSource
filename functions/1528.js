@@ -19,47 +19,81 @@ const function1528 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(36),
+    var o = i(11),
         r = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._combined = i, n._tasks = [], n
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (t) {
-                    case 0:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(44);
-                        break;
-                    case 1:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(46);
-                        break;
-                    case 2:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(48);
-                        break;
-                    case 3:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(50);
-                        break;
-                    case 4:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(52);
-                        break;
-                    case 5:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(54);
-                        break;
-                    case 6:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(56);
-                        break;
-                    case 7:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(58);
-                        break;
-                    case 8:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(60);
-                        break;
-                    case 9:
-                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(62);
-                        break;
-                    default:
-                        this.texture = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._start = function () {
+                this._showComponent()
+            }, e.prototype._showComponent = function () {
+                for (var t = this._scene.data.getLevelupInfoList(this._combined), e = this._scene.view.layer_banner.info_f.items, i = this._scene.data.getShipExp(this._combined), n = [], o = 0; o < e.length; o++) {
+                    var r = e[o],
+                        a = o < i.length ? i[o] : 0;
+                    if (!(a < 0)) {
+                        var _ = t[o],
+                            u = new s(r, a, _);
+                        n.push(u), this._tasks.push(u)
+                    }
+                }
+                0 == n.length ? this._endTask() : this._startTasks(n)
+            }, e.prototype._startTasks = function (t) {
+                for (var e = this, i = 0, n = t; i < n.length; i++) {
+                    var o = n[i];
+                    ! function (t) {
+                        t.start(function () {
+                            var i = e._tasks.indexOf(t);
+                            e._tasks.splice(i, 1), 0 == e._tasks.length && e._endTask()
+                        })
+                    }(o)
                 }
             }, e
-        }(PIXI.Sprite);
-    e.ResultDialogNumLight = r
+        }(o.TaskBase);
+    e.TaskShowLevelup = r;
+    var s = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            o._onChange = function (t) {
+                if (null != o._banner_info) {
+                    var e = t.target.target.value;
+                    e >= o._borders[0] && (o._borders.shift(), o._banner_info.levelup());
+                    var i = -1;
+                    o._borders.length > 0 && (i = o._borders[0] - e), o._banner_info.up_to_the_next_level.update(i)
+                }
+            }, o._banner_info = e, o._exp = i, null != n && n.length > 1 ? o._initial_value = n[0] : o._initial_value = -1, o._borders = new Array;
+            for (var r = 1; r < n.length; r++) o._borders.push(n[r]);
+            return o
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._initial_value < 0 ? this._endTask() : this._init()
+        }, e.prototype._init = function () {
+            var t = this,
+                e = this._banner_info.up_to_the_next_level;
+            e.alpha = 0, e.x -= 15;
+            var i = this._borders[0] - this._initial_value;
+            e.initialize(i), createjs.Tween.get(e).to({
+                x: e.x + 15,
+                alpha: 1
+            }, 500).call(function () {
+                e.showExpText(), t._completedShow()
+            })
+        }, e.prototype._completedShow = function () {
+            var t = this,
+                e = this._borders[this._borders.length - 1] - this._initial_value - this._exp,
+                i = this._initial_value + this._exp,
+                n = {
+                    value: this._initial_value
+                };
+            createjs.Tween.get(n, {
+                onChange: this._onChange
+            }).to({
+                value: i
+            }, 2e3).call(function () {
+                i === t._borders[0] && t._banner_info.levelup(), t._banner_info.up_to_the_next_level.update(e), t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._banner_info = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase)
 }

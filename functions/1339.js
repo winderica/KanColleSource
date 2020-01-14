@@ -19,50 +19,15 @@ const function1339 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = i(443),
-        a = i(1340),
-        _ = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._onTaihi = function () {
-                    r._view.deactivate();
-                    var t = r._model.map_info.area_id,
-                        e = r._model.map_info.map_no,
-                        i = r._model.map_info.cell_no;
-                    new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
-                        r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
-                    })
-                }, r._onTaihiSezu = function () {
-                    r._view.deactivate(), r._hideView()
-                }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
+    var o = i(11),
+        r = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_map/start_air_base", o._airunit1 = e, o._airunit2 = i, o._airunit3 = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadShipResources()
-            }, e.prototype._loadShipResources = function () {
-                var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
-                    t._show()
-                })
-            }, e.prototype._show = function () {
-                this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
-                var t = this._target,
-                    e = this._towing;
-                this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({
-                    alpha: 1
-                }, 300)
-            }, e.prototype._hideView = function () {
-                var t = this;
-                createjs.Tween.get(this._view).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                null != this._airunit1 && this._airunit1.length > 0 && (this._post_data.api_strike_point_1 = this._airunit1.join(",")), null != this._airunit2 && this._airunit2.length > 0 && (this._post_data.api_strike_point_2 = this._airunit2.join(",")), null != this._airunit3 && this._airunit3.length > 0 && (this._post_data.api_strike_point_3 = this._airunit3.join(",")), t.prototype._connect.call(this)
             }, e
-        }(o.TaskBase);
-    e.EscapeGoeiTask = _
+        }(o.APIBase);
+    e.AirUnitGoAPI = r
 }

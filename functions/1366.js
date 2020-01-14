@@ -19,79 +19,64 @@ const function1366 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(38),
-        s = i(2),
-        a = i(16),
-        _ = i(1367),
-        l = i(1368),
-        u = i(1369),
-        c = i(1370),
-        h = i(1371),
-        p = i(1372),
-        d = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._scene = e, s._ship = i, s._damage = n, s._type = o, s._plane = r, s
+    var o = i(0),
+        r = i(4),
+        s = i(33),
+        a = i(256),
+        _ = i(29),
+        u = i(19),
+        l = i(448),
+        c = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClickTaihi = function () {
+                    null != n._cb_onYes && n._cb_onYes()
+                }, n._onClickTaihiSezu = function () {
+                    null != n._cb_onNo && n._cb_onNo()
+                }, n._cb_onYes = e, n._cb_onNo = i, n._taihi = new h(n._onClickTaihi), n._taihi.position.set(438, 563), n.addChild(n._taihi), n._taihisezu = new p(n._onClickTaihiSezu), n._taihisezu.position.set(771, 563), n.addChild(n._taihisezu), n._ship_target = new s.ShipBanner, n._ship_target.position.set(344, 255), n.addChild(n._ship_target), n._txt1 = new PIXI.Sprite, n._txt1.position.set(584, 258), n.addChild(n._txt1), n._txt2 = new PIXI.Sprite, n._txt2.position.set(266, 347), n.addChild(n._txt2), n._ship_name = new r.TextBox(27, 16777215), n._ship_name.y = 258, n.addChild(n._ship_name), n._ship_level = new r.TextBox(18, 16777215), n._ship_level.y = 258, n.addChild(n._ship_level), n._ship_hp = new r.TextBox(18, 16777215), n._ship_hp.y = 291, n.addChild(n._ship_hp), n._title = new a.PhaseTitle, n._title.y = 17, n.addChild(n._title), n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = 500 * Math.random();
-                this._banner = this._scene.view.bannerGroupLayer.getBanner(this._ship);
-                var i = null;
-                if (1 == this._type) i = new r.WaitTask(500);
-                else if (3 == this._type) i = new _.AnimAntiAircraftFunshin(this._banner);
-                else if (2 == this._type) i = new u.AnimAntiAircraftKoukaku(this._banner);
-                else if (5 == this._type) {
-                    var n = new o.ParallelTask;
-                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new h.AnimAntiAircraftSanshikidan2(this._banner)), i = n
-                } else if (4 == this._type) i = new l.AnimAntiAircraftFunshinKai2(this._banner);
-                else if (6 == this._type) {
-                    var n = new o.ParallelTask;
-                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new l.AnimAntiAircraftFunshinKai2(this._banner)), i = n
+            return n(e, t), e.prototype.initialize = function () {
+                this._taihi.initialize(), this._taihisezu.initialize(), this._txt1.texture = u.MAP_COMMON.getTexture(169), this._txt2.texture = u.MAP_COMMON.getTexture(172), this._title.initialize(!1), this._title.update(u.MAP_COMMON.getTexture(111)), this._title.activate()
+            }, e.prototype.updateTargetShipBanner = function (t, e, i, n, r) {
+                var s = "",
+                    a = o.default.model.ship.getMst(t);
+                null != a && (s = a.name);
+                var u = _.ShipUtil.isDamaged(n, r),
+                    l = _.ShipUtil.getDamageType(n, r);
+                this._ship_target.updateImage(t, u);
+                if (this._ship_target.updateIcon(!1, !1, l), this._ship_target.updateRing(i), this._ship_name.text = s, this._ship_name.x = 240 - this._ship_name.width, this._ship_name.x < 30) {
+                    this._ship_name.x = 30;
+                    var c = new PIXI.Graphics;
+                    c.beginFill(16711680, .5), c.drawRect(0, 0, 210, 33), c.endFill(), this._ship_name.addChild(c), this._ship_name.mask = c
                 }
-                if (null == i ? this._endTask() : (this._banner.moveFront(), this._createGuns(), this._banner.addChild(this._gun1), this._banner.addChild(this._gun2), this._gun1.activate(), this._gun2.activate(), this._planeExplosion(), createjs.Tween.get(null).wait(e).call(function () {
-                        i.start(function () {
-                            t._endTask()
-                        })
-                    })), Math.floor(this._damage) <= 0 && (4 == this._type || 6 == this._type)) {
-                    var s = this._banner.getGlobalPos(!1);
-                    this._scene.view.bannerInfoLayer.showDanmaku(s, e)
-                } else if (5 == this._type || 6 == this._type) {
-                    var s = this._banner.getGlobalPos(!1);
-                    this._scene.view.bannerInfoLayer.showSanshiki(s, e)
-                }
-            }, e.prototype._planeExplosion = function () {
-                var t = this._scene,
-                    e = this._type,
-                    i = this._plane;
-                new p.TaskAirWarAntiAircraftExplosion(t, e, i).start()
-            }, e.prototype._endTask = function () {
-                null != this._gun1 && (null != this._gun1.parent && this._gun1.parent.removeChild(this._gun1), this._gun1.deactivate()), null != this._gun2 && (null != this._gun2.parent && this._gun2.parent.removeChild(this._gun2), this._gun2.deactivate()), this._scene = null, this._ship = null, this._type = null, this._banner.moveDefault(), this._banner = null, this._gun1 = null, this._gun2 = null, t.prototype._endTask.call(this)
-            }, e.prototype._createGuns = function () {
-                this._gun1 = new f, this._gun1.position.set(26, 20), this._gun1.rotation = (45 * -Math.random() - 30) / 180 * Math.PI, this._gun2 = new f, this._gun2.position.set(35, 30), this._gun2.rotation = (45 * -Math.random() - 30) / 180 * Math.PI
+                this._ship_level.text = "Lv " + e, this._ship_level.x = 338 - this._ship_level.width, this._ship_hp.text = n + "/" + r, this._ship_hp.x = 338 - this._ship_hp.width
+            }, e.prototype.activate = function () {
+                this._taihi.activate(), this._taihisezu.activate()
+            }, e.prototype.deactivate = function () {
+                this._taihi.deactivate(), this._taihisezu.deactivate()
+            }, e.prototype.dispose = function () {
+                this._taihi.dispose(), this._taihisezu.dispose(), this._title.dispose(), this._cb_onYes = null, this._cb_onNo = null
             }, e
-        }(s.TaskBase);
-    e.TaskAirWarAntiAircraft = d;
-    var f = function (t) {
-        function e() {
-            var e = t.call(this) || this,
-                i = a.BATTLE_MAIN.getTexture(122);
-            return e._content = new PIXI.Sprite(i), e._content.anchor.set(0, .5), e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.activate = function () {
-            var t = this;
-            null == this._t && (this._t = createjs.Tween.get(this._content, {
-                loop: !0
-            }).call(function () {
-                t._content.visible = !0, t._content.position.set(0, 0)
-            }).wait(33).call(function () {
-                t._content.position.set(30, 0)
-            }).wait(33).call(function () {
-                t._content.visible = !1
-            }).wait(33))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+        }(PIXI.Container);
+    e.EscapeTankanView = c;
+    var h = function (t) {
+            function e(e) {
+                return t.call(this, !1, e) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._initialize(0)
+            }, e.prototype._setTexture = function (t) {
+                this._btn.texture = 1 == t ? u.MAP_COMMON.getTexture(14) : u.MAP_COMMON.getTexture(13), this._btn.x = -Math.round(this._btn.width / 2), this._btn.y = -Math.round(this._btn.height / 2)
+            }, e
+        }(l.WaveBtnBase),
+        p = function (t) {
+            function e(e) {
+                return t.call(this, !0, e) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._initialize(-3)
+            }, e.prototype._setTexture = function (t) {
+                this._btn.texture = 1 == t ? u.MAP_COMMON.getTexture(12) : u.MAP_COMMON.getTexture(11), this._btn.x = -Math.round(this._btn.width / 2), this._btn.y = -Math.round(this._btn.height / 2)
+            }, e
+        }(l.WaveBtnBase)
 }

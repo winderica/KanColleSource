@@ -19,35 +19,36 @@ const function376 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(237),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i.IMAGE_WIDTH = 39, i.PADDING = 16;
-                var n = new PIXI.Container,
-                    r = new Array,
-                    s = 0;
-                i._shadowType = e, i._shadowType == o.ShadowType.DETAIL ? (i.IMAGE_WIDTH = 41, i.PADDING = 2) : (i.IMAGE_WIDTH = 39, i.PADDING = 16);
-                for (var a = 0; a < 6; a++) {
-                    var _ = new o.ShipShadow;
-                    _.position.x = s, r.push(_), n.addChild(_), s += i.IMAGE_WIDTH + i.PADDING
-                }
-                return i.addChild(n), i._shipShadows = r, i._container = n, i
+    var o = i(42),
+        r = i(237),
+        s = i(1047),
+        a = function (t) {
+            function e(e, i, n, o, r) {
+                return t.call(this, e, i, n, o, r) || this
             }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0; e < this._shipShadows.length; e++) {
-                    var i = this._shipShadows[e];
-                    if (i.visible = !1, e < t.length) {
-                        var n = t[e];
-                        i.update(n, this._shadowType), i.visible = !0
-                    }
+            return n(e, t), e.prototype._setPositions = function () {
+                1 == this._type ? this._clear.position.set(600, 0) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(600, 0)
+            }, e.prototype._getNoneTexture = function () {
+                switch (this._type) {
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(42);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(41)
                 }
-                this._shadowType == o.ShadowType.DETAIL ? this._container.x = -t.length * this.IMAGE_WIDTH : this._container.x = -t.length * (this.IMAGE_WIDTH + this.PADDING)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._container.removeChildren(), this._shipShadows.forEach(function (t) {
-                    return t.dispose()
-                }), this._container = null, this._shipShadows = null
+                return PIXI.Texture.EMPTY
+            }, e.prototype._getFocusTexture = function () {
+                switch (this._type) {
+                    case 1:
+                        return o.SALLY_EVENT.getTexture(37);
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(38);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(36)
+                }
+                return PIXI.Texture.EMPTY
+            }, e.prototype._createLock = function () {
+                return new s.EventMapThumbnailLocked(this._type)
             }, e
-        }(PIXI.Container);
-    e.FleetShadow = r
+        }(r.MapThumbnail);
+    e.EventMapThumbnail = a
 }

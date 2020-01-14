@@ -19,30 +19,30 @@ const function1165 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(3),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._light.position.set(-22, -24), e.addChild(e._light), e
+    var o = i(27),
+        r = i(1166),
+        s = i(1167),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._stopTween(), t.prototype.dispose.call(this)
-            }, e.prototype._update = function (t) {
-                0 == t ? (this.texture = r.ITEM_ILIST.getTexture(10), this._light.texture = r.ITEM_ILIST.getTexture(1)) : (this.texture = r.ITEM_ILIST.getTexture(11), this._light.texture = r.ITEM_ILIST.getTexture(2)), this._stopTween(), this._startTween()
-            }, e.prototype._activate = function () {
-                this._stopTween(), this._startTween(), t.prototype._activate.call(this)
-            }, e.prototype._startTween = function () {
-                this._light.alpha = 0, this._tween = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 3e3).to({
-                    alpha: 0
-                }, 3e3)
-            }, e.prototype._stopTween = function () {
-                null != this._tween && this._tween.setPaused(!0), this._tween = null
+            return n(e, t), e.prototype.initialize = function () {
+                this._top_view.initialize()
+            }, e.prototype.activate = function () {
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
+            }, e.prototype.deactivate = function () {
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
+            }, e.prototype.dispose = function () {
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(o.BtnBase);
-    e.PickupBtn = s
+        }(o.DialogBase);
+    e.PresentBoxUseDialog = a
 }

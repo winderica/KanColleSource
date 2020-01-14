@@ -1,79 +1,97 @@
 const function743 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(1),
-        s = i(8),
-        a = i(37),
-        _ = i(744),
-        l = function () {
-            function t(t) {
-                var e = this;
-                this._onClickBackground = function () {
-                    e.onComplete(!1)
-                }, this._onClickChange = function () {
-                    e.onComplete(!0)
-                }, this.mainView = t, this.shipChangeConfirm = new _.ShipChangeConfirm, this.dialogBackground = new s.AreaBox(.5)
+    var o = i(5),
+        r = i(0),
+        s = i(2),
+        a = i(22),
+        _ = i(33),
+        u = i(291),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._deck_id = e, i
             }
-            return t.prototype.start = function (t, e, i) {
-                this.shipChangeConfirm.position.set(1200, 138), this.shipChangeConfirm.onClick = this._onClickChange, this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBackground);
-                var n = o.default.model.ship.get(i),
-                    s = o.default.model.deck.isInDeck(i),
-                    a = this.__validationOrganize__(t, e, i),
-                    _ = !1;
-                if (s) {
-                    _ = null != o.default.model.deck.get(s[0]).expedition
-                }
-                this.shipChangeConfirm.updatePosition(n.getSlotViewMax()), this.shipChangeConfirm.updateBanner(n, _), this.shipChangeConfirm.updateMaterial(n.fuelNow, n.fuelMax, n.ammoNow, n.ammoMax), this.shipChangeConfirm.updateParams(n.karyoku, n.raisou, n.taiku, n.soukou), this.shipChangeConfirm.updateShip(n.mstID, n.isDamaged(), n.name, n.level, n.starNum, n.hpNow, n.hpMax, n.hpNow / n.hpMax), this.shipChangeConfirm.updateSlots(n, n.getSlotitems()), this.shipChangeConfirm.updateChangable(a), this.mainView.addChild(this.dialogBackground, this.shipChangeConfirm), this.toDeckId = t, this.toIndex = e, this.memShipId = i, o.default.view.clickGuard = !0;
-                createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 1
-                }, 125), createjs.Tween.get(this.shipChangeConfirm).to({
-                    x: 882
-                }, 125).call(function () {
-                    o.default.view.clickGuard = !1
-                })
-            }, t.prototype.hide = function (t) {
-                a.TaskLoadShipResource.abortBy(this.shipChangeConfirm);
-                createjs.Tween.get(this.dialogBackground).to({
+            return n(e, t), e.prototype._start = function () {
+                r.default.view.clickGuard = !0, this._cutin = new u.ExpeditionCutin, this._cutin.initialize(!0), this._loadShipRespirces()
+            }, e.prototype._loadShipRespirces = function () {
+                this._anim()
+            }, e.prototype._anim = function () {
+                var t = this,
+                    e = r.default.model.deck.get(this._deck_id),
+                    i = e.getShipList();
+                this._createShipContainerU(i), this._createShipContainerB(i), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, r.default.view.overLayer.addChild(this._cutin), createjs.Tween.get(this._cutin.bg.scale).to({
+                    y: 2
+                }, 300).wait(1500).to({
+                    y: 0
+                }, 300).call(function () {
+                    t._endTask()
+                }), createjs.Tween.get(this._cutin.message).wait(400).to({
+                    x: 660
+                }, 400).to({
+                    x: 525
+                }, 800).to({
+                    x: 420,
                     alpha: 0
-                }, 125), createjs.Tween.get(this.shipChangeConfirm).to({
-                    x: n.default.width
-                }, 125).call(function () {
-                    t()
+                }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: 600 - this._cutin.banner_top.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: o.default.width - this._cutin.banner_top.width,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: 600 - this._cutin.banner_bottom.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: 0,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
+                    t._cutin.particles.startAnim()
                 })
-            }, t.prototype.dispose = function () {
-                this.dialogBackground.off(r.EventType.CLICK, this._onClickBackground), this.shipChangeConfirm.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipChangeConfirm), this.shipChangeConfirm.onClick = this._onClickChange = null, this.onComplete = null, this.mainView = null, this.shipChangeConfirm = null, this.dialogBackground = null, this.toDeckId = null, this.toIndex = null, this.memShipId = null, this.deckEditor = null, this.organizable = null
-            }, t.prototype.__validationOrganize__ = function (t, e, i) {
-                var n = o.default.model.deck.get(t),
-                    r = n.getShipModel(e),
-                    s = o.default.model.ship.get(i),
-                    a = o.default.model.deck.isInDeck(i),
-                    _ = null;
-                if (a) {
-                    var l = a[0];
-                    _ = o.default.model.deck.get(l)
+            }, e.prototype._createShipContainerU = function (t) {
+                var e, i = t[0],
+                    n = t[2],
+                    o = t[4];
+                e = null == n ? [i] : null == o ? [n, i] : [n, i, o];
+                for (var r = 0; r < e.length; r++) {
+                    var s = e[r],
+                        u = new _.ShipBanner;
+                    u.update(s, !0), u.position.x = a.BannerSize.W * r, this._cutin.banner_top.addChild(u)
                 }
-                if (null == r && _ && 1 == _.mstID && 1 == _.getCount()) return !1;
-                if (null == r && _ && n && _.mstID == n.mstID) return !1;
-                if (s && _ && _.expedition) return !1;
-                if (s && r && s.memID == r.memID) return !1;
-                for (var u = n.getShipList(), c = 0; c < u.length; c++) {
-                    var h = u[c];
-                    if (s && h && h.yomi == s.yomi && c != e) {
-                        if (!_) return !1;
-                        if (n.mstID != _.mstID) return !1
-                    }
+            }, e.prototype._createShipContainerB = function (t) {
+                var e, i = t[1],
+                    n = t[3],
+                    o = t[5],
+                    r = t[6];
+                e = null == o ? null == n ? null == i ? [] : [i] : [i, n] : null == r ? [o, i, n] : [o, i, n, r];
+                for (var s = 0; s < e.length; s++) {
+                    var u = e[s],
+                        l = new _.ShipBanner;
+                    l.update(u, !0), l.position.x = a.BannerSize.W * s, this._cutin.banner_bottom.addChild(l)
                 }
-                if (r && s && _)
-                    for (var p = _.getShipList(), d = _.isInDeck(s.memID), f = 0; f < p.length; f++) {
-                        var y = p[f];
-                        if (r && y && y.yomi == r.yomi && n.mstID != _.mstID && f != d) return !1
-                    }
-                return !0
-            }, t
-        }();
-    e.TaskConfirmChangeShip = l
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
+            }, e
+        }(s.TaskBase);
+    e.TaskExpeditionStartCutin = l
 }

@@ -19,178 +19,70 @@ const function94 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(2),
-        a = i(24),
-        _ = i(27),
-        l = i(16),
-        u = i(1355),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._voice_ship = null, n._scene = e, n._record = i, n
+    var o = i(2),
+        r = i(18),
+        s = i(137),
+        a = i(1),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._result = !1, i._onYes = function () {
+                    i._result = !0, i._dialog.btn_no.off(a.EventType.CLICK, i._onNo), i._hideDialog()
+                }, i._onNo = function () {
+                    i._dialog.btn_yes.off(a.EventType.CLICK, i._onYes), i._hideDialog()
+                }, i._layer = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._record.getRation().length > 0 ? this._ration() : this._ration_combined()
-            }, e.prototype._ration = function () {
-                for (var t = this, e = this._scene.data.model.deck_f.ships, i = this._record.getRation(), n = this._createDic(e, i), o = new _.ParallelTask, r = 0, s = e; r < s.length; r++) {
-                    var a = s[r];
-                    if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
-                        var l = n[a.mem_id];
-                        if (1 == l.length) o.add(new h(this._scene, a, l[0]));
-                        else if (2 == l.length) {
-                            var u = this._voice_ship == a;
-                            o.add(new p(this._scene, a, l[0], l[1], u))
-                        }
-                    }
-                }
-                o.start(function () {
-                    createjs.Tween.get(null).wait(500).call(function () {
-                        t._ration_combined()
-                    })
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._showFade()
+            }, e.prototype._showFade = function () {
+                var t = this;
+                this._fade = new r.FadeBox(.2), this._fade.hide(0), this._layer.addChild(this._fade), this._fade.show(200, function () {
+                    t._showDialog()
                 })
-            }, e.prototype._ration_combined = function () {
-                var t = this,
-                    e = this._record.getRationCombined();
-                if (e.length > 0) {
-                    for (var i = this._scene.data.model.deck_f.ships, n = this._createDic(i, e), o = new _.ParallelTask, r = 0, s = i; r < s.length; r++) {
-                        var a = s[r];
-                        if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
-                            var l = n[a.mem_id];
-                            if (1 == l.length) o.add(new h(this._scene, a, l[0]));
-                            else if (2 == l.length) {
-                                var u = this._voice_ship == a;
-                                o.add(new p(this._scene, a, l[0], l[1], u))
-                            }
-                        }
-                    }
-                    o.start(function () {
-                        createjs.Tween.get(null).wait(500).call(function () {
-                            t._endTask()
-                        })
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._voice_ship = null, t.prototype._endTask.call(this)
-            }, e.prototype._createDic = function (t, e) {
-                for (var i = {}, n = 0, o = t; n < o.length; n++) {
-                    var r = o[n];
-                    if (null != r) {
-                        var s = r.mem_id;
-                        if (e.indexOf(s) >= 0) {
-                            var a = r.useRation();
-                            null == this._voice_ship && a.length > 1 && (this._voice_ship = r), i[r.mem_id] = a
-                        }
-                    }
-                }
-                return i
-            }, e
-        }(s.TaskBase);
-    e.PhaseRation = c;
-    var h = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._ship = i, o._ration_mst_id = n, o
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.getBanner(this._ship),
-                    i = e.getGlobalPos(),
-                    n = new d;
-                n.initialize(this._ration_mst_id), n.x = i.x + r.BannerSize.W / 2 + 20 - 75, n.y = i.y, n.alpha = 0;
-                var o = this._scene.view.bannerGroupLayer.effect_layer;
-                o.addChild(n), createjs.Tween.get(n).to({
-                    x: i.x + r.BannerSize.W / 2 + 20,
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new u, this._dialog.position.set(219, 207), this._dialog.alpha = 0, this._fade.addChild(this._dialog), this._dialog.initialize(), createjs.Tween.get(this._dialog).to({
                     alpha: 1
-                }, 200, createjs.Ease.sineOut).wait(250).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 300, createjs.Ease.sineOut).call(function () {
-                    new u.TaskBannerParticle(o, i).start()
-                }).wait(1e3).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100).call(function () {
-                    t._endTask()
+                }, 250).call(function () {
+                    t._waitSelect()
+                })
+            }, e.prototype._waitSelect = function () {
+                this._dialog.btn_yes.once(a.EventType.CLICK, this._onYes), this._dialog.btn_no.once(a.EventType.CLICK, this._onNo)
+            }, e.prototype._hideDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._fade).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._fade), t._fade = null, t._dialog = null, t._endTask()
                 })
             }, e
-        }(s.TaskBase),
-        p = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._scene = e, s._ship = i, s._ration_mst_id_1 = n, s._ration_mst_id_2 = o, s._voice = r, s
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.getBanner(this._ship),
-                    i = e.getGlobalPos(),
-                    n = new d;
-                n.initialize(this._ration_mst_id_1), n.x = i.x + r.BannerSize.W / 2 + 20 - 75, n.y = i.y, n.alpha = 0;
-                var s = this._scene.view.bannerGroupLayer.effect_layer;
-                s.addChild(n), createjs.Tween.get(n).to({
-                    x: i.x + r.BannerSize.W / 2 + 20,
-                    alpha: 1
-                }, 200, createjs.Ease.sineOut).wait(250).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 300, createjs.Ease.sineOut).wait(1e3).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100);
-                var a = new d;
-                a.initialize(this._ration_mst_id_2), a.x = i.x + r.BannerSize.W / 2 + 20 + 75 - 75, a.y = i.y, a.alpha = 0, s.addChild(a), createjs.Tween.get(a).wait(100).to({
-                    x: i.x + r.BannerSize.W / 2 + 20 + 75,
-                    alpha: 1
-                }, 200, createjs.Ease.sineOut).wait(250).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 300, createjs.Ease.sineOut).call(function () {
-                    new u.TaskBannerParticle(s, i).start(), 1 == t._voice && o.default.sound.voice.play(t._ship.mst_id.toString(), 26)
-                }).wait(1e3).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100).call(function () {
-                    t._endTask()
-                }), this._endTask()
-            }, e
-        }(s.TaskBase),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._img.y = -22, e.addChild(e._img), e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._img.texture = this._getTexture(t)
-            }, e.prototype._getTexture = function (t) {
-                switch (t) {
-                    case 145:
-                        return l.BATTLE_MAIN.getTexture(53);
-                    case 150:
-                        return l.BATTLE_MAIN.getTexture(57);
-                    case 241:
-                        return l.BATTLE_MAIN.getTexture(54);
-                    default:
-                        return PIXI.Texture.EMPTY
-                }
-            }, e
-        }(a.Container)
+        }(o.TaskBase);
+    e.TaskItemOverflowConfirm = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._btn_yes = new PIXI.Sprite, e._btn_yes.position.set(203, 216), e._btn_yes.interactive = !0, e._btn_yes.buttonMode = !0, e.addChild(e._btn_yes), e._btn_no = new PIXI.Sprite, e._btn_no.position.set(419, 216), e._btn_no.interactive = !0, e._btn_no.buttonMode = !0, e.addChild(e._btn_no), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
+            get: function () {
+                return this._btn_yes
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_no", {
+            get: function () {
+                return this._btn_no
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.ITEM_ILIST.getTexture(34), this._btn_yes.texture = s.ITEM_ILIST.getTexture(9), this._btn_no.texture = s.ITEM_ILIST.getTexture(3)
+        }, e
+    }(PIXI.Sprite)
 }

@@ -1,78 +1,91 @@
 const function1450 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t, e, i) {
-                this._friend = t, this._o = {};
-                for (var n in e) {
-                    var o = e[n];
-                    this._o[n] = [];
-                    for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
-                    for (; this._o[n].length < 6;) this._o[n].push(0)
-                }
-                if (null != i)
-                    for (var n in i) {
-                        var o = i[n];
-                        if (null != o) {
-                            0 == this._o.hasOwnProperty(n) && (this._o = [0, 0, 0, 0, 0, 0]);
-                            for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
-                            for (; this._o[n].length < 12;) this._o[n].push(0)
-                        }
-                    }
+    var o = i(0),
+        r = i(22),
+        s = i(6),
+        a = i(1451),
+        _ = i(126),
+        u = i(40),
+        l = function (t) {
+            function e(e, i, n, r, s, a, _, u, l) {
+                var c = t.call(this, e, n, s, _, u, l) || this;
+                return c._slot2 = o.default.model.slot.getMst(a), c._defender = r, c
             }
-            return Object.defineProperty(t.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.hasDamage = function () {
-                var t = this._friend ? "api_fdam" : "api_edam";
-                return this._hasDamage(this._o, t)
-            }, t.prototype._hasDamage = function (t, e) {
-                var i = n.ObjUtil.getNumArray(t, e);
-                if (null != i)
-                    for (var o = 0, r = i; o < r.length; o++) {
-                        var s = r[o];
-                        if (s > 0) return !0
-                    }
-                return !1
-            }, t.prototype.beBombed = function () {
-                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    e = n.ObjUtil.getNumArray(this._o, t);
-                if (null == e) return !1;
-                for (var i = Math.min(e.length, 6), o = 0; o < i; o++)
-                    if (e[o] > 0) return !0;
-                return !1
-            }, t.prototype.beBombedCombined = function () {
-                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    e = n.ObjUtil.getNumArray(this._o, t);
-                if (null == e) return !1;
-                for (var i = 6; i < e.length; i++)
-                    if (e[i] > 0) return !0;
-                return !1
-            }, t.prototype.getDamage = function (t) {
-                var e = this._friend ? "api_fdam" : "api_edam",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length <= t ? 0 : Math.floor(i[t])
-            }, t.prototype.getBak = function (t) {
-                var e = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return !(null == i || i.length <= t) && 1 == i[t]
-            }, t.prototype.getRai = function (t) {
-                var e = this._friend ? "api_frai_flag" : "api_erai_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return !(null == i || i.length <= t) && 1 == i[t]
-            }, t.prototype.getHitType = function (t) {
-                var e = this._friend ? "api_fcl_flag" : "api_ecl_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length <= t ? 0 : i[t] + 1
-            }, t.prototype.isShield = function (t) {
-                return this.getDamage(t) % 1 != 0
-            }, t
-        }();
-    e.AirWarStage3Model = o
+            return n(e, t), e.prototype.preload = function (t) {
+                this._cutin = new a.CutinSpRR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
+            }, e.prototype._start = function () {
+                var t, e, i = this._attacker.friend,
+                    n = this._attacker.index,
+                    o = this._defender.index;
+                1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
+            }, e.prototype._playPicket = function (t, e) {
+                var i = this;
+                if (this._attacker.hasSlot(129, !0)) {
+                    var n = new PIXI.Point;
+                    n.x = this._attacker.friend ? r.BannerSize.W : 0;
+                    var o = new _.Picket;
+                    o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
+                        i._playCutin(t, e)
+                    })
+                } else this._playCutin(t, e)
+            }, e.prototype._playCutin = function (t, e) {
+                var i = this;
+                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
+                    i._shoot(t, e)
+                }), this._cutin.view.once("attack", function () {
+                    i._playVoice()
+                })
+            }, e.prototype._shoot = function (t, e) {
+                var i = this;
+                t.moveShoot(function () {
+                    i._torpedo(t, e)
+                })
+            }, e.prototype._torpedo = function (t, e) {
+                var i = this,
+                    n = t.friend ? 1 : -1,
+                    o = t.getGlobalPos(!0);
+                o.x += r.BannerSize.W / 3 * n;
+                var a = e.getGlobalPos(!0);
+                a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
+                var _ = this._scene.view.layer_torpedo;
+                _.playTorpedoAtNight(o, a, 800, function () {
+                    _.playTorpedoWaterColumn(e), i._explosion(t, e)
+                })
+            }, e.prototype._explosion = function (t, e) {
+                var i = this,
+                    n = e.getGlobalPos(!0);
+                createjs.Tween.get(this).wait(300).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
+                }).wait(350).call(function () {
+                    var n = i._getDamage(i._defender);
+                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+                })
+            }, e.prototype._playVoice = function () {
+                if (this._attacker.friend) {
+                    var t = this._attacker.mst_id,
+                        e = 17;
+                    432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
+                }
+            }, e.prototype._log = function (t) {}, e
+        }(u.PhaseAttackBase);
+    e.PhaseAttackSpRR = l
 }

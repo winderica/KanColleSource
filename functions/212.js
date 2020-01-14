@@ -20,23 +20,28 @@ const function212 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(9),
-        s = function (t) {
-            function e(e) {
-                void 0 === e && (e = 0);
-                var i = t.call(this) || this;
-                return i._mem_id = 0, i._mem_id = e, i._url = "api_get_member/ship2", i
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._mem_id > 0 && (this._post_data.api_shipid = this._mem_id), this._post_data.api_sort_key = 5, this._post_data.spi_sort_order = 2, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                if (this._mem_id > 0) {
-                    var e = this._raw_data,
-                        i = e[0];
-                    o.default.model.ship.updateData(i)
-                } else o.default.model.ship.setData(this._raw_data);
-                t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initiailzeGetBG1 = function (t) {
+                this._load("g1", t)
+            }, e.prototype.initiailzeGetBG2 = function (t) {
+                this._load("g2", t)
+            }, e.prototype.dispose = function () {
+                this._loader = null
+            }, e.prototype._load = function (t, e) {
+                var i = this,
+                    n = o.default.settings.path_root + "img/common/bg/" + t + ".png";
+                if (null != PIXI.utils.TextureCache[n] && (this.texture = PIXI.utils.TextureCache[n], null != e)) return void e();
+                this._loader = new PIXI.loaders.Loader, this._loader.add(n), this._loader.load(function (t) {
+                    if (i._loader == t) {
+                        i._loader = null;
+                        var o = t.resources[n];
+                        i.texture = o.texture, null != e && e()
+                    }
+                })
             }, e
-        }(r.APIBase);
-    e.UserShipAPI = s
+        }(PIXI.Sprite);
+    e.GetBG = r
 }

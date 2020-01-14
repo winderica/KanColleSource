@@ -19,34 +19,25 @@ const function992 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._flash = new PIXI.Sprite(o.SALLY_AIRUNIT.getTexture(7)), i._flash.position.set(-14, -14), i._flash.alpha = 0, i.addChild(i._flash), i.interactive = !0, i
+    var o = i(17),
+        r = i(359),
+        s = i(994),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._cb_onClick = null, this._flash = null
-            }, e.prototype.initialize = function () {
-                this.texture = o.SALLY_AIRUNIT.getTexture(6)
+            return n(e, t), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._btn_extend.initialize()
             }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this.playFlash())
+                t.prototype.activate.call(this), this._btn_extend.activate()
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this.stopFlash()
-            }, e.prototype.playFlash = function () {
-                this.stopFlash(), this._tween = createjs.Tween.get(this._flash, {
-                    loop: !0
-                }), this._tween.to({
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 1e3)
-            }, e.prototype.stopFlash = function () {
-                this._tween && (this._tween.setPaused(!0), createjs.Tween.removeTweens(this._flash), this._tween = null, this._flash.alpha = 0)
+                t.prototype.deactivate.call(this), this._btn_extend.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._btn_extend.dispose()
+            }, e.prototype.updateExtendBtn = function (t, e) {
+                this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
             }, e
-        }(PIXI.Sprite);
-    e.AirUnitBtn = s
+        }(r.AirUnitPanelTabContainer);
+    e.AirUnitPanelTabContainerWithExtend = a
 }

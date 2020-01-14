@@ -19,384 +19,106 @@ const function890 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(290),
-        s = i(115),
-        a = function (t) {
+    var o = i(891),
+        r = i(892),
+        s = i(897),
+        a = i(3),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i.WALK = [116, 117, 118, 117], i.BURNER = [119, 120], i.COMPLETION = [121, 122], i.RANGE = {
-                    fx: -300,
-                    fy: -75,
-                    tx: -135,
-                    ty: 0
-                }, i.FPS = 60, i.ANIMATION_BUILD_KEY = {}, i.ANIMATION_COMPLETE_KEY = {}, i.ANIMATION_ENTER_KEY = {}, i.sprite = new PIXI.Sprite, i.burner_1_l = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(57)), i.kiraAnimations = new Array, i.kiras = new Array;
-                var n = o.COMMON_MAIN.getTexture(33),
-                    s = o.COMMON_MAIN.getTexture(34);
-                i.effect = new PIXI.Container, i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.WALK[0]), i.sprite.position.set(45, 0), i.sprite.anchor.set(.5, 1), i.burner_1_l.anchor.set(1, .69), i.burner_1_l.position.set(-40, -9), i.burner_1_l.scale.set(0, 0), i.effect.position.x = -45, i.effect.addChild(i.burner_1_l), i.sprite.addChild(i.effect), i.addChild(i.sprite);
-                for (var a = 0; a < 5; a++) {
-                    var _ = new PIXI.Sprite,
-                        l = new r.KiraAnimation(_, n, s);
-                    i.kiraAnimations.push(l), i.kiras.push(_), i.effect.addChild(_), _.x = i.RANGE.fx + (i.RANGE.tx - i.RANGE.fx) * Math.random(), _.y = i.RANGE.fy + (i.RANGE.ty - i.RANGE.fy) * Math.random(), _.alpha = 0
+                i._onClickExtension = function (t) {
+                    i.onClickExtension(t)
+                }, i._onClickHiSpeed = function (t) {
+                    i.onClickHiSpeed(t)
+                }, i._onClickEmptySlot = function (t) {
+                    i.onClickEmptySlot(t)
+                };
+                var n = new PIXI.Sprite(a.COMMON_MAIN.getTexture(64));
+                n.position.set(0, 105);
+                var _ = new PIXI.Sprite(a.REPAIR_MAIN.getTexture(0));
+                _.anchor.y = .5, _.position.set(199, 20), n.addChild(_), i.addChild(n);
+                var u = new PIXI.Container;
+                u.position.set(195, 180);
+                for (var l = [], c = [], h = [], p = 0; p < 4; p++) {
+                    var d = e[p],
+                        f = new s.EmptyDock;
+                    f.onClick = i._onClickEmptySlot, f.position.set(0, 123 * p), f.visible = !1, l.push(f), u.addChild(f);
+                    var y = new r.ShipInDock;
+                    if (y.onClickHiSpeed = i._onClickHiSpeed, y.position.set(0, 123 * p), y.visible = !1, c.push(y), u.addChild(y), -1 === d.state) {
+                        var m = new o.ExtensionDock;
+                        m.update(-1, !1, !1), m.onClick = i._onClickExtension, m.position.set(0, 123 * p), m.visible = !1, h.push(m), u.addChild(m)
+                    } else h.push(null)
                 }
-                return i.syncAnimationKey = e, i
+                return i.emptyDocks = l, i.shipInDocks = c, i.extensionDocks = h, i.addChild(u), i
             }
-            return n(e, t), e.prototype.useBurner = function (t, e) {
-                var i = this;
-                this.x = 825, this.sprite.y = 0, this.sprite.scale.x = 1, this.__AnimationWalk__(552, function () {
-                    i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.BURNER[0]), i.__AnimationBuild__(t, function () {
-                        e()
-                    })
-                })
-            }, e.prototype.__AnimationBuild__ = function (t, e) {
-                var i = this;
-                this.burner_1_l.scale.set(0, 0);
-                for (var n = 0; n < this.kiraAnimations.length; n++) this.kiraAnimations[n].stop();
-                this.__AnimationFireStart__(function () {
-                    i.__AnimationFireWave__(2500, t, function () {
-                        i.__AnimationFireEnd__(e)
-                    })
-                })
-            }, e.prototype.__AnimationComplete__ = function () {
-                var t = this;
-                this.stopTweenAll(), createjs.Tween.get(this.ANIMATION_COMPLETE_KEY, {
-                    loop: !0
-                }).wait(1e3).addEventListener("change", function () {
-                    var e = t.syncAnimationKey.getNumber(s.SYNC_KEY_JUMP);
-                    t.sprite.y = -15 * e, t.sprite.texture = .4 < e ? o.ARSENAL_MAIN.getTexture(t.COMPLETION[0]) : o.ARSENAL_MAIN.getTexture(t.COMPLETION[1])
-                })
-            }, e.prototype.complete = function () {
-                this.__AnimationComplete__()
-            }, e.prototype.stopTweenAll = function () {
-                createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY)
-            }, e.prototype.receive = function () {
-                var t = this;
-                this.stopTweenAll(), this.sprite.y = 0, this.__AnimationTurng__(-.5, 250, function () {
-                    t.sprite.texture = o.ARSENAL_MAIN.getTexture(t.WALK[0]), t.__AnimationTurng__(-1, 250, function () {
-                        t.__AnimationWalk__(550, function () {})
-                    })
-                })
-            }, e.prototype.__AnimationTurng__ = function (t, e, i) {
-                var n = this;
-                this.stopTweenAll(), this.ANIMATION_BUILD_KEY.direction = this.sprite.scale.x;
-                var o = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
-                o.to({
-                    direction: t
-                }, e).call(function () {
-                    createjs.Tween.removeTweens(n.ANIMATION_BUILD_KEY), o.setPaused(!0), i()
-                }).addEventListener("change", function () {
-                    var t = n.ANIMATION_BUILD_KEY.direction;
-                    n.sprite.scale.x = t
-                })
-            }, e.prototype.__AnimationWalk__ = function (t, e) {
-                var i = this;
-                this.stopTweenAll(), this.ANIMATION_BUILD_KEY.x = this.x, this.ANIMATION_BUILD_KEY.walk = 0, this.y = 96, this.burner_1_l.scale.set(0, 0);
-                var n = createjs.Tween.get(this.ANIMATION_BUILD_KEY, {
-                    loop: !0
-                });
-                n.to({
-                    walk: 1
-                }, 500).addEventListener("change", function () {
-                    var t = i.ANIMATION_BUILD_KEY.walk,
-                        e = Math.round((i.WALK.length - 1) * t),
-                        n = i.WALK[e];
-                    i.sprite.texture = o.ARSENAL_MAIN.getTexture(n)
-                });
-                var r = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
-                r.to({
-                    x: t,
-                    walk: 1
-                }, 2e3).call(function () {
-                    createjs.Tween.removeTweens(i.ANIMATION_BUILD_KEY), n.removeAllEventListeners("change"), r.removeAllEventListeners("change"), n.setPaused(!0), r.setPaused(!0), e()
-                }).addEventListener("change", function () {
-                    i.x = i.ANIMATION_BUILD_KEY.x
-                })
-            }, e.prototype.__AnimationFireStart__ = function (t) {
-                var e = this;
-                this.ANIMATION_BUILD_KEY.x = 0, this.ANIMATION_BUILD_KEY.y = 0, this.ANIMATION_BUILD_KEY.scale = 0, this.ANIMATION_BUILD_KEY.rotation = 0;
-                var i = 1e3 / this.FPS,
-                    n = (Math.PI, createjs.Tween.get(this.ANIMATION_BUILD_KEY));
-                n.call(function () {
-                    e.sprite.texture = o.ARSENAL_MAIN.getTexture(e.BURNER[0])
-                }).to({
-                    x: 3.3,
-                    y: -10.65,
-                    scale: 0,
-                    rotation: 0
-                }).to({
-                    x: 3.3,
-                    y: -10.65,
-                    width: 57.9,
-                    height: 25.725,
-                    scale: .18,
-                    rotation: 0
-                }, 2 * i).call(function () {
-                    e.sprite.texture = o.ARSENAL_MAIN.getTexture(e.BURNER[1]), e.burner_1_l.x = 3.15, e.burner_1_l.y = -12.075, e.burner_1_l.scale.set(0, 0), e.burner_1_l.rotation = 0;
-                    for (var t = 0; t < e.kiraAnimations.length; t++) {
-                        var i = e.kiraAnimations[t],
-                            n = Math.floor(3 * Math.random());
-                        i.play(n)
+            return n(e, t), e.prototype.updateTime = function (t, e) {
+                for (var i = 0; i < e.length; i++) {
+                    var n = e[i],
+                        o = this.shipInDocks[i];
+                    1 == n.state && o.updateTime(t, n.completeTime)
+                }
+            }, e.prototype.highSpeedAnimation = function (t, e) {
+                this.shipInDocks[t].playHispeed(e)
+            }, e.prototype.hideAnimation = function (t, e) {
+                for (var i = Date.now(), n = !1, o = 0; o < t.length; o++) {
+                    var r = this.shipInDocks[o];
+                    if (0 == t[o].state) {
+                        var s = function () {};
+                        0 == n && (s = function () {
+                            e()
+                        }, n = !0), r.playTimelimit(i, s)
                     }
-                }).to({
-                    x: 4.5,
-                    y: -8.25,
-                    width: 321,
-                    height: 142,
-                    scale: 1
-                }, 2 * i).call(function () {
-                    createjs.Tween.removeTweens(e.ANIMATION_BUILD_KEY), n.setPaused(!0), t()
-                }), n.addEventListener("change", function () {
-                    for (var t = 0; t < e.kiraAnimations.length; t++) {
-                        var i = e.kiras[t];
-                        i.x = e.RANGE.fx + (e.RANGE.tx - e.RANGE.fx) * Math.random(), i.y = e.RANGE.fy + (e.RANGE.ty - e.RANGE.fy) * Math.random()
+                }
+            }, e.prototype.updateHighSpeedButton = function (t, e) {
+                this.shipInDocks[t].updateUsable(e)
+            }, e.prototype.updateExtensionState = function (t, e) {
+                for (var i = !1, n = 0; n < this.extensionDocks.length; n++) {
+                    var o = this.extensionDocks[n];
+                    if (null !== o) {
+                        var r = t[n];
+                        0 == i ? (o.update(r.mstID, !0, e), i = !0) : o.update(r.mstID, !1, !1)
                     }
-                    var n = e.ANIMATION_BUILD_KEY.scale;
-                    e.burner_1_l.x = e.ANIMATION_BUILD_KEY.x, e.burner_1_l.y = e.ANIMATION_BUILD_KEY.y, e.burner_1_l.scale.set(n, n), e.burner_1_l.rotation = e.ANIMATION_BUILD_KEY.rotation
-                })
-            }, e.prototype.__AnimationFireEnd__ = function (t) {
-                for (var e = this, i = 0; i < this.kiraAnimations.length; i++) this.kiraAnimations[i].stop();
-                var n = 1e3 / this.FPS,
-                    o = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
-                o.to({
-                    x: 3.3,
-                    y: -10.65,
-                    width: 38.6,
-                    height: 17.15,
-                    scale: .18,
-                    rotation: 0
-                }, 2 * n).to({
-                    x: 3.3,
-                    y: -10.65,
-                    scale: 0,
-                    rotation: 0
-                }).call(function () {
-                    o.removeAllEventListeners("change"), o.setPaused(!0), e.burner_1_l.scale.set(0, 0), t()
-                }).addEventListener("change", function () {
-                    var t = e.ANIMATION_BUILD_KEY.scale;
-                    e.burner_1_l.scale.set(t, t)
-                })
-            }, e.prototype.__AnimationFireWave__ = function (t, e, i) {
-                var n = this,
-                    o = 2e3 / this.FPS,
-                    r = Math.PI / 180;
-                this.ANIMATION_BUILD_KEY.fireProgress = 0;
-                var s = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
-                s.to({
-                    fireProgress: 1
-                }, t).call(function () {
-                    createjs.Tween.removeTweens(n.ANIMATION_BUILD_KEY), s.setPaused(!0), i()
-                }).addEventListener("change", function () {
-                    var t = n.ANIMATION_BUILD_KEY.fireProgress;
-                    e(t)
-                }), createjs.Tween.get(this.ANIMATION_BUILD_KEY, {
-                    loop: !0
-                }).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.4841 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.625,
-                    rotation: 1.5 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.625,
-                    rotation: 1.5 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.625,
-                    rotation: 1.5 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.625,
-                    rotation: 1.5 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.625,
-                    rotation: 1.5 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.625,
-                    rotation: 1.5 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.25,
-                    rotation: 0 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.4,
-                    rotation: -5.5 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.325,
-                    rotation: -.3 * r
-                }, 2 * o).to({
-                    x: 4.5,
-                    y: -8.025,
-                    rotation: 4.7 * r
-                }, 2 * o).to({
-                    x: 4.425,
-                    y: -8.625,
-                    rotation: 1.5 * r
-                }, 2 * o).addEventListener("change", function () {
-                    for (var t = 0; t < n.kiraAnimations.length; t++) {
-                        var e = n.kiras[t];
-                        e.x = n.RANGE.fx + (n.RANGE.tx - n.RANGE.fx) * Math.random(), e.y = n.RANGE.fy + (n.RANGE.ty - n.RANGE.fy) * Math.random()
-                    }
-                    var i = n.ANIMATION_BUILD_KEY.scale;
-                    n.burner_1_l.x = n.ANIMATION_BUILD_KEY.x, n.burner_1_l.y = n.ANIMATION_BUILD_KEY.y, n.burner_1_l.scale.set(i, i), n.burner_1_l.rotation = n.ANIMATION_BUILD_KEY.rotation
-                })
+                }
+            }, e.prototype.updateDockInfo = function (t, e, i, n) {
+                this.shipInDocks[t].updateDockInfo(i, n), this.emptyDocks[t].update(i);
+                var o = this.extensionDocks[t];
+                null !== o && o.update(i, !1, !1)
+            }, e.prototype.stopAnimation = function (t) {
+                this.shipInDocks[t].stopAnimation()
+            }, e.prototype.playAnimation = function (t) {
+                this.shipInDocks[t].playAnimation()
+            }, e.prototype.unLockAnimation = function (t, e) {
+                this.emptyDocks[t].alpha = 0, this.emptyDocks[t].visible = !0, this.extensionDocks[t].visible = !1, createjs.Tween.get(this.emptyDocks[t]).to({
+                    alpha: 1
+                }, 1500).call(function () {
+                    e()
+                }).play(null)
+            }, e.prototype.updateViewState = function (t, e) {
+                var i = this.shipInDocks[t];
+                i.updateState(e), this.emptyDocks[t].visible = !1, i.visible = !1;
+                var n = this.extensionDocks[t];
+                switch (null !== n && (n.visible = !1), e) {
+                    case -1:
+                        n.visible = !0;
+                        break;
+                    case 0:
+                        this.emptyDocks[t].visible = !0;
+                        break;
+                    case 1:
+                        i.visible = !0
+                }
+            }, e.prototype.updateShipInfo = function (t, e, i, n, o, r, s, a, _, u) {
+                this.shipInDocks[t].updateShipInfo(r, o, a, e, i, n, _, u)
+            }, e.prototype.dockState = function (t) {
+                return this.shipInDocks[t].state
+            }, e.prototype.forceEnd = function (t) {
+                this.updateViewState(t, 0), this.shipInDocks[t].playTimelimit(Date.now(), function () {})
             }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), this.effect.removeChildren(), this.kiraAnimations.forEach(function (t) {
-                    t.dispose(), t = null
-                }), this.kiras.forEach(function (t) {
-                    null
-                }), this.sprite = null, this.effect = null, this.burner_1_l = null, this.kiraAnimations = null, this.kiras = null, this.RANGE = null, this.syncAnimationKey = null, this.removeChildren()
+                for (var t = 0; t < this.emptyDocks.length; t++) this.emptyDocks[t].dispose(), this.emptyDocks[t] = null;
+                for (var t = 0; t < this.shipInDocks.length; t++) this.shipInDocks[t].dispose(), this.shipInDocks[t] = null;
+                for (var t = 0; t < this.extensionDocks.length; t++) null !== this.extensionDocks[t] && (this.extensionDocks[t].dispose(), this.extensionDocks[t] = null);
+                this.onClickHiSpeed = null, this.onClickEmptySlot = null, this.onClickExtension = null, this.emptyDocks = null, this.shipInDocks = null, this.extensionDocks = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.Burner = a
+    e.MainView = _
 }

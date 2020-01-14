@@ -19,21 +19,28 @@ const function1258 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(15),
+    var o = i(428),
+        r = i(1),
         s = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._onMouseOver = function () {
+                    e.texture = o.REVAMP_BOX.getTexture(9)
+                }, e._onMouseOut = function () {
+                    e.texture = o.REVAMP_BOX.getTexture(9)
+                }, e._onClick = function () {
+                    e.emit("dicision")
+                }, e.interactive = !0, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("map");
-                e.add("map_common.json"), e.add("map_compass.json"), e.add("map_flagship_damage.json"), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.REVAMP_BOX.getTexture(9)
+            }, e.prototype.activate = function () {
+                0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._setTextture = function (t) {
+                this.texture = t
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResourcesMap = s
+        }(PIXI.Sprite);
+    e.BtnDicision = s
 }

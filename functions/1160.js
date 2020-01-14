@@ -19,23 +19,31 @@ const function1160 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(74),
-        s = i(141),
-        a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(27),
+        r = i(1161),
+        s = i(1162),
+        a = i(1163),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._count = 0, i._onSelectFromTop = function (t) {
+                    if (-1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else null != i._confirm_view && (null != i._confirm_view.parent && i._confirm_view.parent.removeChild(i._confirm_view), i._confirm_view.dispose(), i._confirm_view = null), 1 == t ? (i._confirm_view = new a.ConfirmRemodelPlanView(1, i._onSelectFromConfirm), i._confirm_view.position.set(220, 171)) : 0 == t ? (i._confirm_view = new s.ConfirmView(0, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)) : 2 == t && (i._confirm_view = new s.ConfirmView(2, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)), i._confirm_view.initialize(i._count), i.addChild(i._confirm_view), i._top_view.visible = !1
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._confirm_view && i._confirm_view.dispose(), null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(225, 208), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(7);
-                var t = new PIXI.Graphics;
-                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-                var e = this._candidate.mst_id,
-                    i = o.default.resources.getUseitem(e, 1),
-                    n = new PIXI.Sprite(i),
-                    s = Math.min(195 / n.width, 195 / n.height);
-                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize(t)
+            }, e.prototype.activate = function () {
+                this._top_view.activate()
+            }, e.prototype.deactivate = function () {
+                this._top_view.deactivate()
+            }, e.prototype.dispose = function () {
+                this._top_view.dispose()
             }, e
-        }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogUseitemBtn = a
+        }(o.DialogBase);
+    e.MedalUseDialog = _
 }

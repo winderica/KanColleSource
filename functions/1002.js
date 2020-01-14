@@ -1,180 +1,44 @@
 const function1002 = function (t, e, i) {
     "use strict";
-
-    function n(t, e, i, n, _) {
-        if (0 == e.getCount()) return {
-            result: !1,
-            reason: 31
-        };
-        var l = o(t, e);
-        if (null != l) return l;
-        var u = t.mst_id,
-            c = e.getShipListAll();
-        if (16 == u && null != (l = r(c))) return l;
-        if (63 == u && null != (l = s(c))) return l;
-        if (64 == u && null != (l = a(c))) return l;
-        if (null != e.expedition) return {
-            result: !1,
-            reason: 30
-        };
-        if (null != n) {
-            var h = e.getCombinedType(),
-                p = n.check(h, c);
-            if (0 == p.result || 0 != p.reason) return p
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
         }
-        for (var d = !1, f = !1, y = 0, m = c; y < m.length; y++) {
-            var g = m[y];
-            null != g && (-1 != i.indexOf(g.memID) && (d = !0), (g.fuelNow <= 0 || g.ammoNow <= 0) && (f = !0))
-        }
-        if (1 == d) return {
-            result: !1,
-            reason: 1
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
         };
-        if (1 == f) return {
-            result: !1,
-            reason: 2
-        };
-        var v = c[0].getDamageType();
-        if (0 != e.getCombinedType()) {
-            if (50 == v || 25 == v || 0 == v) return {
-                result: !1,
-                reason: 21
-            };
-            var b = c[6].getDamageType();
-            if (50 == b || 25 == b || 0 == b) return {
-                result: !1,
-                reason: 21
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
-        } else if (25 == v || 0 == v) return {
-            result: !1,
-            reason: 3
-        };
-        return 1 == e.isCombined_Sub() ? {
-            result: !1,
-            reason: 20
-        } : 1 == _ ? {
-            result: !1,
-            reason: 51
-        } : {
-            result: !0,
-            reason: 0
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
-    }
-
-    function o(t, e) {
-        var i = e.getCombinedType(),
-            n = t.getAllowedDeckType();
-        if (0 == i) {
-            if (e.getCount() > 6) return 1 == n.yugeki ? null : {
-                result: !1,
-                reason: 36
-            };
-            if (1 == n.normal) return null
-        }
-        var o = n.rengo;
-        return 0 != o || 1 != i && 2 != i && 3 != i ? 1 == o && 1 != i ? {
-            result: !1,
-            reason: 23
-        } : 2 == o && 2 != i ? {
-            result: !1,
-            reason: 24
-        } : 3 == o && 1 != i && 2 != i ? {
-            result: !1,
-            reason: 25
-        } : 4 == o && 3 != i ? {
-            result: !1,
-            reason: 28
-        } : 5 == o && 1 != i && 3 != i ? {
-            result: !1,
-            reason: 26
-        } : 6 == o && 2 != i && 3 != i ? {
-            result: !1,
-            reason: 27
-        } : 7 == o && 1 != i && 2 != i && 3 != i ? {
-            result: !1,
-            reason: 29
-        } : null : 432 == t.mst_id || 433 == t.mst_id ? {
-            result: !1,
-            reason: 46
-        } : {
-            result: !1,
-            reason: 22
-        }
-    }
-
-    function r(t) {
-        for (var e = 0, i = t; e < i.length; e++) {
-            var n = i[e];
-            if (null != n) {
-                switch (n.shipTypeID) {
-                    case 4:
-                    case 8:
-                    case 9:
-                    case 11:
-                    case 13:
-                    case 14:
-                    case 18:
-                        return {
-                            result: !1, reason: 4
-                        }
-                }
-            }
-        }
-        return null
-    }
-
-    function s(t) {
-        for (var e = 0, i = 0, n = 0, o = 0, r = t; o < r.length; o++) {
-            var s = r[o];
-            if (null != s) {
-                var a = s.shipTypeID;
-                if (2 == a) e++;
-                else if (3 == a) i++;
-                else if (21 == a) i++;
-                else {
-                    if (16 != a) return {
-                        result: !1,
-                        reason: 5
-                    };
-                    n++
-                }
-            }
-        }
-        return 0 == e ? {
-            result: !1,
-            reason: 6
-        } : 0 == i ? {
-            result: !1,
-            reason: 7
-        } : i >= 4 ? {
-            result: !1,
-            reason: 8
-        } : 0 == n ? {
-            result: !1,
-            reason: 9
-        } : n >= 3 ? {
-            result: !1,
-            reason: 10
-        } : null
-    }
-
-    function a(t) {
-        for (var e = 0, i = 0, n = 0, o = t; n < o.length; n++) {
-            var r = o[n];
-            if (null != r) {
-                var s = r.shipTypeID;
-                8 == s ? e++ : 9 == s ? e++ : 10 == s ? e++ : 7 == s ? i++ : 11 == s ? i++ : 18 == s && i++
-            }
-        }
-        return e >= 3 ? {
-            result: !1,
-            reason: 11
-        } : i >= 3 ? {
-            result: !1,
-            reason: 12
-        } : null
-    }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), e.check = n
+    });
+    var o = i(4),
+        r = i(26),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._fuel_max = 0, e._baux_max = 0, e._key = null, e._title = new PIXI.Sprite, e._title.position.set(15, 17), e.addChild(e._title), e._icon_fuel = new PIXI.Sprite, e._icon_fuel.position.set(17, 75), e.addChild(e._icon_fuel), e._icon_baux = new PIXI.Sprite, e._icon_baux.position.set(158, 75), e.addChild(e._icon_baux), e._txt_fuel = new o.TextBox(28, 5523516), e._txt_fuel.y = 158, e.addChild(e._txt_fuel), e._txt_baux = new o.TextBox(28, 5523516), e._txt_baux.y = 158, e.addChild(e._txt_baux), e
+            }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._fuel_max = t, this._baux_max = e, this._title.texture = r.SALLY_AIRUNIT.getTexture(118), this._icon_fuel.texture = r.SALLY_AIRUNIT.getTexture(12), this._icon_baux.texture = r.SALLY_AIRUNIT.getTexture(11)
+            }, e.prototype.show = function (t, e, i) {
+                void 0 === i && (i = null), this._key = i;
+                var n = t > this._fuel_max ? 16711680 : 5523516;
+                this._txt_fuel.style.fill = n, this._txt_fuel.text = t.toString(), this._txt_fuel.x = 144 - this._txt_fuel.width;
+                var o = e > this._baux_max ? 16711680 : 5523516;
+                this._txt_baux.style.fill = o, this._txt_baux.text = e.toString(), this._txt_baux.x = 285 - this._txt_baux.width
+            }, e.prototype.hide = function (t) {
+                void 0 === t && (t = null), null != t && t != this._key || (this._key = null, this._txt_fuel.text = "", this._txt_baux.text = "")
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._txt_fuel.destroy(), this._txt_baux.destroy()
+            }, e
+        }(PIXI.Container);
+    e.AirUnitSupplyPanelTitle = s
 }

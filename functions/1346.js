@@ -19,20 +19,78 @@ const function1346 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(144),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = 0 != n.type;
-                return i._url = 0 == o ? "api_req_sortie/ld_airbattle" : "api_req_combined_battle/ld_airbattle", i._data = e, i
+    var o = i(132),
+        r = i(51),
+        s = i(439),
+        a = i(1347),
+        _ = i(1348),
+        u = i(1362),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "map", {
+                get: function () {
+                    return this._map
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "upper", {
+                get: function () {
+                    return this._upper
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gauge_layer", {
+                get: function () {
+                    return this._gauge_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara_layer", {
+                get: function () {
+                    return this._chara_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "universal_layer", {
+                get: function () {
+                    return this._universal_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "top_layer", {
+                get: function () {
+                    return this._top_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
+            }, e.prototype.frontOfGaugeLayer = function () {
+                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
             }, e
-        }(o.APIBase);
-    e.APIBattleStartAirRaid = s
+        }(PIXI.Container);
+    e.ViewMain = l
 }

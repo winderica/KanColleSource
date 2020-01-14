@@ -19,42 +19,40 @@ const function1460 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(16),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.5, .87), e._splash2.anchor.set(.56, .95), e._splash3.anchor.set(.58, .9), e._splash1.position.set(5, 5), e._splash2.position.set(18, -11), e._splash3.position.set(24, -26), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
+    var o = i(476),
+        r = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._splash1.texture = r.BATTLE_MAIN.getTexture(114), this._splash2.texture = r.BATTLE_MAIN.getTexture(115), this._splash3.texture = r.BATTLE_MAIN.getTexture(116)
-            }, e.prototype.play = function () {
-                var t = this;
-                createjs.Tween.get(this._splash1).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 366).to({
-                    scaleX: .78,
-                    scaleY: .78,
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._splash2).wait(200).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 200).to({
-                    alpha: 0
-                }, 33), createjs.Tween.get(this._splash3).wait(333).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 166).to({
-                    scaleX: .88,
-                    scaleY: .88,
-                    alpha: 0
-                }, 166).call(function () {
-                    t._init(), t.emit("complete")
-                })
-            }, e.prototype._init = function () {
-                this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
+            return n(e, t), e.prototype._getShips_f = function () {
+                var t = this._scene.data.model.deck_f;
+                if (1 == t.isCombined()) {
+                    switch (this._record.common.getActiveDeckFriend()) {
+                        case 1:
+                            return t.ships_main;
+                        case 2:
+                            return t.ships_sub
+                    }
+                }
+                return t.ships
+            }, e.prototype._getShips_e = function () {
+                var t = this._scene.data.model.deck_e;
+                if (1 == t.isCombined()) {
+                    switch (this._record.common.getActiveDeckEnemy()) {
+                        case 1:
+                            return t.ships_main;
+                        case 2:
+                            return t.ships_sub
+                    }
+                }
+                return t.ships
+            }, e.prototype._getFlareBanner_f = function () {
+                var t = this._record.raw.getFlareLightFriend();
+                return this._scene.view.bannerGroupLayer.getBanner(!0, t)
+            }, e.prototype._getFlareBanner_e = function () {
+                var t = this._record.raw.getFlareLightEnemy();
+                return this._scene.view.bannerGroupLayer.getBanner(!1, t)
             }, e
-        }(PIXI.Container);
-    e.TorpedoWaterColumn = s
+        }(o.PhaseLightingBase);
+    e.PhaseLighting = r
 }

@@ -19,56 +19,178 @@ const function95 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(38),
-        s = i(254),
-        a = i(255),
-        _ = i(63),
-        l = i(1364),
-        u = i(183),
+    var o = i(0),
+        r = i(22),
+        s = i(2),
+        a = i(24),
+        _ = i(28),
+        u = i(16),
+        l = i(1383),
         c = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._voice_ship = null, n._scene = e, n._record = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._data = this._record.raw.air_unit_jet, null == this._data ? this._endTask() : this._preload()
-            }, e.prototype._preload = function () {
-                var t = this,
-                    e = this._data.getTaikuShipIndex(),
-                    i = this._scene.data.model.deck_f.ships[e];
-                if (null != i) {
-                    var n = i.mst_id,
-                        o = i.isDamaged(),
-                        r = this._data.getTaikuSlotMstIDs();
-                    this._aaCutin = new a.CutinAntiAircraft(n, o, r), this._aaCutin.preload(function () {
-                        t._enterEnemy()
+                this._record.getRation().length > 0 ? this._ration() : this._ration_combined()
+            }, e.prototype._ration = function () {
+                for (var t = this, e = this._scene.data.model.deck_f.ships, i = this._record.getRation(), n = this._createDic(e, i), o = new _.ParallelTask, r = 0, s = e; r < s.length; r++) {
+                    var a = s[r];
+                    if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
+                        var u = n[a.mem_id];
+                        if (1 == u.length) o.add(new h(this._scene, a, u[0]));
+                        else if (2 == u.length) {
+                            var l = this._voice_ship == a;
+                            o.add(new p(this._scene, a, u[0], u[1], l))
+                        }
+                    }
+                }
+                o.start(function () {
+                    createjs.Tween.get(null).wait(500).call(function () {
+                        t._ration_combined()
                     })
-                } else this._enterEnemy()
-            }, e.prototype._enterEnemy = function () {
+                })
+            }, e.prototype._ration_combined = function () {
                 var t = this,
-                    e = new o.SerialTask;
-                e.add(new _.PhaseEnemyEnter(this._scene, this._record)), e.add(new r.WaitTask(600)), e.start(function () {
-                    t._showTouchPlane()
-                })
-            }, e.prototype._showTouchPlane = function () {
-                var t = this,
-                    e = this._data,
-                    i = e.getTouchPlaneFriend(),
-                    n = e.getTouchPlaneEnemy();
-                new u.TaskShowTouchPlane(this._scene, i, n).start(function () {
-                    t._animation(e)
-                })
-            }, e.prototype._animation = function (t) {
-                var e = this,
-                    i = this._scene.data.model.deck_f.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new l.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
-                    e._afterAnimetion()
-                })
-            }, e.prototype._afterAnimetion = function () {
-                var t = this._scene.view.raderLayer;
-                t.rader_e.touch_plane.hide(), t.rader_f.touch_plane.hide(), this._endTask()
+                    e = this._record.getRationCombined();
+                if (e.length > 0) {
+                    for (var i = this._scene.data.model.deck_f.ships, n = this._createDic(i, e), o = new _.ParallelTask, r = 0, s = i; r < s.length; r++) {
+                        var a = s[r];
+                        if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
+                            var u = n[a.mem_id];
+                            if (1 == u.length) o.add(new h(this._scene, a, u[0]));
+                            else if (2 == u.length) {
+                                var l = this._voice_ship == a;
+                                o.add(new p(this._scene, a, u[0], u[1], l))
+                            }
+                        }
+                    }
+                    o.start(function () {
+                        createjs.Tween.get(null).wait(500).call(function () {
+                            t._endTask()
+                        })
+                    })
+                } else this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._record = null, this._voice_ship = null, t.prototype._endTask.call(this)
+            }, e.prototype._createDic = function (t, e) {
+                for (var i = {}, n = 0, o = t; n < o.length; n++) {
+                    var r = o[n];
+                    if (null != r) {
+                        var s = r.mem_id;
+                        if (e.indexOf(s) >= 0) {
+                            var a = r.useRation();
+                            null == this._voice_ship && a.length > 1 && (this._voice_ship = r), i[r.mem_id] = a
+                        }
+                    }
+                }
+                return i
             }, e
-        }(s.PhaseAirBase);
-    e.PhaseAirUnitJet = c
+        }(s.TaskBase);
+    e.PhaseRation = c;
+    var h = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._ship = i, o._ration_mst_id = n, o
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._scene.view.bannerGroupLayer.getBanner(this._ship),
+                    i = e.getGlobalPos(),
+                    n = new d;
+                n.initialize(this._ration_mst_id), n.x = i.x + r.BannerSize.W / 2 + 20 - 75, n.y = i.y, n.alpha = 0;
+                var o = this._scene.view.bannerGroupLayer.effect_layer;
+                o.addChild(n), createjs.Tween.get(n).to({
+                    x: i.x + r.BannerSize.W / 2 + 20,
+                    alpha: 1
+                }, 200, createjs.Ease.sineOut).wait(250).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 150, createjs.Ease.sineOut).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 300, createjs.Ease.sineOut).call(function () {
+                    new l.TaskBannerParticle(o, i).start()
+                }).wait(1e3).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 150, createjs.Ease.sineOut).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 100).call(function () {
+                    t._endTask()
+                })
+            }, e
+        }(s.TaskBase),
+        p = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._scene = e, s._ship = i, s._ration_mst_id_1 = n, s._ration_mst_id_2 = o, s._voice = r, s
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._scene.view.bannerGroupLayer.getBanner(this._ship),
+                    i = e.getGlobalPos(),
+                    n = new d;
+                n.initialize(this._ration_mst_id_1), n.x = i.x + r.BannerSize.W / 2 + 20 - 75, n.y = i.y, n.alpha = 0;
+                var s = this._scene.view.bannerGroupLayer.effect_layer;
+                s.addChild(n), createjs.Tween.get(n).to({
+                    x: i.x + r.BannerSize.W / 2 + 20,
+                    alpha: 1
+                }, 200, createjs.Ease.sineOut).wait(250).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 150, createjs.Ease.sineOut).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 300, createjs.Ease.sineOut).wait(1e3).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 150, createjs.Ease.sineOut).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 100);
+                var a = new d;
+                a.initialize(this._ration_mst_id_2), a.x = i.x + r.BannerSize.W / 2 + 20 + 75 - 75, a.y = i.y, a.alpha = 0, s.addChild(a), createjs.Tween.get(a).wait(100).to({
+                    x: i.x + r.BannerSize.W / 2 + 20 + 75,
+                    alpha: 1
+                }, 200, createjs.Ease.sineOut).wait(250).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 150, createjs.Ease.sineOut).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 300, createjs.Ease.sineOut).call(function () {
+                    new l.TaskBannerParticle(s, i).start(), 1 == t._voice && o.default.sound.voice.play(t._ship.mst_id.toString(), 26)
+                }).wait(1e3).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 150, createjs.Ease.sineOut).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 100).call(function () {
+                    t._endTask()
+                }), this._endTask()
+            }, e
+        }(s.TaskBase),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e._img.y = -22, e.addChild(e._img), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = this._getTexture(t)
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case 145:
+                        return u.BATTLE_MAIN.getTexture(53);
+                    case 150:
+                        return u.BATTLE_MAIN.getTexture(57);
+                    case 241:
+                        return u.BATTLE_MAIN.getTexture(54);
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
+            }, e
+        }(a.Container)
 }

@@ -19,37 +19,26 @@ const function1171 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(1172),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._result = !1, e._api = null, e._retry_count = 0, e
+    var o = i(0),
+        r = i(4),
+        s = i(3),
+        a = i(27),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._message = new r.TextBox(18, 4999235), i._message.position.set(174, 47), i.addChild(i._message), i._icon = new PIXI.Sprite, i._icon.position.set(303, 122), i.addChild(i._icon), i._arrow = new r.TextBox(18, 4999235), i._arrow.text = "\u2192", i._arrow.position.set(425, 150), i.addChild(i._arrow), i._from = new r.TextBox(18, 4999235), i._from.position.set(380, 152), i.addChild(i._from), i._tobe = new r.TextBox(18, 4999235), i._tobe.position.set(455, 152), i.addChild(i._tobe), i._btn_yes = new a.BtnBase(0, e), i._btn_yes.position.set(191, 219), i.addChild(i._btn_yes), i._btn_back = new a.BtnBase(-1, e), i._btn_back.position.set(399, 219), i.addChild(i._btn_back), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(500).call(function () {
-                    t._check()
-                })
-            }, e.prototype._check = function () {
-                var t = this;
-                this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                    t._checked()
-                })
-            }, e.prototype._checked = function () {
-                var t = this;
-                2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._check()
-                })
-            }, e.prototype._endTask = function () {
-                this._api = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = s.ITEM_ILIST_MEDAL_KOU.getTexture(2), this._message.text = "\u7269\u8cc7\u3068\u4ea4\u63db\u3059\u308b\u3068\u3001\u7532\u7a2e\u52f2\u7ae0\xd71\u304c\u6d88\u3048\u3066\u3057\u307e\u3044\u307e\u3059\u3002\n\u305d\u308c\u3067\u3082\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f", this._icon.texture = o.default.resources.getUseitem(61, 0), this._from.text = t.toString(), this._from.x = 420 - this._from.width, this._tobe.text = (t - 1).toString();
+                var e = s.ITEM_ILIST_MEDAL_KOU.getTexture(1);
+                this._btn_yes.initialize(e), e = s.ITEM_ILIST_MEDAL_KOU.getTexture(0), this._btn_back.initialize(e)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_back.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_back.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._arrow.destroy(), this._from.destroy(), this._tobe.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
             }, e
-        }(o.TaskBase);
-    e.TaskPayCheck = s
+        }(PIXI.Sprite);
+    e.ConfirmView = _
 }

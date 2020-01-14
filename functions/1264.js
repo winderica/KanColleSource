@@ -20,93 +20,58 @@ const function1264 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(66),
-        s = i(27),
-        a = function (t) {
+        r = i(250),
+        s = i(438),
+        a = i(1267),
+        _ = i(1270),
+        u = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n.TIME = 2e3, n._scene = e, n._model = i, n
+                return n._scene = e, n._option = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                this._initialize()
-            }, e.prototype._initialize = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                var t = this;
+                this._model = new r.BattleSceneModel(!0), this._model.updateDeckData(this._option.deck_f, this._option.deck_e), this._scene.battle.initialize(this._model), this._scene.view.shutter.once("closed", function () {
+                    t._formationSelect()
+                }), this._scene.view.shutter.close(400)
+            }, e.prototype._formationSelect = function () {
                 var t = this,
-                    e = new s.ParallelTask,
-                    i = new _(this._scene, this._model, this.TIME);
-                e.add(i);
-                var n = new l(this._scene, this._model, this.TIME);
-                e.add(n), e.start(function () {
-                    t._setCellColor()
+                    e = new a.TaskFormationSelect(this._scene, this._option.deck_f);
+                e.start(function () {
+                    t._option.deck_f.formation = e.selected_formation, t._insert()
                 })
-            }, e.prototype._setCellColor = function () {
-                var t = this._model.sortie.getNextCell().no,
-                    e = this._scene.view.map.spotLayer.getSpot(t);
-                if (null != e) {
-                    e.showLine();
-                    for (var i = this._scene.resInfo.getSameSpotData(t), n = 0; n < i.length; n++) {
-                        var o = i[n].no;
-                        if (0 == n) {
-                            var r = this._model.sortie.getCellInfo(o);
-                            this._scene.view.map.spotLayer.getSpot(o).setColor(r.color)
-                        } else {
-                            this._scene.view.map.spotLayer.getSpot(o).setColor(0)
-                        }
-                    }
-                }
-                this._endTask()
-            }, e
-        }(o.TaskBase);
-    e.AnimShipMove = a;
-    var _ = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._model = i, o._time = n, o
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t, e = this,
-                    i = this._scene.view.map,
-                    n = i.ship_icon,
-                    o = this._model.sortie.now_cell_no,
-                    s = (i.spotLayer.getSpot(o), this._model.sortie.getNextCell().no),
-                    a = i.spotLayer.getSpot(s),
-                    _ = this._scene.resInfo.getControlPoint(s);
-                if (null == _) t = createjs.Tween.get(n), t.to({
-                    x: a.x,
-                    y: a.y
-                }, this._time);
-                else {
-                    var l = new PIXI.Point(n.x, n.y),
-                        u = new PIXI.Point(a.x, a.y),
-                        c = r.TweenUtil.create2BezierPoints(l, _, u, this._time);
-                    t = createjs.Tween.get(n);
-                    for (var h = 0, p = c; h < p.length; h++) {
-                        var d = p[h];
-                        t.to({
-                            x: d.x,
-                            y: d.y
-                        }, d.t)
-                    }
-                }
-                t.call(function () {
-                    e._endTask()
+            }, e.prototype._insert = function () {
+                var t = this;
+                this._scene.battle.bg.setDay(function () {
+                    createjs.Tween.get(t._scene.view).to({
+                        alpha: 0
+                    }, 300), t._scene.battle.shutter2.open(0), createjs.Tween.get(t._scene.battle).to({
+                        alpha: 1
+                    }, 300), new s.SallyAnimationTask(t._scene).start(function () {
+                        t._cutin()
+                    })
                 })
-            }, e
-        }(o.TaskBase),
-        l = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._model = i, o._time = n, o
-            }
-            return n(e, t), e.prototype._start = function () {
+            }, e.prototype._cutin = function () {
                 var t = this,
-                    e = this._model.sortie.getNextCell().no,
-                    i = this._scene.resInfo.getAirRaidOption(e);
-                if (null == i) this._endTask();
-                else {
-                    this._scene.view.map.plane_layer.show(e, i, 2e3, this._model.sortie.map_no, this._model.sortie.area_id, function () {
+                    e = this._option.deck_f.ships,
+                    i = this._option.deck_f.medal_num,
+                    n = this._option.deck_e.ships,
+                    o = this._option.deck_e.medal_num,
+                    r = new _.StartAnimationTask(this._scene, e, i, n, o);
+                r.preload(function () {
+                    r.start(function () {
                         t._endTask()
                     })
-                }
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._option = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase)
+        }(o.TaskBase);
+    e.TaskMain = u
 }

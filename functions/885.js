@@ -1,120 +1,142 @@
 const function885 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(35),
-        r = i(886),
-        s = i(887),
-        a = i(889),
-        _ = i(890),
-        l = i(891),
-        u = i(892),
-        c = i(894),
-        h = i(896),
-        p = i(897),
-        d = i(898),
-        f = i(1),
-        y = function () {
-            function t(t, e, i, n, y) {
-                var m = this;
-                this.hammerMotivation = !1, this.spannerMotivation = !1, this.ANIMATION_KEY_UNLOCK = {
-                    alpha: 0,
-                    y: 0
-                }, this._onClickGet = function () {
-                    m.onClickGet(m.memDockId)
-                }, this._onClickSelect = function () {
-                    m.onClickSelect(m.memDockId)
-                }, this._onClickHighSpeed = function () {
-                    m.onClickHighSpeed(m.memDockId)
-                }, this._onMouseOverHighSpeed = function () {
-                    m.buttonHighSpeed.texture = o.ARSENAL_MAIN.getTexture(24)
-                }, this._onMouseOutHighSpeed = function () {
-                    m.buttonHighSpeed.texture = o.ARSENAL_MAIN.getTexture(22)
-                }, this._onClickNoDock = function () {
-                    m.hasKey && m.focusableNoDock && m.onClickNoDock(m.memDockId)
-                }, this.great_steelFrame_bg = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(65)), this.spanner = new a.Spanner(y), this.hammer = new s.Hammer(y), this.carry = new r.Carry(y), this.kDockStateView = new d.KDockStateView, this.buttonGet = new h.GetButton, this.buttonSelect = new p.SelectButton, this.iconHighSpeedDisable = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(23)), this.buttonHighSpeed = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(22)), this.normalBuildStage = new u.NormalBuildStage, this.largeBuildStage = new c.LargeBuildStage, this.noDockView = new l.NoDockView(n), this.burner = new _.Burner(y), this.steelFrame_mask_door = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(145)), this.txt_open = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(157)), this.txt_open.alpha = 0, this.txt_open.visible = !1, this.txt_open.position.set(285, 54), this.normalBuildStage.visible = !1, this.largeBuildStage.visible = !1, this.great_steelFrame_bg.visible = !1, this.spanner.visible = !1, this.hammer.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.noDockView.visible = !1, this.iconHighSpeedDisable.x = this.buttonHighSpeed.x = 525, this.iconHighSpeedDisable.y = this.buttonHighSpeed.y = 2, this.kDockStateView.position.set(63, 0), this.buttonGet.position.set(345, 28), this.great_steelFrame_bg.position.set(239, -1), this.buttonSelect.position.set(345, 28), this.normalBuildStage.position.set(238, -3), this.largeBuildStage.position.set(238, -3), this.steelFrame_mask_door.position.set(641, 1), this.noDockView.position.set(-7, -12), this.buttonGet.onClick = this._onClickGet, this.buttonSelect.onClick = this._onClickSelect, this.noDockView.onClick = this._onClickNoDock, this.buttonHighSpeed.on(f.EventType.CLICK, this._onClickHighSpeed), this.buttonHighSpeed.on(f.EventType.MOUSEOUT, this._onMouseOutHighSpeed), this.buttonHighSpeed.on(f.EventType.MOUSEOVER, this._onMouseOverHighSpeed), this.buttonHighSpeed.interactive = this.buttonHighSpeed.buttonMode = !0, e.addChild(this.great_steelFrame_bg, this.kDockStateView, this.noDockView), i.addChild(this.carry, this.normalBuildStage, this.largeBuildStage, this.spanner, this.hammer, this.burner, this.steelFrame_mask_door), n.addChild(this.iconHighSpeedDisable, this.buttonSelect, this.buttonGet, this.buttonHighSpeed, this.txt_open), this.completeTime = 0, this.layerBase = e, this.layerBuild = i, this.layerInteractive = n, this.syncAnimationKey = y, this.memDockId = t, this._state = 0
+    var o = i(3),
+        r = i(3),
+        s = i(228),
+        a = i(4),
+        _ = i(33),
+        u = i(25),
+        l = i(115),
+        c = i(1),
+        h = i(14),
+        p = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._state = !1, e._onClick = function () {
+                    e._state = e.hiSpeedToggle.state, e.onClick()
+                };
+                var i = new PIXI.Sprite(r.COMMON_MAIN.getTexture(12)),
+                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(12)),
+                    u = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(46)),
+                    c = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(45)),
+                    p = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(43)),
+                    y = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(44)),
+                    m = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(42)),
+                    g = new d,
+                    v = new f,
+                    b = new s.RepairHpGaugeView,
+                    w = new _.ShipBanner,
+                    x = new a.TextBox(26, 5523516),
+                    I = new a.TextBox(19, 5523516),
+                    T = new a.TextBox(24, 5523516),
+                    O = new a.TextBox(24, 5523516),
+                    C = new a.TextBox(15, 12467003),
+                    P = new a.TextBox(24, 5523516),
+                    k = new l.DownArrowAnimationView,
+                    S = new l.DisableDownArrowAnimationView,
+                    M = new PIXI.Container,
+                    A = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
+                A.position.set(0, -34);
+                var E = new PIXI.Sprite(o.COMMON_MAIN.getTexture(1));
+                E.anchor.y = .5, E.position.set(22, 20), A.addChild(E), M.addChild(A), v.onClick = e._onClick, n.position.set(31, 31), u.position.set(15, 226), c.position.set(15, 280), p.position.set(15, 336), y.position.set(15, 390), g.position.set(178, 275), x.position.set(304, 42), m.position.set(229, 49), I.position.set(301, 151), T.position.set(318, 333), O.position.set(318, 389), C.position.set(40, 447), v.position.set(40, 477), b.position.set(61, 177), P.position.set(318, 225), w.position.set(60, 85), k.position.set(156, 441), S.position.set(156, 441), I.anchor.x = 1, x.anchor.x = 1;
+                var j = new PIXI.Container,
+                    N = new a.TextBox(30, 5523516);
+                j.position.set(57, 37);
+                var L = h.CreateRect.gradientLeftToRight(170, 42, .5, .98);
+                return j.mask = L, j.addChild(N, L), T.anchor.x = 1, O.anchor.x = 1, P.anchor.x = 1, i.interactive = !0, e.addChild(i, n, u, c, p, y, C, v, m, j, x, I, b, g, T, O, P, M, w, S, k), e.textName = N, e.textLevel = x, e.textHp = I, e.textSteel = T, e.textFuel = O, e.textAlert = C, e.hiSpeedToggle = g, e.startButton = v, e.textRequire = P, e.shipBanner = w, e.downArrowAnimationView = k, e.disableDownArrowAnimationView = S, e.hpGaugeView = b, e.headerContainer = M, e.containerName = j, e
             }
-            return Object.defineProperty(t.prototype, "state", {
+            return n(e, t), Object.defineProperty(e.prototype, "state", {
                 get: function () {
                     return this._state
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.showHighSpeedButton = function (t) {
-                this.buttonHighSpeed.visible = !1, this.iconHighSpeedDisable.visible = !1, t ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0
-            }, t.prototype.hideHighSpeedButton = function () {
-                this.buttonHighSpeed.visible = !1, this.iconHighSpeedDisable.visible = !1
-            }, t.prototype.Build = function (t, e, i, o, r, s, a, _, l) {
-                var u = this;
-                this._state = t ? 3 : 2, this.steelFrame_mask_door.visible = !0, this.hammerMotivation = o, this.spannerMotivation = r, this.great_steelFrame_bg.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.hammer.visible = !1, this.spanner.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.noDockView.visible = !1, this.kDockStateView.build(a), this.kDockStateView.update(_), this.normalBuildStage.updatePhaseMax(l), this.largeBuildStage.updatePhaseMax(l), this.normalBuildStage.update(.1), this.largeBuildStage.update(.1), this.hideHighSpeedButton(), t ? (this.burner.visible = !0, this.burner.useBurner(function (t) {
-                    u.kDockStateView.updateProgress(a, _, t), u.normalBuildStage.update(t), u.largeBuildStage.update(t)
-                }, function () {
-                    u.kDockStateView.updateProgress(a, _, 1), u.burner.complete(), u.hammerMotivation && (u.hammer.visible = !0, u.hammer.x = 825, u.hammer.useBurnerd()), u.spannerMotivation && (u.spanner.visible = !0, u.spanner.x = 825, u.spanner.useBurnerd()), u._buildComplete();
-                    var t = n.default.model.deck.get(1).getShipList()[0].mstID;
-                    n.default.sound.voice.play(t.toString(), 5)
-                })) : (i ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0, o && (this.hammer.visible = !0, this.hammer.build()), r && (this.spanner.visible = !0, this.spanner.build()), this.carry.build(), this.carry.visible = !0), e ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0) : this.normalBuildStage.visible = !0, this.totalRequireTime = 60 * s * 1e3, this.completeTime = a
-            }, t.prototype.changeState = function (t) {
-                this._state = t
-            }, t.prototype.Standby = function () {
-                this.__Standby__()
-            }, t.prototype.__Standby__ = function () {
-                this._state = 0, this.iconHighSpeedDisable.visible = !0, this.steelFrame_mask_door.visible = !0, this.kDockStateView.standby(), this.normalBuildStage.update(0), this.largeBuildStage.update(0), this.kDockStateView.visible = !0, this.buttonSelect.visible = !0, this.buttonGet.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !0, this.great_steelFrame_bg.visible = !1, this.noDockView.visible = !1
-            }, t.prototype.UnLockDock = function () {
-                var t = this;
-                createjs.Tween.removeTweens(this.ANIMATION_KEY_UNLOCK), this.txt_open.alpha = 0, this.txt_open.visible = !0, this.txt_open.alpha = this.ANIMATION_KEY_UNLOCK.alpha = 0, this.txt_open.y = this.ANIMATION_KEY_UNLOCK.y = 54;
-                var e = createjs.Tween.get(this.ANIMATION_KEY_UNLOCK);
-                e.to({
-                    alpha: 1,
-                    y: -26.25
-                }, 500).to({
-                    alpha: 0,
-                    y: -52
-                }, 400).call(function () {
-                    e.removeAllEventListeners("change"), e.setPaused(!0), t.txt_open.alpha = t.ANIMATION_KEY_UNLOCK.alpha = 0, t.txt_open.y = t.ANIMATION_KEY_UNLOCK.y = -105
-                }).addEventListener("change", function () {
-                    t.txt_open.alpha = t.ANIMATION_KEY_UNLOCK.alpha, t.txt_open.y = t.ANIMATION_KEY_UNLOCK.y
-                }), e.play(null), this.noDockView.hidePop(), this.noDockView.visible = !1, this.__Standby__()
-            }, t.prototype.updateMotivation = function (t, e) {
-                this.hammerMotivation = t, this.spannerMotivation = e
-            }, t.prototype.Resume = function (t, e, i, n, o, r, s, a) {
-                this._state = 2, this.hammerMotivation = i, this.spannerMotivation = n, this.steelFrame_mask_door.visible = !0, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.hammer.visible = !1, this.spanner.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.noDockView.visible = !1, this.normalBuildStage.updatePhaseMax(a), this.largeBuildStage.updatePhaseMax(a), i && (this.hammer.visible = !0, this.hammer.resume()), n && (this.spanner.visible = !0, this.spanner.resume()), t ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0) : this.normalBuildStage.visible = !0, this.hideHighSpeedButton(), e ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0, this.kDockStateView.build(r), this.kDockStateView.update(s), this.carry.visible = !0, this.carry.resume(), this.totalRequireTime = 60 * o * 1e3, this.completeTime = r
-            }, t.prototype.Complete = function () {
-                this.hammer.visible = !1, this.spanner.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), this.__Complete__()
-            }, t.prototype.NoDock = function (t, e) {
-                this._state = -1, this.steelFrame_mask_door.visible = !1, this.noDockView.visible = !0, this.kDockStateView.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.noDockView.update(t, e), this.focusableNoDock = t, this.hasKey = e
-            }, t.prototype.forceComplete = function (t) {
-                t ? this.largeBuildStage.forceComplete() : this.normalBuildStage.forceComplete()
-            }, t.prototype.Completed = function (t, e) {
-                this.steelFrame_mask_door.visible = !0, this.hammer.visible = !1, this.spanner.visible = !1, this.great_steelFrame_bg.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), e ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0, this.largeBuildStage.updatePhaseMax(t), this.largeBuildStage.update(1)) : (this.normalBuildStage.visible = !0, this.normalBuildStage.updatePhaseMax(t), this.normalBuildStage.update(1)), this.__Complete__()
-            }, t.prototype.__Complete__ = function () {
-                this._buildComplete(), this.hammer.visible && this.hammer.complete(), this.spanner.visible && this.spanner.complete(), this.carry.visible && this.carry.complete(), this.burner.visible && this.burner.complete()
-            }, t.prototype._buildComplete = function () {
-                this._state = 3, this.buttonSelect.visible = !1, this.buttonGet.visible = !0, this.kDockStateView.complete()
-            }, t.prototype.UseBanner = function (t, e) {
-                var i = this;
-                this.hammer.visible && this.hammer.useBurner(), this.spanner.visible && this.spanner.useBurner(), this.carry.visible && this.carry.useBurner(), this.burner.visible = !0, this.burner.useBurner(function (n) {
-                    i.kDockStateView.updateProgress(t, e, n), i.normalBuildStage.update(n), i.largeBuildStage.update(n)
-                }, function () {
-                    i.buttonSelect.visible = !1, i.buttonGet.visible = !0, i.burner.complete(), i.hammerMotivation && i.hammer.useBurnerd(), i.spannerMotivation && i.spanner.useBurnerd(), i.kDockStateView.complete();
-                    var t = n.default.model.deck.get(1).getShipList()[0].mstID;
-                    n.default.sound.voice.play(t.toString(), 5)
-                })
-            }, t.prototype.Receive = function () {
-                this.burner.visible && this.burner.receive()
-            }, t.prototype.Received = function () {
-                this.hammer.visible && this.hammer.received(), this.spanner.visible && this.spanner.received(), this.carry.visible && this.carry.received(), this.__Standby__()
-            }, t.prototype.onUpdateTime = function (t) {
-                this.kDockStateView.update(t);
-                var e = this.completeTime - t,
-                    i = 1 - e / this.totalRequireTime;
-                this.normalBuildStage.update(i), this.largeBuildStage.update(i)
-            }, t.prototype.updateCondition = function (t, e) {
-                this.buttonGet.updateCondition(t, e), this.buttonSelect.updateCondition(t, e)
-            }, t.prototype.dispose = function () {
-                this.normalBuildStage.dispose(), this.largeBuildStage.dispose(), this.buttonGet.dispose(), this.buttonSelect.dispose(), this.kDockStateView.dispose(), this.noDockView.dispose(), this.burner.dispose(), this.spanner.dispose(), this.hammer.dispose(), this.carry.dispose(), this.layerBase.removeChildren(), this.layerBuild.removeChildren(), this.layerInteractive.removeChildren(), this.onClickGet = null, this.onClickSelect = null, this.onClickHighSpeed = null, this.onClickNoDock = null, this.completeTime = null, this.totalRequireTime = null, this.memDockId = null, this.syncAnimationKey = null, this.great_steelFrame_bg = null, this.normalBuildStage = null, this.largeBuildStage = null, this.buttonGet = null, this.buttonSelect = null, this.buttonHighSpeed = null, this.iconHighSpeedDisable = null, this.kDockStateView = null, this.noDockView = null, this.burner = null, this.spanner = null, this.hammer = null, this.carry = null, this.txt_open = null, this.steelFrame_mask_door = null, this.layerBase = null, this.layerBuild = null, this.layerInteractive = null, this.hammerMotivation = null, this.spannerMotivation = null, this.focusableNoDock = null, this.hasKey = null, this._state = null
-            }, t
-        }();
-    e.KDockView = y
+            }), e.prototype.update = function (t, e, i, n, o, r) {
+                this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.textLevel.text = t.level.toString(), this.textHp.text = t.hpNow + "/" + t.hpMax, this.textSteel.text = t.getRepairSteel().toString(), this.textFuel.text = t.getRepairFuel().toString(), this.textRequire.text = u.MathUtil.timeToString(t.getRepairTime()), this.shipBanner.update(t, n), this.hpGaugeView.update(t.hpNow, t.hpMax), this.textAlert.visible = !1;
+                var s = r;
+                this.hiSpeedToggle.update(s);
+                var a = t.hpNow < t.hpMax;
+                this.disableDownArrowAnimationView.visible = !1, this.downArrowAnimationView.visible = !1;
+                var _ = i && e && 0 == n && a && 0 == o;
+                _ ? this.downArrowAnimationView.visible = !0 : 0 == (i && e) ? (this.textAlert.text = "\u4fee\u5fa9\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u8db3\u308a\u307e\u305b\u3093\uff01", this.textAlert.visible = !0) : this.disableDownArrowAnimationView.visible = !0, this.startButton.update(_), this.containerName.cacheAsBitmap = !0
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.hiSpeedToggle.dispose(), this.startButton.dispose(), this.shipBanner.dispose(), this.downArrowAnimationView.dispose(), this.hpGaugeView.dispose(), this.textName.destroy(), this.textLevel.destroy(), this.textHp.destroy(), this.textSteel.destroy(), this.textFuel.destroy(), this.textAlert.destroy(), this.textRequire.destroy(), this.onClick = null, this.textName = null, this.textLevel = null, this.textHp = null, this.textRequire = null, this.textSteel = null, this.textFuel = null, this.textAlert = null, this.hiSpeedToggle = null, this.startButton = null, this.shipBanner = null, this.downArrowAnimationView = null, this.hpGaugeView = null, this.containerName = null
+            }, e
+        }(PIXI.Container);
+    e.RepairShipConfigView = p;
+    var d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._state = !1, e.animationParams = {
+                    progress: 0
+                }, e._onClick = function () {
+                    null != e.tween && e.tween.setPaused(!0), e.tween = null;
+                    var t = 0;
+                    switch (e._state) {
+                        case !1:
+                            e._state = !0, t = 0;
+                            break;
+                        case !0:
+                            e._state = !1, t = 1
+                    }
+                    var i = createjs.Tween.get(e.animationParams);
+                    i.to({
+                        progress: t
+                    }, 300).on("change", function () {
+                        .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 3 + 103 * e.animationParams.progress
+                    }), i.play(null), e.tween = i
+                };
+                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(39)),
+                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(40)),
+                    r = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(41));
+                return n.addListener(c.EventType.CLICK, e._onClick), i.position.set(106, 0), e.addChild(n, r, i), e.background_off = n, e.background_on = r, e.toggle = i, e.update(!0), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "state", {
+                get: function () {
+                    return this._state
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.update = function (t) {
+                null != this.tween && this.tween.setPaused(!0), this.tween = null, this._state = !1, this.toggle.position.set(106, 0), this.background_off.interactive = this.background_off.buttonMode = !!t, this.background_on.visible = !1, this.animationParams.progress = 1
+            }, e.prototype.dispose = function () {
+                null != this.tween && this.tween.setPaused(!0), this.removeChild(this.background_off), this.removeChild(this.background_on), this.removeChild(this.toggle), this.background_off = null, this.background_on = null, this.toggle = null, this.tween = null
+            }, e
+        }(PIXI.Container),
+        f = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onMouseOver = function () {
+                    e.texture = o.REPAIR_MAIN.getTexture(8)
+                }, e._onMouseOut = function () {
+                    e.texture = o.REPAIR_MAIN.getTexture(7)
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e.addListener(c.EventType.MOUSEOVER, e._onMouseOver), e.addListener(c.EventType.MOUSEOUT, e._onMouseOut), e.addListener(c.EventType.CLICK, e._onClick), e.texture = o.REPAIR_MAIN.getTexture(6), e
+            }
+            return n(e, t), e.prototype.update = function (t) {
+                this.interactive = this.buttonMode = !1, t ? (this.interactive = this.buttonMode = !0, this.texture = o.REPAIR_MAIN.getTexture(7)) : this.texture = o.REPAIR_MAIN.getTexture(6)
+            }, e.prototype.dispose = function () {
+                this.onClick = null, this.removeListener(c.EventType.MOUSEOVER, this._onMouseOver), this.removeListener(c.EventType.MOUSEOUT, this._onMouseOut), this.removeListener(c.EventType.CLICK, this._onClick)
+            }, e
+        }(PIXI.Sprite)
 }

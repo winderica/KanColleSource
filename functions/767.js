@@ -19,24 +19,22 @@ const function767 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(14), e.onMouseOver())
-                }, e._onMouseOut = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(12), e.onMouseOut())
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.texture = o.SUPPLY_MAIN.getTexture(13), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+    var o = i(0),
+        r = i(11),
+        s = i(14),
+        a = function (t) {
+            function e(e, i) {
+                void 0 === e && (e = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_hensei/lock", n._debug = e, n.api_ship_id = i, n
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null
-            }, e.prototype.updateClickable = function (t) {
-                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(12) : o.SUPPLY_MAIN.getTexture(13)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked"),
+                    i = o.default.model.ship.get(this.api_ship_id);
+                null != i && i.__setLocked__(e), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.SupplyAllButton2 = s
+        }(r.APIBase);
+    e.ShipLockAPI = a
 }

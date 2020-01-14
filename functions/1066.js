@@ -19,39 +19,30 @@ const function1066 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(1067),
-        a = i(14),
-        _ = function (t) {
+    var o = i(54),
+        r = i(1),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._scene = e, i
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResources).start(function () {
-                    t._showTopView()
-                })
-            }, e.prototype._showTopView = function () {
-                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+            return n(e, t), e.prototype.initialize = function () {
+                this._update(!1)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                this.texture = 1 == t ? o.SALLY_PRACTICE.getTexture(13) : o.SALLY_PRACTICE.getTexture(12)
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = _;
-    var l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM(), a.EditTextBoxUtil.setVisibility(!0)
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(102), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = l
+        }(PIXI.Sprite);
+    e.GoPracticeBtn = s
 }

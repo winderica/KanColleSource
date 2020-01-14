@@ -3,10 +3,12 @@ const function880 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
+    var n = i(172);
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("arsenal_skin_1_" + t)
+            var e = 0 == t ? 0 : t / n.RepairConst.ITEM_IN_COUNT;
+            return e += 0 == t ? 0 : 0 < t % n.RepairConst.ITEM_IN_COUNT ? 1 : 0, e = Math.floor(e)
         }
-        t.getTexture = e
-    }(e.ARSENAL_SKIN_1 || (e.ARSENAL_SKIN_1 = {}))
+        t.calcPageCount = e
+    }(e.RepairUtil || (e.RepairUtil = {}))
 }

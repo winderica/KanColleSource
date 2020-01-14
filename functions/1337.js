@@ -19,49 +19,45 @@ const function1337 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = i(443),
-        a = i(1338),
-        _ = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._onTaihi = function () {
-                    o._view.deactivate();
-                    var t = o._model.map_info.area_id,
-                        e = o._model.map_info.map_no,
-                        i = o._model.map_info.cell_no;
-                    new s.GobackPortAPI(t, e, i, o._target.mem_id, -1).start(function () {
-                        o._target.initializeTaihi(!0), o._hideView()
-                    })
-                }, o._onTaihiSezu = function () {
-                    o._view.deactivate(), o._hideView()
-                }, o._scene = e, o._model = i, o._target = n, o
+    var o = i(0),
+        r = i(41),
+        s = i(19),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._bg.position.set(86, 60), e._content = new _, e._content.position.set(390, 153), e.addChild(e._bg), e.addChild(e._content), e._gearBtn = new r.GearBtnHome, e._gearBtn.position.set(1127, 653), e.addChild(e._gearBtn), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadShipResources()
-            }, e.prototype._loadShipResources = function () {
-                var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.load(function () {
-                    t._show()
-                })
-            }, e.prototype._show = function () {
-                this._view = new a.EscapeTankanView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
-                var t = this._target;
-                this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({
-                    alpha: 1
-                }, 300)
-            }, e.prototype._hideView = function () {
-                var t = this;
-                createjs.Tween.get(this._view).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "content", {
+                get: function () {
+                    return this._content
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gearBtn", {
+                get: function () {
+                    return this._gearBtn
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._bg.texture = s.MAP_COMMON.getTexture(168), this._content.initialize(t), this._gearBtn.initialize()
             }, e
-        }(o.TaskBase);
-    e.EscapeTankanTask = _
+        }(PIXI.Container);
+    e.MapEndView = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            if (this._title.texture = s.MAP_COMMON.getTexture(187), null != t)
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e],
+                        n = o.default.resources.getUseitem(i, 0),
+                        r = new PIXI.Sprite(n);
+                    r.x = 33 + e % 5 * 75, r.y = 56 + 75 * Math.floor(e / 5), this.addChild(r)
+                }
+        }, e
+    }(PIXI.Container);
+    e.MapEndContentView = _
 }

@@ -19,41 +19,18 @@ const function965 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(0),
+        r = i(9),
+        s = i(14),
+        a = function (t) {
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                return i._url = "api_get_member/mission", i._debug = e, i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                var e;
-                switch (t) {
-                    case 1:
-                        e = 98;
-                        break;
-                    case 2:
-                        e = 99;
-                        break;
-                    case 3:
-                        e = 100;
-                        break;
-                    case 4:
-                        e = 101;
-                        break;
-                    case 5:
-                        e = 102;
-                        break;
-                    case 6:
-                        e = 103;
-                        break;
-                    case 7:
-                        e = 104;
-                        break;
-                    default:
-                        return void(this.visible = !1)
-                }
-                this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.expedition.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_list_items"), s.ObjUtil.getNumArray(this._raw_data, "api_limit_time")), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelItemSkillLevelIcon = r
+        }(r.APIBase);
+    e.ExpeditionAPI = a
 }

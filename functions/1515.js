@@ -3,10 +3,24 @@ const function1515 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    ! function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("battle_result_event_e6_rxabzkuaipducfxh_" + t)
-        }
-        t.getTexture = e
-    }(e.BATTLE_RESULT_EVENT_E6_RXABZKUAIPDUCFXH || (e.BATTLE_RESULT_EVENT_E6_RXABZKUAIPDUCFXH = {}))
+    var n = i(14),
+        o = function () {
+            function t(t) {
+                this._o = t
+            }
+            return t.prototype.getTargetShipIndexes = function () {
+                if (null == this._o) return [];
+                var t = n.ObjUtil.getNumArray(this._o, "api_escape_idx");
+                if (null == t) return [];
+                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+                return e
+            }, t.prototype.getTowingShipIndexes = function () {
+                if (null == this._o) return [];
+                var t = n.ObjUtil.getNumArray(this._o, "api_tow_idx");
+                if (null == t) return [];
+                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+                return e
+            }, t
+        }();
+    e.EscapeCandidateModel = o
 }

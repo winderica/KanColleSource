@@ -20,60 +20,35 @@ const function1140 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(92),
-        s = i(33),
-        a = i(93),
+        r = i(2),
+        s = i(81),
+        a = i(244),
         _ = i(1141),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
-                }, n._layer = e, n._target = i, n
+        u = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._purchasedItems = e, o._scene_model = i, o._delegate_initialize = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._showDialog()
-            }, e.prototype._showDialog = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
                 var t = this;
-                this._dialog = new _.PresentBoxUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
+                (new _.TaskLoadResources).start(function () {
+                    if (null != t._delegate_initialize) {
+                        o.default.model.useItem.updateCount();
+                        var e = 0;
+                        t._scene_model instanceof s.ItemSceneModel && (e = t._scene_model.subtype), t._delegate_initialize(e)
+                    }
+                    t._connectAPI()
                 })
             }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
-                    s = n.result;
-                n.start(function () {
-                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = this._layer,
-                    o = new a.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new r.UseItemUseAPI(e, !0, i),
-                            s = n.result;
-                        n.start(function () {
-                            t._result = s, t._endTask()
-                        })
-                    } else t._endTask()
+                var t = this;
+                new a.PayItemAPI(this._purchasedItems).start(function () {
+                    t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+                this._purchasedItems = null, this._scene_model = null, this._delegate_initialize = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskWithResult);
-    e.TaskUsePresentBox = l
+        }(r.TaskBase);
+    e.TaskItemScenePreInitialize = u
 }

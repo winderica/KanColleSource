@@ -19,17 +19,37 @@ const function665 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
+    var o = i(0),
+        r = i(312),
+        s = i(4),
+        a = i(80),
+        _ = i(49),
+        u = function (t) {
             function e(e, i) {
-                var n = t.call(this) || this;
-                return n._name = e, n._nickNameId = i, n._url = "api_req_init/nickname", n
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_nickname = this._name, this._post_data.api_nickname_id = this._nickNameId, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                var t = this,
+                    e = this.model.mst_id,
+                    i = this.model.name,
+                    n = new a.FurnitureLoader;
+                n.add(e, "reward"), n.load(function () {
+                    var n = o.default.model.furniture.getData(e);
+                    if (null != n) {
+                        var a = (n.type, o.default.resources.getFurniture(e, "reward"));
+                        t._thumb = new r.FurnitureThumbnail(!0), t._thumb.position.set(-123, -187), t._thumb.initialize(), t._thumb.update(a), t._dialog.container.addChild(t._thumb), t._text = new s.TextBox(25, 16774898), t._text.text = i, t._text.x = -Math.round(t._text.width / 2), t._text.y = 124, t._dialog.container.addChild(t._text)
+                    }
+                    t._showDialog()
+                })
+            }, e.prototype._removeContent = function () {
+                null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && (null != this._text.parent && this._text.parent.removeChild(this._text), this._text.destroy()), this._text = null
             }, e
-        }(o.APIBase);
-    e.APISaveNickName = r
+        }(_.TaskRewardDialogBase);
+    e.TaskRewardDialogFurniture = u
 }

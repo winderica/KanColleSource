@@ -19,44 +19,28 @@ const function1522 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(24),
-        s = i(31),
-        a = i(41),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(2),
+        r = i(15),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._event = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
-                else switch (t) {
-                    case 1:
-                        this._img.texture = s.SALLY_COMMON.getTexture(1);
-                        break;
-                    case 2:
-                        this._img.texture = s.SALLY_COMMON.getTexture(3);
-                        break;
-                    case 3:
-                        this._img.texture = s.SALLY_COMMON.getTexture(5);
-                        break;
-                    case 4:
-                        this._img.texture = s.SALLY_COMMON.getTexture(9);
-                        break;
-                    case 5:
-                        this._img.texture = s.SALLY_COMMON.getTexture(11);
-                        break;
-                    case 6:
-                        this._img.texture = s.SALLY_COMMON.getTexture(13);
-                        break;
-                    case 7:
-                        this._img.texture = s.SALLY_COMMON.getTexture(7);
-                        break;
-                    default:
-                        this._img.texture = PIXI.Texture.EMPTY
-                }
-                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            return n(e, t), e.prototype._start = function () {
+                this._loadCommon()
+            }, e.prototype._loadCommon = function () {
+                var t = this,
+                    e = new r.UIImageLoader("common");
+                e.add("common_explosion.json"), e.load(function () {
+                    t._load()
+                })
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("battle_result");
+                e.add("battle_result_main.json"), this._event && e.add("battle_result_event_base.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(r.Container);
-    e.AreaIcon = _
+        }(o.TaskBase);
+    e.TaskLoadResourcesBattleResult = s
 }

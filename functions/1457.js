@@ -1,110 +1,116 @@
 const function1457 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = i(478),
-        r = i(480),
-        s = i(479),
-        a = function () {
-            function t(t) {
-                this._o = t
+    var o = i(0),
+        r = i(2),
+        s = i(18),
+        a = i(13),
+        _ = i(23),
+        u = i(1458),
+        l = i(66),
+        c = i(45),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new PIXI.Container, e
             }
-            return Object.defineProperty(t.prototype, "ration", {
+            return n(e, t), Object.defineProperty(e.prototype, "view", {
                 get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration");
-                    return null == t ? [] : t
+                    return this._view
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "ration_combined", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration_combined");
-                    return null == t ? [] : t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "support_air", {
-                get: function () {
-                    if (1 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new o.AirSupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "support_hou", {
-                get: function () {
-                    if (2 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new s.SupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "support_rai", {
-                get: function () {
-                    if (3 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new s.SupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "support_taisen", {
-                get: function () {
-                    if (4 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new o.AirSupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_hougeki");
-                    return null == t ? null : new r.HougekiListNightData(t)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki1", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_n_hougeki1");
-                    return null == t ? null : new r.HougekiListNightData(t)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki2", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_n_hougeki2");
-                    return null == t ? null : new r.HougekiListNightData(t)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getTouchPlaneFriend = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
-                return null == t || t.length < 1 ? -1 : t[0]
-            }, t.prototype.getTouchPlaneEnemy = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
-                return null == t || t.length < 2 ? -1 : t[1]
-            }, t.prototype.getFlareLightFriend = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-                return null == t ? -1 : t.length < 1 ? -1 : t[0]
-            }, t.prototype.getFlareLightEnemy = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-                return null == t ? -1 : t.length < 2 ? -1 : t[1]
-            }, t.prototype.hasDayBattle = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_day_flag")
-            }, t
-        }();
-    e.RawNightBattleData = a
+            }), e.prototype.preload = function (t, e, i, n, o) {
+                var r = this;
+                this._attacker = t, this._slot1 = e, this._slot2 = i, this._slot3 = n;
+                var s = new a.ShipLoader,
+                    u = this._attacker.isDamaged(),
+                    l = this._attacker.mst_id;
+                (571 != l && 576 != l || 0 != u) && (541 != l && 573 != l || 0 != u) && (601 != l && 1496 != l || 0 != u) ? s.add(l, u, "full"): s.add(l, !1, "special"), s.load(function () {
+                    var t = null == r._slot1 ? 0 : r._slot1.mstID,
+                        e = null == r._slot2 ? 0 : r._slot2.mstID,
+                        i = null == r._slot3 ? 0 : r._slot3.mstID,
+                        n = new _.SlotLoader;
+                    t > 0 && (n.add(t, "item_up"), n.add(t, "btxt_flat")), e > 0 && (n.add(e, "item_up"), n.add(e, "btxt_flat")), i > 0 && (n.add(i, "item_up"), n.add(i, "btxt_flat")), n.load(function () {
+                        null != o && o()
+                    })
+                })
+            }, e.prototype._start = function () {
+                this._canvas = new u.CutinCanvasSpSSS, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
+            }, e.prototype._ready = function () {
+                var t, e, i = this._attacker.mst_id,
+                    n = this._attacker.isDamaged();
+                571 != i && 576 != i || 0 != n ? 541 == i && 0 == n ? (t = new PIXI.Point(-227, 165), e = "special") : 573 == i && 0 == n ? (t = new PIXI.Point(-115, 184), e = "special") : 601 != i && 1496 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (t = new PIXI.Point(-90, 87), e = "special") : (t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -150, this._canvas.chara.y = -87) : (this._canvas.chara.x = 173, this._canvas.chara.y = -64), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
+            }, e.prototype._anim1 = function () {
+                var t = this;
+                this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
+                    x: 48 + (this._attacker.friend ? 0 : 336),
+                    alpha: 1
+                }, 300), this._canvas.item1.show(400), this._canvas.item2.show(833), this._canvas.item3.show(1266);
+                var e = this._attacker.friend ? 75 : 1125;
+                createjs.Tween.get(this._canvas.name1).wait(400).to({
+                    x: e,
+                    alpha: 1
+                }, 200), createjs.Tween.get(this._canvas.name2).wait(833).to({
+                    x: e,
+                    alpha: 1
+                }, 200), createjs.Tween.get(this._canvas.name3).wait(1266).to({
+                    x: e,
+                    alpha: 1
+                }, 200).call(function () {
+                    t._anim2()
+                })
+            }, e.prototype._anim2 = function () {
+                var t = this;
+                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).wait(133).call(function () {
+                    t._shipFlash.play()
+                }).wait(200).call(function () {
+                    t._shipFlash.play()
+                }).wait(133).call(function () {
+                    t._anim3()
+                })
+            }, e.prototype._anim3 = function () {
+                var t = this,
+                    e = new l.IntensiveLines;
+                e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 200);
+                var i = new s.FadeBox(1, 16777215);
+                i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._anim4(e, i)
+                })
+            }, e.prototype._anim4 = function (t, e) {
+                var i = this;
+                this._canvas.dispose(), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.CutinSpSSS = h
 }

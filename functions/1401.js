@@ -19,99 +19,65 @@ const function1401 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(155),
-        s = i(16),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e.addChild(e._bg), e._message = new u, e.addChild(e._message), e._banner_top = new _, e.addChild(e._banner_top), e._banner_bottom = new _, e.addChild(e._banner_bottom), e._particles = new l, e.addChild(e._particles), e
+    var o = i(2),
+        r = i(28),
+        s = function (t) {
+            function e(e, i, n, o, r, s) {
+                var a = t.call(this) || this;
+                return a._scene = e, a._data = i, a._ships_f = o, a._ships_e = r, a._hunshin_danmaku = s, a._damage_cutin = n, a
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return this._message
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "banner_top", {
-                get: function () {
-                    return this._banner_top
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "banner_bottom", {
-                get: function () {
-                    return this._banner_bottom
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "particles", {
-                get: function () {
-                    return this._particles
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = r.COMMON_EXPEDITION.getTexture(10), this._message.initialize(s.BATTLE_MAIN.getTexture(30)), this._particles.initialize()
-            }, e.prototype.dispose = function () {
-                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
-            }, e
-        }(PIXI.Container);
-    e.SupportDeckCutin = a;
-    var _ = function (t) {
-            function e() {
-                return t.call(this) || this
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren()
-            }, e
-        }(PIXI.Container),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this._particles = new Array;
-                for (var t in this.XPOS) {
-                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
-                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
-                }
-            }, e.prototype.startAnim = function () {
-                if (null == this._tweens) {
-                    this._tweens = [];
-                    for (var t = 0; t < this._particles.length; t++) {
-                        var e = this._particles[t],
-                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
-                                x: 1,
-                                y: 1
-                            }, 100).to({
-                                x: 0,
-                                y: 0
-                            }, 100);
-                        this._tweens.push(i)
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._ships_f,
+                    i = this._data.stage3_f,
+                    n = this._createParallel(e, i, this._hunshin_danmaku);
+                e = this._ships_e, i = this._data.stage3_e;
+                var o = this._createParallel(e, i, this._hunshin_danmaku);
+                new r.ParallelTask(n, o).start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._createParallel = function (t, e, i) {
+                for (var n = new r.ParallelTask, o = 0, s = t; o < s.length; o++) {
+                    var _ = s[o];
+                    if (null != _) {
+                        if (i.indexOf(_) >= 0) {
+                            if (Math.floor(e.getDamage(_.index)) <= 0) continue
+                        }
+                        var u = new a(this._scene, _, e, this._damage_cutin);
+                        n.add(u)
                     }
                 }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tweens; t < e.length; t++) {
-                    e[t].setPaused(!0)
-                }
-                this._tweens = null, this._particles = null, this.removeChildren()
+                return n
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._data = null, this._ships_f = null, this._ships_e = null, this._damage_cutin = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
-            }, e
-        }(PIXI.Container)
+        }(o.TaskBase);
+    e.TaskAirWarDamageNumber = s;
+    var a = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._scene = e, r._ship = i, r._data = n, r._damage_cutin = o, r
+        }
+        return n(e, t), e.prototype._start = function () {
+            var t = this,
+                e = this._ship,
+                i = this._data,
+                n = e.index,
+                o = e.friend,
+                r = i.getRai(n),
+                s = i.getBak(n),
+                a = i.getDamage(n);
+            if (r || s || a > 0) {
+                1 == this._scene.data.model.isPractice() && (a = Math.min(a, e.hp_now - 1));
+                var _ = i.getHitType(n),
+                    u = this._scene.view.bannerGroupLayer.getBanner(o, n);
+                this._scene.view.layer_damage.showAtBanner(u, a, _, function () {
+                    t._endTask()
+                }), this._damage_cutin.causeDamage(e, a), u.updateHp(e.hp_now)
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._ship = null, this._data = null, this._damage_cutin = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase);
+    e.TaskAirWarDamageNumberOnce = a
 }

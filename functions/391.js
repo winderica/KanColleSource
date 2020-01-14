@@ -19,105 +19,97 @@ const function391 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(133),
-        r = i(392),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i.TABMAX_SHIP = 7, i.TABMAX_SLOT = 7, i._ship_tabs = [];
-                for (var n = 0; n < i.TABMAX_SHIP; n++) {
-                    var o = new r.TabBtn(1, n, e);
-                    o.position.set(0, 46 * n), o.visible = !0, i.addChild(o), i._ship_tabs.push(o)
-                }
-                i._slot_tabs = [];
-                for (var n = 0; n < i.TABMAX_SLOT; n++) {
-                    var o = new r.TabBtn(2, n, e);
-                    o.position.set(0, 46 * n), o.visible = !1, i.addChild(o), i._slot_tabs.push(o)
-                }
-                return i
+    var o = i(63),
+        r = i(136),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._startWait = function () {
+                    e._stopWait();
+                    var t = 3e3 * Math.random() + 1e3;
+                    e._wait_tween = createjs.Tween.get(null).wait(t).call(function () {
+                        e._caterpillar.buttonMode = !1, 0 == Math.floor(5 * Math.random()) ? e._action2() : e._action1()
+                    })
+                }, e._onClick = function () {
+                    if (0 != e._caterpillar.buttonMode) {
+                        e._caterpillar.buttonMode = !1;
+                        0 == Math.floor(5 * Math.random()) ? e._action3() : e._action1()
+                    }
+                }, e._shadow = new o.CenteringSprite, e._shadow.position.set(60, 92), e.addChild(e._shadow), e._frown = new PIXI.Sprite, e.addChild(e._frown), e._caterpillar = new o.CenteringSprite, e._caterpillar.position.set(63, 77), e._caterpillar.interactive = !0, e.addChild(e._caterpillar), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._initializeTabBtns(this._ship_tabs), this._initializeTabBtns(this._slot_tabs)
-            }, e.prototype.update = function (t, e) {
-                if (1 == t)
-                    for (var i = 0, n = this._ship_tabs; i < n.length; i++) {
-                        var o = n[i];
-                        o.selected = o.no == e
-                    } else
-                        for (var r = 0, s = this._ship_tabs; r < s.length; r++) {
-                            var o = s[r];
-                            o.selected = !1
-                        }
-                if (2 == t)
-                    for (var a = 0, _ = this._slot_tabs; a < _.length; a++) {
-                        var o = _[a];
-                        o.selected = o.no == e
-                    } else
-                        for (var l = 0, u = this._slot_tabs; l < u.length; l++) {
-                            var o = u[l];
-                            o.selected = !1
-                        }
+                this.texture = r.ALBUM_MAIN.getTexture(121), this._shadow.texture = r.ALBUM_MAIN.getTexture(120), this._frown.texture = r.ALBUM_MAIN.getTexture(118);
+                var t = new PIXI.Sprite(r.ALBUM_MAIN.getTexture(119));
+                t.position.set(71, 21), this._frown.addChild(t), this._caterpillar.texture = r.ALBUM_MAIN.getTexture(117), this._caterpillar.buttonMode = !0, this._caterpillar.on(s.EventType.CLICK, this._onClick)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
-                    var i = e[t];
-                    i.activate()
-                }
-                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
-                    var i = o[n];
-                    i.activate()
-                }
+                this._startWait()
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
-                    var i = e[t];
-                    i.deactivate()
-                }
-                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
-                    var i = o[n];
-                    i.deactivate()
-                }
+                this._stopWait(), null != this._action_tween && (this._action_tween.setPaused(!0), this._action_tween = null)
             }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
-                    var i = e[t];
-                    i.dispose()
-                }
-                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
-                    var i = o[n];
-                    i.dispose()
-                }
-                this._ship_tabs = null, this._slot_tabs = null
-            }, e.prototype.switchViewAlbumMode = function (t) {
-                switch (t) {
-                    case 1:
-                        this._ship_tabs.forEach(function (t) {
-                            return t.visible = !0
-                        }), this._slot_tabs.forEach(function (t) {
-                            return t.visible = !1
-                        });
-                        break;
-                    case 2:
-                        this._ship_tabs.forEach(function (t) {
-                            return t.visible = !1
-                        }), this._slot_tabs.forEach(function (t) {
-                            return t.visible = !0
-                        })
-                }
-            }, e.prototype._getBtnTextureNo = function (t, e) {
-                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [82, 84, 86, 88, 90, 92, 94][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [68, 70, 72, 74, 76, 78, 80][e] : -1
-            }, e.prototype._getBtnOnTextureNo = function (t, e) {
-                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [83, 85, 87, 89, 91, 93, 95][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [69, 71, 73, 75, 77, 79, 81][e] : -1
-            }, e.prototype._initializeTabBtns = function (t) {
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        r = n.mode,
-                        s = n.no,
-                        a = this._getBtnTextureNo(r, s),
-                        _ = -1 == a ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(a),
-                        l = this._getBtnOnTextureNo(r, s),
-                        u = -1 == l ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(l);
-                    n.initialize(_, u)
-                }
+                this.removeChildren(), this.deactivate(), this._caterpillar.off(s.EventType.CLICK, this._onClick), this._shadow = null, this._frown = null, this._caterpillar = null, this._wait_tween = null, this._action_tween = null
+            }, e.prototype._stopWait = function () {
+                null != this._wait_tween && (this._wait_tween.setPaused(!0), this._wait_tween = null)
+            }, e.prototype._action1 = function () {
+                var t = this;
+                null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({
+                    y: -105
+                }, 400, createjs.Ease.sineOut).to({
+                    y: 77
+                }, 400, createjs.Ease.sineIn).call(function () {
+                    t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
+                }), createjs.Tween.get(this._shadow).to({
+                    alpha: .4,
+                    scaleX: .9,
+                    scaleY: .9
+                }, 400).to({
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 400))
+            }, e.prototype._action2 = function () {
+                var t = this;
+                null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({
+                    rotation: -30 * Math.PI / 180
+                }, 200).to({
+                    rotation: 25 * Math.PI / 180
+                }, 400).to({
+                    rotation: 0
+                }, 200).call(function () {
+                    t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
+                }))
+            }, e.prototype._action3 = function () {
+                var t = this;
+                null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({
+                    y: -584
+                }, 500, createjs.Ease.sineOut).call(function () {
+                    createjs.Tween.get(t._frown).to({
+                        alpha: 0
+                    }, 100)
+                }).wait(700).to({
+                    y: 77
+                }, 500, createjs.Ease.sineIn).to({
+                    y: 80,
+                    scaleY: .8
+                }, 100).to({
+                    y: 77,
+                    scaleY: 1
+                }, 100).call(function () {
+                    createjs.Tween.get(t._frown).to({
+                        alpha: 1
+                    }, 100)
+                }).call(function () {
+                    t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
+                }), createjs.Tween.get(this._shadow).to({
+                    alpha: 0,
+                    scaleX: .7,
+                    scaleY: .7
+                }, 600).wait(400).to({
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 400))
             }, e
-        }(PIXI.Container);
-    e.TabBtnContainer = s
+        }(PIXI.Sprite);
+    e.MiniChara = a
 }

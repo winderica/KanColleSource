@@ -19,82 +19,104 @@ const function1417 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(18),
-        s = i(474),
-        a = i(1418),
-        _ = i(65),
-        l = i(44),
-        u = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._attacker = e, r._slot1 = o, r._slot2 = n, r._slot3 = i, r._friend = r._attacker.friend, r._canvas = new a.CutinCanvasSpSRD, r._view = new PIXI.Container, r.view.addChild(r._canvas), r._ship = new PIXI.Sprite, r
+    var o = i(0),
+        r = i(38),
+        s = i(18),
+        a = i(16),
+        _ = i(149),
+        u = i(187),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new s.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._bar1 = new c, e._bar1.position.set(600, 183), e.addChild(e._bar1), e._bar2 = new c, e._bar2.position.set(600, 392), e.addChild(e._bar2), e._bar3 = new c, e._bar3.position.set(600, 600), e.addChild(e._bar3), e._plane1 = new _.Plane(.88), e.addChild(e._plane1), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "view", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._view
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.preload = function (t) {
-                if (null != this._preload_task) t();
-                else {
-                    var e = this._attacker.mst_id,
-                        i = this._attacker.isDamaged(),
-                        n = null == this._slot1 ? 0 : this._slot1.mstID,
-                        o = null == this._slot2 ? 0 : this._slot2.mstID,
-                        r = null == this._slot3 ? 0 : this._slot3.mstID;
-                    this._preload_task = new s.CutinResourcesPreloadTask(e, i, !0, n, o, r), this._preload_task.start(function () {
-                        t()
-                    })
-                }
-            }, e.prototype._start = function () {
-                this._ready()
-            }, e.prototype._ready = function () {
-                this._ship.texture = this._preload_task.getShipTexture();
-                var t = this._preload_task.getShipOffset();
-                this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new l.ShipFlash(this._preload_task.getShipTexture()), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._friend ? (this._canvas.chara.x = -399, this._canvas.chara.y = -54) : (this._canvas.chara.x = 676, this._canvas.chara.y = -54), this._canvas.initialize(this._friend, this._preload_task), this._anim1()
-            }, e.prototype._anim1 = function () {
-                var t = this;
-                this._canvas.bg.show(200), createjs.Tween.get(this._canvas.chara).wait(200).to({
-                    x: (this._friend ? 0 : 480) - 104,
-                    y: (this._friend ? 0 : 23) - 87,
+            }), Object.defineProperty(e.prototype, "chara", {
+                get: function () {
+                    return this._chara
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bar1", {
+                get: function () {
+                    return this._bar1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bar2", {
+                get: function () {
+                    return this._bar2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bar3", {
+                get: function () {
+                    return this._bar3
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "plane1", {
+                get: function () {
+                    return this._plane1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(PIXI.Container);
+    e.CutinKuboDayCanvas = l;
+    var c = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._mst_id = 0, e._bg = new u.TelopBG, e.addChild(e._bg), e._plane_canvas = new PIXI.Sprite, e.addChild(e._plane_canvas);
+                var i = new PIXI.Graphics;
+                return i.beginFill(16711680, .5), i.drawRect(-600, -71, 1200, 141), i.endFill(), e._plane_canvas.addChild(i), e._plane_canvas.mask = i, e._plane = new _.Plane(.85), e._plane.alpha = 0, e._plane_canvas.addChild(e._plane), e._icon = new h, e._icon.y = 72, e._icon.alpha = 0, e.addChild(e._icon), e
+            }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._mst_id = t, this._friend = e, this._bg.initialize(e, !0), 1 == e ? (this._bg.x = 1500, this._plane.x = -600, this._icon.x = 677) : (this._bg.x = -1500, this._plane.x = 600, this._icon.x = -677), this._plane.initialize(t, e), this._icon.initialize(t)
+            }, e.prototype.createTween = function (t) {
+                var e = [];
+                return this._mst_id <= 0 ? e : (e.push(createjs.Tween.get(this._bg).wait(t).to({
+                    x: this._friend ? 780 : -780
+                }, 300), createjs.Tween.get(this._plane).wait(t).to({
+                    x: this._friend ? 386 : -386,
                     alpha: 1
-                }, 300).wait(1200).call(function () {
-                    t._anim2()
-                }), this._canvas.layer_bg.show(400), this._canvas.layer_item.show(400), this._canvas.layer_name.show(400), this._canvas.layer_center.show(733), this._canvas.layer_center_name.show(1300)
-            }, e.prototype._anim2 = function () {
-                var t = this;
-                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
-                    t._shipFlash.play()
-                }).wait(200).call(function () {
-                    t._anim3()
-                })
-            }, e.prototype._anim3 = function () {
-                var t = this;
-                this._canvas.layer_item.hide(0), this._canvas.layer_center.hide(0);
-                var e = new _.IntensiveLines;
-                e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
+                }, 250), createjs.Tween.get(this._icon).wait(t).to({
+                    x: this._friend ? 96 : -96,
                     alpha: 1
-                }, 200);
-                var i = new r.FadeBox(1, 16777215);
-                i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 500).call(function () {
-                    t._anim4(e, i)
-                })
-            }, e.prototype._anim4 = function (t, e) {
-                var i = this;
-                this._canvas.dispose(), createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 300), createjs.Tween.get(e).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._attacker = null, this._slot1 = null, this._slot2 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, this._preload_task = null, t.prototype._endTask.call(this)
+                }, 200)), e)
+            }, e.prototype.createTween2 = function (t) {
+                var e = [];
+                return e.push(createjs.Tween.get(this._plane).wait(t).to({
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 500)), e
             }, e
-        }(o.TaskBase);
-    e.CutinSpSRD = u
+        }(PIXI.Container),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e._img.scale.set(.75), e.addChild(e._img), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = this._getTexture(t), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height)
+            }, e.prototype._getTexture = function (t) {
+                var e = o.default.model.slot.getMst(t);
+                if (null == e) return PIXI.Texture.EMPTY;
+                switch (e.equipType) {
+                    case r.EquipType._06_KANJO_SENTOUKI:
+                        return a.BATTLE_MAIN.getTexture(69);
+                    case r.EquipType._07_KANJO_BAKUGEKIKI:
+                        return a.BATTLE_MAIN.getTexture(70);
+                    case r.EquipType._08_KANJO_KOUGEKIKI:
+                        return a.BATTLE_MAIN.getTexture(71);
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
+            }, e
+        }(PIXI.Container)
 }

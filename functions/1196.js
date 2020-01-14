@@ -20,78 +20,48 @@ const function1196 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(11),
-        s = i(8),
-        a = i(10),
-        _ = i(119),
-        l = i(413),
-        u = i(120),
-        c = i(75),
-        h = i(75),
-        p = i(75),
-        d = i(75),
-        f = i(75),
-        y = i(75),
-        m = i(75),
-        g = i(75),
-        v = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onInitialize = function () {
-                    var t = _.DUTY_COMMON.getTexture(46),
-                        i = new PIXI.Sprite(t);
-                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
-                    var n = o.default.model.basic.getDutyExecutableCount();
-                    e._view.initialize(n, e._onBack), e._view.update(e._data)
-                }, e._onActivate = function () {
-                    if (null != e._girl_layer) {
-                        new d.TaskPosterGirl(e._girl_layer).start(function () {
-                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
-                        })
-                    }
-                    e._view.activate()
-                }, e._onDispose = function () {
-                    e._view.dispose()
-                }, e._onChangeType = function (t) {
-                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
-                        e._view.update(e._data)
-                    })
-                }, e._onChangePage = function (t) {
-                    var i = e._data.selected_type;
-                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
-                        e._view.update(e._data)
-                    })
-                }, e._onSelectDuty = function (t) {
-                    if (3 == t.status) {
-                        if (0 == t.alert) {
-                            var i = o.default.view.overLayer,
-                                n = new g.TaskTasseiDutySelect(i, t, e._data);
-                            n.start(function () {
-                                e._view.update(e._data)
-                            })
-                        }
-                    } else if (2 == t.status) {
-                        var n = new m.TaskExecutedDutySelect(t, e._data);
-                        n.start(function () {
-                            e._view.update(e._data)
-                        })
-                    } else {
-                        var n = new y.TaskWaitedDutySelect(t, e._data);
-                        n.start(function () {
-                            e._view.update(e._data)
-                        })
-                    }
-                }, e._onBack = function () {
-                    o.default.scene.change(0)
-                }, e._data = new l.DutyDataHolder, e._view = new u.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
+        r = i(4),
+        s = i(138),
+        a = i(92),
+        _ = i(414),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOn = function (t, e) {
+                    i._description.x = 0 == t ? 202 : 1 == t ? 535 : 865, i._description.text = e.replace(/<br>/g, "\n")
+                }, i._onMouseOff = function () {
+                    i._description.text = ""
+                }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(18, 16777215), i._description.y = 217, i.addChild(i._description), i
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
-            }, e.prototype.getFinalizeTask = function () {
-                return new p.TaskDutySceneFinalize(this._onDispose)
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(29));
+                t.position.set(186, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(13)), t.position.set(184, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(28)), t.position.set(516, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(17)), t.position.set(516, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(27)), t.position.set(846, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(15)), t.position.set(846, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(25)), t.position.set(1176, 144), this._bg_layer.addChild(t), this._icons = [];
+                for (var e = 0; e < 12; e++) {
+                    var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
+                    i.x = 204 + 330 * Math.floor(e / 4) + e % 2 * 150, i.y = 289 + (Math.floor(e % 4) <= 1 ? 0 : 180), i.initialize(Math.floor(e / 4)), this.addChild(i), this._icons.push(i)
+                }
+            }, e.prototype.update = function () {
+                for (var t = o.default.model.payitem.getOrder(0), e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e],
+                        n = t[e],
+                        r = o.default.model.payitem.getData(n);
+                    i.update(r)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._description.destroy(), this._cb_onSelect = null
             }, e
-        }(r.SceneBase);
-    e.DutyScene = v
+        }(a.ViewBase);
+    e.NormalItemShopMain = u
 }

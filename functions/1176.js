@@ -19,84 +19,104 @@ const function1176 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(1177),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onBtnMouseOver = function (t) {
-                    i._illust.update(t)
-                }, i._onBtnMouseOut = function (t) {
-                    i._illust.update()
-                }, i._onBtnClick = function (t) {
-                    null != i._cb_onSelect && i._cb_onSelect(t)
-                }, i._cb_onSelect = e, i._header = new PIXI.Sprite, i._header.position.set(561, 169), i.addChild(i._header), i._illust = new _, i._illust.position.set(387, 210), i.addChild(i._illust), i._footer = new o.TextBox(16, 0), i._footer.position.set(670, 679), i._footer.text = "\u5bb6\u5177\u30b3\u30a4\u30f3\u306f\u9060\u5f81\u306a\u3069\u3067\u5165\u624b\u3067\u304d\u307e\u3059\u3002", i.addChild(i._footer), i._btns = [];
-                for (var n = [1, 0, 5, 2, 3, 4], r = 0; r < n.length; r++) {
-                    var a = n[r],
-                        l = new s.FurnitureTypeBtn(a);
-                    l.x = 204, l.y = 241 + 70 * r, i.addChild(l), i._btns.push(l)
-                }
-                return i
+    var o = i(0),
+        r = i(246),
+        s = i(411),
+        a = i(412),
+        _ = i(143),
+        u = i(143),
+        l = i(93),
+        c = i(27),
+        h = i(94),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onSelect = function (t) {
+                    if (null == t) return void n._hideDialog(!1);
+                    var e = PIXI.Texture.EMPTY;
+                    if (11 == t.type) e = o.default.resources.getShip(t.mst_id, !1, "icon_box");
+                    else if (12 == t.type) e = o.default.resources.getSlotitem(t.mst_id, "card");
+                    else if (13 == t.type) e = o.default.resources.getUseitem(t.mst_id, 2);
+                    else if (14 == t.type) {
+                        e = o.default.resources.getFurniture(t.mst_id, "reward");
+                        var i = o.default.model.furniture.getData(t.mst_id);
+                        if (null == i || 1 == i.has()) return void n._dialog.showAlert(t)
+                    }
+                    var r = new s.TaskRewardSelectConfirm(n._layer, e);
+                    r.start(function () {
+                        n._dialog.deactivate(), 1 == r.result ? (n._seleced = t, n._connectAPI()) : n._dialog.activate()
+                    })
+                }, n._layer = e, n._candidates = [new a.SelectableRewardModel({
+                    api_no: 51,
+                    api_kind: 12,
+                    api_mst_id: 126,
+                    api_slotitem_level: 0,
+                    api_count: 1
+                }), new a.SelectableRewardModel({
+                    api_no: 52,
+                    api_kind: 12,
+                    api_mst_id: 238,
+                    api_slotitem_level: 0,
+                    api_count: 1
+                }), new a.SelectableRewardModel({
+                    api_no: 53,
+                    api_kind: 13,
+                    api_mst_id: 4,
+                    api_slotitem_level: 0,
+                    api_count: 6
+                })], n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = r.ITEM_FSHOP.getTexture(51), this._illust.initiatize();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].initialize(this._onBtnMouseOver, this._onBtnMouseOut, this._onBtnClick)
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                for (var t = this, e = new r.TaskLoadResources, i = 0, n = this._candidates; i < n.length; i++) {
+                    var o = n[i];
+                    11 == o.type ? e.addShip(o.mst_id) : 12 == o.type ? e.addSlotitem(o.mst_id) : 13 == o.type ? e.addUseitem(o.mst_id) : 14 == o.type && e.addFurniture(o.mst_id)
                 }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                this._illust.update();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._footer.destroy();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._cb_onSelect = null
+                e.start(function () {
+                    t._showDialog()
+                })
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                3 == this._candidates.length ? (this._dialog = new u.RewardSelectDialog3(!0), this._dialog.position.set(195, 164)) : (this._dialog = new _.RewardSelectDialog2(!0), this._dialog.position.set(297, 164)), this._dialog.initialize(this._candidates, this._onSelect), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
+                })
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced.no,
+                    n = (o.default.view.overLayer, new l.UseItemUseAPI(e, !1, i)),
+                    r = n.result;
+                n.start(function () {
+                    1 == r.hasCaution() ? t._hideDialog(!0) : (t._result = r, t._hideDialog(!1))
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced.no,
+                    n = this._layer,
+                    o = new h.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new l.UseItemUseAPI(e, !0, i),
+                            r = n.result;
+                        n.start(function () {
+                            t._result = r, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.FurnitureShopMainView = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._over = new PIXI.Sprite, e.addChild(e._over), e
-        }
-        return n(e, t), e.prototype.initiatize = function () {
-            this.texture = r.ITEM_FSHOP.getTexture(38)
-        }, e.prototype.update = function (t) {
-            if (void 0 === t && (t = -1), -1 == t) this._over.visible = !1;
-            else {
-                var e = void 0;
-                switch (t) {
-                    case 0:
-                        e = 39, this._over.position.set(16, 258);
-                        break;
-                    case 1:
-                        e = 40, this._over.position.set(16, 16);
-                        break;
-                    case 2:
-                        e = 41, this._over.position.set(196, 15);
-                        break;
-                    case 3:
-                        e = 42, this._over.position.set(16, 16);
-                        break;
-                    case 4:
-                        e = 43, this._over.position.set(577, 16);
-                        break;
-                    case 5:
-                        e = 44, this._over.position.set(39, 114);
-                        break;
-                    default:
-                        return void(this._over.visible = !1)
-                }
-                this._over.texture = r.ITEM_FSHOP.getTexture(e), this._over.visible = !0
-            }
-        }, e
-    }(PIXI.Sprite)
+        }(c.TaskWithResult);
+    e.TaskUseGiftBox = p
 }

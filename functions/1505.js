@@ -19,26 +19,29 @@ const function1505 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(11),
-        s = i(1506),
-        a = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = !1);
-                var r = t.call(this) || this;
-                return r._hideTelop = function () {
-                    createjs.Tween.get(r._telop).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        r._layer.removeChild(r._telop), r._telop = null, r._endTask()
-                    })
-                }, r._layer = e, r._type = i, r._mst_id = n, r._sub_text = o, r
+    var o = i(1506),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showTelop()
-            }, e.prototype._showTelop = function () {
-                this._telop = new s.BonusTelop, this._telop.position.set(o.default.width / 2, o.default.height / 2), 3 == this._type ? this._telop.initializeForShip(this._sub_text) : 2 == this._type ? this._telop.initializeForSlot() : 6 == this._type && this._telop.initializeForUseitem(this._mst_id), this._layer.addChild(this._telop), this._telop.play(), this._telop.once("complete", this._hideTelop)
+            return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
+                get: function () {
+                    return this._rader_f
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "rader_e", {
+                get: function () {
+                    return this._rader_e
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
+            }, e.prototype.resetChildren = function () {
+                this.addChild(this._rader_f), this.addChild(this._rader_e)
             }, e
-        }(r.TaskBase);
-    e.TaskBonusTelop = a
+        }(PIXI.Container);
+    e.RaderLayer = r
 }

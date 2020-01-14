@@ -19,25 +19,18 @@ const function1036 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(199),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._deck_f = e, n._deck_e = i, n
+    var o = i(237),
+        r = i(239),
+        s = function (t) {
+            function e(e, i, n) {
+                for (var r = t.call(this, e) || this, s = 0; s < 3; s++) {
+                    var a = new o.MapThumbnail(3, i, n, null, null),
+                        _ = 206 + 144 * s;
+                    a.position.set(186, _), r.addChild(a), r._maps.push(a)
+                }
+                return r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "deck_f", {
-                get: function () {
-                    return this._deck_f
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "deck_e", {
-                get: function () {
-                    return this._deck_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(o.SceneModel);
-    e.PracticeSceneModel = r
+            return n(e, t), e
+        }(r.LayoutBase);
+    e.LayoutMap3 = s
 }

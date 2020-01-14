@@ -19,17 +19,34 @@ const function1073 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_get_member/record", i._recordInfoModel = e, i
+    var o = i(9),
+        r = i(7),
+        s = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/change_matching_kind", n._selected_type = e, n._res_model = new a, n._debug = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+                get: function () {
+                    return this._res_model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_selected_kind = this._selected_type, t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                this._recordInfoModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.RecordInfoAPI = r
+    e.ChangeMatchingAPI = s;
+    var a = function () {
+        function t() {}
+        return t.prototype.setData = function (t) {
+            this._o = t
+        }, t.prototype.isSucceed = function () {
+            return 1 == r.ObjUtil.getNumber(this._o, "api_update_flag")
+        }, t
+    }();
+    e.ChangeMatchingAPIResultModel = a
 }

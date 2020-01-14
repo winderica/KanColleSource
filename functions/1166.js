@@ -19,54 +19,25 @@ const function1166 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(135),
-        a = i(91),
-        _ = i(1167),
-        l = i(1168),
-        u = i(1169),
-        c = i(1170),
-        h = i(1174),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._count = 0, n._onChangePage = function () {
-                    var t = n._views.indexOf(n._current);
-                    n._showView(t ? 0 : 1)
-                }, n._onSelect = function (t, e) {
-                    r.SE.play("214");
-                    var i = 10;
-                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
-                    var s = new c.TaskPurchaseConfirm(t, e, i);
-                    n.addChild(s.layer), s.start(function () {
-                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
-                    })
-                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new l.NormalItemShopMain(n._onSelect)), n._views.push(new u.SpecialItemShopMain(n._onSelect)), n
+    var o = i(4),
+        r = i(3),
+        s = i(27),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._message1 = new o.TextBox(22, 1381651), i._message1.position.set(167, 96), i.addChild(i._message1), i._message2 = new o.TextBox(22, 1381651), i._message2.position.set(167, 126), i.addChild(i._message2), i._btn_shigen = new s.BtnBase(11, e), i._btn_shigen.position.set(146, 180), i.addChild(i._btn_shigen), i._btn_kanmi = new s.BtnBase(13, e), i._btn_kanmi.position.set(284, 180), i.addChild(i._btn_kanmi), i._btn_shizai = new s.BtnBase(12, e), i._btn_shizai.position.set(422, 180), i.addChild(i._btn_shizai), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(585, 278), i.addChild(i._btn_back), i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_ISHOP.getTexture(35);
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].initialize()
-                }
-            }, e.prototype.update = function () {
-                this._count = 0, this._showView(0)
+                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(9), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 339 - this._message1.width / 2, this._message2.text = "\u4e0b\u8a18\u306e\u30c1\u30e7\u30a4\u30b9\u304c\u53ef\u80fd\u3067\u3059\u3002", this._message2.x = 339 - this._message2.width / 2;
+                var t = r.ITEM_ILIST_PRESENTBOX.getTexture(3);
+                this._btn_shigen.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(4), this._btn_kanmi.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(5), this._btn_shizai.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(0), this._btn_back.initialize(t)
             }, e.prototype.activate = function () {
-                null != this._current && this._current.activate(), this._tab.activate()
+                this._btn_shigen.activate(), this._btn_kanmi.activate(), this._btn_shizai.activate(), this._btn_back.activate()
             }, e.prototype.deactivate = function () {
-                null != this._current && this._current.deactivate(), this._tab.deactivate()
+                this._btn_shigen.deactivate(), this._btn_kanmi.deactivate(), this._btn_shizai.deactivate(), this._btn_back.deactivate()
             }, e.prototype.dispose = function () {
-                this._purchasedItems = null, this._tab.dispose(), this._removeView();
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype._removeView = function () {
-                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
-            }, e.prototype._showView = function (t) {
-                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
-                var e = o.default.view.overLayer;
-                new h.TaskWelcomeCutin(e, t, this._count).start()
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_shigen.dispose(), this._btn_kanmi.dispose(), this._btn_shizai.dispose(), this._btn_back.dispose()
             }, e
-        }(a.ViewBase);
-    e.ItemShopMain = p
+        }(PIXI.Sprite);
+    e.TopView = a
 }

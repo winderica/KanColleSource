@@ -19,33 +19,37 @@ const function1356 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(16),
-        s = function (t) {
+    var o = i(1357),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._wave1 = new o.Sprite, e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
+                return e._spots = {}, e._flags = {}, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._wave1.scale.set(0), this._wave2.scale.set(0), this._wave1.alpha = 0, this._wave2.alpha = 0, this._wave1.texture = r.BATTLE_MAIN.getTexture(108), this._wave2.texture = r.BATTLE_MAIN.getTexture(108)
-            }, e.prototype.play = function () {
-                var t = this;
-                createjs.Tween.get(this._wave1).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 300), createjs.Tween.get(this._wave2).wait(600).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t.removeChildren(), null != t.parent && t.parent.removeChild(t)
-                })
+            return n(e, t), e.prototype.addSpot = function (t) {
+                this._spots[t.no] = t, this.addChild(t)
+            }, e.prototype.addFlag = function (t, e, i) {
+                var n = new o.LandingFlag;
+                n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
+            }, e.prototype.getAllSpots = function () {
+                var t = [];
+                for (var e in this._spots) {
+                    var i = this._spots[e];
+                    t.push(i)
+                }
+                return t
+            }, e.prototype.getSpot = function (t) {
+                var e = t.toString();
+                return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
+            }, e.prototype.getFlag = function (t) {
+                var e = t.toString();
+                return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t in this._spots) {
+                    this._spots[t].dispose()
+                }
+                this._spots = null
             }, e
         }(PIXI.Container);
-    e.SubMarineWave = s
+    e.MapSpotLayer = r
 }

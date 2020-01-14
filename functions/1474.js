@@ -1,58 +1,70 @@
 const function1474 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = i(1475),
-        s = i(1476),
-        a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var n = i(0),
+        o = function () {
+            function t(t, e, i, n) {
+                void 0 === i && (i = null), void 0 === n && (n = null), this._offset_x = 0, this._offset_y = 0, this._type = t, this._mst_id = e, this._name = n, this._stype = i
             }
-            return n(e, t), e.prototype.showAtBanner = function (t, e, i, n) {
-                void 0 === n && (n = null);
-                var o = t.getGlobalPos(!0),
-                    r = 1 == t.friend ? o.x + 23 : o.x - 74,
-                    s = o.y + 7;
-                this.show(r, s, e, i, n)
-            }, e.prototype.show = function (t, e, i, n, o) {
-                var s = this;
-                void 0 === o && (o = null), i <= 0 ? n = 0 : i >= 40 ? n = 2 : i < 15 && 2 == n && (n = 1);
-                var a = new r.DamageNumber;
-                a.position.set(t, e), a.initialize(i, n), this.addChild(a), a.play(function () {
-                    createjs.Tween.get(a).to({
-                        alpha: 0
-                    }, 230).call(function () {
-                        s.removeChild(a), null != o && o()
-                    })
-                })
-            }, e.prototype.showShieldAtBanner = function (t) {
-                var e = t.getGlobalPos(!0),
-                    i = e.x,
-                    n = e.y,
-                    r = t.friend;
-                1 == r ? i += o.BannerSize.W / 2 + 30 : i -= o.BannerSize.W / 2 + 30, this.showShield(i, n, r)
-            }, e.prototype.showShield = function (t, e, i) {
-                var n = new s.Shield;
-                n.position.set(t, e), n.scale.x = i ? 1 : -1, n.initialize(), this.addChild(n), n.play()
-            }, e
-        }(PIXI.Container);
-    e.LayerDamage = a
+            return Object.defineProperty(t.prototype, "type", {
+                get: function () {
+                    return this._type
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "voice_id", {
+                get: function () {
+                    return this._voice_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    if (null != this._name) return this._name;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "stype", {
+                get: function () {
+                    if (null != this._stype) return this._stype;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.shipTypeName
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offset_x", {
+                get: function () {
+                    return this._offset_x
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offset_y", {
+                get: function () {
+                    return this._offset_y
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.setMessage = function (t, e) {
+                return this._voice_id = t, this._message = e, this
+            }, t.prototype.setOffset = function (t, e) {
+                return this._offset_x = t, this._offset_y = e, this
+            }, t
+        }();
+    e.BossModel = o
 }

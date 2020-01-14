@@ -1,47 +1,23 @@
 const function151 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(46),
-        s = function (t) {
-            function e(e, i, n) {
-                void 0 === i && (i = null), void 0 === n && (n = null);
-                var o = t.call(this) || this;
-                return o._mst_id = e, o._name = i, o._message = n, o
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
-                get: function () {
-                    return this._mst_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "name", {
-                get: function () {
-                    if (null != this._name && this._name.length > 0) return this._name;
-                    var t = o.default.model.furniture.getData(this._mst_id);
-                    return null == t ? "" : t.name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(r.RewardModel);
-    e.RewardModelFurniture = s
+    var n = function () {
+        function t() {}
+        return t.FILTERING_CATEGORIES = {
+            1: [6, 56],
+            2: [7, 8, 57, 58],
+            3: [9, 10, 11, 25, 26, 45, 59, 94],
+            4: [1, 2, 3, 38],
+            5: [4, 21],
+            6: [5, 22, 32],
+            7: [14, 15, 40],
+            8: [12, 13, 93],
+            9: [24, 30, 46, 50],
+            10: [43, 44],
+            11: [41, 47, 49]
+        }, t.SLOTITEM_RARITY_NAMES = ["\u30b3\u30e2\u30f3", "\u30ec\u30a2", "\u30db\u30ed", "S\u30db\u30ed", "SS\u30db\u30ed", "SS\u30db\u30ed", "SS\u30db\u30ed+", "SS++"], t
+    }();
+    e.SlotConst = n
 }

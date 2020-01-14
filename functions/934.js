@@ -19,22 +19,18 @@ const function934 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(15),
+    var o = i(9),
+        r = i(0),
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._event = e, i
+                return i._url = "api_req_kousyou/open_new_dock", i.kDockId = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("sally");
-                e.add("sally_common.json"), e.add("sally_top.json"), e.add("sally_sortie.json"), e.add("sally_practice.json"), e.add("sally_expedition.json"), e.add("sally_expedition_detail.json"), e.add("sally_airunit.json"), e.add("sally_jin.json"), e.add("sally_map_parts.json"), this._event && (e.add("sally_event.json"), e.add("sally_event_s.json"), e.add("sally_strategymap.json"), e.add("sally_strategymap_s.json")), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._completedEnd = function () {
+                var e = r.default.model.kdock.get(this.kDockId),
+                    i = r.default.model.useItem.get(49);
+                e.__open__(), i.__setCount__(i.count - 1), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResourcesSally = s
+        }(o.APIBase);
+    e.OpenNewDockAPI = s
 }

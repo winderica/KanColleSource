@@ -20,24 +20,35 @@ const function641 = function (t, e, i) {
         value: !0
     });
     var o = i(4),
-        r = i(10),
-        s = i(48),
+        r = i(25),
+        s = i(161),
         a = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+            function e() {
+                var e = t.call(this) || this;
+                e._timer = -1, e._startAnimation = function () {
+                    e._timer < 0 && (e._timer = setInterval(e._onTimer, 1e3))
+                }, e._stopAnimation = function () {
+                    e._timer >= 0 && (clearInterval(e._timer), e._timer = -1)
+                }, e._onTimer = function () {
+                    var t = new Date,
+                        i = t.getMonth() + 1,
+                        n = t.getDate();
+                    e._date.text = r.MathUtil.zeroPadding(i, 2) + "/" + r.MathUtil.zeroPadding(n, 2);
+                    var o = t.getHours(),
+                        s = t.getMinutes();
+                    e._time.text = r.MathUtil.zeroPadding(o, 2) + ":" + r.MathUtil.zeroPadding(s, 2)
+                };
+                var i = new PIXI.Sprite;
+                return i.name = "bg", i.position.set(0, 573), e.addChild(i), e._date = new o.TextBox(26, "white"), e._date.anchor.set(.5, 0), e._date.position.set(58, 612), e.addChild(e._date), e._time = new o.TextBox(41, "white"), e._time.anchor.set(.5, 0), e._time.position.set(75, 651), e.addChild(e._time), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = r.COMMON_MISC.getTexture(147);
-                this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135, this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = "\u5927\u578b\u8266\u5efa\u9020\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u958b\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
-            }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1.destroy(), this._text1 = null, this._text2.destroy(), this._text2 = null
+            return n(e, t), e.prototype.initialize = function () {
+                this.getChildByName("bg").texture = s.PORT_MAIN.getTexture(19), this._onTimer(), this._startAnimation()
+            }, e.prototype.update = function (t) {
+                var e = [0, 11, 12, 13, 14, 15, 31, 16];
+                this.visible = e.indexOf(t) >= 0, 1 == this.visible ? this._startAnimation() : this._stopAnimation()
+            }, e.prototype.dispose = function () {
+                this._stopAnimation(), this.removeChildren(), this._date && this._date.destroy(), this._date = null, this._time && this._time.destroy(), this._time = null
             }, e
-        }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogLargeBuild = a
+        }(PIXI.Container);
+    e.ClockLayer = a
 }

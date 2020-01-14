@@ -19,20 +19,28 @@ const function337 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(14),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_kaisou/lock", i.api_slotitem_id = e, i
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_slotitem_id = this.api_slotitem_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked");
-                o.default.model.slot.get(this.api_slotitem_id).__setLocked__(e), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t) {
+                switch (t) {
+                    case 1:
+                        this.texture = o.SUPPLY_MAIN.getTexture(20);
+                        break;
+                    case 2:
+                        this.texture = o.SUPPLY_MAIN.getTexture(21);
+                        break;
+                    case 3:
+                        this.texture = o.SUPPLY_MAIN.getTexture(22);
+                        break;
+                    case 0:
+                        this.texture = PIXI.Texture.EMPTY
+                }
+            }, e.prototype.dispose = function () {
+                this.memShipId = null
             }, e
-        }(r.APIBase);
-    e.SlotItemLockAPI = a
+        }(PIXI.Sprite);
+    e.SupplyCheckBox = r
 }

@@ -19,54 +19,51 @@ const function988 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(41),
-        s = i(989),
-        a = i(0),
-        _ = i(15),
-        l = function (t) {
+    var o = i(26),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
+                return e._star = new PIXI.Sprite, e.addChild(e._star), e._plus = new PIXI.Sprite, e._plus.position.set(20, 3), e.addChild(e._plus), e._num = new PIXI.Sprite, e._num.position.set(33, 0), e.addChild(e._num), e._max = new PIXI.Sprite, e._max.position.set(8, -3), e.addChild(e._max), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
-                get: function () {
-                    return this._createSelectView(), this._selectView
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
-                    i = "?version=" + _.UIImageLoader.getVersion("sally");
-                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
-                    case 461:
-                        this._content.position.set(-283, -219), this._content.texture = PIXI.Texture.fromImage(e + "/241_9cbc7.png" + i);
+            return n(e, t), e.prototype.initialize = function () {
+                this._star.visible = !1, this._plus.visible = !1, this._max.visible = !1, this._star.texture = o.SALLY_AIRUNIT.getTexture(59), this._plus.texture = o.SALLY_AIRUNIT.getTexture(58), this._max.texture = o.SALLY_AIRUNIT.getTexture(57)
+            }, e.prototype.update = function (t) {
+                var e;
+                switch (t) {
+                    case 1:
+                        e = 48;
                         break;
-                    case 462:
-                        this._content.position.set(-333, -220), this._content.texture = PIXI.Texture.fromImage(e + "/242_38998.png" + i);
+                    case 2:
+                        e = 49;
                         break;
-                    case 463:
-                        this._content.position.set(-308, -201), this._content.texture = PIXI.Texture.fromImage(e + "/243_f4c34.png" + i);
+                    case 3:
+                        e = 50;
                         break;
-                    case 464:
-                        this._content.position.set(-287, -213), this._content.texture = PIXI.Texture.fromImage(e + "/244_f193d.png" + i);
+                    case 4:
+                        e = 51;
                         break;
-                    case 465:
-                        this._content.position.set(-310, -227), this._content.texture = PIXI.Texture.fromImage(e + "/245_9d0e8.png" + i);
+                    case 5:
+                        e = 52;
                         break;
-                    case 466:
-                        this._content.position.set(-324, -225), this._content.texture = PIXI.Texture.fromImage(e + "/246_edb06.png" + i);
+                    case 6:
+                        e = 53;
                         break;
+                    case 7:
+                        e = 54;
+                        break;
+                    case 8:
+                        e = 55;
+                        break;
+                    case 9:
+                        e = 56;
+                        break;
+                    case 10:
+                        return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !0);
                     default:
-                        this._content.texture = PIXI.Texture.EMPTY
+                        return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !1)
                 }
-            }, e.prototype.showSelectView = function () {
-                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
-            }, e.prototype.dispose = function () {
-                null != this._selectView && this._selectView.dispose()
-            }, e.prototype._createSelectView = function () {
-                null == this._selectView && (this._selectView = new s.OperationSelectView)
+                this._star.visible = !0, this._plus.visible = !0, this._num.texture = o.SALLY_AIRUNIT.getTexture(e), this._num.visible = !0, this._max.visible = !1
             }, e
-        }(o.Sprite);
-    e.MapIntroBoard = l
+        }(PIXI.Container);
+    e.AirUnitPanelItemLevelIcon = r
 }

@@ -19,31 +19,20 @@ const function1000 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = i(370),
+    var o = i(4),
+        r = i(26),
         s = function (t) {
-            function e(e) {
-                return t.call(this, e) || this
+            function e() {
+                var e = t.call(this) || this;
+                return e._star = new PIXI.Sprite, e._star.position.set(0, 3), e.addChild(e._star), e._plus = new PIXI.Sprite, e._plus.position.set(18, 6), e.addChild(e._plus), e._num = new o.TextBox(19, 3198426), e._num.position.set(30, 0), e.addChild(e._num), e._max = new PIXI.Sprite, e._max.position.set(6, 0), e.addChild(e._max), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "air_unit", {
-                get: function () {
-                    return null != this._airunit
-                },
-                set: function (t) {
-                    if (t != this.air_unit) {
-                        if (1 == t) {
-                            this._btn.position.set(0, -8);
-                            var e = o.SALLY_SORTIE.getTexture(7);
-                            this._airunit = new PIXI.Sprite(e), this._airunit.position.set(6, 33), this.addChild(this._airunit)
-                        } else this.removeChild(this._airunit), this._airunit = null, this._btn.position.set(0, 0);
-                        this._updateTexture()
-                    }
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._updateTexture = function () {
-                1 == this.air_unit ? 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(18) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(19) : this._btn.texture = o.SALLY_SORTIE.getTexture(17) : 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(21) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(22) : this._btn.texture = o.SALLY_SORTIE.getTexture(20)
+            return n(e, t), e.prototype.initialize = function () {
+                this._star.visible = !1, this._plus.visible = !1, this._max.visible = !1, this._star.texture = r.SALLY_AIRUNIT.getTexture(45), this._plus.texture = r.SALLY_AIRUNIT.getTexture(44), this._max.texture = r.SALLY_AIRUNIT.getTexture(46)
+            }, e.prototype.update = function (t) {
+                t <= 0 || t > 10 ? (this._star.visible = !1, this._plus.visible = !1, this._num.text = "", this._max.visible = !1) : 10 == t ? (this._star.visible = !1, this._plus.visible = !1, this._num.text = "", this._max.visible = !0) : (this._star.visible = !0, this._plus.visible = !0, this._num.text = t.toString(), this._max.visible = !1)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._num.destroy()
             }, e
-        }(r.BtnGoBase);
-    e.BtnGo = s
+        }(PIXI.Container);
+    e.SlotitemLevel = s
 }

@@ -19,66 +19,23 @@ const function1433 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(20),
-        s = i(2),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = i(476),
+        r = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this, e, i) || this;
+                return r._model = n, r._bannerGroup = o, r
             }
-            return n(e, t), e.prototype._start = function () {
-                1 == this._scene.data.model.map_info.isNightStart() ? this._enterShipsAtNight() : this._enterBanners()
-            }, e.prototype._enterShipsAtNight = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = new o.ParallelTask;
-                i.add(e.createFriendEnterTask()), i.add(e.createEnemyEnterTask()), i.start(function () {
-                    if (1 == t._scene.data.model.deck_f.isCombined()) {
-                        var i = new r.TweenTask,
-                            n = e.friends.createExitTweens();
-                        i.addTweens(n), n = e.createFriendSubDeckMoveTween(200), i.addTweens(n), i.start(function () {
-                            t._endTask()
-                        })
-                    } else t._endTask()
-                });
-                var n = this._scene.data.model.deck_f,
-                    s = n.getCountMainDeck(),
-                    a = n.getCountSubDeck();
-                1 == n.isCombined() ? this._scene.view.raderLayer.rader_f.show(n.formation, 0, a, 0, !1) : this._scene.view.raderLayer.rader_f.show(n.formation, n.type, s, a, !1);
-                var _ = this._scene.data.model.deck_e,
-                    l = _.formation,
-                    u = _.type,
-                    c = _.getCountMainDeck(),
-                    h = _.getCountSubDeck();
-                this._scene.view.raderLayer.rader_e.show(l, u, c, h, !1)
-            }, e.prototype._enterBanners = function () {
-                var t = this,
-                    e = new r.TweenTask;
-                if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend() && 1 == this._scene.data.model.deck_f.isCombined()) {
-                    var i = this._record.common.getActiveDeckFriend();
-                    if (1 == i) {
-                        var n = this._scene.view.bannerGroupLayer.friends_combined.createExitTweensUpDown();
-                        e.addTweens(n)
-                    } else if (2 == i) {
-                        var n = this._scene.view.bannerGroupLayer.friends.createExitTweens();
-                        e.addTweens(n), n = this._scene.view.bannerGroupLayer.createFriendSubDeckMoveTween(200), e.addTweens(n)
-                    }
-                }
-                if (1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() && 1 == this._scene.data.model.deck_e.isCombined()) {
-                    var i = this._record.common.getActiveDeckEnemy();
-                    if (1 == i) {
-                        var n = this._scene.view.bannerGroupLayer.enemies_combined.createExitTweensUpDown();
-                        e.addTweens(n)
-                    } else if (2 == i) {
-                        var n = this._scene.view.bannerGroupLayer.enemies.createExitTweens();
-                        e.addTweens(n), n = this._scene.view.bannerGroupLayer.createEnemySubDeckMoveTween(200), e.addTweens(n)
-                    }
-                }
-                e.start(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._getShips_f = function () {
+                return this._model.ships
+            }, e.prototype._getShips_e = function () {
+                return this._scene.data.model.deck_e.ships
+            }, e.prototype._getFlareBanner_f = function () {
+                var t = this._model.getFlareIndex_f();
+                return this._bannerGroup.getBanner(t)
+            }, e.prototype._getFlareBanner_e = function () {
+                var t = this._model.getFlareIndex_e();
+                return this._scene.view.bannerGroupLayer.getBanner(!1, t)
             }, e
-        }(s.TaskBase);
-    e.PhaseMoveShips = a
+        }(o.PhaseLightingBase);
+    e.PhaseAllyLighting = r
 }

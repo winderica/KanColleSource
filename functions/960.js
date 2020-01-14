@@ -19,21 +19,25 @@ const function960 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(23),
-        s = function (t) {
+    var o = i(11),
+        r = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._mstid = e, i
+                return i._view = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                (new r.SlotLoader).add(this._mstid, "airunit_banner").add(this._mstid, "airunit_name").load(function () {
-                    t._endTask()
-                })
-            }, e.prototype.cancel = function () {
-                this._cb = null, this._cb_failed = null
+                this._view = null, this._endTask()
             }, e
         }(o.TaskBase);
-    e.TaskAirUnitImageLoader = s
+    e.PreFinalizeTask = r;
+    var s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._view.dispose(), this._view = null, this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = s
 }

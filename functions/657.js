@@ -19,79 +19,35 @@ const function657 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(274),
-        r = i(275),
-        s = i(34),
-        a = i(160),
-        _ = i(212),
-        l = i(130),
-        u = i(108),
-        c = i(658),
-        h = i(659),
-        p = i(660),
-        d = i(661),
-        f = i(662),
-        y = i(663),
-        m = i(664),
-        g = i(666),
-        v = i(668),
-        b = function (t) {
-            function e(e) {
-                void 0 === e && (e = 0);
-                var i = t.call(this) || this;
-                return i._sceneId = e, i._isStart = !0, i._isGoNextPath = !0, i._shipId = null, i._onSceneStart = function () {
-                    switch (i._isStart) {
-                        case !0:
-                            return i._isStart = !1, i._ViewMain.start(), i._CurrentScene.start(), i;
-                        case !1:
-                            return i._loader.hide(), i._NextScene.start(), i._isGoNextPath && i._ev.emit("tutorial-next"), i
-                    }
-                }, i._onNextScene = function () {
-                    if (i._loader.show(), i._sceneId++, i._NextScene = i._createNextScene(), i._SoundManager.voice.stopAll(), null == i._NextScene) return i.dispose(), !1;
-                    i._NextScene.initialize(), i._ViewScene.addChild(i._NextScene), i._CurrentScene.dispose(), i._CurrentScene = i._NextScene
-                }, i._onRemoveScene = function () {
-                    i._ViewScene.removeChildAt(0), i._CurrentScene = i._NextScene
-                }, i._onPlayVoice = function (t, e, n) {
-                    void 0 === n && (n = null), i._SoundManager.voice.play(t, e, n)
-                }, i._saveShipId = function (t) {
-                    i._shipId = t
-                }, i._ImageManager = new c.ImageManager(i._create.bind(i)), i._SoundManager = new o.SoundManager, i._ev = new PIXI.utils.EventEmitter, i._ev.on("tutorial-scene-start", i._onSceneStart).on("tutorial-next-scene", i._onNextScene).on("tutorial-remove-scene", i._onRemoveScene).on("tutorial-play-voice", i._onPlayVoice).on("tutorial-save-ship", i._saveShipId), i.emitter = new PIXI.utils.EventEmitter, i
+    var o = i(4),
+        r = i(10),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._text = new o.TextBox(27, 16777215), e.addChild(e._text), e
             }
-            return n(e, t), e.prototype.start = function () {
-                this._ViewMain.start(), this._CurrentScene.start()
-            }, e.prototype._create = function () {
-                var t = new PIXI.Sprite(this._ImageManager.use(u.IMAGE_FILE.BG));
-                this._ViewMain = new h.ViewMain(this._ImageManager, this._ev), this._ViewScene = new PIXI.Container, this._CurrentScene = this._createNextScene(), this._CurrentScene.initialize(), this._ViewScene.addChild(this._CurrentScene), this._loader = new r.LoadingBox, this._loader.hide(), this.addChild(t, this._ViewScene, this._ViewMain, this._loader)
-            }, e.prototype._createNextScene = function () {
-                switch (this._sceneId) {
-                    case 0:
-                        return this._isGoNextPath = !0, new m.SceneInputName(this._ev);
-                    case 1:
-                        return this._isGoNextPath = !0, new g.SceneSelectShip(this._ImageManager, this._ev);
-                    case 2:
-                        return this._isGoNextPath = !0, new p.SceneExplain1(this._ev);
-                    case 3:
-                        return this._isGoNextPath = !0, new d.SceneExplain2(this._ev);
-                    case 4:
-                        return this._isGoNextPath = !0, new f.SceneExplain3(this._ev);
-                    case 5:
-                        return this._isGoNextPath = !1, new y.SceneFinal(this._ImageManager, this._ev, this._shipId);
-                    default:
-                        return null
-                }
-            }, e.prototype.dispose = function () {
-                var t = this;
-                this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
-                var e = new s.APIConnector,
-                    i = parseInt(this._shipId, 10);
-                e.add(new v.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new l.UserSlotItemAPI), e.start(function () {
-                    t._loader.hide(), createjs.Tween.get(t).to({
-                        alpha: 0
-                    }, 400, createjs.Ease.linear).call(function () {
-                        t._ViewMain.dispose(), t._CurrentScene.dispose(), t._CurrentScene = null, t._NextScene = null, t.removeChildren(), t.emitter.emit("tutorial-event-end")
-                    })
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.COMMON_MISC.getTexture(120), this._text.text = t, this._text.x = 615 - Math.round(this._text.width / 2), this._text.y = 159 - Math.round(this._text.height / 2)
+            }, e.prototype.changeText = function (t) {
+                var e = this;
+                createjs.Tween.get(this._text).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    e._startAnimation(t)
                 })
+            }, e.prototype.dispose = function () {
+                this._stopAnimation(), this.removeChildren(), this._text.destroy()
+            }, e.prototype._startAnimation = function (t) {
+                var e = this;
+                null == this._t && null != t && 0 != t.length && (this._message = t, this._text.text = "", this._text.alpha = 1, this._text.x = 246, this._text.y = 87, this._t = createjs.Tween.get(null, {
+                    loop: !0
+                }).wait(100).call(function () {
+                    var t = e._message.substr(0, 1);
+                    " " == e._text.text ? e._text.text = t : e._text.text += t, e._message = e._message.substr(1), 0 == e._message.length && e._stopAnimation()
+                }))
+            }, e.prototype._stopAnimation = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(PIXI.Container);
-    e.TutorialScene = b
+        }(PIXI.Sprite);
+    e.ModelChangeMessageBox = s
 }

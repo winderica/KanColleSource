@@ -1,65 +1,48 @@
 const function730 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(731),
-        a = i(136),
-        _ = i(21),
-        l = i(56),
-        u = i(312),
-        c = i(732),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._loadPreset = function () {
-                    var t = new c.PresetDeckAPI;
-                    t.start(function () {
-                        var e = t.result;
-                        i.organizeScene.preInitialize(e), i._endTask()
-                    })
-                }, i.organizeScene = e, i
+    var n = i(0),
+        o = i(8),
+        r = i(731),
+        s = function () {
+            function t(t) {
+                var e = this;
+                this._onClickBack = function () {
+                    e.onClickBack()
+                }, this._onClickIrako = function () {
+                    e.onClickUse(2)
+                }, this._onClickMamiya = function () {
+                    e.onClickUse(1)
+                }, this._onClickMamiyaAndIrako = function () {
+                    e.onClickUse(3)
+                }, this.mainView = t, this.sweetsSelectView = new r.SweetsSelectView, this.dialogBackground = new o.AreaBox(.8)
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResource()
-            }, e.prototype._loadResource = function () {
-                var t = this;
-                (new s.TaskLoadResourcesOrganize).start(function () {
-                    t._uploadToGPU_common()
+            return t.prototype.dispose = function () {
+                this.sweetsSelectView.dispose(), this.mainView.removeChild(this.sweetsSelectView), this.mainView.removeChild(this.dialogBackground), this.sweetsSelectView = null, this.mainView = null, this.dialogBackground = null, this.onClickBack = null, this.onClickUse = null
+            }, t.prototype.start = function (t) {
+                var e = this;
+                this.sweetsSelectView.position.set(147, 267), this.sweetsSelectView.onClickBack = this._onClickBack, this.sweetsSelectView.onClickIrako = this._onClickIrako, this.sweetsSelectView.onClickMamiya = this._onClickMamiya, this.sweetsSelectView.onClickMamiyaAndIrako = this._onClickMamiyaAndIrako;
+                for (var i = n.default.model.deck.get(t), o = i.getShipList(), r = n.default.model.useItem.get(54).count, s = n.default.model.useItem.get(59).count, a = !1, _ = 0; _ < o.length; _++) {
+                    var u = o[_];
+                    u && u.tired < 40 && (a = !0)
+                }
+                var l = 0 < r && a,
+                    c = 0 < s,
+                    h = 0 < r && 0 < s;
+                this.mainView.addChild(this.dialogBackground, this.sweetsSelectView), this.sweetsSelectView.update(l, c, h), this.dialogBackground.alpha = 0, n.default.view.clickGuard = !0, this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 1
+                }, 125).call(function () {
+                    e.sweetsSelectView.visible = !0, n.default.view.clickGuard = !1
                 })
-            }, e.prototype._uploadToGPU_common = function () {
-                var t = this;
-                o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
-                        t._uploadToGPU_organize()
-                    })
+            }, t.prototype.hide = function (t) {
+                this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 0
+                }, 125).call(function () {
+                    t()
                 })
-            }, e.prototype._uploadToGPU_organize = function () {
-                var t = this;
-                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
-                        t._loadPreset()
-                    })
-                })
-            }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = h
+            }, t
+        }();
+    e.TaskChoiceMamiyaIrako = s
 }

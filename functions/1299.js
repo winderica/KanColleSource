@@ -19,78 +19,114 @@ const function1299 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(149),
-        a = i(7),
-        _ = i(2),
-        l = i(247),
-        u = i(50),
-        c = i(6),
-        h = i(1300),
-        p = i(1301),
-        d = function (t) {
-            function e(e, i, n, o, r, s, a, _, l, u) {
-                var c = t.call(this) || this;
-                return c._PLANEKEY = "airbaseraid", c._area_id = e, c._map_no = i, c._battle_obj = n, c._has_boku_airunit = o, c._mapinfo = r, c._plane_layer = s, c._telop_layer = a, c._battle_layer = _, c._airbase_layer = l, c._battle_cls = u, c
+    var o = i(2),
+        r = i(6),
+        s = i(19),
+        a = i(1),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onSelect = function (t) {
+                    n._scene.user_select.ration = 1 == t ? 1 : 0, n._hideConfirmDialog()
+                }, n._scene = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                null == this._battle_obj ? this._endTask() : (c.SE.play("253"), this._flightEnemyAirUnit())
-            }, e.prototype._flightEnemyAirUnit = function () {
+                1 == this._model.sortie.getNextCell().isUsableRation() ? this._showConfirmDialog() : (this._scene.user_select.ration = -1, this._endTask())
+            }, e.prototype._showConfirmDialog = function () {
                 var t = this,
-                    e = this._mapinfo.getAirBaseRaidOption();
-                this._plane_layer.show(this._PLANEKEY, e, 2e3, this._map_no, this._area_id, function () {
-                    t._showTelop()
-                })
-            }, e.prototype._showTelop = function () {
-                var t = this,
-                    e = new h.AirRaidTelop;
-                e.initialize(this._has_boku_airunit), e.x = o.default.width / 2, e.y = o.default.height / 2, this._telop_layer.addChild(e), e.playAnimation(function () {
-                    t._telop_layer.removeChild(e), t._fadeoutBGM()
-                })
-            }, e.prototype._fadeoutBGM = function () {
-                var t = this;
-                1 == r.default.sound.bgm.playing ? (r.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
-                    t._startBattle()
-                })) : this._startBattle()
-            }, e.prototype._startBattle = function () {
-                var t = this,
-                    e = new l.BattleSceneModel(!1);
-                e.setGekimetsuData(this._battle_obj);
-                var i = new u.Shutter;
-                i.initializeDark(), i.close(0), this._battle_layer.addChild(i);
-                var n = new this._battle_cls;
-                n.initialize(e), this._battle_layer.addChild(n), i.alpha = 0, n.alpha = 0, createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 200), createjs.Tween.get(n).to({
+                    e = this._model.sortie.now_cell_no,
+                    i = this._scene.resInfo.getRationConfirmOffset(e),
+                    n = this._scene.view.map.ship_icon;
+                this._confirm = new u(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
+                    y: n.y,
                     alpha: 1
                 }, 300).call(function () {
-                    n.once("complete", function () {
-                        t._hideBattle(i, n)
-                    }), n.start()
+                    t._confirm.activate()
                 })
-            }, e.prototype._hideBattle = function (t, e) {
-                var i = this;
-                this._plane_layer.hide(this._PLANEKEY), this._battle_layer.removeChild(e), e.dispose(), createjs.Tween.get(t).wait(800).to({
+            }, e.prototype._hideConfirmDialog = function () {
+                var t = this;
+                this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
                     alpha: 0
-                }, 300).wait(400).call(function () {
-                    i._battle_layer.removeChild(t), i._showResultTelop()
+                }, 200), createjs.Tween.get(this._confirm.btn_no).to({
+                    alpha: 0
+                }, 200);
+                var e = this._confirm.y;
+                createjs.Tween.get(this._confirm).wait(200).to({
+                    y: e,
+                    alpha: 0
+                }, 300).call(function () {
+                    t._scene.view.universal_layer.removeChild(t._confirm), t._confirm.dispose(), t._endTask()
                 })
-            }, e.prototype._showResultTelop = function () {
-                var t = this,
-                    e = s.MapConst.getMapBGMID(this._area_id, this._map_no);
-                1 == e.battle_bgm ? r.default.sound.bgm.playBattleBGM(e.id) : r.default.sound.bgm.play(e.id);
-                var i = a.ObjUtil.getNumber(this._battle_obj, "api_lost_kind"),
-                    n = new p.AirRaidResultTelop;
-                n.initialize(i), n.x = o.default.width / 2, n.y = o.default.height / 2, this._telop_layer.addChild(n), n.playAnimation(function () {
-                    var e = a.ObjUtil.getNumber(t._battle_obj, "api_m2");
-                    45 == t._area_id && 3 == t._map_no && 1 == e && c.SE.play("258")
-                }, function () {
-                    t._telop_layer.removeChild(n), t._endTask()
-                }), 4 != i && null != this._airbase_layer && this._airbase_layer.shake()
-            }, e.prototype._endTask = function () {
-                this._battle_obj = null, this._mapinfo = null, this._plane_layer = null, this._telop_layer = null, this._battle_layer = null, this._battle_cls = null, t.prototype._endTask.call(this)
             }, e
-        }(_.TaskBase);
-    e.AirRaidTask = d
+        }(o.TaskBase);
+    e.TaskConfirmRation = _;
+    var u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                if (n._onClickYes = function () {
+                        null != n._cb_onSelect && n._cb_onSelect(!0)
+                    }, n._onClickNo = function () {
+                        null != n._cb_onSelect && n._cb_onSelect(!1)
+                    }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new l(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new l(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e) {
+                    if (null != e.box) {
+                        var o = e.box;
+                        n._box.x += o.x, n._box.y += o.y, n._beak.x += o.x, n._beak.y += o.y
+                    }
+                    if (null != e.btn) {
+                        var o = e.btn;
+                        n._btn_yes.x += o.x, n._btn_yes.y += o.y, n._btn_no.x += o.x, n._btn_no.y += o.y
+                    }
+                    if (null != e.beak) {
+                        var o = e.beak;
+                        n._beak.x += o.x, n._beak.y += o.y
+                    }
+                }
+                return n
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
+                get: function () {
+                    return this._btn_yes
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_no", {
+                get: function () {
+                    return this._btn_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._box.texture = s.MAP_COMMON.getTexture(75), this._beak.texture = s.MAP_COMMON.getTexture(76);
+                var t = s.MAP_COMMON.getTexture(102),
+                    e = s.MAP_COMMON.getTexture(104);
+                this._btn_yes.initialize(t, e), t = s.MAP_COMMON.getTexture(84), e = s.MAP_COMMON.getTexture(85), this._btn_no.initialize(t, e)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_no.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_no.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn_yes.dispose(), this._btn_no.dispose()
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    r.SE.play("225"), i._over.alpha = 1
+                }, i._onMouseOut = function () {
+                    i._over.alpha = 0
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
+            }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e
+        }(PIXI.Container)
 }

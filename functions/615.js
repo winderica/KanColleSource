@@ -19,15 +19,29 @@ const function615 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
+    var o = i(4),
         r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_member/set_friendly_request", n._flag = e, n._type = i, n
+            function e(e, i, n, r) {
+                var s = t.call(this) || this;
+                return s._name = new o.TextBox(21, 4204800), s._name.text = "", s._name.position.set(44 + i, 30 * e + 95 + n), s._name.alpha = 1, s._name.mask = r[0], s.addChild(s._name), s._param = new o.TextBox(14, 4204800), s._param.text = "", s._param.style.letterSpacing = -1, s._param.position.set(400 + i, 30 * e + 99 + n), s._param.alpha = 1, s._param.mask = r[1], s.addChild(s._param), s._price = new o.TextBox(22, 13892095), s._price.text = "", s._price.position.set(618 + i, 30 * e + 93 + n), s._price.anchor.set(.5, 0), s._price.alpha = 1, s._price.mask = r[2], s.addChild(s._price), s._btn = new PIXI.Graphics, s._btn.beginFill(43639), s._btn.drawRect(42 + i, 30 * e + 91 + n, 625, 28), s._btn.alpha = .001, s._btn.interactive = !0, s.addChild(s._btn), s
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_request_flag = this._flag, this._post_data.api_request_type = this._type, t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "Btn", {
+                get: function () {
+                    return this._btn
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.playFadeInOut = function (t, e) {
+                this._tween = null, this._tween = createjs.Tween.get(this).to({
+                    alpha: 1 - t
+                }, 0).to({
+                    alpha: t
+                }, e)
+            }, e.prototype.setText = function (t) {
+                this._name.text = t.api_name, this._param.text = t.api_description, this._price.text = t.api_use_coin + ""
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._name.destroy(), this._param.destroy(), this._price.destroy(), this._tween && (this._tween.setPaused(!0), this._tween = null)
             }, e
-        }(o.APIBase);
-    e.SetFriendlyRequestAPI = r
+        }(PIXI.Container);
+    e.BGMList = r
 }

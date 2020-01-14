@@ -19,87 +19,128 @@ const function1288 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(6),
-        s = i(19),
-        a = i(440),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+    var o = i(0),
+        r = i(56),
+        s = i(25),
+        a = i(7),
+        _ = i(2),
+        u = i(15),
+        l = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o)
+                    for (var s = 0, a = o; s < a.length; s++) {
+                        var _ = a[s];
+                        r._memData[_.no] = _, r._memDataNum++
+                    }
+                return r._version = u.UIImageLoader.getResourceVersionMap(r._map_id), r
             }
             return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._getPath("info.json" + (this._version ? "?version=" + this._version : ""));
+                axios.get(e).then(function (e) {
+                    var i = a.ObjUtil.getObject(e, "data");
+                    t._mapInfo.add(i), t._loadSpriteSheet()
+                }).catch(function (e) {
+                    t._failedEnd()
+                })
+            }, e.prototype._loadSpriteSheet = function () {
+                var t = this,
+                    e = this._getPath("image.json");
+                if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo();
+                else {
+                    var i = new PIXI.loaders.Loader;
+                    null != this._version && (i.defaultQueryString = "version=" + this._version), i.add(e), i.load(function () {
+                        t._loadAddingInfo()
+                    })
+                }
+            }, e.prototype._loadAddingInfo = function () {
                 var t = this;
-                this._data = this._model.sortie.getNextCell().getHappeningData(), this._scene.view.message_box.text = "\u53f8\u4ee4\u5b98\uff01\u3046\u305a\u3057\u304a\u304c\u767a\u751f\u3057\u307e\u3057\u305f\uff01", this._uzu = new l;
-                var e = this._scene.view.map.ship_icon;
-                e.under.addChild(this._uzu), this._uzu.activate(), e.startWaveWhite(), r.SE.play("254");
-                var i = {
-                    rad: 0,
-                    a: 36
-                };
-                createjs.Tween.get(i, {
-                    onChange: function () {
-                        e.ship.x = Math.cos(i.rad) * i.a, e.ship.y = Math.sin(i.rad) * i.a, i.rad += Math.PI / 180 * 5 * (60 / createjs.Ticker.framerate)
+                if (this._mapInfo.spots.length >= this._memDataNum)
+                    if (445 == this._map_id) {
+                        var e = new u.UIImageLoader("map");
+                        e.add("map_event_anime.json"), e.load(function () {
+                            t._createMapBackGround()
+                        })
+                    } else this._createMapBackGround();
+                else {
+                    var i = this._mapInfo.spots.length,
+                        n = this._getPath("info" + i + ".json" + (this._version ? "?version=" + this._version : ""));
+                    axios.get(n).then(function (e) {
+                        var n = a.ObjUtil.getObject(e, "data");
+                        t._mapInfo.add(n), t._loadAddingSpriteSheet(i)
+                    }).catch(function (e) {
+                        t._failedEnd()
+                    })
+                }
+            }, e.prototype._loadAddingSpriteSheet = function (t) {
+                var e = this,
+                    i = this._getPath("image" + t + ".json");
+                if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo();
+                else {
+                    var n = new PIXI.loaders.Loader;
+                    null != this._version && (n.defaultQueryString = "version=" + this._version), n.add(i), n.load(function () {
+                        e._loadAddingInfo()
+                    })
+                }
+            }, e.prototype._createMapBackGround = function () {
+                for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = r.MapUtil.toResKey(this._map_id),
+                        s = "map" + o + "_" + n.img,
+                        a = PIXI.Texture.fromFrame(s);
+                    this._mapView.bg.addBGLayer(a, n.name)
+                }
+                445 == this._map_id && this._mapView.bg.setMapAnime(), this._createLabel()
+            }, e.prototype._createLabel = function () {
+                for (var t = this._mapInfo.labels, e = [], i = 0, n = t; i < n.length; i++)
+                    for (var o = n[i], s = 0, a = o; s < a.length; s++) {
+                        var _ = a[s],
+                            u = r.MapUtil.toResKey(this._map_id),
+                            l = "map" + u + "_" + _.img,
+                            c = PIXI.Texture.fromFrame(l);
+                        e.push({
+                            texture: c,
+                            x: _.x,
+                            y: _.y
+                        })
                     }
-                }).to({
-                    a: 0
-                }, 2400).call(function () {
-                    e.stopWave(), t._animItem()
-                })
-            }, e.prototype._animItem = function () {
-                var t = this,
-                    e = this._data.getUseitemMstID(),
-                    i = this._data.lost_count,
-                    n = new a.CompDropItem;
-                n.initialize(e, i);
-                var o = this._scene.view.map.ship_icon;
-                o.under.addChild(n), createjs.Tween.get(n).to({
-                    x: -120
-                }, 1400), createjs.Tween.get(n).to({
-                    y: -60
-                }, 400, createjs.Ease.quadOut).to({
-                    y: 150
-                }, 1e3, createjs.Ease.quadIn), createjs.Tween.get(n).wait(1200).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    o.under.removeChild(n), n.dispose(), t._hideUzu()
-                })
-            }, e.prototype._hideUzu = function () {
-                var t = this,
-                    e = this._scene.view.map.ship_icon;
-                createjs.Tween.get(this._uzu).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e.under.removeChild(t._uzu), t._uzu.deactivate(), t._uzu = null, t._showText()
-                })
-            }, e.prototype._showText = function () {
-                var t = this,
-                    e = this._data.getUseitemMstID(),
-                    i = this._data.lost_count,
-                    n = this._data.isDentan();
-                this._scene.view.message_box.showUzushioText(e, i, n), createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, this._data = null, t.prototype._endTask.call(this)
+                this._mapView.bg.addLabels(e), this._createSpots()
+            }, e.prototype._createSpots = function () {
+                for (var t = this._mapInfo.spots, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = n.no;
+                    if (!(this._memDataNum > 0 && null == this._memData[o]) && (this._mapView.addSpot(this._map_id, o, this._mapInfo), null != n.landing)) {
+                        var r = n.x + n.landing.x,
+                            s = n.y + n.landing.y;
+                        this._mapView.spotLayer.addFlag(o, r, s)
+                    }
+                }
+                this._createAirBase()
+            }, e.prototype._createAirBase = function () {
+                var t = this._mapInfo.getAirBasePos();
+                null != t && this._mapView.airbaseLayer.create(t), this._initCellColor()
+            }, e.prototype._initCellColor = function () {
+                for (var t = [], e = this._mapView.spotLayer.getAllSpots(), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    if (!(t.indexOf(o.no) >= 0)) {
+                        for (var r = !1, s = 0, a = 0, _ = this._mapInfo.getSameSpotData(o.no), u = 0, l = _; u < l.length; u++) {
+                            var c = l[u];
+                            t.push(c.no), 0 == s && (s = c.color);
+                            var h = this._memData[c.no];
+                            null != h && (r = r || h.passed, 0 == a && (a = h.color))
+                        }
+                        var p = _[0].no,
+                            d = this._mapView.spotLayer.getSpot(p);
+                        1 == r ? d.setColor(a) : d.setColor(s)
+                    }
+                }
+                this._endTask()
+            }, e.prototype._getPath = function (t) {
+                var e = r.MapUtil.toAreaID(this._map_id),
+                    i = r.MapUtil.toMapNo(this._map_id);
+                return o.default.settings.path_root + "resources/map/" + s.MathUtil.zeroPadding(e, 3) + "/" + s.MathUtil.zeroPadding(i, 2) + "_" + t
             }, e
-        }(o.TaskBase);
-    e.CellTaskHappening = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.scale.y = .5;
-            var i = s.MAP_COMMON.getTexture(181);
-            return e._content = new PIXI.Sprite(i), e._content.anchor.set(.5), e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._content, {
-                loop: !0
-            }).to({
-                rotation: 2 * Math.PI
-            }, 3e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+        }(_.TaskBase);
+    e.TaskCreateMap = l
 }

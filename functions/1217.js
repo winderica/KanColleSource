@@ -29,8 +29,8 @@ const function1217 = function (t, e, i) {
                 this._load()
             }, e.prototype._load = function () {
                 var t = this,
-                    e = new r.UIImageLoader("revamp");
-                e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
+                    e = new r.UIImageLoader("interior");
+                e.add("interior_parts.json"), e.load(function () {
                     t._endTask()
                 })
             }, e

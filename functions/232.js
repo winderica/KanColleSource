@@ -1,66 +1,94 @@
 const function232 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._activated = !1, e._enabled = !0, e._supply_max = !1, e
+    var n = i(0),
+        o = function () {
+            function t(t, e, i, n) {
+                void 0 === e && (e = 0), void 0 === i && (i = 0), void 0 === n && (n = -1), this._mem_id = 0, this._level = 0, this._mst_id = t, this._mem_id = e, this._level = i, this._sakuteki = n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+            return t.convert = function (e) {
+                return null == e ? null : new t(e.mstID, e.memID, e.level, e.sakuteki)
+            }, t.convertFromMstIDs = function (e) {
+                if (null == e) return null;
+                for (var i = new Array, n = 0, o = e; n < o.length; n++) {
+                    var r = o[n];
+                    r > 0 ? i.push(new t(r)) : i.push(null)
+                }
+                return i
+            }, t.converts = function (e) {
+                if (null == e) return null;
+                var i = new Array;
+                if (null != e)
+                    for (var n = 0, o = e; n < o.length; n++) {
+                        var r = o[n];
+                        i.push(t.convert(r))
+                    }
+                return i
+            }, Object.defineProperty(t.prototype, "mst_id", {
                 get: function () {
-                    return this._enabled
-                },
-                set: function (t) {
-                    this._enabled != t && (this._enabled = t, 1 == this._activated && (1 == this._enabled ? this.activate() : (this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1, this._deactivate())))
+                    return this._mst_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.SALLY_COMMON.getTexture(25));
-                this._on1 = new PIXI.Sprite, this._on2 = new PIXI.Sprite, this._on3 = new PIXI.Sprite, this._on1.position.set(4, 16), this._on2.position.set(33, 16), this._on3.position.set(61, 4), this.addChild(t), this.addChild(this._on1), this.addChild(this._on2), this.addChild(this._on3), this.update(!0)
-            }, e.prototype.update = function (t) {
-                this._supply_max != t && (this._supply_max = t, 1 == t ? (this._on1.texture = o.SALLY_COMMON.getTexture(22), this._on2.texture = o.SALLY_COMMON.getTexture(22), this._on3.texture = o.SALLY_COMMON.getTexture(21)) : (this._on1.texture = o.SALLY_COMMON.getTexture(24), this._on2.texture = o.SALLY_COMMON.getTexture(24), this._on3.texture = o.SALLY_COMMON.getTexture(23)))
-            }, e.prototype.activate = function () {
-                var t = this;
-                this._activated = !0, null == this._t && (this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1, 0 != this._enabled && (this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).wait(300).call(function () {
-                    t._on1.visible = !0
-                }).wait(300).call(function () {
-                    t._on1.visible = !1, t._on2.visible = !0
-                }).wait(300).call(function () {
-                    t._on2.visible = !1, t._on3.visible = !0
-                }).wait(300).call(function () {
-                    t._on3.visible = !1
-                })))
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren()
-            }, e.prototype._deactivate = function () {
-                this._stopAnimation(), this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e
-        }(PIXI.Container);
-    e.CompArrow2 = r
+            }), Object.defineProperty(t.prototype, "mem_id", {
+                get: function () {
+                    return this._mem_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "level", {
+                get: function () {
+                    return this._level
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    return n.default.model.slot.getMst(this._mst_id).name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "iconType", {
+                get: function () {
+                    return n.default.model.slot.getMst(this._mst_id).iconType
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equipType", {
+                get: function () {
+                    return n.default.model.slot.getMst(this._mst_id).equipType
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equipTypeSp", {
+                get: function () {
+                    return n.default.model.slot.getMst(this._mst_id).equipTypeSp
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "sakuteki", {
+                get: function () {
+                    return this._sakuteki >= 0 ? this._sakuteki : n.default.model.slot.getMst(this._mst_id).sakuteki
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taiku", {
+                get: function () {
+                    return n.default.model.slot.getMst(this._mst_id).taiku
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taisen", {
+                get: function () {
+                    return n.default.model.slot.getMst(this._mst_id).taisen
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.clone = function () {
+                return new t(this._mst_id, this._mem_id, this._level, this._sakuteki)
+            }, t
+        }();
+    e.SlotitemModelReplica = o
 }

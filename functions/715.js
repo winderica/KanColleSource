@@ -19,41 +19,20 @@ const function715 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(56),
-        r = i(1),
+    var o = i(217),
+        r = i(21),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onClickEdit = function () {
-                    e.onClick(1)
-                }, e._onClickExpansion = function () {
-                    e.onClick(2)
-                }, e.buttonSave = new PIXI.Sprite, e.buttonLoad = new PIXI.Sprite, e.buttonLoad.y = 43, e.buttonSave.interactive = e.buttonLoad.interactive = !0, e.buttonSave.buttonMode = e.buttonLoad.buttonMode = !0, e.buttonSave.addListener(r.EventType.CLICK, e._onClickEdit), e.buttonLoad.addListener(r.EventType.CLICK, e._onClickExpansion), e.addChild(e.buttonSave, e.buttonLoad), e.update(0), e
+                var e = r.COMMON_MAIN.getTexture(15);
+                return t.call(this, e) || this
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.buttonLoad.removeAllListeners(r.EventType.CLICK), this.buttonSave.removeAllListeners(r.EventType.CLICK), this.onClick = null, this.buttonSave = null, this.buttonLoad = null, this.removeChildren()
-            }, e.prototype.update = function (t) {
-                switch (t) {
-                    case 0:
-                        var e = o.ORGANIZE_MAIN.getTexture(48),
-                            i = o.ORGANIZE_MAIN.getTexture(45);
-                        this.buttonSave.texture = e, this.buttonLoad.texture = i;
-                        break;
-                    case 1:
-                        var n = o.ORGANIZE_MAIN.getTexture(50),
-                            r = o.ORGANIZE_MAIN.getTexture(46);
-                        this.buttonSave.texture = n, this.buttonLoad.texture = r;
-                        break;
-                    case 2:
-                        var s = o.ORGANIZE_MAIN.getTexture(49),
-                            a = o.ORGANIZE_MAIN.getTexture(47);
-                        this.buttonSave.texture = s, this.buttonLoad.texture = a
-                }
-            }, e.prototype.show = function () {
-                this.visible = !0
-            }, e.prototype.hide = function () {
-                this.visible = !1
+                this.cacheAsBitmap = !1, t.prototype.dispose.call(this)
+            }, e.prototype.update = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+                this.cacheAsBitmap = !1, this._sokuryoku.update(o), this._textHp.text = t.toString(), this._textSoukou.text = e.toString(), this._textKaihi.text = i.toString(), this._textTousai.text = n.toString(), this._shatei.update(r), this._textKaryoku.text = s.toString(), this._textRaisou.text = a.toString(), this._textTaiku.text = _.toString(), this._textTaisen.text = u.toString(), this._textSakuteki.text = l.toString(), this._textLucky.text = c.toString(), this.cacheAsBitmap = !0, this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
+            }, e.prototype._alignment = function () {
+                this._textHp.position.set(137, 3), this._textSoukou.position.set(137, 38), this._textKaihi.position.set(137, 72), this._textTousai.position.set(137, 107), this._sokuryoku.position.set(116, 143), this._shatei.position.set(116, 177), this._textKaryoku.position.set(285, 3), this._textRaisou.position.set(285, 38), this._textTaiku.position.set(285, 72), this._textTaisen.position.set(285, 107), this._textSakuteki.position.set(285, 141), this._textLucky.position.set(285, 176)
             }, e
-        }(PIXI.Container);
-    e.PresetButtonLayer = s
+        }(o.ShipParameterViewBase);
+    e.ShipParameterView = s
 }

@@ -19,45 +19,32 @@ const function1033 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(18),
-        a = i(1034),
-        _ = i(1035),
-        l = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._hideDetailInfo = function () {
-                    r._detail.deactivate(), createjs.Tween.get(r._detail).to({
-                        alpha: 0
-                    }, 300), createjs.Tween.get(r._fade).wait(100).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        r._detail.dispose(), o.default.view.overLayer.removeChild(r._fade)
-                    })
-                }, r._rival_id = e, r._flag_type = i, r._medal_num = n, r
+    var o = i(53),
+        r = i(42),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._light = new PIXI.Sprite, e._content = new PIXI.Sprite, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                this._fade = new s.FadeBox(1), this._fade.hide(0), o.default.view.overLayer.addChild(this._fade), this._fade.show(300), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = new a.RivalDetailAPI(this._rival_id, this._flag_type, this._medal_num);
-                e.start(function () {
-                    t._showDetailInfo(e.res_model)
-                })
-            }, e.prototype._showDetailInfo = function (t) {
-                var e = this;
-                this._detail = new _.ContainerOverlay;
-                var i = o.default.model.deck.getIDs(),
-                    n = o.default.model.deck.isCombined();
-                this._detail.initialize(i, n), this._detail.update(t), this._detail.alpha = 0, this._fade.addChild(this._detail), createjs.Tween.get(this._detail).to({
+            return n(e, t), e.prototype.update = function (t) {
+                0 == t ? (this._light.visible = !1, this._content.position.set(141, 341), this._content.texture = o.SALLY_SORTIE.getTexture(14)) : (this._content.position.set(488, 353), this._content.texture = r.SALLY_EVENT.getTexture(7), this._light.texture = r.SALLY_EVENT.getTexture(8), this._light.position.set(this._content.x - 23, this._content.y - 20), this._light.visible = !0)
+            }, e.prototype.show = function () {
+                this._activate(), this.visible = !0
+            }, e.prototype.hide = function () {
+                this._deactivate(), this.visible = !1
+            }, e.prototype.dispose = function () {
+                this._deactivate()
+            }, e.prototype._activate = function () {
+                null == this._t && 0 != this._light.visible && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
                     alpha: 1
-                }, 300).call(function () {
-                    e._detail.once("close", e._hideDetailInfo), e._detail.activate()
-                })
+                }, 800).to({
+                    alpha: 0
+                }, 800))
+            }, e.prototype._deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
             }, e
-        }(r.TaskBase);
-    e.TaskDetailInfo = l
+        }(PIXI.Container);
+    e.BtnBack = s
 }

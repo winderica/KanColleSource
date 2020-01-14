@@ -1,85 +1,48 @@
 const function813 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(28),
-        s = i(139),
-        a = i(51),
-        _ = i(89),
-        l = i(814),
-        u = i(815),
-        c = function () {
-            function t(t) {
-                var e = this;
-                this._onClickShip = function (t, i) {
-                    e.onClickShip(i);
-                    o.default.view.clickGuard = !0, e.backAreaChoiceShip.width = n.default.width, createjs.Tween.get(e.backAreaChoiceShip).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(e.shipList).to({
-                        x: n.default.width
-                    }, 125).call(function () {
-                        o.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickBack = function () {
-                    o.default.view.clickGuard = !0, e.backAreaChoiceShip.width = n.default.width, createjs.Tween.get(e.backAreaChoiceShip).to({
-                        alpha: 0
-                    }, 125), createjs.Tween.get(e.shipList).to({
-                        x: n.default.width
-                    }, 125).call(function () {
-                        o.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickPager_ = function (t) {
-                    e.pageIndex != t && e._updatePage_(t)
-                }, this._onClickSort_ = function () {
-                    switch (s.SceneMemory.shipSortKeyType) {
-                        case 1:
-                            s.SceneMemory.shipSortKeyType = 2;
-                            break;
-                        case 2:
-                            s.SceneMemory.shipSortKeyType = 3;
-                            break;
-                        case 3:
-                            s.SceneMemory.shipSortKeyType = 4;
-                            break;
-                        case 4:
-                            s.SceneMemory.shipSortKeyType = 1
-                    }
-                    e._updateSort_(s.SceneMemory.shipSortKeyType), e._updatePage_(e.pageIndex)
-                }, this.mainView = t, this.backAreaChoiceShip = new l.BackAreaChoiceShip, this.shipList = new u.ShipList, this.shipList.pagerView.onChangePage = this._onClickPager_, this.shipList.shipSortButton.onClick = this._onClickSort_, this.backAreaChoiceShip.onClick = this._onClickBack, this.shipList.onClick = this._onClickShip
+    var o = i(73),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e._onMouseOver = function () {
+                    e.marriagePopUp.visible = !0
+                }, e._onMouseOut = function () {
+                    e.marriagePopUp.visible = !1
+                }, e.level99Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(39)), e.addChild(e.level99Light), e.play(), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 119, 75), e.clickArea.endFill(), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.renderable = !1, e.clickArea.interactive = !0, e.clickArea.buttonMode = !0, e.addChild(e.clickArea), e.marriagePopUp = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(34)), e.marriagePopUp.position.set(-105, 48), e.marriagePopUp.visible = !1, e.addChild(e.marriagePopUp), e
             }
-            return t.prototype.dispose = function () {
-                this.mainView.removeChild(this.backAreaChoiceShip), this.mainView.removeChild(this.shipList), this.onClickShip = null, this.onComplete = null, this._onClickBack = null, this._onClickShip = null, this.backAreaChoiceShip && this.backAreaChoiceShip.dispose(), this.shipList && this.shipList.dispose(), this.mainView = null, this.backAreaChoiceShip = null, this.shipList = null, this.targets = null, this.pageIndex = null
-            }, t.prototype.start = function (t, e) {
-                var i = this;
-                o.default.view.clickGuard = !0;
-                var a;
-                a = _.RemodelUtil.createShipListForPowerUp(), a = r.ShipUtil.filter(a, !0, t), this._updateTargets_(a), this._updateSort_(s.SceneMemory.shipSortKeyType), this._updatePage_(e), this.shipList.position.set(n.default.width, 141), this.backAreaChoiceShip.alpha = 0, this.mainView.addChild(this.backAreaChoiceShip), this.mainView.addChild(this.shipList);
-                createjs.Tween.get(this.backAreaChoiceShip).to({
+            return n(e, t), e.prototype.dispose = function () {
+                this.clickArea.off(r.EventType.CLICK), this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.off(r.EventType.MOUSEOUT), this.clickArea.clear(), null != this._loopTween && (this._loopTween.setPaused(!0), createjs.Tween.removeTweens(this.level99Light), this._loopTween = null), this.onClick = null, this.marriagePopUp = null, this.level99Light = null, this.clickArea = null, this.removeChildren()
+            }, e.prototype.play = function () {
+                null == this._loopTween && (this._loopTween = createjs.Tween.get(this.level99Light).to({
+                    alpha: 0
+                }, 0).to({
                     alpha: 1
-                }, 125), createjs.Tween.get(this.shipList).to({
-                    x: 638
-                }, 125).call(function () {
-                    i.backAreaChoiceShip.width = 684, o.default.view.clickGuard = !1
-                })
-            }, t.prototype._updateTargets_ = function (t) {
-                var e = _.RemodelUtil.calcPageCount(t.length);
-                this.shipList.pagerView.init(e), this.targets = t
-            }, t.prototype._updateSort_ = function (t) {
-                r.ShipUtil.sort(this.targets, t), 1 == t && (this.targets = this.targets.reverse()), s.SceneMemory.shipSortKeyType = t, this.shipList.shipSortButton.update(t)
-            }, t.prototype._updatePage_ = function (t) {
-                var e = this.targets.slice(a.RemodelConst.ITEM_NUM * t, a.RemodelConst.ITEM_NUM * t + a.RemodelConst.ITEM_NUM);
-                this.shipList.clear();
-                for (var i = 0; i < e.length; i++) {
-                    var n = e[i],
-                        r = o.default.model.ship.getMst(n.mstID),
-                        s = o.default.model.deck.isInDeck(n.memID);
-                    this.shipList.update(i, n, r, s)
-                }
-                this.pageIndex = t
-            }, t
-        }();
-    e.TaskShipChoice = c
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3), this._loopTween.loop = !0)
+            }, e
+        }(PIXI.Container);
+    e.MarriageButton = s
 }

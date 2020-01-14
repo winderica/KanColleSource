@@ -19,19 +19,54 @@ const function1013 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(52),
-        r = function (t) {
+    var o = i(12),
+        r = i(42),
+        s = i(1014),
+        a = i(0),
+        _ = i(15),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._content = new PIXI.Sprite, e.addChild(e._content), e.visible = !1, e
+                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return n(e, t), e.prototype.show = function (t) {
-                void 0 === t && (t = 0), this._content.y = 0;
-                var e = -1;
-                0 == t ? (e = 31, this._content.y = 8) : 1 == t ? e = 26 : 2 == t ? e = 25 : 3 == t ? e = 24 : 4 == t && (e = 23), this._content.texture = e < 0 ? PIXI.Texture.EMPTY : o.SALLY_SORTIE.getTexture(e), this._content.x = -Math.floor(this._content.width / 2), this.visible = !0
-            }, e.prototype.hide = function () {
-                this.visible = !1
+            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
+                get: function () {
+                    return this._createSelectView(), this._selectView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
+                    i = "?version=" + _.UIImageLoader.getVersion("sally");
+                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
+                    case 461:
+                        this._content.position.set(-283, -219), this._content.texture = PIXI.Texture.fromImage(e + "/241_9cbc7.png" + i);
+                        break;
+                    case 462:
+                        this._content.position.set(-333, -220), this._content.texture = PIXI.Texture.fromImage(e + "/242_38998.png" + i);
+                        break;
+                    case 463:
+                        this._content.position.set(-308, -201), this._content.texture = PIXI.Texture.fromImage(e + "/243_f4c34.png" + i);
+                        break;
+                    case 464:
+                        this._content.position.set(-287, -213), this._content.texture = PIXI.Texture.fromImage(e + "/244_f193d.png" + i);
+                        break;
+                    case 465:
+                        this._content.position.set(-310, -227), this._content.texture = PIXI.Texture.fromImage(e + "/245_9d0e8.png" + i);
+                        break;
+                    case 466:
+                        this._content.position.set(-324, -225), this._content.texture = PIXI.Texture.fromImage(e + "/246_edb06.png" + i);
+                        break;
+                    default:
+                        this._content.texture = PIXI.Texture.EMPTY
+                }
+            }, e.prototype.showSelectView = function () {
+                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
+            }, e.prototype.dispose = function () {
+                null != this._selectView && this._selectView.dispose()
+            }, e.prototype._createSelectView = function () {
+                null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
-        }(PIXI.Container);
-    e.ClearBadge = r
+        }(o.Sprite);
+    e.MapIntroBoard = u
 }

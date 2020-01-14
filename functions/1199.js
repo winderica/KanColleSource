@@ -19,39 +19,37 @@ const function1199 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(119),
-        r = function (t) {
+    var o = i(11),
+        r = i(1200),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._dic = {}, e
+                return e._result = !1, e._api = null, e._retry_count = 0, e
             }
-            return n(e, t), e.prototype.showAlert = function (t) {
-                var e, i = t.model.alert,
-                    n = 384,
-                    r = 0;
-                if (1 == i) e = 1, n = 444, r = -7;
-                else if (2 == i) e = 2;
-                else if (3 == i) e = 3;
-                else if (4 == i) e = 4;
-                else {
-                    if (5 != i) return;
-                    e = 5
-                }
-                var s = new PIXI.Sprite(o.DUTY_COMMON.getTexture(e));
-                s.x = t.x + n, s.y = t.y + r, this.addChild(s), this._dic[t.model.id] = s
-            }, e.prototype.hideAlert = function (t) {
-                if (void 0 === t && (t = null), null == t)
-                    for (var e in this._dic) this._hideAlert(e);
-                else {
-                    var i = t.model.id;
-                    this._hideAlert(i.toString())
-                }
-            }, e.prototype._hideAlert = function (t) {
-                if (1 == this._dic.hasOwnProperty(t)) {
-                    var e = this._dic[t];
-                    null != e.parent && (e.parent.removeChild(e), delete this._dic[t])
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                var t = this;
+                createjs.Tween.get(null).wait(500).call(function () {
+                    t._check()
+                })
+            }, e.prototype._check = function () {
+                var t = this;
+                this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
+                    t._checked()
+                })
+            }, e.prototype._checked = function () {
+                var t = this;
+                2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
+                    t._check()
+                })
+            }, e.prototype._endTask = function () {
+                this._api = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.AlertLayer = r
+        }(o.TaskBase);
+    e.TaskPayCheck = s
 }

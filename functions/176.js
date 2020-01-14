@@ -1,12 +1,16 @@
 const function176 = function (t, e, i) {
     "use strict";
+
+    function n(t) {
+        try {
+            return o.ITEM_PAYITEMICON.getTextureFromMstID(t)
+        } catch (t) {
+            return PIXI.Texture.EMPTY
+        }
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    ! function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("sally_jin_" + t)
-        }
-        t.getTexture = e
-    }(e.SALLY_JIN || (e.SALLY_JIN = {}))
+    var o = i(1150);
+    e.getPayitemIcon = n
 }

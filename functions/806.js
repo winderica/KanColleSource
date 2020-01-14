@@ -19,23 +19,50 @@ const function806 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(132),
-        s = i(807),
-        a = i(14),
-        _ = function (t) {
+    var o = i(3),
+        r = i(807),
+        s = i(52),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(16));
-                e.textType = new o.TextBox(21, 16777215), e.textName = new o.TextBox(36, 16777215), e.textLevel = new o.TextBox(65, 16777215), e.starRate = new s.StarRate;
-                var n = a.CreateRect.gradientLeftToRight(220, 50, .65, .9);
-                return e.containerName = new PIXI.Container, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.textType.position.set(18, 8), e.containerName.position.set(18, 36), e.textLevel.position.set(230, 89), e.starRate.position.set(15, 165), e.textLevel.anchor.x = 1, e.addChild(i, e.textType, e.containerName, e.textLevel, e.starRate), e
+                var e = t.call(this) || this;
+                e._mousedown = function (t, i) {
+                    e.mousedown(t, i)
+                }, e._onClickDetach = function (t) {
+                    e.onClickDetach(t)
+                }, e._onMouseUp = function (t) {
+                    e.onMouseUp(t)
+                }, e._onMouseOut = function () {
+                    e.onMouseOut()
+                };
+                e._slotItemSlots = new Array, e._clearSlotItemSlots = new Array;
+                for (var i = o.COMMON_MAIN.getTexture(46), n = 0; n < 5; n++) {
+                    var a = new r.SlotItemSlot(n);
+                    a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
+                    var _ = new PIXI.Sprite(i);
+                    _.y = a.y = s.RemodelConst.DETAIL_LISTITEM.HEIGHT * n + 6, e._slotItemSlots.push(a), e._clearSlotItemSlots.push(_), e.addChild(_, a)
+                }
+                return e
             }
-            return n(e, t), e.prototype.update = function (t, e, i, n) {
-                this.containerName.cacheAsBitmap = !1, this.textType.text = t, this.textName.text = e, this.textLevel.text = "" + i, this.starRate.update(n), this.containerName.cacheAsBitmap = !0
+            return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
+                get: function () {
+                    return this._slotItemSlots
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.clean = function () {
+                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
+                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
+            }, e.prototype.update = function (t, e, i, n, o) {
+                var r = this._slotItemSlots[t],
+                    s = this._clearSlotItemSlots[t];
+                r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
+            }, e.prototype.hide = function (t) {
+                for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.starRate.dispose(), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textType = null, this.textName = null, this.textLevel = null, this.starRate = null, this.containerName = null
+                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
+                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t] = null;
+                this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = null, this.mousedown = null, this.onMouseOut = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.ShipInfoBox = _
+    e.SlotItemSlotBox = a
 }

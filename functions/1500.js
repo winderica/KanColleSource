@@ -19,81 +19,84 @@ const function1500 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
+    var o = i(22),
         r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._combined = i, n._tasks = [], n
+            function e() {
+                var e = t.call(this) || this;
+                return e._friend = !1, e._combined = !1, e.visible = !1, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showComponent()
-            }, e.prototype._showComponent = function () {
-                for (var t = this._scene.data.getLevelupInfoList(this._combined), e = this._scene.view.layer_banner.info_f.items, i = this._scene.data.getShipExp(this._combined), n = [], o = 0; o < e.length; o++) {
-                    var r = e[o],
-                        a = o < i.length ? i[o] : 0;
-                    if (!(a < 0)) {
-                        var _ = t[o],
-                            l = new s(r, a, _);
-                        n.push(l), this._tasks.push(l)
+            return n(e, t), Object.defineProperty(e.prototype, "combined", {
+                set: function (t) {
+                    this._combined = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                this._friend = t, this._combined = e
+            }, e.prototype.show = function (t, e) {
+                void 0 === t && (t = 16711680), void 0 === e && (e = .5), this._draw(t, e), this.alpha = 1, this.visible = !0
+            }, e.prototype.playDamageAnimation = function () {
+                var t = this;
+                this._stop(), this.alpha = 0, this.visible = !0, this._draw(16711680, .5), this._t = createjs.Tween.get(this).to({
+                    alpha: 1
+                }, 300).to({
+                    alpha: 0
+                }, 500).call(function () {
+                    t.visible = !1, t._t = null
+                })
+            }, e.prototype.playShieldAnimation = function () {
+                var t = this;
+                this._stop(), this._draw(16777088, 0), this.alpha = 1, this.visible = !0;
+                var e = {
+                        r: 255,
+                        g: 255,
+                        b: 128,
+                        a: 0
+                    },
+                    i = function (e) {
+                        var i = e.target.target,
+                            n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
+                        t._draw(n, i.a)
+                    };
+                this._t = createjs.Tween.get(e, {
+                    onChange: i
+                }).to({
+                    a: .75
+                }, 233).to({
+                    r: 128,
+                    g: 255,
+                    b: 255
+                }, 100).to({
+                    r: 255,
+                    g: 192,
+                    b: 192
+                }, 100).to({
+                    r: 255,
+                    g: 255,
+                    b: 255
+                }, 166).call(function () {
+                    t.visible = !1, t._t = null
+                })
+            }, e.prototype._stop = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype._draw = function (t, e) {
+                if (this.clear(), this._combined)
+                    if (this._friend) {
+                        for (var i = o.BannerSize.W / 5 * 2 - Math.ceil(e / .025), n = i; n < o.BannerSize.W / 5 * 2; n++) {
+                            var r = Math.min(.025 * (n - i), e);
+                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
+                        }
+                        this.beginFill(t, e), this.drawRect(o.BannerSize.W / 5 * 2, 0, o.BannerSize.W - o.BannerSize.W / 5 * 2, o.BannerSize.H), this.endFill()
+                    } else {
+                        var i = o.BannerSize.W / 5 * 3;
+                        this.beginFill(t, e), this.drawRect(0, 0, i, o.BannerSize.H), this.endFill();
+                        for (var n = i; n < o.BannerSize.W; n++) {
+                            var r = Math.min(1 - .05 * (n - i), e);
+                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
+                        }
                     }
-                }
-                0 == n.length ? this._endTask() : this._startTasks(n)
-            }, e.prototype._startTasks = function (t) {
-                for (var e = this, i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (t) {
-                        t.start(function () {
-                            var i = e._tasks.indexOf(t);
-                            e._tasks.splice(i, 1), 0 == e._tasks.length && e._endTask()
-                        })
-                    }(o)
-                }
+                else this.beginFill(t, e), this.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), this.endFill()
             }, e
-        }(o.TaskBase);
-    e.TaskShowLevelup = r;
-    var s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            o._onChange = function (t) {
-                if (null != o._banner_info) {
-                    var e = t.target.target.value;
-                    e >= o._borders[0] && (o._borders.shift(), o._banner_info.levelup());
-                    var i = -1;
-                    o._borders.length > 0 && (i = o._borders[0] - e), o._banner_info.up_to_the_next_level.update(i)
-                }
-            }, o._banner_info = e, o._exp = i, null != n && n.length > 1 ? o._initial_value = n[0] : o._initial_value = -1, o._borders = new Array;
-            for (var r = 1; r < n.length; r++) o._borders.push(n[r]);
-            return o
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._initial_value < 0 ? this._endTask() : this._init()
-        }, e.prototype._init = function () {
-            var t = this,
-                e = this._banner_info.up_to_the_next_level;
-            e.alpha = 0, e.x -= 15;
-            var i = this._borders[0] - this._initial_value;
-            e.initialize(i), createjs.Tween.get(e).to({
-                x: e.x + 15,
-                alpha: 1
-            }, 500).call(function () {
-                e.showExpText(), t._completedShow()
-            })
-        }, e.prototype._completedShow = function () {
-            var t = this,
-                e = this._borders[this._borders.length - 1] - this._initial_value - this._exp,
-                i = this._initial_value + this._exp,
-                n = {
-                    value: this._initial_value
-                };
-            createjs.Tween.get(n, {
-                onChange: this._onChange
-            }).to({
-                value: i
-            }, 2e3).call(function () {
-                i === t._borders[0] && t._banner_info.levelup(), t._banner_info.up_to_the_next_level.update(e), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._banner_info = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase)
+        }(PIXI.Graphics);
+    e.BannerOverlay = r
 }

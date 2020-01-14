@@ -1,42 +1,76 @@
 const function619 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = function () {
-            function t(t) {
-                var e = this;
-                this._enabled_timeSignal = !1, this._timer_handle_timeSignal = -1, this._timer_handle_preload = -1, this._timer_handle_nextTimeSignal = -1, this._onEnd = function () {
-                    e._timerBeLeftVoice.enabled_byTimeSignal = !0
-                }, this._timerBeLeftVoice = t
+    var o = i(0),
+        r = i(1),
+        s = i(196),
+        a = i(286),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    0 == o.default.scene.now ? o.default.view.portMain.showPortUI(!1) : o.default.scene.change(0)
+                }, e._circle = new PIXI.Sprite, e.addChild(e._circle), e._content = new u, e.addChild(e._content), e._light = new PIXI.Sprite, e._light.position.set(-23, -32), e._light.alpha = .6, e.addChild(e._light), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 95), e._hit_area.endFill(), e._hit_area.position.set(68, 60), e.addChild(e._hit_area), e
             }
-            return t.prototype.initialize = function (t) {
-                this._mst_id = t;
-                var e = n.default.model.ship.getMst(this._mst_id);
-                this._enabled_timeSignal = null != e && e.availableTimeSignalVoice, this.reset()
-            }, t.prototype.stop = function () {
-                -1 != this._timer_handle_timeSignal && (clearInterval(this._timer_handle_timeSignal), this._timer_handle_timeSignal = -1), -1 != this._timer_handle_preload && (clearInterval(this._timer_handle_preload), this._timer_handle_preload = -1), -1 != this._timer_handle_nextTimeSignal && (clearInterval(this._timer_handle_nextTimeSignal), this._timer_handle_nextTimeSignal = -1), this._timerBeLeftVoice.enabled_byTimeSignal = !0
-            }, t.prototype.reset = function () {
-                var t = this;
-                if (this.stop(), 0 != this._enabled_timeSignal) {
-                    var e = new Date,
-                        i = e.getMinutes(),
-                        n = e.getSeconds();
-                    this._voicehour = e.getHours(), this._INTERVAL_sec = 60 * (59 - i) + (59 - n), this._INTERVAL_sec < 3599 && ++this._voicehour > 23 && (this._voicehour = 0), this._timer_handle_timeSignal = setTimeout(function () {
-                        t._play()
-                    }, 1e3 * this._INTERVAL_sec), this._INTERVAL_sec > 1800 ? this._Preload_sec = parseInt(1500 * Math.random() + (this._INTERVAL_sec - 1800) + "") : this._INTERVAL_sec < 300 ? this._Preload_sec = 0 : this._Preload_sec = parseInt(Math.random() * (this._INTERVAL_sec - 300) + ""), this._timer_handle_preload = setTimeout(function () {
-                        t._preload()
-                    }, 1e3 * this._Preload_sec)
-                }
-            }, t.prototype._preload = function () {
-                n.default.sound.voice.preload(this._mst_id.toString(), this._voicehour + 30)
-            }, t.prototype._play = function () {
-                var t = this;
-                1 == this._enabled_timeSignal && (this._timerBeLeftVoice.enabled_byTimeSignal = !1, n.default.sound.voice.play(this._mst_id.toString(), this._voicehour + 30, this._onEnd), this._timer_handle_nextTimeSignal = setTimeout(function () {
-                    t.reset()
-                }, 61e3))
-            }, t
-        }();
-    e.TimeSignal = o
+            return n(e, t), e.prototype.initialize = function () {
+                this._circle.texture = s.PORT_SKIN_1.getTexture(1), this._circle.position.set(-40, -46), this._content.position.set(63, 58), this._light.texture = s.PORT_SKIN_1.getTexture(8), this._content.initialize(), this._hit_area.interactive = this._hit_area.buttonMode = !0, this._hit_area.on(r.EventType.CLICK, this._onClick), this._startAnimation()
+            }, e.prototype.dispose = function () {
+                this._hit_area.interactive = this._hit_area.buttonMode = !1, this._hit_area.off(r.EventType.CLICK, this._onClick), this._content.dispose(), this._stopAnimation(), this._content_tween = null, this._light_tween = null
+            }, e.prototype.startMoveAnimation = function (t) {
+                this._content.startAnimation(t)
+            }, e.prototype._startAnimation = function () {
+                null == this._content_tween ? this._content_tween = createjs.Tween.get(this._content, {
+                    loop: !0
+                }).to({
+                    rotation: 2 * Math.PI
+                }, 3e4) : this._content_tween.play(null), null == this._light_tween ? this._light_tween = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 1e3, createjs.Ease.getPowIn(4)).to({
+                    alpha: .6
+                }, 1e3, createjs.Ease.getPowOut(4)) : this._light_tween.play(null)
+            }, e.prototype._stopAnimation = function () {
+                null != this._content_tween && this._content_tween.setPaused(!0), null != this._light_tween && this._light_tween.setPaused(!0)
+            }, e
+        }(a.CircleContent);
+    e.CircleContentSkin1 = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._content1 = new PIXI.Sprite, e.addChild(e._content1), e._content2 = new PIXI.Sprite, e.addChild(e._content2), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._content1.texture = this._getTexture(0), this._content2.visible = !0, this.pivot.set(Math.round(this._content1.width / 2), Math.round(this._content1.height / 2))
+        }, e.prototype.dispose = function () {
+            null != this._tween && this._tween.setPaused(!0), this._tween = null
+        }, e.prototype.startAnimation = function (t) {
+            var e = this;
+            null != this._tween && (this._tween.setPaused(!0), this._tween = null), this._content2.texture = this._content1.texture, this._content2.alpha = 1, this._content2.visible = !0, this._content1.texture = this._getTexture(t), this._tween = createjs.Tween.get(this._content2).to({
+                alpha: 0
+            }, 600).call(function () {
+                e._content2.visible = !1
+            })
+        }, e.prototype._getTexture = function (t) {
+            return 11 == t ? s.PORT_SKIN_1.getTexture(4) : 12 == t ? s.PORT_SKIN_1.getTexture(5) : 13 == t ? s.PORT_SKIN_1.getTexture(6) : 14 == t ? s.PORT_SKIN_1.getTexture(9) : 15 == t ? s.PORT_SKIN_1.getTexture(7) : 31 == t ? s.PORT_SKIN_1.getTexture(0) : 16 == t ? s.PORT_SKIN_1.getTexture(10) : s.PORT_SKIN_1.getTexture(3)
+        }, e
+    }(PIXI.Container)
 }

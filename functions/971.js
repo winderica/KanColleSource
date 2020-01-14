@@ -19,40 +19,92 @@ const function971 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(972),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._tabs = [];
-                for (var n = 0; n < 5; n++) {
-                    var r = new o.AirUnitListTab(e);
-                    r.x = 69 * n, i.addChild(r), i._tabs.push(r)
-                }
-                return i
+    var o = i(70),
+        r = i(7),
+        s = i(972),
+        a = i(973),
+        _ = function () {
+            function t() {
+                this._start_cell_no = 0, this._obtained_items = new Array
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0; t < this._tabs.length; t++) {
-                    var e = this._tabs[t];
-                    0 == t && (e.selected = !0), e.initialize(t)
-                }
-            }, e.prototype.update = function (t) {
-                for (var e = 0, i = this._tabs; e < i.length; e++) {
+            return Object.defineProperty(t.prototype, "map", {
+                get: function () {
+                    return this._map
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "cells", {
+                get: function () {
+                    return this._cells
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "area_id", {
+                get: function () {
+                    return this._area_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "map_no", {
+                get: function () {
+                    return this._map_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "map_id", {
+                get: function () {
+                    return 10 * this.area_id + this._map_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "now_cell_no", {
+                get: function () {
+                    return this._data.length <= 1 ? this._start_cell_no : this._data[this._data.length - 2].no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "obtained_items", {
+                get: function () {
+                    return this._obtained_items
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getCellInfo = function (t) {
+                for (var e = 0, i = this._cells; e < i.length; e++) {
                     var n = i[e];
-                    n.selected = n.category == t
+                    if (n.no == t) return n
                 }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].activate()
+                return null
+            }, t.prototype.getCellNoAll = function () {
+                for (var t = [], e = 0, i = this._cells; e < i.length; e++) {
+                    var n = i[e];
+                    t.push(n.no)
                 }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e
-        }(PIXI.Container);
-    e.AirUnitListTabContainer = r
+                return t
+            }, t.prototype.getNextCell = function () {
+                return this._data[this._data.length - 1]
+            }, t.prototype.getGaugeKey = function () {
+                var t = this.map.getGaugeNum();
+                return o.GaugeSetModel.createKey(this._area_id, this._map_no, t)
+            }, t
+        }();
+    e.SortieModel = _;
+    var u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.__init__ = function (t, e) {
+            this._map = t;
+            var i = e.api_cell_data;
+            delete e.api_cell_data, this._cells = new Array;
+            for (var n = 0, o = i; n < o.length; n++) {
+                var _ = o[n];
+                this._cells.push(new s.CellModel(_))
+            }
+            this._data = [], this._area_id = r.ObjUtil.getNumber(e, "api_maparea_id"), this._map_no = r.ObjUtil.getNumber(e, "api_mapinfo_no"), this._start_cell_no = r.ObjUtil.getNumber(e, "api_from_no"), this._data.push(new a.NextModel(e))
+        }, e.prototype.__add__ = function (t) {
+            this._data.push(new a.NextModel(t))
+        }, e
+    }(_);
+    e.SortieModelEdit = u
 }

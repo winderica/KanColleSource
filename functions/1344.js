@@ -19,28 +19,55 @@ const function1344 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(144),
-        s = i(13),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = e.model.deck_e,
-                    r = n.isCombined(),
-                    s = !1;
-                if (s = null != o ? o.isCombined() : e.model.map_info.isVS12(), 0 == r) i._url = 0 == s ? "api_req_sortie/battle" : "api_req_combined_battle/ec_battle";
-                else {
-                    var a = n.type;
-                    1 == a || 3 == a ? i._url = 0 == s ? "api_req_combined_battle/battle" : "api_req_combined_battle/each_battle" : 2 == a && (i._url = 0 == s ? "api_req_combined_battle/battle_water" : "api_req_combined_battle/each_battle_water")
-                }
-                return i._data = e, i
+    var o = i(6),
+        r = i(1345),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClick = function (t) {
+                    n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
+                }, n._onDoubleClick = function (t) {
+                    var e = n._selected_spot_no.lastIndexOf(t); - 1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
+                }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.addDayRecord(this._raw_data), this._data.isBossDamaged() ? s.ShipLoader.hasai = this._data.model.deck_e.ships_main[0].mst_id : s.ShipLoader.hasai = null, this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._clear(), e = this._dedupeCells(e);
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n],
+                        a = s.no,
+                        _ = i.getCellInfo(a);
+                    if (!(_.distance <= 0)) {
+                        var u = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
+                        u.initialize(a, _, t), u.x = s.x + s.point.x, u.y = s.y + s.point.y, this.addChild(u), this._points[a] = u
+                    }
+                }
+            }, e.prototype.update = function () {
+                var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
+                    e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
+                for (var i in this._points) {
+                    var n = this._points[i];
+                    n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
+                }
+            }, e.prototype.dispose = function () {
+                this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
+            }, e.prototype._clear = function () {
+                for (var t in this._points) this._points[t].dispose();
+                this.removeChildren(), this._points = []
+            }, e.prototype._dedupeCells = function (t) {
+                for (var e = [], i = t.concat(); i.length > 0;) {
+                    for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
+                        var a = s[r],
+                            _ = n.x - a.x,
+                            u = n.y - a.y;
+                        if (Math.sqrt(_ * _ + u * u) <= 10) {
+                            o = !0;
+                            break
+                        }
+                    }
+                    0 == o && e.push(n)
+                }
+                return e
             }, e
-        }(o.APIBase);
-    e.APIBattleStart = a
+        }(PIXI.Container);
+    e.AirUnitAppointmentLayer = s
 }

@@ -19,113 +19,48 @@ const function235 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = function (t) {
+    var o = i(32),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._now = -1, e._max = 100, e._tp_visible = !0, e._bar = new a, e._img = new PIXI.Sprite, e._light = new PIXI.Sprite, e._tp = new _, e.addChild(e._bar), e.addChild(e._img), e.addChild(e._light), e.addChild(e._tp), e.visible = !1, e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "tp_visible", {
-                get: function () {
-                    return this._tp_visible
-                },
-                set: function (t) {
-                    this._tp_visible = t, this._tp.visible = this._tp.enabled && this._tp_visible
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                if (null == t) return this._stopTween(), this._tp.enabled = !1, void(this.visible = !1);
-                this._img.texture = o.default.resources.gauge.getTexture(t.image_path), this._light.texture = o.default.resources.gauge.getTexture(t.image_light_path), this._light.x = t.lightX, this._light.y = t.lightY, this._bar.x = t.barX, this._bar.y = t.barY, this._bar.initialize(t.barColor, t.barW, t.barH), this._tp.visible = !1, 1 == t.isTransport() ? (this._tp.initialize(), this._tp.x = t.transportX, this._tp.y = t.transportY, this._tp.enabled = !0) : this._tp.enabled = !1, this.visible = !0, this._startTween()
-            }, e.prototype.update = function (t, e, i) {
-                void 0 === i && (i = null), this._now = t, this._max = e;
-                var n = this._now / this._max;
-                n = Math.max(n, 0), n = Math.min(n, 1), this._bar.update(n, i), 1 == this._tp.enabled ? (this._tp.update(t, e), this._tp.visible = this._tp_visible) : this._tp.visible = !1
-            }, e.prototype.dispose = function () {
-                this._stopTween(), this._bar.dispose()
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 500).to({
-                    alpha: 0
-                }, 500))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null), this._light.alpha = 0
-            }, e
-        }(PIXI.Container);
-    e.GaugeHorizontal = s;
-    var a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this.clear(), this.beginFill(t), this.drawRect(0, 0, e, i), this.endFill()
-            }, e.prototype.update = function (t, e) {
-                if (void 0 === e && (e = null), this._stopAnimation(), null == e) this.scale.x = t;
-                else {
-                    var i = this.width - this.width * t,
-                        n = i / 2 / 30 * 1e3;
-                    this._t = createjs.Tween.get(this.scale).to({
-                        x: t
-                    }, n).call(function () {
-                        null != e && e()
-                    })
-                }
-            }, e.prototype.dispose = function () {
-                this._stopAnimation()
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e
-        }(PIXI.Graphics),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enabled = !1, e._title = new PIXI.Sprite, e._slash = new PIXI.Sprite, e._slash.x = 62, e._now = new l, e._now.x = 30, e._max = new l, e._max.x = 68, e.addChild(e._title), e.addChild(e._slash), e.addChild(e._now), e.addChild(e._max), e
+                return e._activated = !1, e._enabled = !0, e._supply_max = !1, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "enabled", {
                 get: function () {
                     return this._enabled
                 },
                 set: function (t) {
-                    this._enabled = t
+                    this._enabled != t && (this._enabled = t, 1 == this._activated && (1 == this._enabled ? this.activate() : (this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1, this._deactivate())))
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._title.texture = r.COMMON_MISC.getTexture(66), this._slash.texture = r.COMMON_MISC.getTexture(65)
-            }, e.prototype.update = function (t, e) {
-                this._now.update(t), this._max.update(e)
+                var t = new PIXI.Sprite(o.SALLY_COMMON.getTexture(25));
+                this._on1 = new PIXI.Sprite, this._on2 = new PIXI.Sprite, this._on3 = new PIXI.Sprite, this._on1.position.set(4, 16), this._on2.position.set(33, 16), this._on3.position.set(61, 4), this.addChild(t), this.addChild(this._on1), this.addChild(this._on2), this.addChild(this._on3), this.update(!0)
+            }, e.prototype.update = function (t) {
+                this._supply_max != t && (this._supply_max = t, 1 == t ? (this._on1.texture = o.SALLY_COMMON.getTexture(22), this._on2.texture = o.SALLY_COMMON.getTexture(22), this._on3.texture = o.SALLY_COMMON.getTexture(21)) : (this._on1.texture = o.SALLY_COMMON.getTexture(24), this._on2.texture = o.SALLY_COMMON.getTexture(24), this._on3.texture = o.SALLY_COMMON.getTexture(23)))
+            }, e.prototype.activate = function () {
+                var t = this;
+                this._activated = !0, null == this._t && (this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1, 0 != this._enabled && (this._t = createjs.Tween.get(this, {
+                    loop: !0
+                }).wait(300).call(function () {
+                    t._on1.visible = !0
+                }).wait(300).call(function () {
+                    t._on1.visible = !1, t._on2.visible = !0
+                }).wait(300).call(function () {
+                    t._on2.visible = !1, t._on3.visible = !0
+                }).wait(300).call(function () {
+                    t._on3.visible = !1
+                })))
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.removeChildren()
+            }, e.prototype._deactivate = function () {
+                this._stopAnimation(), this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1
+            }, e.prototype._stopAnimation = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(PIXI.Container),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._nums = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new u;
-                    n.x = 8 * i, e.addChild(n), e._nums.push(n)
-                }
-                return e
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                if (t = Math.floor(t), t = Math.max(0, t), 0 != (t = Math.min(9999, t)))
-                    for (var e = !1, i = 0; i < this._nums.length; i++) {
-                        var n = Math.pow(10, this._nums.length - i - 1),
-                            o = Math.floor(t / n);
-                        o > 0 || 1 == e ? (this._nums[i].update(o), e = !0) : this._nums[i].update(-1), t %= n
-                    } else
-                        for (var i = 0; i < this._nums.length; i++) i == this._nums.length - 1 ? this._nums[i].update(0) : this._nums[i].update(-1)
-            }, e
-        }(PIXI.Container),
-        u = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                t >= 0 && t <= 9 ? (this.texture = r.COMMON_MISC.getTexture(e._TEXTURES[t]), this.visible = !0) : this.visible = !1
-            }, e._TEXTURES = [55, 56, 57, 58, 59, 60, 61, 62, 63, 64], e
-        }(PIXI.Sprite)
+        }(PIXI.Container);
+    e.CompArrow2 = r
 }

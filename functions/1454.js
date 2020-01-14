@@ -1,70 +1,103 @@
 const function1454 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t) {
-                this._list = new Array;
-                for (var e = n.ObjUtil.getNumArray(t, "api_at_eflag"), i = n.ObjUtil.getNumArray(t, "api_at_type"), o = n.ObjUtil.getNumArray(t, "api_at_list"), s = n.ObjUtil.getObjectArray(t, "api_df_list"), a = n.ObjUtil.getObjectArray(t, "api_si_list"), _ = n.ObjUtil.getObjectArray(t, "api_cl_list"), l = n.ObjUtil.getObjectArray(t, "api_damage"), u = 0; u < s.length; u++) {
-                    var c = e[u],
-                        h = i[u],
-                        p = o[u],
-                        d = s[u],
-                        f = a[u],
-                        y = _[u],
-                        m = l[u],
-                        g = new r(c, h, p, d, f, y, m);
-                    this._list.push(g)
-                }
+    var o = i(0),
+        r = i(2),
+        s = i(18),
+        a = i(13),
+        _ = i(23),
+        u = i(1455),
+        l = i(66),
+        c = i(45),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new PIXI.Container, e
             }
-            return Object.defineProperty(t.prototype, "list", {
+            return n(e, t), Object.defineProperty(e.prototype, "view", {
                 get: function () {
-                    return this._list
+                    return this._view
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t
-        }();
-    e.HougekiListData = o;
-    var r = function () {
-        function t(t, e, i, n, o, r, s) {
-            this._flag = t, this._type = e, this._a_index = i, this._d_indexes = n, this._slotitems = o, this._hit_types = r, this._damages = s
-        }
-        return Object.defineProperty(t.prototype, "flag", {
-            get: function () {
-                return this._flag
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "type", {
-            get: function () {
-                return this._type
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "a_index", {
-            get: function () {
-                return this._a_index
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "d_indexes", {
-            get: function () {
-                return this._d_indexes
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.getSlotitem = function (t) {
-            return null == this._slotitems ? -1 : this._slotitems.length <= t ? -1 : this._slotitems[t]
-        }, t.prototype.getDamage = function (t) {
-            return null == this._damages ? 0 : this._damages.length <= t ? 0 : Math.floor(this._damages[t])
-        }, t.prototype.getHitType = function (t) {
-            return null == this._hit_types ? 0 : this._hit_types.length <= t ? 0 : this._hit_types[t]
-        }, t.prototype.isShield = function (t) {
-            return null != this._damages && (!(this._damages.length <= t) && this._damages[t] % 1 > 0)
-        }, t
-    }();
-    e.HougekiData = r
+            }), e.prototype.preload = function (t, e, i, n, o) {
+                var r = this;
+                this._attacker = t, this._slot1 = e, this._slot2 = i, this._slot3 = n;
+                var s = new a.ShipLoader,
+                    u = this._attacker.isDamaged(),
+                    l = this._attacker.mst_id;
+                (571 != l && 576 != l || 0 != u) && (541 != l && 573 != l || 0 != u) && (601 != l && 1496 != l || 0 != u) ? s.add(l, u, "full"): s.add(l, !1, "special"), s.load(function () {
+                    var t = null == r._slot1 ? 0 : r._slot1.mstID,
+                        e = null == r._slot2 ? 0 : r._slot2.mstID,
+                        i = null == r._slot3 ? 0 : r._slot3.mstID,
+                        n = new _.SlotLoader;
+                    t > 0 && (n.add(t, "item_up"), n.add(t, "btxt_flat")), e > 0 && (n.add(e, "item_up"), n.add(e, "btxt_flat")), i > 0 && (n.add(i, "item_up"), n.add(i, "btxt_flat")), n.load(function () {
+                        null != o && o()
+                    })
+                })
+            }, e.prototype._start = function () {
+                this._canvas = new u.CutinCanvasSpSSF, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
+            }, e.prototype._ready = function () {
+                var t, e, i = this._attacker.mst_id,
+                    n = this._attacker.isDamaged();
+                571 != i && 576 != i || 0 != n ? 541 == i && 0 == n ? (t = new PIXI.Point(-227, 165), e = "special") : 573 == i && 0 == n ? (t = new PIXI.Point(-115, 184), e = "special") : 601 != i && 1496 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (t = new PIXI.Point(-90, 87), e = "special") : (t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -180, this._canvas.chara.y = -107) : (this._canvas.chara.x = 173, this._canvas.chara.y = -65), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
+            }, e.prototype._anim1 = function () {
+                var t = this;
+                this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
+                    x: 158 + (this._attacker.friend ? 0 : 203),
+                    alpha: 1
+                }, 300), this._canvas.bg_box.show(266), this._canvas.item_layer.show(400), this._canvas.name_layer.show(600), this._canvas.name_layer.once("complete", function () {
+                    t._anim2()
+                })
+            }, e.prototype._anim2 = function () {
+                var t = this;
+                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
+                    t._shipFlash.play()
+                }).wait(200).call(function () {
+                    t._anim3()
+                })
+            }, e.prototype._anim3 = function () {
+                var t = this,
+                    e = new l.IntensiveLines;
+                e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 200);
+                var i = new s.FadeBox(1, 16777215);
+                i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._anim4(e, i)
+                })
+            }, e.prototype._anim4 = function (t, e) {
+                var i = this;
+                this._canvas.dispose(), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.CutinSpSSF = h
 }

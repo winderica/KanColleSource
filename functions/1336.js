@@ -19,46 +19,75 @@ const function1336 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1337),
-        s = i(1339),
-        a = function (t) {
+    var o = i(5),
+        r = i(2),
+        s = i(12),
+        a = i(8),
+        _ = i(19),
+        u = i(1337),
+        l = i(1),
+        c = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+                return n._shutter = e, n._item_ids = i, n
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;
-                if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
-                var e = this._model.escape,
-                    i = e.getTargetShipIndexes(),
-                    n = e.getTowingShipIndexes(),
-                    o = null;
-                if (i.length > 0) {
-                    var a = i[0];
-                    o = this._model.deck_f.ships[a]
-                }
-                var _ = null;
-                if (n.length > 0) {
-                    var l = n[0];
-                    _ = this._model.deck_f.ships[l]
-                }
-                if (null != o)
-                    if (null != _) {
-                        var u = new s.EscapeGoeiTask(this._scene, this._model, o, _);
-                        u.start(function () {
-                            t._endTask()
-                        })
-                    } else {
-                        var u = new r.EscapeTankanTask(this._scene, this._model, o);
-                        u.start(function () {
-                            t._endTask()
-                        })
-                    }
-                else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, t.prototype._endTask.call(this)
+                this._view = new u.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
+                var e = _.MAP_COMMON.getTexture(113);
+                this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({
+                    scaleY: 1
+                }, 300).call(function () {
+                    t._showMessage()
+                })
+            }, e.prototype._showMessage = function () {
+                var t = this,
+                    e = _.MAP_COMMON.getTexture(116);
+                this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
+                    x: o.default.width / 2 + 180,
+                    alpha: 1
+                }, 300).to({
+                    x: o.default.width / 2
+                }, 400).to({
+                    x: o.default.width / 2 - 60,
+                    alpha: 0
+                }, 400).call(function () {
+                    t._shutter.removeChild(t._telopText), t._closeTelop()
+                })
+            }, e.prototype._closeTelop = function () {
+                var t = this;
+                createjs.Tween.get(this._telopBG).to({
+                    scaleY: 0
+                }, 300).call(function () {
+                    t._shutter.removeChild(t._telopBG)
+                }), createjs.Tween.get(this._view).to({
+                    alpha: 1
+                }, 200).call(function () {
+                    t._showContent()
+                })
+            }, e.prototype._showContent = function () {
+                var t = this;
+                this._shutter.close(), this._shutter.once("closed", function () {
+                    createjs.Tween.get(t._view.content).to({
+                        alpha: 1
+                    }, 200).call(function () {
+                        t._waitClick()
+                    })
+                })
+            }, e.prototype._waitClick = function () {
+                var t = this,
+                    e = new a.AreaBox(0);
+                e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(l.EventType.CLICK, function () {
+                    t._shutter.removeChild(e), t._hideView()
+                })
+            }, e.prototype._hideView = function () {
+                var t = this;
+                createjs.Tween.get(this._view).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
+                })
             }, e
-        }(o.TaskBase);
-    e.EscapeTask = a
+        }(r.TaskBase);
+    e.TaskShowMapEndView = c
 }

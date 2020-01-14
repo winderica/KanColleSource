@@ -19,45 +19,27 @@ const function256 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(147),
-        s = i(124),
-        a = i(39),
-        _ = function (t) {
-            function e(e, i, n, o, s, a, _) {
-                var l = t.call(this, e, i, o, s, a, _) || this;
-                l._defender = n;
-                var u = l._scene.data.isNight();
-                return l._cutin = new r.CutinAttack(l._attacker, l._slot, u, !0, !0), l
+    var o = i(10),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._gear = new PIXI.Sprite, e._gear.anchor.set(.5), e._gear.position.set(32, 45), e.addChild(e._gear), e._text = new PIXI.Sprite, e._text.x = 60, e.addChild(e._text), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
-                })
-            }, e.prototype._completePreload = function () {
-                var t, e, i = this,
-                    n = this._attacker.friend,
-                    o = this._attacker.index,
-                    r = this._defender.index;
-                1 == n ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, o), e = this._scene.view.bannerGroupLayer.getBanner(!1, r)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, o), e = this._scene.view.bannerGroupLayer.getBanner(!0, r)), t.moveFront(), 0 == this._shield && e.moveFront(), this._cutin.view.once("attack", function () {
-                    i._playVoice(), i._attack(t, e)
-                }), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
-            }, e.prototype._attack = function (t, e) {
-                var i = this,
-                    n = this._scene.view.layer_content;
-                new s.TaskDaihatsuEff(n, t, e, this._daihatsu_eff).start();
-                var r = 0;
-                0 != this._daihatsu_eff && (r = 1300), createjs.Tween.get(null).wait(r).call(function () {
-                    o.SE.play("102"), t.attack(function () {
-                        i._damageEffect(t, e)
-                    })
-                })
-            }, e.prototype._damageEffect = function (t, e) {
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var i = this._getDamage(this._defender);
-                this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
+            return n(e, t), e.prototype.initialize = function (t) {
+                0 == t ? (this._bg.texture = o.COMMON_MISC.getTexture(183), this._gear.texture = o.COMMON_MISC.getTexture(185)) : (this._bg.texture = o.COMMON_MISC.getTexture(184), this._gear.texture = o.COMMON_MISC.getTexture(186))
+            }, e.prototype.update = function (t) {
+                this._text.texture = t, this._text.y = Math.round(45 - this._text.height / 2)
+            }, e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._gear, {
+                    loop: !0
+                }).to({
+                    rotation: 2 * Math.PI
+                }, 6e3))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
             }, e
-        }(a.PhaseAttackBase);
-    e.PhaseAttackNormal = _
+        }(PIXI.Container);
+    e.PhaseTitle = r
 }

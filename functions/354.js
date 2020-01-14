@@ -19,92 +19,87 @@ const function354 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(26),
-        a = i(960),
-        _ = i(961),
-        l = i(962),
-        u = i(963),
-        c = i(964),
-        h = i(965),
-        p = i(966),
-        d = function (t) {
+    var o = i(10),
+        r = i(3),
+        s = i(31),
+        a = function (t) {
             function e(e, i) {
+                void 0 === e && (e = 240), void 0 === i && (i = 60);
                 var n = t.call(this) || this;
-                return n.NUM_TEXTURE_S = [77, 78, 79, 80, 81, 82, 83, 84, 85, 86], n._activated = !1, n._onMouseDown = function () {
-                    null != n._cb_onMouseDown && n._cb_onMouseDown(n._index)
-                }, n._onSupply = function () {
-                    null != n._cb_onSupply && n._cb_onSupply(n._index)
-                }, n._onMouseOver = function () {
-                    n._isSlot && (n._distanceLayer.visible = !0)
-                }, n._onMouseOut = function () {
-                    n._isSlot && (n._distanceLayer.visible = !1)
-                }, n._cb_onMouseDown = e, n._cb_onSupply = i, n._isSlot = !1, n._bg = new PIXI.Sprite, n._bg.position.set(11, 23), n.addChild(n._bg), n._banner = new PIXI.Sprite, n._banner.position.set(11, 23), n.addChild(n._banner), n._none_label = new PIXI.Sprite, n.addChild(n._none_label), n._label = new PIXI.Sprite, n._label.position.set(8, 0), n.addChild(n._label), n._name = new PIXI.Sprite, n._name.position.set(93, 0), n.addChild(n._name), n._detail = new _.AirUnitPanelItemDetailInfoPanel, n._detail.position.set(29, 30), n.addChild(n._detail), n._skill = new h.AirUnitPanelItemSkillLevelIcon, n._skill.position.set(128, 24), n.addChild(n._skill), n._fatigue = new l.AirUnitPanelItemFatigueIcon, n._fatigue.position.set(0, 21), n.addChild(n._fatigue), n._level = new u.AirUnitPanelItemLevelIcon, n._level.position.set(167, 54), n.addChild(n._level), n._supply_btn = new p.AirUnitPanelItemSupplyButton(n._onSupply), n._supply_btn.position.set(123, 26), n.addChild(n._supply_btn), n._relocation = new c.AirUnitPanelItemRelocationLayer, n._relocation.position.set(11, 23), n.addChild(n._relocation), n._distanceLayer = new PIXI.Container, n.addChild(n._distanceLayer), n._distanceLayer.visible = !1, n._numText = new PIXI.Sprite(s.SALLY_AIRUNIT.getTexture(133)), n._distanceLayer.addChild(n._numText), n._distance1 = new PIXI.Sprite, n._distanceLayer.addChild(n._distance1), n._distance2 = new PIXI.Sprite, n._distanceLayer.addChild(n._distance2), n._bg.interactive = !0, n
+                n._mokuTextureList = [], n._mokuArea = [], n._mokuTween = [], n._materialTextureList = [], n._materialArea = [], n._materialTween = [];
+                var a = new PIXI.Container;
+                n._materialTextureList = [o.COMMON_MISC.getTexture(86), o.COMMON_MISC.getTexture(87), o.COMMON_MISC.getTexture(88), o.COMMON_MISC.getTexture(89)];
+                for (var _ = 0; _ < 5; _++) {
+                    var u = new s.Sprite;
+                    u.alpha = 0, a.addChild(u), n._materialArea.push(u)
+                }
+                var l = new PIXI.Container;
+                n._mokuTextureList = [r.ARSENAL_MAIN.getTexture(123), r.ARSENAL_MAIN.getTexture(124)];
+                for (var c = 0; c < 20; c++) {
+                    var u = new s.Sprite;
+                    u.alpha = 0, u.anchor.set(.5, .5), l.addChild(u), n._mokuArea.push(u)
+                }
+                return n.RANGE = {
+                    width: e,
+                    height: i
+                }, n.addChild(a, l), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
-                get: function () {
-                    return this._mst_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                switch (this._index = t, this._bg.texture = s.SALLY_AIRUNIT.getTexture(66), this._none_label.texture = s.SALLY_AIRUNIT.getTexture(142), this._none_label.position.set(138, 44), t) {
-                    case 0:
-                        this._label.texture = s.SALLY_AIRUNIT.getTexture(137);
-                        break;
-                    case 1:
-                        this._label.texture = s.SALLY_AIRUNIT.getTexture(138);
-                        break;
-                    case 2:
-                        this._label.texture = s.SALLY_AIRUNIT.getTexture(139);
-                        break;
-                    case 3:
-                        this._label.texture = s.SALLY_AIRUNIT.getTexture(140);
-                        break;
-                    default:
-                        this._label.texture = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype.play = function (t) {
+                void 0 === t && (t = 5), this._stop(), this._mokuAnimation(), this._materialAnimation(t)
+            }, e.prototype._stop = function () {
+                for (var t = 0, e = this._mokuTween.length; t < e; t++) createjs.Tween.removeTweens(this._mokuTween[t]), this._mokuTween[t] = null;
+                for (var i = 0, n = this._materialTween.length; i < n; i++) this._materialTween[i].removeAllEventListeners("change"), createjs.Tween.removeTweens(this._materialTween[i]), this._materialTween[i] = null
+            }, e.prototype._mokuAnimation = function () {
+                for (var t = 0, e = this._mokuArea.length; t < e; t++) {
+                    var i = this._mokuArea[t],
+                        n = 2 * Math.random() >> 0;
+                    i.texture = this._mokuTextureList[n];
+                    var o = .75 * (.4 * Math.random() + .6);
+                    i.x = Math.random() * this.RANGE.width, i.y = Math.random() * this.RANGE.height, i.alpha = 0, this._mokuTween[t] = createjs.Tween.get(i, {
+                        loop: !0
+                    }).wait(100 * t).to({
+                        alpha: 0,
+                        scaleX: o,
+                        scaleY: o
+                    }).to({
+                        alpha: 1,
+                        scaleX: 0,
+                        scaleY: 0
+                    }, 600, createjs.Ease.linear).play(null)
                 }
-                this._detail.initialize(), this._level.initialize(), this._supply_btn.initialize(), this._relocation.initialize()
-            }, e.prototype.update = function (t) {
-                var e = this;
-                if (null != this._load_task && this._load_task.cancel(), null == t || -1 == t.mst_id) return this._showNone(), void(1 == this._activated && this._activate());
-                if (this._mst_id = t.mst_id, this._bg.texture = s.SALLY_AIRUNIT.getTexture(66), this._none_label.visible = !1, this._distanceLayer.visible = !1, this._relocation.update(!1), 1 == t.isRelocation()) this._isSlot = !1, this._detail.visible = !1, this._skill.update(0), this._fatigue.update(1), this._level.update(0), this._supply_btn.update(!1), this._relocation.update(!0), 1 == this._activated && this._deactivate(), this._distanceLayer.visible = !1;
-                else {
-                    this._isSlot = !0, this._detail.update(t.count, t.countMax), this._detail.visible = !0, this._skill.update(t.skill_level), this._fatigue.update(t.fatigue), this._level.update(t.level);
-                    var i = t.count < t.countMax;
-                    this._supply_btn.update(i), 1 == this._activated && this._activate();
-                    var n = o.default.model.slot.getMst(this._mst_id),
-                        r = n.distance;
-                    if (this._distance2.visible = !1, r >= 10) {
-                        var _ = r.toString().split(""),
-                            l = parseInt(_[0]),
-                            u = parseInt(_[1]);
-                        this._numText.position.set(213, 68), this._distance2.visible = !0, this._distance1.position.set(288, 63), this._distance2.position.set(299, 63), this._distance1.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[l]), this._distance2.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[u])
-                    } else this._numText.position.set(222, 68), this._distance1.position.set(299, 63), this._distance1.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[r])
-                }
-                this._load_task = new a.TaskAirUnitImageLoader(this._mst_id), this._load_task.start(function () {
-                    e._load_task = null, e._banner.texture = o.default.resources.getSlotitem(e._mst_id, "airunit_banner"), e._name.texture = o.default.resources.getSlotitem(e._mst_id, "airunit_name"), e._name.visible = !0
-                })
-            }, e.prototype.activate = function () {
-                this._activated = !0, this._activate()
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
+            }, e.prototype._materialAnimation = function (t) {
+                for (var e = this, i = this, n = 0, o = this._materialArea.length; n < o; n++) ! function (n, o) {
+                    var r = i._materialArea[n];
+                    if (r.alpha = 0, i._materialTween[n] = null, n > t) return "continue";
+                    var s = {
+                            progress: 0
+                        },
+                        a = createjs.Tween.get(s, {
+                            loop: !0
+                        }).wait(1e3 * n).call(function () {
+                            var t = 4 * Math.random() >> 0;
+                            r.texture = e._materialTextureList[t];
+                            var i = 30 / createjs.Ticker.framerate,
+                                n = Math.random() * e.RANGE.width,
+                                o = Math.random() * e.RANGE.height,
+                                _ = 1.999 * Math.random() * Math.PI,
+                                u = .4 * Math.random() + .6,
+                                l = 8 * u * Math.cos(_),
+                                c = 8 * u * Math.sin(_) - 8,
+                                h = function () {
+                                    r.x += l * i, r.y += c * i, r.alpha = 1 - s.progress, c += .7 * i
+                                };
+                            r.alpha = 1, r.position.set(n, o), a.addEventListener("change", h)
+                        }).to({
+                            progress: 1
+                        }, 600).call(function () {
+                            a.removeAllEventListeners("change")
+                        }).play(null);
+                    i._materialTween[n] = a
+                }(n)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._distanceLayer.removeChildren(), this.deactivate(), this._detail.dispose(), this._supply_btn.dispose(), this._relocation.dispose(), null != this._load_task && this._load_task.cancel(), this._cb_onMouseDown = null, this._cb_onSupply = null
-            }, e.prototype.isNoneData = function () {
-                return this._none_label.visible
-            }, e.prototype.isRelocation = function () {
-                return this._relocation.visible
-            }, e.prototype._activate = function () {
-                1 != this._bg.buttonMode && 1 != this._relocation.visible && (this._bg.buttonMode = !0, this._bg.on(r.EventType.MOUSEDOWN, this._onMouseDown), this._bg.on(r.EventType.MOUSEOVER, this._onMouseOver), this._bg.on(r.EventType.MOUSEOUT, this._onMouseOut))
-            }, e.prototype._deactivate = function () {
-                this._bg.buttonMode = !1, this._bg.off(r.EventType.MOUSEDOWN), this._bg.off(r.EventType.MOUSEOVER), this._bg.off(r.EventType.MOUSEOUT), this._distanceLayer.visible = !1
-            }, e.prototype._showNone = function () {
-                this._isSlot = !1, this._bg.texture = s.SALLY_AIRUNIT.getTexture(66), this._banner.texture = PIXI.Texture.EMPTY, this._none_label.visible = !0, this._name.visible = !1, this._detail.visible = !1, this._skill.update(0), this._fatigue.update(1), this._level.update(0), this._supply_btn.update(!1), this._relocation.update(!1), this._distanceLayer.visible = !1
-            }, e.prototype.contains = function (t, e) {
-                return t >= this._bg.x && t <= this._bg.x + this._bg.width && e >= this._bg.y && e <= this._bg.y + this._bg.height
+                this._stop(), this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelItem = d
+    e.DisassemblyAnimation = a
 }

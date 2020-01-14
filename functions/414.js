@@ -1,220 +1,74 @@
 const function414 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = i(299),
-        r = i(300),
-        s = i(301),
-        a = i(151),
-        _ = i(302),
-        l = i(303),
-        u = i(304),
-        c = i(202),
-        h = i(187),
-        p = i(152),
-        d = i(128),
-        f = i(305),
-        y = function () {
-            function t(t) {
-                this._duty_id = t, this._dic = {}, this._rewards = []
+    var o = i(4),
+        r = i(138),
+        s = i(176),
+        a = i(1),
+        _ = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this) || this;
+                return r._mst = null, r._onBuyBtnMouseOver = function () {
+                    null != r._mst && null != r._cb_onMouseOver && r._cb_onMouseOver(r._type, r._mst.description_at_shop)
+                }, r._onBuyBtnMouseOut = function () {
+                    null != r._mst && null != r._cb_onMouseOut && r._cb_onMouseOut()
+                }, r._onBuyBtnClick = function () {
+                    null != r._mst && null != r._cb_onClick && r._cb_onClick(r._type, r._mst)
+                }, r._cb_onMouseOver = e, r._cb_onMouseOut = i, r._cb_onClick = n, r._img = new PIXI.Sprite, r.addChild(r._img), r._price = new o.TextBox(21, 16711680), r._price.anchor.x = 1, r.addChild(r._price), r._btn = new u(r._onBuyBtnMouseOver, r._onBuyBtnMouseOut, r._onBuyBtnClick), r.addChild(r._btn), r
             }
-            return t.prototype.getRewards = function (t) {
-                return 0 == this._dic.hasOwnProperty(t.toString()) ? [] : this._dic[t]
-            }, t.prototype.getRewardList = function () {
-                return this._rewards.concat()
-            }, t.prototype.isNeedUpdateUserBasic = function () {
-                for (var t = this.getRewards(13), e = 0; e < t.length; e++) {
-                    if (44 == t[e].mst_id) return !0
-                }
-                t = this.getRewards(15);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_basic_update) return !0
-                }
-                t = this.getRewards(16);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_basic_update) return !0
-                }
-                return !1
-            }, t.prototype.isNeedUpdateSlotitem = function () {
-                var t = this.getRewards(11);
-                return t.length > 0 || (t = this.getRewards(12), t.length > 0 || (t = this.getRewards(15), t.length > 0 || (t = this.getRewards(16), t.length > 0)))
-            }, t.prototype.isNeedUpdateUseitem = function () {
-                var t = this.getRewards(3);
-                if (t.length > 0) return !0;
-                if (t = this.getRewards(13), t.length > 0) return !0;
-                t = this.getRewards(15);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_useitem_update) return !0
-                }
-                t = this.getRewards(16);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_useitem_update) return !0
-                }
-                return !1
-            }, t.prototype._initialize = function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_material");
-                if (null != t) {
-                    for (; t.length < 4;) t.push(0);
-                    this._addMaterialBonus(31, t[0]), this._addMaterialBonus(32, t[1]), this._addMaterialBonus(33, t[2]), this._addMaterialBonus(34, t[3])
-                }
-                var e = [],
-                    i = n.ObjUtil.getNumArray(this._o, "api_bounus");
-                if (null != i)
-                    for (var o = 0; o < i.length; o++) {
-                        var r = i[o];
-                        e.push(new m(r))
-                    }
-                for (var o = 0; o < e.length; o++) {
-                    var s = e[o];
-                    if (1 == s.type) {
-                        if (s.count <= 0) continue;
-                        var a = s.id;
-                        switch (a) {
-                            case 5:
-                                a = 2;
-                                break;
-                            case 6:
-                                a = 1;
-                                break;
-                            case 7:
-                                a = 3;
-                                break;
-                            case 8:
-                                a = 4;
-                                break;
-                            default:
-                                a = -1
-                        } - 1 != a && this._addMaterialBonus(a, s.count)
-                    } else 2 == s.type ? this._addDeckBonus(s) : 3 == s.type ? this._addFBoxBonus(s) : 4 == s.type ? this._addLargeBonus(s) : 5 == s.type ? this._addAirunitBaseBonus(s) : 6 == s.type ? this._addExtraSupplyBonus(s) : 11 == s.type ? this._addShipBonus(s) : 12 == s.type ? this._addSlotitemBonus(s) : 13 == s.type ? this._addUseitemBonus(s) : 14 == s.type ? this._addFurnitureBonus(s) : 15 == s.type ? this._addModelChangeBonus(s) : 16 == s.type ? this._addModelChangeBonus(s) : 18 == s.type && this._addWarResultBonus(s)
-                }
-            }, t.prototype._addMaterialBonus = function (t, e) {
-                if (0 != e) {
-                    var i;
-                    null != this._material && this._material.rewards.length < 6 ? i = this._material : (this._material = new c.RewardModelMultiUseitem, i = this._material, 0 == this._dic.hasOwnProperty(1..toString()) && (this._dic[1] = []), this._dic[1].push(i), this._rewards.push(i)), i.add(t, e)
-                }
-            }, t.prototype._addDeckBonus = function (t) {
-                var e = new r.RewardModelDeck(t.id, t.name);
-                0 == this._dic.hasOwnProperty(2..toString()) && (this._dic[2] = []), this._dic[2].push(e), this._rewards.push(e)
-            }, t.prototype._addFBoxBonus = function (t) {
-                if (0 != t.count) {
-                    var e;
-                    null != this._fbox && this._fbox.rewards.length < 6 ? e = this._fbox : (this._fbox = new c.RewardModelMultiUseitem, e = this._fbox, 0 == this._dic.hasOwnProperty(3..toString()) && (this._dic[3] = []), this._dic[3].push(e), this._rewards.push(e)), e.add(t.id, t.count)
-                }
-            }, t.prototype._addLargeBonus = function (t) {
-                var e = new _.RewardModelLargeBuild;
-                0 == this._dic.hasOwnProperty(4..toString()) && (this._dic[4] = []), this._dic[4].push(e), this._rewards.push(e)
-            }, t.prototype._addAirunitBaseBonus = function (t) {
-                var e = t.id,
-                    i = t.message_a,
-                    n = t.message,
-                    r = new o.RewardModelAirUnit(e, i, n);
-                if (0 == this._dic.hasOwnProperty(5..toString()) && (this._dic[5] = []), this._dic[5].push(r), this._rewards.push(r), 647 == this._duty_id && 1 == t.c_flag) {
-                    var s = new l.RewardModelMap(6, 5);
-                    this._rewards.push(s)
-                }
-            }, t.prototype._addExtraSupplyBonus = function (t) {
-                var e = new s.RewardModelExtraSupply(t.id);
-                0 == this._dic.hasOwnProperty(6..toString()) && (this._dic[6] = []), this._dic[6].push(e), this._rewards.push(e)
-            }, t.prototype._addShipBonus = function (t) {
-                var e = new h.RewardModelShip(t.id);
-                0 == this._dic.hasOwnProperty(11..toString()) && (this._dic[11] = []), this._dic[11].push(e), this._rewards.push(e)
-            }, t.prototype._addSlotitemBonus = function (t) {
-                for (var e = 0; e < t.count; e++) {
-                    var i = new p.RewardModelSlotitem(t.id, 1);
-                    0 == this._dic.hasOwnProperty(12..toString()) && (this._dic[12] = []), this._dic[12].push(i), this._rewards.push(i)
-                }
-            }, t.prototype._addUseitemBonus = function (t) {
-                for (var e = 0; e < t.count; e++) {
-                    var i = new d.RewardModelUseitem(t.id, 1);
-                    0 == this._dic.hasOwnProperty(13..toString()) && (this._dic[13] = []), this._dic[13].push(i), this._rewards.push(i)
-                }
-            }, t.prototype._addFurnitureBonus = function (t) {
-                var e = new a.RewardModelFurniture(t.id, t.name);
-                0 == this._dic.hasOwnProperty(14..toString()) && (this._dic[14] = []), this._dic[14].push(e), this._rewards.push(e)
-            }, t.prototype._addModelChangeBonus = function (t) {
-                var e = t.id_from,
-                    i = t.id_tobe,
-                    n = t.message,
-                    o = new u.RewardModelModelChange(e, i, "", n),
-                    r = t.type;
-                0 == this._dic.hasOwnProperty(r.toString()) && (this._dic[r] = []), this._dic[r].push(o), this._rewards.push(o)
-            }, t.prototype._addWarResultBonus = function (t) {
-                var e = new f.RewardModelWarResult(t.count),
-                    i = t.type;
-                0 == this._dic.hasOwnProperty(i.toString()) && (this._dic[i] = []), this._dic[i].push(e), this._rewards.push(e)
-            }, t
-        }();
-    e.DutyEndModel = y;
-    var m = function () {
-        function t(t) {
-            this._o = t
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._type = t, 3 == t ? (this.texture = r.ITEM_ISHOP.getTexture(20), this._img.position.set(18, 4), this._price.position.set(100, 136), this._price.style.fill = 15898880, this._btn.position.set(6, 87)) : (0 == t ? this.texture = r.ITEM_ISHOP.getTexture(14) : 1 == t ? this.texture = r.ITEM_ISHOP.getTexture(18) : 2 == t && (this.texture = r.ITEM_ISHOP.getTexture(16)), this._img.position.set(31, 4), this._price.position.set(126, 136), this._price.style.fill = 16724736, this._btn.position.set(13, 85)), this._btn.initialize(t)
+            }, e.prototype.update = function (t) {
+                this._mst = t, null == t ? this.visible = !1 : (this._img.texture = s.getPayitemIcon(t.id), this._price.text = Math.floor(t.price).toString(), this.visible = !0)
+            }, e.prototype.activate = function () {
+                0 != this.visible && this._btn.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn.deactivate()
+            }, e.prototype.dispose = function () {
+                this._cb_onMouseOver = null, this._cb_onMouseOut = null, this._cb_onClick = null, this.deactivate(), this.removeChildren(), this._price.destroy(), this._btn.dispose()
+            }, e
+        }(PIXI.Sprite);
+    e.ItemIcon = _;
+    var u = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._onMouseOver = function () {
+                o._update(!0), null != o._cb_onMouseOver && o._cb_onMouseOver()
+            }, o._onMouseOut = function () {
+                o._update(!1), null != o._cb_onMouseOut && o._cb_onMouseOut()
+            }, o._onClick = function () {
+                null != o._cb_onClick && o._cb_onClick()
+            }, o._cb_onMouseOver = e, o._cb_onMouseOut = i, o._cb_onClick = n, o.interactive = !0, o
         }
-        return Object.defineProperty(t.prototype, "type", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_type")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_count")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "id", {
-            get: function () {
-                return 11 == this.type ? n.ObjUtil.getNumber(this._item, "api_ship_id") : n.ObjUtil.getNumber(this._item, "api_id")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "id_from", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._item, "api_id_from")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "id_tobe", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._item, "api_id_to")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return n.ObjUtil.getString(this._item, "api_name")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "message_a", {
-            get: function () {
-                return n.ObjUtil.getString(this._item, "api_message_a")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "message", {
-            get: function () {
-                return n.ObjUtil.getString(this._item, "api_message")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "c_flag", {
-            get: function () {
-                return 1 == n.ObjUtil.getNumber(this._item, "api_c_flag")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "_item", {
-            get: function () {
-                return n.ObjUtil.getObject(this._o, "api_item")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t
-    }()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._type = t, this._update(!1)
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onMouseOver = null, this._cb_onMouseOut = null, this._cb_onClick = null
+        }, e.prototype._update = function (t) {
+            var e;
+            e = 0 == t ? 3 == this._type ? 22 : 21 : 3 == this._type ? 23 : 24, this._texture = r.ITEM_ISHOP.getTexture(e)
+        }, e
+    }(PIXI.Sprite)
 }

@@ -19,90 +19,38 @@ const function1123 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
+    var o = i(1),
+        r = i(72),
+        s = i(37),
+        a = i(3),
+        _ = i(4),
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._owned = new a(0, e), i.addChild(i._owned), i._purchased = new a(1, e), i._purchased.x = 192, i.addChild(i._purchased), i
+                i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._target)
+                }, i._cb_onClick = e;
+                var n = new PIXI.Container;
+                i._no = new PIXI.Sprite, i._no.position.set(0, 10), n.addChild(i._no), i._label = new _.TextBox(28, 4999235), i._label.position.set(37, 0), i._label.text = "", n.addChild(i._label), i.addChild(n);
+                var o = new PIXI.Container;
+                return o.position.set(0, 34), i._bg = new PIXI.Sprite, o.addChild(i._bg), i._img = new PIXI.Sprite, i._img.position.set(2, 2), i._img.scale.set(.5), o.addChild(i._img), i._ring = new r.RingMiddle, i._ring.position.set(114, 175), i._ring.visible = !1, o.addChild(i._ring), i.addChild(o), i._bg.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._owned.initialize(), this._purchased.initialize()
-            }, e.prototype.activate = function () {
-                this._owned.activate(), this._purchased.activate()
+                this._no.texture = a.ALBUM_MAIN.getTexture(19), this._bg.texture = a.ALBUM_MAIN.getTexture(15)
             }, e.prototype.update = function (t) {
-                this._owned.selected = t == this._owned.state, this._purchased.selected = t == this._purchased.state
+                if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, this._ring.visible = !1, null != t) {
+                    var e = t.mst_ids[0];
+                    this._ring.initialize(), this._ring.visible = t.hasMarriage(), this._ring.deactivate(), 1 == this._ring.visible && this._ring.activate(), new s.TaskLoadShipResource("card", this._img, e, !1).start()
+                }
+            }, e.prototype.updateLabel = function (t) {
+                this._label.text = t
+            }, e.prototype.activate = function () {
+                null != this._target && 1 != this._bg.buttonMode && (this._bg.buttonMode = !0, this._bg.on(o.EventType.CLICK, this._onClick), this._ring.activate())
             }, e.prototype.deactivate = function () {
-                this._owned.deactivate(), this._purchased.deactivate()
+                this._bg.buttonMode = !1, this._bg.off(o.EventType.CLICK, this._onClick), this._ring.deactivate()
             }, e.prototype.dispose = function () {
-                this._owned.dispose(), this._purchased.dispose()
+                this.removeChildren(), this.deactivate(), this._ring.dispose(), this._label.destroy(), this._target = null, this._bg = null, this._img = null, this._ring = null, this._no = null, this._label = null, this._cb_onClick = null
             }, e
         }(PIXI.Container);
-    e.TabContainer = s;
-    var a = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._activated = !1, n._selected = !1, n._onMouseOver = function () {
-                n._update(!0)
-            }, n._onMouseOut = function () {
-                n._update(!1)
-            }, n._onClick = function () {
-                null != n._cb_onClick && n._cb_onClick(n._state)
-            }, n._state = e, n._cb_onClick = i, n.interactive = !0, n
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "state", {
-            get: function () {
-                return this._state
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "selected", {
-            get: function () {
-                return this._selected
-            },
-            set: function (t) {
-                this._selected != t && (this._selected = t, 0 == this._selected && 1 == this._activated ? this.activate() : 1 == this._selected && 1 == this._activated && this._deactivate(), this._update(!1))
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function () {
-            this._update(!1)
-        }, e.prototype.activate = function () {
-            this._activated = !0, 1 != this.buttonMode && 1 != this.selected && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, this._deactivate()
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e.prototype._deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype._update = function (t) {
-            0 == t && 0 == this._selected ? this.texture = this._getTexture() : this.texture = this._getTextureOn()
-        }, e.prototype._getTexture = function () {
-            var t;
-            switch (this._state) {
-                case 0:
-                    t = 30;
-                    break;
-                case 1:
-                    t = 32;
-                    break;
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-            return o.ITEM_ILIST.getTexture(t)
-        }, e.prototype._getTextureOn = function () {
-            var t;
-            switch (this._state) {
-                case 0:
-                    t = 31;
-                    break;
-                case 1:
-                    t = 33;
-                    break;
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-            return o.ITEM_ILIST.getTexture(t)
-        }, e
-    }(PIXI.Sprite)
+    e.MainItemShip = u
 }

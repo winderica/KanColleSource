@@ -19,42 +19,107 @@ const function828 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(32),
-        s = i(3),
-        a = i(3),
-        _ = i(139),
-        l = i(1),
-        u = i(138),
-        c = function (t) {
+    var o = i(21),
+        r = i(341),
+        s = i(829),
+        a = i(830),
+        _ = i(831),
+        u = i(833),
+        l = i(834),
+        c = i(835),
+        h = i(3),
+        p = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._labelArr = [], e._onYES = function () {
-                    null != e._cb_onYes && (_.SceneMemory.slotItemPage = 0, _.SceneMemory.slotItemFilter = 0, _.SceneMemory.listMode = u.SlotListMode.UNSET, e._cb_onYes())
-                }, e._onNO = function () {
-                    null != e._cb_onNo && e._cb_onNo()
-                };
-                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63));
-                e.btn_no = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(3)), e.btn_yes = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(8));
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(21));
-                e.textAmmo = new o.TextBox(20, 16777215);
-                var c = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(22));
-                e.textSteel = new o.TextBox(20, 16777215);
-                var h = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(0));
-                e.shipBanner = new r.ShipBanner;
-                var p = new o.TextBox(19, 1949120),
-                    d = new o.TextBox(19, 1949120);
-                return e.textName = new o.TextBox(19, 16777215), p.text = "\u6539\u9020\u3059\u308b\u8266\u8239", d.text = "\u4f7f\u7528\u3059\u308b\u8cc7\u6750", p.position.set(414, 219), d.position.set(414, 341), e._labelArr.push(p), e._labelArr.push(d), e.shipBanner.position.set(617, 258), i.position.set(86, 60), h.position.set(516, 20), e.btn_no.position.set(377, 588), e.btn_yes.position.set(639, 588), n.position.set(612, 378), c.position.set(612, 413), e.textName.position.set(617, 219), e.textAmmo.position.set(n.x + n.width, n.y), e.textSteel.position.set(c.x + c.width, c.y), e.btn_yes.on(l.EventType.CLICK, e._onYES), e.btn_no.on(l.EventType.CLICK, e._onNO), e.btn_yes.interactive = e.btn_yes.buttonMode = !0, e.btn_no.interactive = e.btn_no.buttonMode = !0, e.addChild(i, h, n, e.textAmmo, c, e.textSteel, e.btn_no, e.btn_yes, e.shipBanner, p, d, e.textName), e
+                e.headerKindaika = new a.PowerUpHeader;
+                var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(12));
+                i.interactive = !0, e._containerShipFull = new PIXI.Container;
+                var n = new PIXI.Graphics;
+                return e._shipFull = new PIXI.Sprite, e._containerShipFull.position.set(-1, -1), e._containerShipFull.mask = n, e._containerShipFull.addChild(e._shipFull, n), e._cancelButton = new r.CancelButton(h.REMODEL_POWERUP.getTexture(4), h.REMODEL_POWERUP.getTexture(5)), e._shipInfoBox = new _.ShipInfoBox, e._karyokuBeforeAfterConfirm = new s.KaryokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm = new s.RaisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm = new s.SoukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm = new s.TaikuBeforeAfterConfirm, e._shipParameterChecker = new c.ShipParameterChecker, e._targetShipBox = new l.TargetShipBox, e._startButtonSlotDest = new u.StartButton(1), e._startButtonSlotHokan = new u.StartButton(0), n.beginFill(0, 0), n.moveTo(0, 30), n.lineTo(30, 0), n.lineTo(1050, 0), n.lineTo(1050, 569), n.lineTo(29, 569), n.lineTo(0, 537), n.lineTo(0, 30), n.endFill(), n.renderable = !1, e._cancelButton.position.set(535, 501), e._startButtonSlotDest.position.set(855, 491), e._startButtonSlotHokan.position.set(687, 491), e._targetShipBox.position.set(534, 11), e._shipInfoBox.position.set(11, 334), e.headerKindaika.position.set(0, -41), e._shipParameterChecker.position.set(255, 343), e.addChild(i, e._containerShipFull, e._shipInfoBox, e._cancelButton, e._startButtonSlotDest, e._startButtonSlotHokan, e._karyokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm, e._shipParameterChecker, e.headerKindaika, e._targetShipBox), e
             }
-            return n(e, t), e.prototype.update = function (t, e, i) {
-                this.shipBanner.update(t, !1), this.textName.text = t.shipTypeName + " \u300c" + t.name + "\u300d", this.textAmmo.text = "\xd7" + e, this.textSteel.text = "\xd7" + i
-            }, e.prototype.activate = function (t, e) {
-                this._cb_onYes = t, this._cb_onNo = e
+            return n(e, t), Object.defineProperty(e.prototype, "shipFull", {
+                get: function () {
+                    return this._shipFull
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "containerShipFull", {
+                get: function () {
+                    return this._containerShipFull
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipInfoBox", {
+                get: function () {
+                    return this._shipInfoBox
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "karyokuBeforeAfterConfirm", {
+                get: function () {
+                    return this._karyokuBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raisouBeforeAfterConfirm", {
+                get: function () {
+                    return this._raisouBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "soukouBeforeAfterConfirm", {
+                get: function () {
+                    return this._soukouBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taikuBeforeAfterConfirm", {
+                get: function () {
+                    return this._taikuBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipParameterChecker", {
+                get: function () {
+                    return this._shipParameterChecker
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "targetShipBox", {
+                get: function () {
+                    return this._targetShipBox
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "startButtonSlotDest", {
+                get: function () {
+                    return this._startButtonSlotDest
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "startButtonSlotHokan", {
+                get: function () {
+                    return this._startButtonSlotHokan
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "cancelButton", {
+                get: function () {
+                    return this._cancelButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.SetPos_karyokuBeforeAfterConfirm = function (t) {
+                this._karyokuBeforeAfterConfirm.position.set(252, 26 - (t ? 3 : 0))
+            }, e.prototype.SetPos_raisouBeforeAfterConfirm = function (t) {
+                this._raisouBeforeAfterConfirm.position.set(252, 100 - (t ? 3 : 0))
+            }, e.prototype.SetPos_taikuBeforeAfterConfirm = function (t) {
+                this._taikuBeforeAfterConfirm.position.set(252, 170 - (t ? 3 : 0))
+            }, e.prototype.SetPos_soukouBeforeAfterConfirm = function (t) {
+                this._soukouBeforeAfterConfirm.position.set(252, 242 - (t ? 3 : 0))
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.shipBanner.dispose(), this.btn_yes.off(l.EventType.CLICK), this.btn_no.off(l.EventType.CLICK), this.textName.destroy(), this.textSteel.destroy(), this.textAmmo.destroy(), this._labelArr.forEach(function (t) {
-                    t.destroy()
-                }), this.shipBanner = null, this.textName = null, this.textSteel = null, this.textAmmo = null, this.btn_yes = null, this.btn_no = null, this._cb_onYes = null, this._cb_onNo = null, this._labelArr = null
+                this.removeChildren(), this._containerShipFull.removeChildren(), this._containerShipFull.mask = null, this.headerKindaika.dispose(), this._shipInfoBox.dispose(), this._karyokuBeforeAfterConfirm.dispose(), this._raisouBeforeAfterConfirm.dispose(), this._soukouBeforeAfterConfirm.dispose(), this._taikuBeforeAfterConfirm.dispose(), this._shipParameterChecker.dispose(), this._targetShipBox.dispose(), this._startButtonSlotDest.dispose(), this._startButtonSlotHokan.dispose(), this._cancelButton.dispose(), this.headerKindaika = null, this._shipFull = null, this._containerShipFull = null, this._shipInfoBox = null, this._karyokuBeforeAfterConfirm = null, this._raisouBeforeAfterConfirm = null, this._soukouBeforeAfterConfirm = null, this._taikuBeforeAfterConfirm = null, this._shipParameterChecker = null, this._targetShipBox = null, this._startButtonSlotDest = null, this._startButtonSlotHokan = null, this._cancelButton = null
             }, e
         }(PIXI.Container);
-    e.KaizoConfirm = c
+    e.PowerUpEdit = p
 }

@@ -19,17 +19,20 @@ const function805 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(3),
-        s = i(88),
-        a = function (t) {
+    var o = i(217),
+        r = i(21),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e.headerKansenStatus = new s.TitleBar, e.headerKansenStatus.initialize(o.COMMON_MAIN.getTexture(1), 35), e.headerSelectKyouka = new s.TitleBar, e.headerSelectKyouka.initialize(r.REMODEL_POWERUP.getTexture(3), 26), e.headerSelectKyouka.position.set(536, 0), e.headerKyoukaList = new s.TitleBar, e.headerKyoukaList.initialize(r.REMODEL_POWERUP.getTexture(2), 26), e.headerKyoukaList.position.set(806, 0), e.addChild(e.headerKansenStatus, e.headerSelectKyouka, e.headerKyoukaList), e.cacheAsBitmap = !0, e
+                var e = r.COMMON_MAIN.getTexture(15);
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.cacheAsBitmap = !1, this.headerKansenStatus.dispose(), this.headerKyoukaList.dispose(), this.headerSelectKyouka.dispose(), this.headerKansenStatus = null, this.headerKyoukaList = null, this.headerSelectKyouka = null
+            return n(e, t), e.prototype.update = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+                this._update_(t, e, i, n, o, r, s, a, _, u, l, c), this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
+            }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+                this._textHp.text = "" + t, this._textSoukou.text = "" + e, this._textKaihi.text = "" + i, this._textTousai.text = "" + n, this._textKaryoku.text = "" + s, this._textRaisou.text = "" + a, this._textTaiku.text = "" + _, this._textTaisen.text = "" + u, this._textSakuteki.text = "" + l, this._textLucky.text = "" + c, this._sokuryoku.update(o), this._shatei.update(r)
+            }, e.prototype._alignment = function () {
+                this._textHp.position.set(140, 3), this._textSoukou.position.set(140, 38), this._textKaihi.position.set(140, 72), this._textTousai.position.set(140, 105), this._sokuryoku.position.set(113, 140), this._shatei.position.set(114, 173), this._textKaryoku.position.set(290, 3), this._textRaisou.position.set(290, 38), this._textTaiku.position.set(290, 72), this._textTaisen.position.set(290, 106), this._textSakuteki.position.set(290, 140), this._textLucky.position.set(290, 174)
             }, e
-        }(PIXI.Container);
-    e.PowerUpHeader = a
+        }(o.ShipParameterViewBase);
+    e.ShipParameter = s
 }

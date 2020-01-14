@@ -19,85 +19,191 @@ const function1304 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(2),
-        a = i(6),
-        _ = i(249),
-        l = i(1305),
-        u = function (t) {
+    var o = i(2),
+        r = i(252),
+        s = i(6),
+        a = i(19),
+        _ = i(1305),
+        u = i(1),
+        l = i(1306),
+        c = i(0),
+        h = i(1307),
+        p = i(1309),
+        d = i(15),
+        f = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._selected_no = -1, n._onClick = function (t) {
-                    n._selected_no = t;
-                    for (var e = n._scene.view.map, i = 0, o = n._cellWaves; i < o.length; i++) {
-                        var r = o[i];
-                        e.spotLayer.removeChild(r), r.dispose()
+                return n._onSelect = function (t) {
+                    n._hideConfirmDialog(t)
+                }, n._effect = function (t, e) {
+                    for (var i = [], o = 0, r = e; o < r.length; o++) {
+                        var s = r[o];
+                        ! function (t) {
+                            var e = n._model.deck_f.ships.filter(function (e) {
+                                return null != e && e.index == t.index
+                            });
+                            if (1 != e.length) return "continue";
+                            var o = e.shift().hp_now,
+                                r = {
+                                    index: t.index,
+                                    mst_id: t.mst_id,
+                                    hp_now: t.hp_now,
+                                    hp_max: t.hp_max,
+                                    hp_repaired: o
+                                };
+                            i.push(r)
+                        }(s)
                     }
-                    n._balloon.close(function () {
-                        n._scene.view.map.ship_icon.removeChild(n._balloon), createjs.Tween.get(null).wait(1e3).call(function () {
-                            n._endTask()
+                    n._repairLayer = new h.AnchorageRepairLayer(t, i), n._completeLayer = new p.AnchorageRepairCompleteLayer, n._scene.view.addChild(n._repairLayer, n._completeLayer), n._repairLayer.getPreLoadTask().start(function () {
+                        n._repairLayer.bg.setDay(function () {
+                            new _.TaskAnchorageRepairAnimation(n._repairLayer, n._completeLayer).start(function () {
+                                n._scene.view.removeChild(n._repairLayer), n._scene.view.removeChild(n._completeLayer), n._endTask()
+                            })
                         })
                     })
                 }, n._scene = e, n._model = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_no", {
+            return n(e, t), e.prototype._start = function () {
+                1 == this._model.sortie.getNextCell().getAnchorageRepair() ? this._startConfirmRepairDialog("") : this._startNoRepair("\u6ce2\u9759\u304b\u306a\u3001\u6cca\u5730\u306b\u9069\u3057\u305f\u6d77\u57df\u3067\u3059\u3002")
+            }, e.prototype._startConfirmRepairDialog = function (t) {
+                var e = this;
+                this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
+                    e._showMessage(t)
+                }).wait(3e3).call(function () {
+                    e._showMessage("")
+                }).wait(600).call(function () {
+                    e._showConfirmDialog()
+                })
+            }, e.prototype._showConfirmDialog = function () {
+                var t = this,
+                    e = this._model.sortie.now_cell_no,
+                    i = this._scene.resInfo.getAnchorageRepairConfirmOffsets(e),
+                    n = this._scene.view.map.ship_icon;
+                this._confirm = new y(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), s.SE.play("212"), createjs.Tween.get(this._confirm).to({
+                    y: n.y,
+                    alpha: 1
+                }, 300).call(function () {
+                    t._confirm.activate()
+                })
+            }, e.prototype._hideConfirmDialog = function (t) {
+                var e = this;
+                this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._confirm.btn_no).to({
+                    alpha: 0
+                }, 200);
+                var i = this._confirm.y;
+                createjs.Tween.get(this._confirm).wait(200).to({
+                    y: i,
+                    alpha: 0
+                }, 300).call(function () {
+                    if (e._scene.view.universal_layer.removeChild(e._confirm), e._confirm.dispose(), 1 == t) {
+                        var i = new d.UIImageLoader("map");
+                        i.add("map_anchorage_repair.json"), i.load(function () {
+                            e._startAnchorageRepair()
+                        })
+                    } else e._endTask()
+                })
+            }, e.prototype._startAnchorageRepair = function () {
+                var t = this,
+                    e = this._model.deck_f.ships,
+                    i = new l.APIAnchorageRepair;
+                i.start(function () {
+                    var n = t._model.deck_f.id,
+                        o = c.default.model.deck.get(n);
+                    t._model.deck_f.updateShipList(o);
+                    var r = e.filter(function (t) {
+                        return null != t && i.repair_ships.indexOf(t.mem_id) >= 0
+                    });
+                    t._effect(i.used_ship, r)
+                })
+            }, e.prototype._startNoRepair = function (t) {
+                var e = this;
+                this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
+                    e._showMessage(t)
+                }).wait(3e3).call(function () {
+                    e._showMessage("")
+                }).wait(1e3).call(function () {
+                    e._endTask()
+                })
+            }, e.prototype._showWave = function () {
+                var t = this._model.sortie.getNextCell().no,
+                    e = this._scene.view.map.spotLayer.getSpot(t);
+                this._wave = new r.CellWave, this._wave.x = e.x, this._wave.y = e.y, this._scene.view.map.spotLayer.addChild(this._wave), this._wave.activate()
+            }, e.prototype._showMessage = function (t) {
+                this._scene.view.message_box.text = t
+            }, e.prototype._endTask = function () {
+                null != this._wave && (null != this._wave.parent && this._wave.parent.removeChild(this._wave), this._wave.dispose(), this._wave = null), t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase);
+    e.CellTaskAnchorageRepair = f;
+    var y = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                if (n._onClickYes = function () {
+                        null != n._cb_onSelect && n._cb_onSelect(!0)
+                    }, n._onClickNo = function () {
+                        null != n._cb_onSelect && n._cb_onSelect(!1)
+                    }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new m(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new m(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e) {
+                    if (null != e.box) {
+                        var o = e.box;
+                        n._box.x += o.x, n._box.y += o.y, n._beak.x += o.x, n._beak.y += o.y
+                    }
+                    if (null != e.btn) {
+                        var o = e.btn;
+                        n._btn_yes.x += o.x, n._btn_yes.y += o.y, n._btn_no.x += o.x, n._btn_no.y += o.y
+                    }
+                    if (null != e.beak) {
+                        var o = e.beak;
+                        n._beak.x += o.x, n._beak.y += o.y
+                    }
+                }
+                return n
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
                 get: function () {
-                    return this._selected_no
+                    return this._btn_yes
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._start = function () {
-                this._scene.view.message_box.text = "\u8266\u968a\u306e\u91dd\u8def\u3092\u9078\u629e\u3067\u304d\u307e\u3059\u3002\n\u63d0\u7763\u3001\u3069\u3061\u3089\u306e\u91dd\u8def\u3092\u3068\u3089\u308c\u307e\u3059\u304b\uff1f", this._showHukidashi()
-            }, e.prototype._showHukidashi = function () {
-                var t = this,
-                    e = this._model.sortie.getNextCell(),
-                    i = this._scene.resInfo.getBranchOption(e.no);
-                if (this._balloon = new l.BranchBalloon, null == i) {
-                    var n = this._model.sortie.map_id,
-                        o = e.no,
-                        r = 1;
-                    425 == n && 6 == o && (r = 2), 432 == n && (7 != o && 17 != o || (r = 0)), 433 == n && (1 == o ? r = 0 : 7 != o && 21 != o || (r = 2, this._balloon.position.set(-6, 27))), this._balloon.initialize(r, 0)
-                } else this._balloon.initialize(i.type, i.beak, i.offset);
-                this._scene.view.map.ship_icon.addChild(this._balloon), this._balloon.open(function () {
-                    t._showWaves()
-                })
-            }, e.prototype._showWaves = function () {
-                this._cellWaves = [];
-                for (var t = this._model.sortie.getNextCell().getSelectableRoutes(), e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = this._scene.view.map,
-                        r = o.spotLayer.getSpot(n),
-                        s = new c(r, this._onClick);
-                    s.position.set(r.x, r.y), o.spotLayer.addChild(s), this._cellWaves.push(s), s.activate()
-                }
-            }, e.prototype._endTask = function () {
-                this._scene.view.message_box.text = "";
-                var e = this._model.deck_f.ships[0],
-                    i = e.mst_id;
-                o.default.sound.voice.play(i.toString(), 26), this._scene = null, this._model = null, this._balloon = null, this._cellWaves = null, t.prototype._endTask.call(this)
+            }), Object.defineProperty(e.prototype, "btn_no", {
+                get: function () {
+                    return this._btn_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._box.texture = a.MAP_COMMON.getTexture(50), this._beak.texture = a.MAP_COMMON.getTexture(76);
+                var t = a.MAP_COMMON.getTexture(103),
+                    e = a.MAP_COMMON.getTexture(105);
+                this._btn_yes.initialize(t, e), t = a.MAP_COMMON.getTexture(84), e = a.MAP_COMMON.getTexture(85), this._btn_no.initialize(t, e)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_no.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_no.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn_yes.dispose(), this._btn_no.dispose()
             }, e
-        }(s.TaskBase);
-    e.TaskBranchRoute = u;
-    var c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            n._onMouseOver = function () {
-                n._wave.deactivate(), n._wave.selectedScale(), n._target.showLine(), a.SE.play("242")
-            }, n._onMouseOut = function () {
-                n._wave.activate(), n._target.hideLine()
-            }, n._onClick = function () {
-                null != n._cb_onClick && n._cb_onClick(n._target.no)
-            }, n._target = e, n._cb_onClick = i, n._wave = new _.CellWave, n._wave.interactive = !1, n.addChild(n._wave);
-            var o = new PIXI.Graphics;
-            return o.beginFill(65280, 0), o.drawCircle(0, 0, 24), o.endFill(), n._clickCircle = o, n.addChild(n._clickCircle), n
-        }
-        return n(e, t), e.prototype.activate = function () {
-            1 != this._wave.activated && (this._wave.activate(), this._clickCircle.on(r.EventType.MOUSEOVER, this._onMouseOver), this._clickCircle.on(r.EventType.MOUSEOUT, this._onMouseOut), this._clickCircle.interactive = !0, this._clickCircle.buttonMode = !0, this._clickCircle.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this._wave.deactivate(), this._clickCircle.off(r.EventType.MOUSEOVER, this._onMouseOver), this._clickCircle.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickCircle.interactive = !1, this._clickCircle.buttonMode = !1, this._clickCircle.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this._wave.dispose(), this._target = null, this._cb_onClick = null
-        }, e
-    }(PIXI.Container)
+        }(PIXI.Container),
+        m = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    s.SE.play("225"), i._over.alpha = 1
+                }, i._onMouseOut = function () {
+                    i._over.alpha = 0
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
+            }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(u.EventType.MOUSEOVER, this._onMouseOver), this.on(u.EventType.MOUSEOUT, this._onMouseOut), this.on(u.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(u.EventType.MOUSEOVER, this._onMouseOver), this.off(u.EventType.MOUSEOUT, this._onMouseOut), this.off(u.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e
+        }(PIXI.Container)
 }

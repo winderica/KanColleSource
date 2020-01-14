@@ -19,38 +19,66 @@ const function1461 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(16),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.56, .95), e._splash1.position.set(129, 26), e._splash2.anchor.set(.77, .79), e._splash2.position.set(131, 26), e._splash3.anchor.set(.59, .9), e._splash3.position.set(137, 21), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
+    var o = i(28),
+        r = i(20),
+        s = i(2),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._record = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._splash1.texture = r.BATTLE_MAIN.getTexture(115), this._splash2.texture = r.BATTLE_MAIN.getTexture(114), this._splash3.texture = r.BATTLE_MAIN.getTexture(116)
-            }, e.prototype.play = function () {
-                var t = this;
-                createjs.Tween.get(this._splash1).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 233).to({
-                    alpha: 0
-                }, 333), createjs.Tween.get(this._splash2).wait(166).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 200).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._splash3).wait(300).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 133).to({
-                    alpha: 0
-                }, 133).call(function () {
-                    t._init(), t.emit("complete")
+            return n(e, t), e.prototype._start = function () {
+                1 == this._scene.data.model.map_info.isNightStart() ? this._enterShipsAtNight() : this._enterBanners()
+            }, e.prototype._enterShipsAtNight = function () {
+                var t = this,
+                    e = this._scene.view.bannerGroupLayer,
+                    i = new o.ParallelTask;
+                i.add(e.createFriendEnterTask()), i.add(e.createEnemyEnterTask()), i.start(function () {
+                    if (1 == t._scene.data.model.deck_f.isCombined()) {
+                        var i = new r.TweenTask,
+                            n = e.friends.createExitTweens();
+                        i.addTweens(n), n = e.createFriendSubDeckMoveTween(200), i.addTweens(n), i.start(function () {
+                            t._endTask()
+                        })
+                    } else t._endTask()
+                });
+                var n = this._scene.data.model.deck_f,
+                    s = n.getCountMainDeck(),
+                    a = n.getCountSubDeck();
+                1 == n.isCombined() ? this._scene.view.raderLayer.rader_f.show(n.formation, 0, a, 0, !1) : this._scene.view.raderLayer.rader_f.show(n.formation, n.type, s, a, !1);
+                var _ = this._scene.data.model.deck_e,
+                    u = _.formation,
+                    l = _.type,
+                    c = _.getCountMainDeck(),
+                    h = _.getCountSubDeck();
+                this._scene.view.raderLayer.rader_e.show(u, l, c, h, !1)
+            }, e.prototype._enterBanners = function () {
+                var t = this,
+                    e = new r.TweenTask;
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend() && 1 == this._scene.data.model.deck_f.isCombined()) {
+                    var i = this._record.common.getActiveDeckFriend();
+                    if (1 == i) {
+                        var n = this._scene.view.bannerGroupLayer.friends_combined.createExitTweensUpDown();
+                        e.addTweens(n)
+                    } else if (2 == i) {
+                        var n = this._scene.view.bannerGroupLayer.friends.createExitTweens();
+                        e.addTweens(n), n = this._scene.view.bannerGroupLayer.createFriendSubDeckMoveTween(200), e.addTweens(n)
+                    }
+                }
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() && 1 == this._scene.data.model.deck_e.isCombined()) {
+                    var i = this._record.common.getActiveDeckEnemy();
+                    if (1 == i) {
+                        var n = this._scene.view.bannerGroupLayer.enemies_combined.createExitTweensUpDown();
+                        e.addTweens(n)
+                    } else if (2 == i) {
+                        var n = this._scene.view.bannerGroupLayer.enemies.createExitTweens();
+                        e.addTweens(n), n = this._scene.view.bannerGroupLayer.createEnemySubDeckMoveTween(200), e.addTweens(n)
+                    }
+                }
+                e.start(function () {
+                    t._endTask()
                 })
-            }, e.prototype._init = function () {
-                this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
             }, e
-        }(PIXI.Container);
-    e.WaterColumn = s
+        }(s.TaskBase);
+    e.PhaseMoveShips = a
 }

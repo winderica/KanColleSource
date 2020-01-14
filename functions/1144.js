@@ -19,59 +19,47 @@ const function1144 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(92),
-        s = i(33),
-        a = i(93),
-        _ = i(1145),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), -1 == t ? n._hideDialog(!1) : n._connectAPI()
-                }, n._layer = e, n._target = i, n
+    var o = i(5),
+        r = i(0),
+        s = i(11),
+        a = i(8),
+        _ = i(3),
+        u = i(1),
+        l = i(245),
+        c = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClose = function () {
+                    i._dialog.btn.buttonMode = !1, createjs.Tween.get(i._chara).to({
+                        x: o.default.width
+                    }, 300), createjs.Tween.get(i._dialog).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        i._layer.removeChild(i._bg), i._layer.removeChild(i._chara), i._layer.removeChild(i._dialog), i._endTask()
+                    })
+                }, i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                this._dialog = new _.KouMedalUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, 0)),
-                    n = i.result;
-                i.start(function () {
-                    1 == n.hasCaution() ? t._hideDialog(!0) : (t._result = n, t._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._layer,
-                    n = new a.TaskItemOverflowConfirm(i);
-                n.start(function () {
-                    if (1 == n.result) {
-                        var i = new r.UseItemUseAPI(e, !0, 0),
-                            o = i.result;
-                        i.start(function () {
-                            t._result = o, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+                this._bg = new a.AreaBox(0), this._layer.addChild(this._bg);
+                var t = PIXI.Sprite.fromFrame(l.POSTER_KEY_2),
+                    e = l.getPosterOffsetPurchased();
+                null != e && (t.x = e.x, t.y = e.y), this._chara = new PIXI.Sprite, this._chara.addChild(t), this._chara.position.set(681, 3), this._layer.addChild(this._chara), this._dialog = new h, this._dialog.initialize(), this._dialog.position.set(219, 207), this._layer.addChild(this._dialog), r.default.sound.voice.playAtRandom("9999", [316, 317], [60, 40]), this._dialog.btn.buttonMode = !0, this._dialog.btn.once(u.EventType.CLICK, this._onClose)
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseKouMedal = l
+        }(s.TaskBase);
+    e.TaskPurchased = c;
+    var h = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._btn = new PIXI.Sprite, e._btn.position.set(291, 201), e._btn.interactive = !0, e.addChild(e._btn), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "btn", {
+            get: function () {
+                return this._btn
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = _.ITEM_COMMON.getTexture(4), this._btn.texture = _.ITEM_COMMON.getTexture(3)
+        }, e
+    }(PIXI.Sprite)
 }

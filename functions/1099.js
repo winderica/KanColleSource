@@ -19,36 +19,39 @@ const function1099 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(85),
-        s = i(3),
-        a = i(4),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick(i._target)
-                }, i._cb_onClick = e;
-                var n = new PIXI.Container;
-                i._no = new PIXI.Sprite, i._no.position.set(0, 10), n.addChild(i._no), i._label = new a.TextBox(28, 4999235), i._label.position.set(37, 0), i._label.text = "", n.addChild(i._label), i.addChild(n);
-                var o = new PIXI.Container;
-                return o.position.set(0, 34), i._bg = new PIXI.Sprite, o.addChild(i._bg), i._img = new PIXI.Sprite, i._img.position.set(2, 2), o.addChild(i._img), i.addChild(o), i.scale.set(1), i._bg.interactive = !0, i
+    var o = i(0),
+        r = i(17),
+        s = i(11),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_ranking/mxltvkpyuklh", n._recordRankingModels = e, n._pageNo = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._no.texture = s.ALBUM_MAIN.getTexture(19), this._bg.texture = s.ALBUM_MAIN.getTexture(16)
-            }, e.prototype.update = function (t) {
-                if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, null == t) return null;
-                var e = t.mst_ids[0];
-                new r.TaskLoadSlotResource("card_t", this._img, e).start()
-            }, e.prototype.updateLabel = function (t) {
-                this._label.text = t
-            }, e.prototype.activate = function () {
-                null != this._target && 1 != this._bg.buttonMode && (this._bg.buttonMode = !0, this._bg.on(o.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._bg.buttonMode = !1, this._bg.off(o.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._label.destroy(), this._target = null, this._bg = null, this._img = null, this._no = null, this._label = null, this._cb_onClick = null
+            return n(e, t), e.prototype._connect = function () {
+                0 != this._pageNo && (this._post_data.api_pageno = this._pageNo), this._post_data.api_ranking = this._createKey(o.default.model.basic.member_id), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._recordRankingModels[this._pageNo].SetAll(this._raw_data, this._pageNo), t.prototype._completedEnd.call(this)
+            }, e.prototype._getSeed = function (t) {
+                return r.PORT_API_SEED[t % 10]
+            }, e.prototype._createKey = function (t) {
+                var e = this._getSeed(t),
+                    i = Math.floor(Date.now() / 1e3),
+                    n = 1e3 * (Math.floor(9 * Math.random()) + 1) + t % 1e3,
+                    o = Math.floor(8999 * Math.random()) + 1e3,
+                    r = Math.floor(32767 * Math.random()) + 32768,
+                    s = Math.floor(10 * Math.random()),
+                    a = Math.floor(10 * Math.random()),
+                    _ = Math.floor(10 * Math.random()),
+                    u = parseInt(t.toString().substr(0, 4)),
+                    l = (4132653 + r) * (u + 1e3) - i + (1875979 + 9 * r),
+                    c = l - t,
+                    h = c * e,
+                    p = n.toString() + h.toString() + o.toString();
+                p = s.toString() + p;
+                var d = p.substr(0, 8),
+                    f = p.substr(8);
+                return p = d + a + f, d = p.substr(0, 18), f = p.substr(18), (p = d + _ + f) + r.toString()
             }, e
-        }(PIXI.Container);
-    e.MainItemSlot = _
+        }(s.APIBase);
+    e.RecordRankingAPI = a
 }

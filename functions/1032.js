@@ -19,34 +19,60 @@ const function1032 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(172),
-        r = i(4),
-        s = i(32),
-        a = i(53),
-        _ = i(1033),
-        l = i(374),
-        u = i(1045),
-        c = i(1),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enabled = !1, e._activated = !1, e._onClick = function () {
-                    new _.TaskDetailInfo(e._model.id, e._model.flag, e._model.medal_num).start()
-                }, e
+    var o = i(0),
+        r = i(17),
+        s = i(1033),
+        a = i(1034),
+        _ = i(1036),
+        u = i(1041),
+        l = i(1042),
+        c = i(1048),
+        h = i(1),
+        p = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._onSelect = function (t, e) {
+                    r._cb_select(t, e)
+                }, r._onSelectAirUnit = function () {
+                    null != r._cb_onSelectAirUnit && r._cb_onSelectAirUnit()
+                }, r._cb_select = e, r._cb_onSelectAirUnit = i, r._cb_back = n, r._cb_next = o, r._back_btn = new s.BtnBack, r._next_btn = new a.BtnNext, r
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(14)),
-                    e = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(34));
-                this._flag = new l.CompFlag, this._banner = new s.ShipBanner, this._name = new r.TextBox(18, 1949120), this._level = new r.TextBox(26, 4999235), this._comment = new r.TextBox(15, 4999235), this._rank_name = new r.TextBox(18, 4999235), this._medal = new o.MedalIcon, this._result_rank = new u.CompRank, this._hit_area = new PIXI.Graphics, this._hit_area.beginFill(0, 0), this._hit_area.drawRect(0, 0, 939, 79), this._hit_area.endFill(), this._medal.initialize(), this._result_rank.initialize(), t.position.set(295, 24), e.position.set(546, -3), this._flag.position.set(0, 16), this._banner.position.set(48, 0), this._name.position.set(294, 0), this._level.anchor.set(1, 0), this._level.position.set(624, -7), this._comment.position.set(310, 33), this._rank_name.position.set(637, 0), this._medal.position.set(750, 25), this._result_rank.position.set(817, 3), this._hit_area.position.set(-10, -7), this._hit_area.visible = !1, this.addChild(t), this.addChild(e), this.addChild(this._flag), this.addChild(this._banner), this.addChild(this._name), this.addChild(this._level), this.addChild(this._comment), this.addChild(this._rank_name), this.addChild(this._medal), this.addChild(this._result_rank), this.addChild(this._hit_area)
-            }, e.prototype.update = function (t) {
-                this._model = t, this._flag.update(t.flag), this._banner.updateImage(t.flagShipMstID, !1), this._name.text = t.name, this._level.text = t.level.toString(), this._comment.text = t.comment, this._rank_name.text = "[" + t.rank_name + "]", this._medal.update(t.medal_num, 9466926), this._result_rank.update(t.state), this._enabled = t.isNoBattle()
-            }, e.prototype.activate = function () {
-                0 == this._activated && 1 == this._enabled && (this._hit_area.interactive = this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.CLICK, this._onClick), this._hit_area.visible = !0, this._activated = !0)
+            return n(e, t), Object.defineProperty(e.prototype, "content", {
+                get: function () {
+                    return this._content
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._back_btn.on(h.EventType.CLICK, this._cb_back), this._next_btn.on(h.EventType.CLICK, this._cb_next), this.addChild(this._back_btn), this.addChild(this._next_btn)
+            }, e.prototype.update = function (t, e, i) {
+                var n = o.default.model.map.getMapMems(t);
+                t == r.EVENT_AREA_ID ? this._updateEventArea(t, e, n) : this._updateNormalArea(t, e, n), this._content.updateAirUnitEnabled(i)
             }, e.prototype.deactivate = function () {
-                this._hit_area.interactive = this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.CLICK, this._onClick), this._hit_area.visible = !1, this._activated = !1
+                this._content.deactivate()
             }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren(), this._banner.dispose(), this._name.destroy(), this._level.destroy(), this._comment.destroy(), this._rank_name.destroy(), this._medal.dispose(), this._result_rank.dispose()
+                this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
+            }, e.prototype._updateNormalArea = function (t, e, i) {
+                this._removePreContent(), this._content = 0 == e ? new u.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
+            }, e.prototype._updateEventArea = function (t, e, i) {
+                this._removePreContent(), 0 == e ? this._content = new c.LayoutEventMap3(e, this._onSelect, this._onSelectAirUnit) : e >= 3 && (this._content = new l.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit)), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
+            }, e.prototype._removePreContent = function () {
+                null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
+            }, e.prototype._updateBackBtn = function (t) {
+                void 0 === t && (t = !1), this._content.offset > 0 ? (this._back_btn.update(t), this._back_btn.show()) : this._back_btn.hide()
+            }, e.prototype._updateNextBtn = function (t, e, i) {
+                var n = !1,
+                    o = this._content.offset + this._content.num;
+                if (o < i.length) {
+                    var r = i[o];
+                    if (1 == r.isOpened()) n = !0;
+                    else if (65 == r.mst_id) {
+                        var s = i[o - 1];
+                        1 == s.isCleared() && (n = !0)
+                    }
+                }
+                1 == n ? (this._next_btn.update(t, e), this._next_btn.show()) : this._next_btn.hide()
             }, e
         }(PIXI.Container);
-    e.CompRivalDeck = h
+    e.ContainerLayout = p
 }

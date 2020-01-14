@@ -19,34 +19,74 @@ const function1101 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
+    var o = i(384),
+        r = i(31),
+        s = i(1102),
+        a = i(1103),
+        _ = i(1),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._n100 = new s, e.addChild(e._n100), e._n010 = new s, e._n010.x = 18, e.addChild(e._n010), e._n001 = new s, e._n001.x = 36, e.addChild(e._n001), e
+                return e._btn_back = new r.BackBtn, e._btn_back.position.set(0, 653), e._btn_modeInfo = new l, e._btn_modeInfo.position.set(0, 205), e._btn_modeRanking = new l, e._btn_modeRanking.position.set(0, 261), e._isModeChanging = !1, e._disposed = !1, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
-            }, e.prototype.update = function (t) {
-                if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY;
-                else {
-                    this._n100.update(Math.floor(t / 100));
-                    var e = t % 100;
-                    this._n010.update(Math.floor(e / 10)), e = t % 10, this._n001.update(e)
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "btn_back", {
+                get: function () {
+                    return this._btn_back
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_modeInfo", {
+                get: function () {
+                    return this._btn_modeInfo
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_modeRanking", {
+                get: function () {
+                    return this._btn_modeRanking
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "sideMenu_light1", {
+                get: function () {
+                    return this._sideMenu_light1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(o.RECORD_MENU.getTexture(0));
+                this.addChild(t), this._btn_back.initialize(), this._btn_back.activate(), this._btn_modeInfo.initialize(4, 6), this._btn_modeRanking.initialize(1, 3), this._sideMenu_light1 = new PIXI.Sprite(o.RECORD_MENU.getTexture(5)), this._sideMenu_light1.position.set(this._btn_modeInfo.position.x, this._btn_modeInfo.position.y), this.sideMenu_light_blink(), this._kira = new s.RecordKiraLayer, this._kira.scale.set(1, 1), this._kira.position.set(132, 528), this._kira.initialize(), this._medalist = new a.RecordMiniChara, this._medalist.scale.set(1, 1), this._medalist.position.set(-21, 433), this._medalist.initialize(), this._medalist.activate(), this.addChild(this._btn_back), this.addChild(this._btn_modeInfo), this.addChild(this._btn_modeRanking), this.addChild(this._sideMenu_light1), this.addChild(this._medalist), this.addChild(this._kira)
+            }, e.prototype.sideMenu_light_blink = function () {
+                var t = this;
+                this._t = createjs.Tween.get(this._sideMenu_light1).to({
+                    alpha: 0
+                }, 1).to({
+                    alpha: 1
+                }, 2500, createjs.Ease.quadOut).to({
+                    alpha: 0
+                }, 2499, createjs.Ease.quadIn).call(function () {
+                    t._t = null, t._disposed || t.sideMenu_light_blink()
+                })
+            }, e.prototype.dispose = function () {
+                this._disposed = !0, this._medalist.dispose(), this._medalist = null, this._kira.dispose(), this._kira = null, this._btn_back.dispose(), this._btn_modeInfo.dispose(), this._btn_modeRanking.dispose(), this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.DetailPanelNumbers = r;
-    var s = function (t) {
+    e.ViewTop = u;
+    var l = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._setTexture(e._texture_no_on)
+            }, e._onMouseOut = function () {
+                e._setTexture(e._texture_no)
+            }, e
         }
-        return n(e, t), e.prototype.update = function (t) {
-            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY;
-            else {
-                var e = [107, 108, 109, 110, 111, 112, 113, 114, 115, 116][t];
-                this.texture = o.ALBUM_MAIN.getTexture(e)
-            }
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._texture_no = t, this._texture_no_on = e, this._setTexture(this._texture_no), null != this._texture_no_on && (this.interactive = this.buttonMode = !0, this.on(_.EventType.MOUSEOVER, this._onMouseOver), this.on(_.EventType.MOUSEOUT, this._onMouseOut))
+        }, e.prototype.dispose = function () {
+            this.interactive = this.buttonMode = !1, this.off(_.EventType.MOUSEOVER, this._onMouseOver), this.off(_.EventType.MOUSEOUT, this._onMouseOut)
+        }, e.prototype._setTexture = function (t) {
+            this.texture = o.RECORD_MENU.getTexture(t)
         }, e
     }(PIXI.Sprite)
 }

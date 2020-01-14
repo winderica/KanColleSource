@@ -19,26 +19,48 @@ const function1062 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(14),
-        a = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o._expiredFlag = !1, o
+    var o = i(4),
+        r = i(8),
+        s = i(37),
+        a = i(1063),
+        _ = i(1064),
+        u = i(377),
+        l = i(1065),
+        c = i(1066),
+        h = i(378),
+        p = i(1),
+        d = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClose = function () {
+                    null != n._cb_onClose && n._cb_onClose()
+                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new u.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "expiredFlag", {
-                get: function () {
-                    return this._expiredFlag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._expiredFlag = s.ObjUtil.getBoolean(this._raw_data, "api_expired_flag"), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.initialize(), this._detail.initialize();
+                for (var t = 0; t < 6; t++) {
+                    var e = new l.CompRivalShip;
+                    e.initialize(), e.y = 80 * t, this._ship_container.addChild(e), this._ships.push(e)
+                }
+                this._btn.initialize(), this._btn_close.initialize()
+            }, e.prototype.update = function (t) {
+                this._detail.update(t), this._flag.update(t.flag_type);
+                for (var e = 0; e < this._ships.length; e++) {
+                    var i = this._ships[e],
+                        n = t.ships[e];
+                    i.update(n)
+                }
+            }, e.prototype.activate = function () {
+                this._area_close.on(p.EventType.CLICK, this._onClose), this._btn.activate(), this._btn_close.activate()
+            }, e.prototype.deactivate = function () {
+                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.deactivate(), this._btn_close.deactivate()
+            }, e.prototype.dispose = function () {
+                s.TaskLoadShipResource.abortBy(this._ship_container), this._detail.dispose(), this._deck_name.destroy();
+                for (var t = 0, e = this._ships; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.dispose(), this._btn_close.dispose(), this._cb_onClose = null
             }, e
-        }(r.APIBase);
-    e.ExpeditionStartAPI = a
+        }(PIXI.Container);
+    e.UserinfoPanel = d
 }

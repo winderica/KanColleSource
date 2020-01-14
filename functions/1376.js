@@ -19,55 +19,20 @@ const function1376 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(2),
-        s = i(448),
-        a = function (t) {
+    var o = i(9),
+        r = i(147),
+        s = function (t) {
             function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+                var i = t.call(this) || this,
+                    n = e.model.deck_f,
+                    o = 0 != n.type;
+                return i._url = 0 == o ? "api_req_sortie/ld_shooting" : "api_req_combined_battle/ld_shooting", i._data = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._telop = new _, this._telop.x = o.default.width / 2, this._telop.y = o.default.height / 2, this._telop.bg.scale.y = 0, this._telop.text.x = 150, this._telop.text.alpha = 0, this._layer.addChild(this._telop), createjs.Tween.get(this._telop.text).wait(300).to({
-                    x: 90,
-                    alpha: 1
-                }, 300).to({
-                    x: -90
-                }, 350).to({
-                    x: -150,
-                    alpha: 0
-                }, 500), createjs.Tween.get(this._telop.bg.scale).to({
-                    y: 1
-                }, 300).wait(1150).to({
-                    y: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(t._telop), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskAirUnitAttackStartTelop = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Container;
-            var i = PIXI.Sprite.fromFrame("battle_telop_mes_bg_f");
-            return i.x = -Math.round(i.width / 2), i.y = -Math.round(i.height / 2), e._bg.addChild(i), e.addChild(e._bg), e._text = new PIXI.Sprite(s.BATTLE_AIRUNIT.getTexture(0)), e._text.anchor.set(.5), e.addChild(e._text), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e
-    }(PIXI.Container)
+        }(o.APIBase);
+    e.APIBattleStartLongRangeFires = s
 }

@@ -19,33 +19,79 @@ const function682 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(10),
-        s = i(1),
-        a = function (t) {
+    var o = i(277),
+        r = i(278),
+        s = i(34),
+        a = i(163),
+        _ = i(215),
+        u = i(133),
+        l = i(109),
+        c = i(683),
+        h = i(684),
+        p = i(685),
+        d = i(686),
+        f = i(687),
+        y = i(688),
+        m = i(689),
+        g = i(691),
+        v = i(693),
+        b = function (t) {
             function e(e) {
-                var i = t.call(this) || this,
-                    n = o.ORGANIZE_MAIN.getTexture(43),
-                    a = new PIXI.Sprite(r.COMMON_MISC.getTexture(75));
-                i.icon_d2_on = new PIXI.Sprite(r.COMMON_MISC.getTexture(77));
-                var _ = new PIXI.Sprite(n);
-                return _.position.set(-39, -21), i.addChild(a, _, i.icon_d2_on), i.tween = createjs.Tween.get(_).to({
-                    x: -39,
-                    y: -21,
-                    alpha: 1
-                }).to({
-                    x: -57
-                }, 600, createjs.Ease.cubicIn).wait(200).to({
-                    alpha: 0
-                }, 300).wait(400), i.tween.loop = !0, i.tween.play(null), i.icon_d2_on.on(s.EventType.MOUSEDOWN, e), i.icon_d2_on.interactive = !0, i.icon_d2_on.buttonMode = !0, i
+                void 0 === e && (e = 0);
+                var i = t.call(this) || this;
+                return i._sceneId = e, i._isStart = !0, i._isGoNextPath = !0, i._shipId = null, i._onSceneStart = function () {
+                    switch (i._isStart) {
+                        case !0:
+                            return i._isStart = !1, i._ViewMain.start(), i._CurrentScene.start(), i;
+                        case !1:
+                            return i._loader.hide(), i._NextScene.start(), i._isGoNextPath && i._ev.emit("tutorial-next"), i
+                    }
+                }, i._onNextScene = function () {
+                    if (i._loader.show(), i._sceneId++, i._NextScene = i._createNextScene(), i._SoundManager.voice.stopAll(), null == i._NextScene) return i.dispose(), !1;
+                    i._NextScene.initialize(), i._ViewScene.addChild(i._NextScene), i._CurrentScene.dispose(), i._CurrentScene = i._NextScene
+                }, i._onRemoveScene = function () {
+                    i._ViewScene.removeChildAt(0), i._CurrentScene = i._NextScene
+                }, i._onPlayVoice = function (t, e, n) {
+                    void 0 === n && (n = null), i._SoundManager.voice.play(t, e, n)
+                }, i._saveShipId = function (t) {
+                    i._shipId = t
+                }, i._ImageManager = new c.ImageManager(i._create.bind(i)), i._SoundManager = new o.SoundManager, i._ev = new PIXI.utils.EventEmitter, i._ev.on("tutorial-scene-start", i._onSceneStart).on("tutorial-next-scene", i._onNextScene).on("tutorial-remove-scene", i._onRemoveScene).on("tutorial-play-voice", i._onPlayVoice).on("tutorial-save-ship", i._saveShipId), i.emitter = new PIXI.utils.EventEmitter, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this.tween.target), this.tween.setPaused(!0), this.icon_d2_on.removeAllListeners(s.EventType.MOUSEDOWN), this.icon_d2_on = null, this.tween = null, this.removeChildren()
-            }, e.prototype.hideOn = function () {
-                this.icon_d2_on.visible = !1
-            }, e.prototype.showOn = function () {
-                this.icon_d2_on.visible = !0
+            return n(e, t), e.prototype.start = function () {
+                this._ViewMain.start(), this._CurrentScene.start()
+            }, e.prototype._create = function () {
+                var t = new PIXI.Sprite(this._ImageManager.use(l.IMAGE_FILE.BG));
+                this._ViewMain = new h.ViewMain(this._ImageManager, this._ev), this._ViewScene = new PIXI.Container, this._CurrentScene = this._createNextScene(), this._CurrentScene.initialize(), this._ViewScene.addChild(this._CurrentScene), this._loader = new r.LoadingBox, this._loader.hide(), this.addChild(t, this._ViewScene, this._ViewMain, this._loader)
+            }, e.prototype._createNextScene = function () {
+                switch (this._sceneId) {
+                    case 0:
+                        return this._isGoNextPath = !0, new m.SceneInputName(this._ev);
+                    case 1:
+                        return this._isGoNextPath = !0, new g.SceneSelectShip(this._ImageManager, this._ev);
+                    case 2:
+                        return this._isGoNextPath = !0, new p.SceneExplain1(this._ev);
+                    case 3:
+                        return this._isGoNextPath = !0, new d.SceneExplain2(this._ev);
+                    case 4:
+                        return this._isGoNextPath = !0, new f.SceneExplain3(this._ev);
+                    case 5:
+                        return this._isGoNextPath = !1, new y.SceneFinal(this._ImageManager, this._ev, this._shipId);
+                    default:
+                        return null
+                }
+            }, e.prototype.dispose = function () {
+                var t = this;
+                this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
+                var e = new s.APIConnector,
+                    i = parseInt(this._shipId, 10);
+                e.add(new v.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new u.UserSlotItemAPI), e.start(function () {
+                    t._loader.hide(), createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 400, createjs.Ease.linear).call(function () {
+                        t._ViewMain.dispose(), t._CurrentScene.dispose(), t._CurrentScene = null, t._NextScene = null, t.removeChildren(), t.emitter.emit("tutorial-event-end")
+                    })
+                })
             }, e
         }(PIXI.Container);
-    e.CombineGuideView = a
+    e.TutorialScene = b
 }

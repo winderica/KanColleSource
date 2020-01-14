@@ -19,54 +19,42 @@ const function392 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
+    var o = i(393),
         r = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._activated = !1, o._selected = !1, o._onMouseOver = function () {
-                    o._update(!0)
-                }, o._onMouseOut = function () {
-                    o._update(!1)
-                }, o._onClick = function () {
-                    null != o._cb_onChange && o._cb_onChange(o._mode, o._no)
-                }, o._mode = e, o._no = i, o._cb_onChange = n, o.interactive = !0, o
+            function e(e) {
+                var i = t.call(this) || this;
+                i.PAGE_NUM = 7, i._pagers = [];
+                for (var n = 0; n < i.PAGE_NUM; n++) {
+                    var r = new o.Pager(e);
+                    r.x = 138 * n, i.addChild(r), i._pagers.push(r)
+                }
+                return i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "mode", {
-                get: function () {
-                    return this._mode
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "no", {
-                get: function () {
-                    return this._no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "selected", {
-                get: function () {
-                    return this._selected
-                },
-                set: function (t) {
-                    this._selected != t && (this._selected = t, 1 == this._selected ? this._deactivate() : 1 == this._activated && this._activate(), this._update(!1))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._texture_cache = t, this._texture_on_cache = e, this._update(!1)
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].initialize()
+                }
+            }, e.prototype.update = function (t, e) {
+                for (var i = 0; i < this._pagers.length; i++) {
+                    var n = this._pagers[i],
+                        o = t + 10 * i;
+                    n.update(o), n.selected = e >= o && e < o + 10
+                }
             }, e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this._activate())
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].activate()
+                }
             }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._texture_cache = null, this._texture_on_cache = null, this._cb_onChange = null
-            }, e.prototype._update = function (t) {
-                1 == this._selected || 1 == t ? this.texture = this._texture_on_cache : this.texture = this._texture_cache
-            }, e.prototype._activate = function () {
-                1 != this._selected && (this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick))
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
+                this.removeChildren();
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._pagers = null
             }, e
-        }(PIXI.Sprite);
-    e.TabBtn = r
+        }(PIXI.Container);
+    e.PagerContainer = r
 }

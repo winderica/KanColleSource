@@ -19,100 +19,29 @@ const function1402 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(94),
-        r = i(76),
-        s = i(1403),
-        a = i(1404),
-        _ = i(1432),
-        l = i(1433),
-        u = i(1434),
-        c = i(473),
-        h = i(1435),
-        p = i(1436),
-        d = i(183),
-        f = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this, e, n) || this;
-                return o._record = i, o
+    var o = i(2),
+        r = i(13),
+        s = i(23),
+        a = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._ship_mst_id = e, s._damaged = i, s._plane1 = n, s._plane2 = o, s._plane3 = r, s
             }
             return n(e, t), e.prototype._start = function () {
-                this._opening()
-            }, e.prototype._opening = function () {
-                var t = this;
-                new s.PhaseOpening(this.scene, this._record).start(function () {
-                    t._allyAttack()
-                })
-            }, e.prototype._allyAttack = function () {
-                var t = this;
-                new a.PhaseAllyAttack(this.scene, this._record).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this;
-                new l.PhaseMoveShips(this.scene, this._record).start(function () {
-                    t._showTouchPlane()
-                })
-            }, e.prototype._showTouchPlane = function () {
+                this._loadShipImage()
+            }, e.prototype._loadShipImage = function () {
                 var t = this,
-                    e = this._record.raw.getTouchPlaneFriend(),
-                    i = this._record.raw.getTouchPlaneEnemy();
-                new d.TaskShowTouchPlane(this.scene, e, i).start(function () {
-                    t._ration()
+                    e = new r.ShipLoader;
+                e.add(this._ship_mst_id, this._damaged, "full"), e.load(function () {
+                    t._loadPlaneImage()
                 })
-            }, e.prototype._ration = function () {
-                var t = this;
-                new o.PhaseRation(this.scene, this._record).start(function () {
-                    t._light()
-                })
-            }, e.prototype._light = function () {
-                var t = this;
-                new _.PhaseLighting(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new u.PhaseSupport(this.scene, this._record).start(function () {
-                    t._attack()
-                })
-            }, e.prototype._attack = function () {
+            }, e.prototype._loadPlaneImage = function () {
                 var t = this,
-                    e = this._record.raw.hougeki,
-                    i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack1()
+                    e = new s.SlotLoader;
+                this._plane1 > 0 && e.add(this._plane1, "item_up"), this._plane2 > 0 && e.add(this._plane2, "item_up"), this._plane3 > 0 && e.add(this._plane3, "item_up"), e.load(function () {
+                    t._endTask()
                 })
-            }, e.prototype._attack1 = function () {
-                var t = this,
-                    e = this._record.raw.hougeki1,
-                    i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this,
-                    e = this._record.raw.hougeki2,
-                    i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new h.PhaseEnding(this.scene, this._record).start(function () {
-                    t._dayBattle()
-                })
-            }, e.prototype._dayBattle = function () {
-                var t = this;
-                if (1 == this._record.raw.hasDayBattle()) {
-                    var e = this.scene,
-                        i = this._record.getDayRecord();
-                    new p.PhaseDayFromNight(e, i).start(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
             }, e
-        }(r.PhaseCombatBase);
-    e.PhaseNight = f
+        }(o.TaskBase);
+    e.PreloadCutinFunnel = a
 }

@@ -19,27 +19,30 @@ const function1068 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(14),
-        s = i(15),
-        a = function (t) {
+    var o = i(54),
+        r = i(1),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._view = e, i
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._view = null, r.EditTextBoxUtil.setVisibility(!1), this._endTask()
+            return n(e, t), e.prototype.initialize = function () {
+                this._update(!1)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                this.texture = 1 == t ? o.SALLY_PRACTICE.getTexture(2) : o.SALLY_PRACTICE.getTexture(1)
             }, e
-        }(o.TaskBase);
-    e.PreFinalizeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene_dispose_delegate = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._view = null, s.UIImageLoader.clearMemoryCache("record"), this._endTask()
-        }, e
-    }(o.TaskBase);
-    e.FinalizeTask = _
+        }(PIXI.Sprite);
+    e.BackBtn = s
 }

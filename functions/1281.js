@@ -1,92 +1,167 @@
 const function1281 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(250),
-        s = i(12),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._txt_repair_complete = new s.Sprite, e._fairy_completed = new s.Sprite, e
+    var n = i(7),
+        o = i(1282),
+        r = function () {
+            function t(t) {
+                this._offsetDic = null, this._line = null, this._route = null, this._branch = null, this._o = t
             }
-            return n(e, t), Object.defineProperty(e.prototype, "white", {
+            return Object.defineProperty(t.prototype, "no", {
                 get: function () {
-                    return this._white
+                    return n.ObjUtil.getNumber(this._o, "no")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "txt_repair_complete", {
+            }), Object.defineProperty(t.prototype, "x", {
                 get: function () {
-                    return this._txt_repair_complete
+                    return n.ObjUtil.getNumber(this._o, "x")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "fairy_complete", {
+            }), Object.defineProperty(t.prototype, "y", {
                 get: function () {
-                    return this._fairy_completed
+                    return n.ObjUtil.getNumber(this._o, "y")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "pattern", {
+            }), Object.defineProperty(t.prototype, "color", {
                 get: function () {
-                    return this._pattern
+                    return n.ObjUtil.getNumber(this._o, "color")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initilize = function () {
-                this._white = new PIXI.Graphics, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, o.default.width, o.default.height), this._white.endFill(), this._txt_repair_complete = new PIXI.Sprite(r.MAP_ANCHORAGE_REPAIR.getTexture(15)), this._txt_repair_complete.position.set(o.default.width / 2 - this._txt_repair_complete.width / 2, o.default.height / 2 - this._txt_repair_complete.height / 2);
-                var t = this._getFairyPattern();
-                this._pattern = t.pattern, this._fairy_completed = new PIXI.Sprite(r.MAP_ANCHORAGE_REPAIR.getTexture(t.textureId)), this._fairy_completed.scale.set(.65), this._fairy_completed.anchor.set(.5), this._fairy_completed.position.set(t.position.x, t.position.y), this.addChild(this._white, this._txt_repair_complete, this._fairy_completed), this.alpha = 0
-            }, e.prototype._getFairyPattern = function () {
-                var t = [{
-                    pattern: 0,
-                    textureId: 3,
-                    position: {
-                        x: 1100,
-                        y: 710
+            }), Object.defineProperty(t.prototype, "offsetDic", {
+                get: function () {
+                    return 0 == this._o.hasOwnProperty("offsets") ? {} : this._o.offsets
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "line", {
+                get: function () {
+                    if (null == this._line && 1 == this._o.hasOwnProperty("line")) {
+                        var t = this._o.line;
+                        this._line = {
+                            x: n.ObjUtil.getNumber(t, "x"),
+                            y: n.ObjUtil.getNumber(t, "y"),
+                            r: n.ObjUtil.getNumber(t, "r"),
+                            img: n.ObjUtil.getString(t, "img")
+                        }
                     }
-                }, {
-                    pattern: 1,
-                    textureId: 4,
-                    position: {
-                        x: 336,
-                        y: -350
+                    return this._line
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "route", {
+                get: function () {
+                    if (null == this._route && 1 == this._o.hasOwnProperty("route")) {
+                        var t = this._o.route;
+                        this._route = {
+                            x: t.hasOwnProperty("x") ? t.x : null == this.line ? 0 : this.line.x,
+                            y: t.hasOwnProperty("y") ? t.y : null == this.line ? 0 : this.line.y,
+                            r: t.hasOwnProperty("r") ? t.r : null == this.line ? 0 : this.line.r,
+                            img: n.ObjUtil.getString(t, "img")
+                        }
                     }
-                }, {
-                    pattern: 2,
-                    textureId: 5,
-                    position: {
-                        x: 1080,
-                        y: 590
+                    return this._route
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "landing", {
+                get: function () {
+                    if (0 == this._o.hasOwnProperty("landing")) return null;
+                    var t = this._o.landing;
+                    return {
+                        x: n.ObjUtil.getNumber(t, "x"),
+                        y: n.ObjUtil.getNumber(t, "y"),
+                        type: n.ObjUtil.getNumber(t, "type")
                     }
-                }, {
-                    pattern: 3,
-                    textureId: 6,
-                    position: {
-                        x: 1080,
-                        y: 590
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "branch", {
+                get: function () {
+                    if (null == this._branch) {
+                        if (0 == this._o.hasOwnProperty("branch")) return null;
+                        var t = this._o.branch;
+                        this._branch = new o.BranchBalloonData(t)
                     }
-                }];
-                return t[Math.floor(Math.random() * t.length)]
-            }, e
-        }(PIXI.Container);
-    e.AnchorageRepairCompleteLayer = a
+                    return this._branch
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "direction", {
+                get: function () {
+                    if (0 == this._o.hasOwnProperty("direction")) return 0;
+                    var t = n.ObjUtil.getString(this._o, "direction");
+                    return "R" == t ? 2 : "L" == t ? 1 : 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "controll_point", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "cpoint");
+                    return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "repair_confirm_offsets", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "repair");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "btn"),
+                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
+                        s = n.ObjUtil.getObject(t, "beak");
+                    return {
+                        box: i,
+                        btn: r,
+                        beak: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "replenish_confirm_offsets", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "replenish");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "btn"),
+                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
+                        s = n.ObjUtil.getObject(t, "beak"),
+                        a = new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y")),
+                        _ = n.ObjUtil.getObject(t, "balloon");
+                    return {
+                        box: i,
+                        btn: r,
+                        beak: a,
+                        bln: new PIXI.Point(n.ObjUtil.getNumber(_, "x"), n.ObjUtil.getNumber(_, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ration_confirm_offset", {
+                get: function () {
+                    var t = n.ObjUtil.getObject(this._o, "ration");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getObject(t, "box"),
+                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
+                        o = n.ObjUtil.getObject(t, "btn"),
+                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
+                        s = n.ObjUtil.getObject(t, "beak");
+                    return {
+                        box: i,
+                        btn: r,
+                        beak: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
+                    }
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.SpotData = r
 }

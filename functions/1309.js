@@ -19,45 +19,74 @@ const function1309 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(40),
-        s = i(19),
+    var o = i(5),
+        r = i(253),
+        s = i(12),
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.position.set(86, 60), e._content = new _, e._content.position.set(390, 153), e.addChild(e._bg), e.addChild(e._content), e._gearBtn = new r.GearBtnHome, e._gearBtn.position.set(1127, 653), e.addChild(e._gearBtn), e
+                return e._txt_repair_complete = new s.Sprite, e._fairy_completed = new s.Sprite, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "content", {
+            return n(e, t), Object.defineProperty(e.prototype, "white", {
                 get: function () {
-                    return this._content
+                    return this._white
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "gearBtn", {
+            }), Object.defineProperty(e.prototype, "txt_repair_complete", {
                 get: function () {
-                    return this._gearBtn
+                    return this._txt_repair_complete
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._bg.texture = s.MAP_COMMON.getTexture(168), this._content.initialize(t), this._gearBtn.initialize()
+            }), Object.defineProperty(e.prototype, "fairy_complete", {
+                get: function () {
+                    return this._fairy_completed
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "pattern", {
+                get: function () {
+                    return this._pattern
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initilize = function () {
+                this._white = new PIXI.Graphics, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, o.default.width, o.default.height), this._white.endFill(), this._txt_repair_complete = new PIXI.Sprite(r.MAP_ANCHORAGE_REPAIR.getTexture(15)), this._txt_repair_complete.position.set(o.default.width / 2 - this._txt_repair_complete.width / 2, o.default.height / 2 - this._txt_repair_complete.height / 2);
+                var t = this._getFairyPattern();
+                this._pattern = t.pattern, this._fairy_completed = new PIXI.Sprite(r.MAP_ANCHORAGE_REPAIR.getTexture(t.textureId)), this._fairy_completed.scale.set(.65), this._fairy_completed.anchor.set(.5), this._fairy_completed.position.set(t.position.x, t.position.y), this.addChild(this._white, this._txt_repair_complete, this._fairy_completed), this.alpha = 0
+            }, e.prototype._getFairyPattern = function () {
+                var t = [{
+                    pattern: 0,
+                    textureId: 3,
+                    position: {
+                        x: 1100,
+                        y: 710
+                    }
+                }, {
+                    pattern: 1,
+                    textureId: 4,
+                    position: {
+                        x: 336,
+                        y: -350
+                    }
+                }, {
+                    pattern: 2,
+                    textureId: 5,
+                    position: {
+                        x: 1080,
+                        y: 590
+                    }
+                }, {
+                    pattern: 3,
+                    textureId: 6,
+                    position: {
+                        x: 1080,
+                        y: 590
+                    }
+                }];
+                return t[Math.floor(Math.random() * t.length)]
             }, e
         }(PIXI.Container);
-    e.MapEndView = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
-        }
-        return n(e, t), e.prototype.initialize = function (t) {
-            if (this._title.texture = s.MAP_COMMON.getTexture(187), null != t)
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e],
-                        n = o.default.resources.getUseitem(i, 0),
-                        r = new PIXI.Sprite(n);
-                    r.x = 33 + e % 5 * 75, r.y = 56 + 75 * Math.floor(e / 5), this.addChild(r)
-                }
-        }, e
-    }(PIXI.Container);
-    e.MapEndContentView = _
+    e.AnchorageRepairCompleteLayer = a
 }

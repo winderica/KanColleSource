@@ -19,117 +19,62 @@ const function684 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(0),
-        s = i(1),
+    var o = i(83),
+        r = i(5),
+        s = i(109),
         a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClickDeckFlag = function (t) {
-                    e.onClickDeckFlag(t)
-                }, e.interactiveDeckFlag_1 = new _, e.interactiveDeckFlag_2 = new _, e.interactiveDeckFlag_3 = new _, e.interactiveDeckFlag_4 = new _;
-                var i = new l,
-                    n = new l,
-                    s = new l,
-                    a = new l;
-                return i.x = e.interactiveDeckFlag_1.x = 0, n.x = e.interactiveDeckFlag_2.x = 45, s.x = e.interactiveDeckFlag_3.x = 90, a.x = e.interactiveDeckFlag_4.x = 135, e.interactiveDeckFlag_1.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_2.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_3.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_4.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_1.update(1), e.interactiveDeckFlag_2.update(2), e.interactiveDeckFlag_3.update(3), e.interactiveDeckFlag_4.update(4), i.update(1), n.update(2), s.update(3), a.update(4), e.addChild(i, n, s, a, e.interactiveDeckFlag_1, e.interactiveDeckFlag_2, e.interactiveDeckFlag_3, e.interactiveDeckFlag_4), r.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(o.COMMON_MISC.getTexture(186)), e.icon3rdUnit.position.set(77, -22), e.addChild(e.icon3rdUnit)), e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n._ev = i, n._titleChange = function (t, e) {
+                    void 0 === e && (e = null);
+                    var i = createjs.Ease.linear;
+                    if (0 == t) return createjs.Tween.get(n.getChildByName("titleBar")).to({
+                        alpha: 0
+                    }, 200, i), !1;
+                    var r = o.TUTORIAL_MAIN.getTexture(e);
+                    0 == n.getChildByName("titleBar").alpha ? (n._titleMessage.texture = r, createjs.Tween.get(n.getChildByName("titleBar")).to({
+                        alpha: 1
+                    }, 200, i)) : createjs.Tween.get(n._titleMessage).to({
+                        alpha: 0
+                    }, 200, i).call(function () {
+                        n._titleMessage.texture = r
+                    }).to({
+                        alpha: 1
+                    }, 200, i)
+                }, n._onNext = function () {
+                    createjs.Tween.get(n._currentTutorialIcon, {
+                        loop: !1
+                    }).to({
+                        x: n._currentTutorialIcon.x + 60
+                    }, 400, createjs.Ease.linear)
+                }, n._ev.on("tutorial-title", n._titleChange).on("tutorial-next", n._onNext);
+                var a = new PIXI.Container;
+                a.position.set(0, 50), a.alpha = 0, a.name = "titleBar";
+                var _ = new PIXI.Sprite(e.use(s.IMAGE_FILE.TITLE_BG)),
+                    u = Math.floor(_.height / 2);
+                n._titleIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(10)), n._titleIcon.anchor.set(.5, .5), n._titleIcon.position.set(20 + Math.floor(n._titleIcon.width / 2), u), n._titleMessage = new PIXI.Sprite, n._titleMessage.anchor.set(0, .5), n._titleMessage.position.set(80, u), a.addChild(_, n._titleIcon, n._titleMessage);
+                var l = new PIXI.Container,
+                    c = new PIXI.Sprite(e.use(s.IMAGE_FILE.CRUMB));
+                return n._currentTutorialIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(9)), n._currentTutorialIcon.anchor.set(.5, .5), n._currentTutorialIcon.position.set(345, Math.floor(c.height / 2) - 3), l.position.set(r.default.width - c.width - 12, 0), l.addChild(c, n._currentTutorialIcon), n.addChild(a, l), n
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-                this.interactiveDeckFlag_1.visible = !1, this.interactiveDeckFlag_2.visible = !1, this.interactiveDeckFlag_3.visible = !1, this.interactiveDeckFlag_4.visible = !1, t && (this.interactiveDeckFlag_1.visible = !0), e && (this.interactiveDeckFlag_2.visible = !0), i && (this.interactiveDeckFlag_3.visible = !0), n && (this.interactiveDeckFlag_4.visible = !0)
-            }, e.prototype.update = function (t) {
-                switch (this.interactiveDeckFlag_1.normal(), this.interactiveDeckFlag_2.normal(), this.interactiveDeckFlag_3.normal(), this.interactiveDeckFlag_4.normal(), t) {
-                    case 1:
-                        this.interactiveDeckFlag_1.hover();
-                        break;
-                    case 2:
-                        this.interactiveDeckFlag_2.hover();
-                        break;
-                    case 3:
-                        this.interactiveDeckFlag_3.hover();
-                        break;
-                    case 4:
-                        this.interactiveDeckFlag_4.hover()
-                }
+            return n(e, t), e.prototype.start = function () {
+                var t = {
+                    angle: 2 * Math.PI,
+                    duration: 8e3,
+                    ease: createjs.Ease.linear
+                };
+                createjs.Tween.get(this._titleIcon, {
+                    loop: !0
+                }).to({
+                    rotation: t.angle
+                }, t.duration, t.ease), createjs.Tween.get(this._currentTutorialIcon, {
+                    loop: !0
+                }).to({
+                    rotation: t.angle
+                }, t.duration, t.ease)
             }, e.prototype.dispose = function () {
-                this.interactiveDeckFlag_1.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_2.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_3.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_4.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_1.dispose(), this.interactiveDeckFlag_2.dispose(), this.interactiveDeckFlag_3.dispose(), this.interactiveDeckFlag_4.dispose(), this.onClickDeckFlag = null, this.interactiveDeckFlag_1 = null, this.interactiveDeckFlag_2 = null, this.interactiveDeckFlag_3 = null, this.interactiveDeckFlag_4 = null, this.icon3rdUnit = null, this.removeChildren()
+                createjs.Tween.removeTweens(this._titleIcon), createjs.Tween.removeTweens(this._currentTutorialIcon), this._ev.off("tutorial-title", this._titleChange).off("tutorial-next", this._onNext)
             }, e
         }(PIXI.Container);
-    e.DeckSelector = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onClick = function () {
-                e.onClick(e.memDeckId)
-            }, e.addListener(s.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.onClick = null, this.memDeckId = null, this._onClick = null, this.removeAllListeners(s.EventType.CLICK), this.removeChildren()
-        }, e.prototype.update = function (t) {
-            this.memDeckId = t
-        }, e.prototype.hover = function () {
-            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "on"));
-            this.texture = t
-        }, e.prototype.normal = function () {
-            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "off"));
-            this.texture = t
-        }, e
-    }(PIXI.Sprite);
-    e.InteractiveDeckFlag = _;
-    var l = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-        return n(e, t), e.prototype.update = function (t) {
-            this.texture = o.COMMON_MISC.getTexture(u.getResourceId(t, "no")), this.memDeckId = t
-        }, e
-    }(PIXI.Sprite);
-    e.DisableDeckFlag = l;
-    var u;
-    ! function (t) {
-        function e(t, e) {
-            switch (t) {
-                case 1:
-                    switch (e) {
-                        case "no":
-                            return 72;
-                        case "on":
-                            return 74;
-                        case "off":
-                            return 73
-                    }
-                    break;
-                case 2:
-                    switch (e) {
-                        case "no":
-                            return 75;
-                        case "on":
-                            return 77;
-                        case "off":
-                            return 76
-                    }
-                    break;
-                case 3:
-                    switch (e) {
-                        case "no":
-                            return 78;
-                        case "on":
-                            return 80;
-                        case "off":
-                            return 79
-                    }
-                    break;
-                case 4:
-                    switch (e) {
-                        case "no":
-                            return 81;
-                        case "on":
-                            return 83;
-                        case "off":
-                            return 82
-                    }
-            }
-            return -1
-        }
-        t.getResourceId = e
-    }(u || (u = {}))
+    e.ViewMain = a
 }

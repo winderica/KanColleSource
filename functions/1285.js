@@ -19,41 +19,33 @@ const function1285 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1286),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._count = 0, e._boxes = [], e
+    var o = i(0),
+        r = i(2),
+        s = i(1286),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "count", {
-                get: function () {
-                    return this._count
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._count = 0;
-                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
-                    var s = new o.FormationBoxCombined,
-                        a = [626, 873, 626, 873][r],
-                        _ = [96, 96, 302, 302][r];
-                    s.position.set(a, _);
-                    var l = n[r];
-                    s.initialize(t, l, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].dispose()
-                }
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this;
+                (new s.TaskLoadResourcesMap).start(function () {
+                    t._showViewMain()
+                })
+            }, e.prototype._showViewMain = function () {
+                var t = this;
+                this._scene.view.bg.setDay(function () {
+                    t._initialize()
+                })
+            }, e.prototype._initialize = function () {
+                this._scene.view.initialize();
+                var t = this._model.sortie.area_id,
+                    e = this._model.sortie.map_id,
+                    i = o.default.model.map.getMapMst(e.toString()).name;
+                this._scene.view.upper.update(t, i), this._endTask()
             }, e
-        }(PIXI.Container);
-    e.FormationBoxContainerCombined = r
+        }(r.TaskBase);
+    e.TaskInitPre = a
 }

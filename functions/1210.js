@@ -19,16 +19,15 @@ const function1210 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
+    var o = i(31),
+        r = i(3),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/furniture", e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.furniture.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._update = function (t) {
+                this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(19) : r.ITEM_FSHOP.getTexture(20)
             }, e
-        }(r.APIBase);
-    e.UserFurnitureAPI = s
+        }(o.BtnBase);
+    e.BackBtn = s
 }

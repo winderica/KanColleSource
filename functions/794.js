@@ -19,39 +19,45 @@ const function794 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(795),
+        a = i(314),
+        _ = i(216),
+        u = i(317),
+        l = i(316),
+        c = i(73),
+        h = i(135),
+        p = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i.DURATION = 150;
-                var n = new PIXI.Graphics;
-                return n.beginFill(0, .5), n.drawRect(0, 0, o.default.width, o.default.height), n.endFill(), i._container = e, i._container.alpha = 0, i.interactive = !0, i.alpha = 0, i.addChild(n, i._container), i
+                return i.phasePreInitialize = function () {
+                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
+                }, i._scene = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._container = null
-            }, e.prototype.show = function (t) {
-                var e = this;
-                void 0 === t && (t = null), createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 1.2 * this.DURATION).call(function () {
-                    createjs.Tween.get(e._container).to({
-                        alpha: 1
-                    }, .5 * e.DURATION).call(function () {
-                        null !== t && t()
-                    })
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this;
+                (new s.TaskLoadResourcesRemodel).start(function () {
+                    t._uploadToGPU()
                 })
-            }, e.prototype.hide = function (t) {
-                var e = this;
-                void 0 === t && (t = null), createjs.Tween.get(this._container).to({
-                    alpha: 0
-                }, this.DURATION).call(function () {
-                    createjs.Tween.get(e).to({
-                        alpha: 0
-                    }, 1.2 * e.DURATION).call(function () {
-                        null !== t && t()
+            }, e.prototype._uploadToGPU = function () {
+                var t, e = this;
+                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                        t = l.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                            t = u.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                        e.phasePreInitialize()
+                                    })
+                                })
+                            })
+                        })
                     })
                 })
             }, e
-        }(PIXI.Container);
-    e.SlotInShipChangeConfirm = r
+        }(r.TaskBase);
+    e.PreInitializeTask = p
 }

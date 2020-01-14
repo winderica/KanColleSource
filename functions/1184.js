@@ -19,20 +19,23 @@ const function1184 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = function (t) {
+    var o = i(0),
+        r = i(76),
+        s = i(144),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._text = new o.TextBox(28, 5010027), e._text.anchor.x = 1, e._text.position.set(174, 27), e.addChild(e._text), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = r.ITEM_FSHOP.getTexture(37), this.update(0)
-            }, e.prototype.update = function (t) {
-                t = Math.max(t, 0), this._text.text = t.toString()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
+            return n(e, t), e.prototype._initialize = function () {
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(7);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getUseitem(e, 1),
+                    n = new PIXI.Sprite(i),
+                    s = Math.min(195 / n.width, 195 / n.height);
+                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(PIXI.Sprite);
-    e.CoinBox = s
+        }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogUseitemBtn = a
 }

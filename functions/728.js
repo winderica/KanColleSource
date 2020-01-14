@@ -19,24 +19,29 @@ const function728 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(0),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_hensei/preset_select", n.presetNo = e, n.deckId = i, n
+    var o = i(10),
+        r = i(1),
+        s = i(8),
+        a = function (t) {
+            function e(e, i, n) {
+                var a = t.call(this, .1) || this;
+                a._cbDrop = n, a._drag = null, a._isPosible = !1, a._onMove = function (t) {
+                    a._flagIcon.position.set(t.data.global.x, t.data.global.y);
+                    var e = a._reactionArea,
+                        i = t.data.getLocalPosition(e);
+                    a._isPosible = e.hitArea.contains(i.x, i.y)
+                }, a._onUp = function () {
+                    a._dispose(), a._cbDrop(a._isPosible)
+                }, a._onOut = function () {
+                    a._dispose(), a._cbDrop(!1)
+                }, a._drag = new PIXI.Container, a._flagIcon = new PIXI.Sprite(o.COMMON_MISC.getTexture(77)), a._flagIcon.anchor.set(.5), a._flagIcon.position.set(i.x, i.y);
+                var _ = a._flagIcon.width,
+                    u = a._flagIcon.height;
+                return a._reactionArea = new s.AreaBox(0, 16777215, _, u), a._reactionArea.hitArea = new PIXI.Rectangle(0, 0, _, u), a._reactionArea.position.set(e.x, e.y), a._drag.addChild(a._reactionArea, a._flagIcon), a.addChild(a._drag), a.on(r.EventType.MOUSEMOVE, a._onMove), a.on(r.EventType.MOUSEOUT, a._onOut), a.on(r.EventType.MOUSEUP, a._onUp), a
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_preset_no = this.presetNo, this._post_data.api_deck_id = this.deckId, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result = this._raw_data, r.default.model.deck.updateData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._dispose = function () {
+                this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp)
             }, e
-        }(o.APIBase);
-    e.PresetSelectAPI = s
+        }(s.AreaBox);
+    e.CombineDragging = a
 }

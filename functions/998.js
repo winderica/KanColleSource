@@ -19,27 +19,36 @@ const function998 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = function (t) {
+    var o = i(26),
+        r = i(361),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._label = new PIXI.Sprite, e._n001 = new PIXI.Sprite, e._n010 = new PIXI.Sprite, e._n100 = new PIXI.Sprite, e.addChild(e._bg), e.addChild(e._label), e.addChild(e._n001), e.addChild(e._n010), e.addChild(e._n100), e
+                return e._txt = new PIXI.Sprite, e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.alpha = 0, e.addChild(e._txt_on), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = o.SALLY_COMMON.getTexture(29), this._label.texture = o.SALLY_COMMON.getTexture(34), this._n001.position.set(44, 3), this._n010.position.set(33, 3), this._n100.position.set(23, 3)
-            }, e.prototype.update = function (t) {
-                if (null == t) this.visible = !1;
-                else {
-                    var e = t.level;
-                    e = Math.max(0, e), e = Math.min(999, e);
-                    var i = Math.floor(e / 100),
-                        n = e % 100,
-                        r = Math.floor(n / 10),
-                        s = n % 10,
-                        a = [59, 60, 61, 62, 63, 64, 65, 66, 67, 68];
-                    e < 10 ? (this._bg.scale.x = .866, this._bg.position.x = 17, this._label.position.set(23, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.visible = !1, this._n100.visible = !1) : e < 100 ? (this._bg.scale.x = 1.067, this._bg.position.x = 8, this._label.position.set(12, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n010.visible = !0, this._n100.visible = !1) : (this._bg.scale.x = 1.233, this._bg.position.x = 0, this._label.position.set(3, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n100.texture = o.SALLY_COMMON.getTexture(a[i]), this._n010.visible = !0, this._n100.visible = !0), this.visible = !0
+                this.texture = o.SALLY_AIRUNIT.getTexture(61)
+            }, e.prototype.update = function (t, e) {
+                switch (this.visible = t, this._deactivate(), e) {
+                    case r.ListType.RELOCATION:
+                        this._txt.texture = o.SALLY_AIRUNIT.getTexture(128), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(129), this._txt.position.set(479, 12), this._txt_on.position.set(467, -2), 1 == t && this._activate();
+                        break;
+                    case r.ListType.DEPLOYMENT:
+                        this._txt.texture = o.SALLY_AIRUNIT.getTexture(131), this._txt.position.set(577, 2)
                 }
+            }, e.prototype.dispose = function () {
+                this._deactivate()
+            }, e.prototype._activate = function () {
+                null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 800).to({
+                    alpha: 0
+                }, 400))
+            }, e.prototype._deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
             }, e
-        }(PIXI.Container);
-    e.CompBannerLevel = r
+        }(PIXI.Sprite);
+    e.AirUnitListItemExtraLayer = s
 }

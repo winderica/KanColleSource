@@ -19,73 +19,59 @@ const function1259 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(149),
-        a = i(2),
-        _ = i(18),
-        l = i(68),
-        u = i(434),
-        c = i(1260),
-        h = i(1261),
-        p = function (t) {
+    var o = i(0),
+        r = i(48),
+        s = i(1260),
+        a = i(1261),
+        _ = i(1263),
+        u = i(1264),
+        l = i(1276),
+        c = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n._black = new _.FadeBox(1), n
+                return n._startBattleResult = function () {
+                    n._result.initialize(), n.addChild(n._result), n._result.shutter.close(), n._result.once("complete", n._endBattleResult);
+                    var t = n._taskMain.model;
+                    n._result.start(t)
+                }, n._endBattleResult = function () {
+                    o.default.scene.change(0)
+                }, n._battle = e, n._result = i, n._view = new l.ViewMain, n._battle.alpha = 0, n.addChild(n._view), n.addChild(n._battle), n
             }
-            return n(e, t), e.prototype._start = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "battle", {
+                get: function () {
+                    return this._battle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.start = function () {
                 var t = this;
-                this._black.hide(0), this._scene.view.addChild(this._black), this._black.show(300), new u.SallyAnimationTask(this._scene.view).start(function () {
-                    t._loadMapResource()
+                this._taskMain.start(function () {
+                    t._startBattle()
                 })
-            }, e.prototype._loadMapResource = function () {
-                var t = this,
-                    e = this._model.sortie.map_id,
-                    i = this._scene.view.map,
-                    n = this._scene.resInfo,
-                    o = this._model.sortie.cells;
-                new c.TaskCreateMap(e, i, n, o).start(function () {
-                    t._initMapGauge()
-                })
-            }, e.prototype._initMapGauge = function () {
-                var t = this,
-                    e = 0,
-                    i = 0,
-                    n = this._model.sortie.getNextCell();
-                if (1 == n.hasEventMapData()) {
-                    if (e = n.gauge_max, (i = n.gauge_now) <= 0) return void this._loadMapBGM()
-                } else e = this._model.sortie.map.defeat_required, i = e - this._model.sortie.map.defeat_count;
-                if (e <= 0) return void this._loadMapBGM();
-                var s = this._model.sortie.map,
-                    a = s.area_id,
-                    _ = s.map_no,
-                    u = s.getGaugeNum(),
-                    c = l.GaugeSetModel.createKey(a, _, u),
-                    h = r.default.resources.gauge.createLoaderVertical();
-                h.add(c), h.load(function () {
-                    var n = r.default.resources.gauge.getGaugeInfo(c);
-                    if (n) {
-                        var s = n.vertical;
-                        null != s && (t._scene.view.gauge_layer.initialize(s, i, e), s.x < o.default.width / 2 && t._scene.view.frontOfGaugeLayer())
-                    }
-                    t._loadMapBGM()
-                })
-            }, e.prototype._loadMapBGM = function () {
-                var t = this._model.sortie.area_id,
-                    e = this._model.sortie.map_no,
-                    i = s.MapConst.getMapBGMID(t, e);
-                1 == i.battle_bgm ? r.default.sound.bgm.playBattleBGM(i.id) : r.default.sound.bgm.play(i.id), this._showMap()
-            }, e.prototype._showMap = function () {
+            }, e.prototype._startBattle = function () {
+                this._battle.once("complete", this._startBattleResult), this._battle.start()
+            }, e.prototype.getPreInitializeTask = function (t, e) {
+                return this._model = e, this._taskMain = new u.TaskMain(this, this._model), new a.TaskInitPre(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new _.TaskInit(this)
+            }, e.prototype.getFinalizeTask = function () {
                 var t = this;
-                this._black.hide(200, function () {
-                    t._scene.view.removeChild(t._black), t._showShipAndMessageBox()
-                })
-            }, e.prototype._showShipAndMessageBox = function () {
-                var t = this;
-                this._scene.view.message_box.activate(), new h.AnimShipInit(this._scene, this._model).start(function () {
-                    t._endTask()
+                return new s.TaskFinalize(function () {
+                    t.removeChild(t._battle), t._battle.dispose(), t.removeChild(t._result), t._result.dispose()
                 })
             }, e
-        }(a.TaskBase);
-    e.TaskInit = p
+        }(r.SceneBase);
+    e.PracticeScene = c
 }

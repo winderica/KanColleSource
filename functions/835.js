@@ -1,208 +1,65 @@
 const function835 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(294),
-        o = i(836),
-        r = i(837),
-        s = i(13),
-        a = i(0),
-        _ = function () {
-            function t(t, e, i) {
-                this._stage = e, this._animationKeys = i, this._easingMap = r.genEasingMap(), this._ship_mst_id = t
+    var o = i(217),
+        r = i(135),
+        s = function (t) {
+            function e() {
+                var e = this,
+                    i = r.REMODEL_POWERUP.getTexture(18);
+                e = t.call(this, i) || this;
+                var n = r.REMODEL_POWERUP.getTexture(27);
+                return e._taikyuArrow = new PIXI.Sprite(n), e._taikyuArrow.position.set(106, 8), e._taikyuArrow.visible = !1, e.addChild(e._taikyuArrow), e._taisenArrow = new PIXI.Sprite(n), e._taisenArrow.position.set(245, 110), e._taisenArrow.visible = !1, e.addChild(e._taisenArrow), e._luckyArrow = new PIXI.Sprite(n), e._luckyArrow.position.set(245, 179), e._luckyArrow.visible = !1, e.addChild(e._luckyArrow), e
             }
-            return t.prototype._genAnimation = function (t) {
-                var e = this;
-                switch (t.type) {
-                    case o.SpecialRemodelStartKey.SHIP_CAMERA:
-                        var i = t,
-                            r = 0,
-                            s = Object(i).hasOwnProperty("duration");
-                        s && (r = i.duration);
-                        var _ = this._getEasing(t),
-                            l = n.$_$.Parallel(),
-                            u = Object(i).hasOwnProperty("position");
-                        u && l.push(function () {
-                            return n.$_$.Value(e._stage.camera.position, {
-                                x: i.position.x,
-                                y: i.position.y
-                            }, r, _)
-                        }), Object(i).hasOwnProperty("scale") && l.push(function () {
-                            return n.$_$.Value(e._stage.camera.scale, {
-                                x: i.scale,
-                                y: i.scale
-                            }, r, _)
-                        });
-                        var c = Object(i).hasOwnProperty("alpha");
-                        return c && l.push(function () {
-                            return n.$_$.Value(e._stage.camera, {
-                                alpha: i.alpha
-                            }, r, _)
-                        }), l;
-                    case o.SpecialRemodelStartKey.DELAY:
-                        var h = t,
-                            p = h.duration;
-                        return n.$_$.Delay(p);
-                    case o.SpecialRemodelStartKey.PLAY_VOICE:
-                        return n.$_$.Call(function () {
-                            a.default.sound.voice.play(e._ship_mst_id.toString(), 10)
-                        });
-                    case o.SpecialRemodelStartKey.NAME_TEXT:
-                        var d = t,
-                            f = this._getEasing(d),
-                            y = 0,
-                            s = Object(d).hasOwnProperty("duration");
-                        s && (y = d.duration);
-                        var l = n.$_$.Parallel(),
-                            c = Object(d).hasOwnProperty("alpha");
-                        if (c) {
-                            var m = d.alpha;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textName, {
-                                    alpha: m
-                                }, y, f)
-                            })
-                        }
-                        var u = Object(d).hasOwnProperty("position");
-                        if (u) {
-                            var g = d.position;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textName.position, {
-                                    x: g.x,
-                                    y: g.y
-                                }, y, f)
-                            })
-                        }
-                        return l;
-                    case o.SpecialRemodelStartKey.CLASS_TEXT:
-                        var v = t,
-                            b = this._getEasing(v),
-                            w = 0,
-                            s = Object(v).hasOwnProperty("duration");
-                        s && (w = v.duration);
-                        var l = n.$_$.Parallel(),
-                            c = Object(v).hasOwnProperty("alpha");
-                        if (c) {
-                            var x = v.alpha;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textClass, {
-                                    alpha: x
-                                }, w, b)
-                            })
-                        }
-                        var u = Object(v).hasOwnProperty("position");
-                        if (u) {
-                            var I = v.position;
-                            l.push(function () {
-                                return n.$_$.Value(e._stage.textClass.position, {
-                                    x: I.x,
-                                    y: I.y
-                                }, w, b)
-                            })
-                        }
-                        return l;
-                    case o.SpecialRemodelStartKey.BACK_GROUND:
-                        var T = t,
-                            p = T.duration,
-                            O = T.color,
-                            C = this._getEasing(T);
-                        return this._stage.backgroundColorFilter.ma = 1, this._stage.backgroundColorFilter.aa = 1, this._stage.backgroundColorFilter.ar = ((16711680 & O) >> 16) / 255, this._stage.backgroundColorFilter.ag = ((65280 & O) >> 8) / 255, this._stage.backgroundColorFilter.ab = (255 & O) / 255, n.$_$.Value(this._stage.backgroundColorFilter, {
-                            factor: 1
-                        }, p, C);
-                    default:
-                        return n.$_$.Call(function () {})
-                }
-            }, t.prototype._getEasing = function (t, e) {
-                void 0 === e && (e = r.Easing.linear);
-                return t.hasOwnProperty("easing") ? this._easingMap[t.easing] : this._easingMap[e]
-            }, t.prototype.play = function () {
-                this._play()
-            }, t.prototype._play = function () {
-                var t = this;
-                this._stage.goBackArea.visible = !1, this._stage.goBackArea.interactive = !1, this._stage.ship.shadow.x = 20, this._stage.textClass.alpha = 0, this._stage.textName.alpha = 0, this._stage.backGround.alpha = 1;
-                var e = this._genSequenceAnimations(this._animationKeys),
-                    i = n.$_$.Parallel(function () {
-                        return e
-                    }, function () {
-                        return n.$_$.Value(t._stage.ship.shadow, {
-                            x: 35
-                        }, 5e3)
-                    }, function () {
-                        return n.$_$.Value(t._stage.blackOver, {
-                            alpha: 0
-                        }, 3e3)
-                    }),
-                    o = n.$_$.Sequence(function () {
-                        return i
-                    }, function () {
-                        return n.$_$.Delay(300)
-                    });
-                this._animation = e, o.execute(function () {
-                    o.dispose(), t._animation = null, t._onCompleteAnimation()
-                })
-            }, t.prototype._onCompleteAnimation = function () {
-                var t = this;
-                this._stage.goBackArea.visible = !0, this._stage.goBackArea.interactive = !0, this._stage.goBackArea.onClick = function () {
-                    return t._onClickGoBack()
-                }
-            }, t.prototype._onClickGoBack = function () {
-                var t = this;
-                this._stage.goBackArea.onClick = function () {};
-                var e = n.$_$.Value(this._stage, {
-                    alpha: 0
-                }, 150);
-                e.execute(function () {
-                    e.dispose(), t.onComplete()
-                })
-            }, t.prototype.dispose = function () {
-                this._animation && (this._animation.interrupt(), this._animation.dispose()), this.onComplete = null, this._animation = null, this._animationKeys = null, this._stage = null
-            }, t.prototype._genSequenceAnimations = function (t) {
-                var e = this,
-                    i = n.$_$.Sequence();
-                return t.forEach(function (t) {
-                    var n = null;
-                    if (t instanceof Array) {
-                        var o = e._genParallelAnimations(t);
-                        n = function () {
-                            return o
-                        }
-                    } else n = function () {
-                        return e._genAnimation(t)
-                    };
-                    i.push(n)
-                }), i
-            }, t.prototype._genParallelAnimations = function (t) {
-                var e = this,
-                    i = n.$_$.Parallel();
-                return t.forEach(function (t) {
-                    var n = null;
-                    if (t instanceof Array) {
-                        var o = e._genSequenceAnimations(t);
-                        n = function () {
-                            return o
-                        }
-                    } else n = function () {
-                        return e._genAnimation(t)
-                    };
-                    i.push(n)
-                }), i
-            }, t
-        }();
-    e.SpecialRemodelStart = _;
-    var l = function () {
-        function t(t) {
-            this._ship_mst_id = t
-        }
-        return t.prototype.start = function () {
-            var t = this,
-                e = new s.ShipLoader;
-            e.add(this._ship_mst_id, !1, "full_x2"), e.add(this._ship_mst_id, !1, "text_class"), e.add(this._ship_mst_id, !1, "text_name"), e.load(function () {
-                t.onComplete()
-            })
-        }, t.prototype.dispose = function () {
-            this.onComplete = null, this._ship_mst_id = null
-        }, t
-    }();
-    e.SpecialRemodelStartInitializer = l
+            return n(e, t), e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._taikyuArrow = null, this._taisenArrow = null, this._luckyArrow = null
+            }, e.prototype.clear = function () {
+                this._textHp.text = "", this._textSoukou.text = "", this._textKaihi.text = "", this._textTousai.text = "", this._textKaryoku.text = "", this._textRaisou.text = "", this._textTaiku.text = "", this._textTaisen.text = "", this._textSakuteki.text = "", this._textLucky.text = ""
+            }, e.prototype.updateKaryoku = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textKaryoku.style.fill = i, this._textKaryoku.text = "" + e
+            }, e.prototype.updateRaisou = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textRaisou.style.fill = i, this._textRaisou.text = "" + e
+            }, e.prototype.updateSoukou = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textSoukou.style.fill = i, this._textSoukou.text = "" + e
+            }, e.prototype.updateTaiku = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textTaiku.style.fill = i, this._textTaiku.text = "" + e
+            }, e.prototype.updateLucky = function (t, e, i) {
+                this._textLucky.visible = !1, this._luckyArrow.visible = !1;
+                var n = 5523516,
+                    o = "",
+                    r = t != e;
+                i ? this._luckyArrow.visible = !0 : r ? (n = 1949120, o = "" + e, this._textLucky.visible = !0) : (o = "" + e, this._textLucky.visible = !0), this._textLucky.style.fill = n, this._textLucky.text = o
+            }, e.prototype.updateTaikyu = function (t, e) {
+                this._textHp.visible = !1, this._taikyuArrow.visible = !1, e ? this._taikyuArrow.visible = !0 : (this._textHp.visible = !0, this._textHp.text = "" + t)
+            }, e.prototype.updateTaisen = function (t, e) {
+                this._taisenArrow.visible = !1, this._textTaisen.visible = !1, e ? this._taisenArrow.visible = !0 : (this._textTaisen.visible = !0, this._textTaisen.text = "" + t)
+            }, e.prototype.updateCommon = function (t, e, i, n, o, r, s) {
+                this._textHp.text = "" + t, this._textKaihi.text = "" + e, this._textTousai.text = "" + i, this._textTaisen.text = "" + r, this._textSakuteki.text = "" + s, this._sokuryoku.update(n), this._shatei.update(o), this._sokuryoku.position.set(111 - Math.floor(this._sokuryoku.width / 2), 142), this._shatei.position.set(110 - Math.floor(this._shatei.width / 2), 175)
+            }, e.prototype._alignment = function () {
+                this._textHp.position.set(134, 3), this._textSoukou.position.set(134, 38), this._textKaihi.position.set(134, 72), this._textTousai.position.set(134, 107), this._sokuryoku.position.set(111, 143), this._shatei.position.set(111, 177), this._textKaryoku.position.set(273, 3), this._textRaisou.position.set(273, 38), this._textTaiku.position.set(273, 72), this._textTaisen.position.set(273, 106), this._textSakuteki.position.set(273, 139), this._textLucky.position.set(273, 174)
+            }, e
+        }(o.ShipParameterViewBase);
+    e.ShipParameterChecker = s
 }

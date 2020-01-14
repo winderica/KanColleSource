@@ -19,94 +19,56 @@ const function1387 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(20),
-        a = i(6),
-        _ = i(44),
-        l = i(461),
-        u = i(1389),
-        c = i(65),
-        h = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this, i, n, o, r, !1) || this;
-                return s._layer = e, s._friend = s._attacker.friend, s
+    var o = i(2),
+        r = i(12),
+        s = i(183),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ready2 = function () {
+                    i._gray = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(7)), i._gray.anchor.set(.5), i._gray.position.set(600, 300), i._gray.alpha = 0, i._gray_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(5)), i._gray_lost.anchor.set(.5), i._gray_lost.position.set(600, 420), i._gray_lost.alpha = 0, i._hideText()
+                }, i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._friend ? 1 : -1;
-                this._canvas = new u.CutinKuboDayCanvas, this._canvas.bg.alpha = 0;
-                var i = this._attacker.mst_id,
-                    n = this._attacker.isDamaged(),
-                    r = o.default.resources.getShip(i, n, "full"),
-                    l = new PIXI.Sprite(r),
-                    c = new _.ShipFlash(r),
-                    h = o.default.model.ship_graph.get(i).getBattleOffset(n);
-                l.position.set(h.x, h.y), c.position.set(h.x, h.y), this._canvas.chara.alpha = 0, this._canvas.chara.x = (this._friend ? 0 : 600) - 54, this._canvas.chara.y = 615, this._canvas.chara.addChild(l), this._canvas.chara.addChild(c), this._canvas.plane1.position.set(600 - 917 * e, 387), this._canvas.plane1.initialize(this._slot_mst_id1, this._friend);
-                var p = 0,
-                    d = this._attacker.slots;
-                if (null != d && d.length > 0 && null != d[0]) {
-                    var f = d[0].mst_id;
-                    f == this._slot_mst_id1 ? p = 1 : f == this._slot_mst_id2 ? p = 2 : f == this._slot_mst_id3 && (p = 3)
-                }
-                var y, m = new s.TweenTask;
-                this._canvas.bar1.initialize(this._slot_mst_id1, this._friend), y = 1 == p ? 1300 : 1600, m.addTweens(this._canvas.bar1.createTween(y)), this._canvas.bar2.initialize(this._slot_mst_id2, this._friend), y = 2 == p ? 1300 : 1600, m.addTweens(this._canvas.bar2.createTween(y)), this._canvas.bar3.initialize(this._slot_mst_id3, this._friend), y = 3 == p ? 1300 : 1600, m.addTweens(this._canvas.bar3.createTween(y)), m.start(function () {
-                    var e = new s.TweenTask;
-                    e.addTweens(t._canvas.bar1.createTween2(1300)), e.addTweens(t._canvas.bar2.createTween2(1300)), e.addTweens(t._canvas.bar3.createTween2(1300)), e.start()
-                }), this._layer.addChild(this._canvas), createjs.Tween.get(this._canvas.bg).to({
+                this._ready()
+            }, e.prototype._ready = function () {
+                this._blue = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(6)), this._blue.anchor.set(.5), this._blue.scale.set(.58), this._blue.position.set(600, 330), this._blue.alpha = 0, this._blue_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(4)), this._blue_lost.anchor.set(.5), this._blue_lost.scale.set(.58), this._blue_lost.position.set(600, 390), this._blue_lost.alpha = 0, this._showText()
+            }, e.prototype._showText = function () {
+                this._layer.addChild(this._blue), this._layer.addChild(this._blue_lost), createjs.Tween.get(this._blue).to({
+                    y: 300,
+                    scaleX: 1,
+                    scaleY: 1,
                     alpha: 1
-                }, 250), createjs.Tween.get(this._canvas.chara).to({
-                    y: -87,
+                }, 300), createjs.Tween.get(this._blue_lost).to({
+                    y: 420,
+                    scaleX: 1,
+                    scaleY: 1,
                     alpha: 1
-                }, 500).wait(700).call(function () {
-                    c.play()
-                }).wait(100).wait(1500).call(function () {
-                    c.play()
-                }).wait(100).call(function () {
-                    null != t._cb_onAttack && t._cb_onAttack()
-                }).wait(100).to({
-                    y: -351,
-                    alpha: 0
-                }, 500), createjs.Tween.get(this._canvas.plane1).wait(300).call(function () {
-                    t._canvas.plane1.activate()
-                }).to({
-                    x: 600 - 38 * e
-                }, 400).wait(700).to({
-                    x: 600 + 863 * e
-                }, 400).call(function () {
-                    t._canvas.plane1.deactivate()
-                }), createjs.Tween.get(null).wait(750).call(function () {
-                    a.SE.play("105")
-                }).wait(250).call(function () {
-                    a.SE.play("109")
-                }).wait(600).call(function () {
-                    a.SE.play("105")
-                }).wait(200).call(function () {
-                    a.SE.play("109")
-                }), this._anim2()
-            }, e.prototype._anim2 = function () {
-                var t = this,
-                    e = new c.IntensiveLines;
-                e.initialize(), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).wait(3100).call(function () {
-                    e.activate()
-                }).to({
-                    alpha: 1
-                }, 200).wait(300).to({
-                    alpha: 0
-                }, 300);
-                var i = new r.AreaBox(1, 16777215);
-                i.alpha = 0, this._layer.addChild(i), createjs.Tween.get(i).wait(3100).to({
+                }, 300).wait(500).call(this._ready2)
+            }, e.prototype._hideText = function () {
+                var t = this;
+                this._layer.addChild(this._gray), this._layer.addChild(this._gray_lost), createjs.Tween.get(this._gray).to({
                     alpha: 1
                 }, 500).call(function () {
-                    t._layer.removeChild(t._canvas)
-                }).to({
+                    t._layer.removeChild(t._blue)
+                }).wait(500).to({
                     alpha: 0
                 }, 300).call(function () {
-                    t._layer.removeChild(e), t._layer.removeChild(i), t._endTask()
+                    t._layer.removeChild(t._gray)
+                }), createjs.Tween.get(this._gray_lost).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._layer.removeChild(t._blue_lost)
+                }).wait(500).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._gray_lost)
+                }).wait(500).call(function () {
+                    t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._canvas = null, t.prototype._endTask.call(this)
+                this._layer = null, this._blue = null, this._blue_lost = null, this._gray = null, this._gray_lost = null, t.prototype._endTask.call(this)
             }, e
-        }(l.CutinKuboBase);
-    e.CutinKuboDay = h
+        }(o.TaskBase);
+    e.TaskGouchinCutinText = a
 }

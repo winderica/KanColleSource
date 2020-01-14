@@ -20,28 +20,59 @@ const function1157 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(141),
-        s = function (t) {
-            function e() {
-                var e = null !== t && t.apply(this, arguments) || this;
-                return e._onMouseOver = function () {
-                    e._canvas.scale.set(1.05)
-                }, e._onMouseOut = function () {
-                    e._canvas.scale.set(1)
-                }, e
+        r = i(93),
+        s = i(27),
+        a = i(94),
+        _ = i(1158),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), n._selected_exchange_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI(t)
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.load = function (t) {
-                t()
-            }, e.prototype._initialize = function () {
-                this._icon.visible = !1;
-                this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
-                var t = new PIXI.Graphics;
-                t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
-                var e = this._candidate.mst_id,
-                    i = o.default.resources.getShip(e, !1, "card_round"),
-                    n = new PIXI.Sprite(i);
-                n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+            return n(e, t), e.prototype._start = function () {
+                this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new _.FBoxUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
+                })
+            }, e.prototype._connectAPI = function (t) {
+                var e = this,
+                    i = this._target.mstID,
+                    n = (o.default.view.overLayer, new r.UseItemUseAPI(i, !1, t)),
+                    s = n.result;
+                n.start(function () {
+                    1 == s.hasCaution() ? e._hideDialog(!0) : (e._result = s, e._hideDialog(!1))
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._selected_exchange_type,
+                    n = this._layer,
+                    o = new a.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new r.UseItemUseAPI(e, !0, i),
+                            s = n.result;
+                        n.start(function () {
+                            t._result = s, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(r.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogShipBtn = s
+        }(s.TaskWithResult);
+    e.TaskUseFurnitureBox = u
 }

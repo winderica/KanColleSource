@@ -19,15 +19,15 @@ const function1211 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_quest/start", i._duty_id = e, i
+    var o = i(31),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+            return n(e, t), e.prototype._update = function (t) {
+                0 == this._enabled ? this.texture = r.ITEM_FSHOP.getTexture(17) : this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(16) : r.ITEM_FSHOP.getTexture(18)
             }, e
-        }(o.APIBase);
-    e.DutyStartAPI = r
+        }(o.BtnBase);
+    e.ExchangeBtn = s
 }

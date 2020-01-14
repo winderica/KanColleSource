@@ -19,19 +19,34 @@ const function760 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(3),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
-                e.headerSupplyBg = i;
-                var n = new PIXI.Sprite(r.SUPPLY_MAIN.getTexture(0));
-                return e.headerSupplyText = n, n.position.set(24, 11), e.addChild(i, n), e
+    var o = i(0),
+        r = i(2),
+        s = i(15),
+        a = i(222),
+        _ = i(761),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.headerSupplyBg.texture = PIXI.Texture.EMPTY, this.headerSupplyText.texture = PIXI.Texture.EMPTY, this.headerSupplyBg = null, this.headerSupplyText = null
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
+                    var e = a.OrganizeSceneMemory.filterStatus,
+                        i = a.OrganizeSceneMemory.japanese;
+                    new _.UpdateListStatusAPI(e, i).start(function () {
+                        o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._isChangeListStatus = function () {
+                if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
+                var t = o.default.model.basic.getFilterStatusOrganizeList(),
+                    e = a.OrganizeSceneMemory.filterStatus;
+                if (t.length != e.length) return !0;
+                for (var i = 0; i < t.length; i++)
+                    if (t[i] != e[i]) return !0;
+                return !1
             }, e
-        }(PIXI.Container);
-    e.HeaderSupply = s
+        }(r.TaskBase);
+    e.FinalizeTask = u
 }

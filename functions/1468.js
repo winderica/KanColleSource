@@ -19,83 +19,109 @@ const function1468 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(28),
-        a = i(156),
-        _ = i(157),
-        l = i(16),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._icon = new a.BannerIcon, e._soot = new _.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
+    var o = i(78),
+        r = i(95),
+        s = i(98),
+        a = i(96),
+        _ = i(65),
+        u = i(99),
+        l = i(97),
+        c = i(104),
+        h = i(102),
+        p = i(101),
+        d = i(103),
+        f = i(100),
+        y = i(79),
+        m = i(124),
+        g = i(105),
+        v = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n, o, s, a) {
-                if (this._mst_id = t, this._updateState(e, i), this._taihi = n, this._icon.initialize(o), this._combined = s, this._friend = a, this._updateImage(s, a), this._updateIcon(e, i), this._friend && this._combined) {
-                    var _ = new PIXI.Graphics;
-                    _.beginFill(16711680, .5), _.drawRect(r.BannerSize.W / 2, 0, r.BannerSize.W / 2, r.BannerSize.H), _.endFill(), this._soot.addChild(_), this._soot.mask = _
-                }
-            }, e.prototype.update = function (t, e) {
-                this._updateState(t, e), this._updateImage(this._combined, this._friend), this._updateIcon(t, e)
-            }, e.prototype.getAnimationTweens = function (t) {
-                var e = this;
-                this._combined = !1;
-                var i = this._img.texture,
-                    n = new PIXI.Sprite(i);
-                n.x = this._img.x, n.y = this._img.y;
-                var o = this.getChildIndex(this._img);
-                this.addChildAt(n, o), this._img.texture = this._getTexture(), this._img.alpha = 0;
-                var r = [createjs.Tween.get(this._img).wait(t).to({
-                    alpha: 1
-                }, 600).call(function () {
-                    e.removeChild(n);
-                    var t = e._img.mask;
-                    t && (t.parent.removeChild(t), e._img.mask = null)
-                })];
-                if (this._soot.mask) {
-                    var s = this._soot.mask;
-                    this._soot.removeChild(s), this._soot.mask = null, this._soot.alpha = 0;
-                    var a = new _.BannerSoot;
-                    a.texture = this._soot.texture, a.addChild(s), a.mask = s, this.addChildAt(a, this.getChildIndex(this._soot)), r.push(createjs.Tween.get(this._soot).wait(t).to({
-                        alpha: 1
-                    }, 600)), r.push(createjs.Tween.get(a).wait(t).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        e.removeChild(a)
-                    }))
-                }
-                return r
-            }, e.prototype._updateState = function (t, e) {
-                t <= 0 ? this._damaged = 2 : s.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
-            }, e.prototype._updateImage = function (t, e) {
-                if (this._mst_id < 0) switch (this._mst_id) {
-                    case -1:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(0);
-                        break;
-                    case -2:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(1);
-                        break;
-                    case -3:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(2)
-                } else this._img.texture = t ? e ? this._getTextureCombinedFriend() : this._getTextureCombinedEnemy() : this._getTexture()
-            }, e.prototype._getTexture = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner")
-            }, e.prototype._getTextureCombinedFriend = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner2_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner2")
-            }, e.prototype._getTextureCombinedEnemy = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner3_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner3")
-            }, e.prototype._updateIcon = function (t, e) {
-                if (0 == this._taihi) {
-                    var i = s.ShipUtil.getDamageType(t, e);
-                    this._icon.setDamagedIcon(i), this._soot.update(i)
-                } else this._icon.setTaihiIcon()
+            return n(e, t), e.prototype._start = function () {
+                this._sakuteki()
+            }, e.prototype._sakuteki = function () {
+                var t = this;
+                new m.PhaseSakuteki(this.scene, this._record).start(function () {
+                    t._ration()
+                })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new r.PhaseRation(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new l.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new s.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new _.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new g.PhaseSupport(this.scene, this._record).start(function () {
+                    t._openingAttack()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new p.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new f.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new h.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new u.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new c.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.BannerImage = u
+        }(o.PhaseCombatBase);
+    e.PhaseDay_Kido = v
 }

@@ -19,26 +19,27 @@ const function411 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = function (t) {
+    var o = i(2),
+        r = i(8),
+        s = i(1177),
+        a = function (t) {
             function e(e, i) {
-                void 0 === i && (i = !1);
                 var n = t.call(this) || this;
-                return n._url = "api_req_furniture/buy", n._model = e, n._discount = i, n
+                return n._result = !1, n._onSelected = function (t) {
+                    n._result = t, n._dialog.dispose(), n._layer.removeChild(n._dialog), n._layer.removeChild(n._click_guard), n._endTask()
+                }, n._layer = e, n._texture = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_type = this._model.type, this._post_data.api_no = this._model.no, 1 == this._discount && (this._post_data.api_discount_flag = 1), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                if (1 == this._discount || 1 == this._model.isNeedCraftsman()) {
-                    var e = o.default.model.useItem.get(52);
-                    e.__setCount__(e.count - 1)
-                }
-                var i = this._model.price;
-                1 == this._discount && (i = this._model.getDiscountPrice());
-                var n = o.default.model.useItem.get(44);
-                n.__setCount__(n.count - i), this._model.updateHasFlag(!0), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._click_guard = new r.AreaBox(0), this._layer.addChild(this._click_guard), this._dialog = new s.RewardSelectConfirm(this._onSelected), this._dialog.position.set(465, 495), this._dialog.initialize(this._texture), this._layer.addChild(this._dialog), this._dialog.activate()
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._texture = null, this._click_guard = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(r.APIBase);
-    e.FurnitureExchangeAPI = s
+        }(o.TaskBase);
+    e.TaskRewardSelectConfirm = a
 }

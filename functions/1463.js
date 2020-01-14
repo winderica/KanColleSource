@@ -19,126 +19,68 @@ const function1463 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(20),
-        s = i(1464),
+    var o = i(0),
+        r = i(2),
+        s = i(182),
         a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._ally = null, e._friends_combined = new s.BannerGroup(!0, !0), e._friends_combined.position.set(228, 117), e.addChild(e._friends_combined), e._enemies_combined = new s.BannerGroup(!1, !0), e._enemies_combined.position.set(753, 220), e.addChild(e._enemies_combined), e._friends = new s.BannerGroup(!0, !1), e._friends.position.set(0, 117), e.addChild(e._friends), e._enemies = new s.BannerGroup(!1, !1), e._enemies.position.set(960, 220), e.addChild(e._enemies), e._effect_layer = new PIXI.Container, e.addChild(e._effect_layer), e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._record = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friends", {
+            return n(e, t), Object.defineProperty(e.prototype, "scene", {
                 get: function () {
-                    return this._friends
+                    return this._scene
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "enemies", {
+            }), Object.defineProperty(e.prototype, "record", {
                 get: function () {
-                    return this._enemies
+                    return this._record
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "friends_combined", {
-                get: function () {
-                    return this._friends_combined
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "enemies_combined", {
-                get: function () {
-                    return this._enemies_combined
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ally", {
-                get: function () {
-                    return this._ally
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "effect_layer", {
-                get: function () {
-                    return this._effect_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._friends.initialize(t), this._enemies.initialize(e), this._friends_combined.initialize(i), this._enemies_combined.initialize(n)
-            }, e.prototype.addAllyBannerGroup = function (t) {
-                this._ally = new s.BannerGroup(!0, !1), this._ally.x = this._friends.x, this._ally.y = this._friends.y, this._ally.initialize(t);
-                var e = this.getChildIndex(this._effect_layer);
-                this.addChildAt(this._ally, e)
-            }, e.prototype.removeAllyBannerGroup = function () {
-                null != this._ally && (null != this._ally.parent && this._ally.parent.removeChild(this._ally), this._ally = null)
-            }, e.prototype.dispose = function () {
-                this._friends.dispose(), this._enemies.dispose(), this._friends_combined.dispose(), this._enemies_combined.dispose()
-            }, e.prototype.getBanner = function (t, e) {
-                if (void 0 === e && (e = -1), -1 == e) {
-                    var i = t;
-                    return this._getBanner(i.friend, i.index)
-                }
-                var n = t;
-                return this._getBanner(n, e)
-            }, e.prototype._getBanner = function (t, e) {
-                var i;
-                if (1 == t) {
-                    if (null != this._ally) return this._ally.getBanner(e);
-                    i = this._friends.getBanner(e), null == i && (i = this._friends_combined.getBanner(e - 6))
-                } else null == (i = this._enemies.getBanner(e)) && (i = this._enemies_combined.getBanner(e - 6));
-                return i
-            }, e.prototype.getShieldTargetBanner = function (t) {
-                if (null == t) return null;
-                if (1 == t.friend) {
-                    if (this._friends.isContains(t)) return this._friends.getBanner(0);
-                    if (this._friends_combined.isContains(t)) return this._friends_combined.getBanner(0);
-                    if (null != this._ally && this._ally.isContains(t)) return this._ally.getBanner(0)
-                } else {
-                    if (this._enemies.isContains(t)) return this._enemies.getBanner(0);
-                    if (this._enemies_combined.isContains(t)) return this._enemies_combined.getBanner(0)
-                }
-                return null
-            }, e.prototype.isEnteredFriend = function () {
-                return this._friends.isEntered() || this._friends_combined.isEntered()
-            }, e.prototype.isEnteredEnemy = function () {
-                return this._enemies.isEntered() || this._enemies_combined.isEntered()
-            }, e.prototype.createFriendEnterTask = function () {
-                return this._createEnterTask(!0)
-            }, e.prototype.createEnemyEnterTask = function () {
-                return this._createEnterTask(!1)
-            }, e.prototype.createFriendSubDeckMoveTween = function (t) {
-                return this._createBannerMoveTween(t, !0)
-            }, e.prototype.createEnemySubDeckMoveTween = function (t) {
-                return this._createBannerMoveTween(t, !1)
-            }, e.prototype._createEnterTask = function (t) {
-                var e = t ? this._friends : this._enemies,
-                    i = t ? this._friends_combined : this._enemies_combined,
-                    n = new o.SerialTask,
-                    s = e.createEnterTweens();
-                if (s.length > 0) {
-                    var a = new r.TweenTask;
-                    a.addTweens(s), n.add(a)
-                }
-                var _ = i.createEnterTweens();
-                if (_.length > 0) {
-                    var a = new r.TweenTask;
-                    a.addTweens(_), n.add(a)
-                }
-                return n
-            }, e.prototype._createBannerMoveTween = function (t, e) {
-                var i = [],
-                    n = e ? this._friends : this._enemies,
-                    o = e ? this._friends_combined : this._enemies_combined,
-                    r = n.x - o.x;
-                o.x = n.x;
-                for (var s = 0; s < o.getBannerNum(); s++) {
-                    var a = o.getBanner(s);
-                    a.x -= r;
-                    var _ = a.createSubDeckMoveTween(t);
-                    null != _ && i.push.apply(this, _), t += 100
-                }
-                return i
+            }), e.prototype._start = function () {
+                this._scene.view.layer_title.hide(), this._endTouchPlane()
+            }, e.prototype._endTouchPlane = function () {
+                var t = this._scene.view.raderLayer;
+                t.rader_f.touch_plane.hide(), t.rader_e.touch_plane.hide(), this._waitGaugeExplodeAnimation()
+            }, e.prototype._waitGaugeExplodeAnimation = function () {
+                var t = this;
+                1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
+                    t._waitGaugeExplodeAnimation()
+                }) : this._fadeOutBGM()
+            }, e.prototype._fadeOutBGM = function () {
+                var t = this,
+                    e = this._scene.data.model.map_info.area_id,
+                    i = this._scene.data.model.map_info.map_no,
+                    n = this._scene.data.model.map_info.isBoss();
+                if (1 == o.default.model.mst_bgm.isSameBGM(e, i, n) && 1 == this._record.raw.hasDayBattle()) return void this._playBossLastGasp();
+                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1200), createjs.Tween.get(this).wait(1200).call(function () {
+                    t._playBossLastGasp()
+                })) : this._playBossLastGasp()
+            }, e.prototype._playBossLastGasp = function () {
+                if (o.default.option.vol_voice <= 0) return void this._wait();
+                var t = this._scene.data.model.deck_e.ships[0];
+                if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
+                var e = this._scene.view.layer_gauge.isExploded(),
+                    i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
+                return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
+            }, e.prototype._playBossVoice = function (t) {
+                var e = this;
+                o.default.sound.voice.play("9998", t, function () {
+                    e._wait()
+                })
+            }, e.prototype._wait = function () {
+                var t = this;
+                createjs.Tween.get(this).wait(1e3).call(function () {
+                    t._shutter_close()
+                })
+            }, e.prototype._shutter_close = function () {
+                var t = this;
+                this.scene.shutter2.close(), this.scene.shutter2.once("closed", function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.BannerGroupLayer = a
+        }(r.TaskBase);
+    e.PhaseEnding = a
 }

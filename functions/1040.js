@@ -19,25 +19,39 @@ const function1040 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(83),
-        s = i(32),
-        a = i(14),
-        _ = i(53),
-        l = function (t) {
+    var o = i(53),
+        r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this,
+                    i = createjs.Ticker.framerate;
+                return e._cloud1 = new s(3, 60 / i * .0035), e._cloud2 = new s(2, 60 / i * .0025), e._cloud3 = new s(0, 60 / i * .005), e._cloud1.anchor.set(.5, .5), e._cloud2.anchor.set(.5, .5), e._cloud3.anchor.set(.5, .5), e.addChild(e._cloud1), e.addChild(e._cloud2), e.addChild(e._cloud3), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(_.SALLY_PRACTICE.getTexture(34));
-                this._banner = new s.ShipBanner, this._name = new o.TextBox(21, 4999235), this._level = new o.TextBox(20, 4999235), this._star = new r.StarRateView, this._container = new PIXI.Container, t.position.set(330, 12);
-                var e = a.CreateRect.gradientLeftToRight(95, this._name.height, .85, .9);
-                this._container.position.set(243, 0), this._level.position.set(392, 11), this._level.anchor.set(1, 0), this._star.position.set(295, 40), this.addChild(t), this.addChild(this._banner), this.addChild(this._container), this._container.addChild(this._name, e), this._container.mask = e, this.addChild(this._level), this.addChild(this._star)
-            }, e.prototype.update = function (t) {
-                null == t ? this.visible = !1 : (this._container.cacheAsBitmap = !1, this._name.text = t.name, this._level.text = t.level.toString(), this._star.update(t.star + 1), this._banner.updateImage(t.id, !1), this.visible = !0, this._container.cacheAsBitmap = !0)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._container.cacheAsBitmap = !1, this._container.removeChildren(), this._banner.dispose(), this._star.dispose(), this._name.destroy(), this._level.destroy(), this._container.mask = null, this._name = null, this._level = null, this._star = null, this._container = null
+                this._cloud1.texture = o.SALLY_SORTIE.getTexture(27), this._cloud2.texture = o.SALLY_SORTIE.getTexture(28), this._cloud3.texture = o.SALLY_SORTIE.getTexture(29)
+            }, e.prototype.activate = function () {
+                var t = this;
+                if (null == this._t) {
+                    var e = function (e) {
+                        t._cloud1.update(), t._cloud2.update(), t._cloud3.update()
+                    };
+                    this._t = createjs.Tween.get(this, {
+                        loop: !0,
+                        onChange: e
+                    })
+                }
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
         }(PIXI.Container);
-    e.CompRivalShip = l
+    e.MapThumbnailLockedCloud = r;
+    var s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._tmp = 150 * Math.random(), n._offset = e, n._speed = i, n
+        }
+        return n(e, t), e.prototype.update = function () {
+            var t = createjs.Ticker.framerate;
+            this.x = 90 * Math.cos(this._tmp + this._offset), this.y = 15 * Math.cos(.9 * this._tmp * (60 / t) + this._offset), this._tmp += this._speed
+        }, e
+    }(PIXI.Sprite)
 }

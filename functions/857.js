@@ -19,63 +19,69 @@ const function857 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(0),
-        s = i(4),
-        a = i(32),
-        _ = i(25),
-        l = i(1),
-        u = function (t) {
+    var o = i(0),
+        r = i(8),
+        s = i(15),
+        a = i(13),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._labelArr = [], e._onClickNO = function () {
-                    e.onClickNO()
-                }, e._onClickYES = function () {
-                    e.onClickYES()
-                };
-                var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(63)),
-                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(27)),
-                    _ = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(26)),
-                    u = new s.TextBox(21, 1949120),
-                    c = new s.TextBox(21, 1949120),
-                    h = new s.TextBox(21, 1949120),
-                    p = new s.TextBox(21, 1949120),
-                    d = new s.TextBox(21, 1949120),
-                    f = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(9)),
-                    y = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(5)),
-                    m = new a.ShipBanner,
-                    g = new s.TextBox(21, 16777215),
-                    v = new s.TextBox(21, 16777215),
-                    b = new s.TextBox(21, 16777215),
-                    w = new s.TextBox(21, 16777215),
-                    x = new PIXI.Container,
-                    I = new s.TextBox(21, 16777215),
-                    T = new PIXI.Sprite(r.default.resources.getUIImage("mask"));
-                T.scale.set(-2.8, 3.5), T.anchor.x = 1, x.mask = T, x.addChild(I, T), u.text = "-\u8266\u8239\u3000\u5165\u6e20-", u.position.set(Math.floor(i.width / 2) + .5, -39), u.anchor.set(.5, 0), e._labelArr.push(u), c.text = "\u4fee\u5fa9\u3059\u308b\u8266\u8239", x.position.set(576, 147), c.position.set(310, 147), m.position.set(580, 180), e._labelArr.push(c), h.text = "\u4f7f\u7528\u3059\u308b\u8cc7\u6750", h.position.set(310, 258), n.position.set(576, 261), _.position.set(576, 295), v.position.set(609, 262), b.position.set(609, 301), e._labelArr.push(h), p.text = "\u6240\u8981\u6642\u9593", p.position.set(310, 345), g.position.set(579, 349), e._labelArr.push(p), d.text = "\u9ad8\u901f\u4fee\u5fa9", d.position.set(310, 408), w.position.set(579, 408), e._labelArr.push(d), e._useRepairKitTime = new PIXI.Container, e._useRepairKitTime.position.set(685, 349), e._useRepairKitTime.visible = !1;
-                var O = new s.TextBox(21, 16777215);
-                O.text = "\u2192", O.position.set(0, 0), e._labelArr.push(O), e._useRepairKitTime.addChild(O);
-                var C = new s.TextBox(21, 16777215);
-                C.text = "00:00:00", C.position.set(32, 0), e._labelArr.push(C), e._useRepairKitTime.addChild(C), e._useRepairKitCount = new PIXI.Container, e._useRepairKitCount.position.set(577, 450), e._useRepairKitCount.visible = !1;
-                var P = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(28));
-                P.position.set(0, 0), e._useRepairKitCount.addChild(P);
-                var k = new s.TextBox(21, 16777215);
-                k.name = "before", k.text = "9999", k.anchor.x = 1, k.position.set(106, 7), e._labelArr.push(k), e._useRepairKitCount.addChild(k);
-                var S = new s.TextBox(21, 16777215);
-                S.text = "\u2192", S.position.set(116, 7), e._labelArr.push(S), e._useRepairKitCount.addChild(S);
-                var M = new s.TextBox(21, 16777215);
-                return M.name = "after", M.text = "9999", M.position.set(146, 7), e._labelArr.push(M), e._useRepairKitCount.addChild(M), y.position.set(297, 516), f.position.set(580, 516), y.addListener(l.EventType.CLICK, e._onClickNO), f.addListener(l.EventType.CLICK, e._onClickYES), y.interactive = y.buttonMode = !0, f.interactive = f.buttonMode = !0, e.addChild(i, u, c, h, p, d, x, v, b, g, e._useRepairKitTime, w, y, f, n, _, m, e._useRepairKitCount), e.textName = I, e.textSteelCount = v, e.textFuelCount = b, e.textUseOption = w, e.textRequireTime = g, e.buttonYes = f, e.buttonNo = y, e.shipBanner = m, e.containerName = x, e
+                return e.bg = new r.AreaBox(1, 16777215), e.black = new r.AreaBox(1), e.bgGrad = new PIXI.Sprite, e.ship = new PIXI.Sprite, e.silhouette = new PIXI.Sprite, e.shipLayer1 = new PIXI.Container, e.shipLayer2 = new PIXI.Container, e.bg.alpha = 0, e.black.alpha = 0, e.bgGrad.alpha = 0, e.shipLayer1.alpha = 0, e.shipLayer2.alpha = 0, e.shipLayer1.x = -290, e.shipLayer2.x = -290, e.shipLayer1.scale.set(.8), e.shipLayer2.scale.set(.8), e.shipLayer1.addChild(e.ship), e.shipLayer2.addChild(e.silhouette), e.addChild(e.bg, e.shipLayer1, e.shipLayer2, e.bgGrad, e.black), e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                if (this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.textSteelCount.text = "\xd7" + t.getRepairSteel().toString(), this.textFuelCount.text = "\xd7" + t.getRepairFuel().toString(), this.textUseOption.text = e ? "\u4f7f\u7528\u3059\u308b" : "\u4f7f\u7528\u3057\u306a\u3044", this.textRequireTime.text = _.MathUtil.timeToString(t.getRepairTime()), this.shipBanner.update(t, !1), this.containerName.cacheAsBitmap = !0, this._useRepairKitTime.visible = e, this._useRepairKitCount.visible = e, e) {
-                    var i = r.default.model.useItem.get(1).count;
-                    this._useRepairKitCount.getChildByName("before").text = i.toString(10);
-                    this._useRepairKitCount.getChildByName("after").text = (i - 1).toString(10)
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.shipBanner.dispose(), this.buttonNo.removeAllListeners(l.EventType.CLICK), this.buttonYes.removeAllListeners(l.EventType.CLICK), this._useRepairKitTime.removeChildren(), this._useRepairKitCount.removeChildren(), this.textName.destroy(), this.textSteelCount.destroy(), this.textFuelCount.destroy(), this.textUseOption.destroy(), this.textRequireTime.destroy(), this._labelArr.forEach(function (t) {
-                    t.destroy()
-                }), this._labelArr = null, this.onClickYES = null, this.onClickNO = null, this.textName = null, this.textSteelCount = null, this.textFuelCount = null, this.textUseOption = null, this.textRequireTime = null, this.buttonYes = null, this.buttonNo = null, this.shipBanner = null, this.containerName = null, this._useRepairKitTime = null, this._useRepairKitCount = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.bg = null, this.bgGrad = null, this.black = null, this.shipLayer1 = null, this.shipLayer2 = null, this.ship = null, this.silhouette = null, this._cb_onComplete = null
+            }, e.prototype.play = function (t, e, i) {
+                var n = this;
+                this._callback = e, this._cb_onComplete = i, this._preload(t, function () {
+                    createjs.Tween.get(n.bg).to({
+                        alpha: 1
+                    }, 500).call(function () {
+                        n.anim1()
+                    })
+                })
+            }, e.prototype._preload = function (t, e) {
+                var i = this,
+                    n = new s.UIImageLoader("remodel");
+                n.add("bg/vignette_frame.png", "vignette_frame"), n.load(function () {
+                    var n = new a.ShipLoader;
+                    n.add(t[0], !1, "full"), n.add(t[1], !1, "full"), n.load(function () {
+                        i.bgGrad.texture = o.default.resources.getUIImage("vignette_frame"), i.ship.texture = o.default.resources.getShip(t[0], !1, "full"), i.silhouette.texture = o.default.resources.getShip(t[1], !1, "full"), i.silhouette.tint = 0;
+                        var n = o.default.model.ship_graph.get(t[0]).getCenterOffset(!1),
+                            r = o.default.model.ship_graph.get(t[1]).getCenterOffset(!1);
+                        i.ship.x = 330 + n.x, i.ship.y = n.y - 50, i.silhouette.x = 330 + r.x, i.silhouette.y = r.y - 50, e()
+                    })
+                })
+            }, e.prototype.anim1 = function () {
+                var t = this;
+                createjs.Tween.get(this.bgGrad).to({
+                    alpha: 1
+                }, 1e3), createjs.Tween.get(this.shipLayer1).to({
+                    alpha: 1
+                }, 1e3).wait(300).call(function () {
+                    t.anim2()
+                })
+            }, e.prototype.anim2 = function () {
+                createjs.Tween.get(this.shipLayer1).to({
+                    x: 0
+                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer1).wait(300).to({
+                    alpha: 0
+                }, 1500), createjs.Tween.get(this.shipLayer2).to({
+                    x: 0
+                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer2).wait(300).to({
+                    alpha: 1
+                }, 1500), this.anim3()
+            }, e.prototype.anim3 = function () {
+                var t = this;
+                createjs.Tween.get(this.black).wait(1300).to({
+                    alpha: 1
+                }, 1e3).call(function () {
+                    t.bg.visible = !1, t.shipLayer2.visible = !1, t._callback(), createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 1e3).call(function () {
+                        t._cb_onComplete()
+                    })
+                })
             }, e
         }(PIXI.Container);
-    e.UseRepairConfirmView = u
+    e.SpKaizoIntro = _
 }

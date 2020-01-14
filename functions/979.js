@@ -19,111 +19,187 @@ const function979 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = i(45),
-        a = i(85),
-        _ = i(26),
-        l = i(359),
-        u = i(1),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._bg = new PIXI.Sprite, i._bg.position.set(0, 38), i.addChild(i._bg), i._title_bg = new PIXI.Sprite, i._title_bg.position.set(2, 0), i.addChild(i._title_bg), i._title_label = new PIXI.Sprite, i._title_label.position.set(35, 11), i.addChild(i._title_label), i._label_from = new PIXI.Sprite, i._label_from.position.set(266, 56), i.addChild(i._label_from), i._label_tobe = new PIXI.Sprite, i._label_tobe.position.set(266, 305), i.addChild(i._label_tobe), i._arrow = new h, i._arrow.position.set(170, 279), i.addChild(i._arrow), i._item_from = new p, i._item_from.position.set(27, 78), i.addChild(i._item_from), i._item_tobe = new p, i._item_tobe.position.set(27, 326), i.addChild(i._item_tobe), i._btn = new d(e), i._btn.position.set(92, 524), i.addChild(i._btn), i.interactive = !0, i
+    var o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(2),
+        _ = i(34),
+        u = i(8),
+        l = i(18),
+        c = i(6),
+        h = i(980),
+        p = i(981),
+        d = i(982),
+        f = i(983),
+        y = i(984),
+        m = i(361),
+        g = i(1001),
+        v = i(1003),
+        b = i(1005),
+        w = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._clickGuard = null, n._onCancel = function (t) {
+                    if (null == n._t)
+                        if (null != n._list) n._closeList();
+                        else if (null != n._supply) n._closeSupply();
+                    else {
+                        var e = t.data.global,
+                            i = n._panel.getBounds();
+                        if (1 == i.contains(e.x, e.y)) return;
+                        n._cancel_area.buttonMode = !1, n._cancel_area.off(s.EventType.CLICK, n._onCancel), n._closePanel()
+                    }
+                }, n._onDrop = function (t, e, i) {
+                    if (-1 == i) {
+                        var o = n._area_id,
+                            s = new h.AirUnitEditAPI(o, t, e, -1);
+                        s.start(function () {
+                            n._panel.update(t, !0)
+                        })
+                    } else if (e == i) n._openList(t, e);
+                    else {
+                        var o = n._area_id,
+                            a = r.default.model.airunit.getAirUnit(o, t),
+                            _ = a.squadrons[e],
+                            u = a.squadrons[i];
+                        if (null != u && 2 == u.state) return;
+                        var s = new h.AirUnitEditAPI(o, t, i, _.mem_id);
+                        s.start(function () {
+                            n._panel.update(t, !0)
+                        })
+                    }
+                }, n._onSelectListItem = function (t) {
+                    if (null == n._task_comfirm) {
+                        var e = n._area_id,
+                            i = n._selected_airunit_id,
+                            o = n._selected_index;
+                        n._task_comfirm = new v.TaskShowAirUnitChangeConfirm(n._layer, e, i, o, t), n._task_comfirm.start(function () {
+                            if (null != n._task_comfirm && 1 == n._task_comfirm.result) {
+                                n._closeList();
+                                new h.AirUnitEditAPI(e, i, o, t.memID).start(function () {
+                                    n._panel.update(i, !0)
+                                })
+                            }
+                            n._task_comfirm = null
+                        })
+                    }
+                }, n._onReadySupply = function (t) {
+                    var e = n._panel.selected_airunit_id;
+                    n._openSupply(e, t)
+                }, n._onPreSupply = function () {
+                    null == n._clickGuard && (n._clickGuard = new u.AreaBox(0), r.default.view.overLayer.addChild(n._clickGuard))
+                }, n._onSupply = function (t, e, i) {
+                    if (null == i || 0 == i.length) return null !== n._clickGuard && (r.default.view.overLayer.removeChild(n._clickGuard), n._clickGuard = null), void n._closeSupply();
+                    n._t = createjs.Tween.get(null), n._supply.playSupplyAnimation(function () {
+                        r.default.view.overLayer.removeChild(n._clickGuard), n._clickGuard = null, n._t = null, n._closeSupply()
+                    }), new p.AirUnitSupplyAPI(t, e, i).start(function () {
+                        n._panel.update(e, !0)
+                    })
+                }, n._onExtend = function () {
+                    n._panel.deactivate();
+                    var t = r.default.view.overLayer;
+                    new b.TaskExtendAirUnit(t, n._area_id, n._onUpdateInExtendAnimarion).start(function () {
+                        n._panel.activate()
+                    })
+                }, n._onUpdateInExtendAnimarion = function () {
+                    var t = r.default.model.airunit.getAirUnitList(n._area_id);
+                    n._panel.updateAfterExtend(t)
+                }, n._recordCurrentCategory = function (t) {
+                    n._currentCategory = t
+                }, n._layer = e, n._area_id = i, n._currentCategory = 0, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "width", {
-                get: function () {
-                    return this._bg.width
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = _.SALLY_AIRUNIT.getTexture(9), this._title_bg.texture = _.SALLY_AIRUNIT.getTexture(117), this._title_label.texture = _.SALLY_AIRUNIT.getTexture(10), this._label_from.texture = _.SALLY_AIRUNIT.getTexture(127), this._label_tobe.texture = _.SALLY_AIRUNIT.getTexture(126), this._arrow.initialize(), this._item_from.initialize(), this._item_tobe.initialize(), this._btn.initialize()
-            }, e.prototype.update = function (t, e) {
-                this._item_from.update(t), this._item_tobe.update(e);
-                var i = e.equipTypeSp,
-                    n = e.cost * l.getKadouCount(i),
-                    r = n <= o.default.model.useItem.getCount(34);
-                this._btn.update(r)
-            }, e.prototype.activate = function () {
-                this._arrow.activate(), this._btn.activate()
-            }, e.prototype.deactivate = function () {
-                a.TaskLoadSlotResource.abortBy(this), this._arrow.deactivate(), this._btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._arrow.dispose(), this._item_from.dispose(), this._item_tobe.dispose(), this._btn.dispose()
-            }, e
-        }(PIXI.Container);
-    e.AirUnitChangeConfirmPanel = c;
-    var h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._over = new PIXI.Sprite, e.addChild(e._over), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = _.SALLY_AIRUNIT.getTexture(40), this._over.texture = _.SALLY_AIRUNIT.getTexture(41)
-            }, e.prototype.activate = function () {
+            return n(e, t), e.prototype.dispose = function () {
                 var t = this;
-                null == this._t && (this._over.visible = !1, this._over.y = 0, this._t = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(100).call(function () {
-                    t._over.visible = !0
-                }).wait(250).call(function () {
-                    t._over.y = 15
-                }).wait(250).call(function () {
-                    t._over.visible = !1, t._over.y = 0
-                }))
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e
-        }(PIXI.Sprite),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e._text = new r.TextBox(20, 4999235), e._text.position.set(17, 42), e.addChild(e._text), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = _.SALLY_AIRUNIT.getTexture(34)
-            }, e.prototype.update = function (t) {
-                if (a.TaskLoadSlotResource.abortBy(this._img), this._target = t, null == t) this._img.texture = PIXI.Texture.EMPTY, this._text.text = "";
-                else {
-                    var e = t.mstID;
-                    this._img.texture = o.default.resources.getSlotitem(e, "remodel"), this._img.texture == PIXI.Texture.EMPTY && new a.TaskLoadSlotResource("remodel", this._img, e).start(), this._text.text = s.SlotUtil.genSummaryText(t, "+", "\n", !1, 5)
+                if (null != this._t && (this._t.setPaused(!0), this._t = null), null != this._task_comfirm && (this._task_comfirm.cancel(), this._task_comfirm = null), null != this._supply && (this._supply.deactivate(), this._supply.dispose(), this._supply = null), null != this._list && (this._list.deactivate(), this._list.dispose(), this._list = null), null != this._panel) {
+                    this._panel.deactivate(), this._panel.updateTemporaryData(), this._panel.dispose(), this._panel = null;
+                    this._createUpdateAPI().start(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._createUpdateAPI = function () {
+                for (var t = [], e = [], i = new _.APIConnector, n = r.default.model.airunit.getAirUnitList(this._area_id), o = 0, s = n; o < s.length; o++) {
+                    var a = s[o];
+                    1 == a.updateNameFromTemporaryInfo() && i.add(new f.AirUnitChangeNameAPI(this._area_id, a.id, a.name));
+                    1 == a.updateStateFromTemporaryInfo() && (t.push(a.id), e.push(a.airUnitState))
                 }
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._target = null, this._img = null, this._text.destroy(), this._text = null
+                return t.length > 0 && i.add(new d.AirUnitChangeActionStateAPI(this._area_id, t, e)), i
+            }, e.prototype._start = function () {
+                this._cancel_area = new l.FadeBox(.2), this._layer.addChild(this._cancel_area), this._openPanel()
+            }, e.prototype._openPanel = function () {
+                var t = this,
+                    e = this._area_id,
+                    i = r.default.model.airunit.getAirUnitList(e);
+                this._panel = new y.AirUnitPanel(this._onDrop, this._onReadySupply, this._onExtend), this._panel.initialize(e, i), this._panel.position.set(203, o.default.height), this._layer.addChild(this._panel), createjs.Tween.get(this._panel).to({
+                    y: 164
+                }, 200, createjs.Ease.cubicOut).wait(100).call(function () {
+                    c.SE.play("219")
+                }).to({
+                    x: 849
+                }, 200, createjs.Ease.backOut).call(function () {
+                    t._panel.activate(), t._cancel_area.buttonMode = !0, t._cancel_area.on(s.EventType.CLICK, t._onCancel), t._pre_bgm_id = r.default.sound.bgm.bgm_id, r.default.sound.bgm.play(125)
+                })
+            }, e.prototype._closePanel = function () {
+                var t = this;
+                if (null != this._panel) {
+                    this._panel.deactivate(), this._panel.updateTemporaryData(), this._t = createjs.Tween.get(this._panel), this._t.to({
+                        y: o.default.height
+                    }, 300), this._t.call(function () {
+                        t._t = null, t._panel.parent.removeChild(t._panel), t._panel.dispose(), t._cancel_area.parent.removeChild(t._cancel_area), t._endTask()
+                    }), this._t.setPaused(!0);
+                    this._createUpdateAPI().start(function () {
+                        r.default.sound.bgm.play(t._pre_bgm_id), t._t.setPaused(!1)
+                    })
+                }
+            }, e.prototype._openList = function (t, e) {
+                var i = this;
+                null != this._panel && null == this._list && null == this._t && (this._selected_airunit_id = t, this._selected_index = e, this._layer.addChild(this._cancel_area), this._panel.deactivate(), this._list = new m.AirUnitList(this._onSelectListItem, this._recordCurrentCategory), this._list.x = o.default.width, this._list.y = 147, this._list.initialize(this._currentCategory), this._layer.addChild(this._list), createjs.Tween.get(this._panel).to({
+                    x: 126
+                }, 300), this._t = createjs.Tween.get(this._list).to({
+                    x: 473
+                }, 300).call(function () {
+                    i._t = null, i._list.activate()
+                }))
+            }, e.prototype._closeList = function () {
+                var t = this;
+                null != this._list && null == this._t && (this._list.deactivate(), createjs.Tween.get(this._panel).to({
+                    x: 849
+                }, 300).call(function () {
+                    t._panel.activate()
+                }), this._t = createjs.Tween.get(this._list).to({
+                    x: o.default.width
+                }, 300).call(function () {
+                    t._t = null, t._layer.removeChild(t._list), t._list.dispose(), t._list = null, t._layer.addChild(t._panel)
+                }))
+            }, e.prototype._openSupply = function (t, e) {
+                var i = this;
+                if (null != this._panel && null == this._list && null == this._supply && null == this._t) {
+                    var n = r.default.model.airunit.getAirUnit(this._area_id, t),
+                        s = null;
+                    e >= 0 && (s = n.squadrons[e]), this._layer.addChild(this._cancel_area), this._panel.deactivate();
+                    var a = r.default.model.useItem.getCount(31),
+                        _ = r.default.model.useItem.getCount(34);
+                    this._supply = new g.AirUnitSupplyPanel(this._onSupply, this._onPreSupply), this._supply.x = o.default.width + 75, this._supply.y = 144, this._supply.initialize(a, _, n, s), this._layer.addChild(this._supply), null == s && this._onPreSupply(), createjs.Tween.get(this._panel).to({
+                        x: 468
+                    }, 300), this._t = createjs.Tween.get(this._supply).to({
+                        x: 899
+                    }, 300).call(function () {
+                        i._t = null, null == s ? i._supply.autoPlaySupplyAll() : i._supply.activate()
+                    })
+                }
+            }, e.prototype._closeSupply = function () {
+                var t = this;
+                null != this._supply && null == this._t && (this._supply.deactivate(), createjs.Tween.get(this._panel).to({
+                    x: 849
+                }, 300).call(function () {
+                    t._panel.activate()
+                }), this._t = createjs.Tween.get(this._supply).to({
+                    x: o.default.width + 75
+                }, 300).call(function () {
+                    t._t = null, t._layer.removeChild(t._supply), t._supply.dispose(), t._supply = null, t._layer.addChild(t._panel)
+                }))
+            }, e.prototype._endTask = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null), t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite),
-        d = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !0, i._onMouseOver = function () {
-                    i._update(!0)
-                }, i._onMouseOut = function () {
-                    i._update(!1)
-                }, i._onClick = function () {
-                    0 != i._enabled && null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._img.interactive = !0, i._alert = new PIXI.Sprite, i._alert.position.set(-35, -92), i.addChild(i._alert), i
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._alert.texture = _.SALLY_AIRUNIT.getTexture(39), this._update(!1)
-            }, e.prototype.update = function (t) {
-                this._enabled = t, this._update(!1)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this._img.buttonMode = !0, this._img.on(u.EventType.MOUSEOVER, this._onMouseOver), this._img.on(u.EventType.MOUSEOUT, this._onMouseOut), this._img.on(u.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._img.buttonMode = !1, this._img.off(u.EventType.MOUSEOVER, this._onMouseOver), this._img.off(u.EventType.MOUSEOUT, this._onMouseOut), this._img.off(u.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype._update = function (t) {
-                0 == this._enabled ? (this._img.texture = _.SALLY_AIRUNIT.getTexture(31), this._alert.visible = t) : (this._img.texture = 0 == t ? _.SALLY_AIRUNIT.getTexture(30) : _.SALLY_AIRUNIT.getTexture(32), this._alert.visible = !1)
-            }, e
-        }(PIXI.Container)
+        }(a.TaskBase);
+    e.TaskShowAirUnitPanel = w
 }

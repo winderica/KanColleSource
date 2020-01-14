@@ -19,100 +19,90 @@ const function642 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(206),
-        s = i(4),
-        a = i(48),
-        _ = i(6),
-        l = i(10),
+    var o = i(0),
+        r = i(193),
+        s = i(643),
+        a = i(644),
+        _ = i(296),
         u = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+            function e() {
+                var e = t.call(this) || this;
+                return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new l, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
+            return n(e, t), Object.defineProperty(e.prototype, "chara", {
                 get: function () {
-                    return this._model
+                    return this._chara
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = this;
-                this._black = new PIXI.Graphics, this._black.beginFill(0, 1), this._black.drawRect(-270, -195, 540, 390), this._black.endFill(), this._black.alpha = 0, this._dialog.bg.addChild(this._black), this._img = new r.MapThumbnailImage, this._dialog.container.addChild(this._img), this._particle = new c, this._particle.initialize(), this._particle.position.set(0, -27), this._dialog.container.addChild(this._particle), this._text = new s.TextBox(25, 16774898), this._text.text = "\u65b0\u305f\u306a\u4f5c\u6226\u6d77\u57df\u3078\u306e\u51fa\u6483\u304c\u53ef\u80fd\u3067\u3059\uff01", this._text.x = -Math.round(this._text.width / 2), this._text.y = 97, this._dialog.container.addChild(this._text);
-                var e = this.model.area_id,
-                    i = this.model.map_no;
-                this._img.setImage(e, i, function () {
-                    var e = 488 / t._img.width;
-                    t._img.scale.set(e), t._img.x = -Math.round(t._img.width / 2), t._img.y = -27 - Math.round(t._img.height / 2), t._particle.startAnimation(), t._showDialog()
-                })
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._dialog.bg).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 200).call(function () {
-                    createjs.Tween.get(t._black).to({
-                        alpha: 1
-                    }, 200).call(function () {
-                        t._showContent()
-                    })
-                })
-            }, e.prototype._showContentComplete = function () {
-                _.SE.play("243"), t.prototype._showContentComplete.call(this)
-            }, e.prototype._removeContent = function () {
-                this._removeChild(this._black), this._black = null, this._dialog.container.removeChild(this._img), this._img = null, this._particle.stopAnimation(), this._dialog.container.removeChild(this._particle), this._particle = null, this._dialog.container.removeChild(this._text), this._text.destroy(), this._text = null
-            }, e.prototype._removeChild = function (t) {
-                null != t && null != t.parent && t.parent.removeChild(t)
+            }), Object.defineProperty(e.prototype, "marriageEff", {
+                get: function () {
+                    return this._marrigaeEff
+                },
+                set: function (t) {
+                    this._marrigaeEff != t && (this._marrigaeEff = t, 1 == this._marrigaeEff ? this._showMarriageEff() : this._hideMarriageEff())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._touch_count = 0, this._ship_mst_id = t;
+                var n = o.default.model.basic.getFlagShipPosIDCli(),
+                    r = _.PortConst.getMoveXValue(t),
+                    s = 0 == n ? 0 : r,
+                    a = o.default.resources.getShip(t, e, "full");
+                this._chara.texture = a;
+                var u = new PIXI.Sprite(a);
+                this._hit_area_map = o.default.settings.renderer.extract.pixels(u), this._container.position.set(491, -88);
+                var l = this._chara.width / 2,
+                    c = this._chara.height / 2,
+                    h = o.default.model.ship_graph.get(t).getPortOffset(e);
+                this._chara.position.set(-l + h.x + s, -c + h.y), this._container.positionSet(491 + l, -88 + c), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
+            }, e.prototype.activate = function () {
+                null == this._loop_tween && (this._loop_tween = createjs.Tween.get(this._container, {
+                    loop: !0
+                }).to({
+                    anim_value: Math.PI
+                }, 5200)), this._timerBeLeftVoice.reset(), this._timeSignal.reset()
+            }, e.prototype.deactivate = function () {
+                null != this._loop_tween && (this._loop_tween.setPaused(!0), this._loop_tween = null), this._timerBeLeftVoice.stop(), this._timeSignal.stop()
+            }, e.prototype.onMouseMove = function (t) {
+                var e = t.getLocalPosition(this._chara);
+                return this._isCharaHit(e)
+            }, e.prototype.onClick = function (t) {
+                var e = t.getLocalPosition(this._chara),
+                    i = this._isCharaHit(e);
+                return 1 == i && this._onClick(), i
+            }, e.prototype._showMarriageEff = function () {
+                var t = new PIXI.Rectangle(600, 0, 600, 720);
+                this._ship_is_marriage = !0, this._sakura.startAnimation(t)
+            }, e.prototype._hideMarriageEff = function () {
+                this._ship_is_marriage = !1, this._sakura.stopAnimation()
+            }, e.prototype._isCharaHit = function (t, e) {
+                if (void 0 === e && (e = 0), t.x < 0 || t.y < 0 || t.x > this._chara.width) return !1;
+                var i = 4 * (Math.floor(t.x) + this._chara.width * Math.floor(t.y));
+                return null != this._hit_area_map && (!(i + 3 >= this._hit_area_map.length) && this._hit_area_map[i + 3] > e)
+            }, e.prototype._onClick = function () {
+                this._touch_count < 4 ? 1 == this._ship_is_marriage && 0 == this._touch_count ? o.default.sound.voice.play(this._ship_mst_id.toString(), 28) : o.default.sound.voice.playAtRandom(this._ship_mst_id.toString(), [2, 3, 4], [60, 30, 10]) : o.default.sound.voice.play(this._ship_mst_id.toString(), 4), this._touch_count++, this._timerBeLeftVoice.reset()
             }, e
-        }(a.TaskRewardDialogBase);
-    e.TaskRewardDialogMap = u;
-    var c = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._particles = [];
-                for (var i = [222, 244, 199, -199, -177, -154, -132, -244, -222, -199, -177, -244, -222, -199], n = [-108, -87, -87, 19, 42, 64, 87, 19, 42, 64, 87, 64, 87, 109], o = 0; o < 14; o++) {
-                    var r = new h;
-                    r.x = i[o], r.y = n[o], e.addChild(r), e._particles.push(r)
-                }
-                return e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._particles; t < e.length; t++) {
-                    e[t].initialize()
-                }
-            }, e.prototype.startAnimation = function () {
-                for (var t = 0, e = this._particles; t < e.length; t++) {
-                    e[t].startAnimation()
-                }
-            }, e.prototype.stopAnimation = function () {
-                for (var t = 0, e = this._particles; t < e.length; t++) {
-                    e[t].stopAnimation()
-                }
-            }, e
-        }(PIXI.Container),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._animation = function () {
-                    e._img.rotation = Math.random() * Math.PI * 2;
-                    var t = 2e3 * Math.random();
-                    e._t1 = createjs.Tween.get(e._img).wait(t).to({
-                        scaleX: 1,
-                        scaleY: 1
-                    }, 100).to({
-                        scaleX: 0,
-                        scaleY: 0
-                    }, 200).call(e._animation), e._t2 = createjs.Tween.get(e).wait(t).to({
-                        rotation: Math.random() * Math.PI / 5
-                    }, 300)
-                }, e._img = new o.Sprite, e._img.anchor.set(.5), e._img.scale.set(0), e.addChild(e._img), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = l.COMMON_MISC.getTexture(115)
-            }, e.prototype.startAnimation = function () {
-                null == this._t1 && this._animation()
-            }, e.prototype.stopAnimation = function () {
-                null != this._t1 && (this._t1.setPaused(!0), this._t1 = null, this._t2.setPaused(!0), this._t2 = null)
-            }, e
-        }(PIXI.Container)
+        }(PIXI.Container);
+    e.FlagShipLayer = u;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "anim_value", {
+            get: function () {
+                return 0
+            },
+            set: function (t) {
+                var e = Math.sin(t),
+                    i = 1 + .012 * (.5 + .5 * e);
+                this.scale.set(i), this.y = this._base_y - 1.5 * e * 1.8
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.positionSet = function (t, e) {
+            this.position.set(t, e), this._base_y = e
+        }, e
+    }(PIXI.Container)
 }

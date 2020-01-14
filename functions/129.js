@@ -20,31 +20,33 @@ const function129 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(15),
+        r = i(47),
         s = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e, i, n) {
+                void 0 === n && (n = null);
+                var o = t.call(this) || this;
+                return o._mst_id = e, o._count = i, o._message = n, o
             }
-            return n(e, t), e.prototype.setDay = function (t) {
-                this._load("bg_h", t)
-            }, e.prototype.setNight = function (t) {
-                this._load("bg_y", t)
-            }, e.prototype.dispose = function () {
-                this._loader = null
-            }, e.prototype._load = function (t, e) {
-                var i = this,
-                    n = r.UIImageLoader.getVersion("map");
-                n = n ? "?version=" + n : "";
-                var s = o.default.settings.path_root + "img/common/bg_map/" + t + ".png" + n;
-                if (null != PIXI.utils.TextureCache[s] && (this.texture = PIXI.utils.TextureCache[s], null != e)) return void e();
-                this._loader = new PIXI.loaders.Loader, this._loader.add(s), this._loader.load(function (t) {
-                    if (i._loader == t) {
-                        i._loader = null;
-                        var n = t.resources[s];
-                        i.texture = n.texture, null != e && e()
-                    }
-                })
-            }, e
-        }(PIXI.Sprite);
-    e.MapBG = s
+            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "name", {
+                get: function () {
+                    var t = o.default.model.useItem.get(this._mst_id);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(r.RewardModel);
+    e.RewardModelUseitem = s
 }

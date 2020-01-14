@@ -19,57 +19,28 @@ const function190 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(10),
+    var o = i(0),
+        r = i(47),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._PETAL_NUM = 20, e._NowPlaying = !1, e._petals = new Array, e
+            function e(e, i) {
+                void 0 === i && (i = null);
+                var n = t.call(this) || this;
+                return n._mst_id = e, n._message = i, n
             }
-            return n(e, t), e.prototype.startAnimation = function (t, e) {
-                if (void 0 === t && (t = null), void 0 === e && (e = this._PETAL_NUM), !this._NowPlaying) {
-                    this._NowPlaying = !0;
-                    for (var i = 0; i < e; i++) this._petals[i] = new a(t), this.addChild(this._petals[i])
-                }
-            }, e.prototype.stopAnimation = function (t) {
-                if (void 0 === t && (t = this._PETAL_NUM), this._NowPlaying) {
-                    for (var e = 0; e < t; e++) this._petals[e] instanceof a && (this._petals[e].switchFlag(!1), this.removeChild(this._petals[e]));
-                    this._NowPlaying = !1
-                }
-            }, e
-        }(PIXI.Container);
-    e.Sakura = s;
-    var a = function (t) {
-        function e(e) {
-            void 0 === e && (e = null);
-            var i = t.call(this) || this;
-            return i._swt = !0, i._area = null == e ? new PIXI.Rectangle(0, 0, o.default.width, o.default.height) : e, i.anchor.set(.5, .5), i._createTween(), i
-        }
-        return n(e, t), e.prototype._createTween = function () {
-            var t = this;
-            if (this._swt) {
-                for (var e = this._area.x, i = this._area.y; e <= this._area.x + this._area.width && i <= this._area.y + this._area.height;) e = this._area.x + .8 * this._area.width + this._randomInt(600), i = this._area.y + .2 * this._area.height - this._randomInt(600);
-                var n = 5 + this._randomInt(5),
-                    s = -5 - this._randomInt(n * this._area.width / this._area.height - 5),
-                    a = e,
-                    _ = i,
-                    l = this._randomInt(960) - o.default.height;
-                l = l * Math.PI / 180;
-                for (var u = 0; a > -60 && _ < 780;) a += s, _ += n, u++;
-                this.x = e, this.y = i;
-                var c = [149, 150, 151, 152, 153][this._randomInt(5)];
-                this.texture = r.COMMON_MISC.getTexture(c), createjs.Tween.get(this).to({
-                    x: a,
-                    y: _,
-                    rotation: l
-                }, u / 30 * 1e3).call(function () {
-                    t._createTween()
-                })
-            }
-        }, e.prototype.switchFlag = function (t) {
-            this._swt = t
-        }, e.prototype._randomInt = function (t) {
-            return Math.floor(Math.random() * t)
-        }, e
-    }(PIXI.Sprite)
+            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "name", {
+                get: function () {
+                    var t = o.default.model.ship.get(this._mst_id);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(r.RewardModel);
+    e.RewardModelShip = s
 }

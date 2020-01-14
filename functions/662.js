@@ -19,76 +19,66 @@ const function662 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(82),
-        r = i(5),
-        s = i(109),
-        a = i(1),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._ev = e, i._onNextClick = function () {
-                    i._btnNext.interactive = !1, i._btnSubmit = new PIXI.Sprite(i._btnSumbitImage.def), i._btnSubmit.anchor.set(.5, 0), i._btnSubmit.position.set(r.default.width / 2, r.default.height - i._btnSubmit.height - 30), i._btnSubmit.interactive = !1, i._btnSubmit.buttonMode = !0, i._btnSubmit.on(a.EventType.MOUSEOVER, i._onToggleSubmitBtn).on(a.EventType.MOUSEOUT, i._onToggleSubmitBtn).on(a.EventType.CLICK, i._onSubmitClick), i._btnSubmit.alpha = 0, i.addChild(i._btnSubmit), i._nextScene()
-                }, i._onSubmitClick = function () {
-                    i._btnSubmit.interactive = !1, i._ev.emit("tutorial-next-scene")
-                }, i._onToggleNextBtn = function (t) {
-                    var e = i._getEventTextureKey(t.type);
-                    i._btnNext.texture = i._btnNextImage[e]
-                }, i._onToggleSubmitBtn = function (t) {
-                    var e = i._getEventTextureKey(t.type);
-                    i._btnSubmit.texture = i._btnSumbitImage[e]
-                }, i._getEventTextureKey = function (t) {
-                    return t == a.EventType.MOUSEOVER ? "hover" : "def"
-                }, i.alpha = 0, i._miniImage = [o.TUTORIAL_MAIN.getTexture(15), o.TUTORIAL_MAIN.getTexture(16)], i._btnNextImage = {
-                    def: o.TUTORIAL_MAIN.getTexture(1),
-                    hover: o.TUTORIAL_MAIN.getTexture(2)
-                }, i._btnSumbitImage = {
-                    def: o.TUTORIAL_MAIN.getTexture(5),
-                    hover: o.TUTORIAL_MAIN.getTexture(6)
-                }, i
+    var o = i(0),
+        r = i(23),
+        s = i(69),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._items = [], e._canvas = new PIXI.Container, e.addChild(e._canvas), e._images = [], e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(25));
-                t.position.set(175, 116), this._mini = new PIXI.Sprite(this._miniImage[0]), this._mini.position.set(980, 432), this._btnNext = new PIXI.Sprite(this._btnNextImage.def), this._btnNext.name = "next", this._btnNext.anchor.set(.5, 0), this._btnNext.position.set(r.default.width / 2, r.default.height - this._btnNext.height - 20), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(a.EventType.MOUSEOVER, this._onToggleNextBtn).on(a.EventType.MOUSEOUT, this._onToggleNextBtn).on(a.EventType.CLICK, this._onNextClick), this.addChild(t, this._mini, this._btnNext), this._ev.emit("tutorial-scene-start")
-            }, e.prototype.start = function () {
-                var t = this;
-                this.alpha = 1, this._miniEyes(), this._ev.emit("tutorial-play-voice", "tutorial", "029", function () {
-                    t._ev.emit("tutorial-play-voice", "tutorial", "030")
+            return n(e, t), e.prototype.add = function (t) {
+                this._items.push(t)
+            }, e.prototype.initialize = function (t) {
+                this._loadUseitemResources(t)
+            }, e.prototype._loadUseitemResources = function (t) {
+                for (var e = this, i = new s.UseitemLoader, n = 0, o = this._items; n < o.length; n++) {
+                    var r = o[n];
+                    6 == r.type && i.add(r.id, 2)
+                }
+                i.load(function () {
+                    e._loadSlotitemResources(t)
                 })
-            }, e.prototype._miniEyes = function () {
-                var t = this,
-                    e = !0,
-                    i = function () {
-                        var i = 1 == e ? 0 : 1;
-                        t._mini.texture = t._miniImage[i]
-                    },
-                    n = function () {
-                        var o = 1 == e ? 1e3 : 300;
-                        t._miniImageTween = createjs.Tween.get(null).wait(o).call(function () {
-                            e = !e, i(), t._miniImageTween = null, n()
-                        })
-                    };
-                n()
-            }, e.prototype._nextScene = function () {
-                var t = this,
-                    e = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(19));
-                e.position.set(435, 400), e.alpha = 0, this.addChild(e), createjs.Tween.get(e).to({
-                    alpha: 1
-                }, 400, createjs.Ease.linear), createjs.Tween.get(this._btnNext).to({
-                    alpha: 0
-                }, 400, createjs.Ease.linear).call(function () {
-                    t._btnNext.visible = !1
-                }), createjs.Tween.get(this._btnSubmit).to({
-                    alpha: 1
-                }, 300, createjs.Ease.linear).call(function () {
-                    t._btnSubmit.interactive = !0
-                }), this._ev.emit("tutorial-play-voice", "tutorial", "031", function () {
-                    t._ev.emit("tutorial-play-voice", "tutorial", "032_a", function () {
-                        t._ev.emit("tutorial-play-voice", "tutorial", "033")
-                    })
+            }, e.prototype._loadSlotitemResources = function (t) {
+                for (var e = this, i = new r.SlotLoader, n = 0, o = this._items; n < o.length; n++) {
+                    var s = o[n];
+                    2 == s.type && i.add(s.id, "card")
+                }
+                i.load(function () {
+                    e._display(), t && t()
                 })
-            }, e.prototype.dispose = function () {
-                this.alpha = 0, this._btnNext.off(a.EventType.MOUSEOVER, this._onToggleNextBtn).off(a.EventType.MOUSEOUT, this._onToggleNextBtn).off(a.EventType.CLICK, this._onNextClick), this._btnSubmit.off(a.EventType.MOUSEOVER, this._onToggleSubmitBtn).off(a.EventType.MOUSEOUT, this._onToggleSubmitBtn).off(a.EventType.CLICK, this._onSubmitClick), createjs.Tween.removeTweens(this._miniImageTween), this._ev.emit("tutorial-remove-scene")
+            }, e.prototype._display = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    var i = e[t];
+                    if (6 == i.type) {
+                        var n = new PIXI.Sprite;
+                        n.texture = o.default.resources.getUseitem(i.id, 2), i.size > 0 ? n.scale.set(i.size / n.width) : n.scale.set(135 / n.width), this._canvas.addChild(n), this._images.push(n)
+                    } else {
+                        var n = new PIXI.Sprite;
+                        n.texture = o.default.resources.getSlotitem(i.id, "card"), i.size > 0 ? n.scale.set(i.size / n.width) : n.scale.set(168 / n.width), this._canvas.addChild(n), this._images.push(n)
+                    }
+                }
+                this._layout()
+            }, e.prototype._layout = function () {
+                for (var t = 0, e = 0, i = 0, n = this._images; i < n.length; i++) {
+                    var o = n[i];
+                    t = Math.max(t, o.width), e = Math.max(e, o.height)
+                }
+                switch (this._images.length) {
+                    case 1:
+                        this._images[0].x = 0, this._images[0].y = 0;
+                        break;
+                    case 2:
+                        this._images[0].x = 0, this._images[0].y = e - this._images[0].height, this._images[1].x = this._images[0].width + 4, this._images[1].y = e - this._images[1].height;
+                        break;
+                    case 3:
+                        this._images[0].x = 0, this._images[0].y = e - this._images[0].height, this._images[1].x = this._images[0].width + 4, this._images[1].y = e - this._images[1].height, this._images[2].x = this._images[1].x + this._images[1].width + 4, this._images[2].y = e - this._images[2].height;
+                        break;
+                    case 4:
+                        this._images[0].x = t - this._images[0].width - Math.round(2), this._images[0].y = e - this._images[0].height - Math.round(2), this._images[1].x = t + Math.round(2), this._images[1].y = e - this._images[1].height - Math.round(2), this._images[2].x = t - this._images[2].width - Math.round(2), this._images[2].y = e + Math.round(2), this._images[3].x = t + Math.round(2), this._images[3].y = e + Math.round(2)
+                }
+                this._canvas.x = -Math.round(this._canvas.width / 2), this._canvas.y = -Math.round(this._canvas.height / 2)
             }, e
-        }(s.SceneBase);
-    e.SceneExplain3 = _
+        }(PIXI.Container);
+    e.MeltIntoSprite = a
 }

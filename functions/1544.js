@@ -19,27 +19,42 @@ const function1544 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.createShowTween = function (t, e, i, n) {
-            return void 0 === n && (n = 0), this._img.alpha = 0, this._img.visible = !0, this._img.texture = t, null != e ? (this._img.x = e.x, this._img.y = e.y) : this._img.position.set(0), createjs.Tween.get(this._img).wait(n).to({
-                alpha: 1
-            }, i)
-        }, e.prototype.createHideTween = function (t, e) {
-            var i = this;
-            void 0 === e && (e = 0);
-            var n = createjs.Tween.get(this._img).wait(e);
-            return 1 == this._img.visible && n.to({
-                alpha: 0
-            }, t).call(function () {
-                i._img.visible = !1
-            }), n
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._img = null
-        }, e
-    }(PIXI.Container);
-    e.LayerMVP = o
+    var o = i(17),
+        r = i(11),
+        s = i(15),
+        a = i(1545),
+        _ = i(1547),
+        u = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._layer = e, r._area_id = i, r._map_no = n, r._file_suffix = o, r
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                if (this._area_id != o.EVENT_AREA_ID) return void this._endTask();
+                switch (this._map_no) {
+                    case 4:
+                        var e = new s.UIImageLoader("battle_result");
+                        e.add("battle_result_event_ed1_" + this._file_suffix + ".json"), e.load(function () {
+                            new a.TaskEventEnding1(t._layer).start(function () {
+                                t._endTask()
+                            })
+                        });
+                        break;
+                    case 6:
+                        var e = new s.UIImageLoader("battle_result");
+                        e.add("battle_result_event_ed2_" + this._file_suffix + ".json"), e.load(function () {
+                            new _.TaskEventEnding2(t._layer).start(function () {
+                                t._endTask()
+                            })
+                        });
+                        break;
+                    default:
+                        this._endTask()
+                }
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.TaskEventEnding = u
 }

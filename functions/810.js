@@ -19,47 +19,47 @@ const function810 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(214),
-        r = i(132),
-        s = function (t) {
+    var o = i(0),
+        r = i(62),
+        s = i(4),
+        a = i(73),
+        _ = i(339),
+        u = i(1),
+        l = function (t) {
             function e() {
-                var e = this,
-                    i = r.REMODEL_POWERUP.getTexture(13);
-                e = t.call(this, i) || this;
-                var n = r.REMODEL_POWERUP.getTexture(22);
-                return e._taikyuArrow = new PIXI.Sprite(n), e._taikyuArrow.position.set(106, 8), e._taikyuArrow.visible = !1, e.addChild(e._taikyuArrow), e._taisenArrow = new PIXI.Sprite(n), e._taisenArrow.position.set(245, 110), e._taisenArrow.visible = !1, e.addChild(e._taisenArrow), e._luckyArrow = new PIXI.Sprite(n), e._luckyArrow.position.set(245, 179), e._luckyArrow.visible = !1, e.addChild(e._luckyArrow), e
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e._onClickDetach = function () {
+                    e.onClickDetach()
+                }, e._onMouseOver = function () {
+                    e.namePopUp.alpha = 1
+                }, e._onMouseOut = function () {
+                    e.namePopUp.alpha = 0
+                }, e.exSlotBg = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(20)), e.iconSlot00 = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(37)), e.iconWeapon = new r.IconWeapon, e.detachButton = new _.DetachButton, e.namePopUp = new c, e.clickArea = new PIXI.Graphics, e.iconWeapon.position.set(6, 6), e.iconSlot00.position.set(6, 6), e.detachButton.position.set(57, 21), e.namePopUp.position.set(33, 63), e.addChild(e.exSlotBg, e.iconSlot00, e.iconWeapon, e.detachButton, e.namePopUp, e.clickArea), e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 57, 57), e.clickArea.endFill(), e.clickArea.on(u.EventType.CLICK, e._onClick), e.clickArea.on(u.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(u.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.renderable = !1, e.clickArea.interactive = e.clickArea.buttonMode = !0, e.detachButton.onClick = e._onClickDetach, e.namePopUp.visible = !1, e
             }
             return n(e, t), e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._taikyuArrow = null, this._taisenArrow = null, this._luckyArrow = null
+                this.iconWeapon.dispose(), this.detachButton.dispose(), this.namePopUp.dispose(), this.onClick = null, this.onClickDetach = null, this.iconWeapon = null, this.exSlotBg = null, this.iconSlot00 = null, this.detachButton = null, this.namePopUp = null, this.clickArea.off(u.EventType.CLICK), this.clickArea.off(u.EventType.MOUSEOVER), this.clickArea.off(u.EventType.MOUSEOUT), this.clickArea.clear(), this.clickArea = null, this.removeChildren()
+            }, e.prototype.update = function (t) {
+                this.iconWeapon.update(t.iconType), this.namePopUp.update(t.name), this.detachButton.visible = !0, this.interactive = this.buttonMode = !0, this.namePopUp.visible = !0, this.namePopUp.alpha = 0
             }, e.prototype.clear = function () {
-                this._textHp.text = "", this._textSoukou.text = "", this._textKaihi.text = "", this._textTousai.text = "", this._textKaryoku.text = "", this._textRaisou.text = "", this._textTaiku.text = "", this._textTaisen.text = "", this._textSakuteki.text = "", this._textLucky.text = ""
-            }, e.prototype.updateKaryoku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textKaryoku.style.fill = i, this._textKaryoku.text = "" + e
-            }, e.prototype.updateRaisou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textRaisou.style.fill = i, this._textRaisou.text = "" + e
-            }, e.prototype.updateSoukou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textSoukou.style.fill = i, this._textSoukou.text = "" + e
-            }, e.prototype.updateTaiku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textTaiku.style.fill = i, this._textTaiku.text = "" + e
-            }, e.prototype.updateLucky = function (t, e, i) {
-                this._textLucky.visible = !1, this._luckyArrow.visible = !1;
-                var n = 5523516,
-                    o = "",
-                    r = t != e;
-                i ? this._luckyArrow.visible = !0 : r ? (n = 1949120, o = "" + e, this._textLucky.visible = !0) : (o = "" + e, this._textLucky.visible = !0), this._textLucky.style.fill = n, this._textLucky.text = o
-            }, e.prototype.updateTaikyu = function (t, e) {
-                this._textHp.visible = !1, this._taikyuArrow.visible = !1, e ? this._taikyuArrow.visible = !0 : (this._textHp.visible = !0, this._textHp.text = "" + t)
-            }, e.prototype.updateTaisen = function (t, e) {
-                this._taisenArrow.visible = !1, this._textTaisen.visible = !1, e ? this._taisenArrow.visible = !0 : (this._textTaisen.visible = !0, this._textTaisen.text = "" + t)
-            }, e.prototype.updateCommon = function (t, e, i, n, o, r, s) {
-                this._textHp.text = "" + t, this._textKaihi.text = "" + e, this._textTousai.text = "" + i, this._textTaisen.text = "" + r, this._textSakuteki.text = "" + s, this._sokuryoku.update(n), this._shatei.update(o), this._sokuryoku.position.set(111 - Math.floor(this._sokuryoku.width / 2), 142), this._shatei.position.set(110 - Math.floor(this._shatei.width / 2), 175)
-            }, e.prototype._alignment = function () {
-                this._textHp.position.set(134, 3), this._textSoukou.position.set(134, 38), this._textKaihi.position.set(134, 72), this._textTousai.position.set(134, 107), this._sokuryoku.position.set(111, 143), this._shatei.position.set(111, 177), this._textKaryoku.position.set(273, 3), this._textRaisou.position.set(273, 38), this._textTaiku.position.set(273, 72), this._textTaisen.position.set(273, 106), this._textSakuteki.position.set(273, 139), this._textLucky.position.set(273, 174)
+                this.iconWeapon.clear(), this.detachButton.visible = !1, this.interactive = this.buttonMode = !0, this.namePopUp.visible = !1
             }, e
-        }(o.ShipParameterViewBase);
-    e.ShipParameterChecker = s
+        }(PIXI.Container);
+    e.ExtraSlotItemSlot = l;
+    var c = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.TEXT_OFFSET_X = 3, e.TEXT_OFFSET_Y = 5, e.left = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki1_l.png", "remodel")), e.right = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki1_r.png", "remodel")), e.center = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki1_c.png", "remodel"));
+            var i = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki2.png", "remodel"));
+            return e.textName = new s.TextBox(18, 5523516), e.textName.anchor.x = e.left.anchor.x = e.center.anchor.x = 1, e.textName.position.set(e.TEXT_OFFSET_X, e.TEXT_OFFSET_Y), i.position.set(-18.75, 3 - i.height), e.addChild(e.left, e.center, e.right, e.textName, i), e.update(""), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.textName.destroy(), this.left = null, this.center = null, this.right = null, this.textName = null
+        }, e.prototype.update = function (t) {
+            this.center.scale.x = 1, this.textName.text = t;
+            var e = this.textName.width / this.center.width;
+            this.center.scale.x = e, this.right.position.set(0, 0), this.center.position.set(0, 0), this.left.position.set(this.center.x - this.center.width, 0)
+        }, e
+    }(PIXI.Container)
 }

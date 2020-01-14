@@ -19,81 +19,27 @@ const function795 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(86),
-        r = i(796),
-        s = i(21),
-        a = i(213),
-        _ = i(88),
-        l = i(797),
-        u = i(798),
-        c = i(799),
-        h = i(800),
-        p = function (t) {
+    var o = i(2),
+        r = i(15),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._onClick = function (t, i) {
-                    e.onClick(t, i)
-                }, e._onClickLock = function (t, i) {
-                    e.onClickLock(t, i)
-                }, e.sortSoubiTxtNone = new PIXI.Sprite(a.COMMON_SORT.getTexture(55)), e.headerSoubiSentaku = new _.TitleBar, e.headerSoubiSentaku.initialize(s.COMMON_MAIN.getTexture(2), 26);
-                var i = s.COMMON_MAIN.getTexture(37),
-                    n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(13));
-                e._listHeader = new c.ListHeader, e._pagerView = new o.PagerView, e._slotItemFilterView = new r.SlotItemFilterView, e.lines = new Array, e._changeListSwitch = new l.ChangeListSwitch, e.listItems = new Array, e._inUseMarker = new u.InUseMarker, n.interactive = !0;
-                for (var p = new PIXI.Point(54, 54), d = p.x, f = 0; f < 10; f++) {
-                    var y = new PIXI.Sprite(i),
-                        m = new h.ListItem(f),
-                        g = 45 * f + p.y;
-                    m.position.set(d, g), m.onClick = e._onClick, m.onClickLock = e._onClickLock, y.width += 45, y.position.set(d + 30, g + 45 - y.height), e.lines.push(y), e.listItems.push(m)
-                }
-                return e.sortSoubiTxtNone.position.set(90, 65), e._pagerView.position.set(96, 525), e._listHeader.position.set(90, 12), e._slotItemFilterView.position.set(246, 14), e._changeListSwitch.position.set(569, 12), e.headerSoubiSentaku.position.set(0, -39), e._inUseMarker.position.y = 12, e.addChild(n), e.listItems.forEach(function (t) {
-                    return e.addChild(t)
-                }), e.lines.forEach(function (t) {
-                    return e.addChild(t)
-                }), e.addChild(e._pagerView, e._listHeader, e.sortSoubiTxtNone, e._slotItemFilterView, e._changeListSwitch, e.headerSoubiSentaku, e._inUseMarker), e
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "pagerView", {
-                get: function () {
-                    return this._pagerView
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slotItemFilterView", {
-                get: function () {
-                    return this._slotItemFilterView
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "changeListSwitch", {
-                get: function () {
-                    return this._changeListSwitch
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "inUseMarker", {
-                get: function () {
-                    return this._inUseMarker
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "listHeader", {
-                get: function () {
-                    return this._listHeader
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose();
-                this._pagerView.dispose(), this._slotItemFilterView.dispose(), this._changeListSwitch.dispose(), this._inUseMarker.dispose(), this._listHeader.dispose(), this.headerSoubiSentaku.dispose(), this.onClick = null, this.onClickLock = null, this._pagerView = null, this._slotItemFilterView = null, this._changeListSwitch = null, this._inUseMarker = null, this._listHeader = null, this.lines = null, this.listItems = null, this.headerSoubiSentaku = null, this.sortSoubiTxtNone = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i, n, o, r, s) {
-                var a = this.listItems[t];
-                a.update(e, i, n, o, r, s), a.visible = !0
-            }, e.prototype.visibleEmptyText = function () {
-                this.sortSoubiTxtNone.visible = !0
-            }, e.prototype.clear = function () {
-                this.listItems.forEach(function (t) {
-                    t.visible = !1
-                }), this.sortSoubiTxtNone.visible = !1
+            return n(e, t), e.prototype._start = function () {
+                this._load01()
+            }, e.prototype._load01 = function () {
+                var t = this,
+                    e = new r.UIImageLoader("remodel");
+                e.add("6slot_huki1_c.png"), e.add("6slot_huki1_r.png"), e.add("6slot_huki1_l.png"), e.add("6slot_huki2.png"), e.load(function () {
+                    t._load02()
+                })
+            }, e.prototype._load02 = function () {
+                var t = this,
+                    e = new r.UIImageLoader("remodel");
+                e.add("remodel_main.json"), e.add("remodel_powerup.json"), e.add("remodel_gradeup.json"), e.add("remodel_animation.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.SlotItemList = p
+        }(o.TaskBase);
+    e.TaskLoadResourcesRemodel = s
 }

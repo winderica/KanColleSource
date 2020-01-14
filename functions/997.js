@@ -19,45 +19,47 @@ const function997 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(26),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._category)
+                }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i.addChild(i._label), i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._fuel = new a, this._ammo = new _, this._fuel.initialize(), this._ammo.initialize(), this._ammo.position.set(38, 0), this.addChild(this._fuel), this.addChild(this._ammo)
-            }, e.prototype.update = function (t) {
-                null == t ? this.visible = !1 : (this.visible = !0, this._fuel.update(t.fuelNow / t.fuelMax), this._ammo.update(t.ammoNow / t.ammoMax))
+            return n(e, t), Object.defineProperty(e.prototype, "category", {
+                get: function () {
+                    return this._category
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), this._update(!1))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._category = t, this._update(!1), 0 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(110), this._label.position.set(11, 12)) : 1 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(111), this._label.position.set(15, 9)) : 2 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(112), this._label.position.set(15, 15)) : 3 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(113), this._label.position.set(15, 15)) : 4 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(114), this._label.position.set(15, 14)) : this._label.texture = PIXI.Texture.EMPTY
+            }, e.prototype.activate = function () {
+                this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
+            }, e.prototype.dispose = function () {
+                this._deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                0 == t && 0 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(116) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(115)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Container);
-    e.CompLackAlerts = r;
-    var s = function (t) {
-            function e() {
-                return t.call(this) || this
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(this._getTexture());
-                this._alert = new PIXI.Sprite, t.position.set(-14, -14), this._alert.position.set(0, -11), this.addChild(t), this.addChild(this._alert)
-            }, e.prototype.update = function (t) {
-                t <= .5 ? (this._alert.texture = o.SALLY_COMMON.getTexture(33), this.visible = !0) : t < 1 ? (this._alert.texture = o.SALLY_COMMON.getTexture(32), this.visible = !0) : this.visible = !1
-            }, e.prototype._getTexture = function () {
-                return null
-            }, e
-        }(PIXI.Container),
-        a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._getTexture = function () {
-                return o.SALLY_COMMON.getTexture(30)
-            }, e
-        }(s),
-        _ = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._getTexture = function () {
-                return o.SALLY_COMMON.getTexture(31)
-            }, e
-        }(s)
+    e.AirUnitListTab = s
 }

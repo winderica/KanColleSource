@@ -19,67 +19,83 @@ const function1400 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(6),
-        a = i(378),
-        _ = i(39),
-        l = function (t) {
-            function e(e, i, n, s, _, l, u, c) {
-                var h = t.call(this, e, i, s, l, u, c) || this;
-                h._onCallAttackEffect = function () {
-                    var t = h._getDamage(h._defender),
-                        e = h._defenderBanner.getGlobalPos(!0),
-                        i = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        n = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
-                        o = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        s = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
-                    createjs.Tween.get(null).call(function () {
-                        h._defenderBanner.moveAtDamage(h._shield), h._scene.view.layer_explosion.playDamageExplosion(e.x, e.y, t)
-                    }).wait(150).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + i, e.y + n)
-                    }).wait(100).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + o, e.y + s, function () {
-                            h._attack(h._attackerBanner, h._defenderBanner)
-                        })
-                    })
-                }, h._finallize = function () {
-                    h._cutin.dispose(), h._cutin = null, h._attackerBanner = null, h._defenderBanner = null, h._endTask()
-                };
-                var p, d, f = h._slot.mstID,
-                    y = o.default.model.slot.getMst(_),
-                    m = y.mstID,
-                    g = new a.CutinZRK(i, f, m),
-                    v = i.friend,
-                    b = i.index,
-                    w = n.index;
-                return v ? (p = e.view.bannerGroupLayer.getBanner(!0, b), d = e.view.bannerGroupLayer.getBanner(!1, w)) : (p = e.view.bannerGroupLayer.getBanner(!1, b), d = e.view.bannerGroupLayer.getBanner(!0, w)), g.onCallAttackEffect = h._onCallAttackEffect, g.onCallAttackVoice = h._playVoice, h._attackerBanner = p, h._defenderBanner = d, h._cutin = g, h._defender = n, h._debug_slot_mst_id3 = _, h
+    var o = i(2),
+        r = i(12),
+        s = i(16),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._type = i, o._plane = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
+                null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
+            }, e.prototype._animSanshiki = function () {
+                var t = this,
+                    e = new _(5);
+                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), t._endTask()
                 })
-            }, e.prototype._playVoice = function () {
-                if (this._attacker.friend) {
-                    var t = this._attacker.mst_id;
-                    o.default.sound.voice.play(t.toString(), 16)
-                }
-            }, e.prototype._log = function (t) {}, e.prototype._completePreload = function () {
-                this._attackerBanner.moveFront(), this._defenderBanner.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
-            }, e.prototype._attack = function (t, e) {
-                var i = this;
-                s.SE.play("102"), t.attack(function () {
-                    i._damageEffect(t, e)
+            }, e.prototype._animKoukaku = function () {
+                var t = this,
+                    e = new _(2);
+                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), t._endTask()
                 })
-            }, e.prototype._damageEffect = function (t, e) {
-                var i = this;
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var n = this._getDamage(this._defender);
-                this._playExplosion(e, n), this._playDamageEffect(t, e, this._defender, n, this._hit, function () {
-                    return i._finallize()
+            }, e.prototype._animFunshin = function () {
+                var t = this,
+                    e = new _(3);
+                e.position.set(0, -15), this._plane.addChild(e);
+                var i = new _(3);
+                i.position.set(-15, 0), this._plane.addChild(i);
+                var n = new _(3);
+                n.position.set(23, 0), this._plane.addChild(n), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700), createjs.Tween.get(i).wait(100).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700), createjs.Tween.get(n).wait(200).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), i.parent.removeChild(i), n.parent.removeChild(n), t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._type = null, this._plane = null, t.prototype._endTask.call(this)
             }, e
-        }(_.PhaseAttackBase);
-    e.PhaseZRK = l
+        }(o.TaskBase);
+    e.TaskAirWarAntiAircraftExplosion = a;
+    var _ = function (t) {
+        function e(e) {
+            var i, n = t.call(this) || this;
+            return 5 == e ? (i = 148, n.anchor.set(.5, .91)) : 2 == e ? (i = 149, n.anchor.set(.5, .85)) : 3 == e && (i = 148, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
+        }
+        return n(e, t), e
+    }(r.Sprite)
 }

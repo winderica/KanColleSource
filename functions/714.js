@@ -19,18 +19,33 @@ const function714 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(292),
         r = function (t) {
-            function e(e, i, n) {
-                void 0 === e && (e = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_member/itemuse_cond", o._debug = e, o.api_deck_id = i, o.api_use_type = n, o
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this.api_deck_id, this._post_data.api_use_type = this.api_use_type, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.__getPositions__ = function () {
+                return [
+                    [48, 0],
+                    [12, 50],
+                    [29, 86],
+                    [87, 86],
+                    [0, 140],
+                    [20, 224],
+                    [0, 381],
+                    [96, 426],
+                    [132, 390],
+                    [219, 395],
+                    [266, 426],
+                    [309, 381],
+                    [284, 320],
+                    [302, 120],
+                    [284, 84],
+                    [293, 48],
+                    [257, 26],
+                    [293, 0]
+                ]
             }, e
-        }(o.APIBase);
-    e.ItemUseCondAPI = r
+        }(o.BaseKirakira);
+    e.CardKirakira = r
 }

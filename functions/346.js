@@ -19,27 +19,41 @@ const function346 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
+    var o = i(0),
+        r = i(9),
+        s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/ndock", e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                var e = this.getMaterialIconTextResourceid(t);
-                this.texture = o.ARSENAL_MAIN.getTexture(e)
-            }, e.prototype.getMaterialIconTextResourceid = function (t) {
-                switch (t) {
-                    case 31:
-                        return 161;
-                    case 32:
-                        return 163;
-                    case 33:
-                        return 165;
-                    case 34:
-                        return 167
+            return n(e, t), e.prototype._completedEnd = function () {
+                var e = o.default.model.ndock.get(1),
+                    i = o.default.model.ndock.get(2),
+                    n = o.default.model.ndock.get(3),
+                    r = o.default.model.ndock.get(4);
+                o.default.model.ndock.setData(this._raw_data);
+                var s = o.default.model.ndock.get(1),
+                    a = o.default.model.ndock.get(2),
+                    _ = o.default.model.ndock.get(3),
+                    u = o.default.model.ndock.get(4);
+                if (1 == e.state && 0 == s.state) {
+                    var l = o.default.model.ship.get(e.shipMemID);
+                    l.__updateNowHp__(l.hpMax), l.__updateNDockTime__(0), l.__updateNDockItem__([0, 0]), l.tired < 40 && l.__updateCond__(40)
                 }
-                throw new Error("unsupported param")
+                if (1 == i.state && 0 == a.state) {
+                    var l = o.default.model.ship.get(i.shipMemID);
+                    l.__updateNowHp__(l.hpMax), l.__updateNDockTime__(0), l.__updateNDockItem__([0, 0]), l.tired < 40 && l.__updateCond__(40)
+                }
+                if (1 == n.state && 0 == _.state) {
+                    var l = o.default.model.ship.get(n.shipMemID);
+                    l.__updateNowHp__(l.hpMax), l.__updateNDockTime__(0), l.__updateNDockItem__([0, 0]), l.tired < 40 && l.__updateCond__(40)
+                }
+                if (1 == r.state && 0 == u.state) {
+                    var l = o.default.model.ship.get(r.shipMemID);
+                    l.__updateNowHp__(l.hpMax), l.__updateNDockTime__(0), l.__updateNDockItem__([0, 0]), l.tired < 40 && l.__updateCond__(40)
+                }
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.MaterialIconText = r
+        }(r.APIBase);
+    e.NDockAPI = s
 }

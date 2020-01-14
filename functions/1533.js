@@ -19,36 +19,26 @@ const function1533 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(1534),
-        s = i(1535),
+    var o = i(5),
+        r = i(11),
+        s = i(1534),
         a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
+            function e(e, i, n, o) {
+                void 0 === o && (o = !1);
+                var r = t.call(this) || this;
+                return r._hideTelop = function () {
+                    createjs.Tween.get(r._telop).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        r._layer.removeChild(r._telop), r._telop = null, r._endTask()
+                    })
+                }, r._layer = e, r._type = i, r._mst_id = n, r._sub_text = o, r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy", {
-                get: function () {
-                    return this._enemy
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n, o) {
-                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
-            }, e.prototype.show = function (t) {
-                var e = new o.TweenTask;
-                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
-                    null != t && t()
-                })
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
+            return n(e, t), e.prototype._start = function () {
+                this._showTelop()
+            }, e.prototype._showTelop = function () {
+                this._telop = new s.BonusTelop, this._telop.position.set(o.default.width / 2, o.default.height / 2), 3 == this._type ? this._telop.initializeForShip(this._sub_text) : 2 == this._type ? this._telop.initializeForSlot() : 6 == this._type && this._telop.initializeForUseitem(this._mst_id), this._layer.addChild(this._telop), this._telop.play(), this._telop.once("complete", this._hideTelop)
             }, e
-        }(PIXI.Container);
-    e.LayerDeckInfo = a
+        }(r.TaskBase);
+    e.TaskBonusTelop = a
 }

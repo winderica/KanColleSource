@@ -19,57 +19,135 @@ const function1527 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1528),
-        r = i(1529),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._value = 0, e._lights = [], e._nums = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new o.ResultDialogNumLight;
-                    n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
-                }
-                for (var i = 0; i < 4; i++) {
-                    var s = new r.ResultDialogNum;
-                    s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
-                }
-                return e
+    var o = i(0),
+        r = i(1),
+        s = i(2),
+        a = i(30),
+        _ = i(20),
+        u = i(39),
+        l = i(8),
+        c = i(60),
+        h = i(13),
+        p = i(1528),
+        d = i(1529),
+        f = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype.setValue = function (t) {
-                this._value = Math.min(t, 9999);
-                for (var e = this._value, i = 0; i < this._nums.length; i++) {
-                    var n = this._nums[i],
-                        o = this._lights[i],
-                        r = e % 10;
-                    n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
+            return n(e, t), e.prototype._start = function () {
+                this._loadMVPImage()
+            }, e.prototype._loadMVPImage = function () {
+                var t = this,
+                    e = this._scene.data.battle_model.deck_f.ships,
+                    i = null,
+                    n = null,
+                    o = this._scene.data.getMvpIndex(!1);
+                if (o >= 0 && o < e.length && (i = e[o]), o = this._scene.data.getMvpIndex(!0), o >= 0 && o + 6 < e.length && (n = e[o + 6]), null == i && null == n) this._initMove();
+                else {
+                    var r = new h.ShipLoader;
+                    null != i && r.add(i.mst_id, i.isDamaged(), "full"), null != n && r.add(n.mst_id, n.isDamaged(), "full"), r.load(function () {
+                        t._showMVP(i)
+                    })
                 }
-            }, e.prototype.startLightAnimation = function () {
-                this.stopLightAnimation(), this._light_tweens = [];
-                for (var t = 0; t < this._lights.length; t++) {
-                    var e = this._nums[t],
-                        i = this._lights[t];
-                    if (0 == e.visible) i.visible = !1;
-                    else {
-                        i.alpha = 0, i.visible = !0;
-                        var n = createjs.Tween.get(i, {
-                            loop: !0
-                        }).to({
-                            alpha: 1
-                        }, 500).wait(500).to({
-                            alpha: 0
-                        }, 500).wait(500);
-                        this._light_tweens.push(n)
-                    }
+            }, e.prototype._showMVP = function (t) {
+                var e = this;
+                this._scene.view.layer_banner.banners_f.getBanner(t.index).createShowMVPCoinTween();
+                var i = t.mst_id,
+                    n = t.isDamaged(),
+                    r = o.default.resources.getShip(i, n, "full"),
+                    s = o.default.model.ship_graph.get(i).getBattleOffset(n);
+                this._scene.view.layer_mvp.createShowTween(r, s, 500).call(function () {
+                    e._playVoice(i)
+                }), this._initMove()
+            }, e.prototype._playVoice = function (t) {
+                var e = this._scene.data.battle_result_rank;
+                "S" != e && "A" != e && "B" != e || o.default.sound.voice.play(t.toString(), 23)
+            }, e.prototype._initMove = function () {
+                var t = this;
+                this._scene.view.layer_deck_info.friend.createHideGaugeTweens(-54), createjs.Tween.get(this._scene.view.layer_banner.info_f).wait(200).to({
+                    x: 87
+                }, 500), createjs.Tween.get(this._scene.view.layer_banner.banners_f).wait(200).to({
+                    x: 294
+                }, 500).call(function () {
+                    t._showPanel()
+                })
+            }, e.prototype._showPanel = function () {
+                var t = this,
+                    e = this._scene.data.base_exp,
+                    i = this._scene.data.getShipExp(!1),
+                    n = this._scene.data.battle_model.isPractice(),
+                    o = this._scene.data.battle_model.deck_f.isYugeki(),
+                    r = this._scene.view.panel_exp;
+                r.initialize(e, i, n, o), r.alpha = 0, r.visible = !0, createjs.Tween.get(r).to({
+                    x: 591,
+                    alpha: 1
+                }, 300).call(function () {
+                    t._showLevelup()
+                })
+            }, e.prototype._showLevelup = function () {
+                var t = this;
+                new p.TaskShowLevelup(this._scene, !1).start(function () {
+                    t._showExtraReward()
+                })
+            }, e.prototype._showExtraReward = function () {
+                var t = this,
+                    e = new a.SerialTask;
+                e.add(new d.TaskShowExtraResults(this._scene)), e.add(new u.WaitTask(500)), e.start(function () {
+                    1 == t._scene.data.battle_model.deck_f.isCombined() ? t._showNextGearButton() : t._endTask()
+                })
+            }, e.prototype._showNextGearButton = function () {
+                var t = this,
+                    e = new c.GearBtnNext;
+                e.position.set(1130, 648), e.initialize(), e.activate(), this._scene.view.addChild(e);
+                var i = new l.AreaBox(0);
+                i.buttonMode = !0, this._scene.view.addChild(i), i.once(r.EventType.CLICK, function () {
+                    e.deactivate(), t._scene.view.removeChild(e), t._scene.view.removeChild(i), t._hideMainDeckBanners()
+                })
+            }, e.prototype._hideMainDeckBanners = function () {
+                var t = this,
+                    e = new _.TweenTask,
+                    i = this._scene.view.layer_banner.banners_f.createHideTweens(0),
+                    n = i.length;
+                e.addTweens(i), i = this._scene.view.layer_banner.info_f.createHideTweens(0), e.addTweens(i);
+                var o = 100 * (n - 1) + 200;
+                i = this._scene.view.panel_exp.createHideShipExpTweens(300, o - 300), e.addTweens(i), e.addTween(this._scene.view.layer_mvp.createHideTween(300, o - 300)), e.addTween(this._scene.view.layer_deck_info.friend.createHideDeckNameTween(o - 200, 200)), e.start(function () {
+                    t._showSubDeckBanners()
+                })
+            }, e.prototype._showSubDeckBanners = function () {
+                var t = this,
+                    e = new _.TweenTask,
+                    i = this._scene.data.battle_model.deck_f.ships_sub;
+                this._scene.view.layer_banner.banners_f.initialize(i), this._scene.view.layer_banner.info_f.initialize(i);
+                var n = this._scene.view.layer_banner.banners_f.createShowTweens(0),
+                    r = n.length;
+                e.addTweens(n), n = this._scene.view.layer_banner.info_f.createShowTweens(0), e.addTweens(n);
+                var s = 100 * (r - 1) + 200,
+                    a = this._scene.data.getShipExp(!0);
+                n = this._scene.view.panel_exp.createShowShipExpTweens(a, 300, s - 300), e.addTweens(n);
+                var u = this._scene.data.getMvpIndex(!0);
+                if (u >= 0) {
+                    var l = i[u],
+                        c = l.mst_id,
+                        h = l.isDamaged(),
+                        p = o.default.resources.getShip(c, h, "full"),
+                        d = o.default.model.ship_graph.get(c).getBattleOffset(h);
+                    e.addTween(this._scene.view.layer_mvp.createShowTween(p, d, 300, s - 300).call(function () {
+                        t._playVoice(c)
+                    }));
+                    var f = this._scene.view.layer_banner.banners_f.getBanner(u);
+                    e.addTween(f.createShowMVPCoinTween())
                 }
-            }, e.prototype.stopLightAnimation = function () {
-                if (null != this._light_tweens) {
-                    for (var t = 0, e = this._light_tweens; t < e.length; t++) {
-                        var i = e[t];
-                        i.setPaused(!0), i = null
-                    }
-                    this._light_tweens = null
-                }
+                var y = this._scene.data.deck_name_f2;
+                e.addTween(this._scene.view.layer_deck_info.friend.createShowDeckNameTween(y, s - 200, 200)), e.start(function () {
+                    t._showLevelupCombined()
+                })
+            }, e.prototype._showLevelupCombined = function () {
+                var t = this;
+                new p.TaskShowLevelup(this._scene, !0).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.ResultDialogNumSet = s
+        }(s.TaskBase);
+    e.TaskExp = f
 }

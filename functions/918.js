@@ -19,22 +19,32 @@ const function918 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(23),
-        a = i(227),
-        _ = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e.build_ship_00 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(52)), e.build_ship_01 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(53)), e.build_ship_02 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(54)), e.build_ship_03 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(55)), e.build_ship_04 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(56)), e.build_ship_00.alpha = 0, e.build_ship_01.alpha = 0, e.build_ship_02.alpha = 0, e.build_ship_03.alpha = 0, e.build_ship_04.alpha = 0, e.addChild(e.build_ship_00, e.build_ship_01, e.build_ship_02, e.build_ship_03, e.build_ship_04), e
             }
-            return n(e, t), e.prototype.preload = function (t, e, i, n) {
-                var a = this;
-                this._mst_id = t, this._message = e, (new s.SlotLoader).add(t, "card").load(function () {
-                    a._target.texture = r.default.resources.getSlotitem(t, "card"), a._target.x = o.default.width / 2 - a._target.width / 2, a._target.y = 67, a._rarityBG.initiailzeForSlotitem(i, function () {
-                        a._messageBox.initialize(a._message), null != n && n()
-                    })
-                })
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.build_ship_00.alpha = 0, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0, t) {
+                    case 1:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 2:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 3:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 4:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 0;
+                        break;
+                    case 5:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 1
+                }
+            }, e.prototype.dispose = function () {
+                this.build_ship_00 = null, this.build_ship_01 = null, this.build_ship_02 = null, this.build_ship_03 = null, this.build_ship_04 = null, this.removeChildren()
             }, e
-        }(a.RewardAnimation);
-    e.RewardAnimationSlot = _
+        }(PIXI.Container);
+    e.NormalBuildShip = r
 }

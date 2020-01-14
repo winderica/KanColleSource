@@ -19,72 +19,44 @@ const function720 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(4),
-        s = i(37),
-        a = i(56),
-        _ = i(721),
-        l = i(57),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onMouseOut = function (t) {
-                    t.target != i.saveButton && t.target != i.deleteButton && i.removeFocus()
-                }, i._onClickSave = function () {
-                    i.onClickSave && i.onClickSave(i._presetId)
-                }, i._onClickDelete = function () {
-                    i.onClickDelete && i.onClickDelete(i._presetId)
-                }, i._onClickExtension = function () {
-                    i.onClickExtension && i.onClickExtension()
-                }, i._index = e, i.frame_bg = new PIXI.Sprite(a.ORGANIZE_MAIN.getTexture(29)), i.frame_bg.buttonMode = !1, i.frame_bg.interactive = !0, i.frame_bg.addListener(o.EventType.MOUSEOVER, function () {
-                    i._onMouseOver()
-                }), i.frame_bg.addListener(o.EventType.MOUSEOUT, function (t) {
-                    i._onMouseOut(t)
-                }), i.addChild(i.frame_bg);
-                var n = a.ORGANIZE_MAIN.getTexture(33);
-                i.presetFocuses = new PIXI.Sprite(n), i.presetFocuses.x = -6, i.presetFocuses.y = -3, i.presetFocuses.visible = !1, i.addChild(i.presetFocuses), i.shipBanner = new PIXI.Sprite, i.shipBanner.position.set(307, 7), i.deckName = new r.TextBox(21, 5523516), i.deckName.position.set(3, 4), i.deckCount = new r.TextBox(21, 5523516), i.deckCount.position.set(1, 36), i.addChild(i.shipBanner), i.addChild(i.deckName), i.addChild(i.deckCount);
-                var s = a.ORGANIZE_MAIN.getTexture(4),
-                    u = a.ORGANIZE_MAIN.getTexture(5),
-                    c = a.ORGANIZE_MAIN.getTexture(1);
-                return i.saveButton = new l.SimpleButton(s, s), i.deleteButton = new l.SimpleButton(c, c), i.offSaveButton = new PIXI.Sprite(u), i.deleteButton.interactive = i.deleteButton.buttonMode = !0, i.saveButton.interactive = i.saveButton.buttonMode = !0, i.deleteButton.position.set(490, 36), i.saveButton.x = i.offSaveButton.x = 250, i.saveButton.y = i.offSaveButton.y = 36, i.saveButton.onClick = function () {
-                    i._onClickSave()
-                }, i.deleteButton.onClick = function () {
-                    i._onClickDelete()
-                }, i.saveButton.onMouseOver = function () {
-                    i._onMouseOver()
-                }, i.deleteButton.onMouseOver = function () {
-                    i._onMouseOver()
-                }, i.saveButton.onMouseOut = function (t) {
-                    i._onMouseOut(t)
-                }, i.deleteButton.onMouseOut = function (t) {
-                    i._onMouseOut(t)
-                }, i.addChild(i.offSaveButton, i.saveButton, i.deleteButton), i.presetExtensions = new _.PresetExtensionView(e), i.presetExtensions.onClick = i._onClickExtension, i.addChild(i.presetExtensions), i
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = o.ORGANIZE_MAIN.getTexture(31),
+                    n = o.ORGANIZE_MAIN.getTexture(32);
+                e.frameShutterLeft = new PIXI.Sprite(i), e.frameShutterRight = new PIXI.Sprite(n);
+                var r = new PIXI.Graphics,
+                    s = new PIXI.Graphics;
+                return r.beginFill(0, 1), r.moveTo(0, 15), r.lineTo(15, 0), r.lineTo(247, 0), r.lineTo(247, 157), r.lineTo(13, 157), r.lineTo(0, 142), r.lineTo(0, 15), r.endFill(), s.beginFill(0, 1), s.moveTo(0, 0), s.lineTo(232, 0), s.lineTo(247, 16), s.lineTo(247, 141), s.lineTo(231, 157), s.lineTo(0, 157), s.lineTo(0, 0), s.endFill(), s.x = s.width, e.frameShutterLeft.mask = r, e.frameShutterRight.mask = s, e.frameShutterRight.position.set(e.frameShutterRight.width, 0), e.frameShutterLeft.position.set(0, 0), e.frameShutterRight.position.set(247, 0), e.frameShutterLeft.interactive = !0, e.frameShutterRight.interactive = !0, e.addChild(e.frameShutterLeft, e.frameShutterRight, r, s), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.presetExtensions.dispose(), this.deleteButton.dispose(), this.saveButton.dispose(), this.deckName.destroy(), this.deckCount.destroy(), this.onClickSave = null, this.onClickDelete = null, this.onClickExtension = null, this.frame_bg = null, this.shipBanner = null, this.deckName = null, this.deckCount = null, this.saveButton = null, this.deleteButton = null, this.offSaveButton = null, this.presetFocuses = null, this.presetExtensions = null, this._index = null, this._presetId = null
-            }, e.prototype._onMouseOver = function () {
-                this.focus()
-            }, e.prototype.focus = function () {
-                this.presetFocuses.visible = !0
-            }, e.prototype.removeFocus = function () {
-                this.presetFocuses.visible = !1
-            }, e.prototype.update = function (t, e, i, n, o, r) {
-                void 0 === o && (o = null);
-                var s = t,
-                    a = null != s;
-                if (this.shipBanner.visible = !1, this.deckName.visible = !1, this.deckCount.visible = !1, this.saveButton.visible = !1, this.deleteButton.visible = !1, this.offSaveButton.visible = !1, this.presetExtensions.visible = !1, this.frame_bg.visible = !1, this.frame_bg.interactiveChildren = !1, !a) return 0 == r && (this.frame_bg.visible = !0, this.presetExtensions.update(n), this.presetExtensions.visible = !0), !0;
-                this.frame_bg.interactiveChildren = !0, this.frame_bg.visible = !0;
-                var _ = 0 == s.getShipCount();
-                return _ || (this.updateShip(s), this.shipBanner.visible = !0, this.deckName.visible = !0, this.deckCount.visible = !0), this.updateButton(s.presetID, e, i, _, o == s.presetID), !1
-            }, e.prototype.updateShip = function (t) {
-                this.deckName.text = t.deckName;
-                var e = t.getFrontShip();
-                new s.TaskLoadShipResource("banner", this.shipBanner, e.mstID, e.isDamaged()).start();
-                var i = t.getShipCount();
-                this.deckCount.text = i + "\u96bb \u7de8\u6210"
-            }, e.prototype.updateButton = function (t, e, i, n, o) {
-                this.offSaveButton.visible = !1, this.saveButton.visible = !1, e ? (this.offSaveButton.visible = o && !i, this.saveButton.visible = !o && !i) : (this.offSaveButton.visible = !0, this.saveButton.visible = !1), this.deleteButton.visible = !n, this._presetId = t
+                this.cacheAsBitmap = !1, this.frameShutterLeft.removeChildren(), this.frameShutterRight.removeChildren(), this.frameShutterLeft.mask = null, this.frameShutterRight.mask = null, this.frameShutterLeft = null, this.frameShutterRight = null, this.removeChildren()
+            }, e.prototype.openAnimation = function (t, e) {
+                var i = this;
+                void 0 === e && (e = 250), this.cacheAsBitmap = !1;
+                this.frameShutterLeft.position.x = 0, createjs.Tween.get(this.frameShutterLeft).to({
+                    x: -247
+                }, e).call(function () {
+                    i.cacheAsBitmap = !0, t()
+                }), this.frameShutterRight.position.x = 247, createjs.Tween.get(this.frameShutterRight).to({
+                    x: 494
+                }, e)
+            }, e.prototype.closeAnimation = function (t, e) {
+                var i = this;
+                void 0 === e && (e = 250), this.cacheAsBitmap = !1;
+                this.frameShutterLeft.position.x = -247, createjs.Tween.get(this.frameShutterLeft).to({
+                    x: 0
+                }, e).call(function () {
+                    i.cacheAsBitmap = !0, t()
+                }), this.frameShutterRight.position.x = 494, createjs.Tween.get(this.frameShutterRight).to({
+                    x: 247
+                }, e)
+            }, e.prototype.open = function () {
+                this.cacheAsBitmap = !1, this.frameShutterLeft.x = -247, this.frameShutterRight.x = 494, this.cacheAsBitmap = !0
+            }, e.prototype.close = function () {
+                this.cacheAsBitmap = !1, this.frameShutterLeft.x = 0, this.frameShutterRight.x = 247, this.cacheAsBitmap = !0
             }, e
         }(PIXI.Container);
-    e.PresetEditSlot = u
+    e.ShipSlotShutter = r
 }

@@ -20,48 +20,58 @@ const function1168 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(4),
-        s = i(135),
-        a = i(91),
-        _ = i(410),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOn = function (t, e) {
-                    i._description.x = 0 == t ? 202 : 1 == t ? 535 : 865, i._description.text = e.replace(/<br>/g, "\n")
-                }, i._onMouseOff = function () {
-                    i._description.text = ""
-                }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(18, 16777215), i._description.y = 217, i.addChild(i._description), i
+        r = i(93),
+        s = i(27),
+        a = i(94),
+        _ = i(1169),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), -1 == t ? n._hideDialog(!1) : n._connectAPI()
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(29));
-                t.position.set(186, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(13)), t.position.set(184, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(28)), t.position.set(516, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(17)), t.position.set(516, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(27)), t.position.set(846, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(15)), t.position.set(846, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(25)), t.position.set(1176, 144), this._bg_layer.addChild(t), this._icons = [];
-                for (var e = 0; e < 12; e++) {
-                    var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
-                    i.x = 204 + 330 * Math.floor(e / 4) + e % 2 * 150, i.y = 289 + (Math.floor(e % 4) <= 1 ? 0 : 180), i.initialize(Math.floor(e / 4)), this.addChild(i), this._icons.push(i)
-                }
-            }, e.prototype.update = function () {
-                for (var t = o.default.model.payitem.getOrder(0), e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e],
-                        n = t[e],
-                        r = o.default.model.payitem.getData(n);
-                    i.update(r)
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._description.destroy(), this._cb_onSelect = null
+            return n(e, t), e.prototype._start = function () {
+                this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new _.KouMedalUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
+                })
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, 0)),
+                    n = i.result;
+                i.start(function () {
+                    1 == n.hasCaution() ? t._hideDialog(!0) : (t._result = n, t._hideDialog(!1))
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._layer,
+                    n = new a.TaskItemOverflowConfirm(i);
+                n.start(function () {
+                    if (1 == n.result) {
+                        var i = new r.UseItemUseAPI(e, !0, 0),
+                            o = i.result;
+                        i.start(function () {
+                            t._result = o, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(a.ViewBase);
-    e.NormalItemShopMain = l
+        }(s.TaskWithResult);
+    e.TaskUseKouMedal = u
 }

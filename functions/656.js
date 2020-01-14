@@ -19,15 +19,15 @@ const function656 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
+    var o = i(10),
         r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._view = e, i
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._view.deactivate(), this._endTask()
+            return n(e, t), e.prototype.update = function (t) {
+                var e = -1;
+                1 == t ? e = 47 : 2 == t ? e = 46 : 3 == t ? e = 45 : 4 == t ? e = 44 : 5 == t ? e = 43 : 6 == t ? e = 42 : 7 == t ? e = 41 : 8 == t ? e = 40 : 9 == t ? e = 39 : 10 == t && (e = 38), this.visible = !1, -1 != e && (this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0)
             }, e
-        }(o.TaskBase);
-    e.FinalizeTask = r
+        }(PIXI.Sprite);
+    e.RankIcon = r
 }

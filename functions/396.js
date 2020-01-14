@@ -19,28 +19,45 @@ const function396 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(173),
-        a = i(342),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._mst_id = i, n._marriageAnimation = new a.MarriageAnimation(i), n
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function (t) {
+                    null != i._cb_onClick && i._cb_onClick(t)
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._marriageAnimation.PreLoad(function () {
-                    t._marriageAnimation.Initialize(), o.default.view.overLayer.addChild(t._marriageAnimation), t._marriageAnimation.Play(!0, function () {
-                        o.default.view.overLayer.removeChild(t._marriageAnimation), t._resetBGM()
-                    })
-                })
-            }, e.prototype._resetBGM = function () {
-                var t = s.AlbumConst.BGM_ID_FOR_SHIP;
-                o.default.sound.bgm.play(t), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._btn = null, this._marriageAnimation.Dispose(), this._marriageAnimation = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this._update(!1)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(r.TaskBase);
-    e.TaskWedding = _
+        }(PIXI.Sprite),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype._update = function (t) {
+                this.texture = 0 == t ? o.ALBUM_MAIN.getTexture(5) : o.ALBUM_MAIN.getTexture(6)
+            }, e
+        }(s);
+    e.NextBtn = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype._update = function (t) {
+            this.texture = 0 == t ? o.ALBUM_MAIN.getTexture(7) : o.ALBUM_MAIN.getTexture(8)
+        }, e
+    }(s);
+    e.PrevBtn = _
 }

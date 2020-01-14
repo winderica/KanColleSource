@@ -19,49 +19,36 @@ const function112 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(28),
+    var o = i(10),
+        r = i(1),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common"),
-                    n = new PIXI.Sprite(i);
-                i = o.default.resources.getUIImage("hpgauge/hp_s_bg2.png", "common");
-                var r = new PIXI.Sprite(i),
-                    s = new PIXI.Sprite,
-                    a = new PIXI.Graphics,
-                    _ = new PIXI.Graphics;
-                i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common");
-                var l = new PIXI.Sprite(i);
-                s.position.set(-34, -27), s.texture = o.default.resources.getUIImage("hpgauge/hp_s_red_light.png", "common"), s.visible = !1, a.beginFill(16777215), a.drawRect(0, 0, 98, 11), a.endFill();
-                var u = new PIXI.Container;
-                u.mask = n, u.addChild(a, n), u.cacheAsBitmap = !0;
-                var c = new PIXI.Container;
-                return c.mask = l, c.addChild(_, l), e.addChild(u, s, c, r), e.spriteRedLight = s, e.graphicsGauge = _, e.containerGaugeBackground = u, e.containerGauge = c, e
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                i._toRelease = e, i._tween = null, i._onMouseOver = function (t) {
+                    i._balloon.visible = t.type === r.EventType.MOUSEOVER
+                }, i._onClick = function () {
+                    i.onClick()
+                }, i._frame = new PIXI.Sprite(o.COMMON_MISC.getTexture(155)), i._frame.alpha = 0;
+                var n = Math.round(i._frame.width / 2),
+                    s = new PIXI.Sprite(o.COMMON_MISC.getTexture(157));
+                return s.anchor.set(.5, .5), s.position.set(n + 1, Math.round(i._frame.height / 2) + 2), i._text = new PIXI.Sprite(o.COMMON_MISC.getTexture(154)), i._text.anchor.set(.5, 0), i._text.position.set(n, -10), i.addChild(i._frame, s, i._text), i._toRelease && (i._balloon = new PIXI.Sprite(o.COMMON_MISC.getTexture(156)), i._balloon.position.set(29, -29), i._balloon.visible = !1, i.addChild(i._balloon), i._text.on(r.EventType.MOUSEOVER, i._onMouseOver).on(r.EventType.MOUSEOUT, i._onMouseOver).on(r.EventType.CLICK, i._onClick), i._text.interactive = i._text.buttonMode = !0), i
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                var i = t / e * 100;
-                i <= 0 ? i = 0 : 100 <= i && (i = 100), this.updateGauge(i);
-                var n = r.ShipUtil.getDamageType(t, e),
-                    o = 25 == n,
-                    s = 50 == n;
-                this.updateTaihaLamp(o || s)
-            }, e.prototype.updateTaihaLamp = function (t) {
-                if (createjs.Tween.removeTweens(this.spriteRedLight), t) {
-                    this.spriteRedLight.visible = !0, this.spriteRedLight.alpha = 0;
-                    var e = createjs.Tween.get(this.spriteRedLight).to({
-                        alpha: .7
-                    }, 1e3).to({
-                        alpha: 0
-                    }, 1e3);
-                    e.loop = !0, e.play(null)
-                } else this.spriteRedLight.visible = !1, this.spriteRedLight.alpha = 0
-            }, e.prototype.updateGauge = function (t) {
-                var e = 0;
-                t < 33.3 ? (e = 255 << 16, e += t / 33.3 * 128 << 8) : t < 66.6 ? (e = 255 << 16, e += 32768, e += (t - 33.3) / 33.3 * 128 << 8) : (e = 255 - (t - 66.6) / 33.3 * 255 << 16, e += 65280), this.containerGauge.cacheAsBitmap = !1, this.graphicsGauge.clear(), this.graphicsGauge.beginFill(e), this.graphicsGauge.drawRect(0, 0, t / 100 * 98, 11), this.graphicsGauge.endFill(), this.containerGauge.cacheAsBitmap = !0
+            return n(e, t), e.prototype.adjustFramePosition = function (t, e) {
+                this._frame.x += t, this._frame.y += e
+            }, e.prototype.activate = function () {
+                null === this._tween && (this._tween = createjs.Tween.get(this._frame, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 800).to({
+                    alpha: 0
+                }, 800).wait(200).play(null))
+            }, e.prototype.deactivate = function () {
+                null !== this._tween && (this._tween.setPaused(!0), createjs.Tween.removeTweens(this._frame), this._tween = null), this._frame.alpha = 0
             }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this.spriteRedLight), this.containerGauge.cacheAsBitmap = !1, this.containerGauge.mask = null, this.containerGauge.removeChildren(), this.containerGauge = null, this.containerGaugeBackground.cacheAsBitmap = !1, this.containerGaugeBackground.mask = null, this.containerGaugeBackground.removeChildren(), this.containerGaugeBackground = null, this.removeChildren()
+                this.deactivate(), this._toRelease && (this._text.interactive = !1, this._text.off(r.EventType.MOUSEOVER, this._onMouseOver).off(r.EventType.MOUSEOUT, this._onMouseOver).off(r.EventType.CLICK, this._onClick)), this.onClick = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.HpGaugeView = s
+    e.CombinedView = s
 }

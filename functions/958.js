@@ -19,17 +19,42 @@ const function958 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_req_air_corps/change_name", o._area_id = e, o._airunit_id = i, o._changed_name = n, o
+    var o = i(0),
+        r = i(17),
+        s = i(2),
+        a = i(959),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_area_id = this._area_id, this._post_data.api_base_id = this._airunit_id, this._post_data.api_name = this._changed_name, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this,
+                    e = o.default.model.map.getArea(r.EVENT_AREA_ID),
+                    i = null != e;
+                new a.TaskLoadResourcesSally(i).start(function () {
+                    t._showTopView()
+                })
+            }, e.prototype._showTopView = function () {
+                var t = o.default.model.deck.num > 1;
+                this._scene.initialize(t), this._scene = null, this._endTask()
             }, e
-        }(o.APIBase);
-    e.AirUnitChangeNameAPI = r
+        }(s.TaskBase);
+    e.PreInitializeTask = _;
+    var u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(103), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._scene.startTopTask(), this._endTask()
+        }, e
+    }(s.TaskBase);
+    e.InitializeTask = u
 }

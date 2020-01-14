@@ -19,26 +19,34 @@ const function1233 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1234),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(0),
+        r = i(2),
+        s = i(34),
+        a = i(71),
+        _ = i(420),
+        u = i(421),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._data = e, n._scene_initialize_delegate = i, n
             }
             return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
                 var t = this;
-                (new r.TaskLoadResourcesPractice).start(function () {
-                    t._initView()
+                (new u.TaskLoadResources).start(function () {
+                    t._connectAPI()
                 })
-            }, e.prototype._initView = function () {
-                var t = this;
-                this._scene.view.bg.setDay(function () {
-                    t._scene.view.initialize(), t._endTask()
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = new s.APIConnector;
+                20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
+                e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
+                    null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+                this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskInitPre = s
+        }(r.TaskBase);
+    e.TaskDutyScenePreInitialize = l
 }

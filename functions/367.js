@@ -19,19 +19,28 @@ const function367 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(368),
-        r = function (t) {
+    var o = i(0),
+        r = i(33),
+        s = i(1022),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._rader = new o.Rader, e._rader.x = -188, e._rader.y = -225, e.addChild(e._rader), e
+                return t.call(this) || this
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._rader.initialize()
-            }, e.prototype.update = function (t) {
-                this._rader.update(t)
+                this._banner = new r.ShipBanner, this._alert = new s.CompLackAlerts, this._alert.initialize(), this._alert.position.set(188, 53), this.addChild(this._banner), this.addChild(this._alert)
+            }, e.prototype.update = function (t, e) {
+                if (null == t) this.visible = !1;
+                else {
+                    var i = !1,
+                        n = o.default.model.deck.isInDeck(t.memID);
+                    if (null != n) {
+                        null != o.default.model.deck.get(n[0]).expedition && (i = !0)
+                    }
+                    this._banner.update(t, i), this._banner.updatePlate(t.label), e && this._banner.updateLockSlot(t), this._alert.update(t), this.visible = !0
+                }
             }, e.prototype.dispose = function () {
-                this._rader.dispose()
+                this._banner.dispose()
             }, e
         }(PIXI.Container);
-    e.RaderCanvas = r
+    e.CompBannerAndLack = a
 }

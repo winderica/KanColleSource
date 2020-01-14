@@ -19,48 +19,21 @@ const function888 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.STAR = 5, e.SHOOTING_STAR_DISTANCE = 45;
-                var i = Math.random();
-                e.stars = [], e.starTables = new Array;
-                for (var n = 0; n < e.STAR; n++) {
-                    var r = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(143));
-                    r.anchor.set(.5, .5), r.alpha = 0, r.position.set(0, 0);
-                    var s = Math.sin(Math.PI / 180 * (360 * i)),
-                        a = Math.cos(Math.PI / 180 * (360 * i)),
-                        _ = {
-                            x: 0,
-                            y: 0
-                        };
-                    _.x = s, _.y = a, e.stars.push(r), e.starTables.push(_), e.addChild(r)
-                }
-                return e
+    var o = i(0),
+        r = i(9),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_nyukyo/speedchange", i.api_ndock_id = e, i
             }
-            return n(e, t), e.prototype.updateStarPosition = function () {
-                for (var t = 0; t < this.stars.length; t++) {
-                    var e = Math.PI / 180 * (360 * Math.random()),
-                        i = Math.sin(e),
-                        n = Math.cos(e);
-                    this.starTables[t].x = i, this.starTables[t].y = n
-                }
-            }, e.prototype.updateAlpha = function (t) {
-                void 0 === t && (t = 0);
-                for (var e = 0; e < this.stars.length; e++) {
-                    this.stars[e].alpha = t
-                }
-            }, e.prototype.updateAnimation = function (t) {
-                for (var e = Math.PI / 180 * (180 * t), i = 0; i < this.stars.length; i++) {
-                    var n = this.stars[i],
-                        o = this.starTables[i];
-                    n.rotation = e, n.position.set(o.x * this.SHOOTING_STAR_DISTANCE * t, o.y * this.SHOOTING_STAR_DISTANCE * t)
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0; t < this.stars.length; t++) this.stars[t] = null;
-                this.starTables = null, this.stars = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_ndock_id = this.api_ndock_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.useItem.get(1),
+                    i = o.default.model.ndock.get(this.api_ndock_id),
+                    n = o.default.model.ship.get(i.shipMemID);
+                n.__updateNowHp__(n.hpMax), n.__updateNDockTime__(0), n.__updateNDockItem__([0, 0]), n.tired < 40 && n.__updateCond__(40), i.__updateCompleteTime__(0), i.__updateShipId__(-1), i.__updateState__(0), e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.GreenStarParticle = r
+        }(r.APIBase);
+    e.SpeedChangeAPI = s
 }

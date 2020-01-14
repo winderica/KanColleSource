@@ -1,6 +1,10 @@
 const function851 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
+
+    function n(t, e) {
+        return t > 0 && 0 === e ? "\u672c\u6539\u88c5\u3067\u306f\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092" + t + "\u500b\n\u4f7f\u7528\u3057\u307e\u3059\u3002" : t > 0 && e > 0 ? "\u672c\u6539\u88c5\u3067\u306f\u300c\u9ad8\u901f\u5efa\u9020\u6750\u300d\u3092\n" + e + "\u500b\u3001\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092" + t + "\u500b\n\u4f7f\u7528\u3057\u307e\u3059\u3002" : ""
+    }
+    var o = this && this.__extends || function () {
         var t = Object.setPrototypeOf || {
             __proto__: []
         }
@@ -19,222 +23,235 @@ const function851 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(47),
-        a = i(852),
-        _ = i(853),
-        l = i(854),
-        u = i(856),
-        c = i(857),
-        h = i(858),
-        p = i(859),
-        d = i(860),
-        f = i(343),
-        y = i(861),
-        m = i(862),
-        g = i(863),
-        v = i(170),
-        b = i(864),
-        w = i(873),
-        x = i(874),
-        I = i(875),
-        T = i(86),
-        O = i(224),
-        C = function (t) {
+    var r = i(4),
+        s = i(3),
+        a = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return o(e, t), e.prototype.showMessageOneItem = function (t, e, i, n) {
+                if (this.hideAll(), i > 0 || n > 0) {
+                    var o = new h;
+                    o.update(t, e, i, n), this._current = o
+                } else {
+                    var o = new _;
+                    o.update(t, e, i, n), this._current = o
+                }
+                this.addChild(this._current)
+            }, e.prototype.showMessageTwoItems = function (t, e, i, n, o, r) {
+                this.hideAll();
+                var s = new u;
+                s.update(t, e, i, n, o, r), this.addChild(s), this._current = s
+            }, e.prototype.showMessageThreeItems = function (t, e, i, n, o, r, s, a) {
+                this.hideAll();
+                var _ = new l;
+                _.update(t, e, i, n, o, r, s, a), this.addChild(_), this._current = _
+            }, e.prototype.showMessageFourItems = function (t, e, i, n, o, r, s, a, _, u) {
+                this.hideAll();
+                var l = new c;
+                l.update(t, e, i, n, o, r, s, a, _, u), this.addChild(l), this._current = l
+            }, e.prototype.showMessageKits = function (t, e) {
+                this.hideAll();
+                var i = new p;
+                i.update(t, e), this.addChild(i), this._current = i
+            }, e.prototype.showAlertLackOfItem = function (t, e) {
+                this.hideAll();
+                var i = new d;
+                i.update(t, e), this.addChild(i), this._current = i
+            }, e.prototype.hideAll = function () {
+                null != this._current && (null != this._current.parent && this._current.parent.removeChild(this._current), this._current.dispose(), this._current = null)
+            }, e.prototype.dispose = function () {
+                this.hideAll(), this.removeChildren()
+            }, e
+        }(PIXI.Container);
+    e.KaizoRequireItemPanel = a;
+    var _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.nDocks = [], e.listPageIndex = 0, e.shipSortKeyType = 4, e._onClickEmptySlot = function (t) {
-                    e.timerState = x.TimerState.UpdateOnly;
-                    var i = new l.PhaseRepairShipChoice(e, e.repairShipChoiceView, e.pagerView, e.shipSortButton, e.repairShipChoiceBackground);
-                    i.onComplete = function (n) {
-                        e._onCompletePhaseRepairShipChoice(t, i, n)
-                    }, i.start(e.listPageIndex, e.shipSortKeyType)
-                }, e._onClickExtension = function (t) {
-                    r.default.view.clickGuard = !0;
-                    var i = t - 1;
-                    e.timerState = x.TimerState.UpdateOnly, new m.OpenNewDockAPI(t).start(function () {
-                        e.mainView.unLockAnimation(i, function () {
-                            var t = r.default.model.useItem.get(v.RepairConst.OPEN_KEY_ITEMID),
-                                i = 0 < t.count;
-                            e.mainView.updateExtensionState(r.default.model.ndock.getAll(), i), e.timerState = x.TimerState.WaitComplete, r.default.view.clickGuard = !1
-                        })
-                    })
-                }, e.onUpdateNDockTimer = function () {
-                    var t = Date.now();
-                    switch (e.mainView.updateTime(t, e.nDocks), e.timerState) {
-                        case x.TimerState.UpdateOnly:
-                            return;
-                        case x.TimerState.WaitComplete:
-                            for (var i = 0; i < e.nDocks.length; i++) {
-                                var n = e.nDocks[i];
-                                if (1 == n.state) {
-                                    if (n.completeTime < t) {
-                                        r.default.view.clickGuard = !0, e.timerState = x.TimerState.UpdateOnly;
-                                        return void(new f.NDockAPI).start(function () {
-                                            var t = r.default.model.ndock.getAll();
-                                            e.mainView.hideAnimation(t, function () {
-                                                e.updateNDocks(t), e.timerState = x.TimerState.WaitComplete, r.default.view.clickGuard = !1
-                                            }), e.nDocks = t
-                                        })
-                                    }
-                                }
-                            }
-                    }
-                }, e._onCompletePhaseRepairShipChoice = function (t, i, n) {
-                    switch (e.listPageIndex = i.pageIndex, e.shipSortKeyType = i.shipSortKeyType, n) {
-                        case !1:
-                            r.default.view.clickGuard = !0, i.hide(function () {
-                                i.dispose(), r.default.view.clickGuard = !1, e.timerState = x.TimerState.WaitComplete
-                            });
-                            break;
-                        case !0:
-                            var o = i.memShipId,
-                                s = new u.PhaseRepairShipConfig(e, e.repairShipConfigView, e.repairShipConfigBackground);
-                            s.onComplete = function (n) {
-                                e._onCompletePhaseRepairShipConfig(t, i, s, n)
-                            }, s.start(o)
-                    }
-                }, e._onCompletePhaseRepairShipConfig = function (t, i, n, o) {
-                    switch (o) {
-                        case !1:
-                            r.default.view.clickGuard = !0, n.hide(function () {
-                                n.dispose(), r.default.view.clickGuard = !1
-                            });
-                            break;
-                        case !0:
-                            var s = new a.PhaseRepairConfirm(r.default.view.overLayer, e.useRepairConfirmView, e.repairConfirmBackground);
-                            s.onComplete = function (o) {
-                                e._onCompletePhaseRepairConfirm(t, i, n, s, o)
-                            }, s.start(i.memShipId, n.useHiSpeed)
-                    }
-                }, e._onCompletePhaseRepairConfirm = function (t, i, n, o, s) {
-                    switch (s) {
-                        case !1:
-                            r.default.view.clickGuard = !0, o.hide(function () {
-                                o.dispose(), r.default.view.clickGuard = !1
-                            });
-                            break;
-                        case !0:
-                            var a = i.memShipId,
-                                _ = n.useHiSpeed,
-                                l = t - 1,
-                                u = r.default.model.ship.get(a),
-                                c = {
-                                    hpNow: u.hpNow,
-                                    hpMax: u.hpMax,
-                                    damaged: u.isDamaged(),
-                                    completeTime: u.getRepairTime()
-                                },
-                                h = new y.StartAPI(t, i.memShipId, _);
-                            e.mainView.stopAnimation(l), h.start(function () {
-                                var s = (r.default.model.useItem.get(31), r.default.model.useItem.get(33), r.default.model.useItem.get(1)),
-                                    a = new f.NDockAPI;
-                                r.default.view.portMain.updateInfo(), a.start(function () {
-                                    e.nDocks = r.default.model.ndock.getAll();
-                                    for (var a = 0 < s.count, h = 0, p = e.nDocks.length; h < p; h++) {
-                                        var d = e.nDocks[h];
-                                        0 != d.state || 1 != e.mainView.dockState(h) ? 1 == d.state && e.mainView.updateHighSpeedButton(h, a) : e.mainView.forceEnd(h)
-                                    }
-                                    var f = e.nDocks[l];
-                                    _ || 1 == f.state ? (e.mainView.updateViewState(l, 1), e.mainView.updateShipInfo(l, c.hpNow, c.hpMax, u.level, u.mstID, u.name, u.memID, c.damaged, u.starNum, u.isMarriage()), e.mainView.updateDockInfo(l, 1, t, c.completeTime + Date.now())) : e.mainView.updateViewState(l, f.state), i.dispose(), n.dispose(), o.hide(function () {
-                                        o.dispose();
-                                        var i = r.default.model.ndock.get(t);
-                                        _ ? e.mainView.highSpeedAnimation(l, function () {
-                                            e.mainView.updateViewState(l, i.state), e.timerState = x.TimerState.WaitComplete
-                                        }) : (1 == i.state && e.mainView.playAnimation(l), e.timerState = x.TimerState.WaitComplete);
-                                        var n = u.mstID,
-                                            s = c.hpNow / c.hpMax > .5 ? 11 : 12;
-                                        r.default.sound.voice.play(n.toString(), s)
-                                    })
-                                })
-                            })
-                    }
-                }, e._onClickHiSpeed = function (t) {
-                    e.timerState = x.TimerState.UpdateOnly;
-                    var i = new PIXI.Graphics;
-                    i.beginFill(0, 1), i.drawRect(0, 0, o.default.width, o.default.height), i.endFill();
-                    var n = new _.PhaseHiSpeedRepairConfirm(r.default.view.overLayer, e.useHiSpeedRepairConfirmView, i);
-                    n.onComplete = function (i) {
-                        e._onCompletePhaseHiSpeedRepairConfirm(t, n, i)
-                    }, n.start(t)
-                }, e._onCompletePhaseHiSpeedRepairConfirm = function (t, i, n) {
-                    switch (n) {
-                        case !1:
-                            i.hide(function () {
-                                i.dispose(), e.timerState = x.TimerState.WaitComplete
-                            });
-                            break;
-                        case !0:
-                            r.default.view.clickGuard = !0;
-                            var o = t - 1,
-                                s = r.default.model.ndock.get(t).shipMemID;
-                            new g.SpeedChangeAPI(t).start(function () {
-                                var n = (r.default.model.ndock.get(t), r.default.model.ndock.getAll()),
-                                    a = r.default.model.useItem.get(1),
-                                    _ = 0 < a.count;
-                                r.default.view.portMain.updateInfo();
-                                for (var l = 0; l < n.length; l++) {
-                                    1 == n[l].state && e.mainView.updateHighSpeedButton(l, _)
-                                }
-                                i.hide(function () {
-                                    var n = r.default.model.ship.get(s).mstID;
-                                    r.default.sound.voice.play(n.toString(), 26), i.dispose(), e.mainView.highSpeedAnimation(o, function () {
-                                        r.default.view.clickGuard = !1;
-                                        r.default.model.ship.get(s);
-                                        e.mainView.stopAnimation(o), e.mainView.updateDockInfo(o, 0, t, 0), e.mainView.updateViewState(o, 0), e.timerState = x.TimerState.WaitComplete
-                                    })
-                                })
-                            })
-                    }
-                }, e
+                return e._icon = new PIXI.Sprite, e._icon.position.set(87, 0), e.addChild(e._icon), e._message = new r.TextBox(18, 1644567), e._message.position.set(0, 95), e.addChild(e._message), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                for (var t = 0; t < this.nDocks.length; t++) this.nDocks[t] = null;
-                this.mainView.dispose(), this.__stopNDockTimer__(), this.repairShipChoiceView.dispose(), this.repairShipConfigView.dispose(), this.useRepairConfirmView.dispose(), this.useHiSpeedRepairConfirmView.dispose(), this.pagerView.dispose(), this.repairShipConfigBackground.clear(), this.repairShipChoiceBackground.clear(), this.nDocks = null, this.mainView = null, this.timerState = null, this.listPageIndex = null, this.shipSortKeyType = null, this.nDockTimer = null, this.repairShipChoiceView = null, this.repairShipConfigView = null, this.useRepairConfirmView = null, this.useHiSpeedRepairConfirmView = null, this.repairShipConfigBackground = null, this.repairShipChoiceBackground = null, this.removeChildren()
-            }, e.prototype.start = function (t) {
-                var e = new p.RepairShipChoiceView,
-                    i = new d.RepairShipConfigView,
-                    n = new c.UseRepairConfirmView,
-                    r = new h.UseHiSpeedRepairConfirmView,
-                    s = new O.ShipSortButton,
-                    a = new T.PagerView,
-                    _ = new PIXI.Graphics;
-                _.beginFill(0, .3), _.drawRect(0, 103, o.default.width, o.default.height - 103), _.endFill();
-                var l = new PIXI.Graphics;
-                l.beginFill(0, .3), l.drawRect(0, 103, o.default.width, o.default.height - 103), l.endFill();
-                var u = new PIXI.Graphics;
-                u.beginFill(0, 1), u.drawRect(0, 0, o.default.width, o.default.height), u.endFill(), this.repairShipConfigBackground = l, this.repairShipChoiceBackground = _, t.onClickHiSpeed = this._onClickHiSpeed, t.onClickEmptySlot = this._onClickEmptySlot, t.onClickExtension = this._onClickExtension, this.addChild(t), this.mainView = t, this.repairShipChoiceView = e, this.repairShipConfigView = i, this.useRepairConfirmView = n, this.useHiSpeedRepairConfirmView = r, this.shipSortButton = s, this.pagerView = a, this.repairShipConfigBackground = l, this.repairShipChoiceBackground = _, this.repairConfirmBackground = u
-            }, e.prototype.updateNDocks = function (t) {
-                for (var e = r.default.model.useItem.get(1), i = 0 < e.count, n = 0; n < t.length; n++) {
-                    var o = t[n];
-                    switch (this.mainView.updateDockInfo(n, o.state, o.mstID, o.completeTime), o.state) {
-                        case 1:
-                            var s = r.default.model.ship.get(o.shipMemID);
-                            this.mainView.updateShipInfo(n, s.hpNow, s.hpMax, s.level, s.mstID, s.name, s.memID, s.isDamaged(), s.starNum, s.isMarriage()), this.mainView.updateHighSpeedButton(n, i), this.mainView.playAnimation(n)
-                    }
-                    this.mainView.updateViewState(n, o.state)
+            return o(e, t), e.prototype.update = function (t, e, i, n) {
+                switch (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), t) {
+                    case 58:
+                        this._message.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u3092\n" + e + "\u679a\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    case 78:
+                        this._message.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6226\u95d8\u8a73\u5831\u300d" + e + "\u90e8\u304c\n\u5fc5\u8981\u3067\u3059\u3002";
+                        break;
+                    default:
+                        this._message.text = ""
                 }
-                var a = r.default.model.useItem.get(v.RepairConst.OPEN_KEY_ITEMID),
-                    _ = 0 < a.count;
-                this.mainView.updateExtensionState(t, _), this.nDocks = t
-            }, e.prototype.stopNDockTimer = function () {
-                this.__stopNDockTimer__()
-            }, e.prototype.__stopNDockTimer__ = function () {
-                null != this.nDockTimer && (this.nDockTimer.setPaused(!0), this.nDockTimer.addEventListener("change", this.onUpdateNDockTimer)), this.nDockTimer = null
-            }, e.prototype.startNDockTimer = function () {
-                this.__stopNDockTimer__(), this.timerState = x.TimerState.WaitComplete;
-                var t = createjs.Tween.get({});
-                t.wait(500).loop = !0, t.play(null), t.addEventListener("change", this.onUpdateNDockTimer), this.nDockTimer = t
-            }, e.prototype.getPreInitializeTask = function (t) {
-                return new b.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new w.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return this.timerState = x.TimerState.UpdateOnly, null
-            }, e.prototype.getFinalizeTask = function () {
-                return new I.DisposeTask(this)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._icon = null, this._message = null
             }, e
-        }(s.SceneBase);
-    e.RepairScene = C
+        }(PIXI.Container),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon1 = new PIXI.Sprite, e._icon1.position.set(30, 0), e.addChild(e._icon1), e._icon2 = new PIXI.Sprite, e._icon2.position.set(153, 0), e.addChild(e._icon2), e._message = new r.TextBox(17, 1644567), e._message.position.set(3, 81), e.addChild(e._message), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(0, 150), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a) {
+                switch (this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), i) {
+                    case 65:
+                        this._message.text = "\u672c\u6539\u88c5\u306f\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63\u3068\n\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    case 78:
+                        this._message.text = "\u672c\u6539\u88c5\u306f\uff62\u6226\u95d8\u8a73\u5831\uff63" + o + "\u90e8\u3068\n\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u304c\u5fc5\u8981\u3067\u3059\u3002";
+                        break;
+                    default:
+                        this._message.text = ""
+                }
+                this._message2.text = n(r, a)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._message = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = 3;
+                return e._icon1 = new PIXI.Sprite, e._icon1.position.set(i, 0), e.addChild(e._icon1), i += 85, e._icon2 = new PIXI.Sprite, e._icon2.position.set(i, 0), e.addChild(e._icon2), i += 85, e._icon3 = new PIXI.Sprite, e._icon3.position.set(i, 0), e.addChild(e._icon3), e._message = new r.TextBox(17, 1644567), e._message.position.set(3, 81), e.addChild(e._message), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(3, 155), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, u) {
+                this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), this._icon3.texture = s.COMMON_ITEMICONS.getTextureFromMstID(r);
+                var l = "\u672c\u6539\u88c5\u306b\u306f";
+                switch (t) {
+                    case 78:
+                        l += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + e + "\u90e8\u3068\n";
+                        break;
+                    case 58:
+                        l += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3068\n";
+                        break;
+                    default:
+                        l += ""
+                }
+                switch (i) {
+                    case 75:
+                        l += "\uff62\u65b0\u578b\u7832\u7195\u5175\u88c5\u8cc7\u6750\uff63" + o + "\u3064\u3068\n";
+                        break;
+                    case 65:
+                        l += "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63\u3068\n";
+                        break;
+                    default:
+                        l += ""
+                }
+                switch (r) {
+                    case 58:
+                        l += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + a + "\u679a";
+                        break;
+                    case 78:
+                        l += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + a + "\u90e8";
+                        break;
+                    default:
+                        l += ""
+                }
+                this._message.text = l + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(_, u)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._icon3 = null, this._message = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        c = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = 5;
+                return e._icon1 = new PIXI.Sprite, e._icon1.width = 60, e._icon1.height = 60, e._icon1.position.set(i, 8), e.addChild(e._icon1), i += 65, e._icon2 = new PIXI.Sprite, e._icon2.width = 60, e._icon2.height = 60, e._icon2.position.set(i, 8), e.addChild(e._icon2), i += 65, e._icon3 = new PIXI.Sprite, e._icon3.width = 60, e._icon3.height = 60, e._icon3.position.set(i, 8), e.addChild(e._icon3), i += 65, e._icon4 = new PIXI.Sprite, e._icon4.width = 60, e._icon4.height = 60, e._icon4.position.set(i, 8), e.addChild(e._icon4), e._message1 = new r.TextBox(17, 1644567), e._message1.position.set(2, 74), e.addChild(e._message1), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(2, 153), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, u, l, c) {
+                this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), this._icon3.texture = s.COMMON_ITEMICONS.getTextureFromMstID(r), this._icon4.texture = s.COMMON_ITEMICONS.getTextureFromMstID(_);
+                var h = "\u672c\u6539\u88c5\u306b\u306f";
+                switch (t) {
+                    case 58:
+                        h += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3068\n";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (i) {
+                    case 65:
+                        h += "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (r) {
+                    case 78:
+                        h += "\uff62\u6226\u95d8\u8a73\u5831\uff63\n";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (_) {
+                    case 77:
+                        h += "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750" + (u > 1 ? "x" + u : "") + "\uff63";
+                        break;
+                    default:
+                        h += ""
+                }
+                this._message1.text = h + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(l, c)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._icon3 = null, this._icon4 = null, this._message1 = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new PIXI.Sprite, e._icon.position.set(0, 0), e.addChild(e._icon), e._message1 = new r.TextBox(18, 1644567), e._message1.position.set(77, 11), e.addChild(e._message1), e._message2 = new r.TextBox(18, 1644567), e._message2.position.set(0, 105), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o) {
+                switch (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), t) {
+                    case 58:
+                        this._message1.text = "\u672c\u6539\u88c5\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\n" + e + "\u679a\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    case 78:
+                        this._message1.text = "\u672c\u6539\u88c5\u306f\u300c\u6226\u95d8\u8a73\u5831\u300d\n" + e + "\u90e8\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    default:
+                        this._message1.text = ""
+                }
+                this._message2.text = n(i, o)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._icon = null, this._message1 = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        p = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._message = new r.TextBox(18, 1644567), e._message.position.set(0, 0), e.addChild(e._message), e
+            }
+            return o(e, t), e.prototype.update = function (t, e) {
+                this._message.text = t > 0 ? e > 0 ? "\u672c\u6539\u88c5\u3067\u306f\u300c\u9ad8\u901f\u5efa\u9020\u6750\u300d\u3092\n" + e + "\u500b\u3001\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092" + t + "\u500b\n\u4f7f\u7528\u3057\u307e\u3059\u3002" : "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092\n" + t + "\u500b\u4f7f\u7528\u3057\u307e\u3059\u3002" : e > 0 ? "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u9ad8\u901f\u5efa\u9020\u6750\u300d\u3092\n" + e + "\u500b\u4f7f\u7528\u3057\u307e\u3059\u3002" : ""
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._message = null
+            }, e
+        }(PIXI.Container),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new PIXI.Sprite, e._icon.position.set(87, 0), e.addChild(e._icon), e._message1 = new r.TextBox(18, 1644567), e._message1.position.set(0, 81), e.addChild(e._message1), e._message2 = new r.TextBox(18, 1644567), e._message2.position.set(0, 81), e.addChild(e._message2), e._message3 = new r.TextBox(18, 1644567), e.addChild(e._message3), e
+            }
+            return o(e, t), e.prototype.update = function (t, e) {
+                if (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), 58 == t) this._message1.style.fontSize = 15, this._message1.style.fill = 1644567, this._message2.style.fontSize = 15, this._message2.style.fill = 16724736, this._message3.style.fontSize = 15, this._message3.style.fill = 1644567, this._message1.text = "\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c", this._message2.text = "\u8db3\u308a\u307e\u305b\u3093\u3002", this._message2.position.set(this._message1.width, 81), this._message3.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c" + e + "\u679a\n\u5fc5\u8981\u3067\u3059\u3002\u52f2\u7ae0\u30924\u500b\u96c6\u3081\u308b\u3068\u3001\n\u30a2\u30a4\u30c6\u30e0\u753b\u9762\u3067\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u3068\n\u4ea4\u63db\u3067\u304d\u307e\u3059\u3002", this._message3.y = this._message1.y + this._message1.height;
+                else {
+                    switch (this._message1.style.fontSize = 18, this._message1.style.fill = 39270, this._message2.style.fontSize = 18, this._message2.style.fill = 1644567, t) {
+                        case 65:
+                            this._message1.text = "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63";
+                            break;
+                        case 78:
+                            this._message1.text = "\uff62\u6226\u95d8\u8a73\u5831\uff63";
+                            break;
+                        case 75:
+                            this._message1.text = "\uff62\u65b0\u578b\u7832\u7195\u5175\u88c5\u8cc7\u6750\uff63";
+                            break;
+                        case 77:
+                            this._message1.text = "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750\uff63";
+                            break;
+                        default:
+                            this._message1.text = ""
+                    }
+                    this._message1.position.set(11, 83), this._message2.text = "\n\u672c\u6539\u88c5\u306b\u306f\u4e0a\u8a18\u30a2\u30a4\u30c6\u30e0\u304c\n\u5fc5\u8981\u3067\u3059\u3002", this._message2.position.set(11, 83), this._message3.text = ""
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._message3.destroy(), this._message1 = null, this._message2 = null, this._message3 = null, this._icon = null
+            }, e
+        }(PIXI.Container)
 }

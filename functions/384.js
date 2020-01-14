@@ -5,8 +5,8 @@ const function384 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("record_mini_" + t)
+            return PIXI.Texture.fromFrame("record_menu_" + t)
         }
         t.getTexture = e
-    }(e.RECORD_MINI || (e.RECORD_MINI = {}))
+    }(e.RECORD_MENU || (e.RECORD_MENU = {}))
 }

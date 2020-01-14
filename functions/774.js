@@ -19,25 +19,33 @@ const function774 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(0),
-        s = i(7),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_req_kaisou/slot_exchange_index", o.api_id = e, o.api_src_idx = i, o.api_dst_idx = n, o
+    var o = i(0),
+        r = i(2),
+        s = i(15),
+        a = i(3),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, this._post_data.api_src_idx = this.api_src_idx, this._post_data.api_dst_idx = this.api_dst_idx, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._raw_data.api_ship_data;
-                r.default.model.ship.updateData(e), this._set_bauxite(), t.prototype._completedEnd.call(this)
-            }, e.prototype._set_bauxite = function () {
-                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
-                    var t = s.ObjUtil.getNumber(this._raw_data, "api_bauxite");
-                    r.default.model.useItem.get(34).__setCount__(t)
-                }
+            return n(e, t), e.prototype._start = function () {
+                this._phaseLoadResources()
+            }, e.prototype._phaseLoadResources = function () {
+                var t = this,
+                    e = new s.UIImageLoader("supply");
+                e.add("supply_main.json"), e.load(function () {
+                    t._uploadToGPU()
+                })
+            }, e.prototype._uploadToGPU = function () {
+                var t = this;
+                o.default.settings.renderer.plugins.prepare.upload(a.SUPPLY_MAIN.getTexture(0).baseTexture, function () {
+                    t._phaseLoadComplete()
+                })
+            }, e.prototype._phaseLoadComplete = function () {
+                this._scene.preInitialize(), this._scene.initialize(), o.default.sound.bgm.play(102), this._scene.start(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.SlotExchangeIndexAPI = a
+        }(r.TaskBase);
+    e.PreInitializeTask = _
 }

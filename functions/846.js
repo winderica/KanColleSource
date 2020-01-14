@@ -21,19 +21,18 @@ const function846 = function (t, e, i) {
     });
     var o = i(0),
         r = i(9),
-        s = i(51),
-        a = function (t) {
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_req_kaisou/open_exslot", i.api_id = e, i
+                return i._ship_mem_id = e, i._url = "api_req_kaisou/remodeling", i
             }
             return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
+                this._post_data.api_id = this._ship_mem_id, t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                var e = o.default.model.useItem.get(s.RemodelConst.REINFORCEMENT_WORK_ITEMID),
-                    i = e.count - 1;
-                e.__setCount__(i), o.default.model.ship.get(this.api_id).__updateExtraSlot__(-1), t.prototype._completedEnd.call(this)
+                var e, i = o.default.model.ship.get(this._ship_mem_id).mstID,
+                    n = o.default.model.ship_upgrade.getRequires(i);
+                e = o.default.model.useItem.get(32), e.__setCount__(e.count - n.ammo), e = o.default.model.useItem.get(33), e.__setCount__(e.count - n.steel), e = o.default.model.useItem.get(3), e.__setCount__(e.count - n.devkit), e = o.default.model.useItem.get(2), e.__setCount__(e.count - n.buildkit), e = o.default.model.useItem.get(58), e.__setCount__(e.count - n.blueprint), e = o.default.model.useItem.get(65), e.__setCount__(e.count - n.catapult), e = o.default.model.useItem.get(78), e.__setCount__(e.count - n.battlereport), e = o.default.model.useItem.get(75), e.__setCount__(e.count - n.newhokohesosizai), e = o.default.model.useItem.get(77), e.__setCount__(e.count - n.newkokuhesosizai), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.OpenExSlotAPI = a
+    e.RemodelingAPI = s
 }

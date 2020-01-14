@@ -21,166 +21,183 @@ const function601 = function (t, e, i) {
     });
     var o = i(5),
         r = i(0),
-        s = i(1),
-        a = i(2),
-        _ = i(8),
-        l = i(18),
-        u = i(602),
-        c = i(59),
-        h = i(50),
-        p = i(13),
-        d = i(155),
-        f = i(291),
-        y = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._deck_id = e, n._expedition_result = i, n
+        s = i(282),
+        a = i(602),
+        _ = i(604),
+        u = i(609),
+        l = i(610),
+        c = i(285),
+        h = i(6),
+        p = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._id = 0, i._preCheckedTimeStr = null, i._hitAreaLayer = null, i._hit_area_updated = !1, i._popupLayer = null, i._pre_state_name = "", i._data = new _.FAnimationData, i._type = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showShutter()
-            }, e.prototype._showShutter = function () {
-                this._shutter = new h.Shutter, this._shutter.initializeDark(), this._shutter.close(0), this._shutter.interactive = !0, r.default.view.overLayer.addChild(this._shutter), this._loadResources()
-            }, e.prototype._loadResources = function () {
-                for (var t = this, e = new p.ShipLoader, i = this._expedition_result.ship_mem_ids, n = 0; n < i.length; n++) {
-                    var o = i[n],
-                        s = r.default.model.ship.get(o),
-                        a = s.mstID,
-                        _ = s.isDamaged();
-                    0 == n && e.add(a, _, "full"), e.add(a, _, "banner")
+            return n(e, t), Object.defineProperty(e.prototype, "id", {
+                get: function () {
+                    return this._id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.isRadio = function () {
+                return this._data.model.hasCategory("radio")
+            }, e.prototype.isGramo = function () {
+                return this._data.model.hasCategory("gramo")
+            }, e.prototype.isJukeBox = function () {
+                return this._data.model.hasCategory("jukebox")
+            }, e.prototype.update = function (t, e, i) {
+                var n = this;
+                void 0 === e && (e = null), void 0 === i && (i = null);
+                this._data.loadAnimationData(t, function () {
+                    if (null != e && r.default.model.useItem.getCount(79) > 0) {
+                        var o = n._data.model.kaikyo;
+                        null != o ? e.initialize(o) : e.finalize()
+                    }
+                    if (null != i) {
+                        var s = -1;
+                        if (r.default.model.useItem.getCount(81) ? s = 0 : r.default.model.useItem.getCount(82) ? s = 1 : r.default.model.useItem.getCount(83) ? s = 2 : r.default.model.useItem.getCount(84) && (s = 3), s >= 0) {
+                            var a = n._data.model.shogo;
+                            null != a ? i.startAnimation(a, s) : i.stopAnimation()
+                        }
+                    }
+                    var _ = !1;
+                    if (0 == n.children.length ? _ = !0 : (n.id != t || n._data.model.reloadFlag) && (_ = !0, n.removeChildren()), _) {
+                        n._id = t;
+                        var u = n._data.currentStateName,
+                            l = n._data.model.getState(u);
+                        n._reCreate(l)
+                    }
+                })
+            }, e.prototype.restart = function () {
+                this._data.setAnimationState(0), this._updateFurnitureLayers();
+                for (var t = 0, e = this._sprites; t < e.length; t++) {
+                    e[t].reset()
                 }
-                e.load(function () {
-                    t._showWhiteLight()
-                })
-            }, e.prototype._showWhiteLight = function () {
-                var t = this;
-                this._view = new u.ExpeditionResult, this._view.initialize(this._deck_id, this._expedition_result);
-                var e = this._expedition_result;
-                this._view.expedition_name.visible = !1, this._view.user_info.visible = !1, this._view.item.visible = !1;
-                var i = e.item1;
-                null != i && this._view.item.updateItem1(i.mstID, i.name, i.count), i = e.item2, null != i && this._view.item.updateItem2(i.mstID, i.name, i.count), this._view.item.updateMaterials(e.fuel, e.ammo, e.steel, e.baux), this._view.visible = !1, r.default.view.overLayer.addChild(this._view);
-                var n = new l.FadeBox(1, 16777215);
-                n.hide(0), r.default.view.overLayer.addChild(n), n.show(200, function () {
-                    t._view.visible = !0, n.hide(200, function () {
-                        r.default.view.overLayer.removeChild(n), t._showUserInfo()
-                    })
-                })
-            }, e.prototype._showUserInfo = function () {
-                var t = this;
-                this._view.expedition_name.text = this._expedition_result.expedition_name, this._view.expedition_name.visible = !0;
-                var e = r.default.model.basic.nickName,
-                    i = this._expedition_result.user_level,
-                    n = r.default.model.basic.rankName,
-                    o = r.default.model.deck.get(this._deck_id).name;
-                this._view.user_info.update(e, i, n, o), this._view.user_info.visible = !0;
-                for (var s = this._expedition_result.ship_mem_ids, a = new createjs.Timeline([], null, {
-                        paused: !0
-                    }), _ = this._view.banners, l = 0; l < _.length; l++) {
-                    var u = _[l];
-                    if (s.length <= l) u.visible = !1;
-                    else {
-                        var c = r.default.model.ship.get(s[l]);
-                        u.y = 68 * l + 15, u.alpha = 0, u.update(c, !1);
-                        var h = createjs.Tween.get(u).wait(200 * l).to({
-                            y: u.y - 15,
-                            alpha: 1
-                        }, 200);
-                        a.addTween(h)
+                this._removePopup()
+            }, e.prototype.isHit = function (t) {
+                if (null == this._hitAreaLayer) return !1;
+                if (null == this._hit_area_map || !this._hit_area_updated) {
+                    var e = new PIXI.Sprite(this._hitAreaLayer.texture);
+                    this._hit_area_map = r.default.settings.renderer.extract.pixels(e), this._hit_area_updated = !0
+                }
+                if (c.FurnitureUtil.isAreaHit(this._hit_area_map, t, this._hitAreaLayer)) {
+                    if (0 == this._data.animationState) return !0;
+                    if (this._hasLoop()) return !0
+                }
+                return !1
+            }, e.prototype.clickAction = function () {
+                this._data.setAnimationState(1), this._updateFurnitureLayers()
+            }, e.prototype.stopGramophone = function () {
+                return "standard2" == this._data.currentStateName && (this._data.setAnimationState(1), this._updateFurnitureLayers(), !0)
+            }, e.prototype.timeCheck = function (t, e, i) {
+                var n = this._data.currentStateName,
+                    o = this._data.model.getState(n);
+                if (null != o) {
+                    var r = o.timeTable;
+                    if (null != r && 0 == this._data.animationState) {
+                        var s = t + e + i;
+                        if (this._preCheckedTimeStr != s) {
+                            this._preCheckedTimeStr = s;
+                            var a = "";
+                            if (r.hasOwnProperty(s) ? a = r[s] : r.hasOwnProperty("XX" + e + i) && (a = r["XX" + e + i]), "" != a) {
+                                var _ = a.split(":");
+                                if (_.length > 1) {
+                                    a = _[0];
+                                    var u = parseFloat(_[1]),
+                                        l = 100 * Math.random();
+                                    l < u && (this._data.setAnimationState(2, a), this._updateFurnitureLayers())
+                                } else this._data.setAnimationState(2, a), this._updateFurnitureLayers()
+                            }
+                        }
                     }
                 }
-                for (var p = this._view.infos.items, l = 0; l < p.length; l++) {
-                    var d = p[l];
-                    if (s.length <= l) d.visible = !1;
-                    else {
-                        var c = r.default.model.ship.get(s[l]);
-                        d.y = 68 * l + 8, d.alpha = 0, d.initialize(), d.update(c.name, c.level)
+            }, e.prototype.animate = function () {
+                if (0 != r.default.model.furniture.isActive(this._id)) {
+                    for (var t = 0; t < this._sprites.length; t++) {
+                        var e = this._sprites[t],
+                            i = e.update();
+                        null != i && (this._setOffset(e, i), this._execFrameAction(i))
+                    }
+                    for (var n = !0, o = 0, s = this._sprites; o < s.length; o++) {
+                        var e = s[o];
+                        if (0 == e.isEnd()) {
+                            n = !1;
+                            break
+                        }
+                    }
+                    n && (this._data.setAnimationState(0), this._updateFurnitureLayers(), r.default.view.portMain.furnitureLayer.current_bgm_furniture == this && "standard" == this._data.currentStateName && (r.default.view.portMain.furnitureLayer.current_bgm_furniture = null))
+                }
+            }, e.prototype._getTextureByName = function (t) {
+                var e = PIXI.utils.TextureCache[t];
+                return e || PIXI.Texture.EMPTY
+            }, e.prototype._setOffsetBase = function (t) {
+                0 == this._type ? (t.x = 0, t.y = o.default.height - t.height) : 2 == this._type ? (t.x = 297, t.y = 0) : 4 == this._type ? (t.x = 0, t.y = o.default.height - t.height) : 5 == this._type ? (t.x = o.default.width - t.width, t.y = 0) : (t.x = 0, t.y = 0)
+            }, e.prototype._setOffset = function (t, e) {
+                this._setOffsetBase(t);
+                var i = t.fileName,
+                    n = this._data.model.getOffset(i);
+                null == n && (n = t.getOffset()), t.x += n.x, t.y += n.y
+            }, e.prototype._updateFurnitureLayers = function () {
+                var t = this._data.currentStateName;
+                if (t != this._pre_state_name) {
+                    this._pre_state_name = t;
+                    var e = this._data.model.getState(t);
+                    this._reCreate(e)
+                }
+            }, e.prototype._hasLoop = function () {
+                this._updateFurnitureLayers();
+                var t = this._data.model.getState(this._pre_state_name);
+                return null != t && t.hasLoop()
+            }, e.prototype._reCreate = function (t) {
+                if (this.removeChildren(), this._hit_area_map = null, this._hit_area_updated = !1, this._sprites = [], this._hitAreaLayer = null, null != t) {
+                    for (var e = t.layers, i = 0; i < e.length; i++) {
+                        var n = e[i],
+                            o = n.frames[0],
+                            r = (o.filename, new u.FurnitureLayer(n));
+                        this._sprites.push(r), this._setOffset(r, o), this.addChild(r)
+                    }
+                    var a = t.hitArea;
+                    if (null != a) {
+                        var _ = this._getTextureByName(a.filename);
+                        this._hitAreaLayer = new PIXI.Sprite(_), this._hitAreaLayer.interactive = !0, this._setOffsetBase(this._hitAreaLayer);
+                        var l = a.offset;
+                        l && (this._hitAreaLayer.x += l[0], this._hitAreaLayer.y += l[1]), this._hitAreaLayer.alpha = s.FurnitureConst.HIT_ALPHA, this.addChild(this._hitAreaLayer)
                     }
                 }
-                this._view.infos.visible = !0;
-                for (var f, l = 0; l < p.length; l++) {
-                    var d = p[l];
-                    null != d && (f = createjs.Tween.get(d).wait(500 + 100 * l).to({
-                        y: d.y - 8,
-                        alpha: 1
-                    }, 200), a.addTween(f))
-                }
-                null != f && f.call(function () {
-                    t._showTelopBG()
-                }), a.setPaused(!1)
-            }, e.prototype._showTelopBG = function () {
-                var t = this;
-                this._telop_bg = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(10)), this._telop_bg.anchor.set(.5, .5), this._telop_bg.position.set(o.default.width / 2, o.default.height / 2), this._telop_bg.scale.set(1, 0), r.default.view.overLayer.addChild(this._telop_bg), createjs.Tween.get(this._telop_bg.scale).to({
-                    y: 2
-                }, 200).call(function () {
-                    t._showTelop()
-                })
-            }, e.prototype._showTelop = function () {
-                var t = this,
-                    e = o.default.height / 2;
-                this._telop_label = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(2)), this._telop_label.anchor.set(.5, .5), this._telop_label.position.set(1338, e), 2 == this._expedition_result.result ? (this._telop_result = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(9)), this._telop_result.position.set(795, e)) : 1 == this._expedition_result.result ? (this._telop_result = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(7)), this._telop_result.position.set(909, e)) : (this._telop_result = new PIXI.Sprite(d.COMMON_EXPEDITION.getTexture(8)), this._telop_result.position.set(909, e)), this._telop_result.anchor.set(.5, .5), this._telop_result.scale.set(1.6, 1.6), this._telop_result.alpha = 0, r.default.view.overLayer.addChild(this._telop_label), r.default.view.overLayer.addChild(this._telop_result), createjs.Tween.get(this._telop_label).to({
-                    x: 426
-                }, 1e3).to({
-                    x: 330
-                }, 1e3), createjs.Tween.get(this._telop_result).wait(1500).to({
-                    alpha: 1
-                }, 800, createjs.Ease.bounceOut), createjs.Tween.get(this._telop_result.scale).wait(1500).to({
-                    x: 1,
-                    y: 1
-                }, 800, createjs.Ease.bounceOut).call(function () {
-                    t._waitClick()
-                })
-            }, e.prototype._waitClick = function () {
-                var t = this;
-                this._gear_btn = new c.GearBtnNext, this._gear_btn.position.set(1145, 666), this._gear_btn.initialize(), this._click_area = new _.AreaBox(0), this._click_area.buttonMode = !0, r.default.view.overLayer.addChild(this._gear_btn), r.default.view.overLayer.addChild(this._click_area), this._gear_btn.activate(), this._click_area.once(s.EventType.CLICK, function () {
-                    t._hideTelop()
-                })
-            }, e.prototype._hideTelop = function () {
-                var t = this;
-                createjs.Tween.get(this._telop_label).to({
-                    alpha: 0
-                }, 100), createjs.Tween.get(this._telop_result).to({
-                    alpha: 0
-                }, 100), createjs.Tween.get(this._telop_bg.scale).wait(100).to({
-                    y: 0
-                }, 50).call(function () {
-                    t._removeChild(t._telop_label), t._removeChild(t._telop_result), t._removeChild(t._telop_bg), t._showBonusAndItem()
-                })
-            }, e.prototype._showBonusAndItem = function () {
-                var t = this;
-                this._view.bonus.alpha = 0, this._view.bonus.visible = !0, createjs.Tween.get(this._view.bonus).to({
-                    alpha: 1
-                }, 100), this._view.item.alpha = 0, this._view.item.visible = !0, createjs.Tween.get(this._view.item).wait(50).to({
-                    alpha: 1
-                }, 100).call(function () {
-                    t._waitClick2()
-                });
-                var e = this._expedition_result.ship_mem_ids[0],
-                    i = r.default.model.ship.get(e),
-                    n = r.default.resources.getShip(i.mstID, i.isDamaged(), "full"),
-                    o = new PIXI.Sprite(n),
-                    s = r.default.model.ship_graph.get(i.mstID).getCenterOffset(i.isDamaged());
-                o.x = s.x / this._view.ship_canvas.scale.x, o.y = s.y / this._view.ship_canvas.scale.y, this._view.ship_canvas.addChild(o)
-            }, e.prototype._waitClick2 = function () {
-                var t = this;
-                this._click_area.once(s.EventType.CLICK, function () {
-                    t._viewUpdate()
-                })
-            }, e.prototype._viewUpdate = function () {
-                var t = this;
-                (new f.TaskExpeditionAlertUpdate).start(function () {
-                    r.default.view.portMain.updateInfo(), t._hide()
-                })
-            }, e.prototype._hide = function () {
-                var t = this;
-                this._gear_btn.deactivate(), this._gear_btn.dispose(), this._removeChild(this._gear_btn), createjs.Tween.get(this._view).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._shutter).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t._removeChild(t._click_area), t._removeChild(t._view), t._view.dispose(), t._removeChild(t._shutter), t._endTask()
-                })
-            }, e.prototype._removeChild = function (t) {
-                r.default.view.overLayer.removeChild(t)
+            }, e.prototype._execFrameAction = function (t) {
+                var e = this,
+                    i = t.getSEID();
+                null != i && h.SE.play(i);
+                var n = t.getBGMAction();
+                if (null != n && r.default.view.portMain.furnitureLayer.current_bgm_furniture == this)
+                    if ("play" == n) {
+                        var o = r.default.model.basic.port_bgm_id;
+                        r.default.sound.bgm.play(o)
+                    } else if ("start" == n)
+                    if (this.isRadio()) {
+                        var o = r.default.model.basic.port_bgm_id;
+                        if (101 != o) {
+                            var s = new a.UserFurnitureRadioAPI;
+                            s.start(function () {
+                                r.default.model.basic.setPortBGMID(101), r.default.sound.bgm.play(101)
+                            })
+                        } else r.default.sound.bgm.play(101)
+                    } else this.isGramo() && r.default.sound.bgm.play(237, !1, 0, "port", function () {
+                        e.stopGramophone()
+                    });
+                else "stop" == n && r.default.sound.bgm.stop();
+                this._openPopup(t);
+                var _ = t.getStateChangeOption();
+                null != _ && this._data.updateBaseStateName(_)
+            }, e.prototype._openPopup = function (t) {
+                var e = this,
+                    i = t.getPopupOption();
+                null != i && null == this._popupLayer && 0 == r.default.scene.now && (r.default.scene.isChangingNow() || 1 != r.default.friendlyRequest.UI && (this._popupLayer = new l.FurniturePopupLayer(i), r.default.view.overLayer.addChild(this._popupLayer), this._popupLayer.show(function () {
+                    e._removePopup()
+                })))
+            }, e.prototype._removePopup = function () {
+                null != this._popupLayer && (null != this._popupLayer.parent && this._popupLayer.parent.removeChild(this._popupLayer), this._popupLayer.dispose(), this._popupLayer = null)
             }, e
-        }(a.TaskBase);
-    e.TaskExpeditionResultShow = y
+        }(PIXI.Container);
+    e.Furniture = p
 }

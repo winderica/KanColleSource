@@ -19,102 +19,34 @@ const function1057 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(111),
-        s = i(10),
-        a = i(31),
-        _ = i(58),
-        l = i(232),
-        u = i(233),
-        c = i(363),
-        h = i(367),
-        p = i(369),
-        d = i(365),
-        f = i(1058),
-        y = i(366),
-        m = i(1059),
-        g = i(1060),
-        v = i(1061),
-        b = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onDeckChange = function (t) {
-                    i._update(t)
-                }, i._onGo = function () {
-                    null != i._cb_onGo && i._cb_onGo(i._selected_id, i._deck_id)
-                }, i._onClickTempSupply = function () {
-                    var t = o.default.model.deck.get(i._deck_id).getShipList();
-                    new d.TaskTemporarySupply(t, i._rader, function () {
-                        i._update(i._deck_id)
-                    }).start()
-                }, i._cb_onGo = e, i._banners = new c.PanelDeckSelectBanners, i._banners.position.set(30, 94), i._decks = new u.CompDeckBtns(i._onDeckChange), i._decks.position.set(30, 54), i._rader = new h.RaderCanvas, i._rader.position.set(487, 292), i._arrow = new l.CompArrow2, i._arrow.position.set(567, 537), i._alert = new y.AlertBalloon, i._alert.anchor.set(1, .5), i._alert.position.set(298, 565), i._btn = new m.BtnGo(i._onGo), i._btn.position.set(301, 538), i._drum_counts = [];
-                for (var n = 0; n < 6; n++) {
-                    var r = new g.CompDrumCount;
-                    r.position.set(33, 136 + 75 * n), i._drum_counts.push(r)
-                }
-                i._support_boats = [];
-                for (var n = 0; n < 6; n++) {
-                    var s = new v.CompSupportBoatCount;
-                    s.position.set(55, 145 + 75 * n), i._support_boats.push(s)
-                }
-                return i._flagship_flag = new PIXI.Sprite, i._flagship_flag.position.set(31, 87), i._temp_supply_btn = new p.TempSupplyBtn, i._temp_supply_btn.position.set(210, 528), i._checker = new f.ExpeditionCondition, i.interactive = !0, i._expired_flag = !1, i
+    var o = i(174),
+        r = i(4),
+        s = i(33),
+        a = i(54),
+        _ = i(1058),
+        u = i(377),
+        l = i(1070),
+        c = i(1),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._enabled = !1, e._activated = !1, e._onClick = function () {
+                    new _.TaskDetailInfo(e._model.id, e._model.flag, e._model.medal_num).start()
+                }, e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._selected_id = t;
-                var n = new PIXI.Sprite(a.SALLY_COMMON.getTexture(27));
-                n.position.set(-7, 36), this.addChild(n);
-                var l = new PIXI.Sprite(a.SALLY_COMMON.getTexture(51));
-                l.position.set(0, 0), this.addChild(l);
-                var u = new PIXI.Sprite(a.SALLY_COMMON.getTexture(15));
-                if (u.position.set(24, 10), this.addChild(u), this.addChild(this._banners), this._decks.initialize(e), this.addChild(this._decks), this._rader.initialize(), this.addChild(this._rader), this._arrow.initialize(), this.addChild(this._arrow), this._alert.initialize(), this.addChild(this._alert), o.default.model.deck.exist3rdUnit) {
-                    var c = new PIXI.Sprite(s.COMMON_MISC.getTexture(186));
-                    c.position.set(108, 33), this.addChild(c)
-                }
-                1 == i && (this._deck_combined_frame = new r.CombinedView, this._deck_combined_frame.position.set(22, 44), this.addChild(this._deck_combined_frame)), this._btn.initialize(), this.addChild(this._btn);
-                for (var h = 0, p = this._drum_counts; h < p.length; h++) {
-                    var d = p[h];
-                    d.initialize(), this.addChild(d)
-                }
-                for (var f = 0, y = this._support_boats; f < y.length; f++) {
-                    var m = y[f];
-                    m.initialize(), this.addChild(m)
-                }
-                this._flagship_flag.texture = _.SALLY_EXPEDITION.getTexture(71), this.addChild(this._flagship_flag), this._temp_supply_btn.initialize(this._onClickTempSupply), this.addChild(this._temp_supply_btn), this._update(e[0])
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(14)),
+                    e = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(34));
+                this._flag = new u.CompFlag, this._banner = new s.ShipBanner, this._name = new r.TextBox(18, 1949120), this._level = new r.TextBox(26, 4999235), this._comment = new r.TextBox(15, 4999235), this._rank_name = new r.TextBox(18, 4999235), this._medal = new o.MedalIcon, this._result_rank = new l.CompRank, this._hit_area = new PIXI.Graphics, this._hit_area.beginFill(0, 0), this._hit_area.drawRect(0, 0, 939, 79), this._hit_area.endFill(), this._medal.initialize(), this._result_rank.initialize(), t.position.set(295, 24), e.position.set(546, -3), this._flag.position.set(0, 16), this._banner.position.set(48, 0), this._name.position.set(294, 0), this._level.anchor.set(1, 0), this._level.position.set(624, -7), this._comment.position.set(310, 33), this._rank_name.position.set(637, 0), this._medal.position.set(750, 25), this._result_rank.position.set(817, 3), this._hit_area.position.set(-10, -7), this._hit_area.visible = !1, this.addChild(t), this.addChild(e), this.addChild(this._flag), this.addChild(this._banner), this.addChild(this._name), this.addChild(this._level), this.addChild(this._comment), this.addChild(this._rank_name), this.addChild(this._medal), this.addChild(this._result_rank), this.addChild(this._hit_area)
+            }, e.prototype.update = function (t) {
+                this._model = t, this._flag.update(t.flag), this._banner.updateImage(t.flagShipMstID, !1), this._name.text = t.name, this._level.text = t.level.toString(), this._comment.text = t.comment, this._rank_name.text = "[" + t.rank_name + "]", this._medal.update(t.medal_num, 9466926), this._result_rank.update(t.state), this._enabled = t.isNoBattle()
             }, e.prototype.activate = function () {
-                this._decks.activate(), this._arrow.activate(), this._alert.activate(), null != this._deck_combined_frame && this._deck_combined_frame.activate(), this._btn.activate(), this._temp_supply_btn.activate()
+                0 == this._activated && 1 == this._enabled && (this._hit_area.interactive = this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.CLICK, this._onClick), this._hit_area.visible = !0, this._activated = !0)
             }, e.prototype.deactivate = function () {
-                this._decks.deactivate(), this._arrow.deactivate(), null != this._deck_combined_frame && this._deck_combined_frame.deactivate(), this._btn.deactivate(), this._temp_supply_btn.deactivate()
+                this._hit_area.interactive = this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.CLICK, this._onClick), this._hit_area.visible = !1, this._activated = !1
             }, e.prototype.dispose = function () {
-                this._banners.dispose(), this._decks.dispose(), this._rader.dispose(), this._arrow.dispose(), null != this._deck_combined_frame && this._deck_combined_frame.dispose(), this._btn.dispose(), this._temp_supply_btn.dispose(), this._checker = null
-            }, e.prototype.expiredUpdate = function (t) {
-                this._expired_flag = t, this._update(this._deck_id)
-            }, e.prototype._update = function (t) {
-                this._deck_id = t;
-                for (var e = o.default.model.deck.get(t), i = e.getShipListAll(), n = this._checker.check(this._selected_id, e, this._expired_flag), r = !0, s = 0; s < i.length; s++) {
-                    var a = i[s];
-                    null != a && 1 == r && (a.fuelNow < a.fuelMax || a.ammoNow < a.ammoMax) && (r = !1)
-                }
-                this._decks.setSelected(t), this._rader.update(i), this._arrow.enabled = n.result, this._arrow.update(r), this._arrow.activate(), this._alert.update(n.reason), this._btn.enabled = n.result;
-                for (var _ = e.getShipList(), s = 0; s < _.length; s++) {
-                    var a = _[s];
-                    this._drum_counts[s].update(a), this._support_boats[s].update(a)
-                }
-                if (this._flagship_flag.visible = null != _[0], 0 == o.default.model.basic.getExtraSupplyExpedition()) this._temp_supply_btn.visible = !1;
-                else if (r) this._temp_supply_btn.visible = !1;
-                else if (0 != n.reason && 2 != n.reason && 14 != n.reason) this._temp_supply_btn.visible = !1;
-                else {
-                    for (var l = 0, u = 0, s = 0; s < _.length; s++) {
-                        var a = _[s];
-                        null != a && (l += a.getFuelForSupply(), u += a.getAmmoForSupply())
-                    }
-                    var c = o.default.model.useItem.getCount(31),
-                        h = o.default.model.useItem.getCount(32),
-                        p = l > 0 && l <= c,
-                        d = u > 0 && u <= h;
-                    this._temp_supply_btn.enabled = 0 != p || 0 != d, this._temp_supply_btn.visible = !0
-                }
-                this._banners.update(_)
+                this.deactivate(), this.removeChildren(), this._banner.dispose(), this._name.destroy(), this._level.destroy(), this._comment.destroy(), this._rank_name.destroy(), this._medal.dispose(), this._result_rank.dispose()
             }, e
         }(PIXI.Container);
-    e.PanelDeckSelect = b
+    e.CompRivalDeck = h
 }

@@ -1,40 +1,33 @@
 const function628 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t(t, e) {
-            this._eff_type = 0, this._direction = 1, this._direction = t, this._eff_type = e, this._items = []
-        }
-        return Object.defineProperty(t.prototype, "items", {
-            get: function () {
-                return this._items
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "eff_type", {
-            get: function () {
-                return this._eff_type
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "direction", {
-            get: function () {
-                return this._direction
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.addItem = function (t, e, i) {
-            void 0 === i && (i = -1), i > 0 ? this._items.push({
-                id: t,
-                type: e,
-                size: i
-            }) : this._items.push({
-                id: t,
-                type: e
-            })
-        }, t
-    }();
-    e.ModelChangeMeltIntoModel = n
+    var o = i(21),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.arrow = new PIXI.Sprite(o.COMMON_MAIN.getTexture(41)), e.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(40)), e.lockIcon.x = 9, e.addChild(e.lockIcon), e.addChild(e.arrow), e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.lockIcon = null, this.arrow = null
+            }, e
+        }(PIXI.Container);
+    e.BannerLockSlot = r
 }

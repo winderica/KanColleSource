@@ -19,28 +19,17 @@ const function187 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(46),
-        s = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = null);
-                var n = t.call(this) || this;
-                return n._mst_id = e, n._message = i, n
+    var o = i(24),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
-                get: function () {
-                    return this._mst_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "name", {
-                get: function () {
-                    var t = o.default.model.ship.get(this._mst_id);
-                    return null == t ? "" : t.name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(r.RewardModel);
-    e.RewardModelShip = s
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this.removeChildren();
+                var i = t ? e ? "battle_telop_mes2_f_hbg" : "battle_telop_mes2_f_ybg" : e ? "battle_telop_mes2_e_hbg" : "battle_telop_mes2_e_ybg",
+                    n = PIXI.Sprite.fromFrame(i);
+                n.x = -Math.floor(n.width / 2), n.y = -Math.floor(n.height / 2), this.addChild(n)
+            }, e
+        }(o.Container);
+    e.TelopBG = r
 }

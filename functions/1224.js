@@ -19,17 +19,79 @@ const function1224 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_kousyou/remodel_slotlist", i._revampSlotlistModel = e, i
+    var o = i(0),
+        r = i(11),
+        s = i(8),
+        a = i(10),
+        _ = i(120),
+        u = i(417),
+        l = i(121),
+        c = i(77),
+        h = i(77),
+        p = i(77),
+        d = i(77),
+        f = i(77),
+        y = i(77),
+        m = i(77),
+        g = i(77),
+        v = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onInitialize = function () {
+                    var t = _.DUTY_COMMON.getTexture(45),
+                        i = new PIXI.Sprite(t);
+                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
+                    var n = o.default.model.basic.getDutyExecutableCount();
+                    e._view.initialize(n, e._onBack), e._view.update(e._data)
+                }, e._onActivate = function () {
+                    if (null != e._girl_layer) {
+                        new d.TaskPosterGirl(e._girl_layer).start(function () {
+                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
+                        })
+                    }
+                    e._view.activate()
+                }, e._onDispose = function () {
+                    e._view.dispose()
+                }, e._onChangeType = function (t) {
+                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onChangePage = function (t) {
+                    var i = e._data.selected_type;
+                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onSelectDuty = function (t) {
+                    if (3 == t.status) {
+                        if (0 == t.alert) {
+                            var i = o.default.view.overLayer,
+                                n = new g.TaskTasseiDutySelect(i, t, e._data);
+                            n.start(function () {
+                                e._view.update(e._data)
+                            })
+                        }
+                    } else if (2 == t.status) {
+                        var n = new m.TaskExecutedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    } else {
+                        var n = new y.TaskWaitedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    }
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._data = new u.DutyDataHolder, e._view = new l.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._revampSlotlistModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new p.TaskDutySceneFinalize(this._onDispose)
             }, e
-        }(o.APIBase);
-    e.RevampSlotlistAPI = r
+        }(r.SceneBase);
+    e.DutyScene = v
 }

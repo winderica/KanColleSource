@@ -1,121 +1,79 @@
 const function1484 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(6),
-        s = i(16),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+    var n = i(7),
+        o = i(173),
+        r = i(232),
+        s = i(484),
+        a = function () {
+            function t(t, e) {
+                this._info = t, this._battle = e, this._initializeShipData()
             }
-            return n(e, t), e.prototype.showCenter = function (t) {
-                var e = this,
-                    i = new _(t),
-                    n = o.default.width / 2,
-                    s = o.default.height / 2;
-                i.position.set(n, s), i.bg.scale.y = 0, i.text.x += 150, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({
-                    y: 1
-                }, 300).wait(1150).to({
-                    y: 0
-                }, 300).call(function () {
-                    e.removeChild(i), e.emit("complete")
-                }), createjs.Tween.get(i.text).wait(300).to({
-                    x: 90,
-                    alpha: 1
-                }, 300).to({
-                    x: -90
-                }, 350).call(function () {
-                    e.emit("showed")
-                }).to({
-                    x: -150,
-                    alpha: 0
-                }, 500)
-            }, e.prototype.showTop = function (t) {
-                var e = this,
-                    i = new _(t),
-                    n = o.default.width / 2;
-                i.position.set(n, 117), i.bg.scale.y = 0, i.text.x = -n + i.text.width / 2 - 195, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({
-                    y: 1
-                }, 300).wait(1450).to({
-                    y: 0
-                }, 300).call(function () {
-                    e.removeChild(i), e.emit("complete")
-                }), createjs.Tween.get(i.text).wait(250).to({
-                    alpha: 1
-                }, 100).to({
-                    x: -n + i.text.width / 2
-                }, 200).to({
-                    x: -n + i.text.width / 2 + 90
-                }, 750).call(function () {
-                    e.emit("showed")
-                }).to({
-                    x: 10,
-                    alpha: 0
-                }, 350), createjs.Tween.get(i.subText).wait(750).call(function () {
-                    i.subText.position.set(0, 110), i.subText.visible = !0
-                }).wait(700).to({
-                    x: -n,
-                    alpha: 0
-                }, 300)
-            }, e
-        }(PIXI.Container);
-    e.LayerInfo = a;
-    var _ = function (t) {
-        function e(e) {
-            var i, n, o, r = t.call(this) || this;
-            i = 4 == e || 3 == e ? PIXI.Texture.fromFrame("battle_telop_mes_bg_e") : PIXI.Texture.fromFrame("battle_telop_mes_bg_f"), n = r._getTextTextureNo(e), o = 1 == e || 2 == e ? s.BATTLE_MAIN.getTexture(64) : 4 == e || 3 == e ? s.BATTLE_MAIN.getTexture(65) : PIXI.Texture.EMPTY, r._bg = new PIXI.Container;
-            var a = new PIXI.Sprite(i);
-            return a.x = -Math.round(a.width / 2), a.y = -Math.round(a.height / 2), r._bg.addChild(a), r._text = new PIXI.Sprite(n), r._text.anchor.set(.5), r._subText = new PIXI.Sprite(o), r._subText.anchor.set(.5), r._subText.visible = !1, r.addChild(r._bg), r.addChild(r._text), r.addChild(r._subText), r
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "subText", {
-            get: function () {
-                return this._subText
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype._getTextTextureNo = function (t) {
-            var e = -1;
-            if (0 == t) e = 68;
-            else if (1 == t) e = 72;
-            else if (2 == t) e = 73;
-            else if (4 == t) e = 75;
-            else if (3 == t) e = 74;
-            else if (5 == t) e = 66;
-            else {
-                if (6 != t) return PIXI.Texture.EMPTY;
-                e = 67
-            }
-            return s.BATTLE_MAIN.getTexture(e)
-        }, e
-    }(PIXI.Container)
+            return Object.defineProperty(t.prototype, "ships", {
+                get: function () {
+                    return this._ships
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getDisplayList = function () {
+                for (var t = [], e = this._voice_p_no, i = this._voice_ids, n = 0; n < 3; n++) {
+                    var o = e.indexOf(n + 1);
+                    if (!(o >= 0)) break;
+                    var r = o < this._ships.length ? this._ships[o] : null,
+                        s = i[o];
+                    t.push({
+                        ship: r,
+                        voiceID: s.toString()
+                    })
+                }
+                return t
+            }, t.prototype.getFlareIndex_f = function () {
+                var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
+                return null == t || t.length < 1 ? -1 : t[0]
+            }, t.prototype.getFlareIndex_e = function () {
+                var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
+                return null == t || t.length < 2 ? -1 : t[1]
+            }, t.prototype.getHougekiData = function () {
+                var t = n.ObjUtil.getObject(this._battle, "api_hougeki");
+                return new s.HougekiListNightData(t)
+            }, t.prototype._initializeShipData = function () {
+                this._ships = [];
+                for (var t = n.ObjUtil.getNumArray(this._info, "api_ship_id"), e = n.ObjUtil.getNumArray(this._info, "api_ship_lv"), i = n.ObjUtil.getNumArray(this._info, "api_maxhps"), s = n.ObjUtil.getNumArray(this._info, "api_nowhps"), a = n.ObjUtil.getObjectArray(this._info, "api_Slot"), _ = n.ObjUtil.getObjectArray(this._info, "api_Param"), u = 0; u < t.length; u++) {
+                    var l = t[u],
+                        c = e[u],
+                        h = new o.ShipModelReplica(2, !1, u, l, 0, c),
+                        p = s[u],
+                        d = i[u];
+                    h.initializeHPInfo(p, d);
+                    for (var f = a[u], y = [], m = [], g = 0, v = f; g < v.length; g++) {
+                        var b = v[g];
+                        b > 0 && (y.push(new r.SlotitemModelReplica(b)), m.push(1))
+                    }
+                    h.initializeSlots(y, null, m);
+                    var w = _[u],
+                        x = w[0],
+                        I = w[1],
+                        T = w[2],
+                        O = w[3];
+                    h.initializeParams(x, I, T, O), this._ships.push(h)
+                }
+            }, Object.defineProperty(t.prototype, "_voice_p_no", {
+                get: function () {
+                    var t = n.ObjUtil.getNumArray(this._info, "api_voice_p_no");
+                    return null == t ? [] : t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_voice_ids", {
+                get: function () {
+                    var t = n.ObjUtil.getNumArray(this._info, "api_voice_id");
+                    return null == t ? [] : t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.AllyAttackModel = a
 }

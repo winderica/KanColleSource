@@ -19,15 +19,20 @@ const function962 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = function (t) {
+    var o = i(0),
+        r = i(9),
+        s = i(7),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.position.set(11, 0), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(0, 20), e.addChild(e._icon), e
+                return e._url = "api_get_member/mapinfo", e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                3 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(37), this._icon.texture = o.SALLY_AIRUNIT.getTexture(43), this.visible = !0) : 2 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(36), this._icon.texture = o.SALLY_AIRUNIT.getTexture(42), this.visible = !0) : this.visible = !1
+            return n(e, t), e.prototype._completedEnd = function () {
+                var e = s.ObjUtil.getObjectArray(this._raw_data, "api_map_info");
+                o.default.model.map.setMapMem(e);
+                var i = s.ObjUtil.getObjectArray(this._raw_data, "api_air_base");
+                o.default.model.airunit.setData(i), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelItemFatigueIcon = r
+        }(r.APIBase);
+    e.MapInfoAPI = a
 }

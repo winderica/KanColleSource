@@ -19,88 +19,58 @@ const function1390 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(20),
-        a = i(6),
-        _ = i(44),
-        l = i(461),
-        u = i(1391),
-        c = i(65),
-        h = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this, i, n, o, r, !0) || this;
-                return s._layer = e, s._friend = s._attacker.friend, s
+    var o = i(449),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._CHUHA_ = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], e._TAIHA_ = [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], e.run = function (t) {
+                    for (var i = t.target.target.time, n = 0; n < e.txtParts.length; n++) e.txtParts[n].Update(i)
+                }, e.callBack = null, e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._friend ? 1 : -1;
-                this._canvas = new u.CutinKuboNightCanvas, this._canvas.bg.alpha = 0;
-                var i = this._attacker.mst_id,
-                    n = this._attacker.isDamaged(),
-                    r = o.default.resources.getShip(i, n, "full"),
-                    l = new PIXI.Sprite(r),
-                    c = new _.ShipFlash(r),
-                    h = o.default.model.ship_graph.get(i).getBattleOffset(n);
-                l.position.set(h.x, h.y), c.position.set(h.x, h.y), this._canvas.chara.addChild(l), this._canvas.chara.addChild(c), this._canvas.chara.alpha = 0, this._canvas.chara.x = (this._friend ? 0 : 600) - 54, this._canvas.chara.y = 615, this._canvas.plane1.position.set(600 - 917 * e, 387), this._canvas.plane1.initialize(this._slot_mst_id1, this._friend);
-                var p, d = new s.TweenTask;
-                this._canvas.bar1.initialize(this._slot_mst_id1, this._friend), p = 1600, d.addTweens(this._canvas.bar1.createTween(p)), this._canvas.bar2.initialize(this._slot_mst_id2, this._friend), p = 1600, d.addTweens(this._canvas.bar2.createTween(p)), this._canvas.bar3.initialize(this._slot_mst_id3, this._friend), p = 1600, d.addTweens(this._canvas.bar3.createTween(p)), d.start(function () {
-                    var e = new s.TweenTask;
-                    e.addTweens(t._canvas.bar1.createTween2(1300)), e.addTweens(t._canvas.bar2.createTween2(1300)), e.addTweens(t._canvas.bar3.createTween2(1300)), e.start()
-                }), this._layer.addChild(this._canvas), createjs.Tween.get(this._canvas.bg).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this._canvas.chara).to({
-                    y: -87,
-                    alpha: 1
-                }, 500).wait(700).call(function () {
-                    c.play()
-                }).wait(100).wait(1500).call(function () {
-                    c.play()
-                }).wait(100).call(function () {
-                    null != t._cb_onAttack && t._cb_onAttack()
-                }).wait(100).to({
-                    y: -351,
-                    alpha: 0
-                }, 500), createjs.Tween.get(this._canvas.plane1).wait(300).call(function () {
-                    t._canvas.plane1.activate()
+            return n(e, t), e.prototype.Initialize = function (t) {
+                var e = [new PIXI.Point(0, 175), new PIXI.Point(375, 181), new PIXI.Point(262, 160), new PIXI.Point(246, 321), new PIXI.Point(307, 298), new PIXI.Point(291, 273), new PIXI.Point(445, 355), new PIXI.Point(399, 334), new PIXI.Point(400, 310), new PIXI.Point(364, 291), new PIXI.Point(384, 280), new PIXI.Point(405, 268), new PIXI.Point(429, 309), new PIXI.Point(441, 262), new PIXI.Point(439, 247), new PIXI.Point(439, 258), new PIXI.Point(466, 241), new PIXI.Point(468, 201), new PIXI.Point(433, 156), new PIXI.Point(426, 208), new PIXI.Point(408, 162), new PIXI.Point(406, 241), new PIXI.Point(363, 250), new PIXI.Point(357, 265), new PIXI.Point(351, 216), new PIXI.Point(339, 157), new PIXI.Point(342, 156), new PIXI.Point(246, 105), new PIXI.Point(432, 156), new PIXI.Point(168, 163), new PIXI.Point(216, 163), new PIXI.Point(247, 213), new PIXI.Point(172, 258), new PIXI.Point(177, 225), new PIXI.Point(142, 175), new PIXI.Point(69, 186), new PIXI.Point(0, 211), new PIXI.Point(49, 169), new PIXI.Point(139, 166), new PIXI.Point(157, 117), new PIXI.Point(133, 99), new PIXI.Point(1, 21), new PIXI.Point(4, 1), new PIXI.Point(124, 27), new PIXI.Point(163, 72), new PIXI.Point(213, 84), new PIXI.Point(169, 1), new PIXI.Point(121, 1), new PIXI.Point(261, 186)];
+                new PIXI.Point(0, 0), new PIXI.Point(378, 184), new PIXI.Point(259, 159), new PIXI.Point(247, 322), new PIXI.Point(310, 298), new PIXI.Point(294, 270), new PIXI.Point(445, 352), new PIXI.Point(400, 336), new PIXI.Point(405, 315), new PIXI.Point(366, 292), new PIXI.Point(385, 288), new PIXI.Point(406, 271), new PIXI.Point(430, 309), new PIXI.Point(444, 261), new PIXI.Point(442, 252), new PIXI.Point(442, 256), new PIXI.Point(0, 0), new PIXI.Point(396, 141), new PIXI.Point(436, 156), new PIXI.Point(427, 208), new PIXI.Point(411, 162), new PIXI.Point(408, 244), new PIXI.Point(364, 255), new PIXI.Point(355, 276), new PIXI.Point(354, 214), new PIXI.Point(336, 159), new PIXI.Point(343, 156), new PIXI.Point(244, 105), new PIXI.Point(198, 148), new PIXI.Point(168, 165), new PIXI.Point(217, 163), new PIXI.Point(247, 213), new PIXI.Point(172, 259), new PIXI.Point(0, 0), new PIXI.Point(142, 175), new PIXI.Point(70, 186), new PIXI.Point(3, 211), new PIXI.Point(49, 171), new PIXI.Point(139, 166), new PIXI.Point(157, 118), new PIXI.Point(135, 99), new PIXI.Point(0, 22), new PIXI.Point(0, 0), new PIXI.Point(124, 25), new PIXI.Point(165, 73), new PIXI.Point(211, 84), new PIXI.Point(169, 1), new PIXI.Point(121, 0), new PIXI.Point(261, 186);
+                this.txtParts = [];
+                for (var i = 0; i < 49; i++) {
+                    var n = t ? this._TAIHA_ : this._CHUHA_,
+                        r = n[i],
+                        a = o.BATTLE_CUTIN_DAMAGE.getTexture(r),
+                        _ = new PIXI.Sprite(a);
+                    _.x = e[i].x, _.y = e[i].y;
+                    var u = new s(_);
+                    this.txtParts.push(u), this.addChild(_)
+                }
+            }, e.prototype.Dispose = function () {
+                this.removeChildren(0, this.children.length);
+                for (var t = 0; t < this.txtParts.length; t++) this.txtParts[t].Dispose(), this.txtParts[t] = null;
+                this.txtParts = null, this.tween.setPaused(!0), this.tween.removeAllEventListeners("change"), this.tween = null
+            }, e.prototype.Play = function (t) {
+                var e = this;
+                this.callBack = t;
+                var i = {
+                    time: 0
+                };
+                this.tween = createjs.Tween.get(i, {
+                    onChange: this.run
                 }).to({
-                    x: 600 - 38 * e
-                }, 400).wait(700).to({
-                    x: 600 + 863 * e
-                }, 400).call(function () {
-                    t._canvas.plane1.deactivate()
-                }), createjs.Tween.get(null).wait(750).call(function () {
-                    a.SE.play("105")
-                }).wait(250).call(function () {
-                    a.SE.play("109")
-                }).wait(600).call(function () {
-                    a.SE.play("105")
-                }).wait(200).call(function () {
-                    a.SE.play("109")
-                }), this._anim2()
-            }, e.prototype._anim2 = function () {
-                var t = this,
-                    e = new c.IntensiveLines;
-                e.initialize(), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).wait(3100).call(function () {
-                    e.activate()
-                }).to({
-                    alpha: 1
-                }, 200).wait(300).to({
-                    alpha: 0
-                }, 300);
-                var i = new r.AreaBox(1, 16777215);
-                i.alpha = 0, this._layer.addChild(i), createjs.Tween.get(i).wait(3100).to({
-                    alpha: 1
-                }, 500).call(function () {
-                    t._layer.removeChild(t._canvas)
-                }).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(e), t._layer.removeChild(i), t._endTask()
+                    time: 1
+                }, 2300).call(function () {
+                    null != e.callBack && e.callBack()
                 })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._canvas = null, t.prototype._endTask.call(this)
             }, e
-        }(l.CutinKuboBase);
-    e.CutinKuboNight = h
+        }(PIXI.Container);
+    e.BreakText = r;
+    var s = function () {
+        function t(t) {
+            this.sprite = t, this.sprite.anchor.set(.5, .5), this.sprite.position.set(this.sprite.position.x + .5 * this.sprite.width, this.sprite.position.y + .5 * this.sprite.height), this.fromPos = new PIXI.Point(this.sprite.x, this.sprite.y), this.toRot = (720 * Math.random() - 360) * Math.PI / 180, this.toX = 2400 * Math.random() - 1200, this.ctrlY = this.sprite.y - 1400 * Math.random()
+        }
+        return t.prototype.Dispose = function () {
+            this.sprite = null, this.fromPos = null, this.toRot = null, this.toX = null, this.ctrlY = null
+        }, t.prototype.Update = function (t) {
+            this.sprite.rotation = 0 + this.toRot * t, this.sprite.x = this.fromPos.x + this.toX * t, this.sprite.y = this.setBezierPos(t, this.fromPos.y, 1050, this.ctrlY)
+        }, t.prototype.setBezierPos = function (t, e, i, n) {
+            return (1 - t) * (1 - t) * e + 2 * (1 - t) * t * n + t * t * i
+        }, t
+    }();
+    e.Parts = s
 }

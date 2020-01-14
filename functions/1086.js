@@ -19,75 +19,48 @@ const function1086 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(14),
-        r = i(73),
+    var o = i(38),
+        r = i(59),
         s = function (t) {
-            function e(e) {
-                return t.call(this, e) || this
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "sType", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_stype")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return o.ObjUtil.getString(this._o, "api_sinfo")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "karyoku", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_houg")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "raisou", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_raig")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "taiku", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_tyku")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "kaihi", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_kaih")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "taikyu", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_taik")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.hasTaiha = function (t) {
-                var e = this.mst_ids.indexOf(t);
-                if (e < 0) return !1;
-                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
-                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 1) && 1 == i[1])
-            }, e.prototype.isMarriage = function (t) {
-                var e = this.mst_ids.indexOf(t);
-                if (e < 0) return !1;
-                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
-                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 2) && 1 == i[2])
-            }, e.prototype.hasMarriage = function () {
-                var t = o.ObjUtil.getObjectArray(this._o, "api_state");
-                if (null == t) return !1;
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e];
-                    if (!(null == n || n.length <= 2) && 1 == n[2]) return !0
+            function e() {
+                var e = t.call(this) || this;
+                e._icons = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
                 }
-                return !1
-            }, e.prototype.extraVoices = function () {
-                return o.ObjUtil.getObjectArray(this._o, "api_q_voice_info")
+                return e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0; t < this._icons.length; t++) {
+                    this._icons[t].visible = !1
+                }
+            }, e.prototype.update = function (t) {
+                var e = [];
+                if (null != t) {
+                    var i = t.getSlotitems();
+                    i = i.concat(t.getSlotitemEx());
+                    for (var n = 0, r = i; n < r.length; n++) {
+                        var s = r[n];
+                        if (null != s) {
+                            var a = s.equipType;
+                            if (a == o.EquipType._24_JOURIKUYOU_SHUTEI) {
+                                355 != s.mstID && e.push(s)
+                            } else a == o.EquipType._46_TOKUGATA_UCHIBITEI && e.push(s)
+                        }
+                    }
+                }
+                this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e];
+                    if (e >= t.length) i.visible = !1;
+                    else {
+                        var n = t[e].equipType;
+                        n == o.EquipType._24_JOURIKUYOU_SHUTEI ? i.texture = r.SALLY_EXPEDITION.getTexture(64) : n == o.EquipType._46_TOKUGATA_UCHIBITEI && (i.texture = r.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
+                    }
+                }
             }, e
-        }(r.AlbumModelBase);
-    e.AlbumShipModel = s
+        }(PIXI.Container);
+    e.CompSupportBoatCount = s
 }

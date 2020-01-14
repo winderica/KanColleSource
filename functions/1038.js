@@ -22,17 +22,16 @@ const function1038 = function (t, e, i) {
     var o = i(53),
         r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._content = new PIXI.Sprite, e.addChild(e._content), e.visible = !1, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_PRACTICE.getTexture(28);
-                var t = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(29));
-                t.position.set(40, 57), this.addChild(t);
-                var e = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(30));
-                e.position.set(102, 64), this.addChild(e);
-                var i = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(32));
-                i.position.set(132, 64), this.addChild(i)
+            return n(e, t), e.prototype.show = function (t) {
+                void 0 === t && (t = 0), this._content.y = 0;
+                var e = -1;
+                0 == t ? (e = 31, this._content.y = 8) : 1 == t ? e = 26 : 2 == t ? e = 25 : 3 == t ? e = 24 : 4 == t && (e = 23), this._content.texture = e < 0 ? PIXI.Texture.EMPTY : o.SALLY_SORTIE.getTexture(e), this._content.x = -Math.floor(this._content.width / 2), this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
             }, e
-        }(PIXI.Sprite);
-    e.UserinfoPanelBG = r
+        }(PIXI.Container);
+    e.ClearBadge = r
 }

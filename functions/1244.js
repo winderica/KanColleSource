@@ -19,49 +19,42 @@ const function1244 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(20),
-        s = i(143),
-        a = i(1245),
-        _ = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(1245),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i._friend = e, i._circle = new PIXI.Sprite, i._circle.anchor.set(.5, .5), i._circle.scale.set(.1), i._circle.visible = !1, i._content = new a.Content(e), i._content.alpha = 0, i.addChild(i._circle), i.addChild(i._content);
-                var n = new PIXI.Graphics;
-                return n.beginFill(65280, .5), i._drawGraphics(n), n.endFill(), i.addChild(n), i.mask = n, i._friend ? (i.circle.position.set(255, 311), i.content.position.set(-150, 0)) : (i.circle.position.set(345, 311), i.content.position.set(150, 0)), i
+                return i._scene = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "circle", {
-                get: function () {
-                    return this._circle
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._friend ? this._circle.texture = s.PRAC_MAIN.getTexture(3) : this._circle.texture = s.PRAC_MAIN.getTexture(4), this._content.initialize(t, e)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._content.dispose()
-            }, e.prototype.getAnimationTask = function () {
-                var t = new r.TweenTask;
-                t.addTween(createjs.Tween.get(this._content.medal).to({
-                    alpha: 1
-                }, 100));
-                for (var e = this._content.elements, i = this._friend ? 0 : 173, n = 0; n < e.length; n++) {
-                    var o = e[n];
-                    0 != o.visible && t.addTween(createjs.Tween.get(o).wait(300 + 100 * n).to({
-                        x: i,
-                        alpha: 1
-                    }, 200, createjs.Ease.sineIn))
-                }
-                return t
-            }, e.prototype._drawGraphics = function (t) {
-                this._friend ? (t.moveTo(0, 0), t.lineTo(0, o.default.height), t.lineTo(o.default.width / 2 - 128, o.default.height), t.lineTo(o.default.width / 2 + 128, 0)) : (t.moveTo(128, 0), t.lineTo(o.default.width / 2, 0), t.lineTo(o.default.width / 2, o.default.height), t.lineTo(-128, o.default.height))
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this;
+                (new s.TaskLoadResources).start(function () {
+                    t._showTopView()
+                })
+            }, e.prototype._showTopView = function () {
+                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
             }, e
-        }(PIXI.Container);
-    e.Panel = _
+        }(r.TaskBase);
+    e.PreInitializeTask = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            var t = this._getBGMID();
+            o.default.sound.bgm.play(t), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
+        }, e.prototype._getBGMID = function () {
+            var t = o.default.model.deck.get(1).getShipModel(1);
+            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
+        }, e
+    }(r.TaskBase);
+    e.InitializeTask = _
 }

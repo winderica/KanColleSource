@@ -19,23 +19,19 @@ const function938 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(939),
-        s = function (t) {
-            function e(e) {
-                void 0 === e && (e = !1);
-                var i = t.call(this) || this;
-                return i._url = "api_get_member/practice", i._res_model = new r.PracticeAPIModel, i._debug = e, i
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.bg_0 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_1 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_0.position.set(0, 102), e.bg_1.position.set(529, 102);
+                var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(8));
+                i.anchor.set(0, .5), i.position.set(198, e.bg_0.height / 2 - 4);
+                var n = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(4));
+                return n.anchor.set(0, .5), n.position.set(19, e.bg_0.height / 2 - 4), e.bg_0.addChild(i), e.bg_1.addChild(n), e.addChild(e.bg_0), e.addChild(e.bg_1), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
-                get: function () {
-                    return this._res_model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._completedEnd = function () {
-                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.bg_0.removeChildren(), this.bg_1.removeChildren(), this.removeChildren(), this.bg_0 = null, this.bg_1 = null
             }, e
-        }(o.APIBase);
-    e.PracticeAPI = s
+        }(PIXI.Container);
+    e.TopBarLayer = r
 }

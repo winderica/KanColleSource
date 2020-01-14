@@ -19,20 +19,23 @@ const function1047 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1048),
+    var o = i(42),
+        r = i(374),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._selected_type = e, n._view = i, n
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new r.ChangeMatchingAPI(this._selected_type);
-                e.start(function () {
-                    t._view.updateMatchingState(e.res_model.isSucceed(), t._selected_type), t._endTask()
-                })
+            return n(e, t), e.prototype._getBlackTexture = function () {
+                switch (this._type) {
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(33);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(32)
+                }
+                return PIXI.Texture.EMPTY
+            }, e.prototype._setPositions = function () {
+                1 == this._type ? (this._key.position.set(216, 104), this._cloud.position.set(230, 137), this._text.position.set(230, 174)) : 2 == this._type ? (this._key.position.set(311, 42), this._cloud.position.set(332, 81), this._text.position.set(333, 152)) : 3 == this._type ? (this._black.position.set(-3, -2), this._key.position.set(311, 11), this._cloud.position.set(332, 56), this._text.position.set(339, 117)) : 4 == this._type && (this._key.position.set(311, 8), this._cloud.position.set(332, 51), this._text.position.set(333, 60))
             }, e
-        }(o.TaskBase);
-    e.TaskChangeMatching = s
+        }(r.MapThumbnailLocked);
+    e.EventMapThumbnailLocked = s
 }

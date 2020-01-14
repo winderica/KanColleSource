@@ -19,76 +19,40 @@ const function1296 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(20),
-        s = i(1297),
-        a = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._layer = e, s._ship_pos = i, s._drum_num = n, s._daihatsu_num = o, s._direction = r, s
+    var o = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            n._ropeLength = 0, n._animation_count = 0, n._texture = e, n._points = [];
+            var o = e.orig.width;
+            n._ropeLength = o / i;
+            for (var r = 0; r < i; r++) {
+                var s = new PIXI.Point;
+                s.x = r * (e.height / (i - 1)), s.y = e.width / 2, n._points.push(s)
             }
-            return n(e, t), e.prototype._start = function () {
-                this._balloon1 = this._createBalloon(this._direction, 1), this._balloon1.initialize(), this._drum_num > 0 && (this._balloon2 = this._createBalloon(this._direction, 2), this._balloon2.initialize(), this._balloon2.update(this._drum_num)), this._daihatsu_num > 0 && (this._balloon3 = this._createBalloon(this._direction, 3), this._balloon3.initialize(), this._balloon3.update(this._daihatsu_num)), this._showBalloons()
-            }, e.prototype._createBalloon = function (t, e) {
-                return 0 == t ? new s.LandingBalloonType1(e) : 1 == t ? new s.LandingBalloonType2(e) : 2 == t ? new s.LandingBalloonType3(e) : null
-            }, e.prototype._showBalloons = function () {
-                var t = this,
-                    e = new r.TweenTask;
-                0 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 48, -18)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 0, -42)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -51, -18))) : 1 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 50, -9)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 44, 8)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -15, 8))) : 2 == this._direction && (e.addTween(this._createShowTween(this._balloon1, -14, -21)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, -33, -17)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -24, 8))), e.start(function () {
-                    t._wait()
-                })
-            }, e.prototype._wait = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(250).call(function () {
-                    t._scaling()
-                })
-            }, e.prototype._scaling = function () {
-                var t = this,
-                    e = new r.TweenTask;
-                e.addTween(this._createScalingTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createScalingTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createScalingTween(this._balloon3)), e.start(function () {
-                    t._wait2()
-                })
-            }, e.prototype._wait2 = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(2e3).call(function () {
-                    t._hideBalloons()
-                })
-            }, e.prototype._hideBalloons = function () {
-                var t = this,
-                    e = new r.TweenTask;
-                e.addTween(this._createHideTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createHideTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createHideTween(this._balloon3)), e.start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._createShowTween = function (t, e, i) {
-                var n = this;
-                return t.x = this._ship_pos.x + e, t.y = this._ship_pos.y + i + 23, t.alpha = 0, createjs.Tween.get(t).call(function () {
-                    n._layer.addChild(t)
-                }).to({
-                    y: this._ship_pos.y + i,
-                    alpha: 1
-                }, 100, createjs.Ease.sineOut)
-            }, e.prototype._createScalingTween = function (t) {
-                var e = t.y;
-                return createjs.Tween.get(t).to({
-                    y: e - 5,
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    y: e,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 300, createjs.Ease.sineOut)
-            }, e.prototype._createHideTween = function (t) {
-                var e = this;
-                return createjs.Tween.get(t).to({
-                    y: t.y + 23,
-                    alpha: 0
-                }, 100, createjs.Ease.sineOut).call(function () {
-                    e._layer.removeChild(t)
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._ship_pos = null, this._balloon1 = null, this._balloon2 = null, this._balloon3 = null, t.prototype._endTask.call(this)
-            }, e
-        }(o.TaskBase);
-    e.TaskLandingBalloon = a
+            var a = new PIXI.mesh.Rope(e, n._points),
+                _ = e.frame,
+                u = PIXI.GroupD8.isVertical(2) ? e.frame.height : e.frame.width,
+                l = PIXI.GroupD8.isVertical(2) ? e.frame.width : e.frame.height,
+                c = new PIXI.Rectangle(_.x, _.y, u, l),
+                h = new PIXI.Rectangle(0, 0, u, l),
+                p = new PIXI.Texture(e.baseTexture, _, c, h, 2);
+            return a = new PIXI.mesh.Rope(p, n._points), a.rotation = Math.PI / 2, a.x = a.height, n.addChild(a), n
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.stopAnimation(), this.removeChildren(), this._texture = null, this._points = null, this._ropeLength = null, this._animation_count = null
+        }, e.prototype.startAnimation = function () {
+            var t = this;
+            this._tween = createjs.Tween.get(this), this._tween.loop = !0, this._tween.wait(40).call(function () {
+                t._onUpdate()
+            })
+        }, e.prototype.stopAnimation = function () {
+            this._tween && (this._tween.setPaused(!0), this._tween = null)
+        }, e.prototype._onUpdate = function () {
+            this._animation_count += .05;
+            for (var t = 0; t < this._points.length; t++) {
+                this._points[t].y = this._texture.width / 2 + 5 * Math.cos(.3 * t + this._animation_count)
+            }
+        }, e
+    }(PIXI.Container);
+    e.MapEnemy = o
 }

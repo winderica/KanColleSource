@@ -20,16 +20,17 @@ const function1235 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = function (t) {
+        r = i(15),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._scene = e, i
+                return i._scene_dispose_delegate = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._scene.start(), this._endTask()
+                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._endTask()
             }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+                this._scene_dispose_delegate = null, r.UIImageLoader.clearMemoryCache("duty"), t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskInit = r
+    e.TaskDutySceneFinalize = s
 }

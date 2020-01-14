@@ -19,90 +19,102 @@ const function617 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(190),
-        s = i(618),
-        a = i(619),
-        _ = i(293),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new u, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
+    var o = i(5),
+        r = i(4),
+        s = i(195),
+        a = i(1),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._tween = new Array(2), i._textScrollEnable = !0, i._onChibiClick = function () {
+                    i._textScrollEnable && !i._musicChibiJumping && (i._musicChibiJumping = !0, i._tween[4] = createjs.Tween.get(i._musicChibi).to({
+                        y: i._offset_y + 144.5
+                    }, 1).to({
+                        y: i._offset_y + 144.5 - 48
+                    }, 250, createjs.Ease.cubicOut).to({
+                        y: i._offset_y + 144.5
+                    }, 250, createjs.Ease.cubicIn).call(function () {
+                        i._tween[4] = null, i._musicChibiJumping = !1
+                    }))
+                }, i._furnitureJukeBoxBGMLineModel = e, i._textScrollEnable = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "chara", {
+            return n(e, t), Object.defineProperty(e.prototype, "jukebox_close", {
                 get: function () {
-                    return this._chara
+                    return this._close
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "marriageEff", {
+            }), Object.defineProperty(e.prototype, "jukebox_btn_bgm", {
                 get: function () {
-                    return this._marrigaeEff
-                },
-                set: function (t) {
-                    this._marrigaeEff != t && (this._marrigaeEff = t, 1 == this._marrigaeEff ? this._showMarriageEff() : this._hideMarriageEff())
+                    return this._btn_bgm
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._touch_count = 0, this._ship_mst_id = t;
-                var n = o.default.model.basic.getFlagShipPosIDCli(),
-                    r = _.PortConst.getMoveXValue(t),
-                    s = 0 == n ? 0 : r,
-                    a = o.default.resources.getShip(t, e, "full");
-                this._chara.texture = a;
-                var l = new PIXI.Sprite(a);
-                this._hit_area_map = o.default.settings.renderer.extract.pixels(l), this._container.position.set(491, -88);
-                var u = this._chara.width / 2,
-                    c = this._chara.height / 2,
-                    h = o.default.model.ship_graph.get(t).getPortOffset(e);
-                this._chara.position.set(-u + h.x + s, -c + h.y), this._container.positionSet(491 + u, -88 + c), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
-            }, e.prototype.activate = function () {
-                null == this._loop_tween && (this._loop_tween = createjs.Tween.get(this._container, {
+            }), e.prototype.init = function () {
+                this._offset_x = 148, this._offset_y = 264, this._bg = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(5)), this._bg.position.set(this._offset_x, this._offset_y), this.addChild(this._bg), this._close = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(9)), this._close.position.set(this._offset_x + 892, this._offset_y + 4), this._close.interactive = this._close.buttonMode = !0, this.addChild(this._close), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._btn_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(6)), this._btn_bgm.position.set(this._offset_x + 639, this._offset_y - 4), this._btn_bgm.interactive = this._btn_bgm.buttonMode = !0, this.addChild(this._btn_bgm)), this._text_mask = new PIXI.Graphics, this._text_mask.beginFill(11184810), this._text_mask.drawRect(this._offset_x + 216, this._offset_y + 52, 510, 22), this._text_mask.endFill(), this.addChild(this._text_mask), this._text = new r.TextBox(19, 4473924), this._text.mask = this._text_mask, this._text.position.set(o.default.width, this._offset_y + 51), this._text.anchor.set(.5, 0), this._text.text = "\u300c" + this._furnitureJukeBoxBGMLineModel.api_name + "\u300d\u3000\u30ea\u30af\u30a8\u30b9\u30c8\u4e2d\u266a", this.addChild(this._text), this._musicChibi = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(12)), this._musicChibi.position.set(this._offset_x + 36.5, this._offset_y + 144.5), this._musicChibi.anchor.set(.5, .5), this._musicChibi.interactive = !0, this.addChild(this._musicChibi)
+            }, e.prototype.text_scroll = function () {
+                this._textScrollEnable && (this._tween[0] = createjs.Tween.get(this._text, {
                     loop: !0
                 }).to({
-                    anim_value: Math.PI
-                }, 5200)), this._timerBeLeftVoice.reset(), this._timeSignal.reset()
-            }, e.prototype.deactivate = function () {
-                null != this._loop_tween && (this._loop_tween.setPaused(!0), this._loop_tween = null), this._timerBeLeftVoice.stop(), this._timeSignal.stop()
-            }, e.prototype.onMouseMove = function (t) {
-                var e = t.getLocalPosition(this._chara);
-                return this._isCharaHit(e)
-            }, e.prototype.onClick = function (t) {
-                var e = t.getLocalPosition(this._chara),
-                    i = this._isCharaHit(e);
-                return 1 == i && this._onClick(), i
-            }, e.prototype._showMarriageEff = function () {
-                var t = new PIXI.Rectangle(600, 0, 600, 720);
-                this._ship_is_marriage = !0, this._sakura.startAnimation(t)
-            }, e.prototype._hideMarriageEff = function () {
-                this._ship_is_marriage = !1, this._sakura.stopAnimation()
-            }, e.prototype._isCharaHit = function (t, e) {
-                if (void 0 === e && (e = 0), t.x < 0 || t.y < 0 || t.x > this._chara.width) return !1;
-                var i = 4 * (Math.floor(t.x) + this._chara.width * Math.floor(t.y));
-                return null != this._hit_area_map && (!(i + 3 >= this._hit_area_map.length) && this._hit_area_map[i + 3] > e)
-            }, e.prototype._onClick = function () {
-                this._touch_count < 4 ? 1 == this._ship_is_marriage && 0 == this._touch_count ? o.default.sound.voice.play(this._ship_mst_id.toString(), 28) : o.default.sound.voice.playAtRandom(this._ship_mst_id.toString(), [2, 3, 4], [60, 30, 10]) : o.default.sound.voice.play(this._ship_mst_id.toString(), 4), this._touch_count++, this._timerBeLeftVoice.reset()
+                    x: 1138
+                }, 1).to({
+                    x: 613
+                }, 5e3).wait(1e3).to({
+                    x: 88
+                }, 5e3))
+            }, e.prototype.musicChibiAnime = function () {
+                this._musicChibiMove(), this._musicChibiTexture(), this._musicChibiRot(), this._musicChibi.on(a.EventType.CLICK, this._onChibiClick), this._musicChibiJumping = !1
+            }, e.prototype._musicChibiMove = function () {
+                var t = this;
+                this._textScrollEnable && (this._tween[1] = createjs.Tween.get(this._musicChibi, {
+                    loop: !0
+                }).to({
+                    x: 867,
+                    width: 94,
+                    height: 82
+                }, 1).to({
+                    x: 232
+                }, 5e3).to({
+                    width: 1
+                }, 500).call(function () {
+                    t._musicChibi.scale.x = -1, t._musicChibi.width = 1
+                }).to({
+                    width: 94
+                }, 500).to({
+                    x: 867
+                }, 5e3).to({
+                    width: 1
+                }, 500).call(function () {
+                    t._musicChibi.scale.x = 1, t._musicChibi.width = 1
+                }).to({
+                    width: 94
+                }, 500))
+            }, e.prototype._musicChibiTexture = function () {
+                var t = this;
+                this._textScrollEnable && (this._tween[2] = createjs.Tween.get(this._musicChibi, {
+                    loop: !0
+                }).wait(250).call(function () {
+                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(12)
+                }).wait(250).call(function () {
+                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
+                }).wait(250).call(function () {
+                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(14)
+                }).wait(250).call(function () {
+                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
+                }))
+            }, e.prototype._musicChibiRot = function () {
+                this._textScrollEnable && (this._tween[3] = createjs.Tween.get(this._musicChibi, {
+                    loop: !0
+                }).to({
+                    rotation: .05
+                }, 1).wait(249).to({
+                    rotation: -.05
+                }, 1).wait(249))
+            }, e.prototype.discard = function () {
+                this._musicChibi.off(a.EventType.CLICK, this._onChibiClick), this._textScrollEnable = !1;
+                for (var t = 0; t < this._tween.length; t++) null != this._tween[t] && (this._tween[t].setPaused(!0), this._tween[t].removeAllEventListeners());
+                this.removeChildren(), this._text.destroy()
             }, e
         }(PIXI.Container);
-    e.FlagShipLayer = l;
-    var u = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "anim_value", {
-            get: function () {
-                return 0
-            },
-            set: function (t) {
-                var e = Math.sin(t),
-                    i = 1 + .012 * (.5 + .5 * e);
-                this.scale.set(i), this.y = this._base_y - 1.5 * e * 1.8
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.positionSet = function (t, e) {
-            this.position.set(t, e), this._base_y = e
-        }, e
-    }(PIXI.Container)
+    e.JukeBoxDisp = _
 }

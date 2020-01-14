@@ -19,28 +19,34 @@ const function366 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(15),
-        r = i(31),
-        s = function (t) {
+    var o = i(37),
+        r = i(367),
+        s = i(1023),
+        a = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._banners = [], e._levels = [], e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.alpha = 0, this.visible = !1
+            return n(e, t), e.prototype.dispose = function () {
+                for (var t = 0, e = this._banners; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e.prototype.update = function (t) {
-                var e = this;
-                if (0 == t) return this.texture = PIXI.Texture.EMPTY, void(this.visible = !1);
-                this.texture = r.SALLY_COMMON.getTexture(0), this.visible = !0, this._type = t;
-                var i = new o.UIImageLoader("sally"),
-                    n = "sally_alert_alert_" + t;
-                i.add("alert/alert_" + t + ".png", n), i.load(function () {
-                    e._type == t && (e.texture = PIXI.Texture.fromFrame(n))
-                })
-            }, e.prototype.activate = function () {
-                0 == this.alpha && createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 300)
+                for (o.TaskLoadShipResource.abortBy(this); this._banners.length > 0;) {
+                    var e = this._banners.pop();
+                    null != e.parent && e.parent.removeChild(e), e.dispose()
+                }
+                for (; this._levels.length > 0;) {
+                    var i = this._levels.pop();
+                    null != i.parent && i.parent.removeChild(i)
+                }
+                for (var n = 0; n < t.length; n++) {
+                    var a = new r.CompBannerAndLack;
+                    a.position.set(0, 75 * n), a.initialize(), a.update(t[n], !0), this.addChild(a), this._banners.push(a);
+                    var _ = new s.CompBannerLevel;
+                    _.position.set(201, 75 * n), _.initialize(), _.update(t[n]), this.addChild(_), this._levels.push(_)
+                }
             }, e
-        }(PIXI.Sprite);
-    e.AlertBalloon = s
+        }(PIXI.Container);
+    e.PanelDeckSelectBanners = a
 }

@@ -1,185 +1,109 @@
 const function751 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(84),
-        o = i(752),
-        r = i(0),
-        s = i(753),
-        a = i(220),
-        _ = i(3),
-        l = i(335),
-        u = i(113),
-        c = function () {
-            function t(t) {
-                var e = this;
-                this.DECK_MAX = 6, this._isAllSupply = !1, this._isOverAllBtn2 = !1, this._onClickShip = function (t, i) {
-                    var n = e.deckSupplyBanners[t];
-                    e.supplyEditor.containts(i) ? (e.supplyEditor.remove(i), _.SE.play("238"), n.setDefault()) : (e.supplyEditor.push(i), _.SE.play("241"), n.checkOn()), e.onUpdateSupplyEdit(!0)
-                }, this._onMouseOverSupplyAll = function () {
-                    e._isAllSupply = !1, e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                        var o = t.getShipModel(n);
-                        if (o) {
-                            a.SupplyUtil.CheckRequireSupplyShip(o.memID) && e.supplyEditor.push(o.memID)
-                        }
-                    }
-                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin,
-                            o = t.getShipModel(s);
-                        if (o && e.supplyEditor.containts(o.memID)) {
-                            e.deckSupplyBanners[n].checkOn()
-                        }
-                    }
-                    _.SE.play("241"), e.onUpdateSupplyEdit(!0)
-                }, this._onMouseOutSupplyAll = function () {
-                    if (1 == e._isAllSupply) return !1;
-                    e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = 0; i < e.deckSupplyBanners.length; i++) {
-                        var n = i + e.shipInDeckOrigin,
-                            o = t.getShipModel(n);
-                        if (o) {
-                            var s = e.deckSupplyBanners[i];
-                            a.SupplyUtil.CheckRequireSupplyShip(o.memID) && s.setDefault()
-                        }
-                    }
-                    _.SE.play("238"), e.onUpdateSupplyEdit(!0)
-                }, this._onClickSupplyAll = function () {
-                    e.supplyEditor.clear(), e._isAllSupply = !0;
-                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                        var o = i[n];
-                        if (o) {
-                            a.SupplyUtil.CheckRequireSupplyShip(o.memID) && e.supplyEditor.push(o.memID)
-                        }
-                    }
-                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin,
-                            o = t.getShipModel(s);
-                        if (o && e.supplyEditor.containts(o.memID)) {
-                            e.deckSupplyBanners[n].checkOn()
-                        }
-                    }
-                    var _ = r.default.model.useItem.get(31).count,
-                        l = r.default.model.useItem.get(32).count,
-                        u = e.supplyEditor.getMemShipIds(),
-                        c = a.SupplyUtil.CalcRequireMaterials(u),
-                        h = a.SupplyUtil.CheckRequireSupplyDeckAll(e.deckId),
-                        p = a.SupplyUtil.CheckRequireSupplyDeckBaux(e.deckId);
-                    0 < c.ammo && c.ammo <= l ? (e.onUpdateSupplyEdit(!0), e.onClickSupplyAll()) : 0 < c.fuel && c.fuel <= _ ? (e.onUpdateSupplyEdit(!0), e.onClickSupplyAll()) : h && p ? e.supplyAllButton.updateClickable(!1) : e.onUpdateSupplyEdit(!0)
-                }, this._saveTempSupply2 = [], this.onMouseOverSupplyAll2 = function () {
-                    e._isOverAllBtn2 = !0;
-                    var t = r.default.model.deck.get(e.deckId),
-                        i = e.supplyEditor.getMemShipIds();
-                    e.supplyEditor.clear();
-                    for (var n = t.getShipList(), o = 0; o < n.length; o++) {
-                        var s = t.getShipModel(o);
-                        if (s) {
-                            a.SupplyUtil.CheckRequireSupplyShipAll(s.memID) && e.supplyEditor.push(s.memID)
-                        }
-                    }
-                    for (var o = 0; o < e.deckSupplyBanners.length; o++) {
-                        var l = o + e.shipInDeckOrigin,
-                            s = t.getShipModel(l);
-                        if (s && e.supplyEditor.containts(s.memID)) {
-                            e.deckSupplyBanners[o].checkOn()
-                        }
-                    }
-                    _.SE.play("241"), e._saveTempSupply2 = i
-                }, this.onMouseOutSupplyAll2 = function () {
-                    e._isOverAllBtn2 = !1, e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = 0; i < e.deckSupplyBanners.length; i++) {
-                        var n = i + e.shipInDeckOrigin,
-                            o = t.getShipModel(n);
-                        if (o) {
-                            var s = e.deckSupplyBanners[i];
-                            a.SupplyUtil.CheckRequireSupplyShipAll(o.memID) && (s.setDefault(), -1 != e._saveTempSupply2.indexOf(o.memID) && (e.supplyEditor.push(o.memID), s.checkOn()))
-                        }
-                    }
-                    _.SE.play("238"), e.onUpdateSupplyEdit(!0), e._saveTempSupply2 = []
-                }, this.onClickSupplyAll2 = function () {
-                    if (!e._isOverAllBtn2) {
-                        e.supplyEditor.clear();
-                        for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                            var o = i[n];
-                            if (o) {
-                                a.SupplyUtil.CheckRequireSupplyShipAll(o.memID) && e.supplyEditor.push(o.memID)
-                            }
-                        }
-                        for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                            var s = n + e.shipInDeckOrigin,
-                                o = t.getShipModel(s);
-                            if (o && e.supplyEditor.containts(o.memID)) {
-                                e.deckSupplyBanners[n].checkOn()
-                            }
-                        }
-                    }
-                    e.onUpdateSupplyEdit(!0), e.supplyAllButton.updateClickable(!1)
-                }, this.onClickSupplyBaux = function () {
-                    e.supplyEditor.clear();
-                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
-                        var o = i[n];
-                        if (o) {
-                            a.SupplyUtil.CheckRequireSupplyShipBaux(o.memID) && e.supplyEditor.push(o.memID)
-                        }
-                    }
-                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin,
-                            o = t.getShipModel(s);
-                        if (o && e.supplyEditor.containts(o.memID)) {
-                            e.deckSupplyBanners[n].checkOn()
-                        }
-                    }
-                    e.onUpdateSupplyEdit(!1)
-                }, this.shipInDeckOrigin = 0, this._onClickArrowTop = function () {
-                    e.shipInDeckOrigin -= 1, e._updateDeck_(e.deckId, e.shipInDeckOrigin)
-                }, this._onClickArrowBottom = function () {
-                    e.shipInDeckOrigin += 1, e._updateDeck_(e.deckId, e.shipInDeckOrigin)
-                }, this.mainView = t, this.supplyAllButton = new o.SupplyAllButton, this.deckSupplyBanners = [];
-                for (var i = 0; i < this.DECK_MAX; i++) {
-                    var n = new s.DeckSupplyBanner(i);
-                    n.position.set(165, 215 + n.ITEM_HEIGHT * i), this.deckSupplyBanners.push(n)
-                }
-                this.arrowTopButton = new u.ArrowTopButton, this.arrowBottomButton = new u.ArrowBottomButton
+    var o = i(3),
+        r = i(4),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onClick = function () {
+                    i.onClick(i._presetId)
+                }, i._onMouseOut = function (t) {
+                    i.onMouseOut(i._index, t)
+                }, i._index = e;
+                var n = o.ORGANIZE_MAIN.getTexture(36),
+                    a = o.ORGANIZE_MAIN.getTexture(40),
+                    _ = o.ORGANIZE_MAIN.getTexture(12),
+                    u = o.ORGANIZE_MAIN.getTexture(13);
+                i._background = new PIXI.Sprite(n);
+                var l = new PIXI.Sprite(a);
+                return i.textMessage = new r.TextBox(16, "red"), i._positiveButton = new PIXI.Sprite(_), i.negativeButton = new PIXI.Sprite(u), l.position.set(279, -13), i.textMessage.position.set(13, 9), i._positiveButton.position.set(237, 42), i.negativeButton.position.set(237, 42), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i._positiveButton.visible = !1, i.negativeButton.visible = !1, i.addChild(i._background, l, i.textMessage, i.negativeButton, i._positiveButton), i._background.anchor.set(.5, 0), i._background.x = 285, i.textMessage.anchor.set(.5, 0), i
             }
-            return t.prototype.getSupplyEdit = function () {
-                return this.supplyEditor
-            }, t.prototype.updateDeck = function (t) {
-                this.deckId = t, this.supplyEditor.clear(), this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit(!0)
-            }, t.prototype.changeDeck = function (t) {
-                this.shipInDeckOrigin = 0, this.deckId = t, this.supplyEditor.clear(), this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit(!0)
-            }, t.prototype.start = function (t) {
-                this.supplyAllButton.position.set(162, 164), this.mainView.addChild(this.supplyAllButton);
-                for (var e = 0; e < this.deckSupplyBanners.length; e++) {
-                    var i = this.deckSupplyBanners[e];
-                    i.onClick = this._onClickShip, this.mainView.addChild(i)
-                }
-                this.arrowTopButton.position.set(533, 173), this.arrowBottomButton.position.set(533, 650), this.mainView.addChild(this.arrowTopButton, this.arrowBottomButton), this.supplyAllButton.onMouseOver = this._onMouseOverSupplyAll, this.supplyAllButton.onMouseOut = this._onMouseOutSupplyAll, this.supplyAllButton.onClick = this._onClickSupplyAll, this.arrowTopButton.onClick = this._onClickArrowTop, this.arrowBottomButton.onClick = this._onClickArrowBottom, this.supplyEditor = new l.SupplyEditor, this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit(!0)
-            }, t.prototype._updateDeck_ = function (t, e) {
-                for (var i = r.default.model.deck.get(t), o = null != i.expedition, s = 0; s < this.deckSupplyBanners.length; s++) {
-                    var _ = e + s,
-                        l = this.deckSupplyBanners[s];
-                    n.TaskLoadShipResource.abortBy(l);
-                    var u = i.getShipModel(_);
-                    if (u) {
-                        var c = a.SupplyUtil.CheckRequireSupplyShip(u.memID),
-                            h = c && 0 == o,
-                            p = !!h && this.supplyEditor.containts(u.memID);
-                        l.update(_, u, o, h, p)
-                    } else l.empty()
-                }
-                if (this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 < e && (this.arrowTopButton.visible = !0), e + this.deckSupplyBanners.length < i.getCount() && (this.arrowBottomButton.visible = !0), i.expedition) this.supplyAllButton.updateClickable(!1);
-                else {
-                    var c = a.SupplyUtil.CheckRequireSupplyDeck(t);
-                    this.supplyAllButton.updateClickable(c)
-                }
-                this.deckId = t
-            }, t.prototype.dispose = function () {
-                var t = this;
-                this.mainView.removeChildren(), this.deckSupplyBanners.forEach(function (e) {
-                    n.TaskLoadShipResource.abortBy(e), e.dispose(), e.onClick = t._onClickShip = null, e = null
-                }), this.supplyAllButton.onMouseOver = this._onMouseOverSupplyAll = null, this.supplyAllButton.onMouseOut = this._onMouseOutSupplyAll = null, this.supplyAllButton.onClick = this._onClickSupplyAll = null, this.supplyAllButton.dispose(), this.supplyAllButton = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.onUpdateSupplyEdit = null, this.onClickSupplyAll = null, this.mainView = null, this.deckSupplyBanners = null, this.deckId = null, this.supplyEditor = null
-            }, t
-        }();
-    e.TaskEditSupplyDeck = c
+            return n(e, t), Object.defineProperty(e.prototype, "index", {
+                get: function () {
+                    return this._index
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "background", {
+                get: function () {
+                    return this._background
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "positiveButton", {
+                get: function () {
+                    return this._positiveButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._positiveButton.off(s.EventType.CLICK), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.textMessage = null, this.negativeButton = null, this._index = null, this._background = null, this._positiveButton = null, this._presetId = null
+            }, e.prototype.update = function (t, e, i) {
+                this._positiveButton.visible = !1, this.negativeButton.visible = !1, i ? this._positiveButton.visible = !0 : this.negativeButton.visible = !0, this.textMessage.text = e, this._background.width = this.textMessage.width + 9, this._background.x = 285, 285 < this._background.width / 2 && (this._background.x = Math.floor(this._background.width / 2 - 285 + 285)), this.textMessage.x = this.background.x, this.positiveButton.x = Math.floor(this.background.x - this.positiveButton.width / 2), this.negativeButton.x = Math.floor(this.background.x - this.negativeButton.width / 2), this._presetId = t
+            }, e
+        }(PIXI.Container);
+    e.PresetAlertOrganizedPopup = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onClick = function () {
+                i.onClick(i._presetId)
+            }, i._onMouseOut = function (t) {
+                i.onMouseOut(i._index, t)
+            }, i._onMouseOver = function (t) {
+                i.onMouseOver(i._index, t)
+            }, i._index = e;
+            var n = o.ORGANIZE_MAIN.getTexture(37),
+                a = o.ORGANIZE_MAIN.getTexture(40),
+                _ = o.ORGANIZE_MAIN.getTexture(13),
+                u = o.ORGANIZE_MAIN.getTexture(11);
+            i._background = new PIXI.Sprite(n);
+            var l = new PIXI.Sprite(a);
+            return i.textMessage = new r.TextBox(18, "red"), i._negativeButton = new PIXI.Sprite(_), i._positiveButton = new PIXI.Sprite(u), i.textMessage.text = "\u65e2\u306b\u5b58\u5728\u3057\u306a\u3044\u8266\u5a18\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059\u3002", l.position.set(160, -12), i.textMessage.position.set(10, 10), i._negativeButton.position.set(18, 39), i._positiveButton.position.set(34, 39), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._positiveButton.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._negativeButton.visible = !1, i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i.addChild(i._background, l, i.textMessage, i._negativeButton, i._positiveButton), i
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "index", {
+            get: function () {
+                return this._index
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "background", {
+            get: function () {
+                return this._background
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "positiveButton", {
+            get: function () {
+                return this._positiveButton
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.dispose = function () {
+            this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.CLICK), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.onMouseOver = null, this.textMessage = null, this._positiveButton = null, this._negativeButton = null, this._background = null, this._index = null, this._presetId = null, this.removeChildren()
+        }, e.prototype.update = function (t, e) {
+            this._presetId = t, this._positiveButton.visible = !1, this._negativeButton.visible = !1, e ? this._positiveButton.visible = !0 : this._negativeButton.visible = !0
+        }, e
+    }(PIXI.Container);
+    e.PresetAlertLostPopup = _
 }

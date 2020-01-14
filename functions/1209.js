@@ -19,96 +19,53 @@ const function1209 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(34),
-        a = i(380),
-        _ = i(169),
-        l = i(131),
-        u = i(106),
-        c = i(160),
-        h = i(1210),
-        p = i(212),
-        d = i(130),
-        f = i(8),
-        y = i(201),
-        m = i(6),
-        g = i(418),
-        v = i(419),
-        b = i(175),
-        w = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._layer = e, o._model = i, o._holder = n, o
+    var o = i(80),
+        r = i(312),
+        s = i(68),
+        a = i(3),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._soldout = new PIXI.Sprite, e._soldout.x = 147, e._soldout.y = 207, e._soldout.visible = !1, e.addChild(e._soldout), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._model.getRewardCandidates();
-                if (null != e && e.length > 0) {
-                    this._click_guard = new f.AreaBox(.2), this._layer.addChild(this._click_guard);
-                    var i = new v.TaskRewardSelectMulti(this._layer, e);
-                    i.start(function () {
-                        var e = i.result;
-                        t._receiveReward(e)
-                    })
-                } else this._click_guard = new f.AreaBox(0), this._layer.addChild(this._click_guard), this._receiveReward(null)
-            }, e.prototype._receiveReward = function (t) {
-                var e, i = this;
-                m.SE.play("215"), this._model.hasVoiceID && o.default.sound.voice.play("9999", this._model.voiceID, null, "duty");
-                var n = this._model.id,
-                    r = [];
-                if (null != t)
-                    for (var s = 0, a = t; s < a.length; s++) {
-                        var e = a[s];
-                        null != e && r.push(e.no)
+            return n(e, t), e.prototype.initialize = function () {
+                t.prototype.initialize.call(this), this._soldout.texture = a.ITEM_FSHOP.getTexture(21)
+            }, e.prototype.updateFromModel = function (e) {
+                if (this.clean(), this._soldout.visible = e.has(), e.isActive()) {
+                    this._img.scale.set(1), this._img.position.set(0, 0);
+                    var i = o.FurnitureLoader.getPath(e.mstID, "thumbnail"),
+                        n = o.FurnitureLoader.getVersionQuery(e.mstID),
+                        r = i + ("" == n ? "" : "?" + n),
+                        a = PIXI.Texture.fromImage(r);
+                    t.prototype.update.call(this, a)
+                } else {
+                    switch (e.type) {
+                        case 0:
+                            this._img.scale.set(1.45), this._img.position.set(-757, -99);
+                            break;
+                        case 1:
+                            this._img.scale.set(.64), this._img.position.set(-96, 3);
+                            break;
+                        case 2:
+                            this._img.scale.set(.64), this._img.position.set(3, 3);
+                            break;
+                        case 3:
+                            this._img.scale.set(1), this._img.position.set(0, 0);
+                            break;
+                        case 4:
+                            this._img.scale.set(.73), this._img.position.set(1, -90);
+                            break;
+                        case 5:
+                            this._img.scale.set(.56), this._img.position.set(-34, 9)
                     }
-                var _ = new g.DutyEndAPI(n, r),
-                    l = _.result;
-                _.start(function () {
-                    i._showRewardDialog(l)
-                })
-            }, e.prototype._showRewardDialog = function (t) {
-                var e = this,
-                    i = o.default.view.overLayer,
-                    n = t.getRewardList();
-                new y.TaskReward(i, n, this._model.id).start(function () {
-                    e._updateInternalData(t)
-                })
-            }, e.prototype._updateInternalData = function (t) {
-                var e = this,
-                    i = new s.APIConnector;
-                if (i.add(new _.MaterialAPI), 653 == this._model.id) {
-                    var n = o.default.model.useItem.get(44);
-                    n.__setCount__(n.count - 6e3)
+                    var _ = e.mstID,
+                        r = o.FurnitureLoader.getPath(_, "normal") + s.VersionUtil.getResourceVersion(2, _),
+                        a = PIXI.Texture.fromImage(r);
+                    t.prototype.update.call(this, a)
                 }
-                1 == t.isNeedUpdateUserBasic() && i.add(new c.UserDataAPI), 1 != t.isNeedUpdateSlotitem() && 318 != this._model.id && 513 != this._model.id || i.add(new d.UserSlotItemAPI), 1 == t.isNeedUpdateSlotitem() && i.add(new l.UnsetSlotAPI);
-                var r = [511, 513, 620, 621, 688, 689, 690, 695, 696];
-                if ((1 == t.isNeedUpdateUseitem() || r.indexOf(this._model.id) >= 0) && i.add(new u.UseItemAPI), t.getRewards(2).length > 0 && i.add(new a.DeckAPI), t.getRewards(11).length > 0) i.add(new p.UserShipAPI);
-                else if (318 == this._model.id || 513 == this._model.id) {
-                    var f = o.default.model.deck.get(1).getShipList()[0].memID;
-                    i.add(new p.UserShipAPI(f))
-                }
-                t.getRewards(14).length > 0 && i.add(new h.UserFurnitureAPI), i.start(function () {
-                    var i = t.getRewards(6);
-                    if (i.length > 0)
-                        for (var n = 0; n < i.length; n++) {
-                            var r = i[n],
-                                s = r.flag,
-                                a = [o.default.model.basic.getExtraSupplySortie() ? 1 : 0, o.default.model.basic.getExtraSupplyExpedition() ? 1 : 0];
-                            1 == s ? a[0] = 1 : 2 == s && (a[1] = 1), o.default.model.basic.setExtraSupplyFlag(a)
-                        }
-                    e._updateDutyList(t)
-                })
-            }, e.prototype._updateDutyList = function (t) {
-                var e = this;
-                new b.TaskUpdateDutyListData(this._holder.selected_page_no, this._holder.selected_type, this._holder).start(function () {
-                    t.getRewards(2).length > 0 && o.default.view.portMain.updateUserInfo({
-                        fleetNum: o.default.model.deck.num
-                    }), o.default.view.portMain.updateInfo(), null != e._click_guard && e._layer.removeChild(e._click_guard), e._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._holder = null, this._click_guard = null, t.prototype._endTask.call(this)
+            }, e.prototype.clean = function () {
+                this._soldout.visible = !1, t.prototype.clean.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskTasseiDutySelect = w
+        }(r.FurnitureThumbnail);
+    e.Thumbnail = _
 }

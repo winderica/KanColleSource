@@ -19,28 +19,15 @@ const function1240 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(142),
+    var o = i(11),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._interval_id = 0, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._hand = new PIXI.Sprite, e._hand.anchor.set(.5, .5), e._light = new PIXI.Sprite, e._light.anchor.set(.5, .5), e.addChild(e._bg), e.addChild(e._hand), e.addChild(e._light), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_quest/stop", i._duty_id = e, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = o.SALLY_MAP_PARTS.getTexture(15), this._hand.texture = o.SALLY_MAP_PARTS.getTexture(17), this._light.texture = o.SALLY_MAP_PARTS.getTexture(16)
-            }, e.prototype.activate = function () {
-                this._startMove()
-            }, e.prototype.deactivate = function () {
-                this._stopMove()
-            }, e.prototype.dispose = function () {
-                this._stopMove()
-            }, e.prototype._startMove = function () {
-                var t = this;
-                0 == this._interval_id && (this._interval_id = setInterval(function () {
-                    t._hand.rotation = (4 * Math.random() - 2) / 180 * Math.PI
-                }, 30))
-            }, e.prototype._stopMove = function () {
-                0 != this._interval_id && clearInterval(this._interval_id), this._interval_id = 0
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
             }, e
-        }(PIXI.Container);
-    e.CompCompass = r
+        }(o.APIBase);
+    e.DutyCancelAPI = r
 }

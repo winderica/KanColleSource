@@ -19,60 +19,101 @@ const function1007 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(1008),
-        a = i(1009),
-        _ = i(1011),
-        l = i(1016),
-        u = i(1017),
-        c = i(1023),
-        h = i(1),
+    var o = i(5),
+        r = i(0),
+        s = i(17),
+        a = i(2),
+        _ = i(18),
+        u = i(1008),
+        l = i(1010),
+        c = i(355),
+        h = i(363),
         p = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._onSelect = function (t, e) {
-                    r._cb_select(t, e)
-                }, r._onSelectAirUnit = function () {
-                    null != r._cb_onSelectAirUnit && r._cb_onSelectAirUnit()
-                }, r._cb_select = e, r._cb_onSelectAirUnit = i, r._cb_back = n, r._cb_next = o, r._back_btn = new s.BtnBack, r._next_btn = new a.BtnNext, r
+            function e(e, i, n, o, s) {
+                var a = t.call(this) || this;
+                return a._showBeginnerAlert = function () {
+                    new u.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
+                }, a._showMapIntro = function () {
+                    var t = r.default.model.basic.level,
+                        e = [];
+                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
+                    var i = a._model.getSelectedOperationType();
+                    new l.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
+                        var t = a._model.getSelectedOperationType(),
+                            e = 0 == t;
+                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
+                            a._mapThumbnailPanel.updateGauge(a._model), 465 == a._model.mst_id && a._mapThumbnailPanel.updateThumbnail(a._model), a._hideFade(e)
+                        }) : a._hideFade(e)
+                    })
+                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
             }
-            return n(e, t), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._back_btn.on(h.EventType.CLICK, this._cb_back), this._next_btn.on(h.EventType.CLICK, this._cb_next), this.addChild(this._back_btn), this.addChild(this._next_btn)
-            }, e.prototype.update = function (t, e, i) {
-                var n = o.default.model.map.getMapMems(t);
-                t == r.EVENT_AREA_ID ? this._updateEventArea(t, e, n) : this._updateNormalArea(t, e, n), this._content.updateAirUnitEnabled(i)
-            }, e.prototype.deactivate = function () {
-                this._content.deactivate()
-            }, e.prototype.dispose = function () {
-                this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
-            }, e.prototype._updateNormalArea = function (t, e, i) {
-                this._removePreContent(), this._content = 0 == e ? new l.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
-            }, e.prototype._updateEventArea = function (t, e, i) {
-                this._removePreContent(), 0 == e ? this._content = new c.LayoutEventMap3(e, this._onSelect, this._onSelectAirUnit) : e >= 3 && (this._content = new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit)), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
-            }, e.prototype._removePreContent = function () {
-                null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
-            }, e.prototype._updateBackBtn = function (t) {
-                void 0 === t && (t = !1), this._content.offset > 0 ? (this._back_btn.update(t), this._back_btn.show()) : this._back_btn.hide()
-            }, e.prototype._updateNextBtn = function (t, e, i) {
-                var n = !1,
-                    o = this._content.offset + this._content.num;
-                if (o < i.length) {
-                    var r = i[o];
-                    if (1 == r.isOpened()) n = !0;
-                    else if (65 == r.mst_id) {
-                        var s = i[o - 1];
-                        1 == s.isCleared() && (n = !0)
-                    }
+            return n(e, t), e.prototype._start = function () {
+                if (this._model.area_id == s.EVENT_AREA_ID) {
+                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
+                    var t = this._model.map_no,
+                        e = r.default.model.basic.level;
+                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
+                    var i = this._voicePlayList(t);
+                    null != i && this._voicePlay(i)
+                } else this._showDetailPanel()
+            }, e.prototype._voicePlayList = function (t) {
+                switch (t) {
+                    case 1:
+                        return {
+                            voice: [411, 415], delay: [0, 200]
+                        };
+                    case 2:
+                        return {
+                            voice: [411, 416, 424], delay: [0, 200, 200]
+                        };
+                    case 3:
+                        return {
+                            voice: [411, 417, 422, 424], delay: [0, 200, 200, 200]
+                        };
+                    case 4:
+                        return {
+                            voice: [411, 418, 423, 424], delay: [0, 200, 200, 200]
+                        };
+                    case 5:
+                        return {
+                            voice: [412, 419, 424], delay: [0, 200, 200]
+                        };
+                    case 6:
+                        return {
+                            voice: [412, 421, 423, 424], delay: [0, 200, 200, 200, 200]
+                        };
+                    default:
+                        return null
                 }
-                1 == n ? (this._next_btn.update(t, e), this._next_btn.show()) : this._next_btn.hide()
+            }, e.prototype._voicePlay = function (t) {
+                var e = this,
+                    i = t.voice,
+                    n = t.delay;
+                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
+                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
+                })
+            }, e.prototype._voiceNextDelay = function (t) {
+                var e = this,
+                    i = t.delay;
+                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
+                    e._voicePlay(t)
+                })
+            }, e.prototype._hideFade = function (t) {
+                var e = this;
+                this._fade.hide(300, function () {
+                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
+                })
+            }, e.prototype._showDetailPanel = function () {
+                var t = this,
+                    e = this._detailPanel;
+                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({
+                    x: 840
+                }, 200).call(function () {
+                    e.activate(), t._endTask()
+                })
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
             }, e
-        }(PIXI.Container);
-    e.ContainerLayout = p
+        }(a.TaskBase);
+    e.TaskShowDetailPanel = p
 }

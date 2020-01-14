@@ -1,134 +1,120 @@
 const function1486 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(1487),
-        o = i(7),
-        r = i(1488),
-        s = i(1489),
-        a = i(1490),
-        _ = i(1491),
-        l = i(1492),
-        u = function () {
-            function t(t) {
-                this._battle_model = t
+    var o = i(51),
+        r = i(1487),
+        s = i(1491),
+        a = i(485),
+        _ = i(1501),
+        u = i(1502),
+        l = i(1505),
+        c = i(1510),
+        h = i(1511),
+        p = i(1512),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new u.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new l.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
             }
-            return Object.defineProperty(t.prototype, "battle_model", {
+            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
                 get: function () {
-                    return this._battle_model
+                    return this._layer_torpedo
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "map_name", {
+            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
                 get: function () {
-                    return null != this._battle_model && 1 == this._battle_model.isPractice() ? "\u6f14\u7fd2" : o.ObjUtil.getString(this._o, "api_quest_name")
+                    return this._bannerGroupLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "user_name_f", {
+            }), Object.defineProperty(e.prototype, "layer_explosion", {
                 get: function () {
-                    return null != this._battle_model && null != this._battle_model.deck_f ? this._battle_model.deck_f.user_name : ""
+                    return this._layer_explosion
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "user_level_f", {
+            }), Object.defineProperty(e.prototype, "layer_damage", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_member_lv")
+                    return this._layer_damage
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "deck_name_f", {
+            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
                 get: function () {
-                    return null != this._battle_model && null != this._battle_model.deck_f ? this._battle_model.deck_f.name : ""
+                    return this._bannerInfoLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "deck_name_e", {
+            }), Object.defineProperty(e.prototype, "layer_content", {
                 get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_enemy_info");
-                    return null != t ? o.ObjUtil.getString(t, "api_deck_name") : ""
+                    return this._layer_content
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "deck_name_f2", {
+            }), Object.defineProperty(e.prototype, "raderLayer", {
                 get: function () {
-                    return null != this._battle_model && null != this._battle_model.deck_f ? this._battle_model.deck_f.name_second : ""
+                    return this._raderLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "battle_result_rank", {
+            }), Object.defineProperty(e.prototype, "layer_gauge", {
                 get: function () {
-                    return o.ObjUtil.getString(this._o, "api_win_rank", "E")
+                    return this._layer_gauge
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "base_exp", {
+            }), Object.defineProperty(e.prototype, "shutter", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_get_base_exp")
+                    return this._shutter
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "extra_war_results", {
+            }), Object.defineProperty(e.prototype, "layer_info", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_get_exmap_rate")
+                    return this._layer_info
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "extra_useitem_mst_id", {
+            }), Object.defineProperty(e.prototype, "layer_title", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_get_exmap_useitem_id")
+                    return this._layer_title
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "extra_result", {
+            }), Object.defineProperty(e.prototype, "layer_info2", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_mapcell_incentive")
+                    return this._layer_info2
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.setData = function (t) {
-                this._o = t, this._battle_model.m1 = o.ObjUtil.getNumber(this._o, "api_m1"), this._battle_model.escape = this.getEscapeData()
-            }, t.prototype.getMvpIndex = function (t) {
-                return 0 == t ? o.ObjUtil.getNumber(this._o, "api_mvp") - 1 : o.ObjUtil.getNumber(this._o, "api_mvp_combined") - 1
-            }, t.prototype.getLevelupInfoList = function (t) {
-                return 0 == t ? o.ObjUtil.getObjectArray(this._o, "api_get_exp_lvup") : o.ObjUtil.getObjectArray(this._o, "api_get_exp_lvup_combined")
-            }, t.prototype.getShipExp = function (t) {
-                var e;
-                return null == (e = 0 == t ? o.ObjUtil.getNumArray(this._o, "api_get_ship_exp") : o.ObjUtil.getNumArray(this._o, "api_get_ship_exp_combined")) ? [] : 1 == e.length && -1 == e[0] ? [] : (e = e.concat(), e.shift(), e)
-            }, t.prototype.getBonusShip = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_get_ship");
-                return null != t ? new r.BonusShipModel(t) : null
-            }, t.prototype.getBonusSlot = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_get_slotitem");
-                return null != t ? new s.BonusSlotModel(t) : null
-            }, t.prototype.getBonusUseitem = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_get_useitem");
-                return null != t ? new a.BonusUseitemModel(t) : null
-            }, t.prototype.getMapBonus = function () {
-                var t = o.ObjUtil.getObjectArray(this._o, "api_get_eventitem");
-                if (null == t) return [];
-                for (var e = [], i = 0, n = t; i < n.length; i++) {
-                    var r = n[i];
-                    e.push(new l.MapBonusModel(r))
-                }
-                return e
-            }, t.prototype.isFirstClear = function () {
-                return 1 == o.ObjUtil.getNumber(this._o, "api_first_clear")
-            }, t.prototype.getOpenedMapIDs = function () {
-                return o.ObjUtil.getNumArray(this._o, "api_next_map_ids", [])
-            }, t.prototype.getLandingData = function () {
-                return new _.LandingModel(o.ObjUtil.getObject(this._o, "api_landing_hp"))
-            }, t.prototype.getEscapeData = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_escape");
-                return new n.EscapeCandidateModel(t)
-            }, t.prototype.getClearMapSuffix = function () {
-                return o.ObjUtil.getString(this._o, "api_m_suffix")
-            }, t.prototype.getClearOperationSuffix = function () {
-                return o.ObjUtil.getString(this._o, "api_ope_suffix")
-            }, t.prototype.getM2 = function () {
-                return o.ObjUtil.getNumber(this._o, "api_m2")
-            }, t
-        }();
-    e.BattleResultData = u
+            }), Object.defineProperty(e.prototype, "layer_cutin", {
+                get: function () {
+                    return this._layer_cutin
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
+            }, e
+        }(PIXI.Container);
+    e.ViewMain = d
 }

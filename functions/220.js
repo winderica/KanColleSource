@@ -1,78 +1,37 @@
 const function220 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0);
-    ! function (t) {
-        function e(t) {
-            var e = 0,
-                i = 0,
-                o = 0;
-            return t.forEach(function (t) {
-                var r = n.default.model.ship.get(t);
-                e += r.getFuelForSupply(), i += r.getAmmoForSupply(), o += r.getBauxForSupply()
-            }), {
-                fuel: e,
-                ammo: i,
-                baux: o
+    var o = i(11),
+        r = i(0),
+        s = function (t) {
+            function e(e, i, n, o) {
+                void 0 === e && (e = !1);
+                var r = t.call(this) || this;
+                return r._url = "api_req_hensei/change", r._debug = e, r.api_id = i, r.api_ship_idx = n, r.api_ship_id = o, r
             }
-        }
-
-        function i(e) {
-            for (var i = n.default.model.deck.get(e), o = i.getCount(), r = 0; r < o; r++) {
-                var s = i.getShipMemID(r);
-                if (t.CheckRequireSupplyShip(s)) return !0
-            }
-            return !1
-        }
-
-        function o(e) {
-            for (var i = n.default.model.deck.get(e), o = i.getCount(), r = 0; r < o; r++) {
-                var s = i.getShipMemID(r);
-                if (t.CheckRequireSupplyShipAll(s)) return !0
-            }
-            return !1
-        }
-
-        function r(e) {
-            for (var i = n.default.model.deck.get(e), o = i.getCount(), r = 0; r < o; r++) {
-                var s = i.getShipMemID(r);
-                if (t.CheckRequireSupplyShipBaux(s)) return !0
-            }
-            return !1
-        }
-
-        function s(t) {
-            var e = n.default.model.ship.get(t);
-            return !(0 != (e.ammoMax <= e.ammoNow && e.fuelMax <= e.fuelNow))
-        }
-
-        function a(t) {
-            for (var e = n.default.model.ship.get(t), i = 0 == (e.ammoMax <= e.ammoNow && e.fuelMax <= e.fuelNow), o = 0; o < e.slotNum; o++) {
-                var r = e.getSlotitemTousai(o),
-                    s = e.getSlotitemTousaiMax(o),
-                    a = e.getSlotitems()[o];
-                if (a && 41 == a.equipTypeSp && (s = 1), s > r) {
-                    i = !0;
-                    break
-                }
-            }
-            return !!i
-        }
-
-        function _(t) {
-            for (var e = n.default.model.ship.get(t), i = !1, o = 0; o < e.slotNum; o++) {
-                var r = e.getSlotitemTousai(o),
-                    s = e.getSlotitemTousaiMax(o),
-                    a = e.getSlotitems()[o];
-                if (a && 41 == a.equipTypeSp && (s = 1), s > r) {
-                    i = !0;
-                    break
-                }
-            }
-            return !!i
-        }
-        t.CalcRequireMaterials = e, t.CheckRequireSupplyDeck = i, t.CheckRequireSupplyDeckAll = o, t.CheckRequireSupplyDeckBaux = r, t.CheckRequireSupplyShip = s, t.CheckRequireSupplyShipAll = a, t.CheckRequireSupplyShipBaux = _
-    }(e.SupplyUtil || (e.SupplyUtil = {}))
+            return n(e, t), e.prototype._connect = function () {
+                1 == this._debug && (-2 == this.api_ship_id || this.api_ship_id), this._post_data.api_id = this.api_id, this._post_data.api_ship_idx = this.api_ship_idx, this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.default.model.deck.get(this.api_id); - 2 == this.api_ship_id ? e.__removeAll__() : -1 == this.api_ship_id ? e.__remove__(this.api_ship_idx) : e.__change__(this.api_ship_idx, this.api_ship_id), t.prototype._completedEnd.call(this)
+            }, e
+        }(o.APIBase);
+    e.ChangeAPI = s
 }

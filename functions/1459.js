@@ -19,69 +19,50 @@ const function1459 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(22),
-        s = i(481),
-        a = i(1462),
-        _ = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(38),
+        a = function (t) {
             function e() {
-                return t.call(this) || this
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.playTorpedo = function (t, e, i, n) {
-                var o = this;
-                void 0 === i && (i = 1800), void 0 === n && (n = null);
-                var r = new a.Torpedo(1);
-                this.addChild(r), r.play(t, e, i, function () {
-                    o.removeChild(r), null != n && n()
-                })
-            }, e.prototype.playTorpedoAtNight = function (t, e, i, n) {
-                var o = this;
-                void 0 === i && (i = 800), void 0 === n && (n = null);
-                var r = new a.Torpedo(2);
-                this.addChild(r), r.play(t, e, i, function () {
-                    o.removeChild(r), null != n && n()
-                })
-            }, e.prototype.playAerialTorpedo = function (t, e, i) {
-                var n = this;
-                void 0 === i && (i = null);
-                var o = new a.Torpedo(3);
-                this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
-                    n.removeChild(o), null != i && i()
-                })
-            }, e.prototype.playAerialTorpedoSuper = function (t, e, i) {
-                var n = this;
-                void 0 === i && (i = null);
-                var o = new a.Torpedo(5);
-                this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
-                    n.removeChild(o), null != i && i()
-                })
-            }, e.prototype.playAerialTorpedoJet = function (t, e, i) {
-                var n = this;
-                void 0 === i && (i = null);
-                var o = new a.Torpedo(4);
-                this.addChild(o), o.play(t, e, 0, function () {
-                    n.removeChild(o), null != i && i()
-                })
+            return n(e, t), e.prototype._getNormalAttackType = function (t, e, i, n) {
+                if (1 == n) return 1;
+                var r = t.stype;
+                if (7 == r && 1 == e.isSubMarine()) return 2;
+                if (7 == r || 11 == r || 18 == r) {
+                    var a = t.mst_id,
+                        _ = t.name;
+                    return 432 == a || 353 == a || 433 == a ? 0 : "\u30ea\u30b3\u30ea\u30b9\u68f2\u59eb" == _ ? 0 : "\u6df1\u6d77\u6d77\u6708\u59eb" == _ ? 0 : 1
+                }
+                if (t.isSubMarine()) return 3;
+                if (e.isSubMarine()) return 6 == r || 10 == r || 16 == r || 17 == r ? 1 : 2;
+                var u = o.default.model.slot.getMst(i);
+                return null == u || u.equipTypeSp != s.EquipType._05_GYORAI && u.equipTypeSp != s.EquipType._32_SENSUIKAN_GYORAI ? 0 : 3
+            }, e.prototype._hasRocketEffect = function (t, e, i) {
+                if (0 == e.isGround()) return !1;
+                if (1 == i) return !1;
+                for (var n = t.slots, o = 0, r = n; o < r.length; o++) {
+                    var s = r[o];
+                    if (null != s) {
+                        var a = s.mst_id;
+                        if (126 == a || 346 == a || 347 == a || 348 == a || 349 == a) return !0
+                    }
+                }
+                return !1
+            }, e.prototype._getDaihatsuEffectType = function (t, e) {
+                var i = ["\u96e2\u5cf6\u68f2\u59eb", "\u7832\u53f0\u5c0f\u9b3c", "\u96c6\u7a4d\u5730\u68f2\u59eb", "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca", "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca", "\u98db\u884c\u5834\u59eb"];
+                if (1 == t.hasSlot(355) && 1 == e.isGround()) return 6;
+                if (1 == t.hasSlot(230)) return 1 == e.isGround() ? 5 : 0;
+                if (1 == t.hasSlot(355) && i.indexOf(e.name) >= 0) return 6;
+                if (1 == t.hasSlot(167)) {
+                    if (1 == t.isSubMarine()) {
+                        if (1 == e.isGround()) return 4
+                    } else if (i.indexOf(e.name) >= 0) return 4;
+                    return 0
+                }
+                return 1 == t.hasSlot(166) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(193) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(68) && i.indexOf(e.name) >= 0 ? 3 : 0
             }, e
-        }(s.LayerExplosion);
-    e.LayerTorpedo = _;
-    ! function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._night = e, i._canvas = new Array, i._createCanvas(!1, !1), i._createCanvas(!0, !1), i._createCanvas(!1, !0), i._createCanvas(!0, !0), i
-        }
-        n(e, t), e.prototype.getCanvas = function (t, e) {
-            return this._night ? this._canvas[0] : this._canvas[(t ? 1 : 0) + (e ? 2 : 0)]
-        }, e.prototype._createCanvas = function (t, e) {
-            var i = r.BannerSize.W;
-            1 == t && (i += .9 * r.BannerSize.W);
-            var n = r.BannerSize.W;
-            1 == e && (n += .9 * r.BannerSize.W);
-            var s = o.default.width - i - n,
-                a = new PIXI.Graphics;
-            a.beginFill(16711680, .3), a.drawRect(i, 0, s, o.default.height), a.endFill(), this.addChild(a);
-            var _ = new PIXI.Container;
-            _.mask = a, this.addChild(_), this._canvas.push(_)
-        }
-    }(PIXI.Container)
+        }(r.TaskBase);
+    e.PhaseHougekiBase = a
 }

@@ -1,10 +1,12 @@
 const function413 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), n(i(1197)), n(i(414)), n(i(415)), n(i(1198))
+    });
+    ! function (t) {
+        function e(t) {
+            return PIXI.Texture.fromFrame("item_ilist_setsubun_" + t)
+        }
+        t.getTexture = e
+    }(e.ITEM_ILIST_SETSUBUN || (e.ITEM_ILIST_SETSUBUN = {}))
 }

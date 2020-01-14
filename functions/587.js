@@ -19,29 +19,31 @@ const function587 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = function (t) {
-            function e(e, i, n, r) {
-                var s = t.call(this) || this;
-                return s._name = new o.TextBox(21, 4204800), s._name.text = "", s._name.position.set(44 + i, 30 * e + 95 + n), s._name.alpha = 1, s._name.mask = r[0], s.addChild(s._name), s._param = new o.TextBox(14, 4204800), s._param.text = "", s._param.style.letterSpacing = -1, s._param.position.set(400 + i, 30 * e + 99 + n), s._param.alpha = 1, s._param.mask = r[1], s.addChild(s._param), s._price = new o.TextBox(22, 13892095), s._price.text = "", s._price.position.set(618 + i, 30 * e + 93 + n), s._price.anchor.set(.5, 0), s._price.alpha = 1, s._price.mask = r[2], s.addChild(s._price), s._btn = new PIXI.Graphics, s._btn.beginFill(43639), s._btn.drawRect(42 + i, 30 * e + 91 + n, 625, 28), s._btn.alpha = .001, s._btn.interactive = !0, s.addChild(s._btn), s
+    var o = i(0),
+        r = i(280),
+        s = i(281),
+        a = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "Btn", {
-                get: function () {
-                    return this._btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.playFadeInOut = function (t, e) {
-                this._tween = null, this._tween = createjs.Tween.get(this).to({
-                    alpha: 1 - t
-                }, 0).to({
-                    alpha: t
-                }, e)
-            }, e.prototype.setText = function (t) {
-                this._name.text = t.api_name, this._param.text = t.api_description, this._price.text = t.api_use_coin + ""
+            return n(e, t), e.prototype.initialize = function () {
+                var t = o.default.resources.getUIImage("title_bg1");
+                this._bg = new PIXI.Sprite(t), this._parts_layer = new PIXI.Container, this._logo = new PIXI.Sprite(r.TITLE_MAIN.getTexture(3)), this._logo.scale.set(.6, .6), this._logo.anchor.set(.5, .5), this._logo.position.set(234, 264), this._kira = new s.KiraLayer, this._kira.scale.set(.6, .6), this._kira.position.set(144, 183), this._kira.initialize(), this._bar = new PIXI.Graphics, this._bar.beginFill(2466210), this._bar.drawRect(0, 0, 960, 30), this._bar.endFill(), this._bar.position.set(120, 663), this._bar.scale.x = 0, this._bar_frame = new PIXI.Graphics, this._bar_frame.lineStyle(3, 16777215), this._bar_frame.drawRect(0, 0, 960, 30), this._bar_frame.endFill(), this._bar_frame.position.set(120, 663), this.addChild(this._bg), this._parts_layer.addChild(this._logo), this._parts_layer.addChild(this._kira), this._parts_layer.addChild(this._bar), this._parts_layer.addChild(this._bar_frame), this.addChild(this._parts_layer)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy(), this._param.destroy(), this._price.destroy(), this._tween && (this._tween.setPaused(!0), this._tween = null)
+                this._kira.dispose()
+            }, e.prototype.setProgress = function (t) {
+                this._bar.scale.x = t / 100
+            }, e.prototype.hideTween = function (t) {
+                var e = createjs.Tween.get(this._bg).to({
+                        alpha: 0
+                    }, 300),
+                    i = createjs.Tween.get(this._parts_layer).to({
+                        alpha: 0
+                    }, 100);
+                (e.duration >= i.duration ? e : i).call(function () {
+                    t()
+                })
             }, e
         }(PIXI.Container);
-    e.BGMList = r
+    e.TitleView1 = a
 }

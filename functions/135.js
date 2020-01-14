@@ -5,8 +5,8 @@ const function135 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_ishop_" + t)
+            return PIXI.Texture.fromFrame("remodel_powerup_" + t)
         }
         t.getTexture = e
-    }(e.ITEM_ISHOP || (e.ITEM_ISHOP = {}))
+    }(e.REMODEL_POWERUP || (e.REMODEL_POWERUP = {}))
 }

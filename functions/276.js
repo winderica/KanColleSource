@@ -1,41 +1,106 @@
-const function276 = function (t, e) {
-    e.arrayToObject = function (t) {
-        for (var e = {}, i = 0, n = t.length; i < n; ++i) void 0 !== t[i] && (e[i] = t[i]);
-        return e
-    }, e.merge = function (t, i) {
-        if (!i) return t;
-        if ("object" != typeof i) return t.push(i), t;
-        if ("object" != typeof t) return t = [t].concat(i);
-        Array.isArray(t) && !Array.isArray(i) && (t = e.arrayToObject(t));
-        for (var n = Object.keys(i), o = 0, r = n.length; o < r; ++o) {
-            var s = n[o],
-                a = i[s];
-            t[s] ? t[s] = e.merge(t[s], a) : t[s] = a
+const function276 = function (t, e, i) {
+    "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
         }
-        return t
-    }, e.decode = function (t) {
-        try {
-            return decodeURIComponent(t.replace(/\+/g, " "))
-        } catch (e) {
-            return t
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
-    }, e.compact = function (t, i) {
-        if ("object" != typeof t || null === t) return t;
-        i = i || [];
-        var n = i.indexOf(t);
-        if (-1 !== n) return i[n];
-        if (i.push(t), Array.isArray(t)) {
-            for (var o = [], r = 0, s = t.length; r < s; ++r) void 0 !== t[r] && o.push(t[r]);
-            return o
-        }
-        for (var a = Object.keys(t), r = 0, _ = a.length; r < _; ++r) {
-            var l = a[r];
-            t[l] = e.compact(t[l], i)
-        }
-        return t
-    }, e.isRegExp = function (t) {
-        return "[object RegExp]" === Object.prototype.toString.call(t)
-    }, e.isBuffer = function (t) {
-        return null !== t && void 0 !== t && !!(t.constructor && t.constructor.isBuffer && t.constructor.isBuffer(t))
-    }
+    }();
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(2),
+        s = i(157),
+        a = i(17),
+        _ = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._before = e, o._after = i, o._model = n, o
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "before", {
+                get: function () {
+                    return this._before
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "after", {
+                get: function () {
+                    return this._after
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                o.default.view.clickGuard = !0, this._doPrefinalize()
+            }, e.prototype._doPrefinalize = function () {
+                var t = this;
+                s.TaskLoadBase.abortAll();
+                var e = o.default.view.getNowScene(),
+                    i = e.getPreFinalizeTask();
+                null != i ? i.start(function () {
+                    t._fadeOn()
+                }) : this._fadeOn()
+            }, e.prototype._fadeOn = function () {
+                var t = this,
+                    e = this._getFadeBox(this._before, this._after);
+                e.visible = !0, e.show(300, function () {
+                    t._doFinalize()
+                })
+            }, e.prototype._doFinalize = function () {
+                var t = this,
+                    e = o.default.view.getNowScene(),
+                    i = e.getFinalizeTask();
+                null != i ? i.start(function () {
+                    t._loadBackground()
+                }) : this._loadBackground()
+            }, e.prototype._loadBackground = function () {
+                var t = this;
+                o.default.view.bg.setImage(this._after, function () {
+                    t._change()
+                })
+            }, e.prototype._change = function () {
+                if (o.default.view.portMain.playChangeAnimation(this._after), 0 == this._after) o.default.view.portMain.setContent(null), o.default.view.portMain.update(0), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null), a.FRIENDLY && o.default.view.portMain.upperBar.friendlyBtn.friendlyButtonMode(!0);
+                else {
+                    var t = e.__factory__(this._after);
+                    33 == this._after || 32 == this._after ? (o.default.view.portMain.setContent(null), o.default.view.portMain.visible = !1, o.default.view.mapLayer.setContent(t)) : (o.default.view.portMain.setContent(t), o.default.view.portMain.update(this._after), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null), a.FRIENDLY && o.default.view.portMain.upperBar.friendlyBtn.friendlyButtonMode(!1))
+                }
+                this._doPreInitialize()
+            }, e.prototype._doPreInitialize = function () {
+                var t = this,
+                    e = o.default.view.getNowScene(),
+                    i = e.getPreInitializeTask(this._before, this._model);
+                null != i ? i.start(function () {
+                    t._fadeOff()
+                }) : this._fadeOff()
+            }, e.prototype._fadeOff = function () {
+                var t = this,
+                    e = this._getFadeBox(this._before, this._after),
+                    i = 0 == this._after;
+                i && o.default.view.portMain.ringMenu.prePosition(), e.hide(300, function () {
+                    e.visible = !1, t._doInitialize(), i && o.default.view.portMain.ringMenu.startAnimation()
+                })
+            }, e.prototype._doInitialize = function () {
+                var t = this,
+                    e = o.default.view.getNowScene(),
+                    i = e.getInitializeTask(this._before);
+                null != i ? i.start(function () {
+                    t._preEnd()
+                }) : this._preEnd()
+            }, e.prototype._preEnd = function () {
+                o.default.view.clickGuard = !1, this._endTask()
+            }, e.prototype._getFadeBox = function (t, e) {
+                return 23 == t || 23 == e ? o.default.view.fadeLayer : 25 == t || 25 == e ? o.default.view.fadeLayer : 33 == t || 33 == e ? o.default.view.fadeLayer : 32 == t || 32 == e ? o.default.view.fadeLayer : o.default.view.portMain.fadeLayer
+            }, e
+        }(r.TaskBase);
+    e.TaskSceneChange = _
 }

@@ -4,6 +4,9 @@ const function138 = function (t, e, i) {
         value: !0
     });
     ! function (t) {
-        t[t.UNSET = 0] = "UNSET", t[t.SET = 1] = "SET"
-    }(e.SlotListMode || (e.SlotListMode = {}))
+        function e(t) {
+            return PIXI.Texture.fromFrame("item_ishop_" + t)
+        }
+        t.getTexture = e
+    }(e.ITEM_ISHOP || (e.ITEM_ISHOP = {}))
 }

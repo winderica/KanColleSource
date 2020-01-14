@@ -1,52 +1,34 @@
 const function735 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(15),
-        a = i(219),
-        _ = i(736),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var n = i(0),
+        o = i(8),
+        r = i(736),
+        s = function () {
+            function t(t) {
+                var e = this;
+                this._onClickYES = function () {
+                    e.onComplete(!0)
+                }, this._onClickNO = function () {
+                    e.onComplete(!1)
+                }, this.mainView = t, this.dialogBackground = new o.AreaBox(.8), this.useSweetConfirm = new r.UseSweetConfirm
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
-                    var e = a.OrganizeSceneMemory.filterStatus,
-                        i = a.OrganizeSceneMemory.japanese;
-                    new _.UpdateListStatusAPI(e, i).start(function () {
-                        o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._isChangeListStatus = function () {
-                if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
-                var t = o.default.model.basic.getFilterStatusOrganizeList(),
-                    e = a.OrganizeSceneMemory.filterStatus;
-                if (t.length != e.length) return !0;
-                for (var i = 0; i < t.length; i++)
-                    if (t[i] != e[i]) return !0;
-                return !1
-            }, e
-        }(r.TaskBase);
-    e.FinalizeTask = l
+            return t.prototype.start = function (t) {
+                this.useSweetConfirm.onClickYES = this._onClickYES, this.useSweetConfirm.onClickNO = this._onClickNO, this.useSweetConfirm.visible = !0, this.dialogBackground.alpha = 1;
+                var e = n.default.model.useItem.get(54).count,
+                    i = n.default.model.useItem.get(59).count;
+                this.useSweetConfirm.update(t, e, i), this.mainView.addChild(this.dialogBackground, this.useSweetConfirm)
+            }, t.prototype.hide = function (t) {
+                this.useSweetConfirm.visible = !1, createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 0
+                }, 125).call(function () {
+                    t()
+                })
+            }, t.prototype.dispose = function () {
+                this.useSweetConfirm.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.useSweetConfirm), this.dialogBackground = null, this.useSweetConfirm = null, this.mainView = null, this.onComplete = null
+            }, t
+        }();
+    e.TaskConfirmUseMamiyaIrako = s
 }

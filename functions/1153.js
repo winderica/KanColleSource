@@ -19,29 +19,93 @@ const function1153 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(74),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClickYes = function () {
-                    null != i._cb_onClick && i._cb_onClick(!0)
-                }, i._onClickNo = function () {
-                    null != i._cb_onClick && i._cb_onClick(!1)
-                }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
+    var o = i(0),
+        r = i(2),
+        s = i(18),
+        a = i(34),
+        _ = i(171),
+        u = i(134),
+        l = i(107),
+        c = i(163),
+        h = i(204),
+        p = i(6),
+        d = i(407),
+        f = i(1157),
+        y = i(1159),
+        m = i(1164),
+        g = i(1168),
+        v = i(1172),
+        b = i(1176),
+        w = i(1186),
+        x = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(1);
-                var e = new PIXI.Sprite(t),
-                    i = Math.min(135 / e.width, 135 / e.height);
-                e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = r.COMMON_SELECTABLE_REWARD.getTexture(4), this._btn_no.texture = r.COMMON_SELECTABLE_REWARD.getTexture(3)
-            }, e.prototype.activate = function () {
-                1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(o.EventType.CLICK, this._onClickNo))
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.buttonMode = !1, this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(o.EventType.CLICK, this._onClickNo)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return null != this._api_result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                if (null == this._target) return void this._endTask();
+                this._fade = new s.FadeBox(.6), this._fade.hide(0), this._startTask()
+            }, e.prototype._startTask = function () {
+                var t, e = this._target.mstID;
+                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target);
+                else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target);
+                else if (60 == e) t = new m.TaskUsePresentBox(this._fade, this._target);
+                else if (61 == e) t = new g.TaskUseKouMedal(this._fade, this._target);
+                else if (62 == e) t = new v.TaskUseHishimochi(this._fade, this._target);
+                else if (63 == e) {
+                    var i = o.default.model.const.quest_max,
+                        n = o.default.model.basic.getDutyExecutableCount();
+                    n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
+                } else 68 == e || 72 == e || (80 == e ? t = new b.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || (90 == e ? t = new w.TaskUseSetsubun(this._fade, this._target) : 93 == e || (t = new d.TaskUseNormalItem(this._fade, this._target))));
+                null != t ? this._showFade(t) : this._endTask()
+            }, e.prototype._showFade = function (t) {
+                var e = this;
+                this._layer.addChild(this._fade), this._fade.show(200, function () {
+                    t.start(function () {
+                        e._api_result = t.result, e._updateData()
+                    })
+                })
+            }, e.prototype._updateData = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                if (63 == this._target.mstID) {
+                    var e = o.default.model.basic.getDutyExecutableCount();
+                    o.default.model.basic.setDutyExcutableCount(e + 1)
+                } else if (68 == this._target.mstID || 93 == this._target.mstID) {
+                    var i = o.default.model.deck.get(1).getShipModel(0);
+                    o.default.sound.voice.play(i.mstID.toString(), 26)
+                }
+                var n = new a.APIConnector;
+                if (n.add(new l.UseItemAPI), this._api_result.hasMaterialReward() && n.add(new _.MaterialAPI), this._api_result.hasCoinReward() && n.add(new c.UserDataAPI), this._api_result.hasSlotitemReward()) {
+                    var r = this._api_result.getSlotitemObjects();
+                    o.default.model.slot.addMemData(r), n.add(new u.UnsetSlotAPI)
+                }
+                n.start(function () {
+                    o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo(), t._showReward()
+                })
+            }, e.prototype._showReward = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                var e = this._api_result.rewards;
+                if (null == e || 0 == e.length) return void this._hideFade();
+                var i = o.default.view.overLayer;
+                new h.TaskReward(i, e).start(function () {
+                    t._hideFade()
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._fade.hide(150, function () {
+                    t._layer.removeChild(t._fade), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, this._fade = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.RewardSelectConfirm = s
+        }(r.TaskBase);
+    e.TaskUseItem = x
 }

@@ -23,23 +23,27 @@ const function891 = function (t, e, i) {
         r = i(3),
         s = i(1),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.clickable = !1, i.hasKey = !1, i._onMouseOver = function (t) {
-                    i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.hasKey ? i.confirm_dock_key_sprite.visible = !0 : i.alert_dock_key_sprite.visible = !0
-                }, i._onClick = function () {
-                    i.hasKey || o.SE.play("248"), i.onClick()
-                }, i._onMouseOut = function (t) {
-                    i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1
-                }, i.steelFrame_noDock_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(146)), i.alert_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(71)), i.confirm_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(72)), i.alert_dock_key_sprite.position.set(255, -15), i.confirm_dock_key_sprite.position.set(255, -15), i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.steelFrame_noDock_sprite.interactive = i.steelFrame_noDock_sprite.buttonMode = !0, i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOVER, i._onMouseOver), i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOUT, i._onMouseOut), i.steelFrame_noDock_sprite.on(s.EventType.CLICK, i._onClick), i.addChild(i.steelFrame_noDock_sprite), e.addChild(i.alert_dock_key_sprite, i.confirm_dock_key_sprite), i.overlayer = e, i
+            function e() {
+                var e = t.call(this) || this;
+                e._onMouseOver = function () {
+                    e.popup.visible = !0
+                }, e._onMouseOut = function () {
+                    e.popup.visible = !1
+                }, e._onClick = function () {
+                    e.hasKey ? e.onClick(e.memDockId) : r.SE.play("248")
+                };
+                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(11)),
+                    n = new PIXI.Sprite;
+                n.position.set(462, -24), e.addChild(i, n);
+                var a = o.REPAIR_MAIN.getTexture(25),
+                    _ = o.REPAIR_MAIN.getTexture(24);
+                return e.background = i, e.background.addListener(s.EventType.MOUSEOVER, e._onMouseOver), e.background.addListener(s.EventType.MOUSEOUT, e._onMouseOut), e.background.addListener(s.EventType.CLICK, e._onClick), e.popup = n, e.huki_r_01 = _, e.huki_r_02 = a, e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                this.steelFrame_noDock_sprite.interactive = !1, t && (this.steelFrame_noDock_sprite.interactive = !0), this.clickable = t, this.hasKey = e
-            }, e.prototype.hidePop = function () {
-                this.alert_dock_key_sprite.visible = this.confirm_dock_key_sprite.visible = !1
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this.popup.texture = PIXI.Texture.EMPTY, this.popup.visible = !1, this.popup.texture = this.huki_r_01, this.hasKey = i, i && (this.popup.texture = this.huki_r_02), this.background.interactive = this.background.buttonMode = !1, e && (this.background.interactive = this.background.buttonMode = !0), this.memDockId = t
             }, e.prototype.dispose = function () {
-                this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOVER), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOUT), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.CLICK), this.overlayer.removeChildren(), this.onClick = null, this.steelFrame_noDock_sprite = null, this.alert_dock_key_sprite = null, this.confirm_dock_key_sprite = null, this.overlayer = null, this.removeChildren()
+                this.removeChild(this.background), this.removeChild(this.popup), this.background.removeAllListeners(s.EventType.MOUSEOVER), this.background.removeAllListeners(s.EventType.MOUSEOUT), this.background.removeAllListeners(s.EventType.CLICK), this.background.interactive = this.background.buttonMode = !1, this.background.texture = PIXI.Texture.EMPTY, this.popup.texture = PIXI.Texture.EMPTY, this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.huki_r_01 = null, this.huki_r_02 = null, this.background = null, this.popup = null, this.memDockId = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.NoDockView = a
+    e.ExtensionDock = a
 }

@@ -19,27 +19,22 @@ const function894 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(895),
-        s = function (t) {
+    var o = i(0),
+        r = i(72),
+        s = i(10),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(46));
-                return e.ship = new r.LargeBuildShip, e.ship.position.set(22, 13), i.position.set(12, 82), e.addChild(i, e.ship), e
+                    i = new PIXI.Sprite,
+                    n = new PIXI.Sprite(s.COMMON_MISC.getTexture(108)),
+                    o = new r.RingSmall;
+                return o.position.set(207, 28), o.initialize(), o.activate(), n.anchor.x = 1, n.x = n.width, e.addChild(i, n, o), e.shipBanner = i, e.ring = o, e
             }
-            return n(e, t), e.prototype.updatePhaseMax = function (t) {
-                this.phaseMax = t
-            }, e.prototype.update = function (t) {
-                if (0 == t) this.ship.update(0);
-                else {
-                    var e = Math.floor(this.phaseMax * t);
-                    0 == e && (e = 1), this.ship.update(e)
-                }
-            }, e.prototype.forceComplete = function () {
-                this.ship.update(this.phaseMax)
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this.shipBanner.texture = o.default.resources.getShip(t, e, "banner"), this.ring.visible = !1, i && (this.ring.visible = !0)
             }, e.prototype.dispose = function () {
-                this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
+                this.removeChild(this.shipBanner), this.shipBanner.texture = PIXI.Texture.EMPTY, this.ring.deactivate(), this.ring.dispose(), this.ring = null, this.shipBanner = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.LargeBuildStage = s
+    e.RepairShipBanner = a
 }
