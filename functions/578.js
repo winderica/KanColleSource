@@ -43,10 +43,13 @@ const function578 = function (t, e, i) {
                 var i = t.call(this) || this;
                 return i._end_titlecall = !1, i._TutorialScene = null, i._isTutorialEnd = !1, i._tutorialEnd = function () {
                     i._TutorialScene.emitter.off("tutorial-event-end", i._tutorialEnd), r.default.view.removeChild(i._TutorialScene), i._isTutorialEnd = !0, i._preInitPort()
-                }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), r.default.option.initialize(), r.default.view.initialize(new g.PortScene), i
+                }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), i
             }
             return o(e, t), e.prototype._start = function () {
-                this._loadVersionFile()
+                var t = this;
+                r.default.option.initialize(function () {
+                    r.default.view.initialize(new g.PortScene), t._loadVersionFile()
+                })
             }, e.prototype._loadVersionFile = function () {
                 var t = this,
                     e = r.default.settings.version,

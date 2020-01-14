@@ -96,16 +96,16 @@ const function571 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.initialize = function () {
-                var t = this;
+            }), t.prototype.initialize = function (t) {
+                var e = this;
                 if ([this._KEY_VOL_BGM, this._KEY_VOL_SE, this._KEY_VOL_VOICE, this._KEY_V_BELEFT, this._KEY_V_DUTY].some(function (t) {
                         return 1 == n.CookieUtil.hasItem(t)
                     })) {
                     this.vol_bgm = this.__vol_bgm__, this.vol_se = this.__vol_se__, this.vol_voice = this.__vol_voice__, this.voice_be_left = this.__v_beleft__, this.voice_duty = this.__v_duty__;
-                    var e = [o.OptionUtil.format(this._KEY_VOL_BGM, this.vol_bgm.toString()), o.OptionUtil.format(this._KEY_VOL_SE, this.vol_se.toString()), o.OptionUtil.format(this._KEY_VOL_VOICE, this.vol_voice.toString()), o.OptionUtil.format(this._KEY_V_BELEFT, this.voice_be_left ? "1" : "0"), o.OptionUtil.format(this._KEY_V_DUTY, this.voice_duty ? "1" : "0")].join(";");
-                    o.OptionUtil.save(e)
+                    var i = [o.OptionUtil.format(this._KEY_VOL_BGM, this.vol_bgm.toString()), o.OptionUtil.format(this._KEY_VOL_SE, this.vol_se.toString()), o.OptionUtil.format(this._KEY_VOL_VOICE, this.vol_voice.toString()), o.OptionUtil.format(this._KEY_V_BELEFT, this.voice_be_left ? "1" : "0"), o.OptionUtil.format(this._KEY_V_DUTY, this.voice_duty ? "1" : "0")].join(";");
+                    o.OptionUtil.save(i), t()
                 } else o.OptionUtil.load(function () {
-                    t.vol_bgm = o.OptionUtil.getNumValue(t._KEY_VOL_BGM, t._post_data, 30), t.vol_se = o.OptionUtil.getNumValue(t._KEY_VOL_SE, t._post_data, 40), t.vol_voice = o.OptionUtil.getNumValue(t._KEY_VOL_VOICE, t._post_data, 60), t.voice_be_left = o.OptionUtil.getBoolValue(t._KEY_V_BELEFT, t._post_data, !0), t.voice_duty = o.OptionUtil.getBoolValue(t._KEY_V_DUTY, t._post_data, !0)
+                    e.vol_bgm = o.OptionUtil.getNumValue(e._KEY_VOL_BGM, e._post_data, 30), e.vol_se = o.OptionUtil.getNumValue(e._KEY_VOL_SE, e._post_data, 40), e.vol_voice = o.OptionUtil.getNumValue(e._KEY_VOL_VOICE, e._post_data, 60), e.voice_be_left = o.OptionUtil.getBoolValue(e._KEY_V_BELEFT, e._post_data, !0), e.voice_duty = o.OptionUtil.getBoolValue(e._KEY_V_DUTY, e._post_data, !0), t()
                 })
             }, t.prototype.save = function () {
                 var t = this.__vol_bgm__;

@@ -67,14 +67,14 @@ const function572 = function (t, e, i) {
         function e(e) {
             var i = t.call(this) || this;
             return i._onCallback = function (t) {
-                window.removeEventListener("message", i._onCallback), t.origin == i._GadgetIP && (r.default.option.post_data = t.data, i._endTask())
+                window.removeEventListener("message", i._onCallback), t.origin != i._GadgetIP && i._endTask(), r.default.option.post_data = t.data, i._endTask()
             }, i._message = e, i
         }
         return n(e, t), e.prototype._start = function () {
             try {
-                this._GadgetIP = "http://" + r.default.settings.osapi_root, window.addEventListener("message", this._onCallback), window.parent.postMessage(this._message, this._GadgetIP)
+                r.default.option.post_data = "", this._GadgetIP = "http://" + r.default.settings.osapi_root, window.addEventListener("message", this._onCallback), window.parent.postMessage(this._message, this._GadgetIP)
             } catch (t) {
-                window.removeEventListener("message", this._onCallback), r.default.option.post_data = "", this._endTask()
+                window.removeEventListener("message", this._onCallback), this._endTask()
             }
         }, e
     }(o.TaskBase)
