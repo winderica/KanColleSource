@@ -19,30 +19,32 @@ const function375 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(42),
-        r = i(239),
-        s = i(1043),
-        a = i(1046),
-        _ = i(363),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e) || this;
-                n._onMouseOver = function (t) {
-                    n._strategy_map.update(t)
-                }, n._onMouseOut = function (t) {};
-                var r = o.SALLY_EVENT.getTexture(4),
-                    _ = new PIXI.Sprite(r);
-                return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
+    var o = i(53),
+        r = i(1040),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._type = e, i._black = new PIXI.Sprite, i._key = new PIXI.Sprite, i._cloud = new r.MapThumbnailLockedCloud, i._text = new PIXI.Container, i
             }
-            return n(e, t), e.prototype.initialize = function (e) {
-                t.prototype.initialize.call(this, e);
-                var i = e[this.offset].mst_id;
-                this._strategy_map.update(i), this._airunitbtn.initialize()
-            }, e.prototype.updateAirUnitEnabled = function (e) {
-                t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose(), _.EventOperationVoice.killVoice()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._black.texture = this._getBlackTexture(), this._key.texture = o.SALLY_SORTIE.getTexture(30), this._cloud.initialize(), this._text.visible = !0, this._text.removeChildren();
+                var e = new PIXI.Sprite;
+                0 == t ? e.texture = o.SALLY_SORTIE.getTexture(42) : 1 == t ? e.texture = o.SALLY_SORTIE.getTexture(43) : 3 == t ? e.texture = o.SALLY_SORTIE.getTexture(44) : this._text.visible = !1, 1 == this._text.visible && (e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._text.addChild(e)), this._setPositions(), this.addChild(this._black), this.addChild(this._key), this.addChild(this._cloud), this.addChild(this._text)
+            }, e.prototype.activate = function () {
+                this._cloud.activate()
+            }, e.prototype.deactivate = function () {
+                this._cloud.deactivate()
+            }, e.prototype._getBlackTexture = function () {
+                switch (this._type) {
+                    case 3:
+                        return o.SALLY_SORTIE.getTexture(36);
+                    case 4:
+                        return o.SALLY_SORTIE.getTexture(35)
+                }
+                return PIXI.Texture.EMPTY
+            }, e.prototype._setPositions = function () {
+                3 == this._type ? (this._key.position.set(470, 14), this._cloud.position.set(491, 53), this._text.position.set(490, 99)) : 4 == this._type && (this._key.position.set(218, 42), this._cloud.position.set(239, 81), this._text.position.set(240, 152))
             }, e
-        }(r.LayoutBase);
-    e.EventLayoutBase = u
+        }(PIXI.Container);
+    e.MapThumbnailLocked = s
 }

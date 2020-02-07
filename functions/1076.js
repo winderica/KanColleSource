@@ -19,16 +19,16 @@ const function1076 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(32),
+    var o = i(31),
         r = i(59),
-        s = i(379),
+        s = i(380),
         a = i(88),
-        _ = i(31),
+        _ = i(30),
         u = i(4),
         l = i(1),
-        c = i(240),
-        h = i(241),
-        p = i(380),
+        c = i(238),
+        h = i(239),
+        p = i(381),
         d = function (t) {
             function e() {
                 var e = t.call(this) || this,
@@ -82,11 +82,11 @@ const function1076 = function (t, e, i) {
                 var A = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(42));
                 A.position.set(22, 345);
                 var E = new PIXI.Sprite;
-                E.position.set(175, 359.5), E.anchor.set(.5, .5);
+                E.anchor.set(.5, .5);
                 var j = new u.TextBox(18, 4999235, "bold");
                 j.position.set(186, 349);
                 var N = new PIXI.Sprite;
-                N.position.set(233, 359.5), N.anchor.set(.5, .5);
+                N.anchor.set(.5, .5);
                 var L = new u.TextBox(18, 4999235, "bold");
                 L.position.set(244, 349);
                 var B = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(70)),
@@ -125,21 +125,35 @@ const function1076 = function (t, e, i) {
                     return e.onClickCancel(e._expedition_mst_id)
                 }, e.addChild(i), e.addChild(n, p, l, h), e.addChild(d, f), e.addChild(I, T, O), e.addChild(C, P, S, k, M), e.addChild(A, E, j, N, L), e.addChild(U, V, G, z, X, F), e.addChild(K, D, B, R), e.addChild(Y, q, W, H, J), e.addChild($), e._textExpeditionDetail = f, e._textExpeditionName = p, e._decisionButton = R, e._stopButton = D, e._useAmmo = O, e._useFuel = T, e._rewardFuel = P, e._rewardAmmo = k, e._rewardSteel = S, e._rewardBauxite = M, e._rewardItem1Icon = E, e._rewardItem1Text = j, e._rewardItem2Icon = N, e._rewardItem2Text = L, e._flagShipBanner = X, e._textDeckName = V, e._textFlagShipName = G, e._textFlagShipLevel = z, e._hexClockActive = H, e._hexClockCancel = W, e._hexClockComplete = q, e._iconMonthly = l, e._iconDamage = h, e._iconTower = B, e._iconDeck = F, e._deckFleetShadow = K, e._flagShipShadow = J, e
             }
-            return n(e, t), e.prototype._itemId2Texture = function (t) {
+            return n(e, t), e.prototype._itemIdToTextureId = function (t) {
                 switch (t) {
-                    case 0:
-                        return PIXI.Texture.EMPTY;
                     case 1:
-                        return p.SALLY_EXPEDITION_DETAIL.getTexture(0);
+                        return 0;
                     case 2:
-                        return p.SALLY_EXPEDITION_DETAIL.getTexture(2);
+                        return 2;
                     case 3:
-                        return p.SALLY_EXPEDITION_DETAIL.getTexture(1);
+                        return 1;
+                    case 10:
+                    case 11:
+                    case 12:
+                        return 3;
+                    case 59:
+                        return 4;
                     default:
-                        return p.SALLY_EXPEDITION_DETAIL.getTexture(3)
+                        return -1
                 }
-            }, e.prototype.updateMaster = function (t, e, i, n, o, r, s, a, _, u, l, c, h, p, d, f, y) {
-                this._useFuel.update(r), this._useAmmo.update(s), this._rewardFuel.update(_), this._rewardAmmo.update(u), this._rewardSteel.update(l), this._rewardBauxite.update(c), this._rewardItem1Icon.texture = this._itemId2Texture(h), this._rewardItem1Text.text = "x" + p, 0 == p ? (this._rewardItem1Icon.visible = !1, this._rewardItem1Text.visible = !1) : (this._rewardItem1Icon.visible = !0, this._rewardItem1Text.visible = !0, this._rewardItem1Icon.texture = this._itemId2Texture(h), this._rewardItem1Text.text = "\xd7" + p), 0 == f ? (this._rewardItem2Icon.visible = !1, this._rewardItem2Text.visible = !1) : (this._rewardItem2Icon.visible = !0, this._rewardItem2Text.visible = !0, this._rewardItem2Icon.texture = this._itemId2Texture(d), this._rewardItem2Text.text = "\xd7" + f), this._iconMonthly.visible = !1, 0 < i && (this._iconMonthly.visible = !0), this._iconDamage.visible = !1, 0 < n && (this._iconDamage.visible = !0), this._textExpeditionDetail.text = a.replace(/<br>/g, "\n"), this._textExpeditionName.text = e, this._cancelable = y, this._expedition_mst_id = t, this._useTime = o
+            }, e.prototype.updateMaster = function (t, e, i, n, o, r, s, a, _, u, l, c, h, d, f, y, m) {
+                if (this._useFuel.update(r), this._useAmmo.update(s), this._rewardFuel.update(_), this._rewardAmmo.update(u), this._rewardSteel.update(l), this._rewardBauxite.update(c), 0 == d) this._rewardItem1Icon.visible = !1, this._rewardItem1Text.visible = !1;
+                else {
+                    this._rewardItem1Icon.visible = !0, this._rewardItem1Text.visible = !0;
+                    var g = this._itemIdToTextureId(h); - 1 == g ? (this._rewardItem1Icon.position.set(175, 359.5), this._rewardItem1Icon.texture = PIXI.Texture.EMPTY) : 4 == g ? (this._rewardItem1Icon.position.set(175, 358), this._rewardItem1Icon.texture = p.SALLY_EXPEDITION_DETAIL.getTexture(g)) : (this._rewardItem1Icon.position.set(175, 359.5), this._rewardItem1Icon.texture = p.SALLY_EXPEDITION_DETAIL.getTexture(g)), this._rewardItem1Text.text = "\xd7" + d
+                }
+                if (0 == y) this._rewardItem2Icon.visible = !1, this._rewardItem2Text.visible = !1;
+                else {
+                    this._rewardItem2Icon.visible = !0, this._rewardItem2Text.visible = !0;
+                    var g = this._itemIdToTextureId(f); - 1 == g ? (this._rewardItem2Icon.position.set(233, 359.5), this._rewardItem2Icon.texture = PIXI.Texture.EMPTY) : 4 == g ? (this._rewardItem2Icon.position.set(233, 358), this._rewardItem2Icon.texture = p.SALLY_EXPEDITION_DETAIL.getTexture(g)) : (this._rewardItem2Icon.position.set(233, 359.5), this._rewardItem2Icon.texture = p.SALLY_EXPEDITION_DETAIL.getTexture(g)), this._rewardItem2Text.text = "\xd7" + y
+                }
+                this._iconMonthly.visible = !1, 0 < i && (this._iconMonthly.visible = !0), this._iconDamage.visible = !1, 0 < n && (this._iconDamage.visible = !0), this._textExpeditionDetail.text = a.replace(/<br>/g, "\n"), this._textExpeditionName.text = e, this._cancelable = m, this._expedition_mst_id = t, this._useTime = o
             }, e.prototype.updateMember = function (t, e, i, n, o, r, s) {
                 switch (this._flagShipBanner.visible = !1, this._textFlagShipName.visible = !1, this._textFlagShipLevel.visible = !1, this._flagShipShadow.visible = !1, r && (this._flagShipBanner.updateImage(r.mstID, r.isDamaged()), this._flagShipBanner.updateRing(r.isMarriage()), this._textFlagShipName.text = "\u65d7\u8266 [" + r.name + "]", this._textFlagShipLevel.text = "Lv." + r.level, this._flagShipBanner.visible = !0, this._textFlagShipName.visible = !0, this._textFlagShipLevel.visible = !0, this._flagShipShadow.update(r.shipTypeID, c.ShadowType.DETAIL), this._flagShipShadow.visible = !0), this._textDeckName.visible = !1, o && (this._textDeckName.text = o, this._textDeckName.visible = !0), this._hexClockActive.visible = !1, this._flagShipShadow.visible = !1, this._hexClockCancel.visible = !1, this._hexClockComplete.visible = !1, t) {
                     case 0:

@@ -19,35 +19,30 @@ const function657 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(10),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._text = new o.TextBox(27, 16777215), e.addChild(e._text), e
+    var o = i(0),
+        r = i(23),
+        s = i(49),
+        a = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.COMMON_MISC.getTexture(120), this._text.text = t, this._text.x = 615 - Math.round(this._text.width / 2), this._text.y = 159 - Math.round(this._text.height / 2)
-            }, e.prototype.changeText = function (t) {
-                var e = this;
-                createjs.Tween.get(this._text).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e._startAnimation(t)
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                var t = this,
+                    e = this.model.mst_id,
+                    i = new r.SlotLoader;
+                i.add(e, "card"), i.load(function () {
+                    var i = o.default.resources.getSlotitem(e, "card");
+                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
                 })
-            }, e.prototype.dispose = function () {
-                this._stopAnimation(), this.removeChildren(), this._text.destroy()
-            }, e.prototype._startAnimation = function (t) {
-                var e = this;
-                null == this._t && null != t && 0 != t.length && (this._message = t, this._text.text = "", this._text.alpha = 1, this._text.x = 246, this._text.y = 87, this._t = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(100).call(function () {
-                    var t = e._message.substr(0, 1);
-                    " " == e._text.text ? e._text.text = t : e._text.text += t, e._message = e._message.substr(1), 0 == e._message.length && e._stopAnimation()
-                }))
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._card), this._card = null
             }, e
-        }(PIXI.Sprite);
-    e.ModelChangeMessageBox = s
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogSlotitem = a
 }

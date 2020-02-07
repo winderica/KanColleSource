@@ -21,10 +21,17 @@ const function305 = function (t, e, i) {
     });
     var o = i(47),
         r = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._value = e, i
             }
-            return n(e, t), e
+            return n(e, t), Object.defineProperty(e.prototype, "value", {
+                get: function () {
+                    return this._value
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
         }(o.RewardModel);
-    e.RewardModelLargeBuild = r
+    e.RewardModelWarResult = r
 }

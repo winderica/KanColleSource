@@ -20,29 +20,25 @@ const function671 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(23),
-        s = i(49),
+        r = i(9),
+        s = i(7),
         a = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/require_info", e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = this,
-                    e = this.model.mst_id,
-                    i = new r.SlotLoader;
-                i.add(e, "card"), i.load(function () {
-                    var i = o.default.resources.getSlotitem(e, "card");
-                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
-                })
-            }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._card), this._card = null
+            return n(e, t), e.prototype._completedEnd = function () {
+                var e = o.default.model.basic;
+                e.setUserData(s.ObjUtil.getObject(this._raw_data, "api_basic")), e.setExtraSupplyFlag(s.ObjUtil.getNumArray(this._raw_data, "api_extra_supply"));
+                var i = s.ObjUtil.getObject(this._raw_data, "api_oss_setting"),
+                    n = s.ObjUtil.getNumArray(i, "api_oss_items", []),
+                    r = 0 == s.ObjUtil.getNumber(i, "api_language_type");
+                e.updateOrganizeListSetting(n.map(function (t) {
+                    return 1 == t
+                }), r), e.setUISkinID(s.ObjUtil.getNumber(this._raw_data, "api_skin_id"));
+                var a = s.ObjUtil.getNumber(this._raw_data, "api_position_id");
+                e.setFlagShipPosIDSvr(a), e.setFlagShipPosIDCli(a), o.default.model.slot.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_slot_item")), o.default.model.slot.setUnsetData(s.ObjUtil.getObject(this._raw_data, "api_unsetslot")), o.default.model.useItem.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_useitem")), o.default.model.furniture.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_furniture")), o.default.model.kdock.__setData__(s.ObjUtil.getObjectArray(this._raw_data, "api_kdock")), t.prototype._completedEnd.call(this)
             }, e
-        }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogSlotitem = a
+        }(r.APIBase);
+    e.RequireInfoAPI = a
 }

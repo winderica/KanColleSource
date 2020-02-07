@@ -19,11 +19,10 @@ const function652 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(310),
-        s = i(655),
-        a = i(49),
-        _ = function (t) {
+    var o = i(4),
+        r = i(10),
+        s = i(49),
+        a = function (t) {
             function e(e, i) {
                 return t.call(this, e, i) || this
             }
@@ -34,30 +33,11 @@ const function652 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype._createContent = function () {
-                this._showDialog()
-            }, e.prototype._showContent = function () {
-                var t = this,
-                    e = new r.ModelChangeModelEdit;
-                e.setItemFrom(73, !0), e.setItemTobe(-1);
-                var i = this.model.message1,
-                    n = this.model.message2;
-                e.setMessage(i, n), e.addMeltInto([{
-                    id: 31,
-                    type: 6
-                }], 1, 1), e.addMeltInto([{
-                    id: 34,
-                    type: 6
-                }], 2, 1);
-                var a = o.default.view.overLayer;
-                new s.AirunitBaseOpenTask(a, e).start(function () {
-                    t._showContentComplete()
-                })
-            }, e.prototype._showDialog = function () {
-                this._showContent()
-            }, e.prototype._removeContent = function () {}, e.prototype._showContentComplete = function () {
-                var t = o.default.model.useItem.get(73);
-                t.__setCount__(t.count - 1), this._removeContent(), this._endTask()
+                var t = r.COMMON_MISC.getTexture(147);
+                this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135, this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = "\u5927\u578b\u8266\u5efa\u9020\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u958b\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1.destroy(), this._text1 = null, this._text2.destroy(), this._text2 = null
             }, e
-        }(a.TaskRewardDialogBase);
-    e.TaskRewardDialogAirUnit = _
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogLargeBuild = a
 }

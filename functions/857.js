@@ -19,69 +19,104 @@ const function857 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(15),
-        a = i(13),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.bg = new r.AreaBox(1, 16777215), e.black = new r.AreaBox(1), e.bgGrad = new PIXI.Sprite, e.ship = new PIXI.Sprite, e.silhouette = new PIXI.Sprite, e.shipLayer1 = new PIXI.Container, e.shipLayer2 = new PIXI.Container, e.bg.alpha = 0, e.black.alpha = 0, e.bgGrad.alpha = 0, e.shipLayer1.alpha = 0, e.shipLayer2.alpha = 0, e.shipLayer1.x = -290, e.shipLayer2.x = -290, e.shipLayer1.scale.set(.8), e.shipLayer2.scale.set(.8), e.shipLayer1.addChild(e.ship), e.shipLayer2.addChild(e.silhouette), e.addChild(e.bg, e.shipLayer1, e.shipLayer2, e.bgGrad, e.black), e
+    var o = i(30),
+        r = i(1),
+        s = i(0),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this,
+                    n = s.default.resources.getUIImage("vignette_frame"),
+                    o = s.default.resources.getShip(e, !1, "sp_remodel/full_x2"),
+                    r = s.default.resources.getShip(e, !1, "sp_remodel/text_class"),
+                    a = s.default.resources.getShip(e, !1, "sp_remodel/text_name"),
+                    l = (new PIXI.Graphics).beginFill(16777215).drawRect(0, 0, 1200, 720).endFill(),
+                    c = (new PIXI.Graphics).beginFill(0).drawRect(0, 0, 1200, 720).endFill(),
+                    h = new PIXI.Sprite(r),
+                    p = new PIXI.Sprite(a),
+                    d = new _(o),
+                    f = new PIXI.Sprite(n),
+                    y = new PIXI.Container,
+                    m = new u;
+                return d.position.set(.5 * -o.width, .5 * -o.height), h.position.set(12, 12), p.position.set(12, 720 - p.height - 12), y.addChild(d), i.addChild(l), i.addChild(y), i.addChild(f, h, p), i.addChild(c), i.addChild(m), i._textClass = h, i._textName = p, i._camera = y, i._backGround = l, i._blackOver = c, i._ship = d, i._goBackArea = m, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.bg = null, this.bgGrad = null, this.black = null, this.shipLayer1 = null, this.shipLayer2 = null, this.ship = null, this.silhouette = null, this._cb_onComplete = null
-            }, e.prototype.play = function (t, e, i) {
-                var n = this;
-                this._callback = e, this._cb_onComplete = i, this._preload(t, function () {
-                    createjs.Tween.get(n.bg).to({
-                        alpha: 1
-                    }, 500).call(function () {
-                        n.anim1()
-                    })
-                })
-            }, e.prototype._preload = function (t, e) {
-                var i = this,
-                    n = new s.UIImageLoader("remodel");
-                n.add("bg/vignette_frame.png", "vignette_frame"), n.load(function () {
-                    var n = new a.ShipLoader;
-                    n.add(t[0], !1, "full"), n.add(t[1], !1, "full"), n.load(function () {
-                        i.bgGrad.texture = o.default.resources.getUIImage("vignette_frame"), i.ship.texture = o.default.resources.getShip(t[0], !1, "full"), i.silhouette.texture = o.default.resources.getShip(t[1], !1, "full"), i.silhouette.tint = 0;
-                        var n = o.default.model.ship_graph.get(t[0]).getCenterOffset(!1),
-                            r = o.default.model.ship_graph.get(t[1]).getCenterOffset(!1);
-                        i.ship.x = 330 + n.x, i.ship.y = n.y - 50, i.silhouette.x = 330 + r.x, i.silhouette.y = r.y - 50, e()
-                    })
-                })
-            }, e.prototype.anim1 = function () {
-                var t = this;
-                createjs.Tween.get(this.bgGrad).to({
-                    alpha: 1
-                }, 1e3), createjs.Tween.get(this.shipLayer1).to({
-                    alpha: 1
-                }, 1e3).wait(300).call(function () {
-                    t.anim2()
-                })
-            }, e.prototype.anim2 = function () {
-                createjs.Tween.get(this.shipLayer1).to({
-                    x: 0
-                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer1).wait(300).to({
-                    alpha: 0
-                }, 1500), createjs.Tween.get(this.shipLayer2).to({
-                    x: 0
-                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer2).wait(300).to({
-                    alpha: 1
-                }, 1500), this.anim3()
-            }, e.prototype.anim3 = function () {
-                var t = this;
-                createjs.Tween.get(this.black).wait(1300).to({
-                    alpha: 1
-                }, 1e3).call(function () {
-                    t.bg.visible = !1, t.shipLayer2.visible = !1, t._callback(), createjs.Tween.get(t).to({
-                        alpha: 0
-                    }, 1e3).call(function () {
-                        t._cb_onComplete()
-                    })
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "camera", {
+                get: function () {
+                    return this._camera
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "textClass", {
+                get: function () {
+                    return this._textClass
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "textName", {
+                get: function () {
+                    return this._textName
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "backGround", {
+                get: function () {
+                    return this._backGround
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "blackOver", {
+                get: function () {
+                    return this._blackOver
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ship", {
+                get: function () {
+                    return this._ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "goBackArea", {
+                get: function () {
+                    return this._goBackArea
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._ship.dispose(), this._goBackArea.dispose(), this._camera.removeChildren(), this._backGround.filters = [], this._textClass.texture = PIXI.Texture.EMPTY, this._textName.texture = PIXI.Texture.EMPTY, this._goBackArea = null, this._ship = null, this._camera = null, this._textClass = null, this._textName = null, this._backGround = null, this._blackOver = null
             }, e
         }(PIXI.Container);
-    e.SpKaizoIntro = _
+    e.SpecialRemodelStartStage = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this,
+                n = new PIXI.Sprite(e);
+            n.tint = 0, n.alpha = .21;
+            var o = new PIXI.Sprite(e);
+            return i.addChild(n, o), i._main = o, i._shadow = n, i
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "shadow", {
+            get: function () {
+                return this._shadow
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this._shadow.filters = [], this._shadow.texture = PIXI.Texture.EMPTY, this._main.texture = PIXI.Texture.EMPTY, this._shadow = null, this._main = null
+        }, e
+    }(PIXI.Container);
+    e.Ship = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function () {
+                e.onClick()
+            };
+            var i = new o.GearBtnHome,
+                n = (new PIXI.Graphics).beginFill(0, 0).drawRect(0, 0, 1200, 720).endFill();
+            return i.initialize(), i.activate(), i.position.set(1200 - .5 * i.width, 720 - .5 * i.height), n.interactive = !0, n.buttonMode = !0, n.addChild(i), n.addListener(r.EventType.CLICK, e._onClick), e._gearBtnHome = i, e._goBackArea = n, e.addChild(n), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._goBackArea.removeListener(r.EventType.CLICK, this._onClick), this._gearBtnHome.deactivate(), this._gearBtnHome.dispose(), this._goBackArea = null, this._onClick = null, this._gearBtnHome = null
+        }, e
+    }(PIXI.Container)
 }

@@ -19,46 +19,29 @@ const function646 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(647),
-        r = i(648),
-        s = i(649),
-        a = i(162),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onRevampOpen = function () {
-                    null != e._revamp && e._revamp.open()
-                }, e._onRevampClose = function () {
-                    null != e._revamp && e._revamp.close()
-                }, e._waves = new a.RingMenuWaves, e._organize = new o.RingMenuBtn(11), e._organize.position.set(297, 203), e._supply = new o.RingMenuBtn(12), e._supply.position.set(117, 333), e._remodel = new o.RingMenuBtn(13), e._remodel.position.set(476, 333), e._repair = new o.RingMenuBtn(14), e._repair.position.set(186, 543), e._arsenal = new o.RingMenuBtn(15), e._arsenal.position.set(407, 543), e._sally = new s.RingMenuBtnSally, e._sally.position.set(296, 390), e.addChild(e._remodel), e.addChild(e._arsenal), e.addChild(e._sally), e.addChild(e._organize), e.addChild(e._repair), e.addChild(e._supply), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this._waves.initialize(), this._organize.initialize(), this._supply.initialize(), this._remodel.initialize(), this._repair.initialize(), this._arsenal.initialize(this._onRevampOpen, this._onRevampClose), this._sally.initialize(), this._baseX = this.x, this._presetX = -(this.x + Math.floor(this.width / 3))
-            }, e.prototype.activate = function () {
-                this._organize.activate(), this._supply.activate(), this._remodel.activate(), this._repair.activate(), this._arsenal.activate(), this._sally.activate(), null != this._revamp && this._revamp.activate()
-            }, e.prototype.deactivate = function () {
-                this._organize.deactivate(), this._supply.deactivate(), this._remodel.deactivate(), this._repair.deactivate(), this._arsenal.deactivate(), this._sally.deactivate(), null != this._revamp && this._revamp.deactivate()
-            }, e.prototype.prePosition = function () {
-                this.x = this._presetX, this.alpha = 0
-            }, e.prototype.startAnimation = function () {
-                var t = this;
-                this._interactive(!1), createjs.Tween.get(this).wait(200).to({
-                    x: this._baseX,
-                    alpha: 1
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    t._interactive(!0)
-                })
-            }, e.prototype.dispose = function () {
-                this._waves.dispose(), this._organize.dispose(), this._supply.dispose(), this._remodel.dispose(), this._repair.dispose(), this._arsenal.dispose(), this._sally.dispose(), null != this._revamp && this._revamp.dispose()
-            }, e.prototype.setRevampFlg = function (t) {
-                1 == t ? this._addRevampBtn() : this._removeRevampBtn()
-            }, e.prototype._addRevampBtn = function () {
-                null == this._revamp && (this._revamp = new r.RingMenuBtnRevamp(31), this._revamp.position.set(407, 543), this._revamp.initialize(), this._revamp.activate(), this.addChildAt(this._revamp, 0))
-            }, e.prototype._removeRevampBtn = function () {
-                null != this._revamp && (null != this._revamp.parent && this._revamp.parent.removeChild(this._revamp), this._revamp.dispose(), this._revamp = null)
-            }, e.prototype._interactive = function (t) {
-                this._organize.interactiveApply(t), this._supply.interactiveApply(t), this._remodel.interactiveApply(t), this._repair.interactiveApply(t), this._arsenal.interactiveApply(t), null != this._revamp && this._revamp.interactiveApply(t)
-            }, e
-        }(PIXI.Container);
-    e.RingMenuLayer = _
+    var o = function (t) {
+        function e(e, i, n) {
+            var o = 1 == n ? "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x - width / 2.0 + (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x >= border) {\n                    float a = 0.0;\n                    float diff = gl_FragCoord.x - border;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        " : "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x + width / 2.0 - (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x <= border) {\n                    float a = 0.0;\n                    float diff = border - gl_FragCoord.x;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        ";
+            return t.call(this, null, o, {
+                x: {
+                    type: "1f",
+                    value: e
+                },
+                width: {
+                    type: "1f",
+                    value: i
+                },
+                rate: {
+                    type: "1f",
+                    value: 1
+                },
+                grad: {
+                    type: "1f",
+                    value: .5
+                }
+            }) || this
+        }
+        return n(e, t), e
+    }(PIXI.Filter);
+    e.MeltIntoSlotitemFilter = o
 }

@@ -20,18 +20,40 @@ const function887 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(9),
-        s = i(172),
-        a = function (t) {
+        r = i(2),
+        s = i(13),
+        a = i(14),
+        _ = i(888),
+        u = i(347),
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_req_nyukyo/open_new_dock", i.memDockId = e, i
+                return i._updateNDock = function () {
+                    (new u.NDockAPI).start(i._loadAtlas)
+                }, i._loadAtlas = function () {
+                    var t = new a.UIImageLoader("repair");
+                    t.add("repair_main.json"), t.add("repair_sort.json"), t.load(i._loadShipBanner)
+                }, i._loadShipBanner = function () {
+                    var t = o.default.model.ndock.getShipMemIDs();
+                    if (0 < t.length) {
+                        for (var e = new s.ShipLoader, n = 0; n < t.length; n++) {
+                            var r = t[n],
+                                a = o.default.model.ship.get(r);
+                            e.add(a.mstID, a.isDamaged(), "banner")
+                        }
+                        e.load(function () {
+                            i._onCompleteLoad()
+                        })
+                    } else i._onCompleteLoad()
+                }, i._onCompleteLoad = function () {
+                    var t = o.default.model.ndock.getAll(),
+                        e = new _.MainView(t);
+                    i.repairScene.start(e), i.repairScene.updateNDocks(t), i.repairScene.startNDockTimer(), i._endTask()
+                }, i.repairScene = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = o.default.model.useItem.get(s.RepairConst.OPEN_KEY_ITEMID),
-                    i = o.default.model.ndock.get(this.memDockId);
-                i.__updateCompleteTime__(0), i.__updateShipId__(0), i.__updateState__(0), e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._updateNDock()
             }, e
-        }(r.APIBase);
-    e.OpenNewDockAPI = a
+        }(r.TaskBase);
+    e.PreInitializeTask = l
 }

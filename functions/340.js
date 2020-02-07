@@ -19,20 +19,23 @@ const function340 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(14),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_kaisou/lock", i.api_slotitem_id = e, i
+    var o = i(1),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onMouseOver = function () {
+                    n.texture = n._textureOn
+                }, n._onMouseOut = function () {
+                    n.texture = n._textureOff
+                }, n._onClick = function () {
+                    null != n._cb_onClick && n._cb_onClick()
+                }, n._textureOff = e, n._textureOn = i, n.texture = n._textureOff, n.interactive = n.buttonMode = !0, n.on(o.EventType.CLICK, n._onClick), n.on(o.EventType.MOUSEOVER, n._onMouseOver), n.on(o.EventType.MOUSEOUT, n._onMouseOut), n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_slotitem_id = this.api_slotitem_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked");
-                o.default.model.slot.get(this.api_slotitem_id).__setLocked__(e), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._cb_onClick = t
+            }, e.prototype.dispose = function () {
+                this._textureOff = null, this._textureOn = null, this.off(o.EventType.CLICK, this._onClick), this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
             }, e
-        }(r.APIBase);
-    e.SlotItemLockAPI = a
+        }(PIXI.Sprite);
+    e.CancelButton = r
 }

@@ -19,34 +19,29 @@ const function1233 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(34),
-        a = i(71),
-        _ = i(420),
-        u = i(421),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._data = e, n._scene_initialize_delegate = i, n
+    var o = i(11),
+        r = i(245),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._waitClick = function () {
+                    i._layer.buttonMode = !0, i._layer.once(s.EventType.CLICK, i._onClick)
+                }, i._onClick = function () {
+                    i._layer.buttonMode = !1, i._chara.texture = PIXI.Texture.fromFrame(r.POSTER_KEY_2), createjs.Tween.get(i._chara).wait(300).to({
+                        x: 1200
+                    }, 500, createjs.Ease.sineInOut).call(function () {
+                        i._layer.removeChild(i._chara), i._endTask()
+                    })
+                }, i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new u.TaskLoadResources).start(function () {
-                    t._connectAPI()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = new s.APIConnector;
-                20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
-                e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
-                    null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
-                })
+                this._chara = PIXI.Sprite.fromFrame(r.POSTER_KEY_1), this._chara.position.set(760, 705), this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
+                    y: 45
+                }, 500).call(this._waitClick)
             }, e.prototype._endTask = function () {
-                this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
+                this._layer = null, this._chara = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskDutyScenePreInitialize = l
+        }(o.TaskBase);
+    e.TaskPosterGirl = a
 }

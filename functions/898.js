@@ -20,18 +20,15 @@ const function898 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(0),
+        r = i(14),
         s = function (t) {
             function e(e) {
-                return t.call(this) || this
+                var i = t.call(this) || this;
+                return i.repairScene = e, i.repairScene.dispose(), i
             }
             return n(e, t), e.prototype._start = function () {
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                r.default.sound.bgm.play(102), this._startScene()
-            }, e.prototype._startScene = function () {
-                this._endTask()
+                r.UIImageLoader.clearMemoryCache("repair"), this._endTask()
             }, e
         }(o.TaskBase);
-    e.InitializeTask = s
+    e.DisposeTask = s
 }

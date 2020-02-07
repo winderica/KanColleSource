@@ -23,12 +23,12 @@ const function1442 = function (t, e, i) {
         r = i(18),
         s = i(478),
         a = i(1443),
-        _ = i(66),
+        _ = i(67),
         u = i(45),
         l = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
-                return r._attacker = e, r._slot1 = i, r._slot2 = n, r._slot3 = o, r._friend = r._attacker.friend, r._canvas = new a.CutinCanvasSpRDJ, r._view = new PIXI.Container, r.view.addChild(r._canvas), r._ship = new PIXI.Sprite, r
+                return r._attacker = e, r._slot1 = o, r._slot2 = n, r._slot3 = i, r._friend = r._attacker.friend, r._canvas = new a.CutinCanvasSpSRD, r._view = new PIXI.Container, r.view.addChild(r._canvas), r._ship = new PIXI.Sprite, r
             }
             return n(e, t), Object.defineProperty(e.prototype, "view", {
                 get: function () {
@@ -53,15 +53,16 @@ const function1442 = function (t, e, i) {
             }, e.prototype._ready = function () {
                 this._ship.texture = this._preload_task.getShipTexture();
                 var t = this._preload_task.getShipOffset();
-                this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new u.ShipFlash(this._preload_task.getShipTexture()), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._friend ? (this._canvas.chara.x = -225, this._canvas.chara.y = -87) : (this._canvas.chara.x = 483, this._canvas.chara.y = -138), this._canvas.initialize(this._friend, this._preload_task), this._anim1()
+                this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new u.ShipFlash(this._preload_task.getShipTexture()), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._friend ? (this._canvas.chara.x = -399, this._canvas.chara.y = -54) : (this._canvas.chara.x = 676, this._canvas.chara.y = -54), this._canvas.initialize(this._friend, this._preload_task), this._anim1()
             }, e.prototype._anim1 = function () {
                 var t = this;
-                this._canvas.bg.show(366), createjs.Tween.get(this._canvas.chara).wait(200).to({
-                    x: (this._friend ? 0 : 465) - 104,
+                this._canvas.bg.show(200), createjs.Tween.get(this._canvas.chara).wait(200).to({
+                    x: (this._friend ? 0 : 480) - 104,
+                    y: (this._friend ? 0 : 23) - 87,
                     alpha: 1
-                }, 366).wait(1200).call(function () {
+                }, 300).wait(1200).call(function () {
                     t._anim2()
-                }), this._canvas.layer_item1.show(400), this._canvas.layer_item2.show(833), this._canvas.layer_item3.show(1266), this._canvas.layer_wave.show(533), this._canvas.layer_names.show(400)
+                }), this._canvas.layer_bg.show(400), this._canvas.layer_item.show(400), this._canvas.layer_name.show(400), this._canvas.layer_center.show(733), this._canvas.layer_center_name.show(1300)
             }, e.prototype._anim2 = function () {
                 var t = this;
                 this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
@@ -71,7 +72,7 @@ const function1442 = function (t, e, i) {
                 })
             }, e.prototype._anim3 = function () {
                 var t = this;
-                this._canvas.layer_item1.hide(0), this._canvas.layer_item2.hide(0), this._canvas.layer_item3.hide(0);
+                this._canvas.layer_item.hide(0), this._canvas.layer_center.hide(0);
                 var e = new _.IntensiveLines;
                 e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
                     alpha: 1
@@ -92,8 +93,8 @@ const function1442 = function (t, e, i) {
                     t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, this._preload_task = null, t.prototype._endTask.call(this)
+                this._attacker = null, this._slot1 = null, this._slot2 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, this._preload_task = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.CutinSpRDJ = l
+    e.CutinSpSRD = l
 }

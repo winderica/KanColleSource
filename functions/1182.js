@@ -34,14 +34,14 @@ const function1182 = function (t, e, i) {
                 t()
             }, e.prototype._initialize = function () {
                 this._icon.visible = !1;
-                this._canvas.x = 101, this._canvas.y = 119, this._canvas.scale.set(1);
+                this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
                 var t = new PIXI.Graphics;
-                t.beginFill(6710886, .1), t.drawRoundedRect(-86, -119, 172, 238, 16), t.endFill(), this._canvas.addChild(t);
+                t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
                 var e = this._candidate.mst_id,
-                    i = o.default.resources.getShip(e, !1, "reward_card"),
+                    i = o.default.resources.getShip(e, !1, "card_round"),
                     n = new PIXI.Sprite(i);
                 n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
         }(r.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogShipBtnUI5 = s
+    e.RewardSelectDialogShipBtn = s
 }

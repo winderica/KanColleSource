@@ -22,24 +22,18 @@ const function886 = function (t, e, i) {
     var o = i(0),
         r = i(9),
         s = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o.MINIMUM_TIME = 6e4, o._url = "api_req_nyukyo/start", o.api_ship_id = i, o.api_ndock_id = e, o.api_highspeed = n, o
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_nyukyo/speedchange", i.api_ndock_id = e, i
             }
             return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_highspeed = this.api_highspeed ? 1 : 0, this._post_data.api_ndock_id = this.api_ndock_id, this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+                this._post_data.api_ndock_id = this.api_ndock_id, t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                var e = o.default.model.ship.get(this.api_ship_id),
-                    i = o.default.model.useItem.get(31),
-                    n = o.default.model.useItem.get(33);
-                if (i.__setCount__(i.count - e.getRepairFuel()), n.__setCount__(n.count - e.getRepairSteel()), this.api_highspeed) {
-                    var r = o.default.model.useItem.get(1);
-                    r.__setCount__(r.count - 1), this.immediateRepair(e)
-                } else e.getRepairTime() <= this.MINIMUM_TIME && this.immediateRepair(e);
-                t.prototype._completedEnd.call(this)
-            }, e.prototype.immediateRepair = function (t) {
-                t.__updateNowHp__(t.hpMax), t.__updateNDockTime__(0), t.__updateNDockItem__([0, 0]), t.tired < 40 && t.__updateCond__(40)
+                var e = o.default.model.useItem.get(1),
+                    i = o.default.model.ndock.get(this.api_ndock_id),
+                    n = o.default.model.ship.get(i.shipMemID);
+                n.__updateNowHp__(n.hpMax), n.__updateNDockTime__(0), n.__updateNDockItem__([0, 0]), n.tired < 40 && n.__updateCond__(40), i.__updateCompleteTime__(0), i.__updateShipId__(-1), i.__updateState__(0), e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.StartAPI = s
+    e.SpeedChangeAPI = s
 }

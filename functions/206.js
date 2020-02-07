@@ -19,46 +19,38 @@ const function206 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = function (t) {
+    var o = i(0),
+        r = i(56),
+        s = i(25),
+        a = i(14),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._activated = !1, e._enabled = !0, e.__onMouseOver = function () {
-                    e._update(!0)
-                }, e.__onMouseOut = function () {
-                    e._update(!1)
-                }, e.__onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                set: function (t) {
-                    this._enabled != t && (this._enabled = t, 1 == this._enabled && 1 == this._activated ? this._activate() : this._deactivate(), this._update(!1))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                void 0 === t && (t = null), this._deactivate(), this._cb_onClick = t, 1 == this._enabled && 1 == this._activated && this.activate(), this._update(!1)
-            }, e.prototype.activate = function () {
-                this._activated = !0, 1 != this.buttonMode && 0 != this.enabled && this._activate()
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
+            return n(e, t), e.prototype.setTexture = function (t) {
+                this._loader = null, this.texture = t
+            }, e.prototype.setImage = function (t, e, i) {
+                void 0 === i && (i = null), this._load(t, e, i)
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
-            }, e.prototype._activate = function () {
-                this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick)
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
-            }, e.prototype._onMouseOver = function () {
-                this.__onMouseOver()
-            }, e.prototype._onMouseOut = function () {
-                this.__onMouseOut()
-            }, e.prototype._onClick = function () {
-                this.__onClick()
+                this._loader = null
+            }, e.prototype._load = function (t, e, i) {
+                var n = this,
+                    _ = s.MathUtil.zeroPadding(t, 3),
+                    u = r.MapUtil.toMapID(t, e),
+                    l = o.default.model.map.getMapMem(u).getGaugeNum(),
+                    c = s.MathUtil.zeroPadding(e, 2);
+                465 == u && l > 1 && (c += "_2");
+                var h = a.UIImageLoader.getResourceVersionMap(u),
+                    p = o.default.settings.path_root + "resources/map/" + _ + "/" + c + ".png" + (h ? "?version=" + h : "");
+                if (null != PIXI.utils.TextureCache[p]) return this.texture = PIXI.utils.TextureCache[p], void(null != i && i());
+                this._loader = new PIXI.loaders.Loader, this._loader.add(p), this._loader.load(function (t) {
+                    if (n._loader == t) {
+                        n._loader = null;
+                        var e = t.resources[p];
+                        n.texture = e.texture, null != i && i()
+                    }
+                })
             }, e
         }(PIXI.Sprite);
-    e.BtnBase = r
+    e.MapThumbnailImage = _
 }

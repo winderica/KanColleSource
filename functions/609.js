@@ -1,79 +1,124 @@
 const function609 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._fileName = "", i._frame_index = 0, i._frameCount = 0, i._frameMax = 0, i._loopCount = 0, i._end = !1, i._offset = null, i._model = e, i._updateTexture(), i._updateAlpha(), i._updateFrameMax(), i._updateOffset(), i
+    var n = i(15),
+        o = function () {
+            function t() {}
+            return Object.defineProperty(t.prototype, "expedition_id", {
+                get: function () {
+                    return this._expedition_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "expedition_name", {
+                get: function () {
+                    return n.ObjUtil.getString(this._o, "api_quest_name")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "result", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_clear_result")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "total_exp", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_get_exp")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "user_level", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_member_lv")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ship_mem_ids", {
+                get: function () {
+                    return this._ship_mem_ids
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "fuel", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ammo", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "steel", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[2]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "baux", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[3]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "item1", {
+                get: function () {
+                    return this._item1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "item2", {
+                get: function () {
+                    return this._item2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.setData = function (t, e) {
+                this._o = t, 0 == this._o.hasOwnProperty("api_get_material") ? this._o.api_get_material = [0, 0, 0, 0] : -1 == this._o.api_get_material && (this._o.api_get_material = [0, 0, 0, 0]);
+                var i = n.ObjUtil.getNumArray(this._o, "api_ship_id");
+                i.length > 0 && -1 == i[0] && (i = i.slice(1)), this._ship_mem_ids = i;
+                var o = this._getItemFlags();
+                this._item1 = this._createItemModel(o[0], n.ObjUtil.getObject(this._o, "api_get_item1")), this._item2 = this._createItemModel(o[1], n.ObjUtil.getObject(this._o, "api_get_item2"))
+            }, t.prototype._getItemFlags = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_useitem_flag");
+                for (null == t && (t = []); t.length < 2;) t.push(0);
+                return t
+            }, t.prototype._createItemModel = function (t, e) {
+                if (null == e) return null;
+                var i = n.ObjUtil.getNumber(e, "api_useitem_id"),
+                    o = n.ObjUtil.getNumber(e, "api_useitem_count"),
+                    s = n.ObjUtil.getString(e, "api_useitem_name");
+                return o > 0 ? new r(t, i, o, s) : void 0
+            }, t
+        }();
+    e.ExpeditionResultModel = o;
+    var r = function () {
+        function t(t, e, i, n) {
+            this._mstID = 0, this._name = "", 1 == t ? (this._mstID = 1, this._name = "\u9ad8\u901f\u4fee\u5fa9\u6750") : 2 == t ? (this._mstID = 2, this._name = "\u9ad8\u901f\u5efa\u9020\u6750") : 3 == t ? (this._mstID = 3, this._name = "\u958b\u767a\u8cc7\u6750") : 5 == t ? (this._mstID = 44, this._name = "\u5bb6\u5177\u30b3\u30a4\u30f3") : 4 == t && (this._mstID = e, this._name = n), this._count = i
         }
-        return n(e, t), Object.defineProperty(e.prototype, "fileName", {
+        return Object.defineProperty(t.prototype, "mstID", {
             get: function () {
-                return this._fileName
+                return this._mstID
             },
             enumerable: !0,
             configurable: !0
-        }), e.prototype.isEnd = function () {
-            return this._end
-        }, e.prototype.getOffset = function () {
-            return this._offset
-        }, e.prototype.reset = function () {
-            this._frame_index = 0, this._frameCount = 0, this._loopCount = 0, this._end = !1, this._updateTexture(), this._updateAlpha(), this._updateFrameMax()
-        }, e.prototype.update = function () {
-            if (this._end) return null;
-            var t = this._model.frames[this._frame_index];
-            this._frameCount++;
-            var e = 0 == this._frame_index && 1 == this._frameCount && 0 == this._loopCount;
-            if (this._frameCount < this._frameMax) return this._updateAlpha(), e ? t : null;
-            if (this._frame_index + 1 < this._model.frames.length) this._frame_index = this._frame_index + 1, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset();
-            else {
-                if (this._loopCount += 1, !(this._model.loopMax < 0 || this._loopCount <= this._model.loopMax)) return this._end = !0, e ? t : null;
-                this._frame_index = 0, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset()
-            }
-            return t = this._model.frames[this._frame_index], 0 == t.frame && (this._end = !0), t
-        }, e.prototype._updateTexture = function () {
-            var t = this._model.frames[this._frame_index];
-            this._fileName != t.filename && (this._fileName = t.filename, "" == this._fileName ? this.texture = PIXI.Texture.EMPTY : this.texture = this._getTextureByName(this._fileName))
-        }, e.prototype._updateAlpha = function () {
-            var t = this._model.frames[this._frame_index];
-            if (t.alpha[0] == t.alpha[1]) this.alpha = t.alpha[0];
-            else {
-                var e = (t.alpha[1] - t.alpha[0]) / (this._frameMax - 1),
-                    i = t.alpha[0] + e * this._frameCount;
-                i = Math.max(0, i), this.alpha = Math.min(1, i)
-            }
-        }, e.prototype._updateFrameMax = function () {
-            var t = this._model.frames[this._frame_index];
-            if (this._frameMax = t.frame, t.framerand > 0) {
-                var e = Math.random() * t.framerand;
-                this._frameMax = this._frameMax + Math.floor(e)
-            }
-        }, e.prototype._updateOffset = function () {
-            null == this._offset && (this._offset = new PIXI.Point);
-            var t = this._model.frames[this._frame_index],
-                e = t.offsetData;
-            null != e && e.length >= 2 && (this._offset.x = e[0], this._offset.y = e[1])
-        }, e.prototype._getTextureByName = function (t) {
-            var e = PIXI.utils.TextureCache[t];
-            return e || PIXI.Texture.EMPTY
-        }, e
-    }(PIXI.Sprite);
-    e.FurnitureLayer = o
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return this._name
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "count", {
+            get: function () {
+                return this._count
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t
+    }()
 }

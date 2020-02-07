@@ -19,35 +19,39 @@ const function218 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(3),
-        s = function (t) {
+    var o = i(10),
+        r = function (t) {
             function e() {
                 return t.call(this) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.texture = PIXI.Texture.EMPTY
-            }, e.prototype.update = function (t) {
-                switch (o.ShipUtil.getSpeedType(t)) {
-                    case 4:
-                        this.texture = r.COMMON_MAIN.getTexture(60);
-                        break;
-                    case 3:
-                        this.texture = r.COMMON_MAIN.getTexture(56);
-                        break;
-                    case 2:
-                        this.texture = r.COMMON_MAIN.getTexture(53);
+            return n(e, t), e.prototype.update = function (t) {
+                var e = PIXI.Texture.EMPTY;
+                switch (t) {
+                    case 0:
+                        e = o.COMMON_MISC.getTexture(26);
                         break;
                     case 1:
-                        this.texture = r.COMMON_MAIN.getTexture(54);
+                        e = o.COMMON_MISC.getTexture(27);
                         break;
-                    case 0:
-                        this.texture = r.COMMON_MAIN.getTexture(59);
+                    case 2:
+                        e = o.COMMON_MISC.getTexture(28);
                         break;
-                    default:
-                        this.texture = PIXI.Texture.EMPTY
+                    case 3:
+                        e = o.COMMON_MISC.getTexture(29);
+                        break;
+                    case 4:
+                        e = o.COMMON_MISC.getTexture(30);
+                        break;
+                    case 5:
+                        e = o.COMMON_MISC.getTexture(31);
+                        break;
+                    case 6:
+                        e = o.COMMON_MISC.getTexture(32)
                 }
+                this.texture = e
+            }, e.prototype.dispose = function () {
+                this.texture = PIXI.Texture.EMPTY
             }, e
         }(PIXI.Sprite);
-    e.ShipSpeedImage = s
+    e.DeckIndexEmblem = r
 }

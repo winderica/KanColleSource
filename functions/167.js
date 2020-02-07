@@ -21,12 +21,12 @@ const function167 = function (t, e, i) {
     });
     var o = i(0),
         r = i(17),
-        s = i(732),
-        a = i(733),
-        _ = i(734),
-        u = i(325),
-        l = i(326),
-        c = i(327);
+        s = i(731),
+        a = i(732),
+        _ = i(733),
+        u = i(324),
+        l = i(325),
+        c = i(326);
     ! function (t) {
         function e() {
             switch (r.MAMIYA_IRAKO_SEASON) {

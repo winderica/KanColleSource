@@ -20,8 +20,8 @@ const function421 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(15),
-        s = i(247),
+        r = i(14),
+        s = i(245),
         a = function (t) {
             function e() {
                 return t.call(this) || this
@@ -31,7 +31,7 @@ const function421 = function (t, e, i) {
             }, e.prototype._load = function () {
                 var t = this,
                     e = new r.UIImageLoader("duty");
-                e.add("duty_common.json"), e.load(function () {
+                e.add("duty_main.json"), e.load(function () {
                     t._loadPosterGirlResoueces()
                 })
             }, e.prototype._loadPosterGirlResoueces = function () {

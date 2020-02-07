@@ -4,133 +4,39 @@ const function1280 = function (t, e, i) {
         value: !0
     });
     var n = i(7),
-        o = i(1281),
-        r = i(1283),
-        s = function () {
+        o = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "backgrounds", {
+            return Object.defineProperty(t.prototype, "no", {
                 get: function () {
-                    var t = [],
-                        e = n.ObjUtil.getObjectArray(this._o, "bg");
-                    if (null != e)
-                        for (var i = 0, o = e; i < o.length; i++) {
-                            var r = o[i];
-                            if (r.hasOwnProperty("name") && r.hasOwnProperty("img")) {
-                                var s = n.ObjUtil.getString(r, "name"),
-                                    a = n.ObjUtil.getString(r, "img");
-                                t.push({
-                                    name: s,
-                                    img: a
-                                })
-                            } else t.push({
-                                name: null,
-                                img: r
-                            })
-                        }
-                    return t
+                    return n.ObjUtil.getNumber(this._o, "no")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "labels", {
+            }), Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    var t = [],
-                        e = n.ObjUtil.getObjectArray(this._o, "labels");
-                    if (null != e)
-                        for (var i = 0, o = e; i < o.length; i++) {
-                            var r = o[i],
-                                s = {
-                                    x: n.ObjUtil.getNumber(r, "x"),
-                                    y: n.ObjUtil.getNumber(r, "y"),
-                                    r: n.ObjUtil.getNumber(r, "r"),
-                                    img: n.ObjUtil.getString(r, "img")
-                                };
-                            t.push(s)
-                        }
-                    return t
+                    return n.ObjUtil.getNumber(this._o, "type")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "spots", {
+            }), Object.defineProperty(t.prototype, "from", {
                 get: function () {
-                    var t = [],
-                        e = n.ObjUtil.getObjectArray(this._o, "spots");
-                    if (null != e)
-                        for (var i = 0, r = e; i < r.length; i++) {
-                            var s = r[i],
-                                a = new o.SpotData(s);
-                            t.push(a)
-                        }
-                    return t
+                    var t = n.ObjUtil.getNumber(this._o, "from"),
+                        e = new PIXI.Point;
+                    return e.x = n.ObjUtil.getNumber(t, "x"), e.y = n.ObjUtil.getNumber(t, "y"), e
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "enemies", {
+            }), Object.defineProperty(t.prototype, "to", {
                 get: function () {
-                    var t = [],
-                        e = n.ObjUtil.getObjectArray(this._o, "enemies");
-                    if (null != e)
-                        for (var i = 0, o = e; i < o.length; i++) {
-                            var r = o[i],
-                                s = {
-                                    no: n.ObjUtil.getNumber(r, "no"),
-                                    x: n.ObjUtil.getNumber(r, "x"),
-                                    y: n.ObjUtil.getNumber(r, "y"),
-                                    img: n.ObjUtil.getString(r, "img")
-                                };
-                            t.push(s)
-                        }
-                    return t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "airbase", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "airbase");
-                    return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "airraids", {
-                get: function () {
-                    var t = [],
-                        e = n.ObjUtil.getObjectArray(this._o, "airraids");
-                    if (null != e)
-                        for (var i = 0, o = e; i < o.length; i++) {
-                            var s = o[i];
-                            t.push(new r.AirRaidData(s))
-                        }
-                    return t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "airbaseraid", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "airbaseraid");
-                    return null == t ? null : new r.AirRaidData(t)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "recce", {
-                get: function () {
-                    var t = [],
-                        e = n.ObjUtil.getObjectArray(this._o, "recce");
-                    if (null != e)
-                        for (var i = 0, o = e; i < o.length; i++) {
-                            var r = o[i],
-                                s = {
-                                    no: n.ObjUtil.getNumber(r, "no"),
-                                    x: n.ObjUtil.getNumber(r, "x"),
-                                    y: n.ObjUtil.getNumber(r, "y")
-                                };
-                            t.push(s)
-                        }
-                    return t
+                    var t = n.ObjUtil.getNumber(this._o, "to"),
+                        e = new PIXI.Point;
+                    return e.x = n.ObjUtil.getNumber(t, "x"), e.y = n.ObjUtil.getNumber(t, "y"), e
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.MapInfoModel = s
+    e.AirRaidData = o
 }

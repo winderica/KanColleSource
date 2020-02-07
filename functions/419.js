@@ -5,8 +5,8 @@ const function419 = function (t, e, i) {
     });
     var n = i(0),
         o = i(7),
-        r = i(412),
-        s = i(247),
+        r = i(413),
+        s = i(245),
         a = function () {
             function t(t) {
                 this._o = t, this._alert = this._initAlert()
@@ -73,6 +73,12 @@ const function419 = function (t, e, i) {
             }), Object.defineProperty(t.prototype, "type", {
                 get: function () {
                     return o.ObjUtil.getNumber(this._o, "api_type")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "label_type", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_label_type")
                 },
                 enumerable: !0,
                 configurable: !0

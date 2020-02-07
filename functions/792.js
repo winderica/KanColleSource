@@ -19,24 +19,30 @@ const function792 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
+    var o = i(0),
+        r = i(48),
+        s = i(14),
+        a = i(793),
+        _ = i(795),
+        u = i(796),
+        l = i(75),
+        c = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(14), e.onMouseOver())
-                }, e._onMouseOut = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(12), e.onMouseOut())
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.texture = o.SUPPLY_MAIN.getTexture(13), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null
-            }, e.prototype.updateClickable = function (t) {
-                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(12) : o.SUPPLY_MAIN.getTexture(13)
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new a.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new _.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                var t = this;
+                return new l.FuncTask(function () {
+                    t.taskIdleMain.dispose(), t.taskIdleMain = null, s.UIImageLoader.clearMemoryCache("remodel")
+                })
+            }, e.prototype.start = function () {
+                var t = o.default.model.deck.get(1).getShipMemID(0);
+                this.taskIdleMain = new u.TaskIdleMain(this), this.taskIdleMain.start(1, t)
             }, e
-        }(PIXI.Sprite);
-    e.SupplyAllButton2 = s
+        }(r.SceneBase);
+    e.RemodelScene = c
 }

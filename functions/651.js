@@ -19,117 +19,37 @@ const function651 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(24),
-        s = i(12),
-        a = i(309),
-        _ = i(4),
-        u = i(10),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new s.Sprite, e._bg.anchor.set(.5), e.addChild(e._bg), e._light = new c, e.addChild(e._light), e._container = new r.Container, e.addChild(e._container), e._message = new h, e._message.position.set(-360, -291), e.addChild(e._message), e._get_icon = new a.GetIcon, e._get_icon.position.set(223, -181), e.addChild(e._get_icon), e._close_btn = new p, e._close_btn.position.set(-90, 222), e.addChild(e._close_btn), e
+    var o = i(0),
+        r = i(309),
+        s = i(4),
+        a = i(60),
+        _ = i(49),
+        u = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
                 get: function () {
-                    return this._bg
+                    return this._model
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "light", {
-                get: function () {
-                    return this._light
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "container", {
-                get: function () {
-                    return this._container
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return this._message
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "get_icon", {
-                get: function () {
-                    return this._get_icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "close_btn", {
-                get: function () {
-                    return this._close_btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = u.COMMON_MISC.getTexture(189), this._light.initialize(), this._get_icon.initialize(), this._close_btn.initialize()
-            }, e.prototype.dispose = function () {
-                this._light.dispose(), this._message.dispose(), this._get_icon.dispose(), this._close_btn.dispose()
+            }), e.prototype._createContent = function () {
+                var t = this,
+                    e = this.model.mst_id,
+                    i = this.model.name,
+                    n = new a.FurnitureLoader;
+                n.add(e, "reward"), n.load(function () {
+                    var n = o.default.model.furniture.getData(e);
+                    if (null != n) {
+                        var a = (n.type, o.default.resources.getFurniture(e, "reward"));
+                        t._thumb = new r.FurnitureThumbnail(!0), t._thumb.position.set(-123, -187), t._thumb.initialize(), t._thumb.update(a), t._dialog.container.addChild(t._thumb), t._text = new s.TextBox(25, 16774898), t._text.text = i, t._text.x = -Math.round(t._text.width / 2), t._text.y = 124, t._dialog.container.addChild(t._text)
+                    }
+                    t._showDialog()
+                })
+            }, e.prototype._removeContent = function () {
+                null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && (null != this._text.parent && this._text.parent.removeChild(this._text), this._text.destroy()), this._text = null
             }, e
-        }(r.Container);
-    e.RewardDialog = l;
-    var c = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = u.COMMON_MISC.getTexture(69)
-            }, e.prototype.activate = function () {
-                null == this._t && (this.rotation = 0, this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 6e3))
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e
-        }(s.Sprite),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.beginFill(0, .7), e.drawRect(0, 0, 721, 76), e.endFill(), e._texts = [], e.visible = !1, e
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0, i = this._texts; e < i.length; e++) {
-                    var n = i[e];
-                    null != n.parent && n.parent.removeChild(n)
-                }
-                if (this._texts = [], null == t) return void(this.visible = !1);
-                for (var o = t.split("\n"), r = 9, s = 0; s < o.length; s++) {
-                    var n = new _.TextBox(21, 16777215);
-                    n.text = o[s], n.x = 360 - n.width / 2, n.y = r, this.addChild(n), this._texts.push(n), r += n.height
-                }
-                this.visible = !0
-            }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._texts; t < e.length; t++) {
-                    e[t].destroy()
-                }
-            }, e
-        }(PIXI.Graphics),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e.visible = !1, e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = u.COMMON_MISC.getTexture(22)
-            }, e.prototype.activate = function (t) {
-                this._cb_onClick = t, 1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.CLICK, this._onClick), this.visible = !0)
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
-            }, e
-        }(s.Sprite)
+        }(_.TaskRewardDialogBase);
+    e.TaskRewardDialogFurniture = u
 }

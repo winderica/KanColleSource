@@ -19,23 +19,16 @@ const function205 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(47),
-        r = i(129),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._rewards = [], e
+    var o = i(30),
+        r = function (t) {
+            function e(e) {
+                void 0 === e && (e = null);
+                var i = t.call(this) || this;
+                return i._img = new PIXI.Sprite, i.addChild(i._img), null != e && i.update(e), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "rewards", {
-                get: function () {
-                    return this._rewards
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.add = function (t, e) {
-                var i = new r.RewardModelUseitem(t, e);
-                return this._rewards.push(i), this
+            return n(e, t), e.prototype.update = function (t) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e
-        }(o.RewardModel);
-    e.RewardModelMultiUseitem = s
+        }(o.Container);
+    e.CenteringSprite = r
 }

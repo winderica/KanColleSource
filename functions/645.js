@@ -19,74 +19,167 @@ const function645 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(196),
-        r = i(197),
-        s = i(198),
-        a = i(199),
-        _ = i(295),
-        u = i(1),
-        l = i(0),
-        c = i(297),
-        h = i(296),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._side.interactive = !0, e._side.buttonMode = !0;
-                var i = e._side.position.y;
-                return e._side.addListener(u.EventType.MOUSEOVER, function () {
-                    e._side.buttonMode = 0 == l.default.scene.now
-                }), e._side.addListener(u.EventType.CLICK, function () {
-                    if (0 == l.default.scene.now) {
-                        var t = l.default.model.deck.get(1).getShipModel(0),
-                            n = l.default.model.basic.getFlagShipPosIDCli(),
-                            o = l.default.view.getNowScene().flagShip.chara,
-                            r = h.PortConst.getMoveXValue(t.mstID),
-                            s = 0;
-                        0 == n ? (s = o.position.x + r, n = 1) : (s = o.position.x - r, n = 0);
-                        var a = c.$_$.Parallel(function () {
-                            return c.$_$.Sequence(function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i - 20
-                                }, 150)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i + 15
-                                }, 150)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i - 10
-                                }, 100)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i + 5
-                                }, 100)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i
-                                }, 100)
-                            })
-                        }, function () {
-                            return c.$_$.Value(o.position, {
-                                x: s
-                            }, 600, createjs.Ease.cubicOut)
-                        });
-                        l.default.view.clickGuard = !0, a.execute(function () {
-                            a.dispose(), l.default.view.clickGuard = !1, l.default.model.basic.setFlagShipPosIDCli(n)
-                        })
-                    }
-                }), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
+    var o = i(0),
+        r = i(2),
+        s = i(23),
+        a = i(70),
+        _ = i(24),
+        u = i(68),
+        l = i(10),
+        c = i(646),
+        h = i(647),
+        p = i(648),
+        d = i(205),
+        f = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._layer = e, r._items = i, r._direction = n, r._effType = o, r
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.changeSkin(t), this._gear.activate()
-            }, e.prototype.changeSkin = function (t) {
-                101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
-                var e = PIXI.Texture.EMPTY;
-                e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
-            }, e.prototype.update = function (t) {
-                0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
-            }, e.prototype.dispose = function () {
-                this._gear.dispose()
+            return n(e, t), e.prototype._start = function () {
+                switch (this._effType) {
+                    case 0:
+                        this._effctSlotitem();
+                        break;
+                    case 1:
+                        this._effctUseitem();
+                        break;
+                    case 2:
+                        this._effctTojoin()
+                }
+            }, e.prototype._effctSlotitem = function () {
+                for (var t = this, e = new p.MeltIntoSprite, i = 0, n = this._items; i < n.length; i++) {
+                    var o = n[i];
+                    e.add(o)
+                }
+                e.initialize(function () {
+                    var i = 1 == t._direction,
+                        n = (i ? 0 : 1200) + e.width / 2 * (i ? -1 : 1),
+                        o = 600 + e.width / 4 * (i ? -1 : 1),
+                        r = n + .5 * (o - n);
+                    e.x = n, e.y = 720, t._layer.addChild(e);
+                    var s = new c.MeltIntoSlotitemFilter(o, e.width, t._direction);
+                    e.filters = [s];
+                    for (var a = new PIXI.Point(n, 720), h = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = u.TweenUtil.signOut, f = u.TweenUtil.create2BezierPoints(a, h, p, 1e3, d), y = createjs.Tween.get(e), m = 0, g = f; m < g.length; m++) {
+                        var v = g[m];
+                        y.to({
+                            x: v.x,
+                            y: v.y
+                        }, v.t)
+                    }
+                    var b = {
+                        rate: 1,
+                        grad: .4
+                    };
+                    createjs.Tween.get(b, {
+                        onChange: function () {
+                            s.uniforms.x = e.x, s.uniforms.rate = b.rate, s.uniforms.grad = b.grad
+                        }
+                    }).wait(600).to({
+                        rate: -.4
+                    }, 400).wait(500).call(function () {
+                        t._layer.removeChild(e), t._endTask()
+                    });
+                    var w = new PIXI.Sprite(l.COMMON_MISC.getTexture(116));
+                    w.anchor.set(.5), w.alpha = 0;
+                    var x = new _.Container;
+                    x.x = o, x.y = 240, x.scale.set(.5), x.addChild(w), t._layer.addChild(x), createjs.Tween.get(x).wait(600).to({
+                        scaleX: 1,
+                        scaleY: 1
+                    }, 800, createjs.Ease.cubicOut), createjs.Tween.get(w).wait(600).to({
+                        alpha: .9
+                    }, 200).wait(150).to({
+                        alpha: 0
+                    }, 450).call(function () {
+                        var t = x.parent;
+                        null != t && t.removeChild(x)
+                    })
+                })
+            }, e.prototype._effctUseitem = function () {
+                for (var t = this, e = new p.MeltIntoSprite, i = 0, n = this._items; i < n.length; i++) {
+                    var o = n[i];
+                    e.add(o)
+                }
+                e.initialize(function () {
+                    var i = 1 == t._direction,
+                        n = (i ? 0 : 1200) + e.width / 2 * (i ? -1 : 1),
+                        o = 600 + e.width / 4 * (i ? -1 : 1),
+                        r = n + .5 * (o - n);
+                    e.x = n, e.y = 720, t._layer.addChild(e);
+                    var s = new h.MeltIntoUseitemFilter(o, 240, e.width, e.height, t._direction);
+                    e.filters = [s];
+                    for (var a = new PIXI.Point(n, 720), c = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = u.TweenUtil.signOut, f = u.TweenUtil.create2BezierPoints(a, c, p, 1e3, d), y = createjs.Tween.get(e), m = 0, g = f; m < g.length; m++) {
+                        var v = g[m];
+                        y.to({
+                            x: v.x,
+                            y: v.y
+                        }, v.t)
+                    }
+                    var b = {
+                        rate: 1,
+                        grad: .4
+                    };
+                    createjs.Tween.get(b, {
+                        onChange: function () {
+                            s.uniforms.x = e.x, s.uniforms.rate = b.rate, s.uniforms.grad = b.grad
+                        }
+                    }).wait(600).to({
+                        rate: -.4
+                    }, 400).wait(500).call(function () {
+                        t._layer.removeChild(e), t._endTask()
+                    });
+                    var w = new PIXI.Sprite(l.COMMON_MISC.getTexture(116));
+                    w.anchor.set(.5), w.alpha = 0;
+                    var x = new _.Container;
+                    x.x = o, x.y = 240, x.scale.set(.5), x.addChild(w), t._layer.addChild(x), createjs.Tween.get(x).wait(600).to({
+                        scaleX: 1,
+                        scaleY: 1
+                    }, 800, createjs.Ease.cubicOut), createjs.Tween.get(w).wait(600).to({
+                        alpha: .9
+                    }, 200).wait(150).to({
+                        alpha: 0
+                    }, 450).call(function () {
+                        var t = x.parent;
+                        null != t && t.removeChild(x)
+                    })
+                })
+            }, e.prototype._effctTojoin = function () {
+                var t = this,
+                    e = this._items[0].id,
+                    i = this._items[0].type;
+                this._getTextureForTojoinEffct(e, i, function (e) {
+                    var i = new d.CenteringSprite(e);
+                    i.x = 600 + 195 * (1 == t._direction ? -1 : 1), i.y = 240, i.scale.set(1.1), i.alpha = 0, t._layer.addChild(i), createjs.Tween.get(i).to({
+                        scaleX: 1,
+                        scaleY: 1,
+                        alpha: 1
+                    }, 300).wait(250).to({
+                        x: 600,
+                        alpha: 0
+                    }, 600, createjs.Ease.sineIn).wait(500).call(function () {
+                        t._layer.removeChild(i), t._endTask()
+                    })
+                })
+            }, e.prototype._getTextureForTojoinEffct = function (t, e, i) {
+                if (6 == e) {
+                    var n = new a.UseitemLoader;
+                    n.add(t, 1), n.load(function () {
+                        if (i) {
+                            var e = o.default.resources.getUseitem(t, 1);
+                            return i(e)
+                        }
+                    })
+                } else if (2 == e) {
+                    var n = new s.SlotLoader;
+                    n.add(t, "card"), n.load(function () {
+                        if (i) {
+                            var e = o.default.resources.getSlotitem(t, "card");
+                            return i(e)
+                        }
+                    })
+                }
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._items = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.FrameLayer = p
+        }(r.TaskBase);
+    e.MeltIntoTask = f
 }

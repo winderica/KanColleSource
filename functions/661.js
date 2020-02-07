@@ -19,42 +19,38 @@ const function661 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e(e, i, n, o, r) {
-            void 0 === r && (r = 1);
-            var s = Math.sqrt(n / 2 * n / 2 + o * o);
-            return t.call(this, null, "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x;\n            uniform float y;\n            uniform float r;\n            uniform float width;\n            uniform float height;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float dx = abs(gl_FragCoord.x - x);\n                float dy = abs((720.0 - gl_FragCoord.y) - (y + height / 2.0));\n                float d = sqrt(dx * dx + dy * dy);\n                if(d > r * rate) {\n                    float a = min((d - r * rate), (r * grad));\n                    a = 1.0 - a / (r * grad);\n                    //float a = 0.5;\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        ", {
-                x: {
-                    type: "1f",
-                    value: e
+    var o = i(0),
+        r = i(62),
+        s = i(82),
+        a = i(210),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new r.RarityBG, e._ship = new PIXI.Sprite, e._particle = new a.BonusParticle, e._message_box = new s.MessageBox, e._message_box.y = 721, e.addChild(e._bg), e.addChild(e._ship), e.addChild(e._particle), e.addChild(e._message_box), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
                 },
-                y: {
-                    type: "1f",
-                    value: i
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
                 },
-                r: {
-                    type: "1f",
-                    value: s
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
                 },
-                width: {
-                    type: "1f",
-                    value: n
-                },
-                height: {
-                    type: "1f",
-                    value: o
-                },
-                rate: {
-                    type: "1f",
-                    value: 1
-                },
-                grad: {
-                    type: "1f",
-                    value: .5
-                }
-            }) || this
-        }
-        return n(e, t), e
-    }(PIXI.Filter);
-    e.MeltIntoUseitemFilter = o
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n, r) {
+                this._ship.texture = o.default.resources.getShip(t, !1, "full"), this._message_box.initializeForShip(i, e, n), this._ship.x = r.x + 221, this._ship.y = r.y - 59
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg = null, this._ship = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null
+            }, e
+        }(PIXI.Container);
+    e.BonusShip = _
 }

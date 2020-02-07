@@ -19,29 +19,50 @@ const function660 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e(e, i, n) {
-            var o = 1 == n ? "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x - width / 2.0 + (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x >= border) {\n                    float a = 0.0;\n                    float diff = gl_FragCoord.x - border;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        " : "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x + width / 2.0 - (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x <= border) {\n                    float a = 0.0;\n                    float diff = border - gl_FragCoord.x;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        ";
-            return t.call(this, null, o, {
-                x: {
-                    type: "1f",
-                    value: e
-                },
-                width: {
-                    type: "1f",
-                    value: i
-                },
-                rate: {
-                    type: "1f",
-                    value: 1
-                },
-                grad: {
-                    type: "1f",
-                    value: .5
+    var o = i(5),
+        r = i(10),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._onChange = function () {
+                    for (var t = 0, i = e.children; t < i.length; t++) {
+                        i[t].update()
+                    }
+                };
+                for (var i = 0; i < 30; i++) {
+                    var n = new a;
+                    e.addChild(n)
                 }
-            }) || this
+                return e.visible = !1, e
+            }
+            return n(e, t), e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(null, {
+                    loop: !0,
+                    onChange: this._onChange
+                }), this.visible = !0)
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.removeChildren()
+            }, e
+        }(PIXI.Container);
+    e.BonusInsertParticle = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._vx = 0, e._vy = 0, e._vr = 0, e._vscale = 0;
+            return e.texture = r.COMMON_MISC.getTexture(114), e._init(), e
         }
-        return n(e, t), e
-    }(PIXI.Filter);
-    e.MeltIntoSlotitemFilter = o
+        return n(e, t), e.prototype.update = function () {
+            if (--this._life < 0 && (this.alpha -= .1 * Math.random() + .1, this.alpha <= 0)) return void this._init();
+            this.x += this._vx, this.y += this._vy, this.rotation += this._vr, this.scale.x += this._vscale, this.scale.y += this._vscale;
+            var t = 60 / createjs.Ticker.framerate;
+            this._vx *= 1 + .01 * t, this._vy += .01 * t
+        }, e.prototype._init = function () {
+            var t = 60 / createjs.Ticker.framerate;
+            this.x = o.default.width / 2, this.y = o.default.height / 2 - 45, this.alpha = 1, this.scale.set(0), this._life = 100 * t, this._life += 100 * Math.random() * t, this._vx = 6 * Math.random() * t, Math.random() < .5 && (this._vx *= -1), this._vy = (12 * Math.random() - 9) * t;
+            var e = 50 / 180 * Math.PI * t;
+            this._vr = (Math.random() * e + 1) / 100, this._vscale = (.0025 * Math.random() + .005) * t
+        }, e
+    }(PIXI.Sprite)
 }

@@ -19,73 +19,28 @@ const function1186 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(246),
-        s = i(408),
-        a = i(27),
-        _ = i(177),
-        u = i(1187),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
-                }, n._layer = e, n._target = i, n
+    var o = i(77),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.alpha = 0, e.visible = !1, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this,
-                    e = new r.TaskLoadResources;
-                e.addUseitem(4), e.addUseitem(78), e.addSlotitem(187), e.addSlotitem(311), e.start(function () {
-                    t._showDialog()
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(13)
+            }, e.prototype.show = function () {
+                var t = this;
+                this.hide(), this.visible = !0, this._t = createjs.Tween.get(this).to({
+                    alpha: 1
+                }, 300).wait(2e3).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.visible = !1
                 })
-            }, e.prototype._showDialog = function () {
-                this._dialog = new u.SetsubunUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 1, this._layer.addChild(this._dialog), this._dialog.activate()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = (o.default.view.overLayer, new s.UseItemUseAPI(e, !1, i)),
-                    r = n.result;
-                n.start(function () {
-                    if (1 == r.hasCaution()) t._hideDialog(!0);
-                    else {
-                        if (82 == i && o.default.model.basic.setCFlag(1), 83 == i) {
-                            var e = o.default.model.useItem.getMaterialCounts(),
-                                n = e.devKit - 18,
-                                s = o.default.model.useItem.get(3);
-                            s.__setCount__(n)
-                        }
-                        if (84 == i) {
-                            var e = o.default.model.useItem.getMaterialCounts(),
-                                n = e.devKit - 40,
-                                s = o.default.model.useItem.get(3);
-                            s.__setCount__(n), o.default.model.basic.setCFlag2(1)
-                        }
-                        t._result = r, t._hideDialog(!1)
-                    }
-                })
-            }, e.prototype._hideDialog = function (t) {
-                this._dialog.dispose(), this._layer.removeChild(this._dialog), this._dialog = null, 1 == t ? this._confirm() : this._endTask()
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = this._layer,
-                    o = new _.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new s.UseItemUseAPI(e, !0, i),
-                            r = n.result;
-                        n.start(function () {
-                            t._result = r, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            }, e.prototype.hide = function () {
+                this._stopTween(), this.alpha = 0, this.visible = !1
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(a.TaskWithResult);
-    e.TaskUseSetsubun = l
+        }(PIXI.Sprite);
+    e.RewardSelectDialogFurnitureAlert = r
 }

@@ -19,37 +19,31 @@ const function299 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(108),
+    var o = i(47),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._area_id = e, o._message1 = i, o._message2 = n, o
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                var e;
-                if (11 == t) e = 9;
-                else if (12 == t) e = 14;
-                else if (13 == t) e = 10;
-                else if (14 == t) e = 11;
-                else if (15 == t) e = 8;
-                else {
-                    if (31 != t) return void(this._img.texture = PIXI.Texture.EMPTY);
-                    e = 12
-                }
-                this._img.texture = o.PORT_RINGMENU.getTexture(e)
-            }, e.prototype.show = function () {
-                var t = this;
-                1 != this._img.visible && null == this._t && (this._img.position.set(5, -23), this._img.alpha = 0, this._img.visible = !0, this._t = createjs.Tween.get(this._img).wait(400).to({
-                    x: 35,
-                    alpha: 1
-                }, 100).call(function () {
-                    t._t = null
-                }))
-            }, e.prototype.hide = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null), this._img.visible = !1
-            }, e.prototype.dispose = function () {
-                this.hide()
-            }, e
-        }(PIXI.Container);
-    e.RingMenuBtnDescription = r
+            return n(e, t), Object.defineProperty(e.prototype, "area_id", {
+                get: function () {
+                    return this._area_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message1", {
+                get: function () {
+                    return this._message1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message2", {
+                get: function () {
+                    return this._message2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(o.RewardModel);
+    e.RewardModelAirUnit = r
 }

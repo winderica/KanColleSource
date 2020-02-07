@@ -3,24 +3,18 @@ const function1515 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(14),
+    var n = i(15),
         o = function () {
             function t(t) {
                 this._o = t
             }
-            return t.prototype.getTargetShipIndexes = function () {
-                if (null == this._o) return [];
-                var t = n.ObjUtil.getNumArray(this._o, "api_escape_idx");
-                if (null == t) return [];
-                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
-                return e
-            }, t.prototype.getTowingShipIndexes = function () {
-                if (null == this._o) return [];
-                var t = n.ObjUtil.getNumArray(this._o, "api_tow_idx");
-                if (null == t) return [];
-                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
-                return e
-            }, t
+            return Object.defineProperty(t.prototype, "mst_id", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_useitem_id")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
         }();
-    e.EscapeCandidateModel = o
+    e.BonusUseitemModel = o
 }

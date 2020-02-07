@@ -22,19 +22,19 @@ const function968 = function (t, e, i) {
     var o = i(5),
         r = i(0),
         s = i(17),
-        a = i(270),
-        _ = i(30),
+        a = i(268),
+        _ = i(29),
         u = i(18),
         l = i(34),
-        c = i(71),
-        h = i(231),
-        p = i(32),
+        c = i(72),
+        h = i(229),
+        p = i(31),
         d = i(53),
         f = i(969),
-        y = i(233),
-        m = i(234),
+        y = i(231),
+        m = i(232),
         g = i(970),
-        v = i(355),
+        v = i(356),
         b = i(979),
         w = i(1007),
         x = i(1017),
@@ -44,7 +44,8 @@ const function968 = function (t, e, i) {
         C = i(1032),
         P = i(1049),
         k = i(1),
-        S = function (t) {
+        S = i(60),
+        M = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._serial_id = null, n._onChangeArea = function (t) {
@@ -116,6 +117,7 @@ const function968 = function (t, e, i) {
                             p = new g.APIMapStart(u, e, n._serial_id),
                             d = p.model;
                         _.add(p), 30 == r.default.model.basic.getTutorialProgress() && _.add(new c.UpdateTutorialAPI(40)), _.start(function () {
+                            S.FurnitureLoader.clearMemoryCache();
                             var t = r.default.model.basic.medal_num,
                                 e = r.default.model.basic.nickName,
                                 n = new h.DeckModelReplica(i, !1, t, e),
@@ -159,5 +161,5 @@ const function968 = function (t, e, i) {
                 this._event_sortie_condition = null, this._layout.dispose(), this._layout = null, this._switch.dispose(), this._switch = null, this._area_icons.dispose(), this._area_icons = null, this._airUnitBtn.dispose(), this._airUnitBtn = null, this._cancelArea.off(k.EventType.CLICK, this._onCancel), this._cancelArea = null, this._detailPanel.dispose(), this._detailPanel = null, null != this._deckSelectPanel && (this._deckSelectPanel.dispose(), this._deckSelectPanel = null), null != this._airunit_task && (this._airunit_task.dispose(), this._airunit_task = null), this.removeChildren()
             }, e
         }(y.ViewMainBase);
-    e.ViewMain = S
+    e.ViewMain = M
 }

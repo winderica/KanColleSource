@@ -1,69 +1,61 @@
 const function608 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t) {
-                this._o = t
+    var o = i(8),
+        r = i(4),
+        s = i(609),
+        a = i(34),
+        _ = i(286),
+        u = i(610),
+        l = i(107),
+        c = i(287),
+        h = i(161),
+        p = i(615),
+        d = i(1),
+        f = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._initialized = !1, e._activated = !1, e._onClick = function () {
+                    var t = new s.ExpeditionResultModel,
+                        i = new u.ExpeditionResultAPI(e._deck_id, t);
+                    (new a.APIConnector).add(i).add(new _.PortAPI).add(new l.UseItemAPI).start(function () {
+                        e._showExpeditionCutin(t)
+                    })
+                }, e._showExpeditionCutin = function (t) {
+                    new c.TaskExpeditionEndCutin(e._deck_id, t).start(function () {
+                        e._showExpeditionResult(t)
+                    })
+                }, e._showExpeditionResult = function (t) {
+                    new p.TaskExpeditionResultShow(e._deck_id, t).start()
+                }, e
             }
-            return Object.defineProperty(t.prototype, "filename", {
-                get: function () {
-                    return n.ObjUtil.getString(this._o, "filename")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "frame", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "frame")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "framerand", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "framerand")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "alpha", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "alpha");
-                    return null == t || t.length < 2 ? [1, 1] : t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "offsetData", {
-                get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "offset")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getSEID = function () {
-                var t = n.ObjUtil.getString(this._o, "se", null);
-                if (null == t) return null;
-                var e = t.split(":");
-                if (e.length > 1) {
-                    var i = parseInt(e[1]);
-                    return i = Math.min(100, Math.max(0, i)), 100 * Math.random() < i ? e[0] : null
-                }
-                return t
-            }, t.prototype.getBGMAction = function () {
-                return n.ObjUtil.getString(this._o, "bgm", null)
-            }, t.prototype.getPopupOption = function () {
-                var t = n.ObjUtil.getObject(this._o, "popup", null);
-                if (null == t) return null;
-                var e = n.ObjUtil.getString(t, "src", null);
-                return null == e ? null : {
-                    src: e,
-                    se_open: n.ObjUtil.getString(t, "se_open"),
-                    se_close: n.ObjUtil.getString(t, "se_close"),
-                    offset_x: n.ObjUtil.getNumber(t, "offset_x"),
-                    offset_y: n.ObjUtil.getNumber(t, "offset_y")
-                }
-            }, t.prototype.getStateChangeOption = function () {
-                return n.ObjUtil.getString(this._o, "state", null)
-            }, t
-        }();
-    e.FurnitureKeyFrameModel = o
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._deck_id = t, 0 == this._initialized && (this._bg = new o.AreaBox(0, 16711680), this.addChild(this._bg), this._balloon = new PIXI.Sprite(h.PORT_MAIN.getTexture(0)), this._balloon.position.set(726, 6), this.addChild(this._balloon), this._message = new r.TextBox(20, 1949120), this._message.position.set(810, 30), this._message.text = "\u9060\u5f81\u304b\u3089\u623b\u3063\u3066\u6765\u307e\u3057\u305f\u3002", this.addChild(this._message)), this._initialized = !0
+            }, e.prototype.activate = function () {
+                0 == this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(d.EventType.CLICK, this._onClick))
+            }, e.prototype.deactive = function () {
+                this.interactive = this.buttonMode = !1, this.off(d.EventType.CLICK, this._onClick), this._activated = !1
+            }, e.prototype.dispose = function () {
+                this.deactive(), this._initialized = !1, this.removeChildren(), this._bg = null, this._balloon = null, this._message && this._message.destroy(), this._message = null
+            }, e
+        }(PIXI.Container);
+    e.ExpeditionAlert = f
 }

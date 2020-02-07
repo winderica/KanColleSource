@@ -19,33 +19,46 @@ const function203 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(80),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.floor_id = 0, i.wall_id = 0, i.window_id = 0, i.object_id = 0, i.desk_id = 0, i.chest_id = 0, i._animationFlag = !1, i._animationFlag = e, i
+    var o = i(1),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._activated = !1, e._enabled = !0, e.__onMouseOver = function () {
+                    e._update(!0)
+                }, e.__onMouseOut = function () {
+                    e._update(!1)
+                }, e.__onClick = function () {
+                    null != e._cb_onClick && e._cb_onClick()
+                }, e.interactive = !0, e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = !1,
-                    i = new s.FurnitureLoader;
-                e = this._addLoader(i, this.floor_id) || e, e = this._addLoader(i, this.wall_id) || e, e = this._addLoader(i, this.window_id) || e, e = this._addLoader(i, this.object_id) || e, e = this._addLoader(i, this.desk_id) || e, e = this._addLoader(i, this.chest_id) || e, 1 == e ? i.load(function () {
-                    t._loadOutside()
-                }) : this._loadOutside()
-            }, e.prototype._loadOutside = function () {
-                var t = this;
-                o.default.view.portMain.furnitureLayer.outside.load(this.window_id, function () {
-                    t._onComplete()
-                })
-            }, e.prototype._onComplete = function () {
-                var t = o.default.view.portMain.furnitureLayer,
-                    e = [this.floor_id, this.wall_id, this.window_id, this.object_id, this.desk_id, this.chest_id];
-                t.updateAll(e), t.animationFlag = this._animationFlag, this._endTask()
-            }, e.prototype._addLoader = function (t, e) {
-                return e > 0 && (t.add(e, "normal"), !0)
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                set: function (t) {
+                    this._enabled != t && (this._enabled = t, 1 == this._enabled && 1 == this._activated ? this._activate() : this._deactivate(), this._update(!1))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                void 0 === t && (t = null), this._deactivate(), this._cb_onClick = t, 1 == this._enabled && 1 == this._activated && this.activate(), this._update(!1)
+            }, e.prototype.activate = function () {
+                this._activated = !0, 1 != this.buttonMode && 0 != this.enabled && this._activate()
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
+            }, e.prototype._activate = function () {
+                this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
+            }, e.prototype._onMouseOver = function () {
+                this.__onMouseOver()
+            }, e.prototype._onMouseOut = function () {
+                this.__onMouseOut()
+            }, e.prototype._onClick = function () {
+                this.__onClick()
             }, e
-        }(r.TaskBase);
-    e.FurnitureLoadTask = a
+        }(PIXI.Sprite);
+    e.BtnBase = r
 }

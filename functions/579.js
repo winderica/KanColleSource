@@ -20,18 +20,33 @@ const function579 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(9),
-        s = i(7),
-        a = function (t) {
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._url = "api_start2/getData", e
+                return e._texture = null, e._caches = {}, e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.const.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_const")), o.default.model.shipType.__setData__(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_stype")), o.default.model.shipType.__setEquipTypeExData__(s.ObjUtil.getNumArray(this._raw_data, "api_mst_equip_exslot")), o.default.model.ship.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_ship")), o.default.model.ship_upgrade.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_shipupgrade")), o.default.model.slot.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_slotitem")), o.default.model.slot.setMstEquipTypeData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_slotitem_equiptype")), o.default.model.furniture_graph.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_furnituregraph")), o.default.model.useItem.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_useitem")), o.default.model.expedition.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mission")), o.default.model.map.setAreaMst(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_maparea")), o.default.model.map.setMapMst(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mapinfo")), o.default.model.mst_bgm.setMstBGMData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_bgm")), o.default.model.mst_bgm.setMapBGMData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mapbgm")), o.default.model.slot.setExtraEquipShipData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_equip_exslot_ship"));
-                var e = o.default.model.payitem;
-                e.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_payitem")), e.setOrders(s.ObjUtil.getObject(this._raw_data, "api_mst_item_shop")), o.default.model.equip.__initData__(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_equip_ship")), o.default.model.furniture.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_furniture")), o.default.model.ship_graph.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_shipgraph")), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.load = function (t, e) {
+                var i = this,
+                    n = o.default.model.furniture.getData(t);
+                if (null == n || 2 != n.type) return void(null != e && e());
+                if (this._id = this._createID(n), 1 == this._caches.hasOwnProperty(this._id)) return this._texture = this._caches[this._id], void(null != e && e());
+                var r = this._createURL(this._id),
+                    s = new PIXI.loaders.Loader;
+                s.add(this._id, r), s.load(function () {
+                    if (i._img.texture = PIXI.Texture.EMPTY, 1 == s.resources.hasOwnProperty(i._id)) {
+                        var t = s.resources[i._id];
+                        null != t && null == t.error && null != t.texture && (i._caches[i._id] = t.texture, i._texture = t.texture)
+                    }
+                    e()
+                })
+            }, e.prototype.update = function () {
+                null != this._texture && (this._img.texture = this._texture), this._texture = null, this._img.visible = !0
+            }, e.prototype._createID = function (t) {
+                var e, i = (new Date).getHours();
+                return e = 20 <= i || i < 4 ? 4 : i < 8 ? 5 : i < 16 ? 1 : i < 18 ? 2 : 3, "window_bg_" + t.outside + "-" + e
+            }, e.prototype._createURL = function (t) {
+                return o.default.settings.path_root + "resources/furniture/outside/" + t + ".png"
             }, e
-        }(r.APIBase);
-    e.GetDataAPI = a
+        }(PIXI.Container);
+    e.FurnitureOutside = r
 }

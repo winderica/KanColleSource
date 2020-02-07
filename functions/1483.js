@@ -19,40 +19,102 @@ const function1483 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(480),
-        s = i(479),
-        a = i(481),
-        _ = i(1484),
-        u = i(1485),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._o = e, i._raw = new u.RawNightBattleData(e), i._common = new a.BattleCommonModel(e), i
+    var o = i(51),
+        r = i(1484),
+        s = i(1488),
+        a = i(485),
+        _ = i(1498),
+        u = i(1499),
+        l = i(1502),
+        c = i(1507),
+        h = i(1508),
+        p = i(1509),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new u.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new l.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "phase", {
+            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
                 get: function () {
-                    return "night"
+                    return this._layer_torpedo
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "raw", {
+            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
                 get: function () {
-                    return this._raw
+                    return this._bannerGroupLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.getAllyAttack = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_friendly_info"),
-                    e = o.ObjUtil.getObject(this._o, "api_friendly_battle");
-                return null == t || null == e ? null : new _.AllyAttackModel(t, e)
-            }, e.prototype.getRation = function () {
-                return this._raw.ration
-            }, e.prototype.getRationCombined = function () {
-                return this._raw.ration_combined
-            }, e.prototype.getDayRecord = function () {
-                return 1 == this.raw.hasDayBattle() ? new s.BattleRecordDay(this._o) : null
+            }), Object.defineProperty(e.prototype, "layer_explosion", {
+                get: function () {
+                    return this._layer_explosion
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_damage", {
+                get: function () {
+                    return this._layer_damage
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
+                get: function () {
+                    return this._bannerInfoLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_content", {
+                get: function () {
+                    return this._layer_content
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raderLayer", {
+                get: function () {
+                    return this._raderLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_gauge", {
+                get: function () {
+                    return this._layer_gauge
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_info", {
+                get: function () {
+                    return this._layer_info
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_title", {
+                get: function () {
+                    return this._layer_title
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_info2", {
+                get: function () {
+                    return this._layer_info2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_cutin", {
+                get: function () {
+                    return this._layer_cutin
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
             }, e
-        }(r.BattleRecord);
-    e.BattleRecordNight = l
+        }(PIXI.Container);
+    e.ViewMain = d
 }

@@ -19,50 +19,27 @@ const function254 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
+    var o = i(10),
         r = function (t) {
-            function e(e) {
-                void 0 === e && (e = void 0);
-                var i = t.call(this) || this;
-                return i._img = new PIXI.Sprite, i.addChild(i._img), void 0 != e && i.update(e), i
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._gear = new PIXI.Sprite, e._gear.anchor.set(.5), e._gear.position.set(32, 45), e.addChild(e._gear), e._text = new PIXI.Sprite, e._text.x = 60, e.addChild(e._text), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                if (-1 == t) return this._img.position.set(-9, -9), void(this._img.texture = o.MAP_COMMON.getTexture(74));
-                switch (this._img.position.set(-8, -11), t) {
-                    case 0:
-                        this._img.texture = o.MAP_COMMON.getTexture(64);
-                        break;
-                    case 1:
-                        this._img.texture = o.MAP_COMMON.getTexture(65);
-                        break;
-                    case 2:
-                        this._img.texture = o.MAP_COMMON.getTexture(66);
-                        break;
-                    case 3:
-                        this._img.texture = o.MAP_COMMON.getTexture(67);
-                        break;
-                    case 4:
-                        this._img.texture = o.MAP_COMMON.getTexture(68);
-                        break;
-                    case 5:
-                        this._img.texture = o.MAP_COMMON.getTexture(69);
-                        break;
-                    case 6:
-                        this._img.texture = o.MAP_COMMON.getTexture(70);
-                        break;
-                    case 7:
-                        this._img.texture = o.MAP_COMMON.getTexture(71);
-                        break;
-                    case 8:
-                        this._img.texture = o.MAP_COMMON.getTexture(72);
-                        break;
-                    case 9:
-                        this._img.texture = o.MAP_COMMON.getTexture(73);
-                        break;
-                    default:
-                        this._img.texture = PIXI.Texture.EMPTY
-                }
+            return n(e, t), e.prototype.initialize = function (t) {
+                0 == t ? (this._bg.texture = o.COMMON_MISC.getTexture(183), this._gear.texture = o.COMMON_MISC.getTexture(185)) : (this._bg.texture = o.COMMON_MISC.getTexture(184), this._gear.texture = o.COMMON_MISC.getTexture(186))
+            }, e.prototype.update = function (t) {
+                this._text.texture = t, this._text.y = Math.round(45 - this._text.height / 2)
+            }, e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._gear, {
+                    loop: !0
+                }).to({
+                    rotation: 2 * Math.PI
+                }, 6e3))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
             }, e
         }(PIXI.Container);
-    e.NumericalDisplay = r
+    e.PhaseTitle = r
 }

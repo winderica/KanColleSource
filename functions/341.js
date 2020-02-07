@@ -19,23 +19,35 @@ const function341 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    n.texture = n._textureOn
-                }, n._onMouseOut = function () {
-                    n.texture = n._textureOff
-                }, n._onClick = function () {
-                    null != n._cb_onClick && n._cb_onClick()
-                }, n._textureOff = e, n._textureOn = i, n.texture = n._textureOff, n.interactive = n.buttonMode = !0, n.on(o.EventType.CLICK, n._onClick), n.on(o.EventType.MOUSEOVER, n._onMouseOver), n.on(o.EventType.MOUSEOUT, n._onMouseOut), n
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._cb_onClick = t
-            }, e.prototype.dispose = function () {
-                this._textureOff = null, this._textureOn = null, this.off(o.EventType.CLICK, this._onClick), this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeAllListeners(r.EventType.CLICK), this.texture = PIXI.Texture.EMPTY, this.onClick = null
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        this.texture = o.COMMON_MAIN.getTexture(48);
+                        break;
+                    case 1:
+                        this.texture = o.COMMON_MAIN.getTexture(47);
+                        break;
+                    case 4:
+                        this.texture = o.COMMON_MAIN.getTexture(49);
+                        break;
+                    case 3:
+                        this.texture = o.COMMON_MAIN.getTexture(50);
+                        break;
+                    case 2:
+                        this.texture = o.COMMON_MAIN.getTexture(51)
+                }
             }, e
         }(PIXI.Sprite);
-    e.CancelButton = r
+    e.ShipSortButton = s
 }

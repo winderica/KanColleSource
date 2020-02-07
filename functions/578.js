@@ -1,10 +1,6 @@
 const function578 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        return 11 == t ? new w.OrganizeScene : 12 == t ? new x.SupplyScene : 13 == t ? new I.RemodelScene : 14 == t ? new T.RepairScene : 15 == t ? new O.ArsenalScene : 16 == t ? new C.SallyScene : 21 == t ? new P.RecordScene : 23 == t ? new k.AlbumScene : 24 == t ? new S.ItemScene : 25 == t ? new M.InteriorScene : 26 == t ? new A.DutyScene : 31 == t ? new E.RevampScene : 33 == t ? new N.MapScene(L.BattleScene, B.BattleResultScene) : 32 == t ? new j.PracticeScene(new L.BattleScene, new B.BattleResultScene) : void 0
-    }
-    var o = this && this.__extends || function () {
+    var n = this && this.__extends || function () {
         var t = Object.setPrototypeOf || {
             __proto__: []
         }
@@ -23,133 +19,75 @@ const function578 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var r = i(0),
-        s = i(7),
-        a = i(34),
-        _ = i(579),
-        u = i(584),
-        l = i(585),
-        c = i(2),
-        h = i(586),
-        p = i(276),
-        d = i(589),
-        f = i(591),
-        y = i(592),
-        m = i(15),
-        g = i(594),
-        v = i(682),
-        b = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._end_titlecall = !1, i._TutorialScene = null, i._isTutorialEnd = !1, i._tutorialEnd = function () {
-                    i._TutorialScene.emitter.off("tutorial-event-end", i._tutorialEnd), r.default.view.removeChild(i._TutorialScene), i._isTutorialEnd = !0, i._preInitPort()
-                }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), i
+    var o = i(278),
+        r = i(25),
+        s = i(190),
+        a = i(579),
+        _ = i(580),
+        u = i(581),
+        l = i(583),
+        c = i(597),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._animationFlg = !1, e._timeChkCount = 0, e.current_bgm_furniture = null, e.animate = function () {
+                    if (e._animationFlg) {
+                        if (e._timeChkCount == o.FurnitureConst.TIME_CHK_COUNT_MAX) {
+                            e._timeChkCount = 0;
+                            var t = new Date,
+                                i = r.MathUtil.zeroPadding(t.getHours(), 2),
+                                n = r.MathUtil.zeroPadding(t.getMinutes(), 2),
+                                s = r.MathUtil.zeroPadding(t.getSeconds(), 2);
+                            e._Floor.timeCheck(i, n, s), e._Wall.timeCheck(i, n, s), e._Window.timeCheck(i, n, s), e._Object.timeCheck(i, n, s), e._Chest.timeCheck(i, n, s), e._Desk.timeCheck(i, n, s)
+                        }
+                        e._timeChkCount++, requestAnimationFrame(e.animate), e._Floor.animate(), e._Wall.animate(), e._Window.animate(), e._Object.animate(), e._Chest.animate(), e._Desk.animate()
+                    } else e._kaikyo.finalize(), e._shogo.stopAnimation(), e._Floor.restart(), e._Wall.restart(), e._Window.restart(), e._Object.restart(), e._Chest.restart(), e._Desk.restart()
+                }, e._Floor = new l.Furniture(0), e._Wall = new l.Furniture(1), e._Window = new l.Furniture(2), e._Object = new l.Furniture(3), e._Chest = new l.Furniture(4), e._Desk = new l.Furniture(5), e._outside = new a.FurnitureOutside, e._outside.x = 294, e._sakura = new s.Sakura, e._isSakura = !1, e.addChild(e._Floor), e.addChild(e._Wall), e.addChild(e._outside), e.addChild(e._Window), e.addChild(e._Object), e.addChild(e._sakura), e.addChild(e._Chest), e.addChild(e._Desk), e._kaikyo = new _.Kaikyo, e.addChild(e._kaikyo), e._shogo = new u.Shogo, e.addChild(e._shogo), e
             }
-            return o(e, t), e.prototype._start = function () {
-                var t = this;
-                r.default.option.initialize(function () {
-                    r.default.view.initialize(new g.PortScene), t._loadVersionFile()
-                })
-            }, e.prototype._loadVersionFile = function () {
-                var t = this,
-                    e = r.default.settings.version,
-                    i = "./version.json" + (e ? "?" + e : "");
-                axios.get(i).then(function (e) {
-                    var i = s.ObjUtil.getObject(e, "data");
-                    m.UIImageLoader.setVersionData(i), t._loadTitleResource()
-                }).catch(function () {
-                    r.default.view.showError("Load Error.version.json.")
-                })
-            }, e.prototype._loadTitleResource = function () {
-                var t = this;
-                (new f.TaskLoadResourcesTitle).start(function () {
-                    t._showTitle()
-                })
-            }, e.prototype._showTitle = function () {
-                this._pukapuka = new y.PukapukaLayer, this._pukapuka.initialize(), this._pukapuka.visible = !1, r.default.view.addChild(this._pukapuka);
-                var t = new h.TitleViewMain;
-                t.initialize(), r.default.view.addChild(t), this._loadCommonResources(t)
-            }, e.prototype._loadCommonResources = function (t) {
-                var e = this;
-                new d.TaskLoadResourcesCommon(function (e) {
-                    t.setProgress(e)
-                }).start(function () {
-                    e._showStartPage(t)
-                })
-            }, e.prototype._showStartPage = function (t) {
-                var e = this;
-                t.showSecondPageTween(function () {
-                    t.waitClickTween(function () {
-                        e._playTitleCall(), e._hideTitle(t)
-                    })
-                })
-            }, e.prototype._playTitleCall = function () {
-                var t = this,
-                    e = Math.floor(86 * Math.random()) + 1;
-                r.default.sound.voice.play("titlecall_1", e, function () {
-                    var e = Math.floor(49 * Math.random()) + 1;
-                    r.default.sound.voice.play("titlecall_2", e, function () {
-                        t._end_titlecall = !0, t._preInitPort()
-                    })
-                }), R.HTML5_AUDIO && r.default.sound.bgm.play(0, !1)
-            }, e.prototype._hideTitle = function (t) {
-                var e = this;
-                this._pukapuka.visible = !0, this._pukapuka.activate(), r.default.view.portMain.visible = !1, createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 500).call(function () {
-                    r.default.view.removeChild(t), t.dispose(), e._connectAPI()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this;
-                (new a.APIConnector).add(new l.GetIncentiveAPI).add(new _.GetDataAPI).add(new u.RequireInfoAPI).start(function () {
-                    t._end_connect_api = !0, r.default.model.basic.firstFlag ? (t._TutorialScene = new v.TutorialScene, t._TutorialScene.visible = !1, t._TutorialScene.alpha = 0, t._TutorialScene.emitter.on("tutorial-event-end", t._tutorialEnd), t._isTutorialEnd = !1, t._preInitPort()) : (t._isTutorialEnd = !0, t._preInitPort())
-                })
-            }, e.prototype._preInitPort = function () {
-                var t = this;
-                if (0 != this._end_titlecall && 0 != this._end_connect_api) {
-                    if (!1 === this._isTutorialEnd) return r.default.view.addChild(this._TutorialScene), this._TutorialScene.visible = !0, createjs.Tween.get(this._TutorialScene).to({
-                        alpha: 1
-                    }, 600), !1;
-                    r.default.view.getNowScene().getPreInitializeTask(0).start(function () {
-                        t._hidePukapuka()
-                    })
+            return n(e, t), Object.defineProperty(e.prototype, "outside", {
+                get: function () {
+                    return this._outside
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.activate = function () {
+                this.animationFlag = !0
+            }, e.prototype.deactivate = function () {
+                this.animationFlag = !1
+            }, Object.defineProperty(e.prototype, "animationFlag", {
+                set: function (t) {
+                    this._animationFlg != t && (this._animationFlg = t, t && (this._Floor.restart(), this._Wall.restart(), this._Window.restart(), this._Object.restart(), this._Chest.restart(), this._Desk.restart(), this.animate()))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.updateAll = function (t) {
+                if (this._isSakura = !1, this._Floor.update(t[0]), this._Wall.update(t[1]), this._Window.update(t[2]), this._Object.update(t[3]), this._Chest.update(t[4], this._kaikyo, this._shogo), this._Desk.update(t[5]), this._outside.update(), 235 == t[3] && (this._isSakura = !0), this._isSakura) {
+                    var e = new PIXI.Rectangle(-600, -240, 600, 1200);
+                    this._sakura.startAnimation(e, 4)
+                } else this._sakura.stopAnimation(4)
+            }, e.prototype.onMouseMove = function (t) {
+                var e = t.getLocalPosition(this),
+                    i = !1;
+                return i = i || this._Floor.isHit(e), i = i || this._Wall.isHit(e), i = i || this._Window.isHit(e), i = i || this._Object.isHit(e), i = i || this._Chest.isHit(e), i = i || this._Desk.isHit(e)
+            }, e.prototype.onClick = function (t) {
+                for (var e = t.getLocalPosition(this), i = 0, n = this._getFurnitures(); i < n.length; i++) {
+                    var o = n[i];
+                    if (o.isHit(e)) {
+                        if (o.isJukeBox()) {
+                            new c.JukeBoxTask(o.id).JukeStart();
+                            break
+                        }
+                        return o.isRadio() ? (this.current_bgm_furniture = o, this.stopGramophone()) : o.isGramo() && (this.current_bgm_furniture = o), o.clickAction(), !0
+                    }
                 }
-            }, e.prototype._hidePukapuka = function () {
-                var t = this;
-                r.default.view.portMain.fadeLayer.alpha = 1, r.default.view.portMain.fadeLayer.visible = !0, r.default.view.portMain.visible = !0, createjs.Tween.get(this._pukapuka).to({
-                    alpha: 0
-                }, 600).call(function () {
-                    r.default.view.removeChild(t._pukapuka), t._pukapuka.dispose(), t._pukapuka = null, m.UIImageLoader.clearMemoryCache("title");
-                    var e = r.default.view.portMain.ringMenu;
-                    e.initialize(), e.prePosition(), createjs.Tween.get(r.default.view.portMain.fadeLayer).to({
-                        alpha: 0
-                    }, 500).call(function () {
-                        r.default.view.portMain.fadeLayer.visible = !1, e.startAnimation(), r.default.view.portMain.sideMenu.initialize()
-                    }), t._initPort()
+                return !1
+            }, e.prototype.stopGramophone = function () {
+                this._getFurnitures().forEach(function (t, e, i) {
+                    t.isGramo() && t.stopGramophone()
                 })
-            }, e.prototype._initPort = function () {
-                var t = this;
-                r.default.view.getNowScene().getInitializeTask(0).start(function () {
-                    t._endTask()
-                })
+            }, e.prototype._getFurnitures = function () {
+                return [this._Desk, this._Chest, this._Object, this._Window, this._Wall, this._Floor]
             }, e
-        }(c.TaskBase);
-    e.AppInitializeTask = b;
-    var w = i(694),
-        x = i(772),
-        I = i(793),
-        T = i(876),
-        O = i(901),
-        C = i(957),
-        P = i(1090),
-        k = i(1106),
-        S = i(1138),
-        M = i(1215),
-        A = i(1224),
-        E = i(1243),
-        j = i(1259),
-        N = i(443),
-        L = i(1369),
-        B = i(1513),
-        R = i(17)
+        }(PIXI.Container);
+    e.FurnitureView = h
 }

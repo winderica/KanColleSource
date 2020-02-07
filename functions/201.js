@@ -19,149 +19,86 @@ const function201 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(21),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = o.COMMON_MAIN.getTexture(32),
-                    n = new PIXI.Sprite(i),
-                    r = new PIXI.Sprite(i),
-                    s = new PIXI.Sprite(i),
-                    a = new PIXI.Sprite(i),
-                    _ = new PIXI.Sprite(i),
-                    u = new PIXI.Sprite(i);
-                return e.addChild(n, r, s, a, _, u), a.scale.x = _.scale.x = u.scale.x = -1, n.anchor.set(.5, .613793103448276), r.anchor.set(.5, .613793103448276), s.anchor.set(.5, .613793103448276), a.anchor.set(.5, .613793103448276), _.anchor.set(.5, .613793103448276), u.anchor.set(.5, .613793103448276), n.alpha = r.alpha = s.alpha = 0, a.alpha = _.alpha = u.alpha = 0, e.kemuri_L_0 = n, e.kemuri_L_1 = r, e.kemuri_L_2 = s, e.kemuri_R_0 = a, e.kemuri_R_1 = _, e.kemuri_R_2 = u, e.stop(), e
+    var o = i(5),
+        r = i(0),
+        s = i(2),
+        a = i(18),
+        _ = i(299),
+        u = i(300),
+        l = i(301),
+        c = i(154),
+        h = i(302),
+        p = i(303),
+        d = i(304),
+        f = i(202),
+        y = i(189),
+        m = i(155),
+        g = i(129),
+        v = i(305),
+        b = i(637),
+        w = i(638),
+        x = i(649),
+        I = i(650),
+        T = i(651),
+        O = i(652),
+        C = i(653),
+        P = i(654),
+        k = i(655),
+        S = i(656),
+        M = i(657),
+        A = i(658),
+        E = i(659),
+        j = i(207),
+        N = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = -1);
+                var o = t.call(this) || this;
+                return o._layer = e, o._rewards = i, o._quest_id = n, o
             }
-            return n(e, t), e.prototype.play = function (t) {
-                switch (t) {
-                    case 75:
-                        this._play(1e3);
-                        break;
-                    case 50:
-                        this._play(500);
-                        break;
-                    case 25:
-                        this._play(200);
-                        break;
-                    default:
-                        this.stop()
-                }
-            }, e.prototype._play = function (t) {
-                this.stop();
-                var e = createjs.Tween.get(this.kemuri_L_0).wait(t).to({
-                        x: -18,
-                        y: 29,
-                        width: 3.15,
-                        height: 3.9,
-                        alpha: 1
-                    }).to({
-                        x: -17.325,
-                        y: 39,
-                        width: 118.5,
-                        height: 143.175
-                    }, 400).to({
-                        x: -18,
-                        y: 39,
-                        width: 139.5,
-                        height: 168.525,
-                        alpha: 0
-                    }, 400).wait(400),
-                    i = createjs.Tween.get(this.kemuri_L_1).wait(t).wait(200).to({
-                        x: -42,
-                        y: 5,
-                        width: 3.15,
-                        height: 3.9,
-                        alpha: 1
-                    }).to({
-                        x: -42,
-                        y: 5,
-                        width: 180,
-                        height: 218
-                    }, 400).to({
-                        x: -42,
-                        y: 5,
-                        width: 225,
-                        height: 271.875,
-                        alpha: 0
-                    }, 400).wait(200),
-                    n = createjs.Tween.get(this.kemuri_L_2).wait(t).wait(500).to({
-                        x: -42,
-                        y: -27,
-                        width: 3.15,
-                        height: 3.9,
-                        alpha: 1
-                    }).to({
-                        x: -42,
-                        y: -27,
-                        width: 180,
-                        height: 218
-                    }, 300).to({
-                        x: -42,
-                        y: -27,
-                        width: 225,
-                        height: 271.875,
-                        alpha: 0
-                    }, 400),
-                    o = createjs.Tween.get(this.kemuri_R_0).wait(t).to({
-                        x: 246,
-                        y: 39,
-                        width: 3.15,
-                        height: 3.9,
-                        alpha: 1
-                    }).to({
-                        x: 266,
-                        y: 29,
-                        width: 118.5,
-                        height: 143.175
-                    }, 400).to({
-                        x: 282,
-                        y: 11,
-                        width: 139.5,
-                        height: 168.525,
-                        alpha: 0
-                    }, 400).wait(400),
-                    r = createjs.Tween.get(this.kemuri_R_1).wait(t).wait(200).to({
-                        x: 288,
-                        y: 5,
-                        width: 2.1,
-                        height: 2.6,
-                        alpha: 1
-                    }).to({
-                        x: 288,
-                        y: 5,
-                        width: 180,
-                        height: 217.5
-                    }, 400).to({
-                        x: 288,
-                        y: 5,
-                        width: 225,
-                        height: 271.875,
-                        alpha: 0
-                    }, 400).wait(200),
-                    s = createjs.Tween.get(this.kemuri_R_2).wait(t).wait(500).to({
-                        x: 288,
-                        y: -27,
-                        width: 3.15,
-                        height: 3.9,
-                        alpha: 1
-                    }).to({
-                        x: 288,
-                        y: -27,
-                        width: 180,
-                        height: 217.5
-                    }, 300).to({
-                        x: 288,
-                        y: -27,
-                        width: 225,
-                        height: 271.875,
-                        alpha: 0
-                    }, 400);
-                e.loop = i.loop = n.loop = !0, o.loop = r.loop = s.loop = !0, this.tweenKemuri_L_0 = e, this.tweenKemuri_L_1 = i, this.tweenKemuri_L_2 = n, this.tweenKemuri_R_0 = o, this.tweenKemuri_R_1 = r, this.tweenKemuri_R_2 = s, this.visible = !0
-            }, e.prototype.stop = function () {
-                this.kemuri_L_0.width = this.kemuri_L_0.texture.width, this.kemuri_L_0.height = this.kemuri_L_0.texture.height, this.kemuri_L_1.width = this.kemuri_L_1.texture.width, this.kemuri_L_1.height = this.kemuri_L_1.texture.height, this.kemuri_L_2.width = this.kemuri_L_2.texture.width, this.kemuri_L_2.height = this.kemuri_L_2.texture.height, this.kemuri_R_0.width = this.kemuri_R_0.texture.width, this.kemuri_R_0.height = this.kemuri_R_0.texture.height, this.kemuri_R_1.width = this.kemuri_R_1.texture.width, this.kemuri_R_1.height = this.kemuri_R_1.texture.height, this.kemuri_R_2.width = this.kemuri_R_2.texture.width, this.kemuri_R_2.height = this.kemuri_R_2.texture.height, null != this.tweenKemuri_L_0 && (this.tweenKemuri_L_0.setPaused(!0), createjs.Tween.removeTweens(this.tweenKemuri_L_0.target)), null != this.tweenKemuri_L_1 && (this.tweenKemuri_L_1.setPaused(!0), createjs.Tween.removeTweens(this.tweenKemuri_L_1.target)), null != this.tweenKemuri_L_2 && (this.tweenKemuri_L_2.setPaused(!0), createjs.Tween.removeTweens(this.tweenKemuri_L_2.target)), null != this.tweenKemuri_R_0 && (this.tweenKemuri_R_0.setPaused(!0), createjs.Tween.removeTweens(this.tweenKemuri_R_0.target)), null != this.tweenKemuri_R_1 && (this.tweenKemuri_R_1.setPaused(!0), createjs.Tween.removeTweens(this.tweenKemuri_R_1.target)), null != this.tweenKemuri_R_2 && (this.tweenKemuri_R_2.setPaused(!0), createjs.Tween.removeTweens(this.tweenKemuri_R_2.target)), this.kemuri_L_0.alpha = this.kemuri_L_1.alpha = this.kemuri_L_2.alpha = 0, this.kemuri_R_0.alpha = this.kemuri_R_1.alpha = this.kemuri_R_2.alpha = 0, this.tweenKemuri_L_0 = null, this.tweenKemuri_L_1 = null, this.tweenKemuri_L_2 = null, this.tweenKemuri_R_0 = null, this.tweenKemuri_R_1 = null, this.tweenKemuri_R_2 = null, this.visible = !1
-            }, e.prototype.dispose = function () {
-                this.stop(), this.removeChild(this.kemuri_L_0), this.removeChild(this.kemuri_L_1), this.removeChild(this.kemuri_L_2), this.removeChild(this.kemuri_R_0), this.removeChild(this.kemuri_R_1), this.removeChild(this.kemuri_R_2), this.kemuri_L_0 = null, this.kemuri_L_1 = null, this.kemuri_L_2 = null, this.kemuri_R_0 = null, this.kemuri_R_1 = null, this.kemuri_R_2 = null
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._fade = new a.FadeBox(.6), this._layer.addChild(this._fade), this._fade.show(300, function () {
+                    t._addDialog()
+                })
+            }, e.prototype._addDialog = function () {
+                this._dialog = new b.RewardDialog, this._dialog.position.set(o.default.width / 2, o.default.height / 2), this._dialog.initialize(), this._layer.addChild(this._dialog), this._showReward()
+            }, e.prototype._showReward = function () {
+                var t = this;
+                if (null == this._rewards || 0 == this._rewards.length) return void this._removeDialog();
+                var e = this._rewards.shift(),
+                    i = this._getTask(e);
+                null == i ? this._removeDialog() : i.start(function () {
+                    t._showReward()
+                })
+            }, e.prototype._removeDialog = function () {
+                this._layer.removeChild(this._dialog), this._dialog.dispose(), this._dialog = null, this._hideFade()
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._fade.hide(200, function () {
+                    t._layer.removeChild(t._fade), t._fade = null, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._rewards = null, t.prototype._endTask.call(this)
+            }, e.prototype._getTask = function (t) {
+                return t instanceof y.RewardModelShip ? 682 == this._quest_id || 882 == this._quest_id || 883 == this._quest_id ? new L(this._layer, t.mst_id) : new S.TaskRewardDialogShip(this._dialog, t) : t instanceof m.RewardModelSlotitem ? new M.TaskRewardDialogSlotitem(this._dialog, t) : t instanceof g.RewardModelUseitem ? new A.TaskRewardDialogUseitem(this._dialog, t) : t instanceof f.RewardModelMultiUseitem ? new k.TaskRewardDialogMultiUseitem(this._dialog, t) : t instanceof c.RewardModelFurniture ? new T.TaskRewardDialogFurniture(this._dialog, t) : t instanceof u.RewardModelDeck ? new x.TaskRewardDialogDeck(this._dialog, t) : t instanceof l.RewardModelExtraSupply ? new I.TaskRewardDialogExtraSupply(this._dialog, t) : t instanceof h.RewardModelLargeBuild ? new O.TaskRewardDialogLargeBuild(this._dialog, t) : t instanceof d.RewardModelModelChange ? new P.TaskRewardDialogModelChange(this._dialog, t, this._quest_id, this._fade) : t instanceof _.RewardModelAirUnit ? new w.TaskRewardDialogAirUnit(this._dialog, t) : t instanceof v.RewardModelWarResult ? new E.TaskRewardDialogWarResult(this._dialog, t) : t instanceof p.RewardModelMap ? new C.TaskRewardDialogMap(this._dialog, t) : void 0
             }, e
-        }(PIXI.Container);
-    e.BannerSmoke = r
+        }(s.TaskBase);
+    e.TaskReward = N;
+    var L = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i, !0) || this
+        }
+        return n(e, t), e.prototype._finalize = function (t) {
+            var e = this;
+            r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({
+                alpha: 0
+            }, 300).call(function () {
+                t.deactivate(), e._bonus.removeChild(t)
+            }), createjs.Tween.get(this._bonus).wait(100).to({
+                alpha: 0
+            }, 300).call(function () {
+                e.dispose(), e._endTask()
+            })
+        }, e
+    }(j.TaskBonusShip)
 }

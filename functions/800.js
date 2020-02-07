@@ -19,82 +19,89 @@ const function800 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(1),
+    var o = i(3),
+        r = i(218),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick()
-                }, e.textureFocus = o.COMMON_MISC.getTexture(85), e.textureDeFocus = o.COMMON_MISC.getTexture(84), e.textureLocked = PIXI.Texture.EMPTY, e.interactive = e.buttonMode = !1, e.on(r.EventType.CLICK, e._onClick), e
+                return e.select_bg_crane01 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)), e.select_bg_crane02 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44)), e.select_bg_crane01.position.set(275, -3), e.select_bg_crane02.position.set(0, 0), e.addChild(e.select_bg_crane01, e.select_bg_crane02), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.onClick = null, this.textureFocus = null, this.textureDeFocus = null, this.textureLocked = null, this.off(r.EventType.CLICK)
-            }, e.prototype.focus = function () {
-                this.interactive = this.buttonMode = !1, this.texture = this.textureFocus
-            }, e.prototype.deFocus = function () {
-                this.interactive = this.buttonMode = !0, this.texture = this.textureDeFocus
-            }, e.prototype.locked = function () {
-                this.interactive = this.buttonMode = !1, this.texture = this.textureLocked
-            }, e
-        }(PIXI.Sprite),
-        a = function (t) {
-            function e(e, i, n, s) {
-                var a = t.call(this) || this;
-                return a._onClick = function () {
-                    a.onClick(a.deckId)
-                }, a.deckId = e, a.textureFocus = o.COMMON_MISC.getTexture(i), a.textureDeFocus = o.COMMON_MISC.getTexture(n), a.textureLocked = o.COMMON_MISC.getTexture(s), a.interactive = a.buttonMode = !1, a.on(r.EventType.CLICK, a._onClick), a
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.onClick = null, this.deckId = null, this.textureFocus = null, this.textureDeFocus = null, this.textureLocked = null, this.off(r.EventType.CLICK)
-            }, e.prototype.focus = function () {
-                this.interactive = this.buttonMode = !1, this.texture = this.textureFocus
-            }, e.prototype.deFocus = function () {
-                this.interactive = this.buttonMode = !0, this.texture = this.textureDeFocus
-            }, e.prototype.locked = function () {
-                this.interactive = this.buttonMode = !1, this.texture = this.textureLocked
-            }, e
-        }(PIXI.Sprite),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClickDeck_1 = function () {
-                    e._onClickDeck(1)
-                }, e._onClickDeck_2 = function () {
-                    e._onClickDeck(2)
-                }, e._onClickDeck_3 = function () {
-                    e._onClickDeck(3)
-                }, e._onClickDeck_4 = function () {
-                    e._onClickDeck(4)
-                }, e._onClickOther = function () {
-                    e.onClickOther()
-                }, e.deck1 = new a(1, 74, 73, 72), e.deck2 = new a(2, 77, 76, 75), e.deck3 = new a(3, 80, 79, 78), e.deck4 = new a(4, 83, 82, 81), e.other = new s, e.deck1.position.set(0, 0), e.deck2.position.set(45, 0), e.deck3.position.set(90, 0), e.deck4.position.set(135, 0), e.other.position.set(180, 0), e.deck1.onClick = e._onClickDeck_1, e.deck2.onClick = e._onClickDeck_2, e.deck3.onClick = e._onClickDeck_3, e.deck4.onClick = e._onClickDeck_4, e.other.onClick = e._onClickOther, e.addChild(e.deck1, e.deck2, e.deck3, e.deck4, e.other), e
-            }
-            return n(e, t), e.prototype.focusDeck = function (t) {
-                switch (this._reset(this.deckIds, this.otherShipCount), t) {
-                    case 1:
-                        this.deck1.focus();
-                        break;
-                    case 2:
-                        this.deck2.focus();
-                        break;
-                    case 3:
-                        this.deck3.focus();
-                        break;
-                    case 4:
-                        this.deck4.focus()
-                }
-            }, e.prototype.focusOther = function () {
-                this._reset(this.deckIds, this.otherShipCount), this.other.focus()
-            }, e.prototype.dispose = function () {
-                this.deck1.dispose(), this.deck2.dispose(), this.deck3.dispose(), this.deck4.dispose(), this.other.dispose(), this.deck1 = null, this.deck2 = null, this.deck3 = null, this.deck4 = null, this.other = null, this.deckIds = null, this.otherShipCount = null, this.removeChildren()
-            }, e.prototype._onClickDeck = function (t) {
-                this.onClickDeck(t)
-            }, e.prototype.update = function (t, e) {
-                this._reset(t, e), this.deckIds = t, this.otherShipCount = e
-            }, e.prototype._reset = function (t, e) {
-                this.deck1.locked(), this.deck2.locked(), this.deck3.locked(), this.deck4.locked(), this.other.locked(), -1 != t.indexOf(1) && this.deck1.deFocus(), -1 != t.indexOf(2) && this.deck2.deFocus(), -1 != t.indexOf(3) && this.deck3.deFocus(), -1 != t.indexOf(4) && this.deck4.deFocus(), 0 < e && this.other.deFocus()
+                this.select_bg_crane01 = null, this.select_bg_crane02 = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.DeckSelectView = _
+    e.OtherShipFrame = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this,
+                i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)),
+                n = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44));
+            e.crane = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(46)), e.focus_card = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(21)), i.position.set(275, -3), n.position.set(0, 0);
+            var s = [62, 143, 224, 305, 386, 467];
+            e.addChild(e.focus_card, e.crane);
+            for (var a = 0; a < s.length; a++) {
+                var _ = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(45));
+                _.position.set(9, s[a]), e.addChild(_)
+            }
+            e.addChild(i, n), e.indexEmblems = new Array;
+            for (var u = 0; u < s.length; u++) {
+                var l = new r.DeckIndexEmblem;
+                l.position.set(-15, s[u] + 30), e.indexEmblems.push(l), e.addChild(l)
+            }
+            return e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            createjs.Tween.removeTweens(this.crane);
+            for (var t = 0; t < this.indexEmblems.length; t++) this.indexEmblems[t].dispose(), this.indexEmblems[t] = null;
+            this.indexEmblems = null, this.focus_card = null, this.crane = null, this.removeChildren()
+        }, e.prototype.focus = function (t) {
+            var e = this.getFocusPoint(t);
+            this.focus_card.position.set(e[0], e[1]), this.focus_card.visible = !0
+        }, e.prototype.updateEmblems = function (t, e) {
+            var i = this.indexEmblems[t];
+            i.visible = !0, i.update(e)
+        }, e.prototype.hideEmblem = function (t) {
+            this.indexEmblems[t].visible = !1
+        }, e.prototype.moveCrane = function (t) {
+            createjs.Tween.removeTweens(this.crane);
+            var e = this.getFocusPoint(t);
+            createjs.Tween.get(this.crane).to({
+                x: 278
+            }, 300, createjs.Ease.cubicIn).to({
+                y: e[1] - 8
+            }).to({
+                x: e[0] + 23
+            }, 500, createjs.Ease.cubicOut).play(null)
+        }, e.prototype.insertCrane = function () {
+            createjs.Tween.removeTweens(this.crane);
+            var t = this.getFocusPoint(0);
+            this.crane.x = 278, this.crane.y = t[1] - 8, createjs.Tween.get(this.crane).to({
+                x: t[0] + 23
+            }, 500, createjs.Ease.cubicOut).play(null)
+        }, e.prototype.hideCraneImmidiate = function () {
+            createjs.Tween.removeTweens(this.crane), this.crane.x = 278
+        }, e.prototype.moveCraneImmidiate = function (t) {
+            var e = this.getFocusPoint(t);
+            createjs.Tween.removeTweens(this.crane), this.crane.x = e[0] + 23, this.crane.y = e[1] - 8
+        }, e.prototype.deFocus = function () {
+            this.focus_card.visible = !1
+        }, e.prototype.getFocusPoint = function (t) {
+            switch (t) {
+                case 0:
+                    return [27, 76];
+                case 1:
+                    return [27, 157];
+                case 2:
+                    return [27, 238];
+                case 3:
+                    return [27, 319];
+                case 4:
+                    return [27, 400];
+                case 5:
+                    return [27, 481]
+            }
+            return [0, 0]
+        }, e
+    }(PIXI.Container);
+    e.DeckCraneFrame = a
 }

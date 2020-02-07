@@ -19,20 +19,37 @@ const function1212 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = function (t) {
+    var o = i(48),
+        r = i(1213),
+        s = i(1215),
+        a = i(1217),
+        _ = i(1220),
+        u = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._text = new o.TextBox(28, 5010027), e._text.anchor.x = 1, e._text.position.set(174, 27), e.addChild(e._text), e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = r.ITEM_FSHOP.getTexture(37), this.update(0)
-            }, e.prototype.update = function (t) {
-                t = Math.max(t, 0), this._text.text = t.toString()
+            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+                get: function () {
+                    return this._viewTop
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPreInitializeTask = function (t) {
+                return new r.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new r.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                return new _.FinalizeTask(this)
+            }, e.prototype.initialize = function () {
+                this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
+            }, e.prototype.startTopTask = function () {
+                var t = this;
+                this._topTask = new s.TaskTop(this), this._topTask.start(function () {
+                    t._topTask = null
+                })
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
+                null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
             }, e
-        }(PIXI.Sprite);
-    e.CoinBox = s
+        }(o.SceneBase);
+    e.InteriorScene = u
 }

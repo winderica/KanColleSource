@@ -19,55 +19,30 @@ const function1404 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(2),
-        s = i(452),
+    var o = i(2),
+        r = i(13),
+        s = i(23),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._attacker = e, s._plane_mst_id = i, s._slot_mst_id1 = n, s._slot_mst_id2 = o, s._type = r, s
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._telop = new _, this._telop.x = o.default.width / 2, this._telop.y = o.default.height / 2, this._telop.bg.scale.y = 0, this._telop.text.x = 150, this._telop.text.alpha = 0, this._layer.addChild(this._telop), createjs.Tween.get(this._telop.text).wait(300).to({
-                    x: 90,
-                    alpha: 1
-                }, 300).to({
-                    x: -90
-                }, 350).to({
-                    x: -150,
-                    alpha: 0
-                }, 500), createjs.Tween.get(this._telop.bg.scale).to({
-                    y: 1
-                }, 300).wait(1150).to({
-                    y: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(t._telop), t._endTask()
+                this._loadShipImage()
+            }, e.prototype._loadShipImage = function () {
+                var t = this,
+                    e = new r.ShipLoader;
+                e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
+                    t._loadSlotTextImage()
                 })
-            }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
+            }, e.prototype._loadSlotTextImage = function () {
+                var t = this;
+                this._plane_mst_id <= 0 && this._slot_mst_id1 <= 0 && this._slot_mst_id2 <= 0 && this._endTask();
+                var e = new s.SlotLoader;
+                this._plane_mst_id > 0 && e.add(this._plane_mst_id, "item_up"), this._slot_mst_id1 > 0 && (e.add(this._slot_mst_id1, "item_up"), 0 == this._type && e.add(this._slot_mst_id1, "btxt_flat")), this._slot_mst_id2 > 0 && (e.add(this._slot_mst_id2, "item_up"), e.add(this._slot_mst_id2, "btxt_flat")), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(r.TaskBase);
-    e.TaskAirUnitAttackStartTelop = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Container;
-            var i = PIXI.Sprite.fromFrame("battle_telop_mes_bg_f");
-            return i.x = -Math.round(i.width / 2), i.y = -Math.round(i.height / 2), e._bg.addChild(i), e.addChild(e._bg), e._text = new PIXI.Sprite(s.BATTLE_AIRUNIT.getTexture(0)), e._text.anchor.set(.5), e.addChild(e._text), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e
-    }(PIXI.Container)
+        }(o.TaskBase);
+    e.PreloadCutinDanchaku = a
 }

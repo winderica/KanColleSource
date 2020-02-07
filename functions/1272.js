@@ -19,49 +19,32 @@ const function1272 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(20),
-        s = i(146),
-        a = i(1273),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._friend = e, i._circle = new PIXI.Sprite, i._circle.anchor.set(.5, .5), i._circle.scale.set(.1), i._circle.visible = !1, i._content = new a.Content(e), i._content.alpha = 0, i.addChild(i._circle), i.addChild(i._content);
-                var n = new PIXI.Graphics;
-                return n.beginFill(65280, .5), i._drawGraphics(n), n.endFill(), i.addChild(n), i.mask = n, i._friend ? (i.circle.position.set(255, 311), i.content.position.set(-150, 0)) : (i.circle.position.set(345, 311), i.content.position.set(150, 0)), i
+    var o = i(4),
+        r = i(146),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._text = new o.TextBox(39, 16774898), e._text.anchor.set(.5, 0), e.addChild(e._bg), e.addChild(e._text), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "circle", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._circle
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "content", {
+            }), Object.defineProperty(e.prototype, "text", {
                 get: function () {
-                    return this._content
+                    return this._text
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._friend ? this._circle.texture = s.PRAC_MAIN.getTexture(3) : this._circle.texture = s.PRAC_MAIN.getTexture(4), this._content.initialize(t, e)
+            }), e.prototype.initialize = function (t) {
+                void 0 === t && (t = ""), this._bg.texture = r.PRAC_MAIN.getTexture(7), this._text.position.set(this._bg.width / 2, 9), this.update(t)
+            }, e.prototype.update = function (t) {
+                this._text.text = t
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._content.dispose()
-            }, e.prototype.getAnimationTask = function () {
-                var t = new r.TweenTask;
-                t.addTween(createjs.Tween.get(this._content.medal).to({
-                    alpha: 1
-                }, 100));
-                for (var e = this._content.elements, i = this._friend ? 0 : 173, n = 0; n < e.length; n++) {
-                    var o = e[n];
-                    0 != o.visible && t.addTween(createjs.Tween.get(o).wait(300 + 100 * n).to({
-                        x: i,
-                        alpha: 1
-                    }, 200, createjs.Ease.sineIn))
-                }
-                return t
-            }, e.prototype._drawGraphics = function (t) {
-                this._friend ? (t.moveTo(0, 0), t.lineTo(0, o.default.height), t.lineTo(o.default.width / 2 - 128, o.default.height), t.lineTo(o.default.width / 2 + 128, 0)) : (t.moveTo(128, 0), t.lineTo(o.default.width / 2, 0), t.lineTo(o.default.width / 2, o.default.height), t.lineTo(-128, o.default.height))
+                this.removeChildren(), this._text.destroy()
             }, e
         }(PIXI.Container);
-    e.Panel = _
+    e.PracticeTitleBar = s
 }

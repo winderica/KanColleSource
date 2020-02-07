@@ -22,11 +22,12 @@ const function574 = function (t, e, i) {
     var o = i(0),
         r = i(8),
         s = i(18),
-        a = i(278),
+        a = i(276),
         _ = i(575),
         u = i(576),
-        l = i(14),
-        c = function (t) {
+        l = i(15),
+        c = i(277),
+        h = function (t) {
             function e() {
                 return t.call(this) || this
             }
@@ -92,7 +93,9 @@ const function574 = function (t, e, i) {
                     var n = new PIXI.Sprite(e);
                     this.addChild(n)
                 }
+            }, e.prototype.updatePort = function () {
+                this.removeChild(this._portMain), this._portMain = new c.PortScene, this.addChildAt(this._portMain, 1)
             }, e
         }(PIXI.Container);
-    e.RootView = c
+    e.RootView = h
 }

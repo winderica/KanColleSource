@@ -19,33 +19,89 @@ const function287 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(197),
-        a = i(286),
+    var o = i(5),
+        r = i(0),
+        s = i(22),
+        a = i(2),
         _ = i(288),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    0 == o.default.scene.now ? o.default.view.portMain.showPortUI(!1) : o.default.scene.change(0)
-                }, e._background = new PIXI.Sprite, e.addChild(e._background), e._content = new _.CircleContentWithSwitching, e.addChild(e._content), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 95), e._hit_area.endFill(), e._hit_area.position.set(68, 60), e.addChild(e._hit_area), e
+        u = i(32),
+        l = i(13),
+        c = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._deck = r.default.model.deck.get(e), n._ships = n._deck.getShipList(), n._result = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._background.texture = s.PORT_SKIN_2.getTexture(0), this._background.position.set(-46, -55), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(r.EventType.CLICK, this._onClick), this._startAnimation()
-            }, e.prototype.dispose = function () {
-                this._hit_area.interactive = !1, this._hit_area.buttonMode = !1, this._hit_area.off(r.EventType.CLICK, this._onClick), this._content.dispose(), this._stopAnimation(), this._content_tween = null
-            }, e.prototype.startMoveAnimation = function (t) {
-                this._content.startAnimation(t)
-            }, e.prototype._startAnimation = function () {
-                null == this._content_tween ? this._content_tween = createjs.Tween.get(this._content, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 3e4) : this._content_tween.play(null)
-            }, e.prototype._stopAnimation = function () {
-                null != this._content_tween && this._content_tween.setPaused(!0)
+            return n(e, t), e.prototype._start = function () {
+                r.default.view.clickGuard = !0, this._loadResources()
+            }, e.prototype._loadResources = function () {
+                for (var t = this, e = new l.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
+                    var o = n[i];
+                    null != o && e.add(o.mstID, o.isDamaged(), "banner")
+                }
+                e.load(function () {
+                    t._initCutin()
+                })
+            }, e.prototype._initCutin = function () {
+                this._cutin = new _.ExpeditionCutin, this._cutin.initialize(!1), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, o.default.height / 2), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
+            }, e.prototype._playCutin = function () {
+                var t = this;
+                r.default.view.overLayer.addChild(this._cutin);
+                var e = this._ships[0],
+                    i = e.mstID.toString();
+                r.default.sound.voice.play(i, 7), createjs.Tween.get(this._cutin.bg.scale).to({
+                    y: 2
+                }, 300).wait(1500).to({
+                    y: 0
+                }, 300).call(function () {
+                    t._endTask()
+                }), createjs.Tween.get(this._cutin.message).wait(400).to({
+                    x: 660
+                }, 400).to({
+                    x: 525
+                }, 800).to({
+                    x: 420,
+                    alpha: 0
+                }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: o.default.width / 2 - this._cutin.banner_top.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: o.default.width - this._cutin.banner_top.width,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: o.default.width / 2 - this._cutin.banner_bottom.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: 0,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
+                    t._cutin.particles.startAnim()
+                })
+            }, e.prototype._createShipContainerU = function () {
+                var t, e = this._ships[0],
+                    i = this._ships[2],
+                    n = this._ships[4];
+                t = null == i ? [e] : null == n ? [i, e] : [i, e, n];
+                for (var o = 0; o < t.length; o++) {
+                    var r = t[o],
+                        a = new u.ShipBanner;
+                    a.update(r, !1), a.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(a)
+                }
+            }, e.prototype._createShipContainerB = function () {
+                var t, e = this._ships[1],
+                    i = this._ships[3],
+                    n = this._ships[5],
+                    o = this._ships[6];
+                t = null == n ? null == i ? null == e ? [] : [e] : [e, i] : null == o ? [n, e, i] : [n, e, i, o];
+                for (var r = 0; r < t.length; r++) {
+                    var a = t[r],
+                        _ = new u.ShipBanner;
+                    _.update(a, !1), _.position.x = s.BannerSize.W * r, this._cutin.banner_bottom.addChild(_)
+                }
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
             }, e
-        }(a.CircleContent);
-    e.CircleContentSkin2 = u
+        }(a.TaskBase);
+    e.TaskExpeditionEndCutin = c
 }

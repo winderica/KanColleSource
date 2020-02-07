@@ -1,124 +1,101 @@
 const function623 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(14),
-        o = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "expedition_id", {
-                get: function () {
-                    return this._expedition_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "expedition_name", {
-                get: function () {
-                    return n.ObjUtil.getString(this._o, "api_quest_name")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "result", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_clear_result")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "total_exp", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_get_exp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "user_level", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_member_lv")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "ship_mem_ids", {
-                get: function () {
-                    return this._ship_mem_ids
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "fuel", {
-                get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[0]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "ammo", {
-                get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[1]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "steel", {
-                get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[2]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "baux", {
-                get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_get_material")[3]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "item1", {
-                get: function () {
-                    return this._item1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "item2", {
-                get: function () {
-                    return this._item2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.setData = function (t, e) {
-                this._o = t, 0 == this._o.hasOwnProperty("api_get_material") ? this._o.api_get_material = [0, 0, 0, 0] : -1 == this._o.api_get_material && (this._o.api_get_material = [0, 0, 0, 0]);
-                var i = n.ObjUtil.getNumArray(this._o, "api_ship_id");
-                i.length > 0 && -1 == i[0] && (i = i.slice(1)), this._ship_mem_ids = i;
-                var o = this._getItemFlags();
-                this._item1 = this._createItemModel(o[0], n.ObjUtil.getObject(this._o, "api_get_item1")), this._item2 = this._createItemModel(o[1], n.ObjUtil.getObject(this._o, "api_get_item2"))
-            }, t.prototype._getItemFlags = function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_useitem_flag");
-                for (null == t && (t = []); t.length < 2;) t.push(0);
-                return t
-            }, t.prototype._createItemModel = function (t, e) {
-                if (null == e) return null;
-                var i = n.ObjUtil.getNumber(e, "api_useitem_id"),
-                    o = n.ObjUtil.getNumber(e, "api_useitem_count"),
-                    s = n.ObjUtil.getString(e, "api_useitem_name");
-                return o > 0 ? new r(t, i, o, s) : void 0
-            }, t
-        }();
-    e.ExpeditionResultModel = o;
-    var r = function () {
-        function t(t, e, i, n) {
-            this._mstID = 0, this._name = "", 1 == t ? (this._mstID = 1, this._name = "\u9ad8\u901f\u4fee\u5fa9\u6750") : 2 == t ? (this._mstID = 2, this._name = "\u9ad8\u901f\u5efa\u9020\u6750") : 3 == t ? (this._mstID = 3, this._name = "\u958b\u767a\u8cc7\u6750") : 5 == t ? (this._mstID = 44, this._name = "\u5bb6\u5177\u30b3\u30a4\u30f3") : 4 == t && (this._mstID = e, this._name = n), this._count = i
-        }
-        return Object.defineProperty(t.prototype, "mstID", {
-            get: function () {
-                return this._mstID
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return this._name
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
-            get: function () {
-                return this._count
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t
-    }()
+    var o = i(1),
+        r = i(10),
+        s = i(624),
+        a = function (t) {
+            function e(e) {
+                void 0 === e && (e = null);
+                var i = t.call(this) || this;
+                return i._closeCb = e, i._container = null, i._base = null, i._chara = null, i._arrow = null, i._back = null, i
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._container = new PIXI.Container, this._container.interactive = !0, this._container.buttonMode = !0, this._container.on(o.EventType.CLICK, this.fadeOut.bind(this, !1)), this._base = new PIXI.Sprite, this._container.addChild(this._base), this._chara = new PIXI.Container;
+                var e = new PIXI.Sprite(s.PORT_TUTORIAL.getTexture(1));
+                e.name = "chara1";
+                var i = new PIXI.Sprite(s.PORT_TUTORIAL.getTexture(2));
+                i.name = "chara2", i.visible = !1, this._chara.addChild(e, i), this._container.addChild(this._chara), this._arrow = new PIXI.Sprite(s.PORT_TUTORIAL.getTexture(0)), this._container.addChild(this._arrow), this._back = new PIXI.Sprite(r.COMMON_MISC.getTexture(22)), this._back.anchor.set(.5, 0), this._back.visible = !1, this._back.interactive = !0, this._back.buttonMode = !0, this._back.on(o.EventType.CLICK, this.fadeOut.bind(this, !0)), this.addChild(this._container, this._back), this.update(t), this.activate()
+            }, e.prototype.update = function (t) {
+                return this.alpha = 1, t < 10 ? this._tutorial1() : t < 20 ? this._tutorial2() : t < 30 ? this._tutorial3() : t < 40 ? this._tutorial4() : t < 50 ? this._tutorial5() : this._tutorial6()
+            }, e.prototype.fadeOut = function (t) {
+                var e = this;
+                void 0 === t && (t = !1), createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e.visible = !1, t && null !== e._closeCb && e._closeCb()
+                })
+            }, e.prototype.activate = function () {
+                var t = this;
+                if (null !== this._chara && (this.deactivate(), this._tweenChara = createjs.Tween.get({}, {
+                        loop: !0
+                    }).wait(500).call(function () {
+                        for (var e = 0, i = t._chara.children.length; e < i; e++) {
+                            var n = t._chara.children[e],
+                                o = n.visible;
+                            n.visible = !o
+                        }
+                    }), this._arrow.visible)) {
+                    this._tweenArrow = createjs.Tween.get(this._arrow, {
+                        loop: !0,
+                        paused: !0
+                    });
+                    var e = [];
+                    switch (this._arrowAnimationAlign) {
+                        case "up":
+                            var i = this._arrow.y;
+                            e = [{
+                                y: i - 18
+                            }, {
+                                y: i
+                            }];
+                            break;
+                        case "left":
+                        default:
+                            var n = this._arrow.x;
+                            e = [{
+                                x: n - 18
+                            }, {
+                                x: n
+                            }]
+                    }
+                    this._tweenArrow.wait(300).set(e[0]).wait(300).set(e[1]).setPaused(!1)
+                }
+            }, e.prototype.deactivate = function () {
+                this._tweenArrow && (this._tweenArrow.setPaused(!0), createjs.Tween.removeTweens(this._tweenArrow), this._tweenArrow = null), this._tweenChara && (this._tweenChara.setPaused(!0), createjs.Tween.removeTweens(this._tweenChara), this._tweenChara = null), this._chara.getChildByName("chara1").visible = !0, this._chara.getChildByName("chara2").visible = !1
+            }, e.prototype._tutorial1 = function () {
+                this._base.texture = s.PORT_TUTORIAL.getTexture(3), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(510, 370), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial2 = function () {
+                this._base.texture = s.PORT_TUTORIAL.getTexture(4), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(400, 36), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial3 = function () {
+                this._base.texture = s.PORT_TUTORIAL.getTexture(5), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(384, -20), this._arrow.rotation = 90 * Math.PI / 180, this._back.visible = !1, this.position.set(508, 88), this._arrowAnimationAlign = "up"
+            }, e.prototype._tutorial4 = function () {
+                this._base.texture = s.PORT_TUTORIAL.getTexture(6), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(437, 239), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial5 = function () {
+                this._base.texture = s.PORT_TUTORIAL.getTexture(7), this._base.position.set(0, 43), this._chara.position.set(350, 0), this._arrow.position.set(-75, 110), this._arrow.rotation = 0, this._back.visible = !1, this.position.set(220, 174), this._arrowAnimationAlign = "left"
+            }, e.prototype._tutorial6 = function () {
+                this._base.texture = s.PORT_TUTORIAL.getTexture(8), this._base.position.set(0, 43), this._chara.position.set(750, 4), this._arrow.visible = !1, this._arrow.rotation = 0, this._back.visible = !0, this._back.position.set(Math.round(this._base.width / 2), this._base.height + 30), this.position.set(126, 212), this._arrowAnimationAlign = "none", this._container.buttonMode = !1, this._container.removeAllListeners(o.EventType.CLICK)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._container.interactive = !1, this._container.buttonMode = !1, this._container.removeAllListeners(o.EventType.CLICK), this._back.interactive = !0, this._back.buttonMode = !0, this._back.removeAllListeners(o.EventType.CLICK), this.removeChildren()
+            }, e
+        }(PIXI.Container);
+    e.Tutorial = a
 }

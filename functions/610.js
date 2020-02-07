@@ -19,45 +19,21 @@ const function610 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(8),
-        a = i(6),
-        _ = i(1),
-        u = i(106),
-        l = i(68),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._data = e;
-                var n = parseInt(e.src),
-                    o = u.SuffixUtil.create(n, "furniture_picture"),
-                    a = r.default.settings.path_root + "resources/furniture/picture/" + e.src + "_" + o + ".png" + l.VersionUtil.getResourceVersion(2, n);
-                if (null != PIXI.utils.TextureCache[a]) {
-                    var _ = PIXI.utils.TextureCache[a];
-                    i._img = new PIXI.Sprite(_), i._img.visible = !1, i._centering()
-                } else {
-                    var _ = PIXI.Texture.fromImage(a);
-                    i._img = new PIXI.Sprite(_), i._img.visible = !1, _.baseTexture.once("loaded", function () {
-                        i._centering()
-                    })
-                }
-                return i.addChild(i._img), i._clickArea = new s.AreaBox(0, 16777215), i.addChild(i._clickArea), i
+    var o = i(0),
+        r = i(11),
+        s = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = !1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_mission/result", o._deck_id = e, o._result_model = i, o._debug = n, o
             }
-            return n(e, t), e.prototype.show = function (t) {
-                var e = this;
-                void 0 === t && (t = null), this._onClose = t, this._img.visible = !0, a.SE.play(this._data.se_open), this._clickArea.once(_.EventType.CLICK, function () {
-                    e._onClose()
-                })
-            }, e.prototype.hide = function () {
-                this._img.visible = !1, a.SE.play(this._data.se_close)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._img.texture.baseTexture.removeAllListeners("loaded"), this._clickArea.removeAllListeners(_.EventType.CLICK)
-            }, e.prototype._centering = function () {
-                var t = Math.floor(o.default.width / 2 - this._img.width / 2 + this._data.offset_x),
-                    e = Math.floor(o.default.height / 2 - this._img.height / 2 + this._data.offset_y);
-                this._img.position.set(t, e)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.deck.get(this._deck_id),
+                    i = e.expedition.expedition_id;
+                this._result_model.setData(this._raw_data, i), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.FurniturePopupLayer = c
+        }(r.APIBase);
+    e.ExpeditionResultAPI = s
 }

@@ -19,57 +19,28 @@ const function718 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(719),
-        s = i(720),
-        a = i(219),
-        _ = i(58),
-        u = i(1),
+    var o = i(84),
+        r = i(113),
+        s = i(4),
+        a = i(32),
+        _ = i(57),
+        u = i(320),
         l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onMouseDown = function () {
-                    i.onDragging(i.slotPosition, i.memShipId)
-                }, i.___onMouseDown = function (t) {
-                    i.onMouseDown(i.slotPosition, i.slotNo, i.memShipId)
-                }, i._onClickChange = function () {
-                    i.onClickChange(i.slotPosition, i.slotNo)
-                }, i._onClickDetail = function () {
-                    i.onClickDetail(i.memShipId)
-                }, i.shipSlotShutter = new s.ShipSlotShutter, i.shipInfo = new r.ShipInfo, i.deckIndexEmblem = new a.DeckIndexEmblem;
-                var n = o.ORGANIZE_MAIN.getTexture(23),
-                    l = o.ORGANIZE_MAIN.getTexture(24),
-                    c = o.ORGANIZE_MAIN.getTexture(25),
-                    h = o.ORGANIZE_MAIN.getTexture(9),
-                    p = o.ORGANIZE_MAIN.getTexture(10);
-                return i.disableChangeButton = new PIXI.Sprite(n), i.changeButton = new _.SimpleButton(l, c), i.detailButton = new _.SimpleButton(h, p), i.shipBannerDragArea = new PIXI.Graphics, i.shipBannerDragArea.beginFill(0, 0), i.shipBannerDragArea.drawRect(0, 0, 240, 60), i.shipBannerDragArea.endFill(), i.shipBannerDragArea.position.set(245, 18), i.shipBannerDragArea.interactive = !0, i.shipBannerDragArea.buttonMode = !0, i.shipBannerDragArea.renderable = !1, i.shipBannerDragArea.on(u.EventType.MOUSEDOWN, i._onMouseDown), i.changeButton.onClick = i._onClickChange, i.detailButton.onClick = i._onClickDetail, i.disableChangeButton.position.set(379, 103), i.changeButton.position.set(379, 103), i.detailButton.position.set(250, 103), i.deckIndexEmblem.position.set(-15, 0), i.slotPosition = e, i
+            function e() {
+                var e = t.call(this) || this,
+                    i = _.ORGANIZE_MAIN.getTexture(30);
+                e.background = new PIXI.Sprite(i);
+                e.textHp = new s.TextBox(15, "white"), e.textLv = new s.TextBox(21, "white"), e.textHougeki = new s.TextBox(15, "white"), e.textTaiku = new s.TextBox(15, "white"), e.textRaigeki = new s.TextBox(15, "white"), e.textSoukou = new s.TextBox(15, "white"), e.shipBanner = new a.ShipBanner, e.rateView = new o.StarRateView, e.hpGaugeView = new r.HpGaugeView, e.expGaugeView = new u.ExpGaugeView, e.textHp.anchor.set(1, 0), e.textHp.position.set(229, 64), e.textLv.anchor.set(1, 0), e.textLv.position.set(237, 20), e.shipBanner.position.set(244, 18), e.textHougeki.anchor.set(1, 0), e.textHougeki.position.set(117, 90), e.textRaigeki.position.set(117, 120), e.textRaigeki.anchor.set(1, 0), e.textTaiku.position.set(232, 90), e.textTaiku.anchor.set(1, 0), e.textSoukou.position.set(232, 120), e.textSoukou.anchor.set(1, 0), e.rateView.position.set(18, 63), e.hpGaugeView.position.set(132, 54), e.expGaugeView.position.set(241, 87), e.containerName = new PIXI.Container;
+                var n = new PIXI.Graphics;
+                return e.textName = new s.TextBox(35, "white"), n.beginFill(0, 0), n.drawRect(0, 0, 105, 72), n.endFill(), e.containerName.position.set(23, 18), e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.background.interactive = !0, e.addChild(e.background, e.hpGaugeView, e.expGaugeView, e.rateView, e.textHp, e.textLv, e.containerName, e.textHougeki, e.textTaiku, e.textRaigeki, e.textSoukou, e.shipBanner), e
             }
-            return n(e, t), e.prototype.activate = function (t, e, i) {
-                this.deactivate(), this.onDragging = t, this.onClickChange = e, this.onClickDetail = i
-            }, e.prototype.deactivate = function () {
-                this.onDragging = null, this.onClickChange = null, this.onClickDetail = null
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this.shipBannerDragArea.off(u.EventType.MOUSEDOWN, this._onMouseDown), this.shipSlotShutter.dispose(), this.shipInfo.dispose(), this.deckIndexEmblem.dispose(), this.changeButton.dispose(), this.shipSlotShutter = null, this.shipInfo = null, this.deckIndexEmblem = null, this.changeButton = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i) {
-                this.removeChildren();
-                var n = e.memID;
-                this.shipInfo.update(e, i), this.deckIndexEmblem.update(t), i ? this.addChild(this.shipInfo, this.deckIndexEmblem, this.disableChangeButton, this.detailButton, this.shipSlotShutter) : this.addChild(this.shipInfo, this.deckIndexEmblem, this.changeButton, this.detailButton, this.shipBannerDragArea, this.shipSlotShutter), this.memShipId = n, this.slotNo = t
-            }, e.prototype.close = function () {
-                this.shipSlotShutter.close(), this.deckIndexEmblem.visible = !1
-            }, e.prototype.closeAnimation = function (t, e) {
-                void 0 === e && (e = 250), this.deckIndexEmblem.visible = !1, this.shipSlotShutter.closeAnimation(function () {
-                    t()
-                }, e)
-            }, e.prototype.open = function () {
-                this.deckIndexEmblem.visible = !0, this.shipSlotShutter.open()
-            }, e.prototype.openAnimation = function (t, e) {
-                var i = this;
-                void 0 === e && (e = 250), this.shipSlotShutter.openAnimation(function () {
-                    i.deckIndexEmblem.visible = !0, t()
-                }, e)
-            }, e.prototype.updateEmpty = function (t, e) {
-                this.removeChildren(), this.memShipId = null, this.slotNo = t, e ? this.addChild(this.shipSlotShutter, this.changeButton) : this.addChild(this.shipSlotShutter)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.rateView.dispose(), this.shipBanner.dispose(), this.containerName.removeChildren(), this.containerName.mask = null, this.textHp.destroy(), this.textLv.destroy(), this.textName.destroy(), this.textHougeki.destroy(), this.textTaiku.destroy(), this.textRaigeki.destroy(), this.textSoukou.destroy(), this.containerName = null, this.hpGaugeView = null, this.expGaugeView = null, this.rateView = null, this.shipBanner = null, this.textHp = null, this.textLv = null, this.textName = null, this.textHougeki = null, this.textTaiku = null, this.textRaigeki = null, this.textSoukou = null, this.background = null
+            }, e.prototype._updateName_ = function (t, e) {
+                this.containerName.cacheAsBitmap = !1, this.textName.style.fill = e ? 16766947 : "white", this.textName.text = t, this.containerName.cacheAsBitmap = !0
+            }, e.prototype.update = function (t, e) {
+                this.shipBanner.update(t, e), this.shipBanner.updatePlate(t.label), this.textHougeki.text = t.karyoku.toString(), this.textTaiku.text = t.taiku.toString(), this.textRaigeki.text = t.raisou.toString(), this.textSoukou.text = t.soukou.toString(), this._updateName_(t.name, t.isMarriage()), this.textHp.text = t.hpNow + "/" + t.hpMax, this.background.interactive = !0, this.textLv.text = t.level.toString(), this.textHp.text = t.hpNow + "/" + t.hpMax, this.rateView.update(t.starNum), this.hpGaugeView.update(t.hpNow, t.hpMax), this.expGaugeView.update(t.expNowRate)
             }, e
         }(PIXI.Container);
-    e.ShipSlot = l
+    e.ShipInfo = l
 }

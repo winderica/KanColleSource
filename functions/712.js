@@ -1,53 +1,63 @@
 const function712 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(1),
-        s = i(29),
-        a = i(8),
-        _ = i(37),
-        u = i(6),
-        l = i(713),
-        c = function () {
-            function t(t) {
-                var e = this;
-                this._onClickBack = function () {
-                    e.onClickBack()
-                }, this.mainView = t, this.dialogBackground = new a.AreaBox(.5), this.shipDetailView = new l.ShipDetailView
+    var o = i(113),
+        r = i(319),
+        s = i(84),
+        a = i(4),
+        _ = i(21),
+        u = i(10),
+        l = i(320),
+        c = i(714),
+        h = i(321),
+        p = i(15),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite;
+                i.texture = _.COMMON_MAIN.getTexture(64), i.position.set(0, -37);
+                var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(1));
+                n.position.set(22, Math.floor(i.height / 2 - 4)), n.anchor.set(0, .5), i.addChild(n), e.textName = new a.TextBox(25, 5523516), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.rateView = new s.StarRateView, e.slotItemSlotContainer = new h.SlotItemSlotContainer(5), e.extraSlotItemViewContainer = new h.SlotItemSlotContainer(1), e.hpGaugeView = new o.HpGaugeView, e.shipParameterView = new c.ShipParameterView, e.expGaugeView = new l.ExpGaugeView, e.textExp = new a.TextBox(16, 5523516);
+                var d = new PIXI.Sprite(u.COMMON_MISC.getTexture(187));
+                e.remodelMaxMedal = new PIXI.Sprite(_.COMMON_MAIN.getTexture(28));
+                var f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(65));
+                e.shipCard = new r.ShipCard(!0, !0), e.sixSlotMessage = new PIXI.Sprite(_.COMMON_MAIN.getTexture(66));
+                var y = new PIXI.Sprite(_.COMMON_MAIN.getTexture(12));
+                e.containerName = new PIXI.Container, e.containerName.position.set(42, 23);
+                var m = p.CreateRect.gradientLeftToRight(185, 45, .94, .95);
+                return e.containerName.mask = m, e.containerName.addChild(e.textName, m), e.textLevel.anchor.x = 1, e.slotItemSlotContainer.position.set(51, 100), e.extraSlotItemViewContainer.position.set(405, 516), d.position.set(229, 30), f.position.set(364, 478), e.shipParameterView.position.set(51, 351), e.hpGaugeView.position.set(43, 72), e.textHp.position.set(152, 68), e.rateView.position.set(228, 72), e.expGaugeView.position.set(451, 481), e.textLevel.position.set(321, 24), e.remodelMaxMedal.position.set(322, 19), e.textExp.position.set(465, 493), e.textExp.anchor.x = 1, e.shipCard.position.set(369, 25), e.sixSlotMessage.position.set(531, 499), e.addChild(y, e.containerName, e.textLevel, e.hpGaugeView, e.textHp, e.expGaugeView, e.rateView, e.slotItemSlotContainer, e.extraSlotItemViewContainer, e.shipParameterView, e.shipCard, f, d, e.textExp, e.sixSlotMessage, e.remodelMaxMedal, i), e
             }
-            return t.prototype.start = function (t) {
-                var e = o.default.model.ship.get(t),
-                    i = o.default.model.ship.getMst(e.mstID),
-                    a = s.ShipUtil.isMaxGradeUp(e, i, !1),
-                    _ = o.default.model.deck.isInDeck(e.memID);
-                this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBack);
-                var l = !1;
-                if (_) {
-                    l = null != o.default.model.deck.get(_[0]).expedition
-                }
-                this.shipDetailView.updateBox1(e.name, e.level, e.hpNow, e.hpMax, e.starNum, a), this.shipDetailView.updateBox2(e, e.getSlotitems()), this.shipDetailView.updateBox3(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this.shipDetailView.updateBox4(e, e.getSlotitemEx(), e.isExtraSlot()), this.shipDetailView.updateBox5(e, l), this.shipDetailView.position.set(n.default.width, 141), this.mainView.addChild(this.dialogBackground, this.shipDetailView), o.default.view.clickGuard = !0, u.SE.play("249");
-                createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 1
-                }, 125), createjs.Tween.get(this.shipDetailView).to({
-                    x: 471
-                }, 125).call(function () {
-                    o.default.sound.voice.playAtRandom(e.mstID.toString(), [2, 3], [50, 50]), o.default.view.clickGuard = !1
-                })
-            }, t.prototype.hide = function (t) {
-                _.TaskLoadShipResource.abortBy(this.shipDetailView), o.default.view.clickGuard = !0;
-                createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 0
-                }, 125), createjs.Tween.get(this.shipDetailView).to({
-                    x: n.default.width
-                }, 125).call(function () {
-                    o.default.view.clickGuard = !1, t()
-                })
-            }, t.prototype.dispose = function () {
-                this.dialogBackground.off(r.EventType.CLICK, this._onClickBack), this.shipDetailView.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipDetailView), this.onClickBack = null, this.dialogBackground = null, this.mainView = null, this.shipDetailView = null
-            }, t
-        }();
-    e.TaskShipDetail = c
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.shipParameterView.dispose(), this.slotItemSlotContainer.dispose(), this.rateView.dispose(), this.extraSlotItemViewContainer.dispose(), this.shipCard.dispose(), this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerName.mask = null, this.textName.destroy(), this.textLevel.destroy(), this.textHp.destroy(), this.textExp.destroy(), this.hpGaugeView = null, this.expGaugeView = null, this.shipParameterView = null, this.slotItemSlotContainer = null, this.rateView = null, this.extraSlotItemViewContainer = null, this.shipCard = null, this.textName = null, this.textLevel = null, this.textHp = null, this.textExp = null, this.remodelMaxMedal = null, this.sixSlotMessage = null, this.containerName = null
+            }, e.prototype.updateBox1 = function (t, e, i, n, o, r) {
+                this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.rateView.update(o), this.textLevel.text = e.toString(), this.remodelMaxMedal.visible = !!r
+            }, e.prototype.updateBox2 = function (t, e) {
+                this.slotItemSlotContainer.updateSlot(t, e)
+            }, e.prototype.updateBox3 = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+                this.shipParameterView.update(t, e, i, n, o, r, s, a, _, u, l, c)
+            }, e.prototype.updateBox4 = function (t, e, i) {
+                this.expGaugeView.update(t.expNowRate), this.textExp.text = t.expNextLevel.toString(), i ? (this.extraSlotItemViewContainer.updateExSlot(e), this.extraSlotItemViewContainer.visible = !0, this.sixSlotMessage.visible = !0) : (this.extraSlotItemViewContainer.visible = !1, this.sixSlotMessage.visible = !1)
+            }, e.prototype.updateBox5 = function (t, e) {
+                this.shipCard.update(t, e)
+            }, e
+        }(PIXI.Container);
+    e.ShipDetailView = d
 }

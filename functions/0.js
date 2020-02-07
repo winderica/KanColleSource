@@ -6,11 +6,11 @@ const function0 = function (t, e, i) {
     var n = i(494),
         o = i(564),
         r = i(567),
-        s = i(277),
+        s = i(275),
         a = i(571),
         _ = i(573),
         u = i(574),
-        l = i(577),
+        l = i(668),
         c = function () {
             function t() {
                 this._view = new u.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager, this._friendlyRequest = new l.FriendlyRequestModel

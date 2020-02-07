@@ -19,78 +19,110 @@ const function1346 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(132),
-        r = i(51),
-        s = i(439),
+    var o = i(12),
+        r = i(6),
+        s = i(19),
         a = i(1347),
-        _ = i(1348),
-        u = i(1362),
-        l = function (t) {
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
+                return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "direction", {
                 get: function () {
-                    return this._bg
+                    return this._direction
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
+            }), Object.defineProperty(e.prototype, "under", {
                 get: function () {
-                    return this._shutter
+                    return this._under
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "map", {
+            }), Object.defineProperty(e.prototype, "ship", {
                 get: function () {
-                    return this._map
+                    return this._ship
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "upper", {
-                get: function () {
-                    return this._upper
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "gauge_layer", {
-                get: function () {
-                    return this._gauge_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara_layer", {
-                get: function () {
-                    return this._chara_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "universal_layer", {
-                get: function () {
-                    return this._universal_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message_box", {
-                get: function () {
-                    return this._message_box
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "top_layer", {
-                get: function () {
-                    return this._top_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
-            }, e.prototype.frontOfGaugeLayer = function () {
-                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
+            }), e.prototype.initialize = function (t) {
+                var e;
+                e = 1 == t ? 148 : 2 == t ? 149 : 3 == t ? 150 : 147, this._ship.texture = s.MAP_COMMON.getTexture(e)
+            }, e.prototype.startWaveWhite = function () {
+                this._startWave(48)
+            }, e.prototype.startWaveRed = function (t) {
+                var e = this;
+                this._startWave(47);
+                var i = new u;
+                i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
+                    y: -75,
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    y: -68
+                }, 200).to({
+                    y: -78,
+                    scaleX: 1.3,
+                    scaleY: .6
+                }, 200).to({
+                    y: -59,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    y: -68
+                }, 200).to({
+                    alpha: 0
+                }, 100).call(function () {
+                    e._over.removeChild(i), t()
+                })
+            }, e.prototype.stopWave = function () {
+                this._wave.deactivate()
+            }, e.prototype.turn = function (t, e, i) {
+                if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e();
+                else {
+                    this._direction = t;
+                    var n = 2 == t ? 1 : -1,
+                        o = createjs.Tween.get(this._ship);
+                    o.to({
+                        scaleX: n
+                    }, i), null != e && o.call(e)
+                }
+            }, e.prototype._startWave = function (t) {
+                this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
+                    r.SE.play("252")
+                }).wait(2e3).call(function () {
+                    r.SE.play("252")
+                })
             }, e
         }(PIXI.Container);
-    e.ViewMain = l
+    e.CompShipIcon = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
+            get: function () {
+                return this.scale.x
+            },
+            set: function (t) {
+                this.scale.x = t
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "scaleY", {
+            get: function () {
+                return this.scale.y
+            },
+            set: function (t) {
+                this.scale.y = t
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.MAP_COMMON.getTexture(99)
+        }, e
+    }(PIXI.Sprite)
 }

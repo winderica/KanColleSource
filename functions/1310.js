@@ -19,58 +19,41 @@ const function1310 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(1311),
-        a = i(1312),
-        _ = i(13),
-        u = i(23),
-        l = i(123),
-        c = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._selectFormation = function () {
-                    if (0 == r._model.deck_f.type || r._model.map_info.isNightStart()) {
-                        var t = new s.TaskFormationSelect(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
-                        t.start(function () {
-                            r._fadeoutBGM(t.selected_formation)
-                        })
-                    } else {
-                        var e = new a.TaskFormationSelectCombined(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
-                        e.start(function () {
-                            r._fadeoutBGM(e.selected_formation)
-                        })
-                    }
-                }, r._scene = e, r._model = i, r._battle_cls = n, r._battle_result_cls = o, r
+    var o = i(1311),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._count = 0, e._boxes = [], e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._scene.view.map.ship_icon.startWaveRed(this._selectFormation)
-            }, e.prototype._fadeoutBGM = function (t) {
-                var e = this;
-                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
-                    e._startBattle(t)
-                })) : this._startBattle(t)
-            }, e.prototype._startBattle = function (t) {
-                var e = this;
-                this._model.deck_f.formation = t;
-                var i = new this._battle_cls;
-                i.initialize(this._model), this._scene.addChild(i), i.once("complete", function () {
-                    e._startBattleResult(i, e._model)
-                }), i.start()
-            }, e.prototype._startBattleResult = function (t, e) {
-                var i = this,
-                    n = new this._battle_result_cls;
-                n.initialize(), n.shutter.close(0), this._scene.addChild(n), this._scene.removeChild(t), t.dispose(), n.once("complete", function () {
-                    _.ShipLoader.clearMemoryCache(), u.SlotLoader.clearMemoryCache(), l.Plane.clearMemoryCache(), i._completeBattleResult(n)
-                }), n.start(e)
-            }, e.prototype._completeBattleResult = function (t) {
-                var e = this;
-                createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e._scene.removeChild(t), t.dispose(), e._endTask()
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._count = 0;
+                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
+                    var s = new o.FormationBoxCombined,
+                        a = [626, 873, 626, 873][r],
+                        _ = [96, 96, 302, 302][r];
+                    s.position.set(a, _);
+                    var u = n[r];
+                    s.initialize(t, u, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(r.TaskBase);
-    e.CellTaskBattle = c
+        }(PIXI.Container);
+    e.FormationBoxContainerCombined = r
 }

@@ -19,35 +19,55 @@ const function263 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(16),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._wave1 = new o.Sprite, e._wave1.scale.set(0), e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.scale.set(0), e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
+    var o = i(2),
+        r = i(13),
+        s = i(23),
+        a = i(458),
+        _ = i(459),
+        u = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                r._attacker = e, r._slot1 = i, r._slot2 = n, r._friend = r._attacker.friend, 1 == r._friend ? r._base_pos = new PIXI.Point(-162, -131) : r._base_pos = new PIXI.Point(435, -131), r._view = new a.CutinCanvas;
+                var s = Math.floor(3 * Math.random());
+                r._telop1 = new _.CutinTelop(s, o);
+                var u = Math.floor(3 * Math.random());
+                return r._telop2 = new _.CutinTelop(u, o), r._preload_task = new l(e, i, n), r
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._wave1.texture = r.BATTLE_MAIN.getTexture(108), this._wave2.texture = r.BATTLE_MAIN.getTexture(108)
-            }, e.prototype.play = function () {
-                var t = this;
-                createjs.Tween.get(this._wave1).to({
-                    scaleX: 1.83,
-                    scaleY: 1.83
-                }, 233).to({
-                    scaleX: 6,
-                    scaleY: 6,
-                    alpha: 0
-                }, 500, createjs.Ease.sineIn), createjs.Tween.get(this._wave2).wait(66).to({
-                    scaleX: 1.83,
-                    scaleY: 1.83
-                }, 233).to({
-                    scaleX: 6,
-                    scaleY: 6,
-                    alpha: 0
-                }, 500, createjs.Ease.sineIn).call(function () {
-                    t.removeChildren(), null != t.parent && t.parent.removeChild(t)
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPreloadTask = function () {
+                return this._preload_task
+            }, e.prototype._endTask = function () {
+                this._attacker = null, this._slot1 = null, this._slot2 = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view.dispose(), this._view = null, this._telop1 = null, this._telop2 = null, this._preload_task = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.Wave = s
+        }(o.TaskBase);
+    e.CutinDouble = u;
+    var l = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._attacker = e, o._slot1 = i, o._slot2 = n, o
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipImage()
+        }, e.prototype._loadShipImage = function () {
+            var t = this,
+                e = new r.ShipLoader;
+            e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
+                t._loadSlotTextImage()
+            })
+        }, e.prototype._loadSlotTextImage = function () {
+            var t = this;
+            if (null == this._slot1 && null == this._slot2) this._endTask();
+            else {
+                var e = new s.SlotLoader;
+                null != this._slot1 && e.add(this._slot1.mstID, "btxt_flat"), null != this._slot2 && e.add(this._slot2.mstID, "btxt_flat"), e.load(function () {
+                    t._endTask()
+                })
+            }
+        }, e
+    }(o.TaskBase)
 }

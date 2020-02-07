@@ -19,53 +19,32 @@ const function1432 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(20),
-        s = i(2),
-        a = i(1433),
-        _ = i(1440),
-        u = i(477),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = i(22),
+        r = i(2),
+        s = i(1433),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._banner = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
-            }, e.prototype._opening = function () {
+                var t = this;
+                if (null == this._banner) return void this._endTask();
+                this._banner.moveFront(function () {
+                    t._antiAircraft()
+                })
+            }, e.prototype._antiAircraft = function () {
                 var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = this._scene.view.layer_cutin,
-                    n = new _.PhaseAllyOpening(this._model, e, i);
-                n.preload(function () {
-                    e.addAllyBannerGroup(t._model.ships), n.start(function () {
-                        t._light()
+                    e = this._banner.friend,
+                    i = new s.AntiAircraftFire;
+                i.initialize(), i.x = e ? o.BannerSize.W : 0, i.rotation = (e ? -60 : 240) / 180 * Math.PI, this._banner.addChild(i), i.getAnimationTask().start(function () {
+                    t._banner.removeChild(i), t._banner.moveDefault(), t._banner.once("complete_moveDefault", function () {
+                        t._endTask()
                     })
                 })
-            }, e.prototype._light = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.ally;
-                new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
-                    t._hougeki()
-                })
-            }, e.prototype._hougeki = function () {
-                var t = this,
-                    e = this._model.getHougekiData(),
-                    i = this._model.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new u.PhaseHougeki(this._scene, e, i, n).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = new o.SerialTask;
-                i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
-                    e.removeAllyBannerGroup(), t._endTask()
-                })
             }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
+                this._banner = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskBase);
-    e.PhaseAllyAttack = l
+        }(r.TaskBase);
+    e.TaskBannerFlareFire = a
 }

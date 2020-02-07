@@ -19,25 +19,43 @@ const function666 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(10),
-        s = i(49),
+    var o = i(8),
+        r = i(161),
+        s = i(1),
         a = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    0 != i._btn.buttonMode && null != i._cb && i._cb()
+                }, i._cb = e, i._layer = new o.AreaBox(.2), i._bg = new PIXI.Sprite, i._btn = new PIXI.Sprite, i.addChild(i._layer), i.addChild(i._bg), i.addChild(i._btn), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
+            return n(e, t), Object.defineProperty(e.prototype, "layer", {
                 get: function () {
-                    return this._model
+                    return this._layer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = r.COMMON_MISC.getTexture(147);
-                this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135, this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = "\u5927\u578b\u8266\u5efa\u9020\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u958b\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
-            }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1.destroy(), this._text1 = null, this._text2.destroy(), this._text2 = null
+            }), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn", {
+                get: function () {
+                    return this._btn
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = r.PORT_MAIN.getTexture(18), this._bg.position.set(340, 273), this._btn.texture = r.PORT_MAIN.getTexture(1), this._btn.position.set(517, 450), this._btn.interactive = !0
+            }, e.prototype.activate = function () {
+                0 == this._btn.buttonMode && (this._btn.buttonMode = !0, this._btn.on(s.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this._btn.buttonMode = !1, this._btn.off(s.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb = null
             }, e
-        }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogLargeBuild = a
+        }(PIXI.Container);
+    e.CompCombinedAlert = a
 }

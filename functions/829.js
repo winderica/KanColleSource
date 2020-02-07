@@ -19,45 +19,17 @@ const function829 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
+    var o = i(3),
         r = i(3),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n.textureNormalFrame = r.REMODEL_POWERUP.getTexture(e), n.textureMaxFrame = r.REMODEL_POWERUP.getTexture(i), n.textBefore = new o.TextBox(30, 5523516), n.textAfter = new o.TextBox(30, 5523516), n.textMax = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(46)), n.textBefore.anchor.x = 0, n.textAfter.anchor.x = 0, n.textMax.anchor.x = 0, n.textMax.position.set(233 - Math.floor(n.textMax.width / 2), 6), n.textMax.visible = !1, n.addChild(n.textBefore, n.textAfter, n.textMax), n
-            }
-            return n(e, t), e.prototype.update = function (t, e, i) {
-                this.textBefore.text = t.toString(), this.textAfter.text = e.toString(), this.textMax.visible = !1, t == e || i ? this.textAfter.style.fill = 5523516 : (this.textAfter.style.fill = 1949120, this.textMax.visible = !0), this.texture = i ? this.textureMaxFrame : this.textureNormalFrame, this.textBefore.position.set(108 + Math.floor(34.0125 - this.textBefore.width / 2), 14), this.textAfter.position.set(203 + Math.floor(31.5 - this.textAfter.width / 2), 14)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.textBefore.destroy(), this.textAfter.destroy(), this.textBefore = null, this.textBefore = null, this.textAfter = null, this.textureNormalFrame = null, this.textureMaxFrame = null
-            }, e
-        }(PIXI.Sprite),
+        s = i(89),
         a = function (t) {
             function e() {
-                return t.call(this, 35, 36) || this
+                var e = t.call(this) || this;
+                return e.headerKansenStatus = new s.TitleBar, e.headerKansenStatus.initialize(o.COMMON_MAIN.getTexture(1), 35), e.headerSelectKyouka = new s.TitleBar, e.headerSelectKyouka.initialize(r.REMODEL_POWERUP.getTexture(3), 26), e.headerSelectKyouka.position.set(536, 0), e.headerKyoukaList = new s.TitleBar, e.headerKyoukaList.initialize(r.REMODEL_POWERUP.getTexture(2), 26), e.headerKyoukaList.position.set(806, 0), e.addChild(e.headerKansenStatus, e.headerSelectKyouka, e.headerKyoukaList), e.cacheAsBitmap = !0, e
             }
-            return n(e, t), e
-        }(s);
-    e.KaryokuBeforeAfterConfirm = a;
-    var _ = function (t) {
-        function e() {
-            return t.call(this, 37, 38) || this
-        }
-        return n(e, t), e
-    }(s);
-    e.RaisouBeforeAfterConfirm = _;
-    var u = function (t) {
-        function e() {
-            return t.call(this, 39, 40) || this
-        }
-        return n(e, t), e
-    }(s);
-    e.TaikuBeforeAfterConfirm = u;
-    var l = function (t) {
-        function e() {
-            return t.call(this, 41, 42) || this
-        }
-        return n(e, t), e
-    }(s);
-    e.SoukouBeforeAfterConfirm = l
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.cacheAsBitmap = !1, this.headerKansenStatus.dispose(), this.headerKyoukaList.dispose(), this.headerSelectKyouka.dispose(), this.headerKansenStatus = null, this.headerKyoukaList = null, this.headerSelectKyouka = null
+            }, e
+        }(PIXI.Container);
+    e.PowerUpHeader = a
 }

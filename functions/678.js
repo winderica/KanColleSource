@@ -19,33 +19,25 @@ const function678 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
+    var o = i(25),
         r = i(2),
-        s = i(6),
-        a = i(679),
-        _ = function (t) {
+        s = i(14),
+        a = function (t) {
             function e(e) {
+                void 0 === e && (e = -1);
                 var i = t.call(this) || this;
-                return i._pre_scene = e, i
+                i.rnd = 0, i._onComplete = function () {
+                    i._endTask()
+                };
+                return i.rnd = e >= 0 && e < 6 ? e : Math.floor(6 * Math.random()), i
             }
             return n(e, t), e.prototype._start = function () {
-                this._playVoice()
-            }, e.prototype._playVoice = function () {
-                var t = o.default.model.deck.get(1),
-                    e = t.getShipModel(0),
-                    i = e.mstID.toString();
-                if (33 == this._pre_scene || 32 == this._pre_scene) o.default.model.basic.getMFlag2() ? (s.SE.play("215"), o.default.sound.voice.play(i, 26)) : o.default.sound.voice.play(i, 7);
-                else if (50 == o.default.model.basic.getTutorialProgress()) o.default.sound.voice.play(i, 26);
-                else if (0 == this._pre_scene) o.default.sound.voice.play(i, 1);
-                else {
-                    var n = Math.random();
-                    n <= .4 && (n <= .05 ? o.default.sound.voice.play(i, 4) : n <= .2 ? o.default.sound.voice.play(i, 3) : o.default.sound.voice.play(i, 2))
-                }
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                var t = o.default.model.basic.port_bgm_id;
-                o.default.sound.bgm.play(t), (new a.TaskCombinedAlert).start(), this._endTask()
+                var t = this,
+                    e = o.MathUtil.zeroPadding(this.rnd + 1, 2) + ".png";
+                new s.UIImageLoader("title").add(e, "title_bg1").add("title2.png", "title_bg2").add("title_main.json").load(function () {
+                    t._onComplete()
+                })
             }, e
         }(r.TaskBase);
-    e.InitializeTask = _
+    e.TaskLoadResourcesTitle = a
 }

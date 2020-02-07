@@ -27,17 +27,16 @@ const function1153 = function (t, e, i) {
         u = i(134),
         l = i(107),
         c = i(163),
-        h = i(204),
+        h = i(201),
         p = i(6),
-        d = i(407),
-        f = i(1157),
-        y = i(1159),
-        m = i(1164),
-        g = i(1168),
-        v = i(1172),
-        b = i(1176),
-        w = i(1186),
-        x = function (t) {
+        d = i(408),
+        f = i(1158),
+        y = i(1160),
+        m = i(1165),
+        g = i(1169),
+        v = i(1173),
+        b = i(1177),
+        w = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._layer = e, n._target = i, n
@@ -62,7 +61,7 @@ const function1153 = function (t, e, i) {
                     var i = o.default.model.const.quest_max,
                         n = o.default.model.basic.getDutyExecutableCount();
                     n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
-                } else 68 == e || 72 == e || (80 == e ? t = new b.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || (90 == e ? t = new w.TaskUseSetsubun(this._fade, this._target) : 93 == e || (t = new d.TaskUseNormalItem(this._fade, this._target))));
+                } else 68 == e || 72 == e || (80 == e ? t = new b.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || 90 == e || 93 == e || (t = new d.TaskUseNormalItem(this._fade, this._target)));
                 null != t ? this._showFade(t) : this._endTask()
             }, e.prototype._showFade = function (t) {
                 var e = this;
@@ -107,5 +106,5 @@ const function1153 = function (t, e, i) {
                 this._layer = null, this._target = null, this._fade = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskUseItem = x
+    e.TaskUseItem = w
 }

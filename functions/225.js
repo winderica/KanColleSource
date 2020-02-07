@@ -19,15 +19,30 @@ const function225 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_kaisou/slotset_ex", n.api_id = e, n.api_item_id = i, n
+    var o = i(140),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.textureRemodelCategory1 = r.REMODEL_POWERUP.getTexture(28), e.textureRemodelCategory2 = r.REMODEL_POWERUP.getTexture(29), e.textureRemodelCategory3 = r.REMODEL_POWERUP.getTexture(30), e.textureRemodelCategory4 = r.REMODEL_POWERUP.getTexture(31), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, t.prototype._connect.call(this)
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.texture = PIXI.Texture.EMPTY, t) {
+                    case o.PowerUpCategory.Karyoku:
+                        this.texture = this.textureRemodelCategory1;
+                        break;
+                    case o.PowerUpCategory.Raisou:
+                        this.texture = this.textureRemodelCategory2;
+                        break;
+                    case o.PowerUpCategory.Taiku:
+                        this.texture = this.textureRemodelCategory3;
+                        break;
+                    case o.PowerUpCategory.Soukou:
+                        this.texture = this.textureRemodelCategory4
+                }
+            }, e.prototype.dispose = function () {
+                this.textureRemodelCategory1 = null, this.textureRemodelCategory2 = null, this.textureRemodelCategory3 = null, this.textureRemodelCategory4 = null
             }, e
-        }(o.APIBase);
-    e.SlotSetExAPI = r
+        }(PIXI.Sprite);
+    e.IconCategory = s
 }

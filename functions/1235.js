@@ -19,18 +19,16 @@ const function1235 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(15),
+    var o = i(0),
+        r = i(9),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene_dispose_delegate = e, i
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/furniture", e
             }
-            return n(e, t), e.prototype._start = function () {
-                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene_dispose_delegate = null, r.UIImageLoader.clearMemoryCache("duty"), t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.furniture.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskDutySceneFinalize = s
+        }(r.APIBase);
+    e.UserFurnitureAPI = s
 }

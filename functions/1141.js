@@ -21,8 +21,8 @@ const function1141 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(15),
-        a = i(245),
+        s = i(14),
+        a = i(243),
         _ = function (t) {
             function e() {
                 return t.call(this) || this
@@ -38,7 +38,7 @@ const function1141 = function (t, e, i) {
             }, e.prototype._load2 = function () {
                 var t = this,
                     e = new s.UIImageLoader("item");
-                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.add("item_ilist_setsubun.json"), e.load(function () {
+                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
                     t._loadSkinResource()
                 })
             }, e.prototype._loadSkinResource = function () {

@@ -19,50 +19,31 @@ const function674 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(10),
-        s = function (t) {
+    var o = i(0),
+        r = i(310),
+        s = i(311),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._onChange = function () {
-                    for (var t = 0, i = e.children; t < i.length; t++) {
-                        i[t].update()
-                    }
-                };
-                for (var i = 0; i < 30; i++) {
-                    var n = new a;
-                    e.addChild(n)
-                }
-                return e.visible = !1, e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(null, {
-                    loop: !0,
-                    onChange: this._onChange
-                }), this.visible = !0)
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
+            return n(e, t), e.prototype.initialize = function () {
+                var t = o.default.resources.getUIImage("title_bg1");
+                this._bg = new PIXI.Sprite(t), this._parts_layer = new PIXI.Container, this._logo = new PIXI.Sprite(r.TITLE_MAIN.getTexture(3)), this._logo.scale.set(.6, .6), this._logo.anchor.set(.5, .5), this._logo.position.set(234, 264), this._kira = new s.KiraLayer, this._kira.scale.set(.6, .6), this._kira.position.set(144, 183), this._kira.initialize(), this._bar = new PIXI.Graphics, this._bar.beginFill(2466210), this._bar.drawRect(0, 0, 960, 30), this._bar.endFill(), this._bar.position.set(120, 663), this._bar.scale.x = 0, this._bar_frame = new PIXI.Graphics, this._bar_frame.lineStyle(3, 16777215), this._bar_frame.drawRect(0, 0, 960, 30), this._bar_frame.endFill(), this._bar_frame.position.set(120, 663), this.addChild(this._bg), this._parts_layer.addChild(this._logo), this._parts_layer.addChild(this._kira), this._parts_layer.addChild(this._bar), this._parts_layer.addChild(this._bar_frame), this.addChild(this._parts_layer)
             }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren()
+                this._kira.dispose()
+            }, e.prototype.setProgress = function (t) {
+                this._bar.scale.x = t / 100
+            }, e.prototype.hideTween = function (t) {
+                var e = createjs.Tween.get(this._bg).to({
+                        alpha: 0
+                    }, 300),
+                    i = createjs.Tween.get(this._parts_layer).to({
+                        alpha: 0
+                    }, 100);
+                (e.duration >= i.duration ? e : i).call(function () {
+                    t()
+                })
             }, e
         }(PIXI.Container);
-    e.BonusInsertParticle = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._vx = 0, e._vy = 0, e._vr = 0, e._vscale = 0;
-            return e.texture = r.COMMON_MISC.getTexture(114), e._init(), e
-        }
-        return n(e, t), e.prototype.update = function () {
-            if (--this._life < 0 && (this.alpha -= .1 * Math.random() + .1, this.alpha <= 0)) return void this._init();
-            this.x += this._vx, this.y += this._vy, this.rotation += this._vr, this.scale.x += this._vscale, this.scale.y += this._vscale;
-            var t = 60 / createjs.Ticker.framerate;
-            this._vx *= 1 + .01 * t, this._vy += .01 * t
-        }, e.prototype._init = function () {
-            var t = 60 / createjs.Ticker.framerate;
-            this.x = o.default.width / 2, this.y = o.default.height / 2 - 45, this.alpha = 1, this.scale.set(0), this._life = 100 * t, this._life += 100 * Math.random() * t, this._vx = 6 * Math.random() * t, Math.random() < .5 && (this._vx *= -1), this._vy = (12 * Math.random() - 9) * t;
-            var e = 50 / 180 * Math.PI * t;
-            this._vr = (Math.random() * e + 1) / 100, this._vscale = (.0025 * Math.random() + .005) * t
-        }, e
-    }(PIXI.Sprite)
+    e.TitleView1 = a
 }

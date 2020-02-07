@@ -19,47 +19,50 @@ const function252 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(19),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._activated = !1;
-                var i = r.MAP_COMMON.getTexture(17);
-                return e._wave = new o.Sprite(i), e._wave.anchor.set(.5), e._wave.scale.set(0), e.addChild(e._wave), e
+    var o = i(19),
+        r = function (t) {
+            function e(e) {
+                void 0 === e && (e = void 0);
+                var i = t.call(this) || this;
+                return i._img = new PIXI.Sprite, i.addChild(i._img), void 0 != e && i.update(e), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "activated", {
-                get: function () {
-                    return this._activated
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this._startTween())
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._stopTween()
-            }, e.prototype.selectedScale = function () {
-                this._wave.scale.set(1), this._wave.alpha = 1
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._wave = null
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._wave.scale.set(0), this._wave.alpha = 1, this._t = createjs.Tween.get(this._wave, {
-                    loop: !0
-                }).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 800).to({
-                    scaleX: 1.35,
-                    scaleY: 1.35,
-                    alpha: 0
-                }, 300).to({
-                    scaleX: 0,
-                    scaleY: 0,
-                    alpha: 1
-                }, 0))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype.update = function (t) {
+                if (-1 == t) return this._img.position.set(-9, -9), void(this._img.texture = o.MAP_COMMON.getTexture(74));
+                switch (this._img.position.set(-8, -11), t) {
+                    case 0:
+                        this._img.texture = o.MAP_COMMON.getTexture(64);
+                        break;
+                    case 1:
+                        this._img.texture = o.MAP_COMMON.getTexture(65);
+                        break;
+                    case 2:
+                        this._img.texture = o.MAP_COMMON.getTexture(66);
+                        break;
+                    case 3:
+                        this._img.texture = o.MAP_COMMON.getTexture(67);
+                        break;
+                    case 4:
+                        this._img.texture = o.MAP_COMMON.getTexture(68);
+                        break;
+                    case 5:
+                        this._img.texture = o.MAP_COMMON.getTexture(69);
+                        break;
+                    case 6:
+                        this._img.texture = o.MAP_COMMON.getTexture(70);
+                        break;
+                    case 7:
+                        this._img.texture = o.MAP_COMMON.getTexture(71);
+                        break;
+                    case 8:
+                        this._img.texture = o.MAP_COMMON.getTexture(72);
+                        break;
+                    case 9:
+                        this._img.texture = o.MAP_COMMON.getTexture(73);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
+                }
             }, e
-        }(PIXI.Graphics);
-    e.CellWave = s
+        }(PIXI.Container);
+    e.NumericalDisplay = r
 }

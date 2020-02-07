@@ -23,21 +23,21 @@ const function303 = function (t, e, i) {
         r = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._deck_id = e, n._deck_name = i, n
+                return n._area_id = e, n._map_no = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "deck_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "area_id", {
                 get: function () {
-                    return this._deck_id
+                    return this._area_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "deck_name", {
+            }), Object.defineProperty(e.prototype, "map_no", {
                 get: function () {
-                    return this._deck_name
+                    return this._map_no
                 },
                 enumerable: !0,
                 configurable: !0
             }), e
         }(o.RewardModel);
-    e.RewardModelDeck = r
+    e.RewardModelMap = r
 }

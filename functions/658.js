@@ -19,49 +19,30 @@ const function658 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onUpdate = function () {
-                    if (e.children.length < 20 && Math.random() < .1) {
-                        var t = new s;
-                        e.addChild(t)
-                    }
-                    for (var i = 0, n = e.children; i < n.length; i++) {
-                        var o = n[i],
-                            t = o;
-                        null != t && t.update()
-                    }
-                }, e
+    var o = i(0),
+        r = i(70),
+        s = i(49),
+        a = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(35).call(this._onUpdate))
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this.removeChildren())
-            }, e.prototype.dispose = function () {
-                this.deactivate()
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                var t = this,
+                    e = this.model.mst_id,
+                    i = new r.UseitemLoader;
+                i.add(e, 1), i.load(function () {
+                    var i = o.default.resources.getUseitem(e, 1);
+                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
+                })
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._card), this._card = null
             }, e
-        }(PIXI.Container);
-    e.ModelChangeParticleLayer = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this, o.COMMON_MISC.getTexture(51)) || this;
-            return e._state = 0, e.anchor.set(.5), e.x = 600, e.y = 360 + 300 * Math.random() - 225, e.scale.set(.1), e.alpha = 0, e._dir = Math.random() < .5 ? 1 : -1, e._life = 60 * Math.random() + 30, e._xspd = 1.2 * (7 * Math.random() + 6) * e._dir, e._yspd = 1.2 * -9, e._gg = .36, e
-        }
-        return n(e, t), e.prototype.update = function () {
-            switch (this.x += this._xspd, this.y += this._yspd, this._yspd += this._gg, this.scale.x < .6 && (this.scale.x = this.scale.x + .1, this.scale.y = this.scale.y + .1), this.rotation += 3 * this._dir / 180 * Math.PI, this._state) {
-                case 0:
-                    this.alpha += .1, this.alpha >= 1 && (this._state = 1);
-                    break;
-                case 1:
-                    this._life--, this._life <= 0 && (this._state = 2);
-                    break;
-                case 2:
-                    this.parent.removeChild(this)
-            }
-        }, e
-    }(PIXI.Sprite)
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogUseitem = a
 }

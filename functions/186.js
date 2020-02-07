@@ -19,35 +19,17 @@ const function186 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(23),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._plane_f = i, o._plane_e = n, o
+    var o = i(24),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._plane_f <= 0 && this._plane_e <= 0 ? this._endTask() : this._loadImage()
-            }, e.prototype._loadImage = function () {
-                var t = this,
-                    e = this._scene.view.raderLayer,
-                    i = new s.SlotLoader;
-                if (this._plane_f > 0) {
-                    o.default.model.slot.getMst(this._plane_f);
-                    i.add(this._plane_f, "item_up"), e.rader_e.touch_plane.initialize(this._plane_f)
-                }
-                if (this._plane_e > 0) {
-                    o.default.model.slot.getMst(this._plane_e);
-                    i.add(this._plane_e, "item_up"), e.rader_f.touch_plane.initialize(this._plane_e)
-                }
-                i.load(function () {
-                    t._show()
-                })
-            }, e.prototype._show = function () {
-                var t = this._scene.view.raderLayer;
-                t.rader_f.touch_plane.show(), t.rader_e.touch_plane.show(), this._endTask()
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this.removeChildren();
+                var i = t ? e ? "battle_telop_mes2_f_hbg" : "battle_telop_mes2_f_ybg" : e ? "battle_telop_mes2_e_hbg" : "battle_telop_mes2_e_ybg",
+                    n = PIXI.Sprite.fromFrame(i);
+                n.x = -Math.floor(n.width / 2), n.y = -Math.floor(n.height / 2), this.addChild(n)
             }, e
-        }(r.TaskBase);
-    e.TaskShowTouchPlane = a
+        }(o.Container);
+    e.TelopBG = r
 }

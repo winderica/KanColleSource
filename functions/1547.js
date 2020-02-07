@@ -19,46 +19,44 @@ const function1547 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(1548),
-        s = i(489),
-        a = function (t) {
+    var o = i(17),
+        r = i(24),
+        s = i(31),
+        a = i(42),
+        _ = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype._initializeBGStampLineImages = function () {
-                this._BGStampLineVisible = !0
-            }, e.prototype._initializeMapImages = function () {
-                this._maps = [];
-                for (var t = 0; t < 6; t++) {
-                    var e = new PIXI.Sprite;
-                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(4), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(5), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(6), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(7)][t], e.x = 36 + 180.5 * t, e.y = 101, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
+            return n(e, t), e.prototype.initialize = function (t) {
+                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
+                else switch (t) {
+                    case 1:
+                        this._img.texture = s.SALLY_COMMON.getTexture(1);
+                        break;
+                    case 2:
+                        this._img.texture = s.SALLY_COMMON.getTexture(3);
+                        break;
+                    case 3:
+                        this._img.texture = s.SALLY_COMMON.getTexture(5);
+                        break;
+                    case 4:
+                        this._img.texture = s.SALLY_COMMON.getTexture(9);
+                        break;
+                    case 5:
+                        this._img.texture = s.SALLY_COMMON.getTexture(11);
+                        break;
+                    case 6:
+                        this._img.texture = s.SALLY_COMMON.getTexture(13);
+                        break;
+                    case 7:
+                        this._img.texture = s.SALLY_COMMON.getTexture(7);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
                 }
-            }, e.prototype._createMapShowTweens = function () {
-                return this.__createMapShowTweens(700)
-            }, e.prototype._initializeStampImages = function () {
-                this._stamps = [];
-                for (var t = 0; t < 5; t++) {
-                    var e = new o.Sprite;
-                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(0), e.x = 158 + 180 * t, e.y = 231.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
-                }
-            }, e.prototype._createStampShowTweens = function () {
-                return this.__createStampShowTweens(700)
-            }, e.prototype._showText = function () {
-                this.__showText(new _)
-            }, e.prototype._createStampLast = function () {
-                var t = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(1),
-                    e = new o.Sprite(t);
-                return e.anchor.set(.5), e.position.set(1050, 314.5), e.alpha = 0, e
+                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e
-        }(s.TaskEventEndingBase);
-    e.TaskEventEnding2 = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(8), this._text1.position.set(114, 249), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(9), this._text2.position.set(243, 510)
-        }, e
-    }(s.TextsBase)
+        }(r.Container);
+    e.AreaIcon = _
 }

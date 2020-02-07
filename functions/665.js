@@ -20,36 +20,39 @@ const function665 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(312),
-        s = i(4),
-        a = i(80),
-        _ = i(49),
-        u = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+        r = i(2),
+        s = i(666),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e._view.deactivate(), e._hideDialog()
+                }, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
+            return n(e, t), e.prototype._start = function () {
+                o.default.model.deck.combined.type >= 0 ? this._endTask() : this._breakCombined()
+            }, e.prototype._breakCombined = function () {
+                o.default.model.deck.combined.__update__(0), this._showDialog()
+            }, e.prototype._showDialog = function () {
                 var t = this,
-                    e = this.model.mst_id,
-                    i = this.model.name,
-                    n = new a.FurnitureLoader;
-                n.add(e, "reward"), n.load(function () {
-                    var n = o.default.model.furniture.getData(e);
-                    if (null != n) {
-                        var a = (n.type, o.default.resources.getFurniture(e, "reward"));
-                        t._thumb = new r.FurnitureThumbnail(!0), t._thumb.position.set(-123, -187), t._thumb.initialize(), t._thumb.update(a), t._dialog.container.addChild(t._thumb), t._text = new s.TextBox(25, 16774898), t._text.text = i, t._text.x = -Math.round(t._text.width / 2), t._text.y = 124, t._dialog.container.addChild(t._text)
-                    }
-                    t._showDialog()
+                    e = o.default.view.overLayer;
+                this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({
+                    alpha: 1
+                }, 300), createjs.Tween.get(this._view.btn).wait(100).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    t._view.activate()
                 })
-            }, e.prototype._removeContent = function () {
-                null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && (null != this._text.parent && this._text.parent.removeChild(this._text), this._text.destroy()), this._text = null
+            }, e.prototype._hideDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._view.btn).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._view.bg).wait(100).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._view.parent.removeChild(t._view), t._endTask()
+                })
             }, e
-        }(_.TaskRewardDialogBase);
-    e.TaskRewardDialogFurniture = u
+        }(r.TaskBase);
+    e.TaskCombinedAlert = a
 }

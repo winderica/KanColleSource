@@ -20,14 +20,14 @@ const function1074 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(233),
+        r = i(231),
         s = i(1075),
         a = i(1081),
         _ = i(1087),
-        u = i(383),
+        u = i(384),
         l = i(1088),
         c = i(85),
-        h = i(382),
+        h = i(383),
         p = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -99,8 +99,6 @@ const function1074 = function (t, e, i) {
                 };
                 return [t.item1_id, t.item2_id].forEach(function (t) {
                     switch (t) {
-                        case 0:
-                            break;
                         case 1:
                             e.rewardRepairKit = !0;
                             break;
@@ -110,7 +108,9 @@ const function1074 = function (t, e, i) {
                         case 3:
                             e.rewardDevKit = !0;
                             break;
-                        default:
+                        case 10:
+                        case 11:
+                        case 12:
                             e.rewardOtherItem = !0
                     }
                 }), e

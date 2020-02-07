@@ -22,7 +22,7 @@ const function1024 = function (t, e, i) {
     var o = i(4),
         r = i(169),
         s = i(169),
-        a = i(32),
+        a = i(31),
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;

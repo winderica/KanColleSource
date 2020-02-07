@@ -19,42 +19,46 @@ const function1544 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(11),
-        s = i(15),
-        a = i(1545),
-        _ = i(1547),
-        u = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._layer = e, r._area_id = i, r._map_no = n, r._file_suffix = o, r
+    var o = i(12),
+        r = i(1545),
+        s = i(489),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (this._area_id != o.EVENT_AREA_ID) return void this._endTask();
-                switch (this._map_no) {
-                    case 4:
-                        var e = new s.UIImageLoader("battle_result");
-                        e.add("battle_result_event_ed1_" + this._file_suffix + ".json"), e.load(function () {
-                            new a.TaskEventEnding1(t._layer).start(function () {
-                                t._endTask()
-                            })
-                        });
-                        break;
-                    case 6:
-                        var e = new s.UIImageLoader("battle_result");
-                        e.add("battle_result_event_ed2_" + this._file_suffix + ".json"), e.load(function () {
-                            new _.TaskEventEnding2(t._layer).start(function () {
-                                t._endTask()
-                            })
-                        });
-                        break;
-                    default:
-                        this._endTask()
+            return n(e, t), e.prototype._initializeBGStampLineImages = function () {
+                this._BGStampLineVisible = !0
+            }, e.prototype._initializeMapImages = function () {
+                this._maps = [];
+                for (var t = 0; t < 6; t++) {
+                    var e = new PIXI.Sprite;
+                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(4), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(5), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(6), r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(7)][t], e.x = 36 + 180.5 * t, e.y = 101, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
                 }
-            }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
+            }, e.prototype._createMapShowTweens = function () {
+                return this.__createMapShowTweens(700)
+            }, e.prototype._initializeStampImages = function () {
+                this._stamps = [];
+                for (var t = 0; t < 5; t++) {
+                    var e = new o.Sprite;
+                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(0), e.x = 158 + 180 * t, e.y = 231.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
+                }
+            }, e.prototype._createStampShowTweens = function () {
+                return this.__createStampShowTweens(700)
+            }, e.prototype._showText = function () {
+                this.__showText(new _)
+            }, e.prototype._createStampLast = function () {
+                var t = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(1),
+                    e = new o.Sprite(t);
+                return e.anchor.set(.5), e.position.set(1050, 314.5), e.alpha = 0, e
             }, e
-        }(r.TaskBase);
-    e.TaskEventEnding = u
+        }(s.TaskEventEndingBase);
+    e.TaskEventEnding2 = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(8), this._text1.position.set(114, 249), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_ATBEXGSDNCHAYFNU.getTexture(9), this._text2.position.set(243, 510)
+        }, e
+    }(s.TextsBase)
 }

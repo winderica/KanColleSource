@@ -19,102 +19,88 @@ const function617 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(0),
         r = i(4),
-        s = i(195),
+        s = i(161),
         a = i(1),
         _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._tween = new Array(2), i._textScrollEnable = !0, i._onChibiClick = function () {
-                    i._textScrollEnable && !i._musicChibiJumping && (i._musicChibiJumping = !0, i._tween[4] = createjs.Tween.get(i._musicChibi).to({
-                        y: i._offset_y + 144.5
-                    }, 1).to({
-                        y: i._offset_y + 144.5 - 48
-                    }, 250, createjs.Ease.cubicOut).to({
-                        y: i._offset_y + 144.5
-                    }, 250, createjs.Ease.cubicIn).call(function () {
-                        i._tween[4] = null, i._musicChibiJumping = !1
-                    }))
-                }, i._furnitureJukeBoxBGMLineModel = e, i._textScrollEnable = !0, i
+            function e() {
+                var e = t.call(this) || this;
+                e._BASE_Y = 480, e._MOVE_Y = 225, e._items = null, e._opened = !1, e._tween = null, e._onClick = function () {
+                    1 == e._opened ? e.close() : e.open()
+                }, e._onAnimationComplete = function () {
+                    e._tween = null, e._opened = !e._opened, e._btn.update(e._opened), e._btn.activate(e._onClick)
+                }, e._bg = new PIXI.Sprite, e._bg.y = -32, e.addChild(e._bg), e._btn = new u, e._btn.position.set(3, -27), e.addChild(e._btn), e._items = [];
+                for (var i = 0; i < 5; i++) {
+                    var n = new l;
+                    n.position.set(54, 51 + 36 * i), e.addChild(n), e._items.push(n)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "jukebox_close", {
-                get: function () {
-                    return this._close
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "jukebox_btn_bgm", {
-                get: function () {
-                    return this._btn_bgm
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.init = function () {
-                this._offset_x = 148, this._offset_y = 264, this._bg = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(5)), this._bg.position.set(this._offset_x, this._offset_y), this.addChild(this._bg), this._close = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(9)), this._close.position.set(this._offset_x + 892, this._offset_y + 4), this._close.interactive = this._close.buttonMode = !0, this.addChild(this._close), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._btn_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(6)), this._btn_bgm.position.set(this._offset_x + 639, this._offset_y - 4), this._btn_bgm.interactive = this._btn_bgm.buttonMode = !0, this.addChild(this._btn_bgm)), this._text_mask = new PIXI.Graphics, this._text_mask.beginFill(11184810), this._text_mask.drawRect(this._offset_x + 216, this._offset_y + 52, 510, 22), this._text_mask.endFill(), this.addChild(this._text_mask), this._text = new r.TextBox(19, 4473924), this._text.mask = this._text_mask, this._text.position.set(o.default.width, this._offset_y + 51), this._text.anchor.set(.5, 0), this._text.text = "\u300c" + this._furnitureJukeBoxBGMLineModel.api_name + "\u300d\u3000\u30ea\u30af\u30a8\u30b9\u30c8\u4e2d\u266a", this.addChild(this._text), this._musicChibi = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(12)), this._musicChibi.position.set(this._offset_x + 36.5, this._offset_y + 144.5), this._musicChibi.anchor.set(.5, .5), this._musicChibi.interactive = !0, this.addChild(this._musicChibi)
-            }, e.prototype.text_scroll = function () {
-                this._textScrollEnable && (this._tween[0] = createjs.Tween.get(this._text, {
-                    loop: !0
-                }).to({
-                    x: 1138
-                }, 1).to({
-                    x: 613
-                }, 5e3).wait(1e3).to({
-                    x: 88
-                }, 5e3))
-            }, e.prototype.musicChibiAnime = function () {
-                this._musicChibiMove(), this._musicChibiTexture(), this._musicChibiRot(), this._musicChibi.on(a.EventType.CLICK, this._onChibiClick), this._musicChibiJumping = !1
-            }, e.prototype._musicChibiMove = function () {
-                var t = this;
-                this._textScrollEnable && (this._tween[1] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).to({
-                    x: 867,
-                    width: 94,
-                    height: 82
-                }, 1).to({
-                    x: 232
-                }, 5e3).to({
-                    width: 1
-                }, 500).call(function () {
-                    t._musicChibi.scale.x = -1, t._musicChibi.width = 1
-                }).to({
-                    width: 94
-                }, 500).to({
-                    x: 867
-                }, 5e3).to({
-                    width: 1
-                }, 500).call(function () {
-                    t._musicChibi.scale.x = 1, t._musicChibi.width = 1
-                }).to({
-                    width: 94
-                }, 500))
-            }, e.prototype._musicChibiTexture = function () {
-                var t = this;
-                this._textScrollEnable && (this._tween[2] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(12)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(14)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
-                }))
-            }, e.prototype._musicChibiRot = function () {
-                this._textScrollEnable && (this._tween[3] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).to({
-                    rotation: .05
-                }, 1).wait(249).to({
-                    rotation: -.05
-                }, 1).wait(249))
-            }, e.prototype.discard = function () {
-                this._musicChibi.off(a.EventType.CLICK, this._onChibiClick), this._textScrollEnable = !1;
-                for (var t = 0; t < this._tween.length; t++) null != this._tween[t] && (this._tween[t].setPaused(!0), this._tween[t].removeAllEventListeners());
-                this.removeChildren(), this._text.destroy()
+            return n(e, t), e.prototype.initialize = function () {
+                this.position.set(534, this._BASE_Y + this._MOVE_Y), this._bg.texture = s.PORT_MAIN.getTexture(4), this._btn.update(!1), this._btn.activate(this._onClick)
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._btn.dispose(), null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+            }, e.prototype.open = function (t) {
+                if (void 0 === t && (t = 200), null != this._tween) {
+                    if (0 == this._opened) return;
+                    this._tween.setPaused(!0), this._tween = null
+                } else if (1 == this._opened) return;
+                this._btn.deactivate(), this._initData(), this._animation(this._BASE_Y, t)
+            }, e.prototype.close = function (t) {
+                if (void 0 === t && (t = 200), null != this._tween) {
+                    if (1 == this._opened) return;
+                    this._tween.setPaused(!0), this._tween = null
+                } else if (0 == this._opened) return;
+                this._btn.deactivate(), this._initData(), this._animation(this._BASE_Y + this._MOVE_Y, t)
+            }, e.prototype._initData = function () {
+                for (var t = o.default.model.log.list, e = 0; e < 5; e++) {
+                    var i = this._items[e];
+                    if (t.length <= e) i.visible = !1;
+                    else {
+                        var n = t[e];
+                        i.update(n.type, n.message)
+                    }
+                }
+            }, e.prototype._animation = function (t, e) {
+                e <= 0 ? (this.y = t, this._onAnimationComplete()) : this._tween = createjs.Tween.get(this).to({
+                    y: t
+                }, e).call(this._onAnimationComplete)
             }, e
         }(PIXI.Container);
-    e.JukeBoxDisp = _
+    e.LogBox = _;
+    var u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    null != e._cb_onClick && e._cb_onClick()
+                }, e.beginFill(16711680, 0), e.drawRect(0, 0, 131, 27), e.endFill(), e._tag = new PIXI.Sprite, e._tag.position.set(20, 2), e.addChild(e._tag), e
+            }
+            return n(e, t), e.prototype.update = function (t) {
+                this._tag.texture = 1 == t ? s.PORT_MAIN.getTexture(2) : s.PORT_MAIN.getTexture(3)
+            }, e.prototype.activate = function (t) {
+                this._cb_onClick = t, 1 != this.buttonMode && (this.interactive = !0, this.buttonMode = !0, this.on(a.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.interactive = !1, this.buttonMode = !1, this.off(a.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this._cb_onClick = null, this.deactivate()
+            }, e
+        }(PIXI.Graphics),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._type = new PIXI.Sprite, e._type.position.set(-23, -12), e.addChild(e._type), e._text = new r.TextBox(17, 1949120), e._text.position.set(33, -12), e.addChild(e._text), e
+            }
+            return n(e, t), e.prototype.update = function (t, e) {
+                var i = [-1, 16, 8, 11, 12, 9, 14, 17, 10, 7, 13, 6, 5, -1, 17, 15],
+                    n = i[t];
+                this._type.texture = n < 0 ? PIXI.Texture.EMPTY : s.PORT_MAIN.getTexture(n), this._text.text = e
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._type = null, this._text && this._text.destroy(), this._text = null
+            }, e
+        }(PIXI.Container)
 }

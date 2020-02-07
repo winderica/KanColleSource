@@ -19,33 +19,54 @@ const function228 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
+    var o = i(5),
+        r = i(8),
+        s = i(41),
+        a = i(62),
+        _ = i(82),
+        u = i(937),
+        l = i(1),
+        c = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(21)),
-                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(22)),
-                    r = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(23)),
-                    s = new PIXI.Graphics;
-                return r.position.set(-22, -25), r.visible = !1, e.addChild(n, s, i, r), e.redLight = r, e.gauge = s, e
+                var e = t.call(this) || this;
+                return e._message = "", e._clickGuard = new r.AreaBox(0), e._rarityBG = new a.RarityBG, e._target = new PIXI.Sprite, e._materialCircleRollAnimation = new u.MaterialCircleRollAnimation, e._materialCircleRollAnimation.x = o.default.width / 2, e._materialCircleRollAnimation.y = o.default.height / 2, e._messageBox = new _.MessageBox, e._gearBtnHome = new s.GearBtnHome, e._gearBtnHome.position.set(1140, 660), e._gearBtnHome.initialize(), e._white = new r.AreaBox(1, 16777215), e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                var i = t / e * 100;
-                i <= 0 ? i = 0 : 100 <= i && (i = 100), this.updateGauge(i), this.updateBrokenLamp(t / e)
-            }, e.prototype.updateBrokenLamp = function (t) {
-                null != this.tween && (this.tween.setPaused(!0), this.tween = null);
-                var e = .7 * (1 - t);
-                this.redLight.visible = !0, this.redLight.alpha = 0, this.tween = createjs.Tween.get(this.redLight), this.tween.to({
-                    alpha: e
-                }, 1e3).to({
+            return n(e, t), e.prototype.play = function (t, e) {
+                this._cb_onWhiteOut = t, this._cb_onComplete = e, this.addChild(this._clickGuard), this.addChild(this._rarityBG), this.addChild(this._target), this.addChild(this._materialCircleRollAnimation), this._01_whiteOut()
+            }, e.prototype._01_whiteOut = function () {
+                var t = this;
+                this._materialCircleRollAnimation.play(), this.addChild(this._white), createjs.Tween.get(this._white).to({
                     alpha: 0
-                }, 1e3), this.tween.loop = !0, this.tween.play(null)
-            }, e.prototype.updateGauge = function (t) {
-                var e = 0;
-                t < 33.3 ? (e = 255 << 16, e += t / 33.3 * 128 << 8) : t < 66.6 ? (e = 255 << 16, e += 32768, e += (t - 33.3) / 33.3 * 128 << 8) : (e = 255 - (t - 66.6) / 33.3 * 255 << 16, e += 65280), this.gauge.clear(), this.gauge.beginFill(e), this.gauge.drawRect(0, 0, t / 100 * 237, 10), this.gauge.endFill()
+                }, 500).call(function () {
+                    t.removeChild(t._white), t._02_showMessageBox()
+                })
+            }, e.prototype._02_showMessageBox = function () {
+                var t = this;
+                this._messageBox.y = o.default.height, this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
+                    y: 480
+                }, 300, createjs.Ease.cubicOut).call(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), t._messageBox.activate(), t._03_waitClick()
+                })
+            }, e.prototype._03_waitClick = function () {
+                var t = this,
+                    e = new r.AreaBox(0);
+                e.buttonMode = !0, this.addChild(e), e.once(l.EventType.CLICK, function () {
+                    t._04_whiteInOut()
+                })
+            }, e.prototype._04_whiteInOut = function () {
+                var t = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 100).call(function () {
+                    t.removeChild(t._rarityBG), t.removeChild(t._target), t.removeChild(t._materialCircleRollAnimation), t.removeChild(t._messageBox), t._messageBox.deactivate(), t.removeChild(t._gearBtnHome), t._gearBtnHome.deactivate(), null != t._cb_onWhiteOut && t._cb_onWhiteOut()
+                }).to({
+                    alpha: 0
+                }, 500).call(function () {
+                    t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                })
             }, e.prototype.dispose = function () {
-                this.removeChild(this.gauge), this.removeChild(this.redLight), null != this.tween && (this.tween.setPaused(!0), createjs.Tween.removeTweens(this.redLight)), this.gauge = null, this.redLight = null, this.tween = null, this.removeChildren()
+                this._cb_onWhiteOut = null, this._cb_onComplete = null, this.removeChildren(), this._clickGuard = null, this._rarityBG.dispose(), this._rarityBG = null, this._target = null, this._materialCircleRollAnimation.dispose(), this._materialCircleRollAnimation = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome.dispose(), this._gearBtnHome = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.RepairHpGaugeView = r
+    e.RewardAnimation = c
 }

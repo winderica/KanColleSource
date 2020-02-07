@@ -19,98 +19,63 @@ const function1408 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(12),
-        s = i(16),
-        a = i(187),
-        _ = i(149),
+    var o = i(5),
+        r = i(0),
+        s = i(12),
+        a = i(263),
+        _ = i(45),
         u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._bg = new o.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._telop_bg = new a.TelopBG, e._telop_bg.position.set(600, 150), e._telop_bg.alpha = 0, e.addChild(e._telop_bg), e._slot_bg1 = new a.TelopBG, e.addChild(e._slot_bg1), e._slot1 = new r.Sprite, e._slot1.anchor.set(.5), e._slot1.scale.set(.9), e._slot1.alpha = 0, e.addChild(e._slot1), e._slot_bg2 = new a.TelopBG, e.addChild(e._slot_bg2), e._slot2 = new r.Sprite, e._slot2.anchor.set(.5), e._slot2.scale.set(.9), e._slot2.alpha = 0, e._slot1_text = new r.Sprite, e._slot1_text.scale.set(.76), e._slot1_text.alpha = 0, e._slot2_text = new r.Sprite, e._slot2_text.scale.set(.76), e._slot2_text.alpha = 0, e._telop = new r.Sprite, e._telop.anchor.set(.5), e._telop.position.set(600, 150), e._telop.alpha = 0, e._plane = new _.Plane(.88), e.addChild(e._slot2), e.addChild(e._slot1_text), e.addChild(e._slot2_text), e.addChild(e._telop), e.addChild(e._plane);
-                var i = new PIXI.Graphics;
-                return i.beginFill(0), i.drawRect(0, 321, 1200, 138), i.endFill(), e.addChild(i), e._slot1.mask = i, i = new PIXI.Graphics, i.beginFill(0), i.drawRect(0, 530, 1200, 138), i.endFill(), e.addChild(i), e._slot2.mask = i, e
+            function e(e, i, n, o) {
+                return t.call(this, e, i, n, o) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "telop_bg", {
-                get: function () {
-                    return this._telop_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot_bg1", {
-                get: function () {
-                    return this._slot_bg1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot1", {
-                get: function () {
-                    return this._slot1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot_bg2", {
-                get: function () {
-                    return this._slot_bg2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot2", {
-                get: function () {
-                    return this._slot2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot1_text", {
-                get: function () {
-                    return this._slot1_text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot2_text", {
-                get: function () {
-                    return this._slot2_text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "telop", {
-                get: function () {
-                    return this._telop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "plane", {
-                get: function () {
-                    return this._plane
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                switch (this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), e) {
-                    case 1:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(141);
-                        break;
-                    case 2:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(135);
-                        break;
-                    default:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(139)
+            return n(e, t), e.prototype.resume = function () {
+                var t = this;
+                null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
+                    t._resume()
+                })) : this._resume()
+            }, e.prototype._start = function () {
+                var t = this,
+                    e = this._attacker.mst_id,
+                    i = this._attacker.isDamaged();
+                this._ship_sprite = new s.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new _.ShipFlash(r.default.resources.getShip(e, i, "full"));
+                var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
+                this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
+                var a = this._base_pos,
+                    u = this._friend ? 1 : -1;
+                this._view.chara.position.set(a.x - 180 * u, a.y + 120), this._view.chara.alpha = 0;
+                var l = 344 - n.x,
+                    c = 597 - n.y;
+                if (this._ship_sprite.x += l, this._ship_sprite.y += c, this._ship_sprite.anchor.set(l / this._ship_sprite.width, c / this._ship_sprite.height), this._shipFlash.position = this._ship_sprite.position, this._shipFlash.anchor = this._ship_sprite.anchor, this._shipFlash.scale = this._ship_sprite.scale, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._view.chara).wait(235).to({
+                        x: a.x - 30 * u,
+                        y: a.y + 15,
+                        alpha: 1
+                    }, 300).to({
+                        x: a.x,
+                        y: a.y
+                    }, 250).call(function () {
+                        t._view.emit("attack"), t._shipFlash.play()
+                    }).wait(135), null != this._slot1 || null != this._slot2) {
+                    var h = this._view.box;
+                    h.initilize(this._attacker);
+                    var p = 0;
+                    1 == this._attacker.friend ? h.x = -60 : (p = o.default.width - h.width, h.x = p + 60), h.y = o.default.height - h.height, h.alpha = 0, createjs.Tween.get(h).wait(365).to({
+                        x: p,
+                        alpha: 1
+                    }, 165).wait(900).to({
+                        alpha: 0
+                    }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
                 }
-            }, e.prototype.dispose = function () {
-                this.removeChildren()
+            }, e.prototype._resume = function () {
+                var t = this;
+                createjs.Tween.get(this._ship_sprite).call(function () {
+                    t._view.emit("attack"), t._shipFlash.play()
+                }).wait(135).wait(200).to({
+                    scaleY: 1.66,
+                    alpha: 0
+                }, 466).call(function () {
+                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.CutinDanchakuCanvas = u
+        }(a.CutinDouble);
+    e.CutinDouble4 = u
 }

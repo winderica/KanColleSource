@@ -1,45 +1,54 @@
 const function60 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._gear = new PIXI.Sprite, e._gear.anchor.set(.5), e.addChild(e._gear), e._btn = new PIXI.Sprite, e._btn.anchor.set(.5), e.addChild(e._btn), e
+    var n = i(0),
+        o = i(25),
+        r = i(106),
+        s = i(69),
+        a = function () {
+            function t() {
+                this._keys = [], this._loader = new PIXI.loaders.Loader
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._gear.texture = o.COMMON_MISC.getTexture(25), this._btn.texture = this._getContentTexture()
-            }, e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._gear, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 6e3))
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype._getContentTexture = function () {
-                return o.COMMON_MISC.getTexture(24)
-            }, e
-        }(PIXI.Container);
-    e.GearBtnNext = r
+            return t.clearMemoryCache = function () {
+                var e = new RegExp("^f\\d{3}_[a-z]?\\d{3}.*\\.png");
+                t._clearMemoryCache(e);
+                var i = new RegExp("^resources/furniture/(movable|normal|thumbnail|picture|outside)/.+");
+                t._clearMemoryCache(i)
+            }, t._clearMemoryCache = function (e) {
+                for (var i = Object.keys(PIXI.utils.TextureCache).filter(function (t) {
+                        return e.test(t)
+                    }), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n],
+                        s = PIXI.utils.TextureCache[r];
+                    s && s.destroy(!0), delete PIXI.utils.TextureCache[r]
+                }
+                t._loaded = t._loaded.filter(function (t) {
+                    return 0 == e.test(t)
+                })
+            }, t.getPath = function (t, e) {
+                var i = o.MathUtil.zeroPadding(t, 3);
+                if ("normal" == e && n.default.model.furniture.isActive(t)) {
+                    var s = r.SuffixUtil.create(t, "furniture_movable");
+                    return n.default.settings.path_root + "resources/furniture/movable/" + i + "_" + s + ".json"
+                }
+                var s = r.SuffixUtil.create(t, "furniture_" + e);
+                return n.default.settings.path_root + "resources/furniture/" + e + "/" + i + "_" + s + ".png"
+            }, t.getVersionQuery = function (t) {
+                var e = s.VersionUtil.get(2, t);
+                return null != e && "" != e && "1" != e ? "version=" + e : ""
+            }, t.prototype.add = function (e, i) {
+                var n = t.getPath(e, i);
+                return null == t._loaded && (t._loaded = []), t._loaded.indexOf(n) >= 0 ? this : (t._loaded.push(n), this._keys.push(n), this._loader = this._loader.add(n), this)
+            }, t.prototype.load = function (t) {
+                var e = this;
+                return void 0 === t && (t = null), this._cb_onComplete = t, this._keys.length > 0 ? this._loader = this._loader.load(function () {
+                    return e._onComplete()
+                }) : this._onComplete(), this
+            }, t.prototype._onComplete = function () {
+                this._cb_onComplete(), this._loader = null, this._cb_onComplete = null
+            }, t
+        }();
+    e.FurnitureLoader = a
 }

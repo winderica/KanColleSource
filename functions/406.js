@@ -19,61 +19,55 @@ const function406 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(4),
-        a = i(3),
-        _ = i(176),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = -1, i._onMouseOver = function () {
-                    i._over.visible = !0
-                }, i._onMouseOut = function () {
-                    i._over.visible = !1
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick(i._mst_id)
-                }, i._cb_onClick = e, i.beginFill(0, 0), i.drawRect(0, 0, 75, 75), i.endFill(), i._img = new PIXI.Sprite, i.addChild(i._img), i._count = new c, i.addChild(i._count), i._over = new PIXI.Sprite, i._over.position.set(-3, -3), i._over.visible = !1, i.addChild(i._over), i.interactive = !0, i
+    var o = i(318),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._eye_open_flag = !0, e._onUpdate = function () {
+                    for (var t = 0, i = e._flowers; t < i.length; t++) {
+                        i[t].update()
+                    }
+                }, e._flowers = [];
+                var i = new s;
+                return i.position.set(151, 10), e.addChild(i), e._flowers.push(i), i = new s, i.position.set(166, 43), e.addChild(i), e._flowers.push(i), i = new s, i.position.set(40, 177), e.addChild(i), e._flowers.push(i), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._over.texture = a.ITEM_ILIST.getTexture(15), this._count.initialize()
-            }, e.prototype.update = function (t, e) {
-                this._mst_id = t, t <= 0 || e <= 0 ? this.visible = !1 : (this._img.texture = this._getTexture(t), this._count.update(e), this.visible = !0)
+                for (var t = 0, e = this._flowers; t < e.length; t++) {
+                    e[t].initialize()
+                }
+                this._update()
             }, e.prototype.activate = function () {
-                0 != this.visible && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+                this._startWaiting()
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+                this._stopWaiting()
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._count.dispose()
-            }, e.prototype._getTexture = function (t) {
-                return o.default.resources.getUseitem(t, 0)
+                this.deactivate()
+            }, e.prototype._update = function () {
+                1 == this._eye_open_flag ? this.texture = o.ITEM_MINI.getTexture(0) : this.texture = o.ITEM_MINI.getTexture(1)
+            }, e.prototype._startWaiting = function () {
+                var t = this;
+                if (null == this._t) {
+                    var e = 0;
+                    e = 1 == this._eye_open_flag ? 3e3 * Math.random() + 200 : 200 * Math.random() + 100, this._t = createjs.Tween.get(null, {
+                        onChange: this._onUpdate
+                    }).wait(e).call(function () {
+                        t._eye_open_flag = !t._eye_open_flag, t._update(), t._t = null, t._startWaiting()
+                    })
+                }
+            }, e.prototype._stopWaiting = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(PIXI.Graphics);
-    e.ItemIcon = u;
-    var l = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._over.texture = a.ITEM_ILIST.getTexture(15), this._count.initialize(99)
-        }, e.prototype._getTexture = function (t) {
-            return _.getPayitemIcon(t)
-        }, e
-    }(u);
-    e.PayItemIcon = l;
-    var c = function (t) {
+        }(PIXI.Sprite);
+    e.MiniChara = r;
+    var s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._max = 0, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._text = new s.TextBox(21, 16777215), e.addChild(e._text), e
+            return e._i = 0, e._rnd = 0, e._startY = 0, e._rnd = .04 * Math.random() + .05, e
         }
-        return n(e, t), e.prototype.initialize = function (t) {
-            void 0 === t && (t = 9999), this._max = t, this.update(0)
-        }, e.prototype.update = function (t) {
-            t = Math.max(t, 0), t = Math.min(t, this._max), this._text.text = t.toString();
-            var e;
-            t < 100 ? (e = 27, this._bg.position.set(36, 36), this._text.position.set(54 - Math.floor(this._text.width / 2), 42)) : t < 1e3 ? (e = 28, this._bg.position.set(25, 39), this._text.position.set(49 - Math.floor(this._text.width / 2), 42)) : (e = 29, this._bg.position.set(12, 40), this._text.position.set(43 - Math.floor(this._text.width / 2), 40)), this._bg.texture = a.ITEM_ILIST.getTexture(e)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg = null, this._text.destroy(), this._text = null
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.ITEM_MINI.getTexture(2), this._startY = this.y
+        }, e.prototype.update = function () {
+            this.y = this._startY + 2 * Math.sin(this._i * this._rnd), this._i += .5
         }, e
-    }(PIXI.Container)
+    }(PIXI.Sprite)
 }

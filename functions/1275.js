@@ -19,32 +19,27 @@ const function1275 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(146),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._text = new o.TextBox(39, 16774898), e._text.anchor.set(.5, 0), e.addChild(e._bg), e.addChild(e._text), e
+    var o = i(0),
+        r = i(9),
+        s = i(7),
+        a = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._url = "api_get_member/ship_deck", r._deck_ids = e, r._area_id = i, r._map_no = n, r._cell_no = o, r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return this._text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                void 0 === t && (t = ""), this._bg.texture = r.PRAC_MAIN.getTexture(7), this._text.position.set(this._bg.width / 2, 9), this.update(t)
-            }, e.prototype.update = function (t) {
-                this._text.text = t
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_rid = this._deck_ids.join(","), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                for (var e = s.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"), i = 0, n = e; i < n.length; i++) {
+                    var r = n[i];
+                    o.default.model.deck.updateData(r)
+                }
+                for (var a = s.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), _ = 0, u = a; _ < u.length; _++) {
+                    var r = u[_];
+                    o.default.model.ship.updateData(r)
+                }
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.PracticeTitleBar = s
+        }(r.APIBase);
+    e.APIShipDeck = a
 }

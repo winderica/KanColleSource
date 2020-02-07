@@ -19,49 +19,26 @@ const function281 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(280),
-        r = function (t) {
+    var o = i(14),
+        r = i(51),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._particle = new Array;
-                for (var i = [51, 257, 44, 8, 168, 53, 158, 113, 275, 194, 251, 0, 197], n = [51, 30, 87, 222, 213, 129, 122, 222, 216, 0, 194, 149, 84], o = 0; o < i.length; o++) {
-                    var r = new s;
-                    r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
-                }
-                return e
+                return e._shutter = new r.Shutter, e.addChild(e._shutter), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._particle; t < e.length; t++) {
-                    var i = e[t];
-                    i.initialize(), i.startAnim()
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this.shutter.initializeDark(), this.shutter.close(0)
+            }, e.prototype.start = function (t) {
+                this._model = t
             }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._particle; t < e.length; t++) {
-                    e[t].stopAnim()
-                }
+                o.UIImageLoader.clearMemoryCache("battle_result")
             }, e
         }(PIXI.Container);
-    e.KiraLayer = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.alpha = 0, e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.TITLE_MAIN.getTexture(2)
-        }, e.prototype.startAnim = function () {
-            this._anim()
-        }, e.prototype.stopAnim = function () {
-            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-        }, e.prototype._anim = function () {
-            var t = this;
-            this._tween = createjs.Tween.get(this).wait(1e3 * Math.random() + 1e3).to({
-                alpha: 1
-            }, 150).to({
-                alpha: 0
-            }, 150).call(function () {
-                t._tween = null, t._anim()
-            })
-        }, e
-    }(PIXI.Sprite)
+    e.BattleResultSceneBase = s
 }

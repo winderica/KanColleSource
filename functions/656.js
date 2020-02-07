@@ -19,15 +19,30 @@ const function656 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(0),
+        r = i(13),
+        s = i(49),
+        a = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype.update = function (t) {
-                var e = -1;
-                1 == t ? e = 47 : 2 == t ? e = 46 : 3 == t ? e = 45 : 4 == t ? e = 44 : 5 == t ? e = 43 : 6 == t ? e = 42 : 7 == t ? e = 41 : 8 == t ? e = 40 : 9 == t ? e = 39 : 10 == t && (e = 38), this.visible = !1, -1 != e && (this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0)
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                var t = this,
+                    e = this.model.mst_id,
+                    i = new r.ShipLoader;
+                i.add(e, !1, "card"), i.load(function () {
+                    var i = o.default.resources.getShip(e, !1, "card");
+                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
+                })
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._card), this._card = null
             }, e
-        }(PIXI.Sprite);
-    e.RankIcon = r
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogShip = a
 }

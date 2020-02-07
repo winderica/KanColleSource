@@ -19,149 +19,77 @@ const function1345 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(1),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._onMouseOver = function () {
-                    if (n._img.texture != PIXI.Texture.EMPTY) return void n._effect.deactivate();
-                    n._effect.activate()
-                }, n._onMouseOut = function () {
-                    n._effect.deactivate()
-                }, n._handle = -1, n._onClick = function () {
-                    if (-1 != n._handle) {
-                        if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
-                        n._cb_onDoubleClick(n._no)
-                    } else n._handle = setTimeout(function () {
-                        n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
-                    }, 300)
-                }, n._cb_onClick = e, n._cb_onDoubleClick = i, n._effect = new a, n.addChild(n._effect), n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img);
-                var o = new PIXI.Graphics;
-                return o.beginFill(65280, 0), o.drawCircle(0, 0, 24), o.endFill(), o.interactive = !0, n._clickCircle = o, n.addChild(n._clickCircle), n.interactive = !1, n
+    var o = i(1346),
+        r = i(1348),
+        s = i(1350),
+        a = i(1353),
+        _ = i(1355),
+        u = i(1356),
+        l = i(1358),
+        c = i(15),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new l.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new u.MapPlaneLayer, e.addChild(e._plane_layer), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "no", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._no
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._no = t;
-                var n = "blue";
-                if (e.distance > i ? n = "red" : (e.distance == i && (n = "yellow"), this._clickCircle.buttonMode = !0, this._clickCircle.on(r.EventType.CLICK, this._onClick)), this._clickCircle.on(r.EventType.MOUSEOVER, this._onMouseOver), this._clickCircle.on(r.EventType.MOUSEOUT, this._onMouseOut), 5 == e.color || -2 == e.color)
-                    if (e.passed) {
-                        switch (n) {
-                            case "red":
-                                this._effect.texture = o.MAP_COMMON.getTexture(132);
-                                break;
-                            case "yellow":
-                                this._effect.texture = o.MAP_COMMON.getTexture(131);
-                                break;
-                            case "blue":
-                                this._effect.texture = o.MAP_COMMON.getTexture(130)
-                        }
-                        this._effect.x = 0, this._effect.y = -2, this._clickCircle.position.set(0, -2)
-                    } else {
-                        switch (n) {
-                            case "red":
-                                this._effect.texture = o.MAP_COMMON.getTexture(129);
-                                break;
-                            case "yellow":
-                                this._effect.texture = o.MAP_COMMON.getTexture(128);
-                                break;
-                            case "blue":
-                                this._effect.texture = o.MAP_COMMON.getTexture(127)
-                        }
-                        this._effect.x = 0, this._effect.y = 0
-                    }
-                else if (10 == e.color && e.passed) {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(135);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(134);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(133)
-                    }
-                    this._effect.x = -11, this._effect.y = 9, this._clickCircle.position.set(-11, 9)
-                } else if (13 == e.color && e.passed) {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(126);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(125);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(124)
-                    }
-                    this._effect.x = -1, this._effect.y = 1, this._clickCircle.position.set(-1, 1)
-                } else if (8 == e.color && e.passed) {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(141);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(140);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(139)
-                    }
-                    this._effect.x = 0, this._effect.y = 0
-                } else {
-                    switch (n) {
-                        case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(138);
-                            break;
-                        case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(137);
-                            break;
-                        case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(136)
-                    }
-                    this._effect.x = 0, this._effect.y = 0
+            }), Object.defineProperty(e.prototype, "ship_icon", {
+                get: function () {
+                    return this._ship_icon
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "spotLayer", {
+                get: function () {
+                    return this._spotLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "airbaseLayer", {
+                get: function () {
+                    return this._airbaseLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "enemy_layer", {
+                get: function () {
+                    return this._enemy_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "plane_layer", {
+                get: function () {
+                    return this._plane_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bg.dispose(), this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
+            }, e.prototype.addSpot = function (t, e, i) {
+                var n = i.getSpot(e),
+                    o = new r.CompSpot(e, n.offsetDic);
+                if (o.position.set(n.x, n.y), null != n.route) {
+                    var s = n.route,
+                        a = c.MapUtil.toResKey(t),
+                        _ = "map" + a + "_" + s.img,
+                        u = PIXI.Texture.fromFrame(_);
+                    o.setRoute(u, s.x, s.y, s.r)
                 }
-            }, e.prototype.dispose = function () {
-                this._effect.dispose(), this._clickCircle.off(r.EventType.MOUSEOVER, this._onMouseOver), this._clickCircle.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickCircle.buttonMode = !1, this._clickCircle.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
-            }, e.prototype.update = function (t) {
-                switch (t) {
-                    case 1:
-                        this._img.texture = o.MAP_COMMON.getTexture(173);
-                        break;
-                    case 2:
-                        this._img.texture = o.MAP_COMMON.getTexture(174);
-                        break;
-                    case 3:
-                        this._img.texture = o.MAP_COMMON.getTexture(175);
-                        break;
-                    default:
-                        this._img.texture = PIXI.Texture.EMPTY
+                var l = n.line;
+                if (null != l) {
+                    var a = c.MapUtil.toResKey(t),
+                        h = void 0;
+                    h = null != l.img && l.img.length > 0 ? "map" + a + "_" + l.img : "map" + a + "_route_" + e;
+                    var u = PIXI.Texture.fromFrame(h);
+                    o.setLine(u, l.x, l.y, l.r)
                 }
+                this._spotLayer.addSpot(o)
             }, e
         }(PIXI.Container);
-    e.AirUnitAppointmentPoint = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e.visible = !1, e
-        }
-        return n(e, t), e.prototype.activate = function () {
-            this._startAnimation()
-        }, e.prototype.deactivate = function () {
-            this._stopAnimation()
-        }, e.prototype.dispose = function () {
-            this._stopAnimation()
-        }, e.prototype._startAnimation = function () {
-            this.alpha = 0, this.visible = !0, this._t = createjs.Tween.get(this).to({
-                alpha: 1
-            }, 1e3).to({
-                alpha: 0
-            }, 1e3), this._t.loop = !0
-        }, e.prototype._stopAnimation = function () {
-            this.visible = !1, null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Sprite)
+    e.MapView = h
 }

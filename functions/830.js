@@ -19,17 +19,23 @@ const function830 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(3),
-        s = i(89),
-        a = function (t) {
+    var o = i(4),
+        r = i(135),
+        s = i(831),
+        a = i(15),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e.headerKansenStatus = new s.TitleBar, e.headerKansenStatus.initialize(o.COMMON_MAIN.getTexture(1), 35), e.headerSelectKyouka = new s.TitleBar, e.headerSelectKyouka.initialize(r.REMODEL_POWERUP.getTexture(3), 26), e.headerSelectKyouka.position.set(536, 0), e.headerKyoukaList = new s.TitleBar, e.headerKyoukaList.initialize(r.REMODEL_POWERUP.getTexture(2), 26), e.headerKyoukaList.position.set(806, 0), e.addChild(e.headerKansenStatus, e.headerSelectKyouka, e.headerKyoukaList), e.cacheAsBitmap = !0, e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(21));
+                e.textType = new o.TextBox(21, 16777215), e.textName = new o.TextBox(36, 16777215), e.textLevel = new o.TextBox(65, 16777215), e.starRate = new s.StarRate;
+                var n = a.CreateRect.gradientLeftToRight(220, 50, .65, .9);
+                return e.containerName = new PIXI.Container, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.textType.position.set(18, 8), e.containerName.position.set(18, 36), e.textLevel.position.set(230, 89), e.starRate.position.set(15, 165), e.textLevel.anchor.x = 1, e.addChild(i, e.textType, e.containerName, e.textLevel, e.starRate), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.cacheAsBitmap = !1, this.headerKansenStatus.dispose(), this.headerKyoukaList.dispose(), this.headerSelectKyouka.dispose(), this.headerKansenStatus = null, this.headerKyoukaList = null, this.headerSelectKyouka = null
+            return n(e, t), e.prototype.update = function (t, e, i, n) {
+                this.containerName.cacheAsBitmap = !1, this.textType.text = t, this.textName.text = e, this.textLevel.text = "" + i, this.starRate.update(n), this.containerName.cacheAsBitmap = !0
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.starRate.dispose(), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textType = null, this.textName = null, this.textLevel = null, this.starRate = null, this.containerName = null
             }, e
         }(PIXI.Container);
-    e.PowerUpHeader = a
+    e.ShipInfoBox = _
 }

@@ -5,8 +5,8 @@ const function195 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("jukebox_common_" + t)
+            return PIXI.Texture.fromFrame("port_skin_3_" + t)
         }
         t.getTexture = e
-    }(e.JUKEBOX_COMMON || (e.JUKEBOX_COMMON = {}))
+    }(e.PORT_SKIN_3 || (e.PORT_SKIN_3 = {}))
 }

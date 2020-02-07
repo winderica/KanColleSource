@@ -19,40 +19,22 @@ const function679 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(680),
-        a = function (t) {
+    var o = i(8),
+        r = i(680),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e._view.deactivate(), e._hideDialog()
-                }, e
+                var e = t.call(this, 1, 0) || this;
+                return e._pukapuka = new r.Pukapuka, e._pukapuka.position.set(600, 360), e.addChild(e._pukapuka), e
             }
-            return n(e, t), e.prototype._start = function () {
-                o.default.model.deck.combined.type >= 0 ? this._endTask() : this._breakCombined()
-            }, e.prototype._breakCombined = function () {
-                o.default.model.deck.combined.__update__(0), this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this,
-                    e = o.default.view.overLayer;
-                this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({
-                    alpha: 1
-                }, 300), createjs.Tween.get(this._view.btn).wait(100).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    t._view.activate()
-                })
-            }, e.prototype._hideDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._view.btn).to({
-                    alpha: 0
-                }, 300), createjs.Tween.get(this._view.bg).wait(100).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._view.parent.removeChild(t._view), t._endTask()
-                })
+            return n(e, t), e.prototype.initialize = function () {
+                this._pukapuka.initialize()
+            }, e.prototype.activate = function () {
+                this._pukapuka.activate()
+            }, e.prototype.deactivate = function () {
+                this._pukapuka.deactivate()
+            }, e.prototype.dispose = function () {
+                this._pukapuka.dispose()
             }, e
-        }(r.TaskBase);
-    e.TaskCombinedAlert = a
+        }(o.AreaBox);
+    e.PukapukaLayer = s
 }

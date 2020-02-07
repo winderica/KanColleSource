@@ -19,76 +19,45 @@ const function1559 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(51),
-        r = i(1560),
-        s = i(1561),
-        a = i(1564),
-        _ = i(1572),
-        u = i(1573),
-        l = i(1574),
-        c = i(1576),
-        h = function (t) {
+    var o = i(29),
+        r = i(20),
+        s = i(36),
+        a = i(491),
+        _ = i(492),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._layer_mvp = new _.LayerMVP, e._layer_mvp.position.set(474, -120), e._layer_bg = new r.LayerBG, e._layer_deck_info = new s.LayerDeckInfo, e._layer_banner = new a.LayerBanner, e._layer_title = new u.LayerTitle, e._map_name = new c.LayerMapName, e._panel_exp = new l.PanelExp, e._panel_exp.position.set(591, 116), e._panel_exp.visible = !1, e._layer_cutin = new PIXI.Container, e._shutter = new o.Shutter, e._shutter.initializeDark(), e._shutter.open(0), e.addChild(e._layer_mvp), e.addChild(e._layer_bg), e.addChild(e._layer_deck_info), e.addChild(e._layer_banner), e.addChild(e._layer_title), e.addChild(e._map_name), e.addChild(e._panel_exp), e.addChild(e._layer_cutin), e.addChild(e._shutter), e
+                return e._line = new PIXI.Sprite, e.addChild(e._line), e._info = new a.DeckInfo, e.addChild(e._info), e._gauge_label = new PIXI.Sprite, e._gauge_label.x = 11, e._gauge_label.y = 96, e.addChild(e._gauge_label), e._gauge = new _.Gauge, e._gauge.x = 11, e._gauge.y = 130, e.addChild(e._gauge), e._gauge_f = new _.Gauge, e._gauge_f.x = 11, e._gauge_f.y = 96, e.addChild(e._gauge_f), e._gauge_f.visible = !1, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer_mvp", {
-                get: function () {
-                    return this._layer_mvp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bg", {
-                get: function () {
-                    return this._layer_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_deck_info", {
-                get: function () {
-                    return this._layer_deck_info
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_banner", {
-                get: function () {
-                    return this._layer_banner
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_title", {
-                get: function () {
-                    return this._layer_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "panel_exp", {
-                get: function () {
-                    return this._panel_exp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_cutin", {
-                get: function () {
-                    return this._layer_cutin
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_map_name", {
-                get: function () {
-                    return this._map_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._layer_mvp.dispose(), this._layer_mvp = null, this._layer_bg.dispose(), this._layer_bg = null, this._layer_deck_info.dispose(), this._layer_deck_info = null, null != this._layer_banner && (this._layer_banner.dispose(), this._layer_banner = null), null != this._layer_title && (this._layer_title.dispose(), this._layer_title = null), null != this._panel_exp && (this._panel_exp.dispose(), this._panel_exp = null), this._layer_cutin = null, this._shutter = null, this._map_name.dispose(), this._map_name = null
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._line.texture = s.BATTLE_RESULT_MAIN.getTexture(2), this._line.visible = !1, this._info.alpha = 0, this._info.deck_name.initialize(), this._info.deck_name.text = t, this._gauge_label.texture = s.BATTLE_RESULT_MAIN.getTexture(72), this._gauge_label.alpha = 0, this._gauge.initialize(16711680), this._gauge.alpha = 0, e && (this._info.deck_name.y = 14, this._gauge_label.y = 54, this._gauge_f.initialize(65298), this._gauge_f.alpha = 0, this._gauge_f.visible = !0)
+            }, e.prototype.createShowTween = function () {
+                var t = this;
+                return createjs.Tween.get(this._info).call(function () {
+                    t._line.visible = !0
+                }).to({
+                    alpha: 1
+                }, 100)
+            }, e.prototype.createTaskShowGauge = function (t, e, i, n, s) {
+                void 0 === i && (i = -1), void 0 === n && (n = -1);
+                var a, _ = new r.TweenTask;
+                this._gauge_label.x += 15, a = createjs.Tween.get(this._gauge_label).wait(s).to({
+                    x: this._gauge_label.x - 15,
+                    alpha: 1
+                }, 200), _.addTween(a), this._gauge.x += 15, a = createjs.Tween.get(this._gauge).wait(s).to({
+                    x: this._gauge.x - 15,
+                    alpha: 1
+                }, 200), _.addTween(a);
+                var u = new o.SerialTask;
+                u.add(_), a = this._gauge.createTween(t, e);
+                var l = new r.TweenTask;
+                return l.addTween(a), u.add(l), 1 == this._gauge_f.visible && (this._gauge_f.x += 15, a = createjs.Tween.get(this._gauge_f).wait(s + 100).to({
+                    x: this._gauge_f.x - 15,
+                    alpha: 1
+                }, 200), _.addTween(a), a = this._gauge_f.createTween(i, n), l.addTween(a)), u
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._info.dispose()
             }, e
         }(PIXI.Container);
-    e.ViewMain = h
+    e.DeckInfoPanelEnemy = u
 }

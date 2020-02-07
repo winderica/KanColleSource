@@ -20,29 +20,15 @@ const function672 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(69),
-        s = i(49),
-        a = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+        r = i(9),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_req_member/get_incentive", e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = this,
-                    e = this.model.mst_id,
-                    i = new r.UseitemLoader;
-                i.add(e, 1), i.load(function () {
-                    var i = o.default.resources.getUseitem(e, 1);
-                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
-                })
-            }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._card), this._card = null
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.incentive.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogUseitem = a
+        }(r.APIBase);
+    e.GetIncentiveAPI = s
 }

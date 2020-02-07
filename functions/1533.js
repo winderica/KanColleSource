@@ -19,26 +19,52 @@ const function1533 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(11),
-        s = i(1534),
-        a = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = !1);
-                var r = t.call(this) || this;
-                return r._hideTelop = function () {
-                    createjs.Tween.get(r._telop).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        r._layer.removeChild(r._telop), r._telop = null, r._endTask()
-                    })
-                }, r._layer = e, r._type = i, r._mst_id = n, r._sub_text = o, r
+    var o = i(2),
+        r = i(1534),
+        s = i(1541),
+        a = i(1546),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._showTelop()
-            }, e.prototype._showTelop = function () {
-                this._telop = new s.BonusTelop, this._telop.position.set(o.default.width / 2, o.default.height / 2), 3 == this._type ? this._telop.initializeForShip(this._sub_text) : 2 == this._type ? this._telop.initializeForSlot() : 6 == this._type && this._telop.initializeForUseitem(this._mst_id), this._layer.addChild(this._telop), this._telop.play(), this._telop.once("complete", this._hideTelop)
+                this._mapClear()
+            }, e.prototype._mapClear = function () {
+                var t = this;
+                if (1 == this._scene.data.isFirstClear()) {
+                    var e = this._scene.shutter,
+                        i = this._scene.data.battle_model.map_info.area_id,
+                        n = this._scene.data.battle_model.map_info.map_no,
+                        o = this._scene.data.battle_model.deck_f.ships[0],
+                        s = o.mst_id,
+                        a = o.isDamaged(),
+                        _ = this._scene.data.getClearMapSuffix();
+                    new r.TaskEventClear(e, i, n, s, a, _).start(function () {
+                        t._ending()
+                    })
+                } else this._ending()
+            }, e.prototype._ending = function () {
+                var t = this;
+                if (1 == this._scene.data.isFirstClear()) {
+                    var e = this._scene.layer_bonus,
+                        i = this._scene.data.battle_model.map_info.area_id,
+                        n = this._scene.data.battle_model.map_info.map_no,
+                        o = this._scene.data.getClearOperationSuffix();
+                    new s.TaskEventEnding(e, i, n, o).start(function () {
+                        t._mapOpen()
+                    })
+                } else this._mapOpen()
+            }, e.prototype._mapOpen = function () {
+                var t = this,
+                    e = this._scene.data.getOpenedMapIDs();
+                if (e.length > 0) {
+                    var i = this._scene.layer_bonus;
+                    new a.TaskMapOpen(i, e).start(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
             }, e
-        }(r.TaskBase);
-    e.TaskBonusTelop = a
+        }(o.TaskBase);
+    e.PhaseClear = _
 }

@@ -19,48 +19,93 @@ const function288 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(620),
-        r = function (t) {
+    var o = i(5),
+        r = i(158),
+        s = function (t) {
             function e() {
                 return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._skipTween(), null == this._content && (this._content = new s, this._content.initialize(this._getTexture(0), this._getTextureOver(0)), this.addChild(this._content))
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_top", {
+                get: function () {
+                    return this._banner_top
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_bottom", {
+                get: function () {
+                    return this._banner_bottom
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particles", {
+                get: function () {
+                    return this._particles
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._bg = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(10)), this._bg.anchor.set(.5, .5), this._bg.position.set(o.default.width / 2, o.default.height / 2), this._message = 1 == t ? new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(4)) : new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(3)), this._message.anchor.set(.5, .5), this._banner_top = new a, this._banner_bottom = new a, this._particles = new _, this._particles.initialize(), this.addChild(this._bg), this.addChild(this._message), this.addChild(this._banner_top), this.addChild(this._banner_bottom), this.addChild(this._particles)
             }, e.prototype.dispose = function () {
-                this._stopTween(), null != this._content && this._content.dispose(), null != this._content_tmp && this._content_tmp.dispose()
-            }, e.prototype.startAnimation = function (t) {
-                var e = this;
-                this._skipTween(), this._content_tmp = new s, this._content_tmp.initialize(this._getTexture(t), this._getTextureOver(t)), this._content_tmp.alpha = 0, this.addChild(this._content_tmp), this._tween = createjs.Tween.get(this._content_tmp).to({
-                    alpha: 1
-                }, 600).call(function () {
-                    e._content.dispose(), e.removeChild(e._content), e._content = e._content_tmp, e._content_tmp = null
-                })
-            }, e.prototype._stopTween = function () {
-                null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-            }, e.prototype._skipTween = function () {
-                this._stopTween(), null != this._content_tmp && (this._content.dispose(), this.removeChild(this._content), this._content_tmp.alpha = 1, this._content = this._content_tmp, this._content_tmp = null)
-            }, e.prototype._getTexture = function (t) {
-                return 11 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(4) : 12 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(6) : 13 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(8) : 14 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(12) : 15 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(10) : 31 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(0) : 16 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(14) : o.PORT_SKIN_CIRCLE_2.getTexture(2)
-            }, e.prototype._getTextureOver = function (t) {
-                return 11 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(5) : 12 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(7) : 13 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(9) : 14 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(13) : 15 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(11) : 31 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(1) : 16 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(15) : o.PORT_SKIN_CIRCLE_2.getTexture(3)
+                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
             }, e
         }(PIXI.Container);
-    e.CircleContentWithSwitching = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._under = new PIXI.Sprite, e.addChild(e._under), e._over = new PIXI.Sprite, e.addChild(e._over), e
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._under.texture = t, this._over.texture = e, this.pivot.x = Math.round(this._under.width / 2), this.pivot.y = Math.round(this._under.height / 2), this._over.alpha = 0, this._tween = createjs.Tween.get(this._over, {
-                loop: !0
-            }).to({
-                alpha: .6
-            }, 1e3, createjs.Ease.getPowOut(4)).to({
-                alpha: 0
-            }, 1e3, createjs.Ease.getPowIn(4))
-        }, e.prototype.dispose = function () {
-            null != this._tween && this._tween.setPaused(!0), this._tween = null
-        }, e
-    }(PIXI.Container)
+    e.ExpeditionCutin = s;
+    var a = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                for (var t = 0, e = this.children; t < e.length; t++) {
+                    var i = e[t],
+                        n = i;
+                    null != n && n.dispose()
+                }
+                this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._particles = new Array;
+                for (var t in this.XPOS) {
+                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
+                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
+                }
+            }, e.prototype.startAnim = function () {
+                if (null == this._tweens) {
+                    this._tweens = [];
+                    for (var t = 0; t < this._particles.length; t++) {
+                        var e = this._particles[t],
+                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
+                                x: 1,
+                                y: 1
+                            }, 100).to({
+                                x: 0,
+                                y: 0
+                            }, 100);
+                        this._tweens.push(i)
+                    }
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null, this._particles = null, this.removeChildren()
+            }, e
+        }(PIXI.Container)
 }

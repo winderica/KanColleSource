@@ -19,52 +19,36 @@ const function655 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(8),
-        s = i(31),
-        a = i(31),
-        _ = i(311),
-        u = i(208),
-        l = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(0),
+        r = i(4),
+        s = i(49),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e, null) || this;
+                return n._models = i, n
             }
-            return n(e, t), e.prototype._initBG = function () {
-                var t = this;
-                this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
-                    t._animation()
-                })
-            }, e.prototype._createItemTobe = function (t, e) {
-                var i = o.COMMON_MISC.getTexture(49),
-                    n = new u.CenteringSprite(i);
-                return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
-            }, e.prototype._change = function () {
-                var e = this;
-                t.prototype._change.call(this);
-                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
-                i.x = -i.width / 2, i.y = -i.height / 2;
-                var n = new a.Container;
-                n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
-                    scaleX: 3.3,
-                    scaleY: 3.3,
-                    alpha: 1
-                }, 350).to({
-                    scaleX: 5,
-                    scaleY: 5
-                }, 300).wait(600).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._layer.removeChild(n)
-                });
-                var s = new r.AreaBox(1, 16777215);
-                s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({
-                    alpha: 1
-                }, 500).wait(600).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._layer.removeChild(s)
-                })
+            return n(e, t), e.prototype._createContent = function () {
+                this._icons = [], this._text = new r.TextBox(25, 16774898), this._dialog.container.addChild(this._text);
+                for (var t = "", e = 0, i = this._models.rewards; e < i.length; e++) {
+                    var n = i[e],
+                        s = o.default.resources.getUseitem(n.mst_id, 0),
+                        a = new PIXI.Sprite(s);
+                    a.y = -121, this._dialog.container.addChild(a), this._icons.push(a), t += n.name + "\xd7" + n.count + "\n"
+                }
+                this._text.text = t, this._text.x = -Math.round(this._text.width / 2), this._models.rewards.length >= 6 ? this._text.y = -30 : 5 == this._models.rewards.length ? this._text.y = -15 : this._text.y = 0;
+                for (var _ = this._icons.length, u = [0, 0, 96, 75, 45, 30, 15][_], l = 75 * _ + u * (_ - 1), c = 0; c < _; c++) {
+                    var a = this._icons[c];
+                    a.x = -l / 2 + (75 + u) * c
+                }
+                this._showDialog()
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._text), this._text.destroy(), this._text = null;
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    var i = e[t];
+                    this._dialog.container.removeChild(i)
+                }
+                this._icons = null
             }, e
-        }(_.ModelChangeTask);
-    e.AirunitBaseOpenTask = l
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogMultiUseitem = a
 }

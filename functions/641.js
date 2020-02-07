@@ -19,36 +19,52 @@ const function641 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(25),
-        s = i(161),
-        a = function (t) {
+    var o = i(10),
+        r = i(8),
+        s = i(30),
+        a = i(30),
+        _ = i(308),
+        u = i(205),
+        l = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._timer = -1, e._startAnimation = function () {
-                    e._timer < 0 && (e._timer = setInterval(e._onTimer, 1e3))
-                }, e._stopAnimation = function () {
-                    e._timer >= 0 && (clearInterval(e._timer), e._timer = -1)
-                }, e._onTimer = function () {
-                    var t = new Date,
-                        i = t.getMonth() + 1,
-                        n = t.getDate();
-                    e._date.text = r.MathUtil.zeroPadding(i, 2) + "/" + r.MathUtil.zeroPadding(n, 2);
-                    var o = t.getHours(),
-                        s = t.getMinutes();
-                    e._time.text = r.MathUtil.zeroPadding(o, 2) + ":" + r.MathUtil.zeroPadding(s, 2)
-                };
-                var i = new PIXI.Sprite;
-                return i.name = "bg", i.position.set(0, 573), e.addChild(i), e._date = new o.TextBox(26, "white"), e._date.anchor.set(.5, 0), e._date.position.set(58, 612), e.addChild(e._date), e._time = new o.TextBox(41, "white"), e._time.anchor.set(.5, 0), e._time.position.set(75, 651), e.addChild(e._time), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.getChildByName("bg").texture = s.PORT_MAIN.getTexture(19), this._onTimer(), this._startAnimation()
-            }, e.prototype.update = function (t) {
-                var e = [0, 11, 12, 13, 14, 15, 31, 16];
-                this.visible = e.indexOf(t) >= 0, 1 == this.visible ? this._startAnimation() : this._stopAnimation()
-            }, e.prototype.dispose = function () {
-                this._stopAnimation(), this.removeChildren(), this._date && this._date.destroy(), this._date = null, this._time && this._time.destroy(), this._time = null
+            return n(e, t), e.prototype._initBG = function () {
+                var t = this;
+                this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
+                    t._animation()
+                })
+            }, e.prototype._createItemTobe = function (t, e) {
+                var i = o.COMMON_MISC.getTexture(49),
+                    n = new u.CenteringSprite(i);
+                return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
+            }, e.prototype._change = function () {
+                var e = this;
+                t.prototype._change.call(this);
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
+                i.x = -i.width / 2, i.y = -i.height / 2;
+                var n = new a.Container;
+                n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
+                    scaleX: 3.3,
+                    scaleY: 3.3,
+                    alpha: 1
+                }, 350).to({
+                    scaleX: 5,
+                    scaleY: 5
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(n)
+                });
+                var s = new r.AreaBox(1, 16777215);
+                s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({
+                    alpha: 1
+                }, 500).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(s)
+                })
             }, e
-        }(PIXI.Container);
-    e.ClockLayer = a
+        }(_.ModelChangeTask);
+    e.AirunitBaseOpenTask = l
 }
