@@ -99,6 +99,8 @@ const function1074 = function (t, e, i) {
                 };
                 return [t.item1_id, t.item2_id].forEach(function (t) {
                     switch (t) {
+                        case 0:
+                            break;
                         case 1:
                             e.rewardRepairKit = !0;
                             break;
@@ -108,9 +110,7 @@ const function1074 = function (t, e, i) {
                         case 3:
                             e.rewardDevKit = !0;
                             break;
-                        case 10:
-                        case 11:
-                        case 12:
+                        default:
                             e.rewardOtherItem = !0
                     }
                 }), e

@@ -127,20 +127,18 @@ const function1076 = function (t, e, i) {
             }
             return n(e, t), e.prototype._itemIdToTextureId = function (t) {
                 switch (t) {
+                    case 0:
+                        return -1;
                     case 1:
                         return 0;
                     case 2:
                         return 2;
                     case 3:
                         return 1;
-                    case 10:
-                    case 11:
-                    case 12:
-                        return 3;
                     case 59:
                         return 4;
                     default:
-                        return -1
+                        return 3
                 }
             }, e.prototype.updateMaster = function (t, e, i, n, o, r, s, a, _, u, l, c, h, d, f, y, m) {
                 if (this._useFuel.update(r), this._useAmmo.update(s), this._rewardFuel.update(_), this._rewardAmmo.update(u), this._rewardSteel.update(l), this._rewardBauxite.update(c), 0 == d) this._rewardItem1Icon.visible = !1, this._rewardItem1Text.visible = !1;
